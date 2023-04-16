@@ -42,7 +42,7 @@ namespace Bb.SqlServer.Asts
 
         }
 
-        public AstTerminalDecimal(Position p, double value)
+        public AstTerminalDecimal(Position p, decimal value)
             : base(p, value)
         {
 
@@ -56,7 +56,7 @@ namespace Bb.SqlServer.Asts
         }
 
 
-        public static implicit operator AstTerminalDecimal(double value)
+        public static implicit operator AstTerminalDecimal(decimal value)
         {
             return new AstTerminalDecimal(Position.Default, value);
         }

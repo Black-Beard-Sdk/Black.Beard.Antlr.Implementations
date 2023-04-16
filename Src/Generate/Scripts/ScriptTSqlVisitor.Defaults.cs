@@ -37,32 +37,33 @@ namespace Generate.Scripts
 
                               .Method(m =>
                               {
+
+                                  var alternatives = ast.ResolveAllCombinations();
+
                                   m.Name(g => "Visit" + CodeHelper.FormatCamelUpercase(ast.Name.Text))
-                                   .Argument(() => ctx.AntlrParserRootName + "." + CodeHelper.FormatCamelUpercase(ast.Name.Text) + "Context", "context")
+                                   .Argument(() => ctx.AntlrParserRootName + "." + CodeHelper.FormatCamelUpercase(ast.Name.Text) 
+                                                    + "Context", "context")
                                    .Attribute(MemberAttributes.Public | MemberAttributes.Override)
                                    .Return(() => "AstRoot")
                                    .Documentation(c => c.Summary(() => ast.ToString()))
                                    .Body(b =>
                                    {
-                                       b.Statements.DeclareAndCreate("list", "List<AstRoot>".AsType());
-                                       b.Statements.ForEach("IParseTree".AsType(), "item", "context.children", stm =>
-                                       {
-                                           //var v1 = ("Ast" + CodeHelper.FormatCsharp(ast.Name)).AsType();
-                                           var v1 = "AstRoot".AsType();
-                                           stm.DeclareAndInitialize("acceptResult", v1, "item".Var().Call("Accept", CodeHelper.This()));
-                                           stm.If("acceptResult".Var().IsNotEqual(CodeHelper.Null()), s =>
-                                           {
-                                               s.Call("list".Var(), "Add", "acceptResult".Var());
-                                           }
-                                           );
 
-                                       });
+                                       b.Statements.DeclareAndInitialize("list", "List<AstRoot>".AsType(), "GetList".Call("context".Var()));
 
-                                       if (ast.Alternatives.Count > 1)
-                                           b.Statements.Return(("Ast" + CodeHelper.FormatCsharp(ast.Name.Text)).AsType().Call("Create", "context".Var(), "list".Var()));
-                                       else
-                                           b.Statements.Return(("Ast" + CodeHelper.FormatCsharp(ast.Name.Text)).AsType().Create("context".Var(), "list".Var()));
+                                       //if (alternatives.Count == 1)
+                                       //{
+                                       //    b.Statements.Return(
+                                       //         ("Ast" + CodeHelper.FormatCsharp(ast.Name.Text)).AsType()
+                                       //            .Create("context".Var(), "list".Var())
+                                       //    );
 
+                                       //}
+                                       //else
+                                       //{
+                                           b.Statements.Return(("Ast" + CodeHelper.FormatCsharp(ast.Name.Text)).AsType()
+                                                   .Call("Create", "context".Var(), "list".Var()));
+                                       //}
                                    });
                               })
 

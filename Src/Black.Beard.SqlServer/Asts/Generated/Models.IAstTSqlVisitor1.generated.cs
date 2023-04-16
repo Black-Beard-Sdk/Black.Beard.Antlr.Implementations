@@ -20,12 +20,12 @@ namespace Bb.SqlServer.Asts
     {
         
         /// <summary>
-        /// t_root : batchs  EOF
+        /// t_root : batchs 
         /// </summary>
         void VisitTRoot(AstTRoot.AstTRoot1 a);
         
         /// <summary>
-        /// t_root : execute_body_batch  go_statements  EOF
+        /// t_root : execute_body_batch go_statements 
         /// </summary>
         void VisitTRoot(AstTRoot.AstTRoot2 a);
         
@@ -35,32 +35,32 @@ namespace Bb.SqlServer.Asts
         void VisitBatchs(AstBatchs a);
         
         /// <summary>
-        /// batch : execute_body_batch
+        /// batch : execute_body_batch 
         /// </summary>
         void VisitBatch(AstBatch.AstBatch1 a);
         
         /// <summary>
-        /// batch : sql_clauses
+        /// batch : sql_clauses 
         /// </summary>
         void VisitBatch(AstBatch.AstBatch2 a);
         
         /// <summary>
-        /// batch : create_or_alter_function
+        /// batch : create_or_alter_function 
         /// </summary>
         void VisitBatch(AstBatch.AstBatch3 a);
         
         /// <summary>
-        /// batch : create_or_alter_procedure
+        /// batch : create_or_alter_procedure 
         /// </summary>
         void VisitBatch(AstBatch.AstBatch4 a);
         
         /// <summary>
-        /// batch : create_or_alter_trigger
+        /// batch : create_or_alter_trigger 
         /// </summary>
         void VisitBatch(AstBatch.AstBatch5 a);
         
         /// <summary>
-        /// batch : create_view
+        /// batch : create_view 
         /// </summary>
         void VisitBatch(AstBatch.AstBatch6 a);
         
@@ -75,1042 +75,1042 @@ namespace Bb.SqlServer.Asts
         void VisitSqlClauses(AstSqlClauses a);
         
         /// <summary>
-        /// sql_clause : merge_statement
+        /// sql_clause : merge_statement 
         /// </summary>
         void VisitSqlClause(AstSqlClause.AstSqlClause1 a);
         
         /// <summary>
-        /// sql_clause : delete_statement
+        /// sql_clause : delete_statement 
         /// </summary>
         void VisitSqlClause(AstSqlClause.AstSqlClause2 a);
         
         /// <summary>
-        /// sql_clause : insert_statement
+        /// sql_clause : insert_statement 
         /// </summary>
         void VisitSqlClause(AstSqlClause.AstSqlClause3 a);
         
         /// <summary>
-        /// sql_clause : select_statement_standalone
+        /// sql_clause : select_statement_standalone 
         /// </summary>
         void VisitSqlClause(AstSqlClause.AstSqlClause4 a);
         
         /// <summary>
-        /// sql_clause : update_statement
+        /// sql_clause : update_statement 
         /// </summary>
         void VisitSqlClause(AstSqlClause.AstSqlClause5 a);
         
         /// <summary>
-        /// sql_clause : alter_application_role
+        /// sql_clause : alter_application_role 
         /// </summary>
         void VisitSqlClause(AstSqlClause.AstSqlClause6 a);
         
         /// <summary>
-        /// sql_clause : alter_assembly
+        /// sql_clause : alter_assembly 
         /// </summary>
         void VisitSqlClause(AstSqlClause.AstSqlClause7 a);
         
         /// <summary>
-        /// sql_clause : alter_asymmetric_key
+        /// sql_clause : alter_asymmetric_key 
         /// </summary>
         void VisitSqlClause(AstSqlClause.AstSqlClause8 a);
         
         /// <summary>
-        /// sql_clause : alter_authorization
+        /// sql_clause : alter_authorization 
         /// </summary>
         void VisitSqlClause(AstSqlClause.AstSqlClause9 a);
         
         /// <summary>
-        /// sql_clause : alter_authorization_for_azure_dw
+        /// sql_clause : alter_authorization_for_azure_dw 
         /// </summary>
         void VisitSqlClause(AstSqlClause.AstSqlClause10 a);
         
         /// <summary>
-        /// sql_clause : alter_authorization_for_parallel_dw
+        /// sql_clause : alter_authorization_for_parallel_dw 
         /// </summary>
         void VisitSqlClause(AstSqlClause.AstSqlClause11 a);
         
         /// <summary>
-        /// sql_clause : alter_authorization_for_sql_database
+        /// sql_clause : alter_authorization_for_sql_database 
         /// </summary>
         void VisitSqlClause(AstSqlClause.AstSqlClause12 a);
         
         /// <summary>
-        /// sql_clause : alter_availability_group
+        /// sql_clause : alter_availability_group 
         /// </summary>
         void VisitSqlClause(AstSqlClause.AstSqlClause13 a);
         
         /// <summary>
-        /// sql_clause : alter_certificate
+        /// sql_clause : alter_certificate 
         /// </summary>
         void VisitSqlClause(AstSqlClause.AstSqlClause14 a);
         
         /// <summary>
-        /// sql_clause : alter_column_encryption_key
+        /// sql_clause : alter_column_encryption_key 
         /// </summary>
         void VisitSqlClause(AstSqlClause.AstSqlClause15 a);
         
         /// <summary>
-        /// sql_clause : alter_credential
+        /// sql_clause : alter_credential 
         /// </summary>
         void VisitSqlClause(AstSqlClause.AstSqlClause16 a);
         
         /// <summary>
-        /// sql_clause : alter_cryptographic_provider
+        /// sql_clause : alter_cryptographic_provider 
         /// </summary>
         void VisitSqlClause(AstSqlClause.AstSqlClause17 a);
         
         /// <summary>
-        /// sql_clause : alter_database
+        /// sql_clause : alter_database 
         /// </summary>
         void VisitSqlClause(AstSqlClause.AstSqlClause18 a);
         
         /// <summary>
-        /// sql_clause : alter_db_role
+        /// sql_clause : alter_db_role 
         /// </summary>
         void VisitSqlClause(AstSqlClause.AstSqlClause19 a);
         
         /// <summary>
-        /// sql_clause : alter_endpoint
+        /// sql_clause : alter_endpoint 
         /// </summary>
         void VisitSqlClause(AstSqlClause.AstSqlClause20 a);
         
         /// <summary>
-        /// sql_clause : create_or_alter_event_session
+        /// sql_clause : create_or_alter_event_session 
         /// </summary>
         void VisitSqlClause(AstSqlClause.AstSqlClause21 a);
         
         /// <summary>
-        /// sql_clause : alter_external_data_source
+        /// sql_clause : alter_external_data_source 
         /// </summary>
         void VisitSqlClause(AstSqlClause.AstSqlClause22 a);
         
         /// <summary>
-        /// sql_clause : alter_external_library
+        /// sql_clause : alter_external_library 
         /// </summary>
         void VisitSqlClause(AstSqlClause.AstSqlClause23 a);
         
         /// <summary>
-        /// sql_clause : alter_external_resource_pool
+        /// sql_clause : alter_external_resource_pool 
         /// </summary>
         void VisitSqlClause(AstSqlClause.AstSqlClause24 a);
         
         /// <summary>
-        /// sql_clause : alter_fulltext_catalog
+        /// sql_clause : alter_fulltext_catalog 
         /// </summary>
         void VisitSqlClause(AstSqlClause.AstSqlClause25 a);
         
         /// <summary>
-        /// sql_clause : alter_fulltext_stoplist
+        /// sql_clause : alter_fulltext_stoplist 
         /// </summary>
         void VisitSqlClause(AstSqlClause.AstSqlClause26 a);
         
         /// <summary>
-        /// sql_clause : alter_index
+        /// sql_clause : alter_index 
         /// </summary>
         void VisitSqlClause(AstSqlClause.AstSqlClause27 a);
         
         /// <summary>
-        /// sql_clause : alter_login_azure_sql
+        /// sql_clause : alter_login_azure_sql 
         /// </summary>
         void VisitSqlClause(AstSqlClause.AstSqlClause28 a);
         
         /// <summary>
-        /// sql_clause : alter_login_azure_sql_dw_and_pdw
+        /// sql_clause : alter_login_azure_sql_dw_and_pdw 
         /// </summary>
         void VisitSqlClause(AstSqlClause.AstSqlClause29 a);
         
         /// <summary>
-        /// sql_clause : alter_login_sql_server
+        /// sql_clause : alter_login_sql_server 
         /// </summary>
         void VisitSqlClause(AstSqlClause.AstSqlClause30 a);
         
         /// <summary>
-        /// sql_clause : alter_master_key_azure_sql
+        /// sql_clause : alter_master_key_azure_sql 
         /// </summary>
         void VisitSqlClause(AstSqlClause.AstSqlClause31 a);
         
         /// <summary>
-        /// sql_clause : alter_master_key_sql_server
+        /// sql_clause : alter_master_key_sql_server 
         /// </summary>
         void VisitSqlClause(AstSqlClause.AstSqlClause32 a);
         
         /// <summary>
-        /// sql_clause : alter_message_type
+        /// sql_clause : alter_message_type 
         /// </summary>
         void VisitSqlClause(AstSqlClause.AstSqlClause33 a);
         
         /// <summary>
-        /// sql_clause : alter_partition_function
+        /// sql_clause : alter_partition_function 
         /// </summary>
         void VisitSqlClause(AstSqlClause.AstSqlClause34 a);
         
         /// <summary>
-        /// sql_clause : alter_partition_scheme
+        /// sql_clause : alter_partition_scheme 
         /// </summary>
         void VisitSqlClause(AstSqlClause.AstSqlClause35 a);
         
         /// <summary>
-        /// sql_clause : alter_remote_service_binding
+        /// sql_clause : alter_remote_service_binding 
         /// </summary>
         void VisitSqlClause(AstSqlClause.AstSqlClause36 a);
         
         /// <summary>
-        /// sql_clause : alter_resource_governor
+        /// sql_clause : alter_resource_governor 
         /// </summary>
         void VisitSqlClause(AstSqlClause.AstSqlClause37 a);
         
         /// <summary>
-        /// sql_clause : alter_schema_azure_sql_dw_and_pdw
+        /// sql_clause : alter_schema_azure_sql_dw_and_pdw 
         /// </summary>
         void VisitSqlClause(AstSqlClause.AstSqlClause38 a);
         
         /// <summary>
-        /// sql_clause : alter_schema_sql
+        /// sql_clause : alter_schema_sql 
         /// </summary>
         void VisitSqlClause(AstSqlClause.AstSqlClause39 a);
         
         /// <summary>
-        /// sql_clause : alter_sequence
+        /// sql_clause : alter_sequence 
         /// </summary>
         void VisitSqlClause(AstSqlClause.AstSqlClause40 a);
         
         /// <summary>
-        /// sql_clause : alter_server_audit
+        /// sql_clause : alter_server_audit 
         /// </summary>
         void VisitSqlClause(AstSqlClause.AstSqlClause41 a);
         
         /// <summary>
-        /// sql_clause : alter_server_audit_specification
+        /// sql_clause : alter_server_audit_specification 
         /// </summary>
         void VisitSqlClause(AstSqlClause.AstSqlClause42 a);
         
         /// <summary>
-        /// sql_clause : alter_server_configuration
+        /// sql_clause : alter_server_configuration 
         /// </summary>
         void VisitSqlClause(AstSqlClause.AstSqlClause43 a);
         
         /// <summary>
-        /// sql_clause : alter_server_role
+        /// sql_clause : alter_server_role 
         /// </summary>
         void VisitSqlClause(AstSqlClause.AstSqlClause44 a);
         
         /// <summary>
-        /// sql_clause : alter_server_role_pdw
+        /// sql_clause : alter_server_role_pdw 
         /// </summary>
         void VisitSqlClause(AstSqlClause.AstSqlClause45 a);
         
         /// <summary>
-        /// sql_clause : alter_service
+        /// sql_clause : alter_service 
         /// </summary>
         void VisitSqlClause(AstSqlClause.AstSqlClause46 a);
         
         /// <summary>
-        /// sql_clause : alter_service_master_key
+        /// sql_clause : alter_service_master_key 
         /// </summary>
         void VisitSqlClause(AstSqlClause.AstSqlClause47 a);
         
         /// <summary>
-        /// sql_clause : alter_symmetric_key
+        /// sql_clause : alter_symmetric_key 
         /// </summary>
         void VisitSqlClause(AstSqlClause.AstSqlClause48 a);
         
         /// <summary>
-        /// sql_clause : alter_table
+        /// sql_clause : alter_table 
         /// </summary>
         void VisitSqlClause(AstSqlClause.AstSqlClause49 a);
         
         /// <summary>
-        /// sql_clause : alter_user
+        /// sql_clause : alter_user 
         /// </summary>
         void VisitSqlClause(AstSqlClause.AstSqlClause50 a);
         
         /// <summary>
-        /// sql_clause : alter_user_azure_sql
+        /// sql_clause : alter_user_azure_sql 
         /// </summary>
         void VisitSqlClause(AstSqlClause.AstSqlClause51 a);
         
         /// <summary>
-        /// sql_clause : alter_workload_group
+        /// sql_clause : alter_workload_group 
         /// </summary>
         void VisitSqlClause(AstSqlClause.AstSqlClause52 a);
         
         /// <summary>
-        /// sql_clause : create_application_role
+        /// sql_clause : create_application_role 
         /// </summary>
         void VisitSqlClause(AstSqlClause.AstSqlClause53 a);
         
         /// <summary>
-        /// sql_clause : create_assembly
+        /// sql_clause : create_assembly 
         /// </summary>
         void VisitSqlClause(AstSqlClause.AstSqlClause54 a);
         
         /// <summary>
-        /// sql_clause : create_asymmetric_key
+        /// sql_clause : create_asymmetric_key 
         /// </summary>
         void VisitSqlClause(AstSqlClause.AstSqlClause55 a);
         
         /// <summary>
-        /// sql_clause : create_column_encryption_key
+        /// sql_clause : create_column_encryption_key 
         /// </summary>
         void VisitSqlClause(AstSqlClause.AstSqlClause56 a);
         
         /// <summary>
-        /// sql_clause : create_column_master_key
+        /// sql_clause : create_column_master_key 
         /// </summary>
         void VisitSqlClause(AstSqlClause.AstSqlClause57 a);
         
         /// <summary>
-        /// sql_clause : create_credential
+        /// sql_clause : create_credential 
         /// </summary>
         void VisitSqlClause(AstSqlClause.AstSqlClause58 a);
         
         /// <summary>
-        /// sql_clause : create_cryptographic_provider
+        /// sql_clause : create_cryptographic_provider 
         /// </summary>
         void VisitSqlClause(AstSqlClause.AstSqlClause59 a);
         
         /// <summary>
-        /// sql_clause : create_database
+        /// sql_clause : create_database 
         /// </summary>
         void VisitSqlClause(AstSqlClause.AstSqlClause60 a);
         
         /// <summary>
-        /// sql_clause : create_db_role
+        /// sql_clause : create_db_role 
         /// </summary>
         void VisitSqlClause(AstSqlClause.AstSqlClause61 a);
         
         /// <summary>
-        /// sql_clause : create_event_notification
+        /// sql_clause : create_event_notification 
         /// </summary>
         void VisitSqlClause(AstSqlClause.AstSqlClause62 a);
         
         /// <summary>
-        /// sql_clause : create_external_library
+        /// sql_clause : create_external_library 
         /// </summary>
         void VisitSqlClause(AstSqlClause.AstSqlClause63 a);
         
         /// <summary>
-        /// sql_clause : create_external_resource_pool
+        /// sql_clause : create_external_resource_pool 
         /// </summary>
         void VisitSqlClause(AstSqlClause.AstSqlClause64 a);
         
         /// <summary>
-        /// sql_clause : create_fulltext_catalog
+        /// sql_clause : create_fulltext_catalog 
         /// </summary>
         void VisitSqlClause(AstSqlClause.AstSqlClause65 a);
         
         /// <summary>
-        /// sql_clause : create_fulltext_stoplist
+        /// sql_clause : create_fulltext_stoplist 
         /// </summary>
         void VisitSqlClause(AstSqlClause.AstSqlClause66 a);
         
         /// <summary>
-        /// sql_clause : create_index
+        /// sql_clause : create_index 
         /// </summary>
         void VisitSqlClause(AstSqlClause.AstSqlClause67 a);
         
         /// <summary>
-        /// sql_clause : create_columnstore_index
+        /// sql_clause : create_columnstore_index 
         /// </summary>
         void VisitSqlClause(AstSqlClause.AstSqlClause68 a);
         
         /// <summary>
-        /// sql_clause : create_nonclustered_columnstore_index
+        /// sql_clause : create_nonclustered_columnstore_index 
         /// </summary>
         void VisitSqlClause(AstSqlClause.AstSqlClause69 a);
         
         /// <summary>
-        /// sql_clause : create_login_azure_sql
+        /// sql_clause : create_login_azure_sql 
         /// </summary>
         void VisitSqlClause(AstSqlClause.AstSqlClause70 a);
         
         /// <summary>
-        /// sql_clause : create_login_pdw
+        /// sql_clause : create_login_pdw 
         /// </summary>
         void VisitSqlClause(AstSqlClause.AstSqlClause71 a);
         
         /// <summary>
-        /// sql_clause : create_login_sql_server
+        /// sql_clause : create_login_sql_server 
         /// </summary>
         void VisitSqlClause(AstSqlClause.AstSqlClause72 a);
         
         /// <summary>
-        /// sql_clause : create_master_key_azure_sql
+        /// sql_clause : create_master_key_azure_sql 
         /// </summary>
         void VisitSqlClause(AstSqlClause.AstSqlClause73 a);
         
         /// <summary>
-        /// sql_clause : create_master_key_sql_server
+        /// sql_clause : create_master_key_sql_server 
         /// </summary>
         void VisitSqlClause(AstSqlClause.AstSqlClause74 a);
         
         /// <summary>
-        /// sql_clause : create_or_alter_broker_priority
+        /// sql_clause : create_or_alter_broker_priority 
         /// </summary>
         void VisitSqlClause(AstSqlClause.AstSqlClause75 a);
         
         /// <summary>
-        /// sql_clause : create_remote_service_binding
+        /// sql_clause : create_remote_service_binding 
         /// </summary>
         void VisitSqlClause(AstSqlClause.AstSqlClause76 a);
         
         /// <summary>
-        /// sql_clause : create_resource_pool
+        /// sql_clause : create_resource_pool 
         /// </summary>
         void VisitSqlClause(AstSqlClause.AstSqlClause77 a);
         
         /// <summary>
-        /// sql_clause : create_route
+        /// sql_clause : create_route 
         /// </summary>
         void VisitSqlClause(AstSqlClause.AstSqlClause78 a);
         
         /// <summary>
-        /// sql_clause : create_rule
+        /// sql_clause : create_rule 
         /// </summary>
         void VisitSqlClause(AstSqlClause.AstSqlClause79 a);
         
         /// <summary>
-        /// sql_clause : create_schema
+        /// sql_clause : create_schema 
         /// </summary>
         void VisitSqlClause(AstSqlClause.AstSqlClause80 a);
         
         /// <summary>
-        /// sql_clause : create_schema_azure_sql_dw_and_pdw
+        /// sql_clause : create_schema_azure_sql_dw_and_pdw 
         /// </summary>
         void VisitSqlClause(AstSqlClause.AstSqlClause81 a);
         
         /// <summary>
-        /// sql_clause : create_search_property_list
+        /// sql_clause : create_search_property_list 
         /// </summary>
         void VisitSqlClause(AstSqlClause.AstSqlClause82 a);
         
         /// <summary>
-        /// sql_clause : create_security_policy
+        /// sql_clause : create_security_policy 
         /// </summary>
         void VisitSqlClause(AstSqlClause.AstSqlClause83 a);
         
         /// <summary>
-        /// sql_clause : create_sequence
+        /// sql_clause : create_sequence 
         /// </summary>
         void VisitSqlClause(AstSqlClause.AstSqlClause84 a);
         
         /// <summary>
-        /// sql_clause : create_server_audit
+        /// sql_clause : create_server_audit 
         /// </summary>
         void VisitSqlClause(AstSqlClause.AstSqlClause85 a);
         
         /// <summary>
-        /// sql_clause : create_server_audit_specification
+        /// sql_clause : create_server_audit_specification 
         /// </summary>
         void VisitSqlClause(AstSqlClause.AstSqlClause86 a);
         
         /// <summary>
-        /// sql_clause : create_server_role
+        /// sql_clause : create_server_role 
         /// </summary>
         void VisitSqlClause(AstSqlClause.AstSqlClause87 a);
         
         /// <summary>
-        /// sql_clause : create_service
+        /// sql_clause : create_service 
         /// </summary>
         void VisitSqlClause(AstSqlClause.AstSqlClause88 a);
         
         /// <summary>
-        /// sql_clause : create_statistics
+        /// sql_clause : create_statistics 
         /// </summary>
         void VisitSqlClause(AstSqlClause.AstSqlClause89 a);
         
         /// <summary>
-        /// sql_clause : create_synonym
+        /// sql_clause : create_synonym 
         /// </summary>
         void VisitSqlClause(AstSqlClause.AstSqlClause90 a);
         
         /// <summary>
-        /// sql_clause : create_table
+        /// sql_clause : create_table 
         /// </summary>
         void VisitSqlClause(AstSqlClause.AstSqlClause91 a);
         
         /// <summary>
-        /// sql_clause : create_type
+        /// sql_clause : create_type 
         /// </summary>
         void VisitSqlClause(AstSqlClause.AstSqlClause92 a);
         
         /// <summary>
-        /// sql_clause : create_user
+        /// sql_clause : create_user 
         /// </summary>
         void VisitSqlClause(AstSqlClause.AstSqlClause93 a);
         
         /// <summary>
-        /// sql_clause : create_user_azure_sql_dw
+        /// sql_clause : create_user_azure_sql_dw 
         /// </summary>
         void VisitSqlClause(AstSqlClause.AstSqlClause94 a);
         
         /// <summary>
-        /// sql_clause : create_workload_group
+        /// sql_clause : create_workload_group 
         /// </summary>
         void VisitSqlClause(AstSqlClause.AstSqlClause95 a);
         
         /// <summary>
-        /// sql_clause : create_xml_index
+        /// sql_clause : create_xml_index 
         /// </summary>
         void VisitSqlClause(AstSqlClause.AstSqlClause96 a);
         
         /// <summary>
-        /// sql_clause : create_xml_schema_collection
+        /// sql_clause : create_xml_schema_collection 
         /// </summary>
         void VisitSqlClause(AstSqlClause.AstSqlClause97 a);
         
         /// <summary>
-        /// sql_clause : create_partition_function
+        /// sql_clause : create_partition_function 
         /// </summary>
         void VisitSqlClause(AstSqlClause.AstSqlClause98 a);
         
         /// <summary>
-        /// sql_clause : create_partition_scheme
+        /// sql_clause : create_partition_scheme 
         /// </summary>
         void VisitSqlClause(AstSqlClause.AstSqlClause99 a);
         
         /// <summary>
-        /// sql_clause : drop_aggregate
+        /// sql_clause : drop_aggregate 
         /// </summary>
         void VisitSqlClause(AstSqlClause.AstSqlClause100 a);
         
         /// <summary>
-        /// sql_clause : drop_application_role
+        /// sql_clause : drop_application_role 
         /// </summary>
         void VisitSqlClause(AstSqlClause.AstSqlClause101 a);
         
         /// <summary>
-        /// sql_clause : drop_assembly
+        /// sql_clause : drop_assembly 
         /// </summary>
         void VisitSqlClause(AstSqlClause.AstSqlClause102 a);
         
         /// <summary>
-        /// sql_clause : drop_asymmetric_key
+        /// sql_clause : drop_asymmetric_key 
         /// </summary>
         void VisitSqlClause(AstSqlClause.AstSqlClause103 a);
         
         /// <summary>
-        /// sql_clause : drop_availability_group
+        /// sql_clause : drop_availability_group 
         /// </summary>
         void VisitSqlClause(AstSqlClause.AstSqlClause104 a);
         
         /// <summary>
-        /// sql_clause : drop_broker_priority
+        /// sql_clause : drop_broker_priority 
         /// </summary>
         void VisitSqlClause(AstSqlClause.AstSqlClause105 a);
         
         /// <summary>
-        /// sql_clause : drop_certificate
+        /// sql_clause : drop_certificate 
         /// </summary>
         void VisitSqlClause(AstSqlClause.AstSqlClause106 a);
         
         /// <summary>
-        /// sql_clause : drop_column_encryption_key
+        /// sql_clause : drop_column_encryption_key 
         /// </summary>
         void VisitSqlClause(AstSqlClause.AstSqlClause107 a);
         
         /// <summary>
-        /// sql_clause : drop_column_master_key
+        /// sql_clause : drop_column_master_key 
         /// </summary>
         void VisitSqlClause(AstSqlClause.AstSqlClause108 a);
         
         /// <summary>
-        /// sql_clause : drop_contract
+        /// sql_clause : drop_contract 
         /// </summary>
         void VisitSqlClause(AstSqlClause.AstSqlClause109 a);
         
         /// <summary>
-        /// sql_clause : drop_credential
+        /// sql_clause : drop_credential 
         /// </summary>
         void VisitSqlClause(AstSqlClause.AstSqlClause110 a);
         
         /// <summary>
-        /// sql_clause : drop_cryptograhic_provider
+        /// sql_clause : drop_cryptograhic_provider 
         /// </summary>
         void VisitSqlClause(AstSqlClause.AstSqlClause111 a);
         
         /// <summary>
-        /// sql_clause : drop_database
+        /// sql_clause : drop_database 
         /// </summary>
         void VisitSqlClause(AstSqlClause.AstSqlClause112 a);
         
         /// <summary>
-        /// sql_clause : drop_database_audit_specification
+        /// sql_clause : drop_database_audit_specification 
         /// </summary>
         void VisitSqlClause(AstSqlClause.AstSqlClause113 a);
         
         /// <summary>
-        /// sql_clause : drop_database_encryption_key
+        /// sql_clause : drop_database_encryption_key 
         /// </summary>
         void VisitSqlClause(AstSqlClause.AstSqlClause114 a);
         
         /// <summary>
-        /// sql_clause : drop_database_scoped_credential
+        /// sql_clause : drop_database_scoped_credential 
         /// </summary>
         void VisitSqlClause(AstSqlClause.AstSqlClause115 a);
         
         /// <summary>
-        /// sql_clause : drop_db_role
+        /// sql_clause : drop_db_role 
         /// </summary>
         void VisitSqlClause(AstSqlClause.AstSqlClause116 a);
         
         /// <summary>
-        /// sql_clause : drop_default
+        /// sql_clause : drop_default 
         /// </summary>
         void VisitSqlClause(AstSqlClause.AstSqlClause117 a);
         
         /// <summary>
-        /// sql_clause : drop_endpoint
+        /// sql_clause : drop_endpoint 
         /// </summary>
         void VisitSqlClause(AstSqlClause.AstSqlClause118 a);
         
         /// <summary>
-        /// sql_clause : drop_event_notifications
+        /// sql_clause : drop_event_notifications 
         /// </summary>
         void VisitSqlClause(AstSqlClause.AstSqlClause119 a);
         
         /// <summary>
-        /// sql_clause : drop_event_session
+        /// sql_clause : drop_event_session 
         /// </summary>
         void VisitSqlClause(AstSqlClause.AstSqlClause120 a);
         
         /// <summary>
-        /// sql_clause : drop_external_data_source
+        /// sql_clause : drop_external_data_source 
         /// </summary>
         void VisitSqlClause(AstSqlClause.AstSqlClause121 a);
         
         /// <summary>
-        /// sql_clause : drop_external_file_format
+        /// sql_clause : drop_external_file_format 
         /// </summary>
         void VisitSqlClause(AstSqlClause.AstSqlClause122 a);
         
         /// <summary>
-        /// sql_clause : drop_external_library
+        /// sql_clause : drop_external_library 
         /// </summary>
         void VisitSqlClause(AstSqlClause.AstSqlClause123 a);
         
         /// <summary>
-        /// sql_clause : drop_external_resource_pool
+        /// sql_clause : drop_external_resource_pool 
         /// </summary>
         void VisitSqlClause(AstSqlClause.AstSqlClause124 a);
         
         /// <summary>
-        /// sql_clause : drop_external_table
+        /// sql_clause : drop_external_table 
         /// </summary>
         void VisitSqlClause(AstSqlClause.AstSqlClause125 a);
         
         /// <summary>
-        /// sql_clause : drop_fulltext_catalog
+        /// sql_clause : drop_fulltext_catalog 
         /// </summary>
         void VisitSqlClause(AstSqlClause.AstSqlClause126 a);
         
         /// <summary>
-        /// sql_clause : drop_fulltext_index
+        /// sql_clause : drop_fulltext_index 
         /// </summary>
         void VisitSqlClause(AstSqlClause.AstSqlClause127 a);
         
         /// <summary>
-        /// sql_clause : drop_fulltext_stoplist
+        /// sql_clause : drop_fulltext_stoplist 
         /// </summary>
         void VisitSqlClause(AstSqlClause.AstSqlClause128 a);
         
         /// <summary>
-        /// sql_clause : drop_function
+        /// sql_clause : drop_function 
         /// </summary>
         void VisitSqlClause(AstSqlClause.AstSqlClause129 a);
         
         /// <summary>
-        /// sql_clause : drop_index
+        /// sql_clause : drop_index 
         /// </summary>
         void VisitSqlClause(AstSqlClause.AstSqlClause130 a);
         
         /// <summary>
-        /// sql_clause : drop_login
+        /// sql_clause : drop_login 
         /// </summary>
         void VisitSqlClause(AstSqlClause.AstSqlClause131 a);
         
         /// <summary>
-        /// sql_clause : drop_master_key
+        /// sql_clause : drop_master_key 
         /// </summary>
         void VisitSqlClause(AstSqlClause.AstSqlClause132 a);
         
         /// <summary>
-        /// sql_clause : drop_message_type
+        /// sql_clause : drop_message_type 
         /// </summary>
         void VisitSqlClause(AstSqlClause.AstSqlClause133 a);
         
         /// <summary>
-        /// sql_clause : drop_partition_function
+        /// sql_clause : drop_partition_function 
         /// </summary>
         void VisitSqlClause(AstSqlClause.AstSqlClause134 a);
         
         /// <summary>
-        /// sql_clause : drop_partition_scheme
+        /// sql_clause : drop_partition_scheme 
         /// </summary>
         void VisitSqlClause(AstSqlClause.AstSqlClause135 a);
         
         /// <summary>
-        /// sql_clause : drop_procedure
+        /// sql_clause : drop_procedure 
         /// </summary>
         void VisitSqlClause(AstSqlClause.AstSqlClause136 a);
         
         /// <summary>
-        /// sql_clause : drop_queue
+        /// sql_clause : drop_queue 
         /// </summary>
         void VisitSqlClause(AstSqlClause.AstSqlClause137 a);
         
         /// <summary>
-        /// sql_clause : drop_remote_service_binding
+        /// sql_clause : drop_remote_service_binding 
         /// </summary>
         void VisitSqlClause(AstSqlClause.AstSqlClause138 a);
         
         /// <summary>
-        /// sql_clause : drop_resource_pool
+        /// sql_clause : drop_resource_pool 
         /// </summary>
         void VisitSqlClause(AstSqlClause.AstSqlClause139 a);
         
         /// <summary>
-        /// sql_clause : drop_route
+        /// sql_clause : drop_route 
         /// </summary>
         void VisitSqlClause(AstSqlClause.AstSqlClause140 a);
         
         /// <summary>
-        /// sql_clause : drop_rule
+        /// sql_clause : drop_rule 
         /// </summary>
         void VisitSqlClause(AstSqlClause.AstSqlClause141 a);
         
         /// <summary>
-        /// sql_clause : drop_schema
+        /// sql_clause : drop_schema 
         /// </summary>
         void VisitSqlClause(AstSqlClause.AstSqlClause142 a);
         
         /// <summary>
-        /// sql_clause : drop_search_property_list
+        /// sql_clause : drop_search_property_list 
         /// </summary>
         void VisitSqlClause(AstSqlClause.AstSqlClause143 a);
         
         /// <summary>
-        /// sql_clause : drop_security_policy
+        /// sql_clause : drop_security_policy 
         /// </summary>
         void VisitSqlClause(AstSqlClause.AstSqlClause144 a);
         
         /// <summary>
-        /// sql_clause : drop_sequence
+        /// sql_clause : drop_sequence 
         /// </summary>
         void VisitSqlClause(AstSqlClause.AstSqlClause145 a);
         
         /// <summary>
-        /// sql_clause : drop_server_audit
+        /// sql_clause : drop_server_audit 
         /// </summary>
         void VisitSqlClause(AstSqlClause.AstSqlClause146 a);
         
         /// <summary>
-        /// sql_clause : drop_server_audit_specification
+        /// sql_clause : drop_server_audit_specification 
         /// </summary>
         void VisitSqlClause(AstSqlClause.AstSqlClause147 a);
         
         /// <summary>
-        /// sql_clause : drop_server_role
+        /// sql_clause : drop_server_role 
         /// </summary>
         void VisitSqlClause(AstSqlClause.AstSqlClause148 a);
         
         /// <summary>
-        /// sql_clause : drop_service
+        /// sql_clause : drop_service 
         /// </summary>
         void VisitSqlClause(AstSqlClause.AstSqlClause149 a);
         
         /// <summary>
-        /// sql_clause : drop_signature
+        /// sql_clause : drop_signature 
         /// </summary>
         void VisitSqlClause(AstSqlClause.AstSqlClause150 a);
         
         /// <summary>
-        /// sql_clause : drop_statistics
+        /// sql_clause : drop_statistics 
         /// </summary>
         void VisitSqlClause(AstSqlClause.AstSqlClause151 a);
         
         /// <summary>
-        /// sql_clause : drop_statistics_id_azure_dw_and_pdw
+        /// sql_clause : drop_statistics_id_azure_dw_and_pdw 
         /// </summary>
         void VisitSqlClause(AstSqlClause.AstSqlClause152 a);
         
         /// <summary>
-        /// sql_clause : drop_symmetric_key
+        /// sql_clause : drop_symmetric_key 
         /// </summary>
         void VisitSqlClause(AstSqlClause.AstSqlClause153 a);
         
         /// <summary>
-        /// sql_clause : drop_synonym
+        /// sql_clause : drop_synonym 
         /// </summary>
         void VisitSqlClause(AstSqlClause.AstSqlClause154 a);
         
         /// <summary>
-        /// sql_clause : drop_table
+        /// sql_clause : drop_table 
         /// </summary>
         void VisitSqlClause(AstSqlClause.AstSqlClause155 a);
         
         /// <summary>
-        /// sql_clause : drop_dml_trigger
+        /// sql_clause : drop_dml_trigger 
         /// </summary>
         void VisitSqlClause(AstSqlClause.AstSqlClause156 a);
         
         /// <summary>
-        /// sql_clause : drop_ddl_trigger
+        /// sql_clause : drop_ddl_trigger 
         /// </summary>
         void VisitSqlClause(AstSqlClause.AstSqlClause157 a);
         
         /// <summary>
-        /// sql_clause : drop_type
+        /// sql_clause : drop_type 
         /// </summary>
         void VisitSqlClause(AstSqlClause.AstSqlClause158 a);
         
         /// <summary>
-        /// sql_clause : drop_user
+        /// sql_clause : drop_user 
         /// </summary>
         void VisitSqlClause(AstSqlClause.AstSqlClause159 a);
         
         /// <summary>
-        /// sql_clause : drop_view
+        /// sql_clause : drop_view 
         /// </summary>
         void VisitSqlClause(AstSqlClause.AstSqlClause160 a);
         
         /// <summary>
-        /// sql_clause : drop_workload_group
+        /// sql_clause : drop_workload_group 
         /// </summary>
         void VisitSqlClause(AstSqlClause.AstSqlClause161 a);
         
         /// <summary>
-        /// sql_clause : drop_xml_schema_collection
+        /// sql_clause : drop_xml_schema_collection 
         /// </summary>
         void VisitSqlClause(AstSqlClause.AstSqlClause162 a);
         
         /// <summary>
-        /// sql_clause : disable_trigger
+        /// sql_clause : disable_trigger 
         /// </summary>
         void VisitSqlClause(AstSqlClause.AstSqlClause163 a);
         
         /// <summary>
-        /// sql_clause : enable_trigger
+        /// sql_clause : enable_trigger 
         /// </summary>
         void VisitSqlClause(AstSqlClause.AstSqlClause164 a);
         
         /// <summary>
-        /// sql_clause : lock_table
+        /// sql_clause : lock_table 
         /// </summary>
         void VisitSqlClause(AstSqlClause.AstSqlClause165 a);
         
         /// <summary>
-        /// sql_clause : truncate_table
+        /// sql_clause : truncate_table 
         /// </summary>
         void VisitSqlClause(AstSqlClause.AstSqlClause166 a);
         
         /// <summary>
-        /// sql_clause : update_statistics
+        /// sql_clause : update_statistics 
         /// </summary>
         void VisitSqlClause(AstSqlClause.AstSqlClause167 a);
         
         /// <summary>
-        /// sql_clause : block_statement
+        /// sql_clause : block_statement 
         /// </summary>
         void VisitSqlClause(AstSqlClause.AstSqlClause168 a);
         
         /// <summary>
-        /// sql_clause : break_statement
+        /// sql_clause : break_statement 
         /// </summary>
         void VisitSqlClause(AstSqlClause.AstSqlClause169 a);
         
         /// <summary>
-        /// sql_clause : continue_statement
+        /// sql_clause : continue_statement 
         /// </summary>
         void VisitSqlClause(AstSqlClause.AstSqlClause170 a);
         
         /// <summary>
-        /// sql_clause : goto_statement
+        /// sql_clause : goto_statement 
         /// </summary>
         void VisitSqlClause(AstSqlClause.AstSqlClause171 a);
         
         /// <summary>
-        /// sql_clause : if_statement
+        /// sql_clause : if_statement 
         /// </summary>
         void VisitSqlClause(AstSqlClause.AstSqlClause172 a);
         
         /// <summary>
-        /// sql_clause : return_statement
+        /// sql_clause : return_statement 
         /// </summary>
         void VisitSqlClause(AstSqlClause.AstSqlClause173 a);
         
         /// <summary>
-        /// sql_clause : throw_statement
+        /// sql_clause : throw_statement 
         /// </summary>
         void VisitSqlClause(AstSqlClause.AstSqlClause174 a);
         
         /// <summary>
-        /// sql_clause : try_catch_statement
+        /// sql_clause : try_catch_statement 
         /// </summary>
         void VisitSqlClause(AstSqlClause.AstSqlClause175 a);
         
         /// <summary>
-        /// sql_clause : waitfor_statement
+        /// sql_clause : waitfor_statement 
         /// </summary>
         void VisitSqlClause(AstSqlClause.AstSqlClause176 a);
         
         /// <summary>
-        /// sql_clause : while_statement
+        /// sql_clause : while_statement 
         /// </summary>
         void VisitSqlClause(AstSqlClause.AstSqlClause177 a);
         
         /// <summary>
-        /// sql_clause : print_statement
+        /// sql_clause : print_statement 
         /// </summary>
         void VisitSqlClause(AstSqlClause.AstSqlClause178 a);
         
         /// <summary>
-        /// sql_clause : raiseerror_statement
+        /// sql_clause : raiseerror_statement 
         /// </summary>
         void VisitSqlClause(AstSqlClause.AstSqlClause179 a);
         
         /// <summary>
-        /// sql_clause : declare_statement
+        /// sql_clause : declare_statement 
         /// </summary>
         void VisitSqlClause(AstSqlClause.AstSqlClause180 a);
         
         /// <summary>
-        /// sql_clause : execute_statement
+        /// sql_clause : execute_statement 
         /// </summary>
         void VisitSqlClause(AstSqlClause.AstSqlClause181 a);
         
         /// <summary>
-        /// sql_clause : cursor_statement
+        /// sql_clause : cursor_statement 
         /// </summary>
         void VisitSqlClause(AstSqlClause.AstSqlClause182 a);
         
         /// <summary>
-        /// sql_clause : begin_conversation_timer
+        /// sql_clause : begin_conversation_timer 
         /// </summary>
         void VisitSqlClause(AstSqlClause.AstSqlClause183 a);
         
         /// <summary>
-        /// sql_clause : begin_conversation_dialog
+        /// sql_clause : begin_conversation_dialog 
         /// </summary>
         void VisitSqlClause(AstSqlClause.AstSqlClause184 a);
         
         /// <summary>
-        /// sql_clause : end_conversation
+        /// sql_clause : end_conversation 
         /// </summary>
         void VisitSqlClause(AstSqlClause.AstSqlClause185 a);
         
         /// <summary>
-        /// sql_clause : get_conversation
+        /// sql_clause : get_conversation 
         /// </summary>
         void VisitSqlClause(AstSqlClause.AstSqlClause186 a);
         
         /// <summary>
-        /// sql_clause : send_conversation
+        /// sql_clause : send_conversation 
         /// </summary>
         void VisitSqlClause(AstSqlClause.AstSqlClause187 a);
         
         /// <summary>
-        /// sql_clause : waitfor_conversation
+        /// sql_clause : waitfor_conversation 
         /// </summary>
         void VisitSqlClause(AstSqlClause.AstSqlClause188 a);
         
         /// <summary>
-        /// sql_clause : create_contract
+        /// sql_clause : create_contract 
         /// </summary>
         void VisitSqlClause(AstSqlClause.AstSqlClause189 a);
         
         /// <summary>
-        /// sql_clause : create_queue
+        /// sql_clause : create_queue 
         /// </summary>
         void VisitSqlClause(AstSqlClause.AstSqlClause190 a);
         
         /// <summary>
-        /// sql_clause : alter_queue
+        /// sql_clause : alter_queue 
         /// </summary>
         void VisitSqlClause(AstSqlClause.AstSqlClause191 a);
         
         /// <summary>
-        /// sql_clause : kill_statement
+        /// sql_clause : kill_statement 
         /// </summary>
         void VisitSqlClause(AstSqlClause.AstSqlClause192 a);
         
         /// <summary>
-        /// sql_clause : message_statement
+        /// sql_clause : message_statement 
         /// </summary>
         void VisitSqlClause(AstSqlClause.AstSqlClause193 a);
         
         /// <summary>
-        /// sql_clause : security_statement
+        /// sql_clause : security_statement 
         /// </summary>
         void VisitSqlClause(AstSqlClause.AstSqlClause194 a);
         
         /// <summary>
-        /// sql_clause : set_statement
+        /// sql_clause : set_statement 
         /// </summary>
         void VisitSqlClause(AstSqlClause.AstSqlClause195 a);
         
         /// <summary>
-        /// sql_clause : transaction_statement
+        /// sql_clause : transaction_statement 
         /// </summary>
         void VisitSqlClause(AstSqlClause.AstSqlClause196 a);
         
         /// <summary>
-        /// sql_clause : use_statement
+        /// sql_clause : use_statement 
         /// </summary>
         void VisitSqlClause(AstSqlClause.AstSqlClause197 a);
         
         /// <summary>
-        /// sql_clause : setuser_statement
+        /// sql_clause : setuser_statement 
         /// </summary>
         void VisitSqlClause(AstSqlClause.AstSqlClause198 a);
         
         /// <summary>
-        /// sql_clause : reconfigure_statement
+        /// sql_clause : reconfigure_statement 
         /// </summary>
         void VisitSqlClause(AstSqlClause.AstSqlClause199 a);
         
         /// <summary>
-        /// sql_clause : shutdown_statement
+        /// sql_clause : shutdown_statement 
         /// </summary>
         void VisitSqlClause(AstSqlClause.AstSqlClause200 a);
         
         /// <summary>
-        /// sql_clause : checkpoint_statement
+        /// sql_clause : checkpoint_statement 
         /// </summary>
         void VisitSqlClause(AstSqlClause.AstSqlClause201 a);
         
         /// <summary>
-        /// sql_clause : backup_database
+        /// sql_clause : backup_database 
         /// </summary>
         void VisitSqlClause(AstSqlClause.AstSqlClause202 a);
         
         /// <summary>
-        /// sql_clause : backup_log
+        /// sql_clause : backup_log 
         /// </summary>
         void VisitSqlClause(AstSqlClause.AstSqlClause203 a);
         
         /// <summary>
-        /// sql_clause : backup_certificate
+        /// sql_clause : backup_certificate 
         /// </summary>
         void VisitSqlClause(AstSqlClause.AstSqlClause204 a);
         
         /// <summary>
-        /// sql_clause : backup_master_key
+        /// sql_clause : backup_master_key 
         /// </summary>
         void VisitSqlClause(AstSqlClause.AstSqlClause205 a);
         
         /// <summary>
-        /// sql_clause : backup_service_master_key
+        /// sql_clause : backup_service_master_key 
         /// </summary>
         void VisitSqlClause(AstSqlClause.AstSqlClause206 a);
         
         /// <summary>
-        /// sql_clause : dbcc_special
+        /// sql_clause : dbcc_special 
         /// </summary>
         void VisitSqlClause(AstSqlClause.AstSqlClause207 a);
         
         /// <summary>
-        /// sql_clause : dbcc_clause
+        /// sql_clause : dbcc_clause 
         /// </summary>
         void VisitSqlClause(AstSqlClause.AstSqlClause208 a);
         
@@ -1130,12 +1130,12 @@ namespace Bb.SqlServer.Asts
         void VisitContinueStatement(AstContinueStatement a);
         
         /// <summary>
-        /// goto_statement : GOTO  code_location_id
+        /// goto_statement : GOTO code_location_id 
         /// </summary>
         void VisitGotoStatement(AstGotoStatement.AstGotoStatement1 a);
         
         /// <summary>
-        /// goto_statement : code_location_id  COLON
+        /// goto_statement : code_location_id COLON 
         /// </summary>
         void VisitGotoStatement(AstGotoStatement.AstGotoStatement2 a);
         
@@ -1179,17 +1179,17 @@ namespace Bb.SqlServer.Asts
         void VisitWhileStatement(AstWhileStatement a);
         
         /// <summary>
-        /// while_statement_content : sql_clause
+        /// while_statement_content : sql_clause 
         /// </summary>
         void VisitWhileStatementContent(AstWhileStatementContent.AstWhileStatementContent1 a);
         
         /// <summary>
-        /// while_statement_content : BREAK
+        /// while_statement_content : BREAK 
         /// </summary>
         void VisitWhileStatementContent(AstWhileStatementContent.AstWhileStatementContent2 a);
         
         /// <summary>
-        /// while_statement_content : CONTINUE
+        /// while_statement_content : CONTINUE 
         /// </summary>
         void VisitWhileStatementContent(AstWhileStatementContent.AstWhileStatementContent3 a);
         
@@ -1199,12 +1199,12 @@ namespace Bb.SqlServer.Asts
         void VisitPrintStatement(AstPrintStatement a);
         
         /// <summary>
-        /// raiseerror_statement : RAISERROR  LR_BRACKET  msg = decimal_string_local_id  COMMA  severity = constant_local_id  COMMA  state = constant_local_id  constant_local_ids?  RR_BRACKET  (WITH  log_seterror_nowait)?
+        /// raiseerror_statement : RAISERROR LR_BRACKET msg=decimal_string_local_id COMMA severity=constant_local_id COMMA state=constant_local_id constant_local_ids? RR_BRACKET WITH log_seterror_nowait 
         /// </summary>
         void VisitRaiseerrorStatement(AstRaiseerrorStatement.AstRaiseerrorStatement1 a);
         
         /// <summary>
-        /// raiseerror_statement : RAISERROR  decimal  formatstring = string_local_id_double_quote_id  decimal_string_locals?
+        /// raiseerror_statement : RAISERROR decimal formatstring=string_local_id_double_quote_id decimal_string_locals? 
         /// </summary>
         void VisitRaiseerrorStatement(AstRaiseerrorStatement.AstRaiseerrorStatement2 a);
         
@@ -1271,12 +1271,12 @@ namespace Bb.SqlServer.Asts
         void VisitAlterAssemblyDropClause(AstAlterAssemblyDropClause a);
         
         /// <summary>
-        /// alter_assembly_drop_multiple_files : ALL
+        /// alter_assembly_drop_multiple_files : ALL 
         /// </summary>
         void VisitAlterAssemblyDropMultipleFiles(AstAlterAssemblyDropMultipleFiles.AstAlterAssemblyDropMultipleFiles1 a);
         
         /// <summary>
-        /// alter_assembly_drop_multiple_files : multiple_local_files
+        /// alter_assembly_drop_multiple_files : multiple_local_files 
         /// </summary>
         void VisitAlterAssemblyDropMultipleFiles(AstAlterAssemblyDropMultipleFiles.AstAlterAssemblyDropMultipleFiles2 a);
         
@@ -1311,37 +1311,37 @@ namespace Bb.SqlServer.Asts
         void VisitAlterAssemblyWithClause(AstAlterAssemblyWithClause a);
         
         /// <summary>
-        /// client_assembly_specifier : network_file_share
+        /// client_assembly_specifier : network_file_share 
         /// </summary>
         void VisitClientAssemblySpecifier(AstClientAssemblySpecifier.AstClientAssemblySpecifier1 a);
         
         /// <summary>
-        /// client_assembly_specifier : local_file
+        /// client_assembly_specifier : local_file 
         /// </summary>
         void VisitClientAssemblySpecifier(AstClientAssemblySpecifier.AstClientAssemblySpecifier2 a);
         
         /// <summary>
-        /// client_assembly_specifier : stringtext
+        /// client_assembly_specifier : stringtext 
         /// </summary>
         void VisitClientAssemblySpecifier(AstClientAssemblySpecifier.AstClientAssemblySpecifier3 a);
         
         /// <summary>
-        /// assembly_option : PERMISSION_SET  EQUAL  assembly_permission
+        /// assembly_option : PERMISSION_SET EQUAL assembly_permission 
         /// </summary>
         void VisitAssemblyOption(AstAssemblyOption.AstAssemblyOption1 a);
         
         /// <summary>
-        /// assembly_option : VISIBILITY  EQUAL  on_off
+        /// assembly_option : VISIBILITY EQUAL on_off 
         /// </summary>
         void VisitAssemblyOption(AstAssemblyOption.AstAssemblyOption2 a);
         
         /// <summary>
-        /// assembly_option : UNCHECKED  DATA
+        /// assembly_option : UNCHECKED DATA 
         /// </summary>
         void VisitAssemblyOption(AstAssemblyOption.AstAssemblyOption3 a);
         
         /// <summary>
-        /// assembly_option : assembly_option  COMMA
+        /// assembly_option : assembly_option COMMA 
         /// </summary>
         void VisitAssemblyOption(AstAssemblyOption.AstAssemblyOption4 a);
         
@@ -1356,12 +1356,12 @@ namespace Bb.SqlServer.Asts
         void VisitNetworkFileStart(AstNetworkFileStart a);
         
         /// <summary>
-        /// file_path : file_directory_path_separator  file_path
+        /// file_path : file_directory_path_separator file_path 
         /// </summary>
         void VisitFilePath(AstFilePath.AstFilePath1 a);
         
         /// <summary>
-        /// file_path : id_
+        /// file_path : id_ 
         /// </summary>
         void VisitFilePath(AstFilePath.AstFilePath2 a);
         
@@ -1381,12 +1381,12 @@ namespace Bb.SqlServer.Asts
         void VisitLocalDrive(AstLocalDrive a);
         
         /// <summary>
-        /// multiple_local_files : SINGLE_QUOTE  local_file  SINGLE_QUOTE  COMMA
+        /// multiple_local_files : SINGLE_QUOTE local_file SINGLE_QUOTE COMMA 
         /// </summary>
         void VisitMultipleLocalFiles(AstMultipleLocalFiles.AstMultipleLocalFiles1 a);
         
         /// <summary>
-        /// multiple_local_files : local_file
+        /// multiple_local_files : local_file 
         /// </summary>
         void VisitMultipleLocalFiles(AstMultipleLocalFiles.AstMultipleLocalFiles2 a);
         
@@ -1406,12 +1406,12 @@ namespace Bb.SqlServer.Asts
         void VisitBinaryContentNext(AstBinaryContentNext a);
         
         /// <summary>
-        /// binary_content : stringtext
+        /// binary_content : stringtext 
         /// </summary>
         void VisitBinaryContent(AstBinaryContent.AstBinaryContent1 a);
         
         /// <summary>
-        /// binary_content : binary_
+        /// binary_content : binary_ 
         /// </summary>
         void VisitBinaryContent(AstBinaryContent.AstBinaryContent2 a);
         
@@ -1426,12 +1426,12 @@ namespace Bb.SqlServer.Asts
         void VisitAlterAsymmetricKey(AstAlterAsymmetricKey a);
         
         /// <summary>
-        /// by_password_crypt : decryption_by_pwd
+        /// by_password_crypt : decryption_by_pwd 
         /// </summary>
         void VisitByPasswordCrypt(AstByPasswordCrypt.AstByPasswordCrypt1 a);
         
         /// <summary>
-        /// by_password_crypt : encryption_by_pwd
+        /// by_password_crypt : encryption_by_pwd 
         /// </summary>
         void VisitByPasswordCrypt(AstByPasswordCrypt.AstByPasswordCrypt2 a);
         
@@ -1451,37 +1451,37 @@ namespace Bb.SqlServer.Asts
         void VisitCreateAsymmetricKey(AstCreateAsymmetricKey a);
         
         /// <summary>
-        /// asymetric_key_with_info : ALGORITHM  EQUAL  asymetric_algorithm
+        /// asymetric_key_with_info : ALGORITHM EQUAL asymetric_algorithm 
         /// </summary>
         void VisitAsymetricKeyWithInfo(AstAsymetricKeyWithInfo.AstAsymetricKeyWithInfo1 a);
         
         /// <summary>
-        /// asymetric_key_with_info : PROVIDER_KEY_NAME  EQUAL  provider_key_name = stringtext
+        /// asymetric_key_with_info : PROVIDER_KEY_NAME EQUAL provider_key_name=stringtext 
         /// </summary>
         void VisitAsymetricKeyWithInfo(AstAsymetricKeyWithInfo.AstAsymetricKeyWithInfo2 a);
         
         /// <summary>
-        /// asymetric_key_with_info : CREATION_DISPOSITION  EQUAL  creation_disposition
+        /// asymetric_key_with_info : CREATION_DISPOSITION EQUAL creation_disposition 
         /// </summary>
         void VisitAsymetricKeyWithInfo(AstAsymetricKeyWithInfo.AstAsymetricKeyWithInfo3 a);
         
         /// <summary>
-        /// asymetric_key_from : FILE  EQUAL  stringtext
+        /// asymetric_key_from : FILE EQUAL stringtext 
         /// </summary>
         void VisitAsymetricKeyFrom(AstAsymetricKeyFrom.AstAsymetricKeyFrom1 a);
         
         /// <summary>
-        /// asymetric_key_from : EXECUTABLE_FILE  EQUAL  stringtext
+        /// asymetric_key_from : EXECUTABLE_FILE EQUAL stringtext 
         /// </summary>
         void VisitAsymetricKeyFrom(AstAsymetricKeyFrom.AstAsymetricKeyFrom2 a);
         
         /// <summary>
-        /// asymetric_key_from : ASSEMBLY  assembly_id
+        /// asymetric_key_from : ASSEMBLY assembly_id 
         /// </summary>
         void VisitAsymetricKeyFrom(AstAsymetricKeyFrom.AstAsymetricKeyFrom3 a);
         
         /// <summary>
-        /// asymetric_key_from : PROVIDER  provider_id
+        /// asymetric_key_from : PROVIDER provider_id 
         /// </summary>
         void VisitAsymetricKeyFrom(AstAsymetricKeyFrom.AstAsymetricKeyFrom4 a);
         
@@ -1493,12 +1493,12 @@ namespace Bb.SqlServer.Asts
         void VisitAlterAuthorization(AstAlterAuthorization a);
         
         /// <summary>
-        /// authorization_grantee : principal_name = id_
+        /// authorization_grantee : principal_name=id_ 
         /// </summary>
         void VisitAuthorizationGrantee(AstAuthorizationGrantee.AstAuthorizationGrantee1 a);
         
         /// <summary>
-        /// authorization_grantee : SCHEMA  OWNER
+        /// authorization_grantee : SCHEMA OWNER 
         /// </summary>
         void VisitAuthorizationGrantee(AstAuthorizationGrantee.AstAuthorizationGrantee2 a);
         
@@ -1538,17 +1538,17 @@ namespace Bb.SqlServer.Asts
         void VisitClassTypeForParallelDw(AstClassTypeForParallelDw a);
         
         /// <summary>
-        /// class_type_for_grant : COLUMN  encryption_master  KEY
+        /// class_type_for_grant : COLUMN encryption_master KEY 
         /// </summary>
         void VisitClassTypeForGrant(AstClassTypeForGrant.AstClassTypeForGrant1 a);
         
         /// <summary>
-        /// class_type_for_grant : NOTIFICATION  database_object_server
+        /// class_type_for_grant : NOTIFICATION database_object_server 
         /// </summary>
         void VisitClassTypeForGrant(AstClassTypeForGrant.AstClassTypeForGrant2 a);
         
         /// <summary>
-        /// class_type_for_grant : object_type_for_grant
+        /// class_type_for_grant : object_type_for_grant 
         /// </summary>
         void VisitClassTypeForGrant(AstClassTypeForGrant.AstClassTypeForGrant3 a);
         
@@ -1573,17 +1573,17 @@ namespace Bb.SqlServer.Asts
         void VisitAddRemoveDatabase(AstAddRemoveDatabase a);
         
         /// <summary>
-        /// alter_options_listener : add_listener
+        /// alter_options_listener : add_listener 
         /// </summary>
         void VisitAlterOptionsListener(AstAlterOptionsListener.AstAlterOptionsListener1 a);
         
         /// <summary>
-        /// alter_options_listener : MODIFY  LISTENER  alter_listener
+        /// alter_options_listener : MODIFY LISTENER alter_listener 
         /// </summary>
         void VisitAlterOptionsListener(AstAlterOptionsListener.AstAlterOptionsListener2 a);
         
         /// <summary>
-        /// alter_options_listener : restart_listener
+        /// alter_options_listener : restart_listener 
         /// </summary>
         void VisitAlterOptionsListener(AstAlterOptionsListener.AstAlterOptionsListener3 a);
         
@@ -1593,12 +1593,12 @@ namespace Bb.SqlServer.Asts
         void VisitRestartListener(AstRestartListener a);
         
         /// <summary>
-        /// alter_listener : ADD  IP  LR_BRACKET  ip_listener  RR_BRACKET
+        /// alter_listener : ADD IP LR_BRACKET ip_listener RR_BRACKET 
         /// </summary>
         void VisitAlterListener(AstAlterListener.AstAlterListener1 a);
         
         /// <summary>
-        /// alter_listener : PORT  EQUAL  decimal
+        /// alter_listener : PORT EQUAL decimal 
         /// </summary>
         void VisitAlterListener(AstAlterListener.AstAlterListener2 a);
         
@@ -1613,22 +1613,22 @@ namespace Bb.SqlServer.Asts
         void VisitRangeIpCommaV4(AstRangeIpCommaV4 a);
         
         /// <summary>
-        /// ip_listener : range_ip_v4
+        /// ip_listener : range_ip_v4 
         /// </summary>
         void VisitIpListener(AstIpListener.AstIpListener1 a);
         
         /// <summary>
-        /// ip_listener : ipv6
+        /// ip_listener : ipv6 
         /// </summary>
         void VisitIpListener(AstIpListener.AstIpListener2 a);
         
         /// <summary>
-        /// ip_listener_comma : range_ip_comma_v4
+        /// ip_listener_comma : range_ip_comma_v4 
         /// </summary>
         void VisitIpListenerComma(AstIpListenerComma.AstIpListenerComma1 a);
         
         /// <summary>
-        /// ip_listener_comma : ipv6
+        /// ip_listener_comma : ipv6 
         /// </summary>
         void VisitIpListenerComma(AstIpListenerComma.AstIpListenerComma2 a);
         
@@ -1638,12 +1638,12 @@ namespace Bb.SqlServer.Asts
         void VisitAddListener(AstAddListener a);
         
         /// <summary>
-        /// address_listener : listener_dhcp
+        /// address_listener : listener_dhcp 
         /// </summary>
         void VisitAddressListener(AstAddressListener.AstAddressListener1 a);
         
         /// <summary>
-        /// address_listener : WITH  IP  LR_BRACKET  listener_ip_address
+        /// address_listener : WITH IP LR_BRACKET listener_ip_address 
         /// </summary>
         void VisitAddressListener(AstAddressListener.AstAddressListener2 a);
         
@@ -1673,27 +1673,27 @@ namespace Bb.SqlServer.Asts
         void VisitAlterAvailabilityReplicatModify(AstAlterAvailabilityReplicatModify a);
         
         /// <summary>
-        /// alter_availability_replicat_primary : ENDPOINT_URL  EQUAL  url_value
+        /// alter_availability_replicat_primary : ENDPOINT_URL EQUAL url_value 
         /// </summary>
         void VisitAlterAvailabilityReplicatPrimary(AstAlterAvailabilityReplicatPrimary.AstAlterAvailabilityReplicatPrimary1 a);
         
         /// <summary>
-        /// alter_availability_replicat_primary : availability_mode_set
+        /// alter_availability_replicat_primary : availability_mode_set 
         /// </summary>
         void VisitAlterAvailabilityReplicatPrimary(AstAlterAvailabilityReplicatPrimary.AstAlterAvailabilityReplicatPrimary2 a);
         
         /// <summary>
-        /// alter_availability_replicat_primary : FAILOVER_MODE  EQUAL  failover = auto_manual
+        /// alter_availability_replicat_primary : FAILOVER_MODE EQUAL failover=auto_manual 
         /// </summary>
         void VisitAlterAvailabilityReplicatPrimary(AstAlterAvailabilityReplicatPrimary.AstAlterAvailabilityReplicatPrimary3 a);
         
         /// <summary>
-        /// alter_availability_replicat_primary : seeding_mode_set
+        /// alter_availability_replicat_primary : seeding_mode_set 
         /// </summary>
         void VisitAlterAvailabilityReplicatPrimary(AstAlterAvailabilityReplicatPrimary.AstAlterAvailabilityReplicatPrimary4 a);
         
         /// <summary>
-        /// alter_availability_replicat_primary : backup_priority_set
+        /// alter_availability_replicat_primary : backup_priority_set 
         /// </summary>
         void VisitAlterAvailabilityReplicatPrimary(AstAlterAvailabilityReplicatPrimary.AstAlterAvailabilityReplicatPrimary5 a);
         
@@ -1703,17 +1703,17 @@ namespace Bb.SqlServer.Asts
         void VisitUrlValue(AstUrlValue a);
         
         /// <summary>
-        /// alter_availability_primary_role : allow_connections_set
+        /// alter_availability_primary_role : allow_connections_set 
         /// </summary>
         void VisitAlterAvailabilityPrimaryRole(AstAlterAvailabilityPrimaryRole.AstAlterAvailabilityPrimaryRole1 a);
         
         /// <summary>
-        /// alter_availability_primary_role : READ_ONLY_ROUTING_LIST  EQUAL  LR_BRACKET  routing_list  RR_BRACKET
+        /// alter_availability_primary_role : READ_ONLY_ROUTING_LIST EQUAL LR_BRACKET routing_list RR_BRACKET 
         /// </summary>
         void VisitAlterAvailabilityPrimaryRole(AstAlterAvailabilityPrimaryRole.AstAlterAvailabilityPrimaryRole2 a);
         
         /// <summary>
-        /// alter_availability_primary_role : SESSION_TIMEOUT  EQUAL  session_timeout = decimal
+        /// alter_availability_primary_role : SESSION_TIMEOUT EQUAL session_timeout=decimal 
         /// </summary>
         void VisitAlterAvailabilityPrimaryRole(AstAlterAvailabilityPrimaryRole.AstAlterAvailabilityPrimaryRole3 a);
         
@@ -1738,32 +1738,32 @@ namespace Bb.SqlServer.Asts
         void VisitAlterAvailabilityReplicatAdd(AstAlterAvailabilityReplicatAdd a);
         
         /// <summary>
-        /// alter_availability_replicat : alter_availability_replicat_add
+        /// alter_availability_replicat : alter_availability_replicat_add 
         /// </summary>
         void VisitAlterAvailabilityReplicat(AstAlterAvailabilityReplicat.AstAlterAvailabilityReplicat1 a);
         
         /// <summary>
-        /// alter_availability_replicat : REMOVE  REPLICA  ON  server_instance_txt
+        /// alter_availability_replicat : REMOVE REPLICA ON server_instance_txt 
         /// </summary>
         void VisitAlterAvailabilityReplicat(AstAlterAvailabilityReplicat.AstAlterAvailabilityReplicat2 a);
         
         /// <summary>
-        /// alter_availability_replicat : alter_availability_replicat_modify
+        /// alter_availability_replicat : alter_availability_replicat_modify 
         /// </summary>
         void VisitAlterAvailabilityReplicat(AstAlterAvailabilityReplicat.AstAlterAvailabilityReplicat3 a);
         
         /// <summary>
-        /// availability_group_options : JOIN
+        /// availability_group_options : JOIN 
         /// </summary>
         void VisitAvailabilityGroupOptions(AstAvailabilityGroupOptions.AstAvailabilityGroupOptions1 a);
         
         /// <summary>
-        /// availability_group_options : JOIN  AVAILABILITY  GROUP  ON  (COMMA?  ag_name = stringtext  WITH  LR_BRACKET  (listener_url_set  COMMA  availability_mode_set  COMMA  failover_mode_manuel  COMMA  seeding_mode_set)  RR_BRACKET)+
+        /// availability_group_options : JOIN AVAILABILITY GROUP ON COMMA? ag_name=stringtext WITH LR_BRACKET listener_url_set COMMA availability_mode_set COMMA failover_mode_manuel COMMA seeding_mode_set RR_BRACKET 
         /// </summary>
         void VisitAvailabilityGroupOptions(AstAvailabilityGroupOptions.AstAvailabilityGroupOptions2 a);
         
         /// <summary>
-        /// availability_group_options : MODIFY  AVAILABILITY  GROUP  ON  (COMMA?  ag_name_modified = stringtext  WITH  LR_BRACKET  (listener_url_set  (COMMA?  availability_mode_set)?  (COMMA?  failover_mode_manuel)?  (COMMA?  seeding_mode_set)?)  RR_BRACKET)+
+        /// availability_group_options : MODIFY AVAILABILITY GROUP ON COMMA? ag_name_modified=stringtext WITH LR_BRACKET listener_url_set COMMA? availability_mode_set COMMA? failover_mode_manuel COMMA? seeding_mode_set RR_BRACKET 
         /// </summary>
         void VisitAvailabilityGroupOptions(AstAvailabilityGroupOptions.AstAvailabilityGroupOptions3 a);
         
@@ -1785,12 +1785,12 @@ namespace Bb.SqlServer.Asts
         void VisitSeedingModeSet(AstSeedingModeSet a);
         
         /// <summary>
-        /// alter_role : secondary_role_args
+        /// alter_role : secondary_role_args 
         /// </summary>
         void VisitAlterRole(AstAlterRole.AstAlterRole1 a);
         
         /// <summary>
-        /// alter_role : primary_role_args
+        /// alter_role : primary_role_args 
         /// </summary>
         void VisitAlterRole(AstAlterRole.AstAlterRole2 a);
         
@@ -1800,27 +1800,27 @@ namespace Bb.SqlServer.Asts
         void VisitPrimaryRoleArgs(AstPrimaryRoleArgs a);
         
         /// <summary>
-        /// primary_role_config : allow_connections_set
+        /// primary_role_config : allow_connections_set 
         /// </summary>
         void VisitPrimaryRoleConfig(AstPrimaryRoleConfig.AstPrimaryRoleConfig1 a);
         
         /// <summary>
-        /// primary_role_config : READ_ONLY_ROUTING_LIST  EQUAL  LR_BRACKET  string_list_not  RR_BRACKET
+        /// primary_role_config : READ_ONLY_ROUTING_LIST EQUAL LR_BRACKET string_list_not RR_BRACKET 
         /// </summary>
         void VisitPrimaryRoleConfig(AstPrimaryRoleConfig.AstPrimaryRoleConfig2 a);
         
         /// <summary>
-        /// primary_role_config : SESSION_TIMEOUT  EQUAL  session_timeout = decimal
+        /// primary_role_config : SESSION_TIMEOUT EQUAL session_timeout=decimal 
         /// </summary>
         void VisitPrimaryRoleConfig(AstPrimaryRoleConfig.AstPrimaryRoleConfig3 a);
         
         /// <summary>
-        /// string_list_not : string_list
+        /// string_list_not : string_list 
         /// </summary>
         void VisitStringListNot(AstStringListNot.AstStringListNot1 a);
         
         /// <summary>
-        /// string_list_not : NONE
+        /// string_list_not : NONE 
         /// </summary>
         void VisitStringListNot(AstStringListNot.AstStringListNot2 a);
         
@@ -1830,12 +1830,12 @@ namespace Bb.SqlServer.Asts
         void VisitSecondaryRoleArgs(AstSecondaryRoleArgs a);
         
         /// <summary>
-        /// secondary_role_config : allow_connections_set
+        /// secondary_role_config : allow_connections_set 
         /// </summary>
         void VisitSecondaryRoleConfig(AstSecondaryRoleConfig.AstSecondaryRoleConfig1 a);
         
         /// <summary>
-        /// secondary_role_config : READ_ONLY_ROUTING_LIST  EQUAL  LR_BRACKET  stringtext  RR_BRACKET
+        /// secondary_role_config : READ_ONLY_ROUTING_LIST EQUAL LR_BRACKET stringtext RR_BRACKET 
         /// </summary>
         void VisitSecondaryRoleConfig(AstSecondaryRoleConfig.AstSecondaryRoleConfig2 a);
         
@@ -1845,82 +1845,82 @@ namespace Bb.SqlServer.Asts
         void VisitAllowConnectionsSet(AstAllowConnectionsSet a);
         
         /// <summary>
-        /// alter_availability_group_options : SET  LR_BRACKET  alter_availability_group_option_set  RR_BRACKET
+        /// alter_availability_group_options : SET LR_BRACKET alter_availability_group_option_set RR_BRACKET 
         /// </summary>
         void VisitAlterAvailabilityGroupOptions(AstAlterAvailabilityGroupOptions.AstAlterAvailabilityGroupOptions1 a);
         
         /// <summary>
-        /// alter_availability_group_options : add_remove_database
+        /// alter_availability_group_options : add_remove_database 
         /// </summary>
         void VisitAlterAvailabilityGroupOptions(AstAlterAvailabilityGroupOptions.AstAlterAvailabilityGroupOptions2 a);
         
         /// <summary>
-        /// alter_availability_group_options : alter_availability_replicat
+        /// alter_availability_group_options : alter_availability_replicat 
         /// </summary>
         void VisitAlterAvailabilityGroupOptions(AstAlterAvailabilityGroupOptions.AstAlterAvailabilityGroupOptions3 a);
         
         /// <summary>
-        /// alter_availability_group_options : alter_options_listener
+        /// alter_availability_group_options : alter_options_listener 
         /// </summary>
         void VisitAlterAvailabilityGroupOptions(AstAlterAvailabilityGroupOptions.AstAlterAvailabilityGroupOptions4 a);
         
         /// <summary>
-        /// alter_availability_group_options : alter_role
+        /// alter_availability_group_options : alter_role 
         /// </summary>
         void VisitAlterAvailabilityGroupOptions(AstAlterAvailabilityGroupOptions.AstAlterAvailabilityGroupOptions5 a);
         
         /// <summary>
-        /// alter_availability_group_options : availability_group_options
+        /// alter_availability_group_options : availability_group_options 
         /// </summary>
         void VisitAlterAvailabilityGroupOptions(AstAlterAvailabilityGroupOptions.AstAlterAvailabilityGroupOptions6 a);
         
         /// <summary>
-        /// alter_availability_group_options : grant_deny  CREATE  ANY  DATABASE
+        /// alter_availability_group_options : grant_deny CREATE ANY DATABASE 
         /// </summary>
         void VisitAlterAvailabilityGroupOptions(AstAlterAvailabilityGroupOptions.AstAlterAvailabilityGroupOptions7 a);
         
         /// <summary>
-        /// alter_availability_group_options : FAILOVER
+        /// alter_availability_group_options : FAILOVER 
         /// </summary>
         void VisitAlterAvailabilityGroupOptions(AstAlterAvailabilityGroupOptions.AstAlterAvailabilityGroupOptions8 a);
         
         /// <summary>
-        /// alter_availability_group_options : FORCE_FAILOVER_ALLOW_DATA_LOSS
+        /// alter_availability_group_options : FORCE_FAILOVER_ALLOW_DATA_LOSS 
         /// </summary>
         void VisitAlterAvailabilityGroupOptions(AstAlterAvailabilityGroupOptions.AstAlterAvailabilityGroupOptions9 a);
         
         /// <summary>
-        /// alter_availability_group_options : OFFLINE
+        /// alter_availability_group_options : OFFLINE 
         /// </summary>
         void VisitAlterAvailabilityGroupOptions(AstAlterAvailabilityGroupOptions.AstAlterAvailabilityGroupOptions10 a);
         
         /// <summary>
-        /// alter_availability_group_options : WITH  LR_BRACKET  DTC_SUPPORT  EQUAL  PER_DB  RR_BRACKET
+        /// alter_availability_group_options : WITH LR_BRACKET DTC_SUPPORT EQUAL PER_DB RR_BRACKET 
         /// </summary>
         void VisitAlterAvailabilityGroupOptions(AstAlterAvailabilityGroupOptions.AstAlterAvailabilityGroupOptions11 a);
         
         /// <summary>
-        /// alter_availability_group_option_set : AUTOMATED_BACKUP_PREFERENCE  EQUAL  primary_secondary_none
+        /// alter_availability_group_option_set : AUTOMATED_BACKUP_PREFERENCE EQUAL primary_secondary_none 
         /// </summary>
         void VisitAlterAvailabilityGroupOptionSet(AstAlterAvailabilityGroupOptionSet.AstAlterAvailabilityGroupOptionSet1 a);
         
         /// <summary>
-        /// alter_availability_group_option_set : FAILURE_CONDITION_LEVEL  EQUAL  decimal
+        /// alter_availability_group_option_set : FAILURE_CONDITION_LEVEL EQUAL decimal 
         /// </summary>
         void VisitAlterAvailabilityGroupOptionSet(AstAlterAvailabilityGroupOptionSet.AstAlterAvailabilityGroupOptionSet2 a);
         
         /// <summary>
-        /// alter_availability_group_option_set : HEALTH_CHECK_TIMEOUT  EQUAL  milliseconds = decimal
+        /// alter_availability_group_option_set : HEALTH_CHECK_TIMEOUT EQUAL milliseconds=decimal 
         /// </summary>
         void VisitAlterAvailabilityGroupOptionSet(AstAlterAvailabilityGroupOptionSet.AstAlterAvailabilityGroupOptionSet3 a);
         
         /// <summary>
-        /// alter_availability_group_option_set : DB_FAILOVER  EQUAL  on_off
+        /// alter_availability_group_option_set : DB_FAILOVER EQUAL on_off 
         /// </summary>
         void VisitAlterAvailabilityGroupOptionSet(AstAlterAvailabilityGroupOptionSet.AstAlterAvailabilityGroupOptionSet4 a);
         
         /// <summary>
-        /// alter_availability_group_option_set : REQUIRED_SYNCHRONIZED_SECONDARIES_TO_COMMIT  EQUAL  decimal
+        /// alter_availability_group_option_set : REQUIRED_SYNCHRONIZED_SECONDARIES_TO_COMMIT EQUAL decimal 
         /// </summary>
         void VisitAlterAvailabilityGroupOptionSet(AstAlterAvailabilityGroupOptionSet.AstAlterAvailabilityGroupOptionSet5 a);
         
@@ -1939,7 +1939,15 @@ namespace Bb.SqlServer.Asts
         /// </summary>
         void VisitBrokerContractName(AstBrokerContractName a);
         
-        void VisitBrokerLocalServiceName(AstBrokerLocalServiceName a);
+        /// <summary>
+        /// broker_local_service_name : LOCAL_SERVICE_NAME EQUAL DOUBLE_FORWARD_SLASH? id_ COMMA? 
+        /// </summary>
+        void VisitBrokerLocalServiceName(AstBrokerLocalServiceName.AstBrokerLocalServiceName1 a);
+        
+        /// <summary>
+        /// broker_local_service_name : LOCAL_SERVICE_NAME EQUAL ANY COMMA? 
+        /// </summary>
+        void VisitBrokerLocalServiceName(AstBrokerLocalServiceName.AstBrokerLocalServiceName2 a);
         
         /// <summary>
         /// broker_remote_service_name : Bb.Generators.ModelMethod
@@ -1952,22 +1960,22 @@ namespace Bb.SqlServer.Asts
         void VisitBrokerPriorityLevel(AstBrokerPriorityLevel a);
         
         /// <summary>
-        /// id_any : id_
+        /// id_any : id_ 
         /// </summary>
         void VisitIdAny(AstIdAny.AstIdAny1 a);
         
         /// <summary>
-        /// id_any : ANY
+        /// id_any : ANY 
         /// </summary>
         void VisitIdAny(AstIdAny.AstIdAny2 a);
         
         /// <summary>
-        /// stringtext_any : id_
+        /// stringtext_any : id_ 
         /// </summary>
         void VisitStringtextAny(AstStringtextAny.AstStringtextAny1 a);
         
         /// <summary>
-        /// stringtext_any : ANY
+        /// stringtext_any : ANY 
         /// </summary>
         void VisitStringtextAny(AstStringtextAny.AstStringtextAny2 a);
         
@@ -2067,12 +2075,12 @@ namespace Bb.SqlServer.Asts
         void VisitDropEventNotifications(AstDropEventNotifications a);
         
         /// <summary>
-        /// event_notification_on : server_database
+        /// event_notification_on : server_database 
         /// </summary>
         void VisitEventNotificationOn(AstEventNotificationOn.AstEventNotificationOn1 a);
         
         /// <summary>
-        /// event_notification_on : QUEUE  queue_id
+        /// event_notification_on : QUEUE queue_id 
         /// </summary>
         void VisitEventNotificationOn(AstEventNotificationOn.AstEventNotificationOn2 a);
         
@@ -2193,12 +2201,12 @@ namespace Bb.SqlServer.Asts
         void VisitDropSignatureBys(AstDropSignatureBys a);
         
         /// <summary>
-        /// drop_signature_by : CERTIFICATE  certificate_id
+        /// drop_signature_by : CERTIFICATE certificate_id 
         /// </summary>
         void VisitDropSignatureBy(AstDropSignatureBy.AstDropSignatureBy1 a);
         
         /// <summary>
-        /// drop_signature_by : ASYMMETRIC  KEY  asym_key_id
+        /// drop_signature_by : ASYMMETRIC KEY asym_key_id 
         /// </summary>
         void VisitDropSignatureBy(AstDropSignatureBy.AstDropSignatureBy2 a);
         
@@ -2248,22 +2256,22 @@ namespace Bb.SqlServer.Asts
         void VisitTriggerSetting(AstTriggerSetting a);
         
         /// <summary>
-        /// trigger_name : schema_trigger_refs
+        /// trigger_name : schema_trigger_refs 
         /// </summary>
         void VisitTriggerName(AstTriggerName.AstTriggerName1 a);
         
         /// <summary>
-        /// trigger_name : ALL
+        /// trigger_name : ALL 
         /// </summary>
         void VisitTriggerName(AstTriggerName.AstTriggerName2 a);
         
         /// <summary>
-        /// trigger_target : schema_object_ref
+        /// trigger_target : schema_object_ref 
         /// </summary>
         void VisitTriggerTarget(AstTriggerTarget.AstTriggerTarget1 a);
         
         /// <summary>
-        /// trigger_target : all_server_database
+        /// trigger_target : all_server_database 
         /// </summary>
         void VisitTriggerTarget(AstTriggerTarget.AstTriggerTarget2 a);
         
@@ -2273,12 +2281,12 @@ namespace Bb.SqlServer.Asts
         void VisitLockTable(AstLockTable a);
         
         /// <summary>
-        /// lock_table_delay : WAIT  seconds = decimal
+        /// lock_table_delay : WAIT seconds=decimal 
         /// </summary>
         void VisitLockTableDelay(AstLockTableDelay.AstLockTableDelay1 a);
         
         /// <summary>
-        /// lock_table_delay : NOWAIT
+        /// lock_table_delay : NOWAIT 
         /// </summary>
         void VisitLockTableDelay(AstLockTableDelay.AstLockTableDelay2 a);
         
@@ -2331,7 +2339,15 @@ namespace Bb.SqlServer.Asts
         /// </summary>
         void VisitSessionArgEventRetentionMode(AstSessionArgEventRetentionMode a);
         
-        void VisitSessionArgMaxDispatch(AstSessionArgMaxDispatch a);
+        /// <summary>
+        /// session_arg_max_dispatch : MAX_DISPATCH_LATENCY EQUAL decimal SECONDS 
+        /// </summary>
+        void VisitSessionArgMaxDispatch(AstSessionArgMaxDispatch.AstSessionArgMaxDispatch1 a);
+        
+        /// <summary>
+        /// session_arg_max_dispatch : MAX_DISPATCH_LATENCY EQUAL INFINITE 
+        /// </summary>
+        void VisitSessionArgMaxDispatch(AstSessionArgMaxDispatch.AstSessionArgMaxDispatch2 a);
         
         /// <summary>
         /// session_arg_max_event_size : Bb.Generators.ModelMethod
@@ -2403,7 +2419,15 @@ namespace Bb.SqlServer.Asts
         /// </summary>
         void VisitTargetParameterSet(AstTargetParameterSet a);
         
-        void VisitTargetParameterValue(AstTargetParameterValue a);
+        /// <summary>
+        /// target_parameter_value : LR_BRACKET? decimal RR_BRACKET? 
+        /// </summary>
+        void VisitTargetParameterValue(AstTargetParameterValue.AstTargetParameterValue1 a);
+        
+        /// <summary>
+        /// target_parameter_value : stringtext 
+        /// </summary>
+        void VisitTargetParameterValue(AstTargetParameterValue.AstTargetParameterValue2 a);
         
         /// <summary>
         /// create_or_alter_event_session_del_target : Bb.Generators.ModelMethod
@@ -2420,60 +2444,68 @@ namespace Bb.SqlServer.Asts
         /// </summary>
         void VisitStartStop(AstStartStop a);
         
-        void VisitEventSessionPredicateExpression(AstEventSessionPredicateExpression a);
+        /// <summary>
+        /// event_session_predicate_expression : COMMA? and_or? NOT? event_session_predicate_factor 
+        /// </summary>
+        void VisitEventSessionPredicateExpression(AstEventSessionPredicateExpression.AstEventSessionPredicateExpression1 a);
         
         /// <summary>
-        /// event_session_predicate_factor : event_session_predicate_leaf
+        /// event_session_predicate_expression : COMMA? and_or? NOT? LR_BRACKET event_session_predicate_expression RR_BRACKET 
+        /// </summary>
+        void VisitEventSessionPredicateExpression(AstEventSessionPredicateExpression.AstEventSessionPredicateExpression2 a);
+        
+        /// <summary>
+        /// event_session_predicate_factor : event_session_predicate_leaf 
         /// </summary>
         void VisitEventSessionPredicateFactor(AstEventSessionPredicateFactor.AstEventSessionPredicateFactor1 a);
         
         /// <summary>
-        /// event_session_predicate_factor : LR_BRACKET  event_session_predicate_expression  RR_BRACKET
+        /// event_session_predicate_factor : LR_BRACKET event_session_predicate_expression RR_BRACKET 
         /// </summary>
         void VisitEventSessionPredicateFactor(AstEventSessionPredicateFactor.AstEventSessionPredicateFactor2 a);
         
         /// <summary>
-        /// event_session_predicate_leaf : event_field_id
+        /// event_session_predicate_leaf : event_field_id 
         /// </summary>
         void VisitEventSessionPredicateLeaf(AstEventSessionPredicateLeaf.AstEventSessionPredicateLeaf1 a);
         
         /// <summary>
-        /// event_session_predicate_leaf : event_session_id_source1  event_session_predicate_leaf_ope  decimal_string
+        /// event_session_predicate_leaf : event_session_id_source1 event_session_predicate_leaf_ope decimal_string 
         /// </summary>
         void VisitEventSessionPredicateLeaf(AstEventSessionPredicateLeaf.AstEventSessionPredicateLeaf2 a);
         
         /// <summary>
-        /// event_session_predicate_leaf : source1 = full_predicate_source_ref  LR_BRACKET  event_session_id_source2  RR_BRACKET
+        /// event_session_predicate_leaf : source1=full_predicate_source_ref LR_BRACKET event_session_id_source2 RR_BRACKET 
         /// </summary>
         void VisitEventSessionPredicateLeaf(AstEventSessionPredicateLeaf.AstEventSessionPredicateLeaf3 a);
         
         /// <summary>
-        /// event_session_id_source1 : event_field_id
+        /// event_session_id_source1 : event_field_id 
         /// </summary>
         void VisitEventSessionIdSource1(AstEventSessionIdSource1.AstEventSessionIdSource11 a);
         
         /// <summary>
-        /// event_session_id_source1 : full_predicate_source_ref
+        /// event_session_id_source1 : full_predicate_source_ref 
         /// </summary>
         void VisitEventSessionIdSource1(AstEventSessionIdSource1.AstEventSessionIdSource12 a);
         
         /// <summary>
-        /// event_session_id_source2 : event_field_id
+        /// event_session_id_source2 : event_field_id 
         /// </summary>
         void VisitEventSessionIdSource2(AstEventSessionIdSource2.AstEventSessionIdSource21 a);
         
         /// <summary>
-        /// event_session_id_source2 : full_predicate_source_ref  COMMA  decimal_string
+        /// event_session_id_source2 : full_predicate_source_ref COMMA decimal_string 
         /// </summary>
         void VisitEventSessionIdSource2(AstEventSessionIdSource2.AstEventSessionIdSource22 a);
         
         /// <summary>
-        /// alter_external_data_source : ALTER  EXTERNAL  DATA  SOURCE  data_source_id  SET  external_sources
+        /// alter_external_data_source : ALTER EXTERNAL DATA SOURCE data_source_id SET external_sources 
         /// </summary>
         void VisitAlterExternalDataSource(AstAlterExternalDataSource.AstAlterExternalDataSource1 a);
         
         /// <summary>
-        /// alter_external_data_source : ALTER  EXTERNAL  DATA  SOURCE  data_source_id  WITH  LR_BRACKET  TYPE  EQUAL  BLOB_STORAGE  COMMA  LOCATION  EQUAL  location = stringtext  external_credential?  RR_BRACKET
+        /// alter_external_data_source : ALTER EXTERNAL DATA SOURCE data_source_id WITH LR_BRACKET TYPE EQUAL BLOB_STORAGE COMMA LOCATION EQUAL location=stringtext external_credential? RR_BRACKET 
         /// </summary>
         void VisitAlterExternalDataSource(AstAlterExternalDataSource.AstAlterExternalDataSource2 a);
         
@@ -2488,17 +2520,17 @@ namespace Bb.SqlServer.Asts
         void VisitExternalSources(AstExternalSources a);
         
         /// <summary>
-        /// external_source : LOCATION  EQUAL  location = stringtext
+        /// external_source : LOCATION EQUAL location=stringtext 
         /// </summary>
         void VisitExternalSource(AstExternalSource.AstExternalSource1 a);
         
         /// <summary>
-        /// external_source : RESOURCE_MANAGER_LOCATION  EQUAL  resource_manager_location = stringtext
+        /// external_source : RESOURCE_MANAGER_LOCATION EQUAL resource_manager_location=stringtext 
         /// </summary>
         void VisitExternalSource(AstExternalSource.AstExternalSource2 a);
         
         /// <summary>
-        /// external_source : CREDENTIAL  EQUAL  credential_id
+        /// external_source : CREDENTIAL EQUAL credential_id 
         /// </summary>
         void VisitExternalSource(AstExternalSource.AstExternalSource3 a);
         
@@ -2523,17 +2555,17 @@ namespace Bb.SqlServer.Asts
         void VisitFileSpec2(AstFileSpec2 a);
         
         /// <summary>
-        /// code_content : stringtext
+        /// code_content : stringtext 
         /// </summary>
         void VisitCodeContent(AstCodeContent.AstCodeContent1 a);
         
         /// <summary>
-        /// code_content : binary_
+        /// code_content : binary_ 
         /// </summary>
         void VisitCodeContent(AstCodeContent.AstCodeContent2 a);
         
         /// <summary>
-        /// code_content : NONE
+        /// code_content : NONE 
         /// </summary>
         void VisitCodeContent(AstCodeContent.AstCodeContent3 a);
         
@@ -2580,17 +2612,17 @@ namespace Bb.SqlServer.Asts
         void VisitAlterFulltextStoplist(AstAlterFulltextStoplist a);
         
         /// <summary>
-        /// fulltext_languageList : stringtext
+        /// fulltext_languageList : stringtext 
         /// </summary>
         void VisitFulltextLanguagelist(AstFulltextLanguagelist.AstFulltextLanguagelist1 a);
         
         /// <summary>
-        /// fulltext_languageList : decimal
+        /// fulltext_languageList : decimal 
         /// </summary>
         void VisitFulltextLanguagelist(AstFulltextLanguagelist.AstFulltextLanguagelist2 a);
         
         /// <summary>
-        /// fulltext_languageList : binary_
+        /// fulltext_languageList : binary_ 
         /// </summary>
         void VisitFulltextLanguagelist(AstFulltextLanguagelist.AstFulltextLanguagelist3 a);
         
@@ -2605,17 +2637,17 @@ namespace Bb.SqlServer.Asts
         void VisitAlterLoginSqlServer(AstAlterLoginSqlServer a);
         
         /// <summary>
-        /// alter_login_sql_server_infos : enable_disable?
+        /// alter_login_sql_server_infos : enable_disable? 
         /// </summary>
         void VisitAlterLoginSqlServerInfos(AstAlterLoginSqlServerInfos.AstAlterLoginSqlServerInfos1 a);
         
         /// <summary>
-        /// alter_login_sql_server_infos : WITH  alter_login_sql_server_settings
+        /// alter_login_sql_server_infos : WITH alter_login_sql_server_settings 
         /// </summary>
         void VisitAlterLoginSqlServerInfos(AstAlterLoginSqlServerInfos.AstAlterLoginSqlServerInfos2 a);
         
         /// <summary>
-        /// alter_login_sql_server_infos : add_drop  CREDENTIAL  credential_id
+        /// alter_login_sql_server_infos : add_drop CREDENTIAL credential_id 
         /// </summary>
         void VisitAlterLoginSqlServerInfos(AstAlterLoginSqlServerInfos.AstAlterLoginSqlServerInfos3 a);
         
@@ -2632,17 +2664,17 @@ namespace Bb.SqlServer.Asts
         void VisitCreateLoginSqlServerSettings(AstCreateLoginSqlServerSettings a);
         
         /// <summary>
-        /// create_login_sql_server_from : WINDOWS  (WITH  (COMMA?  DEFAULT_DATABASE  EQUAL  database_id)?  (COMMA?  DEFAULT_LANGUAGE  EQUAL  default_language = stringtext)?)
+        /// create_login_sql_server_from : WINDOWS WITH COMMA? DEFAULT_DATABASE EQUAL database_id COMMA? DEFAULT_LANGUAGE EQUAL default_language=stringtext 
         /// </summary>
         void VisitCreateLoginSqlServerFrom(AstCreateLoginSqlServerFrom.AstCreateLoginSqlServerFrom1 a);
         
         /// <summary>
-        /// create_login_sql_server_from : CERTIFICATE  certificate_id
+        /// create_login_sql_server_from : CERTIFICATE certificate_id 
         /// </summary>
         void VisitCreateLoginSqlServerFrom(AstCreateLoginSqlServerFrom.AstCreateLoginSqlServerFrom2 a);
         
         /// <summary>
-        /// create_login_sql_server_from : ASYMMETRIC  KEY  asym_key_id
+        /// create_login_sql_server_from : ASYMMETRIC KEY asym_key_id 
         /// </summary>
         void VisitCreateLoginSqlServerFrom(AstCreateLoginSqlServerFrom.AstCreateLoginSqlServerFrom3 a);
         
@@ -2652,22 +2684,22 @@ namespace Bb.SqlServer.Asts
         void VisitAlterLoginAzureSql(AstAlterLoginAzureSql a);
         
         /// <summary>
-        /// alter_login_azure_sql_infos : enable_disable?
+        /// alter_login_azure_sql_infos : enable_disable? 
         /// </summary>
         void VisitAlterLoginAzureSqlInfos(AstAlterLoginAzureSqlInfos.AstAlterLoginAzureSqlInfos1 a);
         
         /// <summary>
-        /// alter_login_azure_sql_infos : WITH  alter_login_azure_sql_with
+        /// alter_login_azure_sql_infos : WITH alter_login_azure_sql_with 
         /// </summary>
         void VisitAlterLoginAzureSqlInfos(AstAlterLoginAzureSqlInfos.AstAlterLoginAzureSqlInfos2 a);
         
         /// <summary>
-        /// alter_login_azure_sql_with : password_setting  old_pwd?
+        /// alter_login_azure_sql_with : password_setting old_pwd? 
         /// </summary>
         void VisitAlterLoginAzureSqlWith(AstAlterLoginAzureSqlWith.AstAlterLoginAzureSqlWith1 a);
         
         /// <summary>
-        /// alter_login_azure_sql_with : NAME  EQUAL  login_id
+        /// alter_login_azure_sql_with : NAME EQUAL login_id 
         /// </summary>
         void VisitAlterLoginAzureSqlWith(AstAlterLoginAzureSqlWith.AstAlterLoginAzureSqlWith2 a);
         
@@ -2682,22 +2714,22 @@ namespace Bb.SqlServer.Asts
         void VisitAlterLoginAzureSqlDwAndPdw(AstAlterLoginAzureSqlDwAndPdw a);
         
         /// <summary>
-        /// login_pwd_strategy : enable_disable?
+        /// login_pwd_strategy : enable_disable? 
         /// </summary>
         void VisitLoginPwdStrategy(AstLoginPwdStrategy.AstLoginPwdStrategy1 a);
         
         /// <summary>
-        /// login_pwd_strategy : WITH  change_password
+        /// login_pwd_strategy : WITH change_password 
         /// </summary>
         void VisitLoginPwdStrategy(AstLoginPwdStrategy.AstLoginPwdStrategy2 a);
         
         /// <summary>
-        /// change_password : password_setting  old_pwd_strategies?
+        /// change_password : password_setting old_pwd_strategies? 
         /// </summary>
         void VisitChangePassword(AstChangePassword.AstChangePassword1 a);
         
         /// <summary>
-        /// change_password : NAME  EQUAL  login_id
+        /// change_password : NAME EQUAL login_id 
         /// </summary>
         void VisitChangePassword(AstChangePassword.AstChangePassword2 a);
         
@@ -2707,30 +2739,59 @@ namespace Bb.SqlServer.Asts
         void VisitCreateLoginPdw(AstCreateLoginPdw a);
         
         /// <summary>
-        /// login_pdw_pwd : WITH  (password_setting  MUST_CHANGE?  (CHECK_POLICY  EQUAL  on_off?)?)
+        /// login_pdw_pwd : WITH password_setting MUST_CHANGE? CHECK_POLICY EQUAL on_off? 
         /// </summary>
         void VisitLoginPdwPwd(AstLoginPdwPwd.AstLoginPdwPwd1 a);
         
         /// <summary>
-        /// login_pdw_pwd : FROM  WINDOWS
+        /// login_pdw_pwd : FROM WINDOWS 
         /// </summary>
         void VisitLoginPdwPwd(AstLoginPdwPwd.AstLoginPdwPwd2 a);
         
-        void VisitAlterMasterKeySqlServer(AstAlterMasterKeySqlServer a);
+        /// <summary>
+        /// alter_master_key_sql_server : ALTER MASTER KEY regenerate_mater_key 
+        /// </summary>
+        void VisitAlterMasterKeySqlServer(AstAlterMasterKeySqlServer.AstAlterMasterKeySqlServer1 a);
+        
+        /// <summary>
+        /// alter_master_key_sql_server : ALTER MASTER KEY add_drop add_master_key 
+        /// </summary>
+        void VisitAlterMasterKeySqlServer(AstAlterMasterKeySqlServer.AstAlterMasterKeySqlServer2 a);
         
         /// <summary>
         /// create_master_key_sql_server : Bb.Generators.ModelMethod
         /// </summary>
         void VisitCreateMasterKeySqlServer(AstCreateMasterKeySqlServer a);
         
-        void VisitAlterMasterKeyAzureSql(AstAlterMasterKeyAzureSql a);
+        /// <summary>
+        /// alter_master_key_azure_sql : ALTER MASTER KEY regenerate_mater_key 
+        /// </summary>
+        void VisitAlterMasterKeyAzureSql(AstAlterMasterKeyAzureSql.AstAlterMasterKeyAzureSql1 a);
+        
+        /// <summary>
+        /// alter_master_key_azure_sql : ALTER MASTER KEY ADD add_master_key 
+        /// </summary>
+        void VisitAlterMasterKeyAzureSql(AstAlterMasterKeyAzureSql.AstAlterMasterKeyAzureSql2 a);
+        
+        /// <summary>
+        /// alter_master_key_azure_sql : ALTER MASTER KEY DROP encryption_by_pwd 
+        /// </summary>
+        void VisitAlterMasterKeyAzureSql(AstAlterMasterKeyAzureSql.AstAlterMasterKeyAzureSql3 a);
         
         /// <summary>
         /// regenerate_mater_key : Bb.Generators.ModelMethod
         /// </summary>
         void VisitRegenerateMaterKey(AstRegenerateMaterKey a);
         
-        void VisitAddMasterKey(AstAddMasterKey a);
+        /// <summary>
+        /// add_master_key : ENCRYPTION BY SERVICE MASTER KEY 
+        /// </summary>
+        void VisitAddMasterKey(AstAddMasterKey.AstAddMasterKey1 a);
+        
+        /// <summary>
+        /// add_master_key : ENCRYPTION BY password_setting 
+        /// </summary>
+        void VisitAddMasterKey(AstAddMasterKey.AstAddMasterKey2 a);
         
         /// <summary>
         /// create_master_key_azure_sql : Bb.Generators.ModelMethod
@@ -2743,12 +2804,12 @@ namespace Bb.SqlServer.Asts
         void VisitAlterMessageType(AstAlterMessageType a);
         
         /// <summary>
-        /// message_validation_value : message_validation_value_enum
+        /// message_validation_value : message_validation_value_enum 
         /// </summary>
         void VisitMessageValidationValue(AstMessageValidationValue.AstMessageValidationValue1 a);
         
         /// <summary>
-        /// message_validation_value : VALID_XML  WITH  SCHEMA  COLLECTION  schema_collection_id
+        /// message_validation_value : VALID_XML WITH SCHEMA COLLECTION schema_collection_id 
         /// </summary>
         void VisitMessageValidationValue(AstMessageValidationValue.AstMessageValidationValue2 a);
         
@@ -2785,17 +2846,17 @@ namespace Bb.SqlServer.Asts
         void VisitCreateResourcePoolInfos(AstCreateResourcePoolInfos a);
         
         /// <summary>
-        /// resource_affinity_scheduler_value : AUTO
+        /// resource_affinity_scheduler_value : AUTO 
         /// </summary>
         void VisitResourceAffinitySchedulerValue(AstResourceAffinitySchedulerValue.AstResourceAffinitySchedulerValue1 a);
         
         /// <summary>
-        /// resource_affinity_scheduler_value : LR_BRACKET  decimal_ranges  RR_BRACKET
+        /// resource_affinity_scheduler_value : LR_BRACKET decimal_ranges RR_BRACKET 
         /// </summary>
         void VisitResourceAffinitySchedulerValue(AstResourceAffinitySchedulerValue.AstResourceAffinitySchedulerValue2 a);
         
         /// <summary>
-        /// resource_affinity_scheduler_value : NUMANODE  EQUAL  LR_BRACKET  decimal_ranges  RR_BRACKET
+        /// resource_affinity_scheduler_value : NUMANODE EQUAL LR_BRACKET decimal_ranges RR_BRACKET 
         /// </summary>
         void VisitResourceAffinitySchedulerValue(AstResourceAffinitySchedulerValue.AstResourceAffinitySchedulerValue3 a);
         
@@ -2804,9 +2865,40 @@ namespace Bb.SqlServer.Asts
         /// </summary>
         void VisitDecimalRange(AstDecimalRange a);
         
-        void VisitAlterResourceGovernor(AstAlterResourceGovernor a);
+        /// <summary>
+        /// alter_resource_governor : ALTER RESOURCE GOVERNOR disable_reconfigure 
+        /// </summary>
+        void VisitAlterResourceGovernor(AstAlterResourceGovernor.AstAlterResourceGovernor1 a);
         
-        void VisitAlterDbRole(AstAlterDbRole a);
+        /// <summary>
+        /// alter_resource_governor : ALTER RESOURCE GOVERNOR WITH LR_BRACKET CLASSIFIER_FUNCTION EQUAL schema_func_proc_ref RR_BRACKET 
+        /// </summary>
+        void VisitAlterResourceGovernor(AstAlterResourceGovernor.AstAlterResourceGovernor2 a);
+        
+        /// <summary>
+        /// alter_resource_governor : ALTER RESOURCE GOVERNOR WITH LR_BRACKET CLASSIFIER_FUNCTION EQUAL NULL_ RR_BRACKET 
+        /// </summary>
+        void VisitAlterResourceGovernor(AstAlterResourceGovernor.AstAlterResourceGovernor3 a);
+        
+        /// <summary>
+        /// alter_resource_governor : ALTER RESOURCE GOVERNOR RESET STATISTICS 
+        /// </summary>
+        void VisitAlterResourceGovernor(AstAlterResourceGovernor.AstAlterResourceGovernor4 a);
+        
+        /// <summary>
+        /// alter_resource_governor : ALTER RESOURCE GOVERNOR WITH LR_BRACKET MAX_OUTSTANDING_IO_PER_VOLUME EQUAL max_outstanding_io_per_volume=decimal RR_BRACKET 
+        /// </summary>
+        void VisitAlterResourceGovernor(AstAlterResourceGovernor.AstAlterResourceGovernor5 a);
+        
+        /// <summary>
+        /// alter_db_role : ALTER ROLE old_role_name=role_id add_drop MEMBER database_id 
+        /// </summary>
+        void VisitAlterDbRole(AstAlterDbRole.AstAlterDbRole1 a);
+        
+        /// <summary>
+        /// alter_db_role : ALTER ROLE old_role_name=role_id WITH NAME EQUAL new_role_name=role_id 
+        /// </summary>
+        void VisitAlterDbRole(AstAlterDbRole.AstAlterDbRole2 a);
         
         /// <summary>
         /// create_db_role : Bb.Generators.ModelMethod
@@ -2839,12 +2931,12 @@ namespace Bb.SqlServer.Asts
         void VisitCreateSchema(AstCreateSchema a);
         
         /// <summary>
-        /// create_schema_name : schema_identifier  schema_authorization?
+        /// create_schema_name : schema_identifier schema_authorization? 
         /// </summary>
         void VisitCreateSchemaName(AstCreateSchemaName.AstCreateSchemaName1 a);
         
         /// <summary>
-        /// create_schema_name : schema_identifier?  schema_authorization
+        /// create_schema_name : schema_identifier? schema_authorization 
         /// </summary>
         void VisitCreateSchemaName(AstCreateSchemaName.AstCreateSchemaName2 a);
         
@@ -2854,22 +2946,22 @@ namespace Bb.SqlServer.Asts
         void VisitCreateSchemaTargets(AstCreateSchemaTargets a);
         
         /// <summary>
-        /// create_schema_target : create_table
+        /// create_schema_target : create_table 
         /// </summary>
         void VisitCreateSchemaTarget(AstCreateSchemaTarget.AstCreateSchemaTarget1 a);
         
         /// <summary>
-        /// create_schema_target : create_view
+        /// create_schema_target : create_view 
         /// </summary>
         void VisitCreateSchemaTarget(AstCreateSchemaTarget.AstCreateSchemaTarget2 a);
         
         /// <summary>
-        /// create_schema_target : grant_deny  enum_dml  ON  (SCHEMA  DOUBLE_COLON)?  object_identifier  TO  owner_id
+        /// create_schema_target : grant_deny enum_dml ON SCHEMA DOUBLE_COLON object_identifier TO owner_id 
         /// </summary>
         void VisitCreateSchemaTarget(AstCreateSchemaTarget.AstCreateSchemaTarget3 a);
         
         /// <summary>
-        /// create_schema_target : REVOKE  enum_dml  ON  (SCHEMA  DOUBLE_COLON)?  object_identifier  FROM  owner_id
+        /// create_schema_target : REVOKE enum_dml ON SCHEMA DOUBLE_COLON object_identifier FROM owner_id 
         /// </summary>
         void VisitCreateSchemaTarget(AstCreateSchemaTarget.AstCreateSchemaTarget4 a);
         
@@ -2914,12 +3006,12 @@ namespace Bb.SqlServer.Asts
         void VisitCreateSecurityPolicyAdd(AstCreateSecurityPolicyAdd a);
         
         /// <summary>
-        /// schema_table_ref_impact : AFTER  insert_update
+        /// schema_table_ref_impact : AFTER insert_update 
         /// </summary>
         void VisitSchemaTableRefImpact(AstSchemaTableRefImpact.AstSchemaTableRefImpact1 a);
         
         /// <summary>
-        /// schema_table_ref_impact : BEFORE  update_delate
+        /// schema_table_ref_impact : BEFORE update_delate 
         /// </summary>
         void VisitSchemaTableRefImpact(AstSchemaTableRefImpact.AstSchemaTableRefImpact2 a);
         
@@ -2932,17 +3024,33 @@ namespace Bb.SqlServer.Asts
         
         void VisitAlterSequenceIncrement(AstAlterSequenceIncrement a);
         
-        void VisitSequenceCache(AstSequenceCache a);
-        
-        void VisitAlterSequenceMaxValue(AstAlterSequenceMaxValue a);
+        /// <summary>
+        /// sequence_cache : CACHE decimal 
+        /// </summary>
+        void VisitSequenceCache(AstSequenceCache.AstSequenceCache1 a);
         
         /// <summary>
-        /// alter_sequence_min_value : MINVALUE  decimal
+        /// sequence_cache : NO CACHE 
+        /// </summary>
+        void VisitSequenceCache(AstSequenceCache.AstSequenceCache2 a);
+        
+        /// <summary>
+        /// alter_sequence_max_value : MAXVALUE decimal 
+        /// </summary>
+        void VisitAlterSequenceMaxValue(AstAlterSequenceMaxValue.AstAlterSequenceMaxValue1 a);
+        
+        /// <summary>
+        /// alter_sequence_max_value : NO MAXVALUE 
+        /// </summary>
+        void VisitAlterSequenceMaxValue(AstAlterSequenceMaxValue.AstAlterSequenceMaxValue2 a);
+        
+        /// <summary>
+        /// alter_sequence_min_value : MINVALUE decimal 
         /// </summary>
         void VisitAlterSequenceMinValue(AstAlterSequenceMinValue.AstAlterSequenceMinValue1 a);
         
         /// <summary>
-        /// alter_sequence_min_value : NO  MINVALUE
+        /// alter_sequence_min_value : NO MINVALUE 
         /// </summary>
         void VisitAlterSequenceMinValue(AstAlterSequenceMinValue.AstAlterSequenceMinValue2 a);
         
@@ -2962,22 +3070,22 @@ namespace Bb.SqlServer.Asts
         void VisitCreateSequenceIncrement(AstCreateSequenceIncrement a);
         
         /// <summary>
-        /// create_sequence_min_value : MINVALUE  real?
+        /// create_sequence_min_value : MINVALUE real? 
         /// </summary>
         void VisitCreateSequenceMinValue(AstCreateSequenceMinValue.AstCreateSequenceMinValue1 a);
         
         /// <summary>
-        /// create_sequence_min_value : NO  MINVALUE
+        /// create_sequence_min_value : NO MINVALUE 
         /// </summary>
         void VisitCreateSequenceMinValue(AstCreateSequenceMinValue.AstCreateSequenceMinValue2 a);
         
         /// <summary>
-        /// create_sequence_max_value : MAXVALUE  real?
+        /// create_sequence_max_value : MAXVALUE real? 
         /// </summary>
         void VisitCreateSequenceMaxValue(AstCreateSequenceMaxValue.AstCreateSequenceMaxValue1 a);
         
         /// <summary>
-        /// create_sequence_max_value : NO  MAXVALUE
+        /// create_sequence_max_value : NO MAXVALUE 
         /// </summary>
         void VisitCreateSequenceMaxValue(AstCreateSequenceMaxValue.AstCreateSequenceMaxValue2 a);
         
@@ -2997,17 +3105,17 @@ namespace Bb.SqlServer.Asts
         void VisitAlterServerAudit(AstAlterServerAudit a);
         
         /// <summary>
-        /// alter_server_audit_infos : (TO  server_audit_file)?  with_server_audit_file?  where_server_audit_condition?
+        /// alter_server_audit_infos : TO server_audit_file with_server_audit_file? where_server_audit_condition? 
         /// </summary>
         void VisitAlterServerAuditInfos(AstAlterServerAuditInfos.AstAlterServerAuditInfos1 a);
         
         /// <summary>
-        /// alter_server_audit_infos : REMOVE  WHERE
+        /// alter_server_audit_infos : REMOVE WHERE 
         /// </summary>
         void VisitAlterServerAuditInfos(AstAlterServerAuditInfos.AstAlterServerAuditInfos2 a);
         
         /// <summary>
-        /// alter_server_audit_infos : MODIFY  NAME  EQUAL  audit_id
+        /// alter_server_audit_infos : MODIFY NAME EQUAL audit_id 
         /// </summary>
         void VisitAlterServerAuditInfos(AstAlterServerAuditInfos.AstAlterServerAuditInfos3 a);
         
@@ -3017,79 +3125,87 @@ namespace Bb.SqlServer.Asts
         void VisitWithServerAuditFile(AstWithServerAuditFile a);
         
         /// <summary>
-        /// server_audit_file_info : QUEUE_DELAY  EQUAL  queue_delay = decimal
+        /// server_audit_file_info : QUEUE_DELAY EQUAL queue_delay=decimal 
         /// </summary>
         void VisitServerAuditFileInfo(AstServerAuditFileInfo.AstServerAuditFileInfo1 a);
         
         /// <summary>
-        /// server_audit_file_info : ON_FAILURE  EQUAL  continue_shutdown
+        /// server_audit_file_info : ON_FAILURE EQUAL continue_shutdown 
         /// </summary>
         void VisitServerAuditFileInfo(AstServerAuditFileInfo.AstServerAuditFileInfo2 a);
         
         /// <summary>
-        /// server_audit_file_info : STATE  EQUAL  on_off
+        /// server_audit_file_info : STATE EQUAL on_off 
         /// </summary>
         void VisitServerAuditFileInfo(AstServerAuditFileInfo.AstServerAuditFileInfo3 a);
         
         /// <summary>
-        /// server_audit_file : FILE  LR_BRACKET  server_audit_file_specs?  RR_BRACKET
+        /// server_audit_file : FILE LR_BRACKET server_audit_file_specs? RR_BRACKET 
         /// </summary>
         void VisitServerAuditFile(AstServerAuditFile.AstServerAuditFile1 a);
         
         /// <summary>
-        /// server_audit_file : APPLICATION_LOG
+        /// server_audit_file : APPLICATION_LOG 
         /// </summary>
         void VisitServerAuditFile(AstServerAuditFile.AstServerAuditFile2 a);
         
         /// <summary>
-        /// server_audit_file : SECURITY_LOG
+        /// server_audit_file : SECURITY_LOG 
         /// </summary>
         void VisitServerAuditFile(AstServerAuditFile.AstServerAuditFile3 a);
         
         /// <summary>
-        /// server_audit_file_spec : FILEPATH  EQUAL  filepath = stringtext
+        /// server_audit_file_spec : FILEPATH EQUAL filepath=stringtext 
         /// </summary>
         void VisitServerAuditFileSpec(AstServerAuditFileSpec.AstServerAuditFileSpec1 a);
         
         /// <summary>
-        /// server_audit_file_spec : MAXSIZE  EQUAL  decimal_size_unlimited
+        /// server_audit_file_spec : MAXSIZE EQUAL decimal_size_unlimited 
         /// </summary>
         void VisitServerAuditFileSpec(AstServerAuditFileSpec.AstServerAuditFileSpec2 a);
         
         /// <summary>
-        /// server_audit_file_spec : MAX_ROLLOVER_FILES  EQUAL  max_rollover_files = decimal_unlimited
+        /// server_audit_file_spec : MAX_ROLLOVER_FILES EQUAL max_rollover_files=decimal_unlimited 
         /// </summary>
         void VisitServerAuditFileSpec(AstServerAuditFileSpec.AstServerAuditFileSpec3 a);
         
         /// <summary>
-        /// server_audit_file_spec : MAX_FILES  EQUAL  max_files = decimal
+        /// server_audit_file_spec : MAX_FILES EQUAL max_files=decimal 
         /// </summary>
         void VisitServerAuditFileSpec(AstServerAuditFileSpec.AstServerAuditFileSpec4 a);
         
         /// <summary>
-        /// server_audit_file_spec : RESERVE_DISK_SPACE  EQUAL  on_off
+        /// server_audit_file_spec : RESERVE_DISK_SPACE EQUAL on_off 
         /// </summary>
         void VisitServerAuditFileSpec(AstServerAuditFileSpec.AstServerAuditFileSpec5 a);
         
         /// <summary>
-        /// decimal_unlimited : decimal
+        /// decimal_unlimited : decimal 
         /// </summary>
         void VisitDecimalUnlimited(AstDecimalUnlimited.AstDecimalUnlimited1 a);
         
         /// <summary>
-        /// decimal_unlimited : UNLIMITED
+        /// decimal_unlimited : UNLIMITED 
         /// </summary>
         void VisitDecimalUnlimited(AstDecimalUnlimited.AstDecimalUnlimited2 a);
         
-        void VisitDecimalSizeUnlimited(AstDecimalSizeUnlimited a);
+        /// <summary>
+        /// decimal_size_unlimited : decimal size_unity 
+        /// </summary>
+        void VisitDecimalSizeUnlimited(AstDecimalSizeUnlimited.AstDecimalSizeUnlimited1 a);
         
         /// <summary>
-        /// alter_server_audit_condition : COMMA?  (NOT?)  event_field_id  audit_operator  decimal_string
+        /// decimal_size_unlimited : UNLIMITED 
+        /// </summary>
+        void VisitDecimalSizeUnlimited(AstDecimalSizeUnlimited.AstDecimalSizeUnlimited2 a);
+        
+        /// <summary>
+        /// alter_server_audit_condition : COMMA? NOT? event_field_id audit_operator decimal_string 
         /// </summary>
         void VisitAlterServerAuditCondition(AstAlterServerAuditCondition.AstAlterServerAuditCondition1 a);
         
         /// <summary>
-        /// alter_server_audit_condition : COMMA?  and_or  NOT?  audit_operator  decimal_string
+        /// alter_server_audit_condition : COMMA? and_or NOT? audit_operator decimal_string 
         /// </summary>
         void VisitAlterServerAuditCondition(AstAlterServerAuditCondition.AstAlterServerAuditCondition2 a);
         
@@ -3099,17 +3215,17 @@ namespace Bb.SqlServer.Asts
         void VisitCreateServerAudit(AstCreateServerAudit a);
         
         /// <summary>
-        /// create_server_audit_to_infos : (TO  server_audit_file)?  (WITH  LR_BRACKET  create_server_audit_withs?  RR_BRACKET)?  where_server_audit_condition?
+        /// create_server_audit_to_infos : TO server_audit_file WITH LR_BRACKET create_server_audit_withs? RR_BRACKET where_server_audit_condition? 
         /// </summary>
         void VisitCreateServerAuditToInfos(AstCreateServerAuditToInfos.AstCreateServerAuditToInfos1 a);
         
         /// <summary>
-        /// create_server_audit_to_infos : REMOVE  WHERE
+        /// create_server_audit_to_infos : REMOVE WHERE 
         /// </summary>
         void VisitCreateServerAuditToInfos(AstCreateServerAuditToInfos.AstCreateServerAuditToInfos2 a);
         
         /// <summary>
-        /// create_server_audit_to_infos : MODIFY  NAME  EQUAL  audit_id
+        /// create_server_audit_to_infos : MODIFY NAME EQUAL audit_id 
         /// </summary>
         void VisitCreateServerAuditToInfos(AstCreateServerAuditToInfos.AstCreateServerAuditToInfos3 a);
         
@@ -3119,22 +3235,22 @@ namespace Bb.SqlServer.Asts
         void VisitWhereServerAuditCondition(AstWhereServerAuditCondition a);
         
         /// <summary>
-        /// create_server_audit_with : QUEUE_DELAY  EQUAL  queue_delay = decimal
+        /// create_server_audit_with : QUEUE_DELAY EQUAL queue_delay=decimal 
         /// </summary>
         void VisitCreateServerAuditWith(AstCreateServerAuditWith.AstCreateServerAuditWith1 a);
         
         /// <summary>
-        /// create_server_audit_with : ON_FAILURE  EQUAL  continue_shutdown
+        /// create_server_audit_with : ON_FAILURE EQUAL continue_shutdown 
         /// </summary>
         void VisitCreateServerAuditWith(AstCreateServerAuditWith.AstCreateServerAuditWith2 a);
         
         /// <summary>
-        /// create_server_audit_with : STATE  EQUAL  state = on_off
+        /// create_server_audit_with : STATE EQUAL state=on_off 
         /// </summary>
         void VisitCreateServerAuditWith(AstCreateServerAuditWith.AstCreateServerAuditWith3 a);
         
         /// <summary>
-        /// create_server_audit_with : audit1 = audit_guid_id  EQUAL  audit2 = audit_guid_id
+        /// create_server_audit_with : audit1=audit_guid_id EQUAL audit2=audit_guid_id 
         /// </summary>
         void VisitCreateServerAuditWith(AstCreateServerAuditWith.AstCreateServerAuditWith4 a);
         
@@ -3178,23 +3294,123 @@ namespace Bb.SqlServer.Asts
         /// </summary>
         void VisitServerAuditSpecificationAddGroups(AstServerAuditSpecificationAddGroups a);
         
-        void VisitAlterServerConfiguration(AstAlterServerConfiguration a);
-        
-        void VisitServerConfigProcessAffinity(AstServerConfigProcessAffinity a);
-        
-        void VisitServerConfigDiagnosticLog(AstServerConfigDiagnosticLog a);
-        
-        void VisitServerConfigFailover(AstServerConfigFailover a);
-        
-        void VisitServerConfigBufferPoolExt(AstServerConfigBufferPoolExt a);
+        /// <summary>
+        /// alter_server_configuration : ALTER SERVER CONFIGURATION SET server_config_process_affinity 
+        /// </summary>
+        void VisitAlterServerConfiguration(AstAlterServerConfiguration.AstAlterServerConfiguration1 a);
         
         /// <summary>
-        /// string_or_default : stringtext
+        /// alter_server_configuration : ALTER SERVER CONFIGURATION SET server_config_diagnostic_log 
+        /// </summary>
+        void VisitAlterServerConfiguration(AstAlterServerConfiguration.AstAlterServerConfiguration2 a);
+        
+        /// <summary>
+        /// alter_server_configuration : ALTER SERVER CONFIGURATION SET server_config_failover 
+        /// </summary>
+        void VisitAlterServerConfiguration(AstAlterServerConfiguration.AstAlterServerConfiguration3 a);
+        
+        /// <summary>
+        /// alter_server_configuration : ALTER SERVER CONFIGURATION SET HADR CLUSTER CONTEXT EQUAL stringtext 
+        /// </summary>
+        void VisitAlterServerConfiguration(AstAlterServerConfiguration.AstAlterServerConfiguration4 a);
+        
+        /// <summary>
+        /// alter_server_configuration : ALTER SERVER CONFIGURATION SET HADR CLUSTER CONTEXT EQUAL LOCAL 
+        /// </summary>
+        void VisitAlterServerConfiguration(AstAlterServerConfiguration.AstAlterServerConfiguration5 a);
+        
+        /// <summary>
+        /// alter_server_configuration : ALTER SERVER CONFIGURATION SET server_config_buffer_pool_ext 
+        /// </summary>
+        void VisitAlterServerConfiguration(AstAlterServerConfiguration.AstAlterServerConfiguration6 a);
+        
+        /// <summary>
+        /// alter_server_configuration : ALTER SERVER CONFIGURATION SET SET SOFTNUMA on_off 
+        /// </summary>
+        void VisitAlterServerConfiguration(AstAlterServerConfiguration.AstAlterServerConfiguration7 a);
+        
+        /// <summary>
+        /// server_config_process_affinity : PROCESS AFFINITY CPU EQUAL AUTO 
+        /// </summary>
+        void VisitServerConfigProcessAffinity(AstServerConfigProcessAffinity.AstServerConfigProcessAffinity1 a);
+        
+        /// <summary>
+        /// server_config_process_affinity : PROCESS AFFINITY CPU EQUAL decimal_range decimal_ranges 
+        /// </summary>
+        void VisitServerConfigProcessAffinity(AstServerConfigProcessAffinity.AstServerConfigProcessAffinity2 a);
+        
+        /// <summary>
+        /// server_config_process_affinity : PROCESS AFFINITY NUMANODE EQUAL decimal_range decimal_ranges 
+        /// </summary>
+        void VisitServerConfigProcessAffinity(AstServerConfigProcessAffinity.AstServerConfigProcessAffinity3 a);
+        
+        /// <summary>
+        /// server_config_diagnostic_log : DIAGNOSTICS LOG on_off 
+        /// </summary>
+        void VisitServerConfigDiagnosticLog(AstServerConfigDiagnosticLog.AstServerConfigDiagnosticLog1 a);
+        
+        /// <summary>
+        /// server_config_diagnostic_log : DIAGNOSTICS LOG PATH EQUAL string_or_default 
+        /// </summary>
+        void VisitServerConfigDiagnosticLog(AstServerConfigDiagnosticLog.AstServerConfigDiagnosticLog2 a);
+        
+        /// <summary>
+        /// server_config_diagnostic_log : DIAGNOSTICS LOG MAX_SIZE EQUAL size_value 
+        /// </summary>
+        void VisitServerConfigDiagnosticLog(AstServerConfigDiagnosticLog.AstServerConfigDiagnosticLog3 a);
+        
+        /// <summary>
+        /// server_config_diagnostic_log : DIAGNOSTICS LOG MAX_FILES EQUAL decimal_default 
+        /// </summary>
+        void VisitServerConfigDiagnosticLog(AstServerConfigDiagnosticLog.AstServerConfigDiagnosticLog4 a);
+        
+        /// <summary>
+        /// server_config_failover : FAILOVER CLUSTER PROPERTY VERBOSELOGGING EQUAL verboselogging=string_or_default 
+        /// </summary>
+        void VisitServerConfigFailover(AstServerConfigFailover.AstServerConfigFailover1 a);
+        
+        /// <summary>
+        /// server_config_failover : FAILOVER CLUSTER PROPERTY SQLDUMPERFLAGS EQUAL sqldumperflags=string_or_default 
+        /// </summary>
+        void VisitServerConfigFailover(AstServerConfigFailover.AstServerConfigFailover2 a);
+        
+        /// <summary>
+        /// server_config_failover : FAILOVER CLUSTER PROPERTY SQLDUMPERPATH EQUAL sqldumperpath=string_or_default 
+        /// </summary>
+        void VisitServerConfigFailover(AstServerConfigFailover.AstServerConfigFailover3 a);
+        
+        /// <summary>
+        /// server_config_failover : FAILOVER CLUSTER PROPERTY SQLDUMPERTIMEOUT sqldumpertimeout=string_or_default 
+        /// </summary>
+        void VisitServerConfigFailover(AstServerConfigFailover.AstServerConfigFailover4 a);
+        
+        /// <summary>
+        /// server_config_failover : FAILOVER CLUSTER PROPERTY FAILURECONDITIONLEVEL EQUAL failure=string_or_default 
+        /// </summary>
+        void VisitServerConfigFailover(AstServerConfigFailover.AstServerConfigFailover5 a);
+        
+        /// <summary>
+        /// server_config_failover : FAILOVER CLUSTER PROPERTY HEALTHCHECKTIMEOUT EQUAL health=decimal_default 
+        /// </summary>
+        void VisitServerConfigFailover(AstServerConfigFailover.AstServerConfigFailover6 a);
+        
+        /// <summary>
+        /// server_config_buffer_pool_ext : BUFFER POOL EXTENSION ON LR_BRACKET FILENAME EQUAL filename=stringtext COMMA SIZE EQUAL size=decimal size_unity RR_BRACKET 
+        /// </summary>
+        void VisitServerConfigBufferPoolExt(AstServerConfigBufferPoolExt.AstServerConfigBufferPoolExt1 a);
+        
+        /// <summary>
+        /// server_config_buffer_pool_ext : BUFFER POOL EXTENSION OFF 
+        /// </summary>
+        void VisitServerConfigBufferPoolExt(AstServerConfigBufferPoolExt.AstServerConfigBufferPoolExt2 a);
+        
+        /// <summary>
+        /// string_or_default : stringtext 
         /// </summary>
         void VisitStringOrDefault(AstStringOrDefault.AstStringOrDefault1 a);
         
         /// <summary>
-        /// string_or_default : DEFAULT
+        /// string_or_default : DEFAULT 
         /// </summary>
         void VisitStringOrDefault(AstStringOrDefault.AstStringOrDefault2 a);
         
@@ -3234,12 +3450,12 @@ namespace Bb.SqlServer.Asts
         void VisitCreateService(AstCreateService a);
         
         /// <summary>
-        /// contract_ref : contract_id
+        /// contract_ref : contract_id 
         /// </summary>
         void VisitContractRef(AstContractRef.AstContractRef1 a);
         
         /// <summary>
-        /// contract_ref : DEFAULT
+        /// contract_ref : DEFAULT 
         /// </summary>
         void VisitContractRef(AstContractRef.AstContractRef2 a);
         
@@ -3249,22 +3465,22 @@ namespace Bb.SqlServer.Asts
         void VisitAlterServiceMasterKey(AstAlterServiceMasterKey a);
         
         /// <summary>
-        /// service_master_key_items : FORCE?  REGENERATE
+        /// service_master_key_items : FORCE? REGENERATE 
         /// </summary>
         void VisitServiceMasterKeyItems(AstServiceMasterKeyItems.AstServiceMasterKeyItems1 a);
         
         /// <summary>
-        /// service_master_key_items : WITH  regenerate_account
+        /// service_master_key_items : WITH regenerate_account 
         /// </summary>
         void VisitServiceMasterKeyItems(AstServiceMasterKeyItems.AstServiceMasterKeyItems2 a);
         
         /// <summary>
-        /// regenerate_account : OLD_ACCOUNT  EQUAL  acold_account_name = stringtext  COMMA  old_pwd
+        /// regenerate_account : OLD_ACCOUNT EQUAL acold_account_name=stringtext COMMA old_pwd 
         /// </summary>
         void VisitRegenerateAccount(AstRegenerateAccount.AstRegenerateAccount1 a);
         
         /// <summary>
-        /// regenerate_account : NEW_ACCOUNT  EQUAL  new_account_name = stringtext  COMMA  new_password_set
+        /// regenerate_account : NEW_ACCOUNT EQUAL new_account_name=stringtext COMMA new_password_set 
         /// </summary>
         void VisitRegenerateAccount(AstRegenerateAccount.AstRegenerateAccount2 a);
         
@@ -3284,89 +3500,89 @@ namespace Bb.SqlServer.Asts
         void VisitAlterUser(AstAlterUser a);
         
         /// <summary>
-        /// alter_user_item : NAME  EQUAL  user_id
+        /// alter_user_item : NAME EQUAL user_id 
         /// </summary>
         void VisitAlterUserItem(AstAlterUserItem.AstAlterUserItem1 a);
         
         /// <summary>
-        /// alter_user_item : DEFAULT_SCHEMA  EQUAL  schema_id_null
+        /// alter_user_item : DEFAULT_SCHEMA EQUAL schema_id_null 
         /// </summary>
         void VisitAlterUserItem(AstAlterUserItem.AstAlterUserItem2 a);
         
         /// <summary>
-        /// alter_user_item : LOGIN  EQUAL  login_id
+        /// alter_user_item : LOGIN EQUAL login_id 
         /// </summary>
         void VisitAlterUserItem(AstAlterUserItem.AstAlterUserItem3 a);
         
         /// <summary>
-        /// alter_user_item : password_setting  old_pwd+
+        /// alter_user_item : password_setting old_pwd+ 
         /// </summary>
         void VisitAlterUserItem(AstAlterUserItem.AstAlterUserItem4 a);
         
         /// <summary>
-        /// alter_user_item : DEFAULT_LANGUAGE  EQUAL  language_setting_value
+        /// alter_user_item : DEFAULT_LANGUAGE EQUAL language_setting_value 
         /// </summary>
         void VisitAlterUserItem(AstAlterUserItem.AstAlterUserItem5 a);
         
         /// <summary>
-        /// alter_user_item : ALLOW_ENCRYPTED_VALUE_MODIFICATIONS  EQUAL  on_off
+        /// alter_user_item : ALLOW_ENCRYPTED_VALUE_MODIFICATIONS EQUAL on_off 
         /// </summary>
         void VisitAlterUserItem(AstAlterUserItem.AstAlterUserItem6 a);
         
         /// <summary>
-        /// schema_id_null : schema_identifier
+        /// schema_id_null : schema_identifier 
         /// </summary>
         void VisitSchemaIdNull(AstSchemaIdNull.AstSchemaIdNull1 a);
         
         /// <summary>
-        /// schema_id_null : NULL_
+        /// schema_id_null : NULL_ 
         /// </summary>
         void VisitSchemaIdNull(AstSchemaIdNull.AstSchemaIdNull2 a);
         
         /// <summary>
-        /// create_user : CREATE  USER  user_id  create_user_with_login
+        /// create_user : CREATE USER user_id create_user_with_login 
         /// </summary>
         void VisitCreateUser(AstCreateUser.AstCreateUser1 a);
         
         /// <summary>
-        /// create_user : CREATE  USER  create_user_windows_principal_id
+        /// create_user : CREATE USER create_user_windows_principal_id 
         /// </summary>
         void VisitCreateUser(AstCreateUser.AstCreateUser2 a);
         
         /// <summary>
-        /// create_user : CREATE  USER  user_id  create_user_without_login?
+        /// create_user : CREATE USER user_id create_user_without_login? 
         /// </summary>
         void VisitCreateUser(AstCreateUser.AstCreateUser3 a);
         
         void VisitCreateUserWithLogin(AstCreateUserWithLogin a);
         
         /// <summary>
-        /// create_user_without_login : WITHOUT  LOGIN  user_settings_shorts?
+        /// create_user_without_login : WITHOUT LOGIN user_settings_shorts? 
         /// </summary>
         void VisitCreateUserWithoutLogin(AstCreateUserWithoutLogin.AstCreateUserWithoutLogin1 a);
         
         /// <summary>
-        /// create_user_without_login : for_from  CERTIFICATE  certificate_id
+        /// create_user_without_login : for_from CERTIFICATE certificate_id 
         /// </summary>
         void VisitCreateUserWithoutLogin(AstCreateUserWithoutLogin.AstCreateUserWithoutLogin2 a);
         
         /// <summary>
-        /// create_user_without_login : for_from  ASYMMETRIC  KEY  asym_key_id
+        /// create_user_without_login : for_from ASYMMETRIC KEY asym_key_id 
         /// </summary>
         void VisitCreateUserWithoutLogin(AstCreateUserWithoutLogin.AstCreateUserWithoutLogin3 a);
         
         /// <summary>
-        /// create_user_windows_principal_id : windows_principal_id  (WITH  user_settings)?
+        /// create_user_windows_principal_id : windows_principal_id WITH user_settings 
         /// </summary>
         void VisitCreateUserWindowsPrincipalId(AstCreateUserWindowsPrincipalId.AstCreateUserWindowsPrincipalId1 a);
         
         /// <summary>
-        /// create_user_windows_principal_id : user_id  WITH  password_setting  user_settings?
+        /// create_user_windows_principal_id : user_id WITH password_setting user_settings? 
         /// </summary>
         void VisitCreateUserWindowsPrincipalId(AstCreateUserWindowsPrincipalId.AstCreateUserWindowsPrincipalId2 a);
         
         /// <summary>
-        /// create_user_windows_principal_id : user_id  FROM  EXTERNAL  PROVIDER
+        /// create_user_windows_principal_id : user_id FROM EXTERNAL PROVIDER 
         /// </summary>
         void VisitCreateUserWindowsPrincipalId(AstCreateUserWindowsPrincipalId.AstCreateUserWindowsPrincipalId3 a);
         
@@ -3396,12 +3612,12 @@ namespace Bb.SqlServer.Asts
         void VisitOldPwd(AstOldPwd a);
         
         /// <summary>
-        /// pwd_value : pwd
+        /// pwd_value : pwd 
         /// </summary>
         void VisitPwdValue(AstPwdValue.AstPwdValue1 a);
         
         /// <summary>
-        /// pwd_value : binary_  HASHED
+        /// pwd_value : binary_ HASHED 
         /// </summary>
         void VisitPwdValue(AstPwdValue.AstPwdValue2 a);
         
@@ -3416,12 +3632,12 @@ namespace Bb.SqlServer.Asts
         void VisitUserSettingsShorts(AstUserSettingsShorts a);
         
         /// <summary>
-        /// user_settings_short : default_schema_set
+        /// user_settings_short : default_schema_set 
         /// </summary>
         void VisitUserSettingsShort(AstUserSettingsShort.AstUserSettingsShort1 a);
         
         /// <summary>
-        /// user_settings_short : ALLOW_ENCRYPTED_VALUE_MODIFICATIONS  EQUAL  on_off
+        /// user_settings_short : ALLOW_ENCRYPTED_VALUE_MODIFICATIONS EQUAL on_off 
         /// </summary>
         void VisitUserSettingsShort(AstUserSettingsShort.AstUserSettingsShort2 a);
         
@@ -3436,42 +3652,42 @@ namespace Bb.SqlServer.Asts
         void VisitDefaultSchemaSet(AstDefaultSchemaSet a);
         
         /// <summary>
-        /// user_setting : default_schema_set
+        /// user_setting : default_schema_set 
         /// </summary>
         void VisitUserSetting(AstUserSetting.AstUserSetting1 a);
         
         /// <summary>
-        /// user_setting : DEFAULT_LANGUAGE  EQUAL  language_setting_value
+        /// user_setting : DEFAULT_LANGUAGE EQUAL language_setting_value 
         /// </summary>
         void VisitUserSetting(AstUserSetting.AstUserSetting2 a);
         
         /// <summary>
-        /// user_setting : SID  EQUAL  binary_
+        /// user_setting : SID EQUAL binary_ 
         /// </summary>
         void VisitUserSetting(AstUserSetting.AstUserSetting3 a);
         
         /// <summary>
-        /// user_setting : ALLOW_ENCRYPTED_VALUE_MODIFICATIONS  EQUAL  on_off
+        /// user_setting : ALLOW_ENCRYPTED_VALUE_MODIFICATIONS EQUAL on_off 
         /// </summary>
         void VisitUserSetting(AstUserSetting.AstUserSetting4 a);
         
         /// <summary>
-        /// create_user_azure_sql_dw : CREATE  USER  user_id  user_strategy?  (WITH  default_schema_set)?
+        /// create_user_azure_sql_dw : CREATE USER user_id user_strategy? WITH default_schema_set 
         /// </summary>
         void VisitCreateUserAzureSqlDw(AstCreateUserAzureSqlDw.AstCreateUserAzureSqlDw1 a);
         
         /// <summary>
-        /// create_user_azure_sql_dw : CREATE  USER  user_id  FROM  EXTERNAL  PROVIDER  (WITH  default_schema_set)?
+        /// create_user_azure_sql_dw : CREATE USER user_id FROM EXTERNAL PROVIDER WITH default_schema_set 
         /// </summary>
         void VisitCreateUserAzureSqlDw(AstCreateUserAzureSqlDw.AstCreateUserAzureSqlDw2 a);
         
         /// <summary>
-        /// user_strategy : for_from  LOGIN  login_id
+        /// user_strategy : for_from LOGIN login_id 
         /// </summary>
         void VisitUserStrategy(AstUserStrategy.AstUserStrategy1 a);
         
         /// <summary>
-        /// user_strategy : WITHOUT  LOGIN
+        /// user_strategy : WITHOUT LOGIN 
         /// </summary>
         void VisitUserStrategy(AstUserStrategy.AstUserStrategy2 a);
         
@@ -3486,22 +3702,22 @@ namespace Bb.SqlServer.Asts
         void VisitAlterUserAzureSqlInfos(AstAlterUserAzureSqlInfos a);
         
         /// <summary>
-        /// alter_user_azure_sql_info : NAME  EQUAL  user_id
+        /// alter_user_azure_sql_info : NAME EQUAL user_id 
         /// </summary>
         void VisitAlterUserAzureSqlInfo(AstAlterUserAzureSqlInfo.AstAlterUserAzureSqlInfo1 a);
         
         /// <summary>
-        /// alter_user_azure_sql_info : default_schema_set
+        /// alter_user_azure_sql_info : default_schema_set 
         /// </summary>
         void VisitAlterUserAzureSqlInfo(AstAlterUserAzureSqlInfo.AstAlterUserAzureSqlInfo2 a);
         
         /// <summary>
-        /// alter_user_azure_sql_info : LOGIN  EQUAL  login_id
+        /// alter_user_azure_sql_info : LOGIN EQUAL login_id 
         /// </summary>
         void VisitAlterUserAzureSqlInfo(AstAlterUserAzureSqlInfo.AstAlterUserAzureSqlInfo3 a);
         
         /// <summary>
-        /// alter_user_azure_sql_info : ALLOW_ENCRYPTED_VALUE_MODIFICATIONS  EQUAL  on_off
+        /// alter_user_azure_sql_info : ALLOW_ENCRYPTED_VALUE_MODIFICATIONS EQUAL on_off 
         /// </summary>
         void VisitAlterUserAzureSqlInfo(AstAlterUserAzureSqlInfo.AstAlterUserAzureSqlInfo4 a);
         
@@ -3516,16 +3732,24 @@ namespace Bb.SqlServer.Asts
         void VisitWorkloadOption(AstWorkloadOption a);
         
         /// <summary>
-        /// workload_group_name : workload_group_group_id
+        /// workload_group_name : workload_group_group_id 
         /// </summary>
         void VisitWorkloadGroupName(AstWorkloadGroupName.AstWorkloadGroupName1 a);
         
         /// <summary>
-        /// workload_group_name : DEFAULT_DOUBLE_QUOTE
+        /// workload_group_name : DEFAULT_DOUBLE_QUOTE 
         /// </summary>
         void VisitWorkloadGroupName(AstWorkloadGroupName.AstWorkloadGroupName2 a);
         
-        void VisitAlterWorkloadGroupUsing(AstAlterWorkloadGroupUsing a);
+        /// <summary>
+        /// alter_workload_group_using : USING workload_group_pool_id 
+        /// </summary>
+        void VisitAlterWorkloadGroupUsing(AstAlterWorkloadGroupUsing.AstAlterWorkloadGroupUsing1 a);
+        
+        /// <summary>
+        /// alter_workload_group_using : USING DEFAULT_DOUBLE_QUOTE 
+        /// </summary>
+        void VisitAlterWorkloadGroupUsing(AstAlterWorkloadGroupUsing.AstAlterWorkloadGroupUsing2 a);
         
         void VisitWorkloadOptionItem(AstWorkloadOptionItem a);
         
@@ -3540,12 +3764,12 @@ namespace Bb.SqlServer.Asts
         void VisitWorkloadGroupIdOrDefaults(AstWorkloadGroupIdOrDefaults a);
         
         /// <summary>
-        /// workload_group_id_or_default : workload_group_pool_id
+        /// workload_group_id_or_default : workload_group_pool_id 
         /// </summary>
         void VisitWorkloadGroupIdOrDefault(AstWorkloadGroupIdOrDefault.AstWorkloadGroupIdOrDefault1 a);
         
         /// <summary>
-        /// workload_group_id_or_default : DEFAULT_DOUBLE_QUOTE
+        /// workload_group_id_or_default : DEFAULT_DOUBLE_QUOTE 
         /// </summary>
         void VisitWorkloadGroupIdOrDefault(AstWorkloadGroupIdOrDefault.AstWorkloadGroupIdOrDefault2 a);
         
@@ -3569,7 +3793,25 @@ namespace Bb.SqlServer.Asts
         /// </summary>
         void VisitCreateQueue(AstCreateQueue a);
         
-        void VisitQueueSettings(AstQueueSettings a);
+        /// <summary>
+        /// queue_settings : WITH STATUS EQUAL status=on_off COMMA? RETENTION EQUAL retention=on_off COMMA? ACTIVATION LR_BRACKET STATUS EQUAL activation_status=on_off COMMA? PROCEDURE_NAME EQUAL func_proc_name_database_schema_ref COMMA? MAX_QUEUE_READERS EQUAL max_readers=decimal COMMA? EXECUTE AS SELF COMMA? RR_BRACKET COMMA? POISON_MESSAGE_HANDLING LR_BRACKET STATUS EQUAL on_off RR_BRACKET 
+        /// </summary>
+        void VisitQueueSettings(AstQueueSettings.AstQueueSettings1 a);
+        
+        /// <summary>
+        /// queue_settings : WITH STATUS EQUAL status=on_off COMMA? RETENTION EQUAL retention=on_off COMMA? ACTIVATION LR_BRACKET STATUS EQUAL activation_status=on_off COMMA? PROCEDURE_NAME EQUAL func_proc_name_database_schema_ref COMMA? MAX_QUEUE_READERS EQUAL max_readers=decimal COMMA? EXECUTE AS username=stringtext COMMA? RR_BRACKET COMMA? POISON_MESSAGE_HANDLING LR_BRACKET STATUS EQUAL on_off RR_BRACKET 
+        /// </summary>
+        void VisitQueueSettings(AstQueueSettings.AstQueueSettings2 a);
+        
+        /// <summary>
+        /// queue_settings : WITH STATUS EQUAL status=on_off COMMA? RETENTION EQUAL retention=on_off COMMA? ACTIVATION LR_BRACKET STATUS EQUAL activation_status=on_off COMMA? PROCEDURE_NAME EQUAL func_proc_name_database_schema_ref COMMA? MAX_QUEUE_READERS EQUAL max_readers=decimal COMMA? EXECUTE AS OWNER COMMA? RR_BRACKET COMMA? POISON_MESSAGE_HANDLING LR_BRACKET STATUS EQUAL on_off RR_BRACKET 
+        /// </summary>
+        void VisitQueueSettings(AstQueueSettings.AstQueueSettings3 a);
+        
+        /// <summary>
+        /// queue_settings : WITH STATUS EQUAL status=on_off COMMA? RETENTION EQUAL retention=on_off COMMA? ACTIVATION LR_BRACKET DROP RR_BRACKET COMMA? POISON_MESSAGE_HANDLING LR_BRACKET STATUS EQUAL on_off RR_BRACKET 
+        /// </summary>
+        void VisitQueueSettings(AstQueueSettings.AstQueueSettings4 a);
         
         /// <summary>
         /// alter_queue : Bb.Generators.ModelMethod
@@ -3577,37 +3819,37 @@ namespace Bb.SqlServer.Asts
         void VisitAlterQueue(AstAlterQueue a);
         
         /// <summary>
-        /// table_or_queue : complete_table_ref
+        /// table_or_queue : complete_table_ref 
         /// </summary>
         void VisitTableOrQueue(AstTableOrQueue.AstTableOrQueue1 a);
         
         /// <summary>
-        /// table_or_queue : queue_id
+        /// table_or_queue : queue_id 
         /// </summary>
         void VisitTableOrQueue(AstTableOrQueue.AstTableOrQueue2 a);
         
         /// <summary>
-        /// queue_action : REBUILD  (WITH  LR_BRACKET  queue_rebuild_options  RR_BRACKET)?
+        /// queue_action : REBUILD WITH LR_BRACKET queue_rebuild_options RR_BRACKET 
         /// </summary>
         void VisitQueueAction(AstQueueAction.AstQueueAction1 a);
         
         /// <summary>
-        /// queue_action : REORGANIZE  (WITH  LOB_COMPACTION  EQUAL  on_off)?
+        /// queue_action : REORGANIZE WITH LOB_COMPACTION EQUAL on_off 
         /// </summary>
         void VisitQueueAction(AstQueueAction.AstQueueAction2 a);
         
         /// <summary>
-        /// queue_action : MOVE  TO  id1 = id_default  id2 = id_default
+        /// queue_action : MOVE TO id1=id_default id2=id_default 
         /// </summary>
         void VisitQueueAction(AstQueueAction.AstQueueAction3 a);
         
         /// <summary>
-        /// id_default : id_
+        /// id_default : id_ 
         /// </summary>
         void VisitIdDefault(AstIdDefault.AstIdDefault1 a);
         
         /// <summary>
-        /// id_default : DEFAULT
+        /// id_default : DEFAULT 
         /// </summary>
         void VisitIdDefault(AstIdDefault.AstIdDefault2 a);
         
@@ -3627,12 +3869,12 @@ namespace Bb.SqlServer.Asts
         void VisitContractItem(AstContractItem a);
         
         /// <summary>
-        /// contract_item_target : message_type_id
+        /// contract_item_target : message_type_id 
         /// </summary>
         void VisitContractItemTarget(AstContractItemTarget.AstContractItemTarget1 a);
         
         /// <summary>
-        /// contract_item_target : DEFAULT
+        /// contract_item_target : DEFAULT 
         /// </summary>
         void VisitContractItemTarget(AstContractItemTarget.AstContractItemTarget2 a);
         
@@ -3652,31 +3894,39 @@ namespace Bb.SqlServer.Asts
         void VisitWhenMatches(AstWhenMatches a);
         
         /// <summary>
-        /// when_matche : (WHEN  MATCHED  (AND  search_condition)?  THEN  merge_matched)+
+        /// when_matche : WHEN MATCHED AND search_condition THEN merge_matched 
         /// </summary>
         void VisitWhenMatche(AstWhenMatche.AstWhenMatche1 a);
         
         /// <summary>
-        /// when_matche : (WHEN  NOT  MATCHED  (BY  TARGET)?  (AND  search_condition)?  THEN  merge_not_matched)
+        /// when_matche : WHEN NOT MATCHED BY TARGET AND search_condition THEN merge_not_matched 
         /// </summary>
         void VisitWhenMatche(AstWhenMatche.AstWhenMatche2 a);
         
         /// <summary>
-        /// when_matche : (WHEN  NOT  MATCHED  BY  SOURCE  (AND  search_condition)?  THEN  merge_matched)+
+        /// when_matche : WHEN NOT MATCHED BY SOURCE AND search_condition THEN merge_matched 
         /// </summary>
         void VisitWhenMatche(AstWhenMatche.AstWhenMatche3 a);
         
         /// <summary>
-        /// merge_matched : UPDATE  SET  update_elem_merges
+        /// merge_matched : UPDATE SET update_elem_merges 
         /// </summary>
         void VisitMergeMatched(AstMergeMatched.AstMergeMatched1 a);
         
         /// <summary>
-        /// merge_matched : DELETE
+        /// merge_matched : DELETE 
         /// </summary>
         void VisitMergeMatched(AstMergeMatched.AstMergeMatched2 a);
         
-        void VisitMergeNotMatched(AstMergeNotMatched a);
+        /// <summary>
+        /// merge_not_matched : INSERT LR_BRACKET column_name_list RR_BRACKET table_value_constructor 
+        /// </summary>
+        void VisitMergeNotMatched(AstMergeNotMatched.AstMergeNotMatched1 a);
+        
+        /// <summary>
+        /// merge_not_matched : INSERT LR_BRACKET column_name_list RR_BRACKET DEFAULT VALUES 
+        /// </summary>
+        void VisitMergeNotMatched(AstMergeNotMatched.AstMergeNotMatched2 a);
         
         /// <summary>
         /// delete_statement : Bb.Generators.ModelMethod
@@ -3684,17 +3934,17 @@ namespace Bb.SqlServer.Asts
         void VisitDeleteStatement(AstDeleteStatement a);
         
         /// <summary>
-        /// delete_statement_from : ddl_object
+        /// delete_statement_from : ddl_object 
         /// </summary>
         void VisitDeleteStatementFrom(AstDeleteStatementFrom.AstDeleteStatementFrom1 a);
         
         /// <summary>
-        /// delete_statement_from : rowset_function_limited
+        /// delete_statement_from : rowset_function_limited 
         /// </summary>
         void VisitDeleteStatementFrom(AstDeleteStatementFrom.AstDeleteStatementFrom2 a);
         
         /// <summary>
-        /// delete_statement_from : table_var = local_id
+        /// delete_statement_from : table_var=local_id 
         /// </summary>
         void VisitDeleteStatementFrom(AstDeleteStatementFrom.AstDeleteStatementFrom3 a);
         
@@ -3704,22 +3954,22 @@ namespace Bb.SqlServer.Asts
         void VisitInsertStatement(AstInsertStatement a);
         
         /// <summary>
-        /// insert_statement_value : table_value_constructor
+        /// insert_statement_value : table_value_constructor 
         /// </summary>
         void VisitInsertStatementValue(AstInsertStatementValue.AstInsertStatementValue1 a);
         
         /// <summary>
-        /// insert_statement_value : derived_table
+        /// insert_statement_value : derived_table 
         /// </summary>
         void VisitInsertStatementValue(AstInsertStatementValue.AstInsertStatementValue2 a);
         
         /// <summary>
-        /// insert_statement_value : execute_statement
+        /// insert_statement_value : execute_statement 
         /// </summary>
         void VisitInsertStatementValue(AstInsertStatementValue.AstInsertStatementValue3 a);
         
         /// <summary>
-        /// insert_statement_value : DEFAULT  VALUES
+        /// insert_statement_value : DEFAULT VALUES 
         /// </summary>
         void VisitInsertStatementValue(AstInsertStatementValue.AstInsertStatementValue4 a);
         
@@ -3744,12 +3994,12 @@ namespace Bb.SqlServer.Asts
         void VisitReceiveId(AstReceiveId a);
         
         /// <summary>
-        /// receive_mode : receive_mode_enum
+        /// receive_mode : receive_mode_enum 
         /// </summary>
         void VisitReceiveMode(AstReceiveMode.AstReceiveMode1 a);
         
         /// <summary>
-        /// receive_mode : top_clause
+        /// receive_mode : top_clause 
         /// </summary>
         void VisitReceiveMode(AstReceiveMode.AstReceiveMode2 a);
         
@@ -3763,7 +4013,15 @@ namespace Bb.SqlServer.Asts
         /// </summary>
         void VisitSelectStatement(AstSelectStatement a);
         
-        void VisitTimespan(AstTimespan a);
+        /// <summary>
+        /// timespan : local_id 
+        /// </summary>
+        void VisitTimespan(AstTimespan.AstTimespan1 a);
+        
+        /// <summary>
+        /// timespan : constant 
+        /// </summary>
+        void VisitTimespan(AstTimespan.AstTimespan2 a);
         
         /// <summary>
         /// update_statement : Bb.Generators.ModelMethod
@@ -3816,17 +4074,17 @@ namespace Bb.SqlServer.Asts
         void VisitCreateIndex(AstCreateIndex a);
         
         /// <summary>
-        /// relational_index_option : rebuild_index_option
+        /// relational_index_option : rebuild_index_option 
         /// </summary>
         void VisitRelationalIndexOption(AstRelationalIndexOption.AstRelationalIndexOption1 a);
         
         /// <summary>
-        /// relational_index_option : DROP_EXISTING  EQUAL  on_off
+        /// relational_index_option : DROP_EXISTING EQUAL on_off 
         /// </summary>
         void VisitRelationalIndexOption(AstRelationalIndexOption.AstRelationalIndexOption2 a);
         
         /// <summary>
-        /// relational_index_option : OPTIMIZE_FOR_SEQUENTIAL_KEY  EQUAL  on_off
+        /// relational_index_option : OPTIMIZE_FOR_SEQUENTIAL_KEY EQUAL on_off 
         /// </summary>
         void VisitRelationalIndexOption(AstRelationalIndexOption.AstRelationalIndexOption3 a);
         
@@ -3836,27 +4094,27 @@ namespace Bb.SqlServer.Asts
         void VisitAlterIndex(AstAlterIndex a);
         
         /// <summary>
-        /// index_status : index_status_enum
+        /// index_status : index_status_enum 
         /// </summary>
         void VisitIndexStatus(AstIndexStatus.AstIndexStatus1 a);
         
         /// <summary>
-        /// index_status : RESUME  resumable_index_options?
+        /// index_status : RESUME resumable_index_options? 
         /// </summary>
         void VisitIndexStatus(AstIndexStatus.AstIndexStatus2 a);
         
         /// <summary>
-        /// index_status : reorganize_partition
+        /// index_status : reorganize_partition 
         /// </summary>
         void VisitIndexStatus(AstIndexStatus.AstIndexStatus3 a);
         
         /// <summary>
-        /// index_status : set_index_options
+        /// index_status : set_index_options 
         /// </summary>
         void VisitIndexStatus(AstIndexStatus.AstIndexStatus4 a);
         
         /// <summary>
-        /// index_status : rebuild_partition
+        /// index_status : rebuild_partition 
         /// </summary>
         void VisitIndexStatus(AstIndexStatus.AstIndexStatus5 a);
         
@@ -3865,20 +4123,28 @@ namespace Bb.SqlServer.Asts
         /// </summary>
         void VisitIndexStatusEnum(AstIndexStatusEnum a);
         
-        void VisitIndexName(AstIndexName a);
+        /// <summary>
+        /// index_name : id_ 
+        /// </summary>
+        void VisitIndexName(AstIndexName.AstIndexName1 a);
         
         /// <summary>
-        /// resumable_index_option : MAXDOP  EQUAL  max_degree_of_parallelism = decimal
+        /// index_name : ALL 
+        /// </summary>
+        void VisitIndexName(AstIndexName.AstIndexName2 a);
+        
+        /// <summary>
+        /// resumable_index_option : MAXDOP EQUAL max_degree_of_parallelism=decimal 
         /// </summary>
         void VisitResumableIndexOption(AstResumableIndexOption.AstResumableIndexOption1 a);
         
         /// <summary>
-        /// resumable_index_option : MAX_DURATION  EQUAL  max_duration = decimal  MINUTES?
+        /// resumable_index_option : MAX_DURATION EQUAL max_duration=decimal MINUTES? 
         /// </summary>
         void VisitResumableIndexOption(AstResumableIndexOption.AstResumableIndexOption2 a);
         
         /// <summary>
-        /// resumable_index_option : low_priority_lock_wait
+        /// resumable_index_option : low_priority_lock_wait 
         /// </summary>
         void VisitResumableIndexOption(AstResumableIndexOption.AstResumableIndexOption3 a);
         
@@ -3888,162 +4154,162 @@ namespace Bb.SqlServer.Asts
         void VisitReorganizePartition(AstReorganizePartition a);
         
         /// <summary>
-        /// reorganize_option : LOB_COMPACTION  EQUAL  on_off
+        /// reorganize_option : LOB_COMPACTION EQUAL on_off 
         /// </summary>
         void VisitReorganizeOption(AstReorganizeOption.AstReorganizeOption1 a);
         
         /// <summary>
-        /// reorganize_option : COMPRESS_ALL_ROW_GROUPS  EQUAL  on_off
+        /// reorganize_option : COMPRESS_ALL_ROW_GROUPS EQUAL on_off 
         /// </summary>
         void VisitReorganizeOption(AstReorganizeOption.AstReorganizeOption2 a);
         
         /// <summary>
-        /// set_index_option : ALLOW_ROW_LOCKS  EQUAL  on_off
+        /// set_index_option : ALLOW_ROW_LOCKS EQUAL on_off 
         /// </summary>
         void VisitSetIndexOption(AstSetIndexOption.AstSetIndexOption1 a);
         
         /// <summary>
-        /// set_index_option : ALLOW_PAGE_LOCKS  EQUAL  on_off
+        /// set_index_option : ALLOW_PAGE_LOCKS EQUAL on_off 
         /// </summary>
         void VisitSetIndexOption(AstSetIndexOption.AstSetIndexOption2 a);
         
         /// <summary>
-        /// set_index_option : OPTIMIZE_FOR_SEQUENTIAL_KEY  EQUAL  on_off
+        /// set_index_option : OPTIMIZE_FOR_SEQUENTIAL_KEY EQUAL on_off 
         /// </summary>
         void VisitSetIndexOption(AstSetIndexOption.AstSetIndexOption3 a);
         
         /// <summary>
-        /// set_index_option : IGNORE_DUP_KEY  EQUAL  on_off
+        /// set_index_option : IGNORE_DUP_KEY EQUAL on_off 
         /// </summary>
         void VisitSetIndexOption(AstSetIndexOption.AstSetIndexOption4 a);
         
         /// <summary>
-        /// set_index_option : STATISTICS_NORECOMPUTE  EQUAL  on_off
+        /// set_index_option : STATISTICS_NORECOMPUTE EQUAL on_off 
         /// </summary>
         void VisitSetIndexOption(AstSetIndexOption.AstSetIndexOption5 a);
         
         /// <summary>
-        /// set_index_option : COMPRESSION_DELAY  EQUAL  delay = decimal  MINUTES?
+        /// set_index_option : COMPRESSION_DELAY EQUAL delay=decimal MINUTES? 
         /// </summary>
         void VisitSetIndexOption(AstSetIndexOption.AstSetIndexOption6 a);
         
         /// <summary>
-        /// rebuild_partition : REBUILD  (PARTITION  EQUAL  ALL)?  rebuild_index_options?
+        /// rebuild_partition : REBUILD PARTITION EQUAL ALL rebuild_index_options? 
         /// </summary>
         void VisitRebuildPartition(AstRebuildPartition.AstRebuildPartition1 a);
         
         /// <summary>
-        /// rebuild_partition : REBUILD  PARTITION  EQUAL  decimal  single_partition_rebuild_index_options?
+        /// rebuild_partition : REBUILD PARTITION EQUAL decimal single_partition_rebuild_index_options? 
         /// </summary>
         void VisitRebuildPartition(AstRebuildPartition.AstRebuildPartition2 a);
         
         /// <summary>
-        /// rebuild_index_option : PAD_INDEX  EQUAL  on_off
+        /// rebuild_index_option : PAD_INDEX EQUAL on_off 
         /// </summary>
         void VisitRebuildIndexOption(AstRebuildIndexOption.AstRebuildIndexOption1 a);
         
         /// <summary>
-        /// rebuild_index_option : FILLFACTOR  EQUAL  decimal
+        /// rebuild_index_option : FILLFACTOR EQUAL decimal 
         /// </summary>
         void VisitRebuildIndexOption(AstRebuildIndexOption.AstRebuildIndexOption2 a);
         
         /// <summary>
-        /// rebuild_index_option : SORT_IN_TEMPDB  EQUAL  on_off
+        /// rebuild_index_option : SORT_IN_TEMPDB EQUAL on_off 
         /// </summary>
         void VisitRebuildIndexOption(AstRebuildIndexOption.AstRebuildIndexOption3 a);
         
         /// <summary>
-        /// rebuild_index_option : IGNORE_DUP_KEY  EQUAL  on_off
+        /// rebuild_index_option : IGNORE_DUP_KEY EQUAL on_off 
         /// </summary>
         void VisitRebuildIndexOption(AstRebuildIndexOption.AstRebuildIndexOption4 a);
         
         /// <summary>
-        /// rebuild_index_option : STATISTICS_NORECOMPUTE  EQUAL  on_off
+        /// rebuild_index_option : STATISTICS_NORECOMPUTE EQUAL on_off 
         /// </summary>
         void VisitRebuildIndexOption(AstRebuildIndexOption.AstRebuildIndexOption5 a);
         
         /// <summary>
-        /// rebuild_index_option : STATISTICS_INCREMENTAL  EQUAL  on_off
+        /// rebuild_index_option : STATISTICS_INCREMENTAL EQUAL on_off 
         /// </summary>
         void VisitRebuildIndexOption(AstRebuildIndexOption.AstRebuildIndexOption6 a);
         
         /// <summary>
-        /// rebuild_index_option : ONLINE  EQUAL  online_value
+        /// rebuild_index_option : ONLINE EQUAL online_value 
         /// </summary>
         void VisitRebuildIndexOption(AstRebuildIndexOption.AstRebuildIndexOption7 a);
         
         /// <summary>
-        /// rebuild_index_option : RESUMABLE  EQUAL  on_off
+        /// rebuild_index_option : RESUMABLE EQUAL on_off 
         /// </summary>
         void VisitRebuildIndexOption(AstRebuildIndexOption.AstRebuildIndexOption8 a);
         
         /// <summary>
-        /// rebuild_index_option : MAX_DURATION  EQUAL  times = decimal  MINUTES?
+        /// rebuild_index_option : MAX_DURATION EQUAL times=decimal MINUTES? 
         /// </summary>
         void VisitRebuildIndexOption(AstRebuildIndexOption.AstRebuildIndexOption9 a);
         
         /// <summary>
-        /// rebuild_index_option : ALLOW_ROW_LOCKS  EQUAL  on_off
+        /// rebuild_index_option : ALLOW_ROW_LOCKS EQUAL on_off 
         /// </summary>
         void VisitRebuildIndexOption(AstRebuildIndexOption.AstRebuildIndexOption10 a);
         
         /// <summary>
-        /// rebuild_index_option : ALLOW_PAGE_LOCKS  EQUAL  on_off
+        /// rebuild_index_option : ALLOW_PAGE_LOCKS EQUAL on_off 
         /// </summary>
         void VisitRebuildIndexOption(AstRebuildIndexOption.AstRebuildIndexOption11 a);
         
         /// <summary>
-        /// rebuild_index_option : MAXDOP  EQUAL  max_degree_of_parallelism = decimal
+        /// rebuild_index_option : MAXDOP EQUAL max_degree_of_parallelism=decimal 
         /// </summary>
         void VisitRebuildIndexOption(AstRebuildIndexOption.AstRebuildIndexOption12 a);
         
         /// <summary>
-        /// rebuild_index_option : DATA_COMPRESSION  EQUAL  datacompression_mode  on_partitions?
+        /// rebuild_index_option : DATA_COMPRESSION EQUAL datacompression_mode on_partitions? 
         /// </summary>
         void VisitRebuildIndexOption(AstRebuildIndexOption.AstRebuildIndexOption13 a);
         
         /// <summary>
-        /// rebuild_index_option : XML_COMPRESSION  EQUAL  on_off  on_partitions?
+        /// rebuild_index_option : XML_COMPRESSION EQUAL on_off on_partitions? 
         /// </summary>
         void VisitRebuildIndexOption(AstRebuildIndexOption.AstRebuildIndexOption14 a);
         
         /// <summary>
-        /// online_value : ON  (LR_BRACKET  low_priority_lock_wait  RR_BRACKET)?
+        /// online_value : ON LR_BRACKET low_priority_lock_wait RR_BRACKET 
         /// </summary>
         void VisitOnlineValue(AstOnlineValue.AstOnlineValue1 a);
         
         /// <summary>
-        /// online_value : OFF
+        /// online_value : OFF 
         /// </summary>
         void VisitOnlineValue(AstOnlineValue.AstOnlineValue2 a);
         
         /// <summary>
-        /// single_partition_rebuild_index_option : SORT_IN_TEMPDB  EQUAL  on_off
+        /// single_partition_rebuild_index_option : SORT_IN_TEMPDB EQUAL on_off 
         /// </summary>
         void VisitSinglePartitionRebuildIndexOption(AstSinglePartitionRebuildIndexOption.AstSinglePartitionRebuildIndexOption1 a);
         
         /// <summary>
-        /// single_partition_rebuild_index_option : MAXDOP  EQUAL  max_degree_of_parallelism = decimal
+        /// single_partition_rebuild_index_option : MAXDOP EQUAL max_degree_of_parallelism=decimal 
         /// </summary>
         void VisitSinglePartitionRebuildIndexOption(AstSinglePartitionRebuildIndexOption.AstSinglePartitionRebuildIndexOption2 a);
         
         /// <summary>
-        /// single_partition_rebuild_index_option : RESUMABLE  EQUAL  on_off
+        /// single_partition_rebuild_index_option : RESUMABLE EQUAL on_off 
         /// </summary>
         void VisitSinglePartitionRebuildIndexOption(AstSinglePartitionRebuildIndexOption.AstSinglePartitionRebuildIndexOption3 a);
         
         /// <summary>
-        /// single_partition_rebuild_index_option : DATA_COMPRESSION  EQUAL  datacompression_mode  on_partitions?
+        /// single_partition_rebuild_index_option : DATA_COMPRESSION EQUAL datacompression_mode on_partitions? 
         /// </summary>
         void VisitSinglePartitionRebuildIndexOption(AstSinglePartitionRebuildIndexOption.AstSinglePartitionRebuildIndexOption4 a);
         
         /// <summary>
-        /// single_partition_rebuild_index_option : XML_COMPRESSION  EQUAL  on_off  on_partitions?
+        /// single_partition_rebuild_index_option : XML_COMPRESSION EQUAL on_off on_partitions? 
         /// </summary>
         void VisitSinglePartitionRebuildIndexOption(AstSinglePartitionRebuildIndexOption.AstSinglePartitionRebuildIndexOption5 a);
         
         /// <summary>
-        /// single_partition_rebuild_index_option : ONLINE  EQUAL  online_value
+        /// single_partition_rebuild_index_option : ONLINE EQUAL online_value 
         /// </summary>
         void VisitSinglePartitionRebuildIndexOption(AstSinglePartitionRebuildIndexOption.AstSinglePartitionRebuildIndexOption6 a);
         
@@ -4060,27 +4326,27 @@ namespace Bb.SqlServer.Asts
         void VisitCreateColumnstoreIndex(AstCreateColumnstoreIndex a);
         
         /// <summary>
-        /// columnstore_index_option : DROP_EXISTING  EQUAL  drop_existing = on_off
+        /// columnstore_index_option : DROP_EXISTING EQUAL drop_existing=on_off 
         /// </summary>
         void VisitColumnstoreIndexOption(AstColumnstoreIndexOption.AstColumnstoreIndexOption1 a);
         
         /// <summary>
-        /// columnstore_index_option : MAXDOP  EQUAL  max_degree_of_parallelism = decimal
+        /// columnstore_index_option : MAXDOP EQUAL max_degree_of_parallelism=decimal 
         /// </summary>
         void VisitColumnstoreIndexOption(AstColumnstoreIndexOption.AstColumnstoreIndexOption2 a);
         
         /// <summary>
-        /// columnstore_index_option : ONLINE  EQUAL  online = on_off
+        /// columnstore_index_option : ONLINE EQUAL online=on_off 
         /// </summary>
         void VisitColumnstoreIndexOption(AstColumnstoreIndexOption.AstColumnstoreIndexOption3 a);
         
         /// <summary>
-        /// columnstore_index_option : COMPRESSION_DELAY  EQUAL  delay = decimal  MINUTES?
+        /// columnstore_index_option : COMPRESSION_DELAY EQUAL delay=decimal MINUTES? 
         /// </summary>
         void VisitColumnstoreIndexOption(AstColumnstoreIndexOption.AstColumnstoreIndexOption4 a);
         
         /// <summary>
-        /// columnstore_index_option : DATA_COMPRESSION  EQUAL  datacompression_column_mode  on_partitions?
+        /// columnstore_index_option : DATA_COMPRESSION EQUAL datacompression_column_mode on_partitions? 
         /// </summary>
         void VisitColumnstoreIndexOption(AstColumnstoreIndexOption.AstColumnstoreIndexOption5 a);
         
@@ -4100,52 +4366,52 @@ namespace Bb.SqlServer.Asts
         void VisitUsingXmlIndex(AstUsingXmlIndex a);
         
         /// <summary>
-        /// xml_index_option : PAD_INDEX  EQUAL  pad_index = on_off
+        /// xml_index_option : PAD_INDEX EQUAL pad_index=on_off 
         /// </summary>
         void VisitXmlIndexOption(AstXmlIndexOption.AstXmlIndexOption1 a);
         
         /// <summary>
-        /// xml_index_option : FILLFACTOR  EQUAL  fillfactor = decimal
+        /// xml_index_option : FILLFACTOR EQUAL fillfactor=decimal 
         /// </summary>
         void VisitXmlIndexOption(AstXmlIndexOption.AstXmlIndexOption2 a);
         
         /// <summary>
-        /// xml_index_option : SORT_IN_TEMPDB  EQUAL  sort_in_tempdb = on_off
+        /// xml_index_option : SORT_IN_TEMPDB EQUAL sort_in_tempdb=on_off 
         /// </summary>
         void VisitXmlIndexOption(AstXmlIndexOption.AstXmlIndexOption3 a);
         
         /// <summary>
-        /// xml_index_option : IGNORE_DUP_KEY  EQUAL  ignore_dup_key = on_off
+        /// xml_index_option : IGNORE_DUP_KEY EQUAL ignore_dup_key=on_off 
         /// </summary>
         void VisitXmlIndexOption(AstXmlIndexOption.AstXmlIndexOption4 a);
         
         /// <summary>
-        /// xml_index_option : DROP_EXISTING  EQUAL  drop_existing = on_off
+        /// xml_index_option : DROP_EXISTING EQUAL drop_existing=on_off 
         /// </summary>
         void VisitXmlIndexOption(AstXmlIndexOption.AstXmlIndexOption5 a);
         
         /// <summary>
-        /// xml_index_option : ONLINE  EQUAL  online_value
+        /// xml_index_option : ONLINE EQUAL online_value 
         /// </summary>
         void VisitXmlIndexOption(AstXmlIndexOption.AstXmlIndexOption6 a);
         
         /// <summary>
-        /// xml_index_option : ALLOW_ROW_LOCKS  EQUAL  allow_row_loks = on_off
+        /// xml_index_option : ALLOW_ROW_LOCKS EQUAL allow_row_loks=on_off 
         /// </summary>
         void VisitXmlIndexOption(AstXmlIndexOption.AstXmlIndexOption7 a);
         
         /// <summary>
-        /// xml_index_option : ALLOW_PAGE_LOCKS  EQUAL  allow_page_locks = on_off
+        /// xml_index_option : ALLOW_PAGE_LOCKS EQUAL allow_page_locks=on_off 
         /// </summary>
         void VisitXmlIndexOption(AstXmlIndexOption.AstXmlIndexOption8 a);
         
         /// <summary>
-        /// xml_index_option : MAXDOP  EQUAL  max_degree_of_parallelism = decimal
+        /// xml_index_option : MAXDOP EQUAL max_degree_of_parallelism=decimal 
         /// </summary>
         void VisitXmlIndexOption(AstXmlIndexOption.AstXmlIndexOption9 a);
         
         /// <summary>
-        /// xml_index_option : XML_COMPRESSION  EQUAL  xml_compression = on_off
+        /// xml_index_option : XML_COMPRESSION EQUAL xml_compression=on_off 
         /// </summary>
         void VisitXmlIndexOption(AstXmlIndexOption.AstXmlIndexOption10 a);
         
@@ -4155,34 +4421,34 @@ namespace Bb.SqlServer.Asts
         void VisitCreateOrAlterProcedure(AstCreateOrAlterProcedure a);
         
         /// <summary>
-        /// procedure_declaration_arguments : procedure_params
+        /// procedure_declaration_arguments : procedure_params 
         /// </summary>
         void VisitProcedureDeclarationArguments(AstProcedureDeclarationArguments.AstProcedureDeclarationArguments1 a);
         
         /// <summary>
-        /// procedure_declaration_arguments : LR_BRACKET  procedure_params  RR_BRACKET
+        /// procedure_declaration_arguments : LR_BRACKET procedure_params RR_BRACKET 
         /// </summary>
         void VisitProcedureDeclarationArguments(AstProcedureDeclarationArguments.AstProcedureDeclarationArguments2 a);
         
         /// <summary>
-        /// procedure_declaration : procedure_declaration_create
+        /// procedure_declaration : procedure_declaration_create 
         /// </summary>
         void VisitProcedureDeclaration(AstProcedureDeclaration.AstProcedureDeclaration1 a);
         
         /// <summary>
-        /// procedure_declaration : ALTER
+        /// procedure_declaration : ALTER 
         /// </summary>
         void VisitProcedureDeclaration(AstProcedureDeclaration.AstProcedureDeclaration2 a);
         
         void VisitProcedureDeclarationCreate(AstProcedureDeclarationCreate a);
         
         /// <summary>
-        /// replication_alias : as_external_name
+        /// replication_alias : as_external_name 
         /// </summary>
         void VisitReplicationAlias(AstReplicationAlias.AstReplicationAlias1 a);
         
         /// <summary>
-        /// replication_alias : sql_clause
+        /// replication_alias : sql_clause 
         /// </summary>
         void VisitReplicationAlias(AstReplicationAlias.AstReplicationAlias2 a);
         
@@ -4192,12 +4458,12 @@ namespace Bb.SqlServer.Asts
         void VisitAsExternalName(AstAsExternalName a);
         
         /// <summary>
-        /// create_or_alter_trigger : create_or_alter_dml_trigger
+        /// create_or_alter_trigger : create_or_alter_dml_trigger 
         /// </summary>
         void VisitCreateOrAlterTrigger(AstCreateOrAlterTrigger.AstCreateOrAlterTrigger1 a);
         
         /// <summary>
-        /// create_or_alter_trigger : create_or_alter_ddl_trigger
+        /// create_or_alter_trigger : create_or_alter_ddl_trigger 
         /// </summary>
         void VisitCreateOrAlterTrigger(AstCreateOrAlterTrigger.AstCreateOrAlterTrigger2 a);
         
@@ -4207,37 +4473,37 @@ namespace Bb.SqlServer.Asts
         void VisitCreateOrAlterDmlTrigger(AstCreateOrAlterDmlTrigger a);
         
         /// <summary>
-        /// create_or_alter : CREATE  (OR  ALTER)?
+        /// create_or_alter : CREATE OR ALTER 
         /// </summary>
         void VisitCreateOrAlter(AstCreateOrAlter.AstCreateOrAlter1 a);
         
         /// <summary>
-        /// create_or_alter : ALTER
+        /// create_or_alter : ALTER 
         /// </summary>
         void VisitCreateOrAlter(AstCreateOrAlter.AstCreateOrAlter2 a);
         
         /// <summary>
-        /// for_after_instead : FOR
+        /// for_after_instead : FOR 
         /// </summary>
         void VisitForAfterInstead(AstForAfterInstead.AstForAfterInstead1 a);
         
         /// <summary>
-        /// for_after_instead : AFTER
+        /// for_after_instead : AFTER 
         /// </summary>
         void VisitForAfterInstead(AstForAfterInstead.AstForAfterInstead2 a);
         
         /// <summary>
-        /// for_after_instead : INSTEAD  OF
+        /// for_after_instead : INSTEAD OF 
         /// </summary>
         void VisitForAfterInstead(AstForAfterInstead.AstForAfterInstead3 a);
         
         /// <summary>
-        /// dml_trigger_option : ENCRYPTION
+        /// dml_trigger_option : ENCRYPTION 
         /// </summary>
         void VisitDmlTriggerOption(AstDmlTriggerOption.AstDmlTriggerOption1 a);
         
         /// <summary>
-        /// dml_trigger_option : execute_clause
+        /// dml_trigger_option : execute_clause 
         /// </summary>
         void VisitDmlTriggerOption(AstDmlTriggerOption.AstDmlTriggerOption2 a);
         
@@ -4277,22 +4543,22 @@ namespace Bb.SqlServer.Asts
         void VisitProcedureParam(AstProcedureParam a);
         
         /// <summary>
-        /// procedure_option : procedure_option_enum
+        /// procedure_option : procedure_option_enum 
         /// </summary>
         void VisitProcedureOption(AstProcedureOption.AstProcedureOption1 a);
         
         /// <summary>
-        /// procedure_option : execute_clause
+        /// procedure_option : execute_clause 
         /// </summary>
         void VisitProcedureOption(AstProcedureOption.AstProcedureOption2 a);
         
         /// <summary>
-        /// function_option : function_option_enum
+        /// function_option : function_option_enum 
         /// </summary>
         void VisitFunctionOption(AstFunctionOption.AstFunctionOption1 a);
         
         /// <summary>
-        /// function_option : execute_clause
+        /// function_option : execute_clause 
         /// </summary>
         void VisitFunctionOption(AstFunctionOption.AstFunctionOption2 a);
         
@@ -4302,17 +4568,17 @@ namespace Bb.SqlServer.Asts
         void VisitCreateStatistics(AstCreateStatistics a);
         
         /// <summary>
-        /// statistics_with : FULLSCAN
+        /// statistics_with : FULLSCAN 
         /// </summary>
         void VisitStatisticsWith(AstStatisticsWith.AstStatisticsWith1 a);
         
         /// <summary>
-        /// statistics_with : SAMPLE  decimal  percent_row
+        /// statistics_with : SAMPLE decimal percent_row 
         /// </summary>
         void VisitStatisticsWith(AstStatisticsWith.AstStatisticsWith2 a);
         
         /// <summary>
-        /// statistics_with : STATS_STREAM
+        /// statistics_with : STATS_STREAM 
         /// </summary>
         void VisitStatisticsWith(AstStatisticsWith.AstStatisticsWith3 a);
         
@@ -4322,67 +4588,67 @@ namespace Bb.SqlServer.Asts
         void VisitUpdateStatistics(AstUpdateStatistics a);
         
         /// <summary>
-        /// update_statistics_option : (FULLSCAN  (COMMA?  PERSIST_SAMPLE_PERCENT  EQUAL  on_off)?)
+        /// update_statistics_option : FULLSCAN COMMA? PERSIST_SAMPLE_PERCENT EQUAL on_off 
         /// </summary>
         void VisitUpdateStatisticsOption(AstUpdateStatisticsOption.AstUpdateStatisticsOption1 a);
         
         /// <summary>
-        /// update_statistics_option : (SAMPLE  number = decimal  percent_row  (COMMA?  PERSIST_SAMPLE_PERCENT  EQUAL  on_off)?)
+        /// update_statistics_option : SAMPLE number=decimal percent_row COMMA? PERSIST_SAMPLE_PERCENT EQUAL on_off 
         /// </summary>
         void VisitUpdateStatisticsOption(AstUpdateStatisticsOption.AstUpdateStatisticsOption2 a);
         
         /// <summary>
-        /// update_statistics_option : RESAMPLE  on_partitions?
+        /// update_statistics_option : RESAMPLE on_partitions? 
         /// </summary>
         void VisitUpdateStatisticsOption(AstUpdateStatisticsOption.AstUpdateStatisticsOption3 a);
         
         /// <summary>
-        /// update_statistics_option : STATS_STREAM  EQUAL  stats_stream_ = expression
+        /// update_statistics_option : STATS_STREAM EQUAL stats_stream_=expression 
         /// </summary>
         void VisitUpdateStatisticsOption(AstUpdateStatisticsOption.AstUpdateStatisticsOption4 a);
         
         /// <summary>
-        /// update_statistics_option : ROWCOUNT  EQUAL  decimal
+        /// update_statistics_option : ROWCOUNT EQUAL decimal 
         /// </summary>
         void VisitUpdateStatisticsOption(AstUpdateStatisticsOption.AstUpdateStatisticsOption5 a);
         
         /// <summary>
-        /// update_statistics_option : PAGECOUNT  EQUAL  decimal
+        /// update_statistics_option : PAGECOUNT EQUAL decimal 
         /// </summary>
         void VisitUpdateStatisticsOption(AstUpdateStatisticsOption.AstUpdateStatisticsOption6 a);
         
         /// <summary>
-        /// update_statistics_option : ALL
+        /// update_statistics_option : ALL 
         /// </summary>
         void VisitUpdateStatisticsOption(AstUpdateStatisticsOption.AstUpdateStatisticsOption7 a);
         
         /// <summary>
-        /// update_statistics_option : COLUMNS
+        /// update_statistics_option : COLUMNS 
         /// </summary>
         void VisitUpdateStatisticsOption(AstUpdateStatisticsOption.AstUpdateStatisticsOption8 a);
         
         /// <summary>
-        /// update_statistics_option : INDEX
+        /// update_statistics_option : INDEX 
         /// </summary>
         void VisitUpdateStatisticsOption(AstUpdateStatisticsOption.AstUpdateStatisticsOption9 a);
         
         /// <summary>
-        /// update_statistics_option : NORECOMPUTE
+        /// update_statistics_option : NORECOMPUTE 
         /// </summary>
         void VisitUpdateStatisticsOption(AstUpdateStatisticsOption.AstUpdateStatisticsOption10 a);
         
         /// <summary>
-        /// update_statistics_option : INCREMENTAL  EQUAL  on_off
+        /// update_statistics_option : INCREMENTAL EQUAL on_off 
         /// </summary>
         void VisitUpdateStatisticsOption(AstUpdateStatisticsOption.AstUpdateStatisticsOption11 a);
         
         /// <summary>
-        /// update_statistics_option : MAXDOP  EQUAL  max_dregree_of_parallelism = decimal
+        /// update_statistics_option : MAXDOP EQUAL max_dregree_of_parallelism=decimal 
         /// </summary>
         void VisitUpdateStatisticsOption(AstUpdateStatisticsOption.AstUpdateStatisticsOption12 a);
         
         /// <summary>
-        /// update_statistics_option : AUTO_DROP  EQUAL  on_off
+        /// update_statistics_option : AUTO_DROP EQUAL on_off 
         /// </summary>
         void VisitUpdateStatisticsOption(AstUpdateStatisticsOption.AstUpdateStatisticsOption13 a);
         
@@ -4397,17 +4663,17 @@ namespace Bb.SqlServer.Asts
         void VisitTableIndicesList(AstTableIndicesList a);
         
         /// <summary>
-        /// table_indices : INDEX  id_  UNIQUE?  clustered?  LR_BRACKET  column_name_list_with_order  RR_BRACKET
+        /// table_indices : INDEX id_ UNIQUE? clustered? LR_BRACKET column_name_list_with_order RR_BRACKET 
         /// </summary>
         void VisitTableIndices(AstTableIndices.AstTableIndices1 a);
         
         /// <summary>
-        /// table_indices : INDEX  id_  CLUSTERED  COLUMNSTORE
+        /// table_indices : INDEX id_ CLUSTERED COLUMNSTORE 
         /// </summary>
         void VisitTableIndices(AstTableIndices.AstTableIndices2 a);
         
         /// <summary>
-        /// table_indices : INDEX  id_  NONCLUSTERED?  COLUMNSTORE  LR_BRACKET  column_name_list  RR_BRACKET  create_table_index_options?  (ON  group_id)?
+        /// table_indices : INDEX id_ NONCLUSTERED? COLUMNSTORE LR_BRACKET column_name_list RR_BRACKET create_table_index_options? ON group_id 
         /// </summary>
         void VisitTableIndices(AstTableIndices.AstTableIndices3 a);
         
@@ -4417,56 +4683,82 @@ namespace Bb.SqlServer.Asts
         void VisitTableOptions(AstTableOptions a);
         
         /// <summary>
-        /// tbl_option : WITH  LR_BRACKET  tableoptions  RR_BRACKET
+        /// tbl_option : WITH LR_BRACKET tableoptions RR_BRACKET 
         /// </summary>
         void VisitTblOption(AstTblOption.AstTblOption1 a);
         
         /// <summary>
-        /// tbl_option : tableoptions
+        /// tbl_option : tableoptions 
         /// </summary>
         void VisitTblOption(AstTblOption.AstTblOption2 a);
         
         /// <summary>
-        /// tableoption : table_opt_varname  EQUAL  table_opt_var_value
+        /// tableoption : table_opt_varname EQUAL table_opt_var_value 
         /// </summary>
         void VisitTableoption(AstTableoption.AstTableoption1 a);
         
         /// <summary>
-        /// tableoption : tableoption_cluster_mode
+        /// tableoption : tableoption_cluster_mode 
         /// </summary>
         void VisitTableoption(AstTableoption.AstTableoption2 a);
         
         /// <summary>
-        /// tableoption : FILLFACTOR  EQUAL  decimal
+        /// tableoption : FILLFACTOR EQUAL decimal 
         /// </summary>
         void VisitTableoption(AstTableoption.AstTableoption3 a);
         
         /// <summary>
-        /// tableoption : table_distribution
+        /// tableoption : table_distribution 
         /// </summary>
         void VisitTableoption(AstTableoption.AstTableoption4 a);
         
         /// <summary>
-        /// tableoption : DATA_COMPRESSION  EQUAL  compression_mode  on_partitions?
+        /// tableoption : DATA_COMPRESSION EQUAL compression_mode on_partitions? 
         /// </summary>
         void VisitTableoption(AstTableoption.AstTableoption5 a);
         
         /// <summary>
-        /// tableoption : XML_COMPRESSION  EQUAL  on_off  on_partitions?
+        /// tableoption : XML_COMPRESSION EQUAL on_off on_partitions? 
         /// </summary>
         void VisitTableoption(AstTableoption.AstTableoption6 a);
         
-        void VisitTableOptVarname(AstTableOptVarname a);
-        
-        void VisitTableOptVarValue(AstTableOptVarValue a);
+        /// <summary>
+        /// table_opt_varname : simple_id 
+        /// </summary>
+        void VisitTableOptVarname(AstTableOptVarname.AstTableOptVarname1 a);
         
         /// <summary>
-        /// table_distribution : DISTRIBUTION  EQUAL  HASH  LR_BRACKET  id_  RR_BRACKET
+        /// table_opt_varname : keyword 
+        /// </summary>
+        void VisitTableOptVarname(AstTableOptVarname.AstTableOptVarname2 a);
+        
+        /// <summary>
+        /// table_opt_var_value : simple_id 
+        /// </summary>
+        void VisitTableOptVarValue(AstTableOptVarValue.AstTableOptVarValue1 a);
+        
+        /// <summary>
+        /// table_opt_var_value : keyword 
+        /// </summary>
+        void VisitTableOptVarValue(AstTableOptVarValue.AstTableOptVarValue2 a);
+        
+        /// <summary>
+        /// table_opt_var_value : on_off 
+        /// </summary>
+        void VisitTableOptVarValue(AstTableOptVarValue.AstTableOptVarValue3 a);
+        
+        /// <summary>
+        /// table_opt_var_value : decimal 
+        /// </summary>
+        void VisitTableOptVarValue(AstTableOptVarValue.AstTableOptVarValue4 a);
+        
+        /// <summary>
+        /// table_distribution : DISTRIBUTION EQUAL HASH LR_BRACKET id_ RR_BRACKET 
         /// </summary>
         void VisitTableDistribution(AstTableDistribution.AstTableDistribution1 a);
         
         /// <summary>
-        /// table_distribution : CLUSTERED  INDEX  LR_BRACKET  column_name_list_with_order  RR_BRACKET
+        /// table_distribution : CLUSTERED INDEX LR_BRACKET column_name_list_with_order RR_BRACKET 
         /// </summary>
         void VisitTableDistribution(AstTableDistribution.AstTableDistribution2 a);
         
@@ -4486,12 +4778,12 @@ namespace Bb.SqlServer.Asts
         void VisitAlterTable(AstAlterTable a);
         
         /// <summary>
-        /// alter_table_constraint : (CONSTRAINT  constraint_id)?  alter_table_constraint_foreign
+        /// alter_table_constraint : CONSTRAINT constraint_id alter_table_constraint_foreign 
         /// </summary>
         void VisitAlterTableConstraint(AstAlterTableConstraint.AstAlterTableConstraint1 a);
         
         /// <summary>
-        /// alter_table_constraint : CHECK  LR_BRACKET  search_condition  RR_BRACKET
+        /// alter_table_constraint : CHECK LR_BRACKET search_condition RR_BRACKET 
         /// </summary>
         void VisitAlterTableConstraint(AstAlterTableConstraint.AstAlterTableConstraint2 a);
         
@@ -4501,12 +4793,12 @@ namespace Bb.SqlServer.Asts
         void VisitAlterTableConstraintForeign(AstAlterTableConstraintForeign a);
         
         /// <summary>
-        /// constraint_delete_or_update : on_delete
+        /// constraint_delete_or_update : on_delete 
         /// </summary>
         void VisitConstraintDeleteOrUpdate(AstConstraintDeleteOrUpdate.AstConstraintDeleteOrUpdate1 a);
         
         /// <summary>
-        /// constraint_delete_or_update : on_update
+        /// constraint_delete_or_update : on_update 
         /// </summary>
         void VisitConstraintDeleteOrUpdate(AstConstraintDeleteOrUpdate.AstConstraintDeleteOrUpdate2 a);
         
@@ -4520,47 +4812,47 @@ namespace Bb.SqlServer.Asts
         void VisitAlterDatabase(AstAlterDatabase a);
         
         /// <summary>
-        /// alter_database_new_infos : MODIFY  NAME  EQUAL  database_id
+        /// alter_database_new_infos : MODIFY NAME EQUAL database_id 
         /// </summary>
         void VisitAlterDatabaseNewInfos(AstAlterDatabaseNewInfos.AstAlterDatabaseNewInfos1 a);
         
         /// <summary>
-        /// alter_database_new_infos : COLLATE  collation_id
+        /// alter_database_new_infos : COLLATE collation_id 
         /// </summary>
         void VisitAlterDatabaseNewInfos(AstAlterDatabaseNewInfos.AstAlterDatabaseNewInfos2 a);
         
         /// <summary>
-        /// alter_database_new_infos : SET  database_optionspec  (WITH  termination)?
+        /// alter_database_new_infos : SET database_optionspec WITH termination 
         /// </summary>
         void VisitAlterDatabaseNewInfos(AstAlterDatabaseNewInfos.AstAlterDatabaseNewInfos3 a);
         
         /// <summary>
-        /// alter_database_new_infos : add_or_modify_files
+        /// alter_database_new_infos : add_or_modify_files 
         /// </summary>
         void VisitAlterDatabaseNewInfos(AstAlterDatabaseNewInfos.AstAlterDatabaseNewInfos4 a);
         
         /// <summary>
-        /// alter_database_new_infos : add_or_modify_filegroups
+        /// alter_database_new_infos : add_or_modify_filegroups 
         /// </summary>
         void VisitAlterDatabaseNewInfos(AstAlterDatabaseNewInfos.AstAlterDatabaseNewInfos5 a);
         
         /// <summary>
-        /// add_or_modify_files : ADD  FILE  filespecs  (TO  FILEGROUP  file_group_id)?
+        /// add_or_modify_files : ADD FILE filespecs TO FILEGROUP file_group_id 
         /// </summary>
         void VisitAddOrModifyFiles(AstAddOrModifyFiles.AstAddOrModifyFiles1 a);
         
         /// <summary>
-        /// add_or_modify_files : ADD  LOG  FILE  filespecs
+        /// add_or_modify_files : ADD LOG FILE filespecs 
         /// </summary>
         void VisitAddOrModifyFiles(AstAddOrModifyFiles.AstAddOrModifyFiles2 a);
         
         /// <summary>
-        /// add_or_modify_files : REMOVE  FILE  file_group_id
+        /// add_or_modify_files : REMOVE FILE file_group_id 
         /// </summary>
         void VisitAddOrModifyFiles(AstAddOrModifyFiles.AstAddOrModifyFiles3 a);
         
         /// <summary>
-        /// add_or_modify_files : MODIFY  FILE  filespec
+        /// add_or_modify_files : MODIFY FILE filespec 
         /// </summary>
         void VisitAddOrModifyFiles(AstAddOrModifyFiles.AstAddOrModifyFiles4 a);
         
@@ -4570,42 +4862,42 @@ namespace Bb.SqlServer.Asts
         void VisitFilespec(AstFilespec a);
         
         /// <summary>
-        /// add_or_modify_filegroups : ADD  FILEGROUP  file_group_id  filegroup_predicate?
+        /// add_or_modify_filegroups : ADD FILEGROUP file_group_id filegroup_predicate? 
         /// </summary>
         void VisitAddOrModifyFilegroups(AstAddOrModifyFilegroups.AstAddOrModifyFilegroups1 a);
         
         /// <summary>
-        /// add_or_modify_filegroups : REMOVE  FILEGROUP  file_group_id
+        /// add_or_modify_filegroups : REMOVE FILEGROUP file_group_id 
         /// </summary>
         void VisitAddOrModifyFilegroups(AstAddOrModifyFilegroups.AstAddOrModifyFilegroups2 a);
         
         /// <summary>
-        /// add_or_modify_filegroups : MODIFY  FILEGROUP  file_group_id  modify_filegroups_options
+        /// add_or_modify_filegroups : MODIFY FILEGROUP file_group_id modify_filegroups_options 
         /// </summary>
         void VisitAddOrModifyFilegroups(AstAddOrModifyFilegroups.AstAddOrModifyFilegroups3 a);
         
         /// <summary>
-        /// modify_filegroups_options : filegroup_updatability_option
+        /// modify_filegroups_options : filegroup_updatability_option 
         /// </summary>
         void VisitModifyFilegroupsOptions(AstModifyFilegroupsOptions.AstModifyFilegroupsOptions1 a);
         
         /// <summary>
-        /// modify_filegroups_options : DEFAULT
+        /// modify_filegroups_options : DEFAULT 
         /// </summary>
         void VisitModifyFilegroupsOptions(AstModifyFilegroupsOptions.AstModifyFilegroupsOptions2 a);
         
         /// <summary>
-        /// modify_filegroups_options : NAME  EQUAL  file_group_id
+        /// modify_filegroups_options : NAME EQUAL file_group_id 
         /// </summary>
         void VisitModifyFilegroupsOptions(AstModifyFilegroupsOptions.AstModifyFilegroupsOptions3 a);
         
         /// <summary>
-        /// modify_filegroups_options : AUTOGROW_SINGLE_FILE
+        /// modify_filegroups_options : AUTOGROW_SINGLE_FILE 
         /// </summary>
         void VisitModifyFilegroupsOptions(AstModifyFilegroupsOptions.AstModifyFilegroupsOptions4 a);
         
         /// <summary>
-        /// modify_filegroups_options : AUTOGROW_ALL_FILES
+        /// modify_filegroups_options : AUTOGROW_ALL_FILES 
         /// </summary>
         void VisitModifyFilegroupsOptions(AstModifyFilegroupsOptions.AstModifyFilegroupsOptions5 a);
         
@@ -4615,112 +4907,112 @@ namespace Bb.SqlServer.Asts
         void VisitFilegroupUpdatabilityOption(AstFilegroupUpdatabilityOption a);
         
         /// <summary>
-        /// database_optionspec : auto_option
+        /// database_optionspec : auto_option 
         /// </summary>
         void VisitDatabaseOptionspec(AstDatabaseOptionspec.AstDatabaseOptionspec1 a);
         
         /// <summary>
-        /// database_optionspec : change_tracking_set
+        /// database_optionspec : change_tracking_set 
         /// </summary>
         void VisitDatabaseOptionspec(AstDatabaseOptionspec.AstDatabaseOptionspec2 a);
         
         /// <summary>
-        /// database_optionspec : containment_option
+        /// database_optionspec : containment_option 
         /// </summary>
         void VisitDatabaseOptionspec(AstDatabaseOptionspec.AstDatabaseOptionspec3 a);
         
         /// <summary>
-        /// database_optionspec : cursor_option
+        /// database_optionspec : cursor_option 
         /// </summary>
         void VisitDatabaseOptionspec(AstDatabaseOptionspec.AstDatabaseOptionspec4 a);
         
         /// <summary>
-        /// database_optionspec : database_mirroring_option
+        /// database_optionspec : database_mirroring_option 
         /// </summary>
         void VisitDatabaseOptionspec(AstDatabaseOptionspec.AstDatabaseOptionspec5 a);
         
         /// <summary>
-        /// database_optionspec : date_correlation_optimization_option
+        /// database_optionspec : date_correlation_optimization_option 
         /// </summary>
         void VisitDatabaseOptionspec(AstDatabaseOptionspec.AstDatabaseOptionspec6 a);
         
         /// <summary>
-        /// database_optionspec : db_encryption_option
+        /// database_optionspec : db_encryption_option 
         /// </summary>
         void VisitDatabaseOptionspec(AstDatabaseOptionspec.AstDatabaseOptionspec7 a);
         
         /// <summary>
-        /// database_optionspec : db_state_option
+        /// database_optionspec : db_state_option 
         /// </summary>
         void VisitDatabaseOptionspec(AstDatabaseOptionspec.AstDatabaseOptionspec8 a);
         
         /// <summary>
-        /// database_optionspec : db_update_option
+        /// database_optionspec : db_update_option 
         /// </summary>
         void VisitDatabaseOptionspec(AstDatabaseOptionspec.AstDatabaseOptionspec9 a);
         
         /// <summary>
-        /// database_optionspec : db_user_access_option
+        /// database_optionspec : db_user_access_option 
         /// </summary>
         void VisitDatabaseOptionspec(AstDatabaseOptionspec.AstDatabaseOptionspec10 a);
         
         /// <summary>
-        /// database_optionspec : delayed_durability_option
+        /// database_optionspec : delayed_durability_option 
         /// </summary>
         void VisitDatabaseOptionspec(AstDatabaseOptionspec.AstDatabaseOptionspec11 a);
         
         /// <summary>
-        /// database_optionspec : external_access_option
+        /// database_optionspec : external_access_option 
         /// </summary>
         void VisitDatabaseOptionspec(AstDatabaseOptionspec.AstDatabaseOptionspec12 a);
         
         /// <summary>
-        /// database_optionspec : database_filestream
+        /// database_optionspec : database_filestream 
         /// </summary>
         void VisitDatabaseOptionspec(AstDatabaseOptionspec.AstDatabaseOptionspec13 a);
         
         /// <summary>
-        /// database_optionspec : hadr_options
+        /// database_optionspec : hadr_options 
         /// </summary>
         void VisitDatabaseOptionspec(AstDatabaseOptionspec.AstDatabaseOptionspec14 a);
         
         /// <summary>
-        /// database_optionspec : mixed_page_allocation_option
+        /// database_optionspec : mixed_page_allocation_option 
         /// </summary>
         void VisitDatabaseOptionspec(AstDatabaseOptionspec.AstDatabaseOptionspec15 a);
         
         /// <summary>
-        /// database_optionspec : parameterization_option
+        /// database_optionspec : parameterization_option 
         /// </summary>
         void VisitDatabaseOptionspec(AstDatabaseOptionspec.AstDatabaseOptionspec16 a);
         
         /// <summary>
-        /// database_optionspec : recovery_option
+        /// database_optionspec : recovery_option 
         /// </summary>
         void VisitDatabaseOptionspec(AstDatabaseOptionspec.AstDatabaseOptionspec17 a);
         
         /// <summary>
-        /// database_optionspec : service_broker_option
+        /// database_optionspec : service_broker_option 
         /// </summary>
         void VisitDatabaseOptionspec(AstDatabaseOptionspec.AstDatabaseOptionspec18 a);
         
         /// <summary>
-        /// database_optionspec : snapshot_option
+        /// database_optionspec : snapshot_option 
         /// </summary>
         void VisitDatabaseOptionspec(AstDatabaseOptionspec.AstDatabaseOptionspec19 a);
         
         /// <summary>
-        /// database_optionspec : sql_option
+        /// database_optionspec : sql_option 
         /// </summary>
         void VisitDatabaseOptionspec(AstDatabaseOptionspec.AstDatabaseOptionspec20 a);
         
         /// <summary>
-        /// database_optionspec : target_recovery_time_option
+        /// database_optionspec : target_recovery_time_option 
         /// </summary>
         void VisitDatabaseOptionspec(AstDatabaseOptionspec.AstDatabaseOptionspec21 a);
         
         /// <summary>
-        /// database_optionspec : termination
+        /// database_optionspec : termination 
         /// </summary>
         void VisitDatabaseOptionspec(AstDatabaseOptionspec.AstDatabaseOptionspec22 a);
         
@@ -4730,31 +5022,39 @@ namespace Bb.SqlServer.Asts
         void VisitDatabaseFilestream(AstDatabaseFilestream a);
         
         /// <summary>
-        /// auto_option : AUTO_CLOSE  on_off
+        /// auto_option : AUTO_CLOSE on_off 
         /// </summary>
         void VisitAutoOption(AstAutoOption.AstAutoOption1 a);
         
         /// <summary>
-        /// auto_option : AUTO_CREATE_STATISTICS  statistic_value
+        /// auto_option : AUTO_CREATE_STATISTICS statistic_value 
         /// </summary>
         void VisitAutoOption(AstAutoOption.AstAutoOption2 a);
         
         /// <summary>
-        /// auto_option : AUTO_SHRINK  on_off
+        /// auto_option : AUTO_SHRINK on_off 
         /// </summary>
         void VisitAutoOption(AstAutoOption.AstAutoOption3 a);
         
         /// <summary>
-        /// auto_option : AUTO_UPDATE_STATISTICS  on_off
+        /// auto_option : AUTO_UPDATE_STATISTICS on_off 
         /// </summary>
         void VisitAutoOption(AstAutoOption.AstAutoOption4 a);
         
         /// <summary>
-        /// auto_option : AUTO_UPDATE_STATISTICS_ASYNC  on_off
+        /// auto_option : AUTO_UPDATE_STATISTICS_ASYNC on_off 
         /// </summary>
         void VisitAutoOption(AstAutoOption.AstAutoOption5 a);
         
-        void VisitChangeTrackingSet(AstChangeTrackingSet a);
+        /// <summary>
+        /// change_tracking_set : CHANGE_TRACKING EQUAL OFF 
+        /// </summary>
+        void VisitChangeTrackingSet(AstChangeTrackingSet.AstChangeTrackingSet1 a);
+        
+        /// <summary>
+        /// change_tracking_set : CHANGE_TRACKING EQUAL ON change_tracking_option_list 
+        /// </summary>
+        void VisitChangeTrackingSet(AstChangeTrackingSet.AstChangeTrackingSet2 a);
         
         /// <summary>
         /// change_tracking_option_item : Bb.Generators.ModelMethod
@@ -4762,12 +5062,12 @@ namespace Bb.SqlServer.Asts
         void VisitChangeTrackingOptionItem(AstChangeTrackingOptionItem a);
         
         /// <summary>
-        /// change_tracking_option_list : AUTO_CLEANUP  EQUAL  on_off
+        /// change_tracking_option_list : AUTO_CLEANUP EQUAL on_off 
         /// </summary>
         void VisitChangeTrackingOptionList(AstChangeTrackingOptionList.AstChangeTrackingOptionList1 a);
         
         /// <summary>
-        /// change_tracking_option_list : CHANGE_RETENTION  EQUAL  period
+        /// change_tracking_option_list : CHANGE_RETENTION EQUAL period 
         /// </summary>
         void VisitChangeTrackingOptionList(AstChangeTrackingOptionList.AstChangeTrackingOptionList2 a);
         
@@ -4777,23 +5077,49 @@ namespace Bb.SqlServer.Asts
         void VisitContainmentOption(AstContainmentOption a);
         
         /// <summary>
-        /// cursor_option : CURSOR_CLOSE_ON_COMMIT  on_off
+        /// cursor_option : CURSOR_CLOSE_ON_COMMIT on_off 
         /// </summary>
         void VisitCursorOption(AstCursorOption.AstCursorOption1 a);
         
         /// <summary>
-        /// cursor_option : CURSOR_DEFAULT  local_global
+        /// cursor_option : CURSOR_DEFAULT local_global 
         /// </summary>
         void VisitCursorOption(AstCursorOption.AstCursorOption2 a);
         
-        void VisitListenerIpAddr(AstListenerIpAddr a);
+        /// <summary>
+        /// listener_ip_addr : LISTENER_IP EQUAL ALL 
+        /// </summary>
+        void VisitListenerIpAddr(AstListenerIpAddr.AstListenerIpAddr1 a);
+        
+        /// <summary>
+        /// listener_ip_addr : LISTENER_IP EQUAL ipv4 
+        /// </summary>
+        void VisitListenerIpAddr(AstListenerIpAddr.AstListenerIpAddr2 a);
+        
+        /// <summary>
+        /// listener_ip_addr : LISTENER_IP EQUAL ipv6 
+        /// </summary>
+        void VisitListenerIpAddr(AstListenerIpAddr.AstListenerIpAddr3 a);
+        
+        /// <summary>
+        /// listener_ip_addr : LISTENER_IP EQUAL stringtext 
+        /// </summary>
+        void VisitListenerIpAddr(AstListenerIpAddr.AstListenerIpAddr4 a);
         
         /// <summary>
         /// alter_endpoint : Bb.Generators.ModelMethod
         /// </summary>
         void VisitAlterEndpoint(AstAlterEndpoint a);
         
-        void VisitAuthenticationConfiguration(AstAuthenticationConfiguration a);
+        /// <summary>
+        /// authentication_configuration : AUTHENTICATION EQUAL WINDOWS authentication_mode? CERTIFICATE certificate_id 
+        /// </summary>
+        void VisitAuthenticationConfiguration(AstAuthenticationConfiguration.AstAuthenticationConfiguration1 a);
+        
+        /// <summary>
+        /// authentication_configuration : AUTHENTICATION EQUAL CERTIFICATE certificate_id WINDOWS? authentication_mode? 
+        /// </summary>
+        void VisitAuthenticationConfiguration(AstAuthenticationConfiguration.AstAuthenticationConfiguration2 a);
         
         /// <summary>
         /// alter_endpoint_database_mirroring : Bb.Generators.ModelMethod
@@ -4811,12 +5137,12 @@ namespace Bb.SqlServer.Asts
         void VisitDatabaseMirroringOption(AstDatabaseMirroringOption a);
         
         /// <summary>
-        /// mirroring_set_option : mirroring_partner  partner_option
+        /// mirroring_set_option : mirroring_partner partner_option 
         /// </summary>
         void VisitMirroringSetOption(AstMirroringSetOption.AstMirroringSetOption1 a);
         
         /// <summary>
-        /// mirroring_set_option : mirroring_witness  witness_option
+        /// mirroring_set_option : mirroring_witness witness_option 
         /// </summary>
         void VisitMirroringSetOption(AstMirroringSetOption.AstMirroringSetOption2 a);
         
@@ -4836,27 +5162,27 @@ namespace Bb.SqlServer.Asts
         void VisitWitnessPartnerEqual(AstWitnessPartnerEqual a);
         
         /// <summary>
-        /// partner_option : witness_partner_equal  partner_server
+        /// partner_option : witness_partner_equal partner_server 
         /// </summary>
         void VisitPartnerOption(AstPartnerOption.AstPartnerOption1 a);
         
         /// <summary>
-        /// partner_option : TIMEOUT  decimal
+        /// partner_option : TIMEOUT decimal 
         /// </summary>
         void VisitPartnerOption(AstPartnerOption.AstPartnerOption2 a);
         
         /// <summary>
-        /// partner_option : partner_option_enum
+        /// partner_option : partner_option_enum 
         /// </summary>
         void VisitPartnerOption(AstPartnerOption.AstPartnerOption3 a);
         
         /// <summary>
-        /// witness_option : witness_partner_equal  witness_server
+        /// witness_option : witness_partner_equal witness_server 
         /// </summary>
         void VisitWitnessOption(AstWitnessOption.AstWitnessOption1 a);
         
         /// <summary>
-        /// witness_option : OFF
+        /// witness_option : OFF 
         /// </summary>
         void VisitWitnessOption(AstWitnessOption.AstWitnessOption2 a);
         
@@ -4898,37 +5224,37 @@ namespace Bb.SqlServer.Asts
         void VisitDelayedDurabilityOption(AstDelayedDurabilityOption a);
         
         /// <summary>
-        /// external_access_option : DB_CHAINING  on_off
+        /// external_access_option : DB_CHAINING on_off 
         /// </summary>
         void VisitExternalAccessOption(AstExternalAccessOption.AstExternalAccessOption1 a);
         
         /// <summary>
-        /// external_access_option : TRUSTWORTHY  on_off
+        /// external_access_option : TRUSTWORTHY on_off 
         /// </summary>
         void VisitExternalAccessOption(AstExternalAccessOption.AstExternalAccessOption2 a);
         
         /// <summary>
-        /// external_access_option : DEFAULT_LANGUAGE  EQUAL  language_setting
+        /// external_access_option : DEFAULT_LANGUAGE EQUAL language_setting 
         /// </summary>
         void VisitExternalAccessOption(AstExternalAccessOption.AstExternalAccessOption3 a);
         
         /// <summary>
-        /// external_access_option : DEFAULT_FULLTEXT_LANGUAGE  EQUAL  language_setting
+        /// external_access_option : DEFAULT_FULLTEXT_LANGUAGE EQUAL language_setting 
         /// </summary>
         void VisitExternalAccessOption(AstExternalAccessOption.AstExternalAccessOption4 a);
         
         /// <summary>
-        /// external_access_option : NESTED_TRIGGERS  EQUAL  on_off
+        /// external_access_option : NESTED_TRIGGERS EQUAL on_off 
         /// </summary>
         void VisitExternalAccessOption(AstExternalAccessOption.AstExternalAccessOption5 a);
         
         /// <summary>
-        /// external_access_option : TRANSFORM_NOISE_WORDS  EQUAL  on_off
+        /// external_access_option : TRANSFORM_NOISE_WORDS EQUAL on_off 
         /// </summary>
         void VisitExternalAccessOption(AstExternalAccessOption.AstExternalAccessOption6 a);
         
         /// <summary>
-        /// external_access_option : TWO_DIGIT_YEAR_CUTOFF  EQUAL  decimal
+        /// external_access_option : TWO_DIGIT_YEAR_CUTOFF EQUAL decimal 
         /// </summary>
         void VisitExternalAccessOption(AstExternalAccessOption.AstExternalAccessOption7 a);
         
@@ -4938,17 +5264,17 @@ namespace Bb.SqlServer.Asts
         void VisitLanguageSetting(AstLanguageSetting a);
         
         /// <summary>
-        /// language_setting_value : NONE
+        /// language_setting_value : NONE 
         /// </summary>
         void VisitLanguageSettingValue(AstLanguageSettingValue.AstLanguageSettingValue1 a);
         
         /// <summary>
-        /// language_setting_value : lcid = decimal
+        /// language_setting_value : lcid=decimal 
         /// </summary>
         void VisitLanguageSettingValue(AstLanguageSettingValue.AstLanguageSettingValue2 a);
         
         /// <summary>
-        /// language_setting_value : language_id
+        /// language_setting_value : language_id 
         /// </summary>
         void VisitLanguageSettingValue(AstLanguageSettingValue.AstLanguageSettingValue3 a);
         
@@ -4957,7 +5283,20 @@ namespace Bb.SqlServer.Asts
         /// </summary>
         void VisitIdOrString(AstIdOrString a);
         
-        void VisitHadrOptions(AstHadrOptions a);
+        /// <summary>
+        /// hadr_options : HADR AVAILABILITY GROUP EQUAL group_id 
+        /// </summary>
+        void VisitHadrOptions(AstHadrOptions.AstHadrOptions1 a);
+        
+        /// <summary>
+        /// hadr_options : HADR OFF 
+        /// </summary>
+        void VisitHadrOptions(AstHadrOptions.AstHadrOptions2 a);
+        
+        /// <summary>
+        /// hadr_options : HADR suspend_resume 
+        /// </summary>
+        void VisitHadrOptions(AstHadrOptions.AstHadrOptions3 a);
         
         /// <summary>
         /// mixed_page_allocation_option : Bb.Generators.ModelMethod
@@ -4965,107 +5304,107 @@ namespace Bb.SqlServer.Asts
         void VisitMixedPageAllocationOption(AstMixedPageAllocationOption a);
         
         /// <summary>
-        /// recovery_option : recovery_option_enum
+        /// recovery_option : recovery_option_enum 
         /// </summary>
         void VisitRecoveryOption(AstRecoveryOption.AstRecoveryOption1 a);
         
         /// <summary>
-        /// recovery_option : TORN_PAGE_DETECTION  on_off
+        /// recovery_option : TORN_PAGE_DETECTION on_off 
         /// </summary>
         void VisitRecoveryOption(AstRecoveryOption.AstRecoveryOption2 a);
         
         /// <summary>
-        /// recovery_option : ACCELERATED_DATABASE_RECOVERY  EQUAL  on_off
+        /// recovery_option : ACCELERATED_DATABASE_RECOVERY EQUAL on_off 
         /// </summary>
         void VisitRecoveryOption(AstRecoveryOption.AstRecoveryOption3 a);
         
         /// <summary>
-        /// service_broker_option : ENABLE_BROKER
+        /// service_broker_option : ENABLE_BROKER 
         /// </summary>
         void VisitServiceBrokerOption(AstServiceBrokerOption.AstServiceBrokerOption1 a);
         
         /// <summary>
-        /// service_broker_option : DISABLE_BROKER
+        /// service_broker_option : DISABLE_BROKER 
         /// </summary>
         void VisitServiceBrokerOption(AstServiceBrokerOption.AstServiceBrokerOption2 a);
         
         /// <summary>
-        /// service_broker_option : NEW_BROKER
+        /// service_broker_option : NEW_BROKER 
         /// </summary>
         void VisitServiceBrokerOption(AstServiceBrokerOption.AstServiceBrokerOption3 a);
         
         /// <summary>
-        /// service_broker_option : ERROR_BROKER_CONVERSATIONS
+        /// service_broker_option : ERROR_BROKER_CONVERSATIONS 
         /// </summary>
         void VisitServiceBrokerOption(AstServiceBrokerOption.AstServiceBrokerOption4 a);
         
         /// <summary>
-        /// service_broker_option : HONOR_BROKER_PRIORITY  on_off
+        /// service_broker_option : HONOR_BROKER_PRIORITY on_off 
         /// </summary>
         void VisitServiceBrokerOption(AstServiceBrokerOption.AstServiceBrokerOption5 a);
         
         /// <summary>
-        /// snapshot_option : ALLOW_SNAPSHOT_ISOLATION  on_off
+        /// snapshot_option : ALLOW_SNAPSHOT_ISOLATION on_off 
         /// </summary>
         void VisitSnapshotOption(AstSnapshotOption.AstSnapshotOption1 a);
         
         /// <summary>
-        /// snapshot_option : READ_COMMITTED_SNAPSHOT  on_off
+        /// snapshot_option : READ_COMMITTED_SNAPSHOT on_off 
         /// </summary>
         void VisitSnapshotOption(AstSnapshotOption.AstSnapshotOption2 a);
         
         /// <summary>
-        /// snapshot_option : MEMORY_OPTIMIZED_ELEVATE_TO_SNAPSHOT = on_off
+        /// snapshot_option : MEMORY_OPTIMIZED_ELEVATE_TO_SNAPSHOT=on_off 
         /// </summary>
         void VisitSnapshotOption(AstSnapshotOption.AstSnapshotOption3 a);
         
         /// <summary>
-        /// sql_option : ANSI_NULL_DEFAULT  on_off
+        /// sql_option : ANSI_NULL_DEFAULT on_off 
         /// </summary>
         void VisitSqlOption(AstSqlOption.AstSqlOption1 a);
         
         /// <summary>
-        /// sql_option : ANSI_NULLS  on_off
+        /// sql_option : ANSI_NULLS on_off 
         /// </summary>
         void VisitSqlOption(AstSqlOption.AstSqlOption2 a);
         
         /// <summary>
-        /// sql_option : ANSI_PADDING  on_off
+        /// sql_option : ANSI_PADDING on_off 
         /// </summary>
         void VisitSqlOption(AstSqlOption.AstSqlOption3 a);
         
         /// <summary>
-        /// sql_option : ANSI_WARNINGS  on_off
+        /// sql_option : ANSI_WARNINGS on_off 
         /// </summary>
         void VisitSqlOption(AstSqlOption.AstSqlOption4 a);
         
         /// <summary>
-        /// sql_option : ARITHABORT  on_off
+        /// sql_option : ARITHABORT on_off 
         /// </summary>
         void VisitSqlOption(AstSqlOption.AstSqlOption5 a);
         
         /// <summary>
-        /// sql_option : COMPATIBILITY_LEVEL  EQUAL  decimal
+        /// sql_option : COMPATIBILITY_LEVEL EQUAL decimal 
         /// </summary>
         void VisitSqlOption(AstSqlOption.AstSqlOption6 a);
         
         /// <summary>
-        /// sql_option : CONCAT_NULL_YIELDS_NULL  on_off
+        /// sql_option : CONCAT_NULL_YIELDS_NULL on_off 
         /// </summary>
         void VisitSqlOption(AstSqlOption.AstSqlOption7 a);
         
         /// <summary>
-        /// sql_option : NUMERIC_ROUNDABORT  on_off
+        /// sql_option : NUMERIC_ROUNDABORT on_off 
         /// </summary>
         void VisitSqlOption(AstSqlOption.AstSqlOption8 a);
         
         /// <summary>
-        /// sql_option : QUOTED_IDENTIFIER  on_off
+        /// sql_option : QUOTED_IDENTIFIER on_off 
         /// </summary>
         void VisitSqlOption(AstSqlOption.AstSqlOption9 a);
         
         /// <summary>
-        /// sql_option : RECURSIVE_TRIGGERS  on_off
+        /// sql_option : RECURSIVE_TRIGGERS on_off 
         /// </summary>
         void VisitSqlOption(AstSqlOption.AstSqlOption10 a);
         
@@ -5075,17 +5414,17 @@ namespace Bb.SqlServer.Asts
         void VisitTargetRecoveryTimeOption(AstTargetRecoveryTimeOption a);
         
         /// <summary>
-        /// termination : ROLLBACK  AFTER  seconds = decimal
+        /// termination : ROLLBACK AFTER seconds=decimal 
         /// </summary>
         void VisitTermination(AstTermination.AstTermination1 a);
         
         /// <summary>
-        /// termination : ROLLBACK  IMMEDIATE
+        /// termination : ROLLBACK IMMEDIATE 
         /// </summary>
         void VisitTermination(AstTermination.AstTermination2 a);
         
         /// <summary>
-        /// termination : NO_WAIT
+        /// termination : NO_WAIT 
         /// </summary>
         void VisitTermination(AstTermination.AstTermination3 a);
         
@@ -5146,12 +5485,12 @@ namespace Bb.SqlServer.Asts
         void VisitDropType(AstDropType a);
         
         /// <summary>
-        /// rowset_function_limited : openquery_args
+        /// rowset_function_limited : openquery_args 
         /// </summary>
         void VisitRowsetFunctionLimited(AstRowsetFunctionLimited.AstRowsetFunctionLimited1 a);
         
         /// <summary>
-        /// rowset_function_limited : open_data_source
+        /// rowset_function_limited : open_data_source 
         /// </summary>
         void VisitRowsetFunctionLimited(AstRowsetFunctionLimited.AstRowsetFunctionLimited2 a);
         
@@ -5166,67 +5505,67 @@ namespace Bb.SqlServer.Asts
         void VisitOpenDataSource(AstOpenDataSource a);
         
         /// <summary>
-        /// declare_statement : DECLARE  local_id  AS?  declare_object_table
+        /// declare_statement : DECLARE local_id AS? declare_object_table 
         /// </summary>
         void VisitDeclareStatement(AstDeclareStatement.AstDeclareStatement1 a);
         
         /// <summary>
-        /// declare_statement : DECLARE  declare_locals
+        /// declare_statement : DECLARE declare_locals 
         /// </summary>
         void VisitDeclareStatement(AstDeclareStatement.AstDeclareStatement2 a);
         
         /// <summary>
-        /// declare_statement : DECLARE  local_id  AS?  xml_type_definition
+        /// declare_statement : DECLARE local_id AS? xml_type_definition 
         /// </summary>
         void VisitDeclareStatement(AstDeclareStatement.AstDeclareStatement3 a);
         
         /// <summary>
-        /// declare_statement : WITH  XMLNAMESPACES  LR_BRACKET  xml_declarations  RR_BRACKET
+        /// declare_statement : WITH XMLNAMESPACES LR_BRACKET xml_declarations RR_BRACKET 
         /// </summary>
         void VisitDeclareStatement(AstDeclareStatement.AstDeclareStatement4 a);
         
         /// <summary>
-        /// declare_object_table : table_type_definition
+        /// declare_object_table : table_type_definition 
         /// </summary>
         void VisitDeclareObjectTable(AstDeclareObjectTable.AstDeclareObjectTable1 a);
         
         /// <summary>
-        /// declare_object_table : full_table_ref
+        /// declare_object_table : full_table_ref 
         /// </summary>
         void VisitDeclareObjectTable(AstDeclareObjectTable.AstDeclareObjectTable2 a);
         
         /// <summary>
-        /// xml_declaration : xml_namespace_uri = stringtext  AS  id_
+        /// xml_declaration : xml_namespace_uri=stringtext AS id_ 
         /// </summary>
         void VisitXmlDeclaration(AstXmlDeclaration.AstXmlDeclaration1 a);
         
         /// <summary>
-        /// xml_declaration : DEFAULT  stringtext
+        /// xml_declaration : DEFAULT stringtext 
         /// </summary>
         void VisitXmlDeclaration(AstXmlDeclaration.AstXmlDeclaration2 a);
         
         /// <summary>
-        /// cursor_statement : CLOSE  GLOBAL?  cursor_name
+        /// cursor_statement : CLOSE GLOBAL? cursor_name 
         /// </summary>
         void VisitCursorStatement(AstCursorStatement.AstCursorStatement1 a);
         
         /// <summary>
-        /// cursor_statement : DEALLOCATE  GLOBAL?  CURSOR?  cursor_name
+        /// cursor_statement : DEALLOCATE GLOBAL? CURSOR? cursor_name 
         /// </summary>
         void VisitCursorStatement(AstCursorStatement.AstCursorStatement2 a);
         
         /// <summary>
-        /// cursor_statement : declare_cursor
+        /// cursor_statement : declare_cursor 
         /// </summary>
         void VisitCursorStatement(AstCursorStatement.AstCursorStatement3 a);
         
         /// <summary>
-        /// cursor_statement : fetch_cursor
+        /// cursor_statement : fetch_cursor 
         /// </summary>
         void VisitCursorStatement(AstCursorStatement.AstCursorStatement4 a);
         
         /// <summary>
-        /// cursor_statement : OPEN  GLOBAL?  cursor_name
+        /// cursor_statement : OPEN GLOBAL? cursor_name 
         /// </summary>
         void VisitCursorStatement(AstCursorStatement.AstCursorStatement5 a);
         
@@ -5252,7 +5591,15 @@ namespace Bb.SqlServer.Asts
         
         void VisitBackupTo(AstBackupTo a);
         
-        void VisitBackupToMirror(AstBackupToMirror a);
+        /// <summary>
+        /// backup_to_mirror : MIRROR TO logical_device_ids 
+        /// </summary>
+        void VisitBackupToMirror(AstBackupToMirror.AstBackupToMirror1 a);
+        
+        /// <summary>
+        /// backup_to_mirror : MIRROR TO disk_tape_url_values 
+        /// </summary>
+        void VisitBackupToMirror(AstBackupToMirror.AstBackupToMirror2 a);
         
         /// <summary>
         /// disk_tape_url_value : Bb.Generators.ModelMethod
@@ -5270,12 +5617,12 @@ namespace Bb.SqlServer.Asts
         void VisitBackupCertificatePrivateKeys(AstBackupCertificatePrivateKeys a);
         
         /// <summary>
-        /// backup_certificate_private_key : FILE  EQUAL  private_key_file = stringtext
+        /// backup_certificate_private_key : FILE EQUAL private_key_file=stringtext 
         /// </summary>
         void VisitBackupCertificatePrivateKey(AstBackupCertificatePrivateKey.AstBackupCertificatePrivateKey1 a);
         
         /// <summary>
-        /// backup_certificate_private_key : by_password_crypt
+        /// backup_certificate_private_key : by_password_crypt 
         /// </summary>
         void VisitBackupCertificatePrivateKey(AstBackupCertificatePrivateKey.AstBackupCertificatePrivateKey2 a);
         
@@ -5285,142 +5632,142 @@ namespace Bb.SqlServer.Asts
         void VisitBackupSettings(AstBackupSettings a);
         
         /// <summary>
-        /// backup_setting : DIFFERENTIAL
+        /// backup_setting : DIFFERENTIAL 
         /// </summary>
         void VisitBackupSetting(AstBackupSetting.AstBackupSetting1 a);
         
         /// <summary>
-        /// backup_setting : COPY_ONLY
+        /// backup_setting : COPY_ONLY 
         /// </summary>
         void VisitBackupSetting(AstBackupSetting.AstBackupSetting2 a);
         
         /// <summary>
-        /// backup_setting : CREDENTIAL
+        /// backup_setting : CREDENTIAL 
         /// </summary>
         void VisitBackupSetting(AstBackupSetting.AstBackupSetting3 a);
         
         /// <summary>
-        /// backup_setting : FILE_SNAPSHOT
+        /// backup_setting : FILE_SNAPSHOT 
         /// </summary>
         void VisitBackupSetting(AstBackupSetting.AstBackupSetting4 a);
         
         /// <summary>
-        /// backup_setting : NO_CHECKSUM
+        /// backup_setting : NO_CHECKSUM 
         /// </summary>
         void VisitBackupSetting(AstBackupSetting.AstBackupSetting5 a);
         
         /// <summary>
-        /// backup_setting : CHECKSUM
+        /// backup_setting : CHECKSUM 
         /// </summary>
         void VisitBackupSetting(AstBackupSetting.AstBackupSetting6 a);
         
         /// <summary>
-        /// backup_setting : STOP_ON_ERROR
+        /// backup_setting : STOP_ON_ERROR 
         /// </summary>
         void VisitBackupSetting(AstBackupSetting.AstBackupSetting7 a);
         
         /// <summary>
-        /// backup_setting : CONTINUE_AFTER_ERROR
+        /// backup_setting : CONTINUE_AFTER_ERROR 
         /// </summary>
         void VisitBackupSetting(AstBackupSetting.AstBackupSetting8 a);
         
         /// <summary>
-        /// backup_setting : RESTART
+        /// backup_setting : RESTART 
         /// </summary>
         void VisitBackupSetting(AstBackupSetting.AstBackupSetting9 a);
         
         /// <summary>
-        /// backup_setting : DESCRIPTION  EQUAL  string_id
+        /// backup_setting : DESCRIPTION EQUAL string_id 
         /// </summary>
         void VisitBackupSetting(AstBackupSetting.AstBackupSetting10 a);
         
         /// <summary>
-        /// backup_setting : NAME  EQUAL  backup_id
+        /// backup_setting : NAME EQUAL backup_id 
         /// </summary>
         void VisitBackupSetting(AstBackupSetting.AstBackupSetting11 a);
         
         /// <summary>
-        /// backup_setting : EXPIREDATE  EQUAL  string_id
+        /// backup_setting : EXPIREDATE EQUAL string_id 
         /// </summary>
         void VisitBackupSetting(AstBackupSetting.AstBackupSetting12 a);
         
         /// <summary>
-        /// backup_setting : RETAINDAYS  EQUAL  decimal_id
+        /// backup_setting : RETAINDAYS EQUAL decimal_id 
         /// </summary>
         void VisitBackupSetting(AstBackupSetting.AstBackupSetting13 a);
         
         /// <summary>
-        /// backup_setting : MEDIADESCRIPTION  EQUAL  string_id
+        /// backup_setting : MEDIADESCRIPTION EQUAL string_id 
         /// </summary>
         void VisitBackupSetting(AstBackupSetting.AstBackupSetting14 a);
         
         /// <summary>
-        /// backup_setting : MEDIANAME  EQUAL  stringtext
+        /// backup_setting : MEDIANAME EQUAL stringtext 
         /// </summary>
         void VisitBackupSetting(AstBackupSetting.AstBackupSetting15 a);
         
         /// <summary>
-        /// backup_setting : BLOCKSIZE  EQUAL  decimal_id
+        /// backup_setting : BLOCKSIZE EQUAL decimal_id 
         /// </summary>
         void VisitBackupSetting(AstBackupSetting.AstBackupSetting16 a);
         
         /// <summary>
-        /// backup_setting : BUFFERCOUNT  EQUAL  decimal_id
+        /// backup_setting : BUFFERCOUNT EQUAL decimal_id 
         /// </summary>
         void VisitBackupSetting(AstBackupSetting.AstBackupSetting17 a);
         
         /// <summary>
-        /// backup_setting : MAXTRANSFER  EQUAL  decimal_id
+        /// backup_setting : MAXTRANSFER EQUAL decimal_id 
         /// </summary>
         void VisitBackupSetting(AstBackupSetting.AstBackupSetting18 a);
         
         /// <summary>
-        /// backup_setting : STATS  (EQUAL  decimal)?
+        /// backup_setting : STATS EQUAL decimal 
         /// </summary>
         void VisitBackupSetting(AstBackupSetting.AstBackupSetting19 a);
         
         /// <summary>
-        /// backup_setting : ENCRYPTION  LR_BRACKET  ALGORITHM  EQUAL  algorithm_short  COMMA  SERVER  CERTIFICATE  EQUAL  server_certificate_value  RR_BRACKET
+        /// backup_setting : ENCRYPTION LR_BRACKET ALGORITHM EQUAL algorithm_short COMMA SERVER CERTIFICATE EQUAL server_certificate_value RR_BRACKET 
         /// </summary>
         void VisitBackupSetting(AstBackupSetting.AstBackupSetting20 a);
         
         /// <summary>
-        /// backup_setting : compression
+        /// backup_setting : compression 
         /// </summary>
         void VisitBackupSetting(AstBackupSetting.AstBackupSetting21 a);
         
         /// <summary>
-        /// backup_setting : rewind
+        /// backup_setting : rewind 
         /// </summary>
         void VisitBackupSetting(AstBackupSetting.AstBackupSetting22 a);
         
         /// <summary>
-        /// backup_setting : load_moun_load
+        /// backup_setting : load_moun_load 
         /// </summary>
         void VisitBackupSetting(AstBackupSetting.AstBackupSetting23 a);
         
         /// <summary>
-        /// backup_setting : init_no_init
+        /// backup_setting : init_no_init 
         /// </summary>
         void VisitBackupSetting(AstBackupSetting.AstBackupSetting24 a);
         
         /// <summary>
-        /// backup_setting : no_skip
+        /// backup_setting : no_skip 
         /// </summary>
         void VisitBackupSetting(AstBackupSetting.AstBackupSetting25 a);
         
         /// <summary>
-        /// backup_setting : format_noformat
+        /// backup_setting : format_noformat 
         /// </summary>
         void VisitBackupSetting(AstBackupSetting.AstBackupSetting26 a);
         
         /// <summary>
-        /// server_certificate_value : encryptor_id
+        /// server_certificate_value : encryptor_id 
         /// </summary>
         void VisitServerCertificateValue(AstServerCertificateValue.AstServerCertificateValue1 a);
         
         /// <summary>
-        /// server_certificate_value : SERVER  ASYMMETRIC  KEY  EQUAL  encryptor_id
+        /// server_certificate_value : SERVER ASYMMETRIC KEY EQUAL encryptor_id 
         /// </summary>
         void VisitServerCertificateValue(AstServerCertificateValue.AstServerCertificateValue2 a);
         
@@ -5434,11 +5781,40 @@ namespace Bb.SqlServer.Asts
         /// </summary>
         void VisitBackupServiceMasterKey(AstBackupServiceMasterKey a);
         
-        void VisitKillStatement(AstKillStatement a);
+        /// <summary>
+        /// kill_statement : KILL kill_process 
+        /// </summary>
+        void VisitKillStatement(AstKillStatement.AstKillStatement1 a);
         
-        void VisitKillProcess(AstKillProcess a);
+        /// <summary>
+        /// kill_statement : KILL kill_query_notification 
+        /// </summary>
+        void VisitKillStatement(AstKillStatement.AstKillStatement2 a);
         
-        void VisitKillQueryNotification(AstKillQueryNotification a);
+        /// <summary>
+        /// kill_statement : KILL kill_stats_job 
+        /// </summary>
+        void VisitKillStatement(AstKillStatement.AstKillStatement3 a);
+        
+        /// <summary>
+        /// kill_process : session=decimal_string WITH STATUSONLY 
+        /// </summary>
+        void VisitKillProcess(AstKillProcess.AstKillProcess1 a);
+        
+        /// <summary>
+        /// kill_process : UOW WITH STATUSONLY 
+        /// </summary>
+        void VisitKillProcess(AstKillProcess.AstKillProcess2 a);
+        
+        /// <summary>
+        /// kill_query_notification : QUERY NOTIFICATION SUBSCRIPTION ALL 
+        /// </summary>
+        void VisitKillQueryNotification(AstKillQueryNotification.AstKillQueryNotification1 a);
+        
+        /// <summary>
+        /// kill_query_notification : QUERY NOTIFICATION SUBSCRIPTION subscription=decimal 
+        /// </summary>
+        void VisitKillQueryNotification(AstKillQueryNotification.AstKillQueryNotification2 a);
         
         void VisitKillStatsJob(AstKillStatsJob a);
         
@@ -5453,32 +5829,32 @@ namespace Bb.SqlServer.Asts
         void VisitExecuteBodyBatch(AstExecuteBodyBatch a);
         
         /// <summary>
-        /// execute_body : (return_status = local_id  EQUAL)?  body_kind  execute_statement_arg?
+        /// execute_body : return_status=local_id EQUAL body_kind execute_statement_arg? 
         /// </summary>
         void VisitExecuteBody(AstExecuteBody.AstExecuteBody1 a);
         
         /// <summary>
-        /// execute_body : LR_BRACKET  execute_var_strings  RR_BRACKET  (AS?  login_user  EQUAL  stringtext)?  (AT_KEYWORD  server_id)?
+        /// execute_body : LR_BRACKET execute_var_strings RR_BRACKET AS? login_user EQUAL stringtext AT_KEYWORD server_id 
         /// </summary>
         void VisitExecuteBody(AstExecuteBody.AstExecuteBody2 a);
         
         /// <summary>
-        /// body_kind : func_proc_name_server_database_schema
+        /// body_kind : func_proc_name_server_database_schema 
         /// </summary>
         void VisitBodyKind(AstBodyKind.AstBodyKind1 a);
         
         /// <summary>
-        /// body_kind : execute_var_string
+        /// body_kind : execute_var_string 
         /// </summary>
         void VisitBodyKind(AstBodyKind.AstBodyKind2 a);
         
         /// <summary>
-        /// execute_statement_arg : execute_statement_arg_unnamed  execute_statement_args?
+        /// execute_statement_arg : execute_statement_arg_unnamed execute_statement_args? 
         /// </summary>
         void VisitExecuteStatementArg(AstExecuteStatementArg.AstExecuteStatementArg1 a);
         
         /// <summary>
-        /// execute_statement_arg : execute_statement_arg_nameds
+        /// execute_statement_arg : execute_statement_arg_nameds 
         /// </summary>
         void VisitExecuteStatementArg(AstExecuteStatementArg.AstExecuteStatementArg2 a);
         
@@ -5487,82 +5863,82 @@ namespace Bb.SqlServer.Asts
         void VisitExecuteStatementArgUnnamed(AstExecuteStatementArgUnnamed a);
         
         /// <summary>
-        /// execute_parameter : constant
+        /// execute_parameter : constant 
         /// </summary>
         void VisitExecuteParameter(AstExecuteParameter.AstExecuteParameter1 a);
         
         /// <summary>
-        /// execute_parameter : local_id  output_out?
+        /// execute_parameter : local_id output_out? 
         /// </summary>
         void VisitExecuteParameter(AstExecuteParameter.AstExecuteParameter2 a);
         
         /// <summary>
-        /// execute_parameter : id_
+        /// execute_parameter : id_ 
         /// </summary>
         void VisitExecuteParameter(AstExecuteParameter.AstExecuteParameter3 a);
         
         /// <summary>
-        /// execute_parameter : DEFAULT
+        /// execute_parameter : DEFAULT 
         /// </summary>
         void VisitExecuteParameter(AstExecuteParameter.AstExecuteParameter4 a);
         
         /// <summary>
-        /// execute_parameter : NULL_
+        /// execute_parameter : NULL_ 
         /// </summary>
         void VisitExecuteParameter(AstExecuteParameter.AstExecuteParameter5 a);
         
         /// <summary>
-        /// execute_var_string : source = local_id  output_out?  (PLUS  more = local_id  (PLUS  execute_var_string)?)?
+        /// execute_var_string : source=local_id output_out? PLUS more=local_id PLUS execute_var_string 
         /// </summary>
         void VisitExecuteVarString(AstExecuteVarString.AstExecuteVarString1 a);
         
         /// <summary>
-        /// execute_var_string : stringtext  (PLUS  local_id  (PLUS  execute_var_string)?)?
+        /// execute_var_string : stringtext PLUS local_id PLUS execute_var_string 
         /// </summary>
         void VisitExecuteVarString(AstExecuteVarString.AstExecuteVarString2 a);
         
         /// <summary>
-        /// security_statement : execute_clause
+        /// security_statement : execute_clause 
         /// </summary>
         void VisitSecurityStatement(AstSecurityStatement.AstSecurityStatement1 a);
         
         /// <summary>
-        /// security_statement : GRANT  grant_mode  (ON  (class_type_for_grant  DOUBLE_COLON)?  table = full_table_ref)?  TO  to_principal_rincipal_ids  (WITH  GRANT  OPTION)?  (AS  as_principal = principal_id)?
+        /// security_statement : GRANT grant_mode ON class_type_for_grant DOUBLE_COLON table=full_table_ref TO to_principal_rincipal_ids WITH GRANT OPTION AS as_principal=principal_id 
         /// </summary>
         void VisitSecurityStatement(AstSecurityStatement.AstSecurityStatement2 a);
         
         /// <summary>
-        /// security_statement : REVERT  (LR_BRACKET  WITH  COOKIE  EQUAL  local_id  RR_BRACKET)?
+        /// security_statement : REVERT LR_BRACKET WITH COOKIE EQUAL local_id RR_BRACKET 
         /// </summary>
         void VisitSecurityStatement(AstSecurityStatement.AstSecurityStatement3 a);
         
         /// <summary>
-        /// security_statement : open_key
+        /// security_statement : open_key 
         /// </summary>
         void VisitSecurityStatement(AstSecurityStatement.AstSecurityStatement4 a);
         
         /// <summary>
-        /// security_statement : close_key
+        /// security_statement : close_key 
         /// </summary>
         void VisitSecurityStatement(AstSecurityStatement.AstSecurityStatement5 a);
         
         /// <summary>
-        /// security_statement : create_key
+        /// security_statement : create_key 
         /// </summary>
         void VisitSecurityStatement(AstSecurityStatement.AstSecurityStatement6 a);
         
         /// <summary>
-        /// security_statement : create_certificate
+        /// security_statement : create_certificate 
         /// </summary>
         void VisitSecurityStatement(AstSecurityStatement.AstSecurityStatement7 a);
         
         /// <summary>
-        /// grant_mode : ALL  PRIVILEGES?
+        /// grant_mode : ALL PRIVILEGES? 
         /// </summary>
         void VisitGrantMode(AstGrantMode.AstGrantMode1 a);
         
         /// <summary>
-        /// grant_mode : grant_permission  (LR_BRACKET  column_name_list  RR_BRACKET)?
+        /// grant_mode : grant_permission LR_BRACKET column_name_list RR_BRACKET 
         /// </summary>
         void VisitGrantMode(AstGrantMode.AstGrantMode2 a);
         
@@ -5582,16 +5958,24 @@ namespace Bb.SqlServer.Asts
         void VisitCreateCertificate(AstCreateCertificate a);
         
         /// <summary>
-        /// existing_keys : ASSEMBLY  assembly_id
+        /// existing_keys : ASSEMBLY assembly_id 
         /// </summary>
         void VisitExistingKeys(AstExistingKeys.AstExistingKeys1 a);
         
         /// <summary>
-        /// existing_keys : EXECUTABLE?  FILE  EQUAL  path_to_file = stringtext  (WITH  PRIVATE  KEY  LR_BRACKET  private_key_options  RR_BRACKET)?
+        /// existing_keys : EXECUTABLE? FILE EQUAL path_to_file=stringtext WITH PRIVATE KEY LR_BRACKET private_key_options RR_BRACKET 
         /// </summary>
         void VisitExistingKeys(AstExistingKeys.AstExistingKeys2 a);
         
-        void VisitPrivateKeyOptions(AstPrivateKeyOptions a);
+        /// <summary>
+        /// private_key_options : FILE EQUAL path=stringtext COMMA encryption_decryption BY password_setting 
+        /// </summary>
+        void VisitPrivateKeyOptions(AstPrivateKeyOptions.AstPrivateKeyOptions1 a);
+        
+        /// <summary>
+        /// private_key_options : binary_ EQUAL path=stringtext COMMA encryption_decryption BY password_setting 
+        /// </summary>
+        void VisitPrivateKeyOptions(AstPrivateKeyOptions.AstPrivateKeyOptions2 a);
         
         /// <summary>
         /// generate_new_keys : Bb.Generators.ModelMethod
@@ -5604,47 +5988,47 @@ namespace Bb.SqlServer.Asts
         void VisitDateOption(AstDateOption a);
         
         /// <summary>
-        /// open_key : OPEN  SYMMETRIC  KEY  symmetric_key_id  DECRYPTION  BY  decryption_mechanism
+        /// open_key : OPEN SYMMETRIC KEY symmetric_key_id DECRYPTION BY decryption_mechanism 
         /// </summary>
         void VisitOpenKey(AstOpenKey.AstOpenKey1 a);
         
         /// <summary>
-        /// open_key : OPEN  MASTER  KEY  decryption_by_pwd
+        /// open_key : OPEN MASTER KEY decryption_by_pwd 
         /// </summary>
         void VisitOpenKey(AstOpenKey.AstOpenKey2 a);
         
         /// <summary>
-        /// close_key : CLOSE  SYMMETRIC  KEY  symmetric_key_id
+        /// close_key : CLOSE SYMMETRIC KEY symmetric_key_id 
         /// </summary>
         void VisitCloseKey(AstCloseKey.AstCloseKey1 a);
         
         /// <summary>
-        /// close_key : CLOSE  ALL  SYMMETRIC  KEYS
+        /// close_key : CLOSE ALL SYMMETRIC KEYS 
         /// </summary>
         void VisitCloseKey(AstCloseKey.AstCloseKey2 a);
         
         /// <summary>
-        /// close_key : CLOSE  MASTER  KEY
+        /// close_key : CLOSE MASTER KEY 
         /// </summary>
         void VisitCloseKey(AstCloseKey.AstCloseKey3 a);
         
         /// <summary>
-        /// create_key : CREATE  MASTER  KEY  encryption_by_pwd
+        /// create_key : CREATE MASTER KEY encryption_by_pwd 
         /// </summary>
         void VisitCreateKey(AstCreateKey.AstCreateKey1 a);
         
         /// <summary>
-        /// create_key : CREATE  SYMMETRIC  KEY  symmetric_key_id  (AUTHORIZATION  user_id)?  (FROM  PROVIDER  provider_id)?  WITH  create_key_options
+        /// create_key : CREATE SYMMETRIC KEY symmetric_key_id AUTHORIZATION user_id FROM PROVIDER provider_id WITH create_key_options 
         /// </summary>
         void VisitCreateKey(AstCreateKey.AstCreateKey2 a);
         
         /// <summary>
-        /// create_key_option : key_options
+        /// create_key_option : key_options 
         /// </summary>
         void VisitCreateKeyOption(AstCreateKeyOption.AstCreateKeyOption1 a);
         
         /// <summary>
-        /// create_key_option : ENCRYPTION  BY  encryption_mechanism
+        /// create_key_option : ENCRYPTION BY encryption_mechanism 
         /// </summary>
         void VisitCreateKeyOption(AstCreateKeyOption.AstCreateKeyOption2 a);
         
@@ -5654,67 +6038,67 @@ namespace Bb.SqlServer.Asts
         void VisitCreateKeyOptions(AstCreateKeyOptions a);
         
         /// <summary>
-        /// key_options : KEY_SOURCE  EQUAL  pass_phrase = stringtext
+        /// key_options : KEY_SOURCE EQUAL pass_phrase=stringtext 
         /// </summary>
         void VisitKeyOptions(AstKeyOptions.AstKeyOptions1 a);
         
         /// <summary>
-        /// key_options : ALGORITHM  EQUAL  algorithm
+        /// key_options : ALGORITHM EQUAL algorithm 
         /// </summary>
         void VisitKeyOptions(AstKeyOptions.AstKeyOptions2 a);
         
         /// <summary>
-        /// key_options : IDENTITY_VALUE  EQUAL  identity_phrase = stringtext
+        /// key_options : IDENTITY_VALUE EQUAL identity_phrase=stringtext 
         /// </summary>
         void VisitKeyOptions(AstKeyOptions.AstKeyOptions3 a);
         
         /// <summary>
-        /// key_options : PROVIDER_KEY_NAME  EQUAL  key_name_in_provider = stringtext
+        /// key_options : PROVIDER_KEY_NAME EQUAL key_name_in_provider=stringtext 
         /// </summary>
         void VisitKeyOptions(AstKeyOptions.AstKeyOptions4 a);
         
         /// <summary>
-        /// key_options : CREATION_DISPOSITION  EQUAL  creation_disposition
+        /// key_options : CREATION_DISPOSITION EQUAL creation_disposition 
         /// </summary>
         void VisitKeyOptions(AstKeyOptions.AstKeyOptions5 a);
         
         /// <summary>
-        /// encryption_mechanism : CERTIFICATE  certificate_id
+        /// encryption_mechanism : CERTIFICATE certificate_id 
         /// </summary>
         void VisitEncryptionMechanism(AstEncryptionMechanism.AstEncryptionMechanism1 a);
         
         /// <summary>
-        /// encryption_mechanism : ASYMMETRIC  KEY  asym_key_id
+        /// encryption_mechanism : ASYMMETRIC KEY asym_key_id 
         /// </summary>
         void VisitEncryptionMechanism(AstEncryptionMechanism.AstEncryptionMechanism2 a);
         
         /// <summary>
-        /// encryption_mechanism : SYMMETRIC  KEY  symmetric_key_id
+        /// encryption_mechanism : SYMMETRIC KEY symmetric_key_id 
         /// </summary>
         void VisitEncryptionMechanism(AstEncryptionMechanism.AstEncryptionMechanism3 a);
         
         /// <summary>
-        /// encryption_mechanism : password_setting
+        /// encryption_mechanism : password_setting 
         /// </summary>
         void VisitEncryptionMechanism(AstEncryptionMechanism.AstEncryptionMechanism4 a);
         
         /// <summary>
-        /// decryption_mechanism : CERTIFICATE  certificate_id  (WITH  password_setting)?
+        /// decryption_mechanism : CERTIFICATE certificate_id WITH password_setting 
         /// </summary>
         void VisitDecryptionMechanism(AstDecryptionMechanism.AstDecryptionMechanism1 a);
         
         /// <summary>
-        /// decryption_mechanism : ASYMMETRIC  KEY  asym_key_id  (WITH  password_setting)?
+        /// decryption_mechanism : ASYMMETRIC KEY asym_key_id WITH password_setting 
         /// </summary>
         void VisitDecryptionMechanism(AstDecryptionMechanism.AstDecryptionMechanism2 a);
         
         /// <summary>
-        /// decryption_mechanism : SYMMETRIC  KEY  symmetric_key_id
+        /// decryption_mechanism : SYMMETRIC KEY symmetric_key_id 
         /// </summary>
         void VisitDecryptionMechanism(AstDecryptionMechanism.AstDecryptionMechanism3 a);
         
         /// <summary>
-        /// decryption_mechanism : password_setting
+        /// decryption_mechanism : password_setting 
         /// </summary>
         void VisitDecryptionMechanism(AstDecryptionMechanism.AstDecryptionMechanism4 a);
         
@@ -5729,92 +6113,92 @@ namespace Bb.SqlServer.Asts
         void VisitGrantPermissionCreate(AstGrantPermissionCreate a);
         
         /// <summary>
-        /// grant_permission : grant_permission_enum
+        /// grant_permission : grant_permission_enum 
         /// </summary>
         void VisitGrantPermission(AstGrantPermission.AstGrantPermission1 a);
         
         /// <summary>
-        /// grant_permission : grant_permission_alter
+        /// grant_permission : grant_permission_alter 
         /// </summary>
         void VisitGrantPermission(AstGrantPermission.AstGrantPermission2 a);
         
         /// <summary>
-        /// grant_permission : grant_permission_create
+        /// grant_permission : grant_permission_create 
         /// </summary>
         void VisitGrantPermission(AstGrantPermission.AstGrantPermission3 a);
         
         /// <summary>
-        /// set_statement : SET  local_id  (DOT  member_name = id_)?  EQUAL  expression
+        /// set_statement : SET local_id DOT member_name=id_ EQUAL expression 
         /// </summary>
         void VisitSetStatement(AstSetStatement.AstSetStatement1 a);
         
         /// <summary>
-        /// set_statement : SET  local_id  assignment_operator  expression
+        /// set_statement : SET local_id assignment_operator expression 
         /// </summary>
         void VisitSetStatement(AstSetStatement.AstSetStatement2 a);
         
         /// <summary>
-        /// set_statement : SET  local_id  EQUAL  CURSOR  declare_set_cursor_common  (FOR  cursor_mode)?
+        /// set_statement : SET local_id EQUAL CURSOR declare_set_cursor_common FOR cursor_mode 
         /// </summary>
         void VisitSetStatement(AstSetStatement.AstSetStatement3 a);
         
         /// <summary>
-        /// set_statement : set_special
+        /// set_statement : set_special 
         /// </summary>
         void VisitSetStatement(AstSetStatement.AstSetStatement4 a);
         
         /// <summary>
-        /// cursor_mode : READ  ONLY
+        /// cursor_mode : READ ONLY 
         /// </summary>
         void VisitCursorMode(AstCursorMode.AstCursorMode1 a);
         
         /// <summary>
-        /// cursor_mode : UPDATE  (OF  column_name_list)?
+        /// cursor_mode : UPDATE OF column_name_list 
         /// </summary>
         void VisitCursorMode(AstCursorMode.AstCursorMode2 a);
         
         /// <summary>
-        /// transaction_statement : BEGIN  DISTRIBUTED  transaction  transaction_ref?
+        /// transaction_statement : BEGIN DISTRIBUTED transaction transaction_ref? 
         /// </summary>
         void VisitTransactionStatement(AstTransactionStatement.AstTransactionStatement1 a);
         
         /// <summary>
-        /// transaction_statement : BEGIN  transaction  (transaction_ref  (WITH  MARK  mark = stringtext)?)?
+        /// transaction_statement : BEGIN transaction transaction_ref WITH MARK mark=stringtext 
         /// </summary>
         void VisitTransactionStatement(AstTransactionStatement.AstTransactionStatement2 a);
         
         /// <summary>
-        /// transaction_statement : COMMIT  transaction  (transaction_ref  (WITH  LR_BRACKET  DELAYED_DURABILITY  EQUAL  on_off  RR_BRACKET)?)?
+        /// transaction_statement : COMMIT transaction transaction_ref WITH LR_BRACKET DELAYED_DURABILITY EQUAL on_off RR_BRACKET 
         /// </summary>
         void VisitTransactionStatement(AstTransactionStatement.AstTransactionStatement3 a);
         
         /// <summary>
-        /// transaction_statement : COMMIT  WORK?
+        /// transaction_statement : COMMIT WORK? 
         /// </summary>
         void VisitTransactionStatement(AstTransactionStatement.AstTransactionStatement4 a);
         
         /// <summary>
-        /// transaction_statement : COMMIT  transaction_identifier
+        /// transaction_statement : COMMIT transaction_identifier 
         /// </summary>
         void VisitTransactionStatement(AstTransactionStatement.AstTransactionStatement5 a);
         
         /// <summary>
-        /// transaction_statement : ROLLBACK  transaction_identifier
+        /// transaction_statement : ROLLBACK transaction_identifier 
         /// </summary>
         void VisitTransactionStatement(AstTransactionStatement.AstTransactionStatement6 a);
         
         /// <summary>
-        /// transaction_statement : ROLLBACK  transaction  transaction_ref?
+        /// transaction_statement : ROLLBACK transaction transaction_ref? 
         /// </summary>
         void VisitTransactionStatement(AstTransactionStatement.AstTransactionStatement7 a);
         
         /// <summary>
-        /// transaction_statement : ROLLBACK  WORK?
+        /// transaction_statement : ROLLBACK WORK? 
         /// </summary>
         void VisitTransactionStatement(AstTransactionStatement.AstTransactionStatement8 a);
         
         /// <summary>
-        /// transaction_statement : SAVE  transaction  transaction_ref?
+        /// transaction_statement : SAVE transaction transaction_ref? 
         /// </summary>
         void VisitTransactionStatement(AstTransactionStatement.AstTransactionStatement9 a);
         
@@ -5841,24 +6225,24 @@ namespace Bb.SqlServer.Asts
         void VisitDbccSpecial(AstDbccSpecial a);
         
         /// <summary>
-        /// dbcc_special_size : constant_expression  id_
+        /// dbcc_special_size : constant_expression id_ 
         /// </summary>
         void VisitDbccSpecialSize(AstDbccSpecialSize.AstDbccSpecialSize1 a);
         
         /// <summary>
-        /// dbcc_special_size : DEFAULT
+        /// dbcc_special_size : DEFAULT 
         /// </summary>
         void VisitDbccSpecialSize(AstDbccSpecialSize.AstDbccSpecialSize2 a);
         
         void VisitDbccClause(AstDbccClause a);
         
         /// <summary>
-        /// dbcc_command : simple_id
+        /// dbcc_command : simple_id 
         /// </summary>
         void VisitDbccCommand(AstDbccCommand.AstDbccCommand1 a);
         
         /// <summary>
-        /// dbcc_command : keyword
+        /// dbcc_command : keyword 
         /// </summary>
         void VisitDbccCommand(AstDbccCommand.AstDbccCommand2 a);
         
@@ -5868,12 +6252,12 @@ namespace Bb.SqlServer.Asts
         void VisitExecuteClause(AstExecuteClause a);
         
         /// <summary>
-        /// execute_clause_mode : execute_clause_mode_enum
+        /// execute_clause_mode : execute_clause_mode_enum 
         /// </summary>
         void VisitExecuteClauseMode(AstExecuteClauseMode.AstExecuteClauseMode1 a);
         
         /// <summary>
-        /// execute_clause_mode : stringtext
+        /// execute_clause_mode : stringtext 
         /// </summary>
         void VisitExecuteClauseMode(AstExecuteClauseMode.AstExecuteClauseMode2 a);
         
@@ -5888,32 +6272,32 @@ namespace Bb.SqlServer.Asts
         void VisitTableTypeDefinition(AstTableTypeDefinition a);
         
         /// <summary>
-        /// table_type_indice : type_indice  LR_BRACKET  column_name_list_with_order  RR_BRACKET
+        /// table_type_indice : type_indice LR_BRACKET column_name_list_with_order RR_BRACKET 
         /// </summary>
         void VisitTableTypeIndice(AstTableTypeIndice.AstTableTypeIndice1 a);
         
         /// <summary>
-        /// table_type_indice : CHECK  LR_BRACKET  search_condition  RR_BRACKET
+        /// table_type_indice : CHECK LR_BRACKET search_condition RR_BRACKET 
         /// </summary>
         void VisitTableTypeIndice(AstTableTypeIndice.AstTableTypeIndice2 a);
         
         /// <summary>
-        /// type_indice : indice_name  clustered?
+        /// type_indice : indice_name clustered? 
         /// </summary>
         void VisitTypeIndice(AstTypeIndice.AstTypeIndice1 a);
         
         /// <summary>
-        /// type_indice : UNIQUE
+        /// type_indice : UNIQUE 
         /// </summary>
         void VisitTypeIndice(AstTypeIndice.AstTypeIndice2 a);
         
         /// <summary>
-        /// indice_name : PRIMARY  KEY
+        /// indice_name : PRIMARY KEY 
         /// </summary>
         void VisitIndiceName(AstIndiceName.AstIndiceName1 a);
         
         /// <summary>
-        /// indice_name : INDEX  index_id
+        /// indice_name : INDEX index_id 
         /// </summary>
         void VisitIndiceName(AstIndiceName.AstIndiceName2 a);
         
@@ -5930,17 +6314,17 @@ namespace Bb.SqlServer.Asts
         void VisitColumnDefTableConstraints(AstColumnDefTableConstraints a);
         
         /// <summary>
-        /// column_def_table_constraint : column_definition
+        /// column_def_table_constraint : column_definition 
         /// </summary>
         void VisitColumnDefTableConstraint(AstColumnDefTableConstraint.AstColumnDefTableConstraint1 a);
         
         /// <summary>
-        /// column_def_table_constraint : materialized_column_definition
+        /// column_def_table_constraint : materialized_column_definition 
         /// </summary>
         void VisitColumnDefTableConstraint(AstColumnDefTableConstraint.AstColumnDefTableConstraint2 a);
         
         /// <summary>
-        /// column_def_table_constraint : table_constraint
+        /// column_def_table_constraint : table_constraint 
         /// </summary>
         void VisitColumnDefTableConstraint(AstColumnDefTableConstraint.AstColumnDefTableConstraint3 a);
         
@@ -5950,57 +6334,57 @@ namespace Bb.SqlServer.Asts
         void VisitColumnDefinition(AstColumnDefinition a);
         
         /// <summary>
-        /// column_definition_element : FILESTREAM
+        /// column_definition_element : FILESTREAM 
         /// </summary>
         void VisitColumnDefinitionElement(AstColumnDefinitionElement.AstColumnDefinitionElement1 a);
         
         /// <summary>
-        /// column_definition_element : COLLATE  collation_id
+        /// column_definition_element : COLLATE collation_id 
         /// </summary>
         void VisitColumnDefinitionElement(AstColumnDefinitionElement.AstColumnDefinitionElement2 a);
         
         /// <summary>
-        /// column_definition_element : SPARSE
+        /// column_definition_element : SPARSE 
         /// </summary>
         void VisitColumnDefinitionElement(AstColumnDefinitionElement.AstColumnDefinitionElement3 a);
         
         /// <summary>
-        /// column_definition_element : MASKED  WITH  LR_BRACKET  FUNCTION  EQUAL  mask_function = stringtext  RR_BRACKET
+        /// column_definition_element : MASKED WITH LR_BRACKET FUNCTION EQUAL mask_function=stringtext RR_BRACKET 
         /// </summary>
         void VisitColumnDefinitionElement(AstColumnDefinitionElement.AstColumnDefinitionElement4 a);
         
         /// <summary>
-        /// column_definition_element : (CONSTRAINT  constraint_id)?  DEFAULT  constant_expr = expression
+        /// column_definition_element : CONSTRAINT constraint_id DEFAULT constant_expr=expression 
         /// </summary>
         void VisitColumnDefinitionElement(AstColumnDefinitionElement.AstColumnDefinitionElement5 a);
         
         /// <summary>
-        /// column_definition_element : IDENTITY  (LR_BRACKET  seed = decimal  COMMA  increment = decimal  RR_BRACKET)?
+        /// column_definition_element : IDENTITY LR_BRACKET seed=decimal COMMA increment=decimal RR_BRACKET 
         /// </summary>
         void VisitColumnDefinitionElement(AstColumnDefinitionElement.AstColumnDefinitionElement6 a);
         
         /// <summary>
-        /// column_definition_element : NOT  FOR  REPLICATION
+        /// column_definition_element : NOT FOR REPLICATION 
         /// </summary>
         void VisitColumnDefinitionElement(AstColumnDefinitionElement.AstColumnDefinitionElement7 a);
         
         /// <summary>
-        /// column_definition_element : GENERATED  ALWAYS  AS  generation_mode  start_end  HIDDEN_KEYWORD?
+        /// column_definition_element : GENERATED ALWAYS AS generation_mode start_end HIDDEN_KEYWORD? 
         /// </summary>
         void VisitColumnDefinitionElement(AstColumnDefinitionElement.AstColumnDefinitionElement8 a);
         
         /// <summary>
-        /// column_definition_element : ROWGUIDCOL
+        /// column_definition_element : ROWGUIDCOL 
         /// </summary>
         void VisitColumnDefinitionElement(AstColumnDefinitionElement.AstColumnDefinitionElement9 a);
         
         /// <summary>
-        /// column_definition_element : ENCRYPTED  WITH  LR_BRACKET  column_encryption_key_id  EQUAL  key_name = stringtext  COMMA  ENCRYPTION_TYPE  EQUAL  encryption_mode  COMMA  ALGORITHM  EQUAL  algo = stringtext  RR_BRACKET
+        /// column_definition_element : ENCRYPTED WITH LR_BRACKET column_encryption_key_id EQUAL key_name=stringtext COMMA ENCRYPTION_TYPE EQUAL encryption_mode COMMA ALGORITHM EQUAL algo=stringtext RR_BRACKET 
         /// </summary>
         void VisitColumnDefinitionElement(AstColumnDefinitionElement.AstColumnDefinitionElement10 a);
         
         /// <summary>
-        /// column_definition_element : column_constraint
+        /// column_definition_element : column_constraint 
         /// </summary>
         void VisitColumnDefinitionElement(AstColumnDefinitionElement.AstColumnDefinitionElement11 a);
         
@@ -6014,16 +6398,90 @@ namespace Bb.SqlServer.Asts
         /// </summary>
         void VisitMaterializedColumnDefinition(AstMaterializedColumnDefinition a);
         
-        void VisitColumnConstraint(AstColumnConstraint a);
+        /// <summary>
+        /// column_constraint : CONSTRAINT constraint_id null_notnull 
+        /// </summary>
+        void VisitColumnConstraint(AstColumnConstraint.AstColumnConstraint1 a);
+        
+        /// <summary>
+        /// column_constraint : CONSTRAINT constraint_id primary_key_unique clustered? primary_key_options 
+        /// </summary>
+        void VisitColumnConstraint(AstColumnConstraint.AstColumnConstraint2 a);
+        
+        /// <summary>
+        /// column_constraint : CONSTRAINT constraint_id FOREIGN KEY foreign_key_options 
+        /// </summary>
+        void VisitColumnConstraint(AstColumnConstraint.AstColumnConstraint3 a);
+        
+        /// <summary>
+        /// column_constraint : CONSTRAINT constraint_id check_constraint 
+        /// </summary>
+        void VisitColumnConstraint(AstColumnConstraint.AstColumnConstraint4 a);
         
         /// <summary>
         /// column_index : Bb.Generators.ModelMethod
         /// </summary>
         void VisitColumnIndex(AstColumnIndex a);
         
-        void VisitOnPartitionOrFilegroup(AstOnPartitionOrFilegroup a);
+        /// <summary>
+        /// on_partition_or_filegroup : ON partition_scheme_id LR_BRACKET partition_column_id RR_BRACKET 
+        /// </summary>
+        void VisitOnPartitionOrFilegroup(AstOnPartitionOrFilegroup.AstOnPartitionOrFilegroup1 a);
         
-        void VisitTableConstraint(AstTableConstraint a);
+        /// <summary>
+        /// on_partition_or_filegroup : ON file_group_id 
+        /// </summary>
+        void VisitOnPartitionOrFilegroup(AstOnPartitionOrFilegroup.AstOnPartitionOrFilegroup2 a);
+        
+        /// <summary>
+        /// on_partition_or_filegroup : ON DEFAULT_DOUBLE_QUOTE 
+        /// </summary>
+        void VisitOnPartitionOrFilegroup(AstOnPartitionOrFilegroup.AstOnPartitionOrFilegroup3 a);
+        
+        /// <summary>
+        /// table_constraint : CONSTRAINT constraint_id primary_key_unique clustered? LR_BRACKET column_name_list_with_order RR_BRACKET primary_key_options 
+        /// </summary>
+        void VisitTableConstraint(AstTableConstraint.AstTableConstraint1 a);
+        
+        /// <summary>
+        /// table_constraint : CONSTRAINT constraint_id FOREIGN KEY LR_BRACKET fk=column_name_list RR_BRACKET foreign_key_options 
+        /// </summary>
+        void VisitTableConstraint(AstTableConstraint.AstTableConstraint2 a);
+        
+        /// <summary>
+        /// table_constraint : CONSTRAINT constraint_id CONNECTION LR_BRACKET connection_nodes RR_BRACKET 
+        /// </summary>
+        void VisitTableConstraint(AstTableConstraint.AstTableConstraint3 a);
+        
+        /// <summary>
+        /// table_constraint : CONSTRAINT constraint_id DEFAULT LR_BRACKET? stringtext RR_BRACKET? FOR id_ 
+        /// </summary>
+        void VisitTableConstraint(AstTableConstraint.AstTableConstraint4 a);
+        
+        /// <summary>
+        /// table_constraint : CONSTRAINT constraint_id DEFAULT LR_BRACKET? PLUS RR_BRACKET? FOR id_ 
+        /// </summary>
+        void VisitTableConstraint(AstTableConstraint.AstTableConstraint5 a);
+        
+        /// <summary>
+        /// table_constraint : CONSTRAINT constraint_id DEFAULT LR_BRACKET? function_call RR_BRACKET? FOR id_ 
+        /// </summary>
+        void VisitTableConstraint(AstTableConstraint.AstTableConstraint6 a);
+        
+        /// <summary>
+        /// table_constraint : CONSTRAINT constraint_id DEFAULT LR_BRACKET? decimal RR_BRACKET? FOR id_ 
+        /// </summary>
+        void VisitTableConstraint(AstTableConstraint.AstTableConstraint7 a);
+        
+        /// <summary>
+        /// table_constraint : CONSTRAINT constraint_id DEFAULT LR_BRACKET? NEXT VALUE FOR full_table_ref RR_BRACKET? FOR id_ 
+        /// </summary>
+        void VisitTableConstraint(AstTableConstraint.AstTableConstraint8 a);
+        
+        /// <summary>
+        /// table_constraint : CONSTRAINT constraint_id check_constraint 
+        /// </summary>
+        void VisitTableConstraint(AstTableConstraint.AstTableConstraint9 a);
         
         void VisitConnectionNode(AstConnectionNode a);
         
@@ -6043,77 +6501,77 @@ namespace Bb.SqlServer.Asts
         void VisitCheckConstraint(AstCheckConstraint a);
         
         /// <summary>
-        /// alter_table_index_option : PAD_INDEX  EQUAL  on_off
+        /// alter_table_index_option : PAD_INDEX EQUAL on_off 
         /// </summary>
         void VisitAlterTableIndexOption(AstAlterTableIndexOption.AstAlterTableIndexOption1 a);
         
         /// <summary>
-        /// alter_table_index_option : FILLFACTOR  EQUAL  decimal
+        /// alter_table_index_option : FILLFACTOR EQUAL decimal 
         /// </summary>
         void VisitAlterTableIndexOption(AstAlterTableIndexOption.AstAlterTableIndexOption2 a);
         
         /// <summary>
-        /// alter_table_index_option : IGNORE_DUP_KEY  EQUAL  on_off
+        /// alter_table_index_option : IGNORE_DUP_KEY EQUAL on_off 
         /// </summary>
         void VisitAlterTableIndexOption(AstAlterTableIndexOption.AstAlterTableIndexOption3 a);
         
         /// <summary>
-        /// alter_table_index_option : STATISTICS_NORECOMPUTE  EQUAL  on_off
+        /// alter_table_index_option : STATISTICS_NORECOMPUTE EQUAL on_off 
         /// </summary>
         void VisitAlterTableIndexOption(AstAlterTableIndexOption.AstAlterTableIndexOption4 a);
         
         /// <summary>
-        /// alter_table_index_option : ALLOW_ROW_LOCKS  EQUAL  on_off
+        /// alter_table_index_option : ALLOW_ROW_LOCKS EQUAL on_off 
         /// </summary>
         void VisitAlterTableIndexOption(AstAlterTableIndexOption.AstAlterTableIndexOption5 a);
         
         /// <summary>
-        /// alter_table_index_option : ALLOW_PAGE_LOCKS  EQUAL  on_off
+        /// alter_table_index_option : ALLOW_PAGE_LOCKS EQUAL on_off 
         /// </summary>
         void VisitAlterTableIndexOption(AstAlterTableIndexOption.AstAlterTableIndexOption6 a);
         
         /// <summary>
-        /// alter_table_index_option : OPTIMIZE_FOR_SEQUENTIAL_KEY  EQUAL  on_off
+        /// alter_table_index_option : OPTIMIZE_FOR_SEQUENTIAL_KEY EQUAL on_off 
         /// </summary>
         void VisitAlterTableIndexOption(AstAlterTableIndexOption.AstAlterTableIndexOption7 a);
         
         /// <summary>
-        /// alter_table_index_option : SORT_IN_TEMPDB  EQUAL  on_off
+        /// alter_table_index_option : SORT_IN_TEMPDB EQUAL on_off 
         /// </summary>
         void VisitAlterTableIndexOption(AstAlterTableIndexOption.AstAlterTableIndexOption8 a);
         
         /// <summary>
-        /// alter_table_index_option : MAXDOP  EQUAL  max_degree_of_parallelism = decimal
+        /// alter_table_index_option : MAXDOP EQUAL max_degree_of_parallelism=decimal 
         /// </summary>
         void VisitAlterTableIndexOption(AstAlterTableIndexOption.AstAlterTableIndexOption9 a);
         
         /// <summary>
-        /// alter_table_index_option : DATA_COMPRESSION  EQUAL  index_strategy  on_partitions?
+        /// alter_table_index_option : DATA_COMPRESSION EQUAL index_strategy on_partitions? 
         /// </summary>
         void VisitAlterTableIndexOption(AstAlterTableIndexOption.AstAlterTableIndexOption10 a);
         
         /// <summary>
-        /// alter_table_index_option : XML_COMPRESSION  EQUAL  on_off  on_partitions?
+        /// alter_table_index_option : XML_COMPRESSION EQUAL on_off on_partitions? 
         /// </summary>
         void VisitAlterTableIndexOption(AstAlterTableIndexOption.AstAlterTableIndexOption11 a);
         
         /// <summary>
-        /// alter_table_index_option : table_distribution
+        /// alter_table_index_option : table_distribution 
         /// </summary>
         void VisitAlterTableIndexOption(AstAlterTableIndexOption.AstAlterTableIndexOption12 a);
         
         /// <summary>
-        /// alter_table_index_option : ONLINE  EQUAL  online_value
+        /// alter_table_index_option : ONLINE EQUAL online_value 
         /// </summary>
         void VisitAlterTableIndexOption(AstAlterTableIndexOption.AstAlterTableIndexOption13 a);
         
         /// <summary>
-        /// alter_table_index_option : RESUMABLE  EQUAL  on_off
+        /// alter_table_index_option : RESUMABLE EQUAL on_off 
         /// </summary>
         void VisitAlterTableIndexOption(AstAlterTableIndexOption.AstAlterTableIndexOption14 a);
         
         /// <summary>
-        /// alter_table_index_option : MAX_DURATION  EQUAL  times = decimal  MINUTES?
+        /// alter_table_index_option : MAX_DURATION EQUAL times=decimal MINUTES? 
         /// </summary>
         void VisitAlterTableIndexOption(AstAlterTableIndexOption.AstAlterTableIndexOption15 a);
         
@@ -6128,12 +6586,12 @@ namespace Bb.SqlServer.Asts
         void VisitDeclareSetCursorCommon(AstDeclareSetCursorCommon a);
         
         /// <summary>
-        /// declare_set_cursor_common_partial : local_global
+        /// declare_set_cursor_common_partial : local_global 
         /// </summary>
         void VisitDeclareSetCursorCommonPartial(AstDeclareSetCursorCommonPartial.AstDeclareSetCursorCommonPartial1 a);
         
         /// <summary>
-        /// declare_set_cursor_common_partial : declare_set_cursor_common_partial_enum
+        /// declare_set_cursor_common_partial : declare_set_cursor_common_partial_enum 
         /// </summary>
         void VisitDeclareSetCursorCommonPartial(AstDeclareSetCursorCommonPartial.AstDeclareSetCursorCommonPartial2 a);
         
@@ -6143,87 +6601,87 @@ namespace Bb.SqlServer.Asts
         void VisitFetchCursor(AstFetchCursor a);
         
         /// <summary>
-        /// set_special : SET  left = id_  set_special_set_value
+        /// set_special : SET left=id_ set_special_set_value 
         /// </summary>
         void VisitSetSpecial(AstSetSpecial.AstSetSpecial1 a);
         
         /// <summary>
-        /// set_special : SET  STATISTICS  statistic_kind  statistics = on_off
+        /// set_special : SET STATISTICS statistic_kind statistics=on_off 
         /// </summary>
         void VisitSetSpecial(AstSetSpecial.AstSetSpecial2 a);
         
         /// <summary>
-        /// set_special : SET  ROWCOUNT  local_id_decimal
+        /// set_special : SET ROWCOUNT local_id_decimal 
         /// </summary>
         void VisitSetSpecial(AstSetSpecial.AstSetSpecial3 a);
         
         /// <summary>
-        /// set_special : SET  TEXTSIZE  decimal
+        /// set_special : SET TEXTSIZE decimal 
         /// </summary>
         void VisitSetSpecial(AstSetSpecial.AstSetSpecial4 a);
         
         /// <summary>
-        /// set_special : SET  TRANSACTION  ISOLATION  LEVEL  transaction_level
+        /// set_special : SET TRANSACTION ISOLATION LEVEL transaction_level 
         /// </summary>
         void VisitSetSpecial(AstSetSpecial.AstSetSpecial5 a);
         
         /// <summary>
-        /// set_special : SET  IDENTITY_INSERT  full_table_ref  identity_insert = on_off
+        /// set_special : SET IDENTITY_INSERT full_table_ref identity_insert=on_off 
         /// </summary>
         void VisitSetSpecial(AstSetSpecial.AstSetSpecial6 a);
         
         /// <summary>
-        /// set_special : SET  special_lists  list = on_off
+        /// set_special : SET special_lists list=on_off 
         /// </summary>
         void VisitSetSpecial(AstSetSpecial.AstSetSpecial7 a);
         
         /// <summary>
-        /// set_special : SET  modify_method
+        /// set_special : SET modify_method 
         /// </summary>
         void VisitSetSpecial(AstSetSpecial.AstSetSpecial8 a);
         
         /// <summary>
-        /// transaction_level : transaction_isolation
+        /// transaction_level : transaction_isolation 
         /// </summary>
         void VisitTransactionLevel(AstTransactionLevel.AstTransactionLevel1 a);
         
         /// <summary>
-        /// transaction_level : decimal
+        /// transaction_level : decimal 
         /// </summary>
         void VisitTransactionLevel(AstTransactionLevel.AstTransactionLevel2 a);
         
         /// <summary>
-        /// local_id_decimal : local_id
+        /// local_id_decimal : local_id 
         /// </summary>
         void VisitLocalIdDecimal(AstLocalIdDecimal.AstLocalIdDecimal1 a);
         
         /// <summary>
-        /// local_id_decimal : decimal
+        /// local_id_decimal : decimal 
         /// </summary>
         void VisitLocalIdDecimal(AstLocalIdDecimal.AstLocalIdDecimal2 a);
         
         /// <summary>
-        /// set_special_set_value : id_
+        /// set_special_set_value : id_ 
         /// </summary>
         void VisitSetSpecialSetValue(AstSetSpecialSetValue.AstSetSpecialSetValue1 a);
         
         /// <summary>
-        /// set_special_set_value : constant_local_id
+        /// set_special_set_value : constant_local_id 
         /// </summary>
         void VisitSetSpecialSetValue(AstSetSpecialSetValue.AstSetSpecialSetValue2 a);
         
         /// <summary>
-        /// set_special_set_value : on_off
+        /// set_special_set_value : on_off 
         /// </summary>
         void VisitSetSpecialSetValue(AstSetSpecialSetValue.AstSetSpecialSetValue3 a);
         
         /// <summary>
-        /// constant_local_id : constant
+        /// constant_local_id : constant 
         /// </summary>
         void VisitConstantLocalId(AstConstantLocalId.AstConstantLocalId1 a);
         
         /// <summary>
-        /// constant_local_id : local_id
+        /// constant_local_id : local_id 
         /// </summary>
         void VisitConstantLocalId(AstConstantLocalId.AstConstantLocalId2 a);
         
@@ -6233,87 +6691,87 @@ namespace Bb.SqlServer.Asts
         void VisitEmptyValue(AstEmptyValue a);
         
         /// <summary>
-        /// expression : primitive_expression
+        /// expression : primitive_expression 
         /// </summary>
         void VisitExpression(AstExpression.AstExpression1 a);
         
         /// <summary>
-        /// expression : function_call
+        /// expression : function_call 
         /// </summary>
         void VisitExpression(AstExpression.AstExpression2 a);
         
         /// <summary>
-        /// expression : expression  DOT  expression_chained
+        /// expression : expression DOT expression_chained 
         /// </summary>
         void VisitExpression(AstExpression.AstExpression3 a);
         
         /// <summary>
-        /// expression : expression  DOT  hierarchyid_call
+        /// expression : expression DOT hierarchyid_call 
         /// </summary>
         void VisitExpression(AstExpression.AstExpression4 a);
         
         /// <summary>
-        /// expression : expression  COLLATE  id_
+        /// expression : expression COLLATE id_ 
         /// </summary>
         void VisitExpression(AstExpression.AstExpression5 a);
         
         /// <summary>
-        /// expression : case_expression
+        /// expression : case_expression 
         /// </summary>
         void VisitExpression(AstExpression.AstExpression6 a);
         
         /// <summary>
-        /// expression : full_column_name
+        /// expression : full_column_name 
         /// </summary>
         void VisitExpression(AstExpression.AstExpression7 a);
         
         /// <summary>
-        /// expression : bracket_expression
+        /// expression : bracket_expression 
         /// </summary>
         void VisitExpression(AstExpression.AstExpression8 a);
         
         /// <summary>
-        /// expression : unary_operator_expression
+        /// expression : unary_operator_expression 
         /// </summary>
         void VisitExpression(AstExpression.AstExpression9 a);
         
         /// <summary>
-        /// expression : left = expression  op = expression_operator  right = expression
+        /// expression : left=expression op=expression_operator right=expression 
         /// </summary>
         void VisitExpression(AstExpression.AstExpression10 a);
         
         /// <summary>
-        /// expression : expression  time_zone
+        /// expression : expression time_zone 
         /// </summary>
         void VisitExpression(AstExpression.AstExpression11 a);
         
         /// <summary>
-        /// expression : over_clause
+        /// expression : over_clause 
         /// </summary>
         void VisitExpression(AstExpression.AstExpression12 a);
         
         /// <summary>
-        /// expression : DOLLAR_ACTION
+        /// expression : DOLLAR_ACTION 
         /// </summary>
         void VisitExpression(AstExpression.AstExpression13 a);
         
         /// <summary>
-        /// expression_chained : value_call
+        /// expression_chained : value_call 
         /// </summary>
         void VisitExpressionChained(AstExpressionChained.AstExpressionChained1 a);
         
         /// <summary>
-        /// expression_chained : query_call
+        /// expression_chained : query_call 
         /// </summary>
         void VisitExpressionChained(AstExpressionChained.AstExpressionChained2 a);
         
         /// <summary>
-        /// expression_chained : exist_call
+        /// expression_chained : exist_call 
         /// </summary>
         void VisitExpressionChained(AstExpressionChained.AstExpressionChained3 a);
         
         /// <summary>
-        /// expression_chained : modify_call
+        /// expression_chained : modify_call 
         /// </summary>
         void VisitExpressionChained(AstExpressionChained.AstExpressionChained4 a);
         
@@ -6323,77 +6781,77 @@ namespace Bb.SqlServer.Asts
         void VisitTimeZone(AstTimeZone a);
         
         /// <summary>
-        /// primitive_expression : DEFAULT
+        /// primitive_expression : DEFAULT 
         /// </summary>
         void VisitPrimitiveExpression(AstPrimitiveExpression.AstPrimitiveExpression1 a);
         
         /// <summary>
-        /// primitive_expression : NULL_
+        /// primitive_expression : NULL_ 
         /// </summary>
         void VisitPrimitiveExpression(AstPrimitiveExpression.AstPrimitiveExpression2 a);
         
         /// <summary>
-        /// primitive_expression : local_id
+        /// primitive_expression : local_id 
         /// </summary>
         void VisitPrimitiveExpression(AstPrimitiveExpression.AstPrimitiveExpression3 a);
         
         /// <summary>
-        /// primitive_expression : constant
+        /// primitive_expression : constant 
         /// </summary>
         void VisitPrimitiveExpression(AstPrimitiveExpression.AstPrimitiveExpression4 a);
         
         /// <summary>
-        /// case_expression : CASE  caseExpr = expression  switch_section+  (ELSE  elseExpr = expression)?  END
+        /// case_expression : CASE caseExpr=expression switch_section+ ELSE elseExpr=expression END 
         /// </summary>
         void VisitCaseExpression(AstCaseExpression.AstCaseExpression1 a);
         
         /// <summary>
-        /// case_expression : CASE  switch_search_condition_section+  (ELSE  elseExpr = expression)?  END
+        /// case_expression : CASE switch_search_condition_section+ ELSE elseExpr=expression END 
         /// </summary>
         void VisitCaseExpression(AstCaseExpression.AstCaseExpression2 a);
         
         /// <summary>
-        /// unary_operator_expression : BIT_NOT  expression
+        /// unary_operator_expression : BIT_NOT expression 
         /// </summary>
         void VisitUnaryOperatorExpression(AstUnaryOperatorExpression.AstUnaryOperatorExpression1 a);
         
         /// <summary>
-        /// unary_operator_expression : plus_minus  expression
+        /// unary_operator_expression : plus_minus expression 
         /// </summary>
         void VisitUnaryOperatorExpression(AstUnaryOperatorExpression.AstUnaryOperatorExpression2 a);
         
         /// <summary>
-        /// bracket_expression : LR_BRACKET  expression  RR_BRACKET
+        /// bracket_expression : LR_BRACKET expression RR_BRACKET 
         /// </summary>
         void VisitBracketExpression(AstBracketExpression.AstBracketExpression1 a);
         
         /// <summary>
-        /// bracket_expression : LR_BRACKET  subquery  RR_BRACKET
+        /// bracket_expression : LR_BRACKET subquery RR_BRACKET 
         /// </summary>
         void VisitBracketExpression(AstBracketExpression.AstBracketExpression2 a);
         
         /// <summary>
-        /// constant_expression : NULL_
+        /// constant_expression : NULL_ 
         /// </summary>
         void VisitConstantExpression(AstConstantExpression.AstConstantExpression1 a);
         
         /// <summary>
-        /// constant_expression : constant
+        /// constant_expression : constant 
         /// </summary>
         void VisitConstantExpression(AstConstantExpression.AstConstantExpression2 a);
         
         /// <summary>
-        /// constant_expression : function_call
+        /// constant_expression : function_call 
         /// </summary>
         void VisitConstantExpression(AstConstantExpression.AstConstantExpression3 a);
         
         /// <summary>
-        /// constant_expression : local_id
+        /// constant_expression : local_id 
         /// </summary>
         void VisitConstantExpression(AstConstantExpression.AstConstantExpression4 a);
         
         /// <summary>
-        /// constant_expression : LR_BRACKET  constant_expression  RR_BRACKET
+        /// constant_expression : LR_BRACKET constant_expression RR_BRACKET 
         /// </summary>
         void VisitConstantExpression(AstConstantExpression.AstConstantExpression5 a);
         
@@ -6405,112 +6863,112 @@ namespace Bb.SqlServer.Asts
         void VisitCommonTableExpression(AstCommonTableExpression a);
         
         /// <summary>
-        /// update_elem : local_id  EQUAL  full_column_name  update_operator  expression
+        /// update_elem : local_id EQUAL full_column_name update_operator expression 
         /// </summary>
         void VisitUpdateElem(AstUpdateElem.AstUpdateElem1 a);
         
         /// <summary>
-        /// update_elem : column_ref  update_operator  expression
+        /// update_elem : column_ref update_operator expression 
         /// </summary>
         void VisitUpdateElem(AstUpdateElem.AstUpdateElem2 a);
         
         /// <summary>
-        /// update_elem : udt_column_id  DOT  method_id  LR_BRACKET  expression_list  RR_BRACKET
+        /// update_elem : udt_column_id DOT method_id LR_BRACKET expression_list RR_BRACKET 
         /// </summary>
         void VisitUpdateElem(AstUpdateElem.AstUpdateElem3 a);
         
         /// <summary>
-        /// column_ref : full_column_name
+        /// column_ref : full_column_name 
         /// </summary>
         void VisitColumnRef(AstColumnRef.AstColumnRef1 a);
         
         /// <summary>
-        /// column_ref : local_id
+        /// column_ref : local_id 
         /// </summary>
         void VisitColumnRef(AstColumnRef.AstColumnRef2 a);
         
         /// <summary>
-        /// update_operator : EQUAL
+        /// update_operator : EQUAL 
         /// </summary>
         void VisitUpdateOperator(AstUpdateOperator.AstUpdateOperator1 a);
         
         /// <summary>
-        /// update_operator : assignment_operator
+        /// update_operator : assignment_operator 
         /// </summary>
         void VisitUpdateOperator(AstUpdateOperator.AstUpdateOperator2 a);
         
         /// <summary>
-        /// update_elem_merge : column_ref  update_operator  expression
+        /// update_elem_merge : column_ref update_operator expression 
         /// </summary>
         void VisitUpdateElemMerge(AstUpdateElemMerge.AstUpdateElemMerge1 a);
         
         /// <summary>
-        /// update_elem_merge : udt_column_id  DOT  method_id  LR_BRACKET  expression_list  RR_BRACKET
+        /// update_elem_merge : udt_column_id DOT method_id LR_BRACKET expression_list RR_BRACKET 
         /// </summary>
         void VisitUpdateElemMerge(AstUpdateElemMerge.AstUpdateElemMerge2 a);
         
         /// <summary>
-        /// search_condition : NOT*  sub_search_condition
+        /// search_condition : NOT* sub_search_condition 
         /// </summary>
         void VisitSearchCondition(AstSearchCondition.AstSearchCondition1 a);
         
         /// <summary>
-        /// search_condition : left = search_condition  and_or  right = search_condition
+        /// search_condition : left=search_condition and_or right=search_condition 
         /// </summary>
         void VisitSearchCondition(AstSearchCondition.AstSearchCondition2 a);
         
         /// <summary>
-        /// sub_search_condition : predicate_expr
+        /// sub_search_condition : predicate_expr 
         /// </summary>
         void VisitSubSearchCondition(AstSubSearchCondition.AstSubSearchCondition1 a);
         
         /// <summary>
-        /// sub_search_condition : LR_BRACKET  search_condition  RR_BRACKET
+        /// sub_search_condition : LR_BRACKET search_condition RR_BRACKET 
         /// </summary>
         void VisitSubSearchCondition(AstSubSearchCondition.AstSubSearchCondition2 a);
         
         /// <summary>
-        /// predicate_expr : EXISTS  LR_BRACKET  subquery  RR_BRACKET
+        /// predicate_expr : EXISTS LR_BRACKET subquery RR_BRACKET 
         /// </summary>
         void VisitPredicateExpr(AstPredicateExpr.AstPredicateExpr1 a);
         
         /// <summary>
-        /// predicate_expr : freetext_predicate
+        /// predicate_expr : freetext_predicate 
         /// </summary>
         void VisitPredicateExpr(AstPredicateExpr.AstPredicateExpr2 a);
         
         /// <summary>
-        /// predicate_expr : predicate_binary
+        /// predicate_expr : predicate_binary 
         /// </summary>
         void VisitPredicateExpr(AstPredicateExpr.AstPredicateExpr3 a);
         
         /// <summary>
-        /// predicate_expr : predicate_multi_assign
+        /// predicate_expr : predicate_multi_assign 
         /// </summary>
         void VisitPredicateExpr(AstPredicateExpr.AstPredicateExpr4 a);
         
         /// <summary>
-        /// predicate_expr : expression  comparison_operator  all_some_any  LR_BRACKET  subquery  RR_BRACKET
+        /// predicate_expr : expression comparison_operator all_some_any LR_BRACKET subquery RR_BRACKET 
         /// </summary>
         void VisitPredicateExpr(AstPredicateExpr.AstPredicateExpr5 a);
         
         /// <summary>
-        /// predicate_expr : predicate_tier
+        /// predicate_expr : predicate_tier 
         /// </summary>
         void VisitPredicateExpr(AstPredicateExpr.AstPredicateExpr6 a);
         
         /// <summary>
-        /// predicate_expr : predicate_not_in
+        /// predicate_expr : predicate_not_in 
         /// </summary>
         void VisitPredicateExpr(AstPredicateExpr.AstPredicateExpr7 a);
         
         /// <summary>
-        /// predicate_expr : predicate_not_like
+        /// predicate_expr : predicate_not_like 
         /// </summary>
         void VisitPredicateExpr(AstPredicateExpr.AstPredicateExpr8 a);
         
         /// <summary>
-        /// predicate_expr : expression  IS  null_notnull
+        /// predicate_expr : expression IS null_notnull 
         /// </summary>
         void VisitPredicateExpr(AstPredicateExpr.AstPredicateExpr9 a);
         
@@ -6540,17 +6998,17 @@ namespace Bb.SqlServer.Asts
         void VisitPredicateNotIn(AstPredicateNotIn a);
         
         /// <summary>
-        /// query_expression : query_specification
+        /// query_expression : query_specification 
         /// </summary>
         void VisitQueryExpression(AstQueryExpression.AstQueryExpression1 a);
         
         /// <summary>
-        /// query_expression : LR_BRACKET  left = query_expression  RR_BRACKET  (UNION  ALL?  right = query_expression)?
+        /// query_expression : LR_BRACKET left=query_expression RR_BRACKET UNION ALL? right=query_expression 
         /// </summary>
         void VisitQueryExpression(AstQueryExpression.AstQueryExpression2 a);
         
         /// <summary>
-        /// query_expression : query_specification  select_order_by_clause?  unions = sql_unions
+        /// query_expression : query_specification select_order_by_clause? unions=sql_unions 
         /// </summary>
         void VisitQueryExpression(AstQueryExpression.AstQueryExpression3 a);
         
@@ -6565,12 +7023,12 @@ namespace Bb.SqlServer.Asts
         void VisitSqlUnion(AstSqlUnion a);
         
         /// <summary>
-        /// sql_union_def : query_specification
+        /// sql_union_def : query_specification 
         /// </summary>
         void VisitSqlUnionDef(AstSqlUnionDef.AstSqlUnionDef1 a);
         
         /// <summary>
-        /// sql_union_def : LR_BRACKET  query_expression  RR_BRACKET
+        /// sql_union_def : LR_BRACKET query_expression RR_BRACKET 
         /// </summary>
         void VisitSqlUnionDef(AstSqlUnionDef.AstSqlUnionDef2 a);
         
@@ -6579,40 +7037,48 @@ namespace Bb.SqlServer.Asts
         /// </summary>
         void VisitQuerySpecification(AstQuerySpecification a);
         
-        void VisitTopClause(AstTopClause a);
+        /// <summary>
+        /// top_clause : TOP top_percent WITH TIES 
+        /// </summary>
+        void VisitTopClause(AstTopClause.AstTopClause1 a);
         
         /// <summary>
-        /// top_percent : percent_constant  PERCENT
+        /// top_clause : TOP top_count WITH TIES 
+        /// </summary>
+        void VisitTopClause(AstTopClause.AstTopClause2 a);
+        
+        /// <summary>
+        /// top_percent : percent_constant PERCENT 
         /// </summary>
         void VisitTopPercent(AstTopPercent.AstTopPercent1 a);
         
         /// <summary>
-        /// top_percent : LR_BRACKET  topper_expression = expression  RR_BRACKET  PERCENT
+        /// top_percent : LR_BRACKET topper_expression=expression RR_BRACKET PERCENT 
         /// </summary>
         void VisitTopPercent(AstTopPercent.AstTopPercent2 a);
         
         /// <summary>
-        /// percent_constant : real
+        /// percent_constant : real 
         /// </summary>
         void VisitPercentConstant(AstPercentConstant.AstPercentConstant1 a);
         
         /// <summary>
-        /// percent_constant : float
+        /// percent_constant : float 
         /// </summary>
         void VisitPercentConstant(AstPercentConstant.AstPercentConstant2 a);
         
         /// <summary>
-        /// percent_constant : decimal
+        /// percent_constant : decimal 
         /// </summary>
         void VisitPercentConstant(AstPercentConstant.AstPercentConstant3 a);
         
         /// <summary>
-        /// top_count : count_constant = decimal
+        /// top_count : count_constant=decimal 
         /// </summary>
         void VisitTopCount(AstTopCount.AstTopCount1 a);
         
         /// <summary>
-        /// top_count : LR_BRACKET  topcount_expression = expression  RR_BRACKET
+        /// top_count : LR_BRACKET topcount_expression=expression RR_BRACKET 
         /// </summary>
         void VisitTopCount(AstTopCount.AstTopCount2 a);
         
@@ -6627,42 +7093,42 @@ namespace Bb.SqlServer.Asts
         void VisitSelectOrderByClause(AstSelectOrderByClause a);
         
         /// <summary>
-        /// for_clause : FOR  BROWSE
+        /// for_clause : FOR BROWSE 
         /// </summary>
         void VisitForClause(AstForClause.AstForClause1 a);
         
         /// <summary>
-        /// for_clause : for_clause_xml_raw
+        /// for_clause : for_clause_xml_raw 
         /// </summary>
         void VisitForClause(AstForClause.AstForClause2 a);
         
         /// <summary>
-        /// for_clause : FOR  XML  EXPLICIT  xml_common_directives?  (COMMA  XMLDATA)?
+        /// for_clause : FOR XML EXPLICIT xml_common_directives? COMMA XMLDATA 
         /// </summary>
         void VisitForClause(AstForClause.AstForClause3 a);
         
         /// <summary>
-        /// for_clause : FOR  XML  PATH  (LR_BRACKET  stringtext  RR_BRACKET)?  xml_common_directives?  (COMMA  ELEMENTS  absent_xsinil?)?
+        /// for_clause : FOR XML PATH LR_BRACKET stringtext RR_BRACKET xml_common_directives? COMMA ELEMENTS absent_xsinil? 
         /// </summary>
         void VisitForClause(AstForClause.AstForClause4 a);
         
         /// <summary>
-        /// for_clause : for_clause_json
+        /// for_clause : for_clause_json 
         /// </summary>
         void VisitForClause(AstForClause.AstForClause5 a);
         
         /// <summary>
-        /// xml_common_directive : BINARY_KEYWORD  BASE64
+        /// xml_common_directive : BINARY_KEYWORD BASE64 
         /// </summary>
         void VisitXmlCommonDirective(AstXmlCommonDirective.AstXmlCommonDirective1 a);
         
         /// <summary>
-        /// xml_common_directive : TYPE
+        /// xml_common_directive : TYPE 
         /// </summary>
         void VisitXmlCommonDirective(AstXmlCommonDirective.AstXmlCommonDirective2 a);
         
         /// <summary>
-        /// xml_common_directive : ROOTWORD  (LR_BRACKET  stringtext  RR_BRACKET)?
+        /// xml_common_directive : ROOTWORD LR_BRACKET stringtext RR_BRACKET 
         /// </summary>
         void VisitXmlCommonDirective(AstXmlCommonDirective.AstXmlCommonDirective3 a);
         
@@ -6677,29 +7143,37 @@ namespace Bb.SqlServer.Asts
         void VisitForClauseJson(AstForClauseJson a);
         
         /// <summary>
-        /// clause_json_info : ROOTWORD  (LR_BRACKET  stringtext  RR_BRACKET)
+        /// clause_json_info : ROOTWORD LR_BRACKET stringtext RR_BRACKET 
         /// </summary>
         void VisitClauseJsonInfo(AstClauseJsonInfo.AstClauseJsonInfo1 a);
         
         /// <summary>
-        /// clause_json_info : INCLUDE_NULL_VALUES
+        /// clause_json_info : INCLUDE_NULL_VALUES 
         /// </summary>
         void VisitClauseJsonInfo(AstClauseJsonInfo.AstClauseJsonInfo2 a);
         
         /// <summary>
-        /// clause_json_info : WITHOUT_ARRAY_WRAPPER
+        /// clause_json_info : WITHOUT_ARRAY_WRAPPER 
         /// </summary>
         void VisitClauseJsonInfo(AstClauseJsonInfo.AstClauseJsonInfo3 a);
         
-        void VisitOrderByExpression(AstOrderByExpression a);
+        /// <summary>
+        /// order_by_expression : order_by=expression ascending=ASC 
+        /// </summary>
+        void VisitOrderByExpression(AstOrderByExpression.AstOrderByExpression1 a);
         
         /// <summary>
-        /// grouping_sets_item : grouping_sets_list
+        /// order_by_expression : order_by=expression descending=DESC 
+        /// </summary>
+        void VisitOrderByExpression(AstOrderByExpression.AstOrderByExpression2 a);
+        
+        /// <summary>
+        /// grouping_sets_item : grouping_sets_list 
         /// </summary>
         void VisitGroupingSetsItem(AstGroupingSetsItem.AstGroupingSetsItem1 a);
         
         /// <summary>
-        /// grouping_sets_item : LR_BRACKET  grouping_sets_list?  RR_BRACKET
+        /// grouping_sets_item : LR_BRACKET grouping_sets_list? RR_BRACKET 
         /// </summary>
         void VisitGroupingSetsItem(AstGroupingSetsItem.AstGroupingSetsItem2 a);
         
@@ -6709,32 +7183,32 @@ namespace Bb.SqlServer.Asts
         void VisitGroupByItem(AstGroupByItem a);
         
         /// <summary>
-        /// update_option : FAST  number_rows = decimal
+        /// update_option : FAST number_rows=decimal 
         /// </summary>
         void VisitUpdateOption(AstUpdateOption.AstUpdateOption1 a);
         
         /// <summary>
-        /// update_option : MAXDOP  number_of_processors = decimal
+        /// update_option : MAXDOP number_of_processors=decimal 
         /// </summary>
         void VisitUpdateOption(AstUpdateOption.AstUpdateOption2 a);
         
         /// <summary>
-        /// update_option : MAXRECURSION  number_recursion = decimal
+        /// update_option : MAXRECURSION number_recursion=decimal 
         /// </summary>
         void VisitUpdateOption(AstUpdateOption.AstUpdateOption3 a);
         
         /// <summary>
-        /// update_option : USE  PLAN  stringtext
+        /// update_option : USE PLAN stringtext 
         /// </summary>
         void VisitUpdateOption(AstUpdateOption.AstUpdateOption4 a);
         
         /// <summary>
-        /// update_option : OPTIMIZE  FOR  LR_BRACKET  optimize_for_args  RR_BRACKET
+        /// update_option : OPTIMIZE FOR LR_BRACKET optimize_for_args RR_BRACKET 
         /// </summary>
         void VisitUpdateOption(AstUpdateOption.AstUpdateOption5 a);
         
         /// <summary>
-        /// update_option : update_option_enum
+        /// update_option : update_option_enum 
         /// </summary>
         void VisitUpdateOption(AstUpdateOption.AstUpdateOption6 a);
         
@@ -6744,17 +7218,17 @@ namespace Bb.SqlServer.Asts
         void VisitOptimizeForArg(AstOptimizeForArg a);
         
         /// <summary>
-        /// asterisk : star_asterisk
+        /// asterisk : star_asterisk 
         /// </summary>
         void VisitAsterisk(AstAsterisk.AstAsterisk1 a);
         
         /// <summary>
-        /// asterisk : table_asterisk
+        /// asterisk : table_asterisk 
         /// </summary>
         void VisitAsterisk(AstAsterisk.AstAsterisk2 a);
         
         /// <summary>
-        /// asterisk : updated_asterisk
+        /// asterisk : updated_asterisk 
         /// </summary>
         void VisitAsterisk(AstAsterisk.AstAsterisk3 a);
         
@@ -6769,67 +7243,67 @@ namespace Bb.SqlServer.Asts
         void VisitColumnElem(AstColumnElem a);
         
         /// <summary>
-        /// column_elem_target : full_column_name
+        /// column_elem_target : full_column_name 
         /// </summary>
         void VisitColumnElemTarget(AstColumnElemTarget.AstColumnElemTarget1 a);
         
         /// <summary>
-        /// column_elem_target : DOLLAR  IDENTITY
+        /// column_elem_target : DOLLAR IDENTITY 
         /// </summary>
         void VisitColumnElemTarget(AstColumnElemTarget.AstColumnElemTarget2 a);
         
         /// <summary>
-        /// column_elem_target : DOLLAR  ROWGUID
+        /// column_elem_target : DOLLAR ROWGUID 
         /// </summary>
         void VisitColumnElemTarget(AstColumnElemTarget.AstColumnElemTarget3 a);
         
         /// <summary>
-        /// column_elem_target : NULL_
+        /// column_elem_target : NULL_ 
         /// </summary>
         void VisitColumnElemTarget(AstColumnElemTarget.AstColumnElemTarget4 a);
         
         /// <summary>
-        /// udt_elem : udt_column_id  DOT  non_static_attr_id  udt_method_arguments  as_column_alias?
+        /// udt_elem : udt_column_id DOT non_static_attr_id udt_method_arguments as_column_alias? 
         /// </summary>
         void VisitUdtElem(AstUdtElem.AstUdtElem1 a);
         
         /// <summary>
-        /// udt_elem : udt_column_id  DOUBLE_COLON  static_attr_id  udt_method_arguments?  as_column_alias?
+        /// udt_elem : udt_column_id DOUBLE_COLON static_attr_id udt_method_arguments? as_column_alias? 
         /// </summary>
         void VisitUdtElem(AstUdtElem.AstUdtElem2 a);
         
         /// <summary>
-        /// expression_elem : leftAlias = column_alias  eq = EQUAL  leftAssignment = expression
+        /// expression_elem : leftAlias=column_alias eq=EQUAL leftAssignment=expression 
         /// </summary>
         void VisitExpressionElem(AstExpressionElem.AstExpressionElem1 a);
         
         /// <summary>
-        /// expression_elem : expressionAs = expression  as_column_alias?
+        /// expression_elem : expressionAs=expression as_column_alias? 
         /// </summary>
         void VisitExpressionElem(AstExpressionElem.AstExpressionElem2 a);
         
         /// <summary>
-        /// select_list_elem : asterisk
+        /// select_list_elem : asterisk 
         /// </summary>
         void VisitSelectListElem(AstSelectListElem.AstSelectListElem1 a);
         
         /// <summary>
-        /// select_list_elem : column_elem
+        /// select_list_elem : column_elem 
         /// </summary>
         void VisitSelectListElem(AstSelectListElem.AstSelectListElem2 a);
         
         /// <summary>
-        /// select_list_elem : udt_elem
+        /// select_list_elem : udt_elem 
         /// </summary>
         void VisitSelectListElem(AstSelectListElem.AstSelectListElem3 a);
         
         /// <summary>
-        /// select_list_elem : expression_assign_elem
+        /// select_list_elem : expression_assign_elem 
         /// </summary>
         void VisitSelectListElem(AstSelectListElem.AstSelectListElem4 a);
         
         /// <summary>
-        /// select_list_elem : expression_elem
+        /// select_list_elem : expression_elem 
         /// </summary>
         void VisitSelectListElem(AstSelectListElem.AstSelectListElem5 a);
         
@@ -6839,82 +7313,82 @@ namespace Bb.SqlServer.Asts
         void VisitExpressionAssignElem(AstExpressionAssignElem a);
         
         /// <summary>
-        /// table_source : table_source_item_joined
+        /// table_source : table_source_item_joined 
         /// </summary>
         void VisitTableSource(AstTableSource.AstTableSource1 a);
         
         /// <summary>
-        /// table_source : LR_BRACKET  table_source  RR_BRACKET
+        /// table_source : LR_BRACKET table_source RR_BRACKET 
         /// </summary>
         void VisitTableSource(AstTableSource.AstTableSource2 a);
         
         /// <summary>
-        /// table_source_item_joined : table_source_item  joins += join_part
+        /// table_source_item_joined : table_source_item joins=join_part 
         /// </summary>
         void VisitTableSourceItemJoined(AstTableSourceItemJoined.AstTableSourceItemJoined1 a);
         
         /// <summary>
-        /// table_source_item_joined : LR_BRACKET  table_source_item_joined  RR_BRACKET  joins += join_part
+        /// table_source_item_joined : LR_BRACKET table_source_item_joined RR_BRACKET joins=join_part 
         /// </summary>
         void VisitTableSourceItemJoined(AstTableSourceItemJoined.AstTableSourceItemJoined2 a);
         
         /// <summary>
-        /// table_source_item : complete_table_ref  deprecated_table_hint  as_table_alias
+        /// table_source_item : complete_table_ref deprecated_table_hint as_table_alias 
         /// </summary>
         void VisitTableSourceItem(AstTableSourceItem.AstTableSourceItem1 a);
         
         /// <summary>
-        /// table_source_item : complete_table_ref  as_table_alias?  table_hints?
+        /// table_source_item : complete_table_ref as_table_alias? table_hints? 
         /// </summary>
         void VisitTableSourceItem(AstTableSourceItem.AstTableSourceItem2 a);
         
         /// <summary>
-        /// table_source_item : rowset_function  as_table_alias?
+        /// table_source_item : rowset_function as_table_alias? 
         /// </summary>
         void VisitTableSourceItem(AstTableSourceItem.AstTableSourceItem3 a);
         
         /// <summary>
-        /// table_source_item : LR_BRACKET  derived_table  RR_BRACKET  as_table_alias_column?
+        /// table_source_item : LR_BRACKET derived_table RR_BRACKET as_table_alias_column? 
         /// </summary>
         void VisitTableSourceItem(AstTableSourceItem.AstTableSourceItem4 a);
         
         /// <summary>
-        /// table_source_item : change_table  as_table_alias?
+        /// table_source_item : change_table as_table_alias? 
         /// </summary>
         void VisitTableSourceItem(AstTableSourceItem.AstTableSourceItem5 a);
         
         /// <summary>
-        /// table_source_item : nodes_method  as_table_alias_column?
+        /// table_source_item : nodes_method as_table_alias_column? 
         /// </summary>
         void VisitTableSourceItem(AstTableSourceItem.AstTableSourceItem6 a);
         
         /// <summary>
-        /// table_source_item : function_call  as_table_alias_column?
+        /// table_source_item : function_call as_table_alias_column? 
         /// </summary>
         void VisitTableSourceItem(AstTableSourceItem.AstTableSourceItem7 a);
         
         /// <summary>
-        /// table_source_item : loc_id = local_id  as_table_alias?
+        /// table_source_item : loc_id=local_id as_table_alias? 
         /// </summary>
         void VisitTableSourceItem(AstTableSourceItem.AstTableSourceItem8 a);
         
         /// <summary>
-        /// table_source_item : loc_id_call = local_id  DOT  loc_fcall = function_call  as_table_alias_column?
+        /// table_source_item : loc_id_call=local_id DOT loc_fcall=function_call as_table_alias_column? 
         /// </summary>
         void VisitTableSourceItem(AstTableSourceItem.AstTableSourceItem9 a);
         
         /// <summary>
-        /// table_source_item : open_xml
+        /// table_source_item : open_xml 
         /// </summary>
         void VisitTableSourceItem(AstTableSourceItem.AstTableSourceItem10 a);
         
         /// <summary>
-        /// table_source_item : open_json
+        /// table_source_item : open_json 
         /// </summary>
         void VisitTableSourceItem(AstTableSourceItem.AstTableSourceItem11 a);
         
         /// <summary>
-        /// table_source_item : DOUBLE_COLON  oldstyle_fcall = function_call  as_table_alias?
+        /// table_source_item : DOUBLE_COLON oldstyle_fcall=function_call as_table_alias? 
         /// </summary>
         void VisitTableSourceItem(AstTableSourceItem.AstTableSourceItem12 a);
         
@@ -6924,17 +7398,17 @@ namespace Bb.SqlServer.Asts
         void VisitAsTableAliasColumn(AstAsTableAliasColumn a);
         
         /// <summary>
-        /// table_hints : with_table_hints
+        /// table_hints : with_table_hints 
         /// </summary>
         void VisitTableHints(AstTableHints.AstTableHints1 a);
         
         /// <summary>
-        /// table_hints : deprecated_table_hint
+        /// table_hints : deprecated_table_hint 
         /// </summary>
         void VisitTableHints(AstTableHints.AstTableHints2 a);
         
         /// <summary>
-        /// table_hints : sybase_legacy_hints
+        /// table_hints : sybase_legacy_hints 
         /// </summary>
         void VisitTableHints(AstTableHints.AstTableHints3 a);
         
@@ -6959,41 +7433,49 @@ namespace Bb.SqlServer.Asts
         void VisitColumnDeclaration(AstColumnDeclaration a);
         
         /// <summary>
-        /// change_table : change_table_changes
+        /// change_table : change_table_changes 
         /// </summary>
         void VisitChangeTable(AstChangeTable.AstChangeTable1 a);
         
         /// <summary>
-        /// change_table : change_table_version
+        /// change_table : change_table_version 
         /// </summary>
         void VisitChangeTable(AstChangeTable.AstChangeTable2 a);
         
-        void VisitChangeTableChanges(AstChangeTableChanges a);
+        /// <summary>
+        /// change_table_changes : CHANGETABLE LR_BRACKET CHANGES changetable=full_table_ref COMMA NULL_ RR_BRACKET 
+        /// </summary>
+        void VisitChangeTableChanges(AstChangeTableChanges.AstChangeTableChanges1 a);
+        
+        /// <summary>
+        /// change_table_changes : CHANGETABLE LR_BRACKET CHANGES changetable=full_table_ref COMMA decimal_local_id RR_BRACKET 
+        /// </summary>
+        void VisitChangeTableChanges(AstChangeTableChanges.AstChangeTableChanges2 a);
         
         void VisitChangeTableVersion(AstChangeTableVersion a);
         
         /// <summary>
-        /// join_part : join_on
+        /// join_part : join_on 
         /// </summary>
         void VisitJoinPart(AstJoinPart.AstJoinPart1 a);
         
         /// <summary>
-        /// join_part : cross_join
+        /// join_part : cross_join 
         /// </summary>
         void VisitJoinPart(AstJoinPart.AstJoinPart2 a);
         
         /// <summary>
-        /// join_part : apply_enum
+        /// join_part : apply_enum 
         /// </summary>
         void VisitJoinPart(AstJoinPart.AstJoinPart3 a);
         
         /// <summary>
-        /// join_part : pivot_join
+        /// join_part : pivot_join 
         /// </summary>
         void VisitJoinPart(AstJoinPart.AstJoinPart4 a);
         
         /// <summary>
-        /// join_part : unpivot_join
+        /// join_part : unpivot_join 
         /// </summary>
         void VisitJoinPart(AstJoinPart.AstJoinPart5 a);
         
@@ -7033,22 +7515,22 @@ namespace Bb.SqlServer.Asts
         void VisitUnpivotClause(AstUnpivotClause a);
         
         /// <summary>
-        /// rowset_function : OPENROWSET  LR_BRACKET  providerName = stringtext  COMMA  connectionString = stringtext  COMMA  sql = stringtext  RR_BRACKET
+        /// rowset_function : OPENROWSET LR_BRACKET providerName=stringtext COMMA connectionString=stringtext COMMA sql=stringtext RR_BRACKET 
         /// </summary>
         void VisitRowsetFunction(AstRowsetFunction.AstRowsetFunction1 a);
         
         /// <summary>
-        /// rowset_function : OPENROWSET  LR_BRACKET  BULK  data_file = stringtext  COMMA  buk_extended_options  RR_BRACKET
+        /// rowset_function : OPENROWSET LR_BRACKET BULK data_file=stringtext COMMA buk_extended_options RR_BRACKET 
         /// </summary>
         void VisitRowsetFunction(AstRowsetFunction.AstRowsetFunction2 a);
         
         /// <summary>
-        /// buk_extended_options : bulk_options
+        /// buk_extended_options : bulk_options 
         /// </summary>
         void VisitBukExtendedOptions(AstBukExtendedOptions.AstBukExtendedOptions1 a);
         
         /// <summary>
-        /// buk_extended_options : id_
+        /// buk_extended_options : id_ 
         /// </summary>
         void VisitBukExtendedOptions(AstBukExtendedOptions.AstBukExtendedOptions2 a);
         
@@ -7058,22 +7540,22 @@ namespace Bb.SqlServer.Asts
         void VisitBulkOption(AstBulkOption a);
         
         /// <summary>
-        /// derived_table : subquery
+        /// derived_table : subquery 
         /// </summary>
         void VisitDerivedTable(AstDerivedTable.AstDerivedTable1 a);
         
         /// <summary>
-        /// derived_table : LR_BRACKET  subqueries  RR_BRACKET
+        /// derived_table : LR_BRACKET subqueries RR_BRACKET 
         /// </summary>
         void VisitDerivedTable(AstDerivedTable.AstDerivedTable2 a);
         
         /// <summary>
-        /// derived_table : table_value_constructor
+        /// derived_table : table_value_constructor 
         /// </summary>
         void VisitDerivedTable(AstDerivedTable.AstDerivedTable3 a);
         
         /// <summary>
-        /// derived_table : LR_BRACKET  table_value_constructor  RR_BRACKET
+        /// derived_table : LR_BRACKET table_value_constructor RR_BRACKET 
         /// </summary>
         void VisitDerivedTable(AstDerivedTable.AstDerivedTable4 a);
         
@@ -7083,42 +7565,42 @@ namespace Bb.SqlServer.Asts
         void VisitSubqueries(AstSubqueries a);
         
         /// <summary>
-        /// function_call : ranking_windowed_function
+        /// function_call : ranking_windowed_function 
         /// </summary>
         void VisitFunctionCall(AstFunctionCall.AstFunctionCall1 a);
         
         /// <summary>
-        /// function_call : aggregate_windowed_function
+        /// function_call : aggregate_windowed_function 
         /// </summary>
         void VisitFunctionCall(AstFunctionCall.AstFunctionCall2 a);
         
         /// <summary>
-        /// function_call : analytic_windowed_function
+        /// function_call : analytic_windowed_function 
         /// </summary>
         void VisitFunctionCall(AstFunctionCall.AstFunctionCall3 a);
         
         /// <summary>
-        /// function_call : built_in_functions
+        /// function_call : built_in_functions 
         /// </summary>
         void VisitFunctionCall(AstFunctionCall.AstFunctionCall4 a);
         
         /// <summary>
-        /// function_call : scalar_function_name  LR_BRACKET  expression_list?  RR_BRACKET
+        /// function_call : scalar_function_name LR_BRACKET expression_list? RR_BRACKET 
         /// </summary>
         void VisitFunctionCall(AstFunctionCall.AstFunctionCall5 a);
         
         /// <summary>
-        /// function_call : freetext_function
+        /// function_call : freetext_function 
         /// </summary>
         void VisitFunctionCall(AstFunctionCall.AstFunctionCall6 a);
         
         /// <summary>
-        /// function_call : partition_function
+        /// function_call : partition_function 
         /// </summary>
         void VisitFunctionCall(AstFunctionCall.AstFunctionCall7 a);
         
         /// <summary>
-        /// function_call : hierarchyid_static_method
+        /// function_call : hierarchyid_static_method 
         /// </summary>
         void VisitFunctionCall(AstFunctionCall.AstFunctionCall8 a);
         
@@ -7128,47 +7610,47 @@ namespace Bb.SqlServer.Asts
         void VisitPartitionFunction(AstPartitionFunction a);
         
         /// <summary>
-        /// freetext_function : containstable_freetexttable  LR_BRACKET  freetext_table_andcolumn_names  COMMA  expression_language  (COMMA  expression)?  RR_BRACKET
+        /// freetext_function : containstable_freetexttable LR_BRACKET freetext_table_andcolumn_names COMMA expression_language COMMA expression RR_BRACKET 
         /// </summary>
         void VisitFreetextFunction(AstFreetextFunction.AstFreetextFunction1 a);
         
         /// <summary>
-        /// freetext_function : semantic_table  LR_BRACKET  freetext_table_andcolumn_names  COMMA  expression  RR_BRACKET
+        /// freetext_function : semantic_table LR_BRACKET freetext_table_andcolumn_names COMMA expression RR_BRACKET 
         /// </summary>
         void VisitFreetextFunction(AstFreetextFunction.AstFreetextFunction2 a);
         
         /// <summary>
-        /// freetext_function : SEMANTICSIMILARITYDETAILSTABLE  LR_BRACKET  full_table_ref  COMMA  name1 = full_column_name  COMMA  expr1 = expression  COMMA  name2 = full_column_name  COMMA  expr2 = expression  RR_BRACKET
+        /// freetext_function : SEMANTICSIMILARITYDETAILSTABLE LR_BRACKET full_table_ref COMMA name1=full_column_name COMMA expr1=expression COMMA name2=full_column_name COMMA expr2=expression RR_BRACKET 
         /// </summary>
         void VisitFreetextFunction(AstFreetextFunction.AstFreetextFunction3 a);
         
         /// <summary>
-        /// freetext_predicate : CONTAINS  LR_BRACKET  predicate_contains  COMMA  rule = expression  RR_BRACKET
+        /// freetext_predicate : CONTAINS LR_BRACKET predicate_contains COMMA rule=expression RR_BRACKET 
         /// </summary>
         void VisitFreetextPredicate(AstFreetextPredicate.AstFreetextPredicate1 a);
         
         /// <summary>
-        /// freetext_predicate : FREETEXT  LR_BRACKET  freetext_table_andcolumn_names  COMMA  expression_language  RR_BRACKET
+        /// freetext_predicate : FREETEXT LR_BRACKET freetext_table_andcolumn_names COMMA expression_language RR_BRACKET 
         /// </summary>
         void VisitFreetextPredicate(AstFreetextPredicate.AstFreetextPredicate2 a);
         
         /// <summary>
-        /// predicate_contains : full_column_name
+        /// predicate_contains : full_column_name 
         /// </summary>
         void VisitPredicateContains(AstPredicateContains.AstPredicateContains1 a);
         
         /// <summary>
-        /// predicate_contains : full_column_names
+        /// predicate_contains : full_column_names 
         /// </summary>
         void VisitPredicateContains(AstPredicateContains.AstPredicateContains2 a);
         
         /// <summary>
-        /// predicate_contains : STAR
+        /// predicate_contains : STAR 
         /// </summary>
         void VisitPredicateContains(AstPredicateContains.AstPredicateContains3 a);
         
         /// <summary>
-        /// predicate_contains : PROPERTY  LR_BRACKET  full_column_name  COMMA  property = expression  RR_BRACKET
+        /// predicate_contains : PROPERTY LR_BRACKET full_column_name COMMA property=expression RR_BRACKET 
         /// </summary>
         void VisitPredicateContains(AstPredicateContains.AstPredicateContains4 a);
         
@@ -7178,694 +7660,767 @@ namespace Bb.SqlServer.Asts
         void VisitFreetextTableAndcolumnNames(AstFreetextTableAndcolumnNames a);
         
         /// <summary>
-        /// built_in_functions : APP_NAME  LR_BRACKET  RR_BRACKET
+        /// built_in_functions : APP_NAME LR_BRACKET RR_BRACKET 
         /// </summary>
         void VisitBuiltInFunctions(AstBuiltInFunctions.AstBuiltInFunctions1 a);
         
         /// <summary>
-        /// built_in_functions : APPLOCK_MODE  LR_BRACKET  database_principal = expression  COMMA  resource_name = expression  COMMA  lock_owner = expression  RR_BRACKET
+        /// built_in_functions : APPLOCK_MODE LR_BRACKET database_principal=expression COMMA resource_name=expression COMMA lock_owner=expression RR_BRACKET 
         /// </summary>
         void VisitBuiltInFunctions(AstBuiltInFunctions.AstBuiltInFunctions2 a);
         
         /// <summary>
-        /// built_in_functions : APPLOCK_TEST  LR_BRACKET  database_principal = expression  COMMA  resource_name = expression  COMMA  lockmode = expression  COMMA  lock_owner = expression  RR_BRACKET
+        /// built_in_functions : APPLOCK_TEST LR_BRACKET database_principal=expression COMMA resource_name=expression COMMA lockmode=expression COMMA lock_owner=expression RR_BRACKET 
         /// </summary>
         void VisitBuiltInFunctions(AstBuiltInFunctions.AstBuiltInFunctions3 a);
         
         /// <summary>
-        /// built_in_functions : ASSEMBLYPROPERTY  LR_BRACKET  assemblyName = expression  COMMA  propertyName = expression  RR_BRACKET
+        /// built_in_functions : ASSEMBLYPROPERTY LR_BRACKET assemblyName=expression COMMA propertyName=expression RR_BRACKET 
         /// </summary>
         void VisitBuiltInFunctions(AstBuiltInFunctions.AstBuiltInFunctions4 a);
         
         /// <summary>
-        /// built_in_functions : COL_LENGTH  LR_BRACKET  table = expression  COMMA  column = expression  RR_BRACKET
+        /// built_in_functions : COL_LENGTH LR_BRACKET table=expression COMMA column=expression RR_BRACKET 
         /// </summary>
         void VisitBuiltInFunctions(AstBuiltInFunctions.AstBuiltInFunctions5 a);
         
         /// <summary>
-        /// built_in_functions : COL_NAME  LR_BRACKET  table = expression  COMMA  column = expression  RR_BRACKET
+        /// built_in_functions : COL_NAME LR_BRACKET table=expression COMMA column=expression RR_BRACKET 
         /// </summary>
         void VisitBuiltInFunctions(AstBuiltInFunctions.AstBuiltInFunctions6 a);
         
         /// <summary>
-        /// built_in_functions : COLUMNPROPERTY  LR_BRACKET  idExpression = expression  COMMA  column = expression  COMMA  property = expression  RR_BRACKET
+        /// built_in_functions : COLUMNPROPERTY LR_BRACKET idExpression=expression COMMA column=expression COMMA property=expression RR_BRACKET 
         /// </summary>
         void VisitBuiltInFunctions(AstBuiltInFunctions.AstBuiltInFunctions7 a);
         
         /// <summary>
-        /// built_in_functions : DATABASEPROPERTYEX  LR_BRACKET  database = expression  COMMA  property = expression  RR_BRACKET
+        /// built_in_functions : DATABASEPROPERTYEX LR_BRACKET database=expression COMMA property=expression RR_BRACKET 
         /// </summary>
         void VisitBuiltInFunctions(AstBuiltInFunctions.AstBuiltInFunctions8 a);
         
         /// <summary>
-        /// built_in_functions : DB_ID  LR_BRACKET  databaseName = expression  RR_BRACKET
+        /// built_in_functions : DB_ID LR_BRACKET databaseName=expression RR_BRACKET 
         /// </summary>
         void VisitBuiltInFunctions(AstBuiltInFunctions.AstBuiltInFunctions9 a);
         
         /// <summary>
-        /// built_in_functions : DB_NAME  LR_BRACKET  database = expression  RR_BRACKET
+        /// built_in_functions : DB_NAME LR_BRACKET database=expression RR_BRACKET 
         /// </summary>
         void VisitBuiltInFunctions(AstBuiltInFunctions.AstBuiltInFunctions10 a);
         
         /// <summary>
-        /// built_in_functions : FILE_ID  LR_BRACKET  file_name = expression  RR_BRACKET
+        /// built_in_functions : FILE_ID LR_BRACKET file_name=expression RR_BRACKET 
         /// </summary>
         void VisitBuiltInFunctions(AstBuiltInFunctions.AstBuiltInFunctions11 a);
         
         /// <summary>
-        /// built_in_functions : FILE_IDEX  LR_BRACKET  file_name = expression  RR_BRACKET
+        /// built_in_functions : FILE_IDEX LR_BRACKET file_name=expression RR_BRACKET 
         /// </summary>
         void VisitBuiltInFunctions(AstBuiltInFunctions.AstBuiltInFunctions12 a);
         
         /// <summary>
-        /// built_in_functions : FILE_NAME  LR_BRACKET  file = expression  RR_BRACKET
+        /// built_in_functions : FILE_NAME LR_BRACKET file=expression RR_BRACKET 
         /// </summary>
         void VisitBuiltInFunctions(AstBuiltInFunctions.AstBuiltInFunctions13 a);
         
         /// <summary>
-        /// built_in_functions : FILEGROUP_ID  LR_BRACKET  filegroup_name = expression  RR_BRACKET
+        /// built_in_functions : FILEGROUP_ID LR_BRACKET filegroup_name=expression RR_BRACKET 
         /// </summary>
         void VisitBuiltInFunctions(AstBuiltInFunctions.AstBuiltInFunctions14 a);
         
         /// <summary>
-        /// built_in_functions : FILEGROUP_NAME  LR_BRACKET  filegroup_id = expression  RR_BRACKET
+        /// built_in_functions : FILEGROUP_NAME LR_BRACKET filegroup_id=expression RR_BRACKET 
         /// </summary>
         void VisitBuiltInFunctions(AstBuiltInFunctions.AstBuiltInFunctions15 a);
         
         /// <summary>
-        /// built_in_functions : FILEGROUPPROPERTY  LR_BRACKET  filegroup = expression  COMMA  property = expression  RR_BRACKET
+        /// built_in_functions : FILEGROUPPROPERTY LR_BRACKET filegroup=expression COMMA property=expression RR_BRACKET 
         /// </summary>
         void VisitBuiltInFunctions(AstBuiltInFunctions.AstBuiltInFunctions16 a);
         
         /// <summary>
-        /// built_in_functions : FILEPROPERTY  LR_BRACKET  file = expression  COMMA  property = expression  RR_BRACKET
+        /// built_in_functions : FILEPROPERTY LR_BRACKET file=expression COMMA property=expression RR_BRACKET 
         /// </summary>
         void VisitBuiltInFunctions(AstBuiltInFunctions.AstBuiltInFunctions17 a);
         
         /// <summary>
-        /// built_in_functions : FILEPROPERTYEX  LR_BRACKET  name = expression  COMMA  property = expression  RR_BRACKET
+        /// built_in_functions : FILEPROPERTYEX LR_BRACKET name=expression COMMA property=expression RR_BRACKET 
         /// </summary>
         void VisitBuiltInFunctions(AstBuiltInFunctions.AstBuiltInFunctions18 a);
         
         /// <summary>
-        /// built_in_functions : FULLTEXTCATALOGPROPERTY  LR_BRACKET  catalog = expression  COMMA  property = expression  RR_BRACKET
+        /// built_in_functions : FULLTEXTCATALOGPROPERTY LR_BRACKET catalog=expression COMMA property=expression RR_BRACKET 
         /// </summary>
         void VisitBuiltInFunctions(AstBuiltInFunctions.AstBuiltInFunctions19 a);
         
         /// <summary>
-        /// built_in_functions : FULLTEXTSERVICEPROPERTY  LR_BRACKET  property = expression  RR_BRACKET
+        /// built_in_functions : FULLTEXTSERVICEPROPERTY LR_BRACKET property=expression RR_BRACKET 
         /// </summary>
         void VisitBuiltInFunctions(AstBuiltInFunctions.AstBuiltInFunctions20 a);
         
         /// <summary>
-        /// built_in_functions : INDEX_COL  LR_BRACKET  tableOrView = expression  COMMA  index = expression  COMMA  key = expression  RR_BRACKET
+        /// built_in_functions : INDEX_COL LR_BRACKET tableOrView=expression COMMA index=expression COMMA key=expression RR_BRACKET 
         /// </summary>
         void VisitBuiltInFunctions(AstBuiltInFunctions.AstBuiltInFunctions21 a);
         
         /// <summary>
-        /// built_in_functions : INDEXKEY_PROPERTY  LR_BRACKET  object = expression  COMMA  index = expression  COMMA  key = expression  COMMA  property = expression  RR_BRACKET
+        /// built_in_functions : INDEXKEY_PROPERTY LR_BRACKET object=expression COMMA index=expression COMMA key=expression COMMA property=expression RR_BRACKET 
         /// </summary>
         void VisitBuiltInFunctions(AstBuiltInFunctions.AstBuiltInFunctions22 a);
         
         /// <summary>
-        /// built_in_functions : INDEXPROPERTY  LR_BRACKET  object = expression  COMMA  index_or_statistics = expression  COMMA  property = expression  RR_BRACKET
+        /// built_in_functions : INDEXPROPERTY LR_BRACKET object=expression COMMA index_or_statistics=expression COMMA property=expression RR_BRACKET 
         /// </summary>
         void VisitBuiltInFunctions(AstBuiltInFunctions.AstBuiltInFunctions23 a);
         
         /// <summary>
-        /// built_in_functions : NEXT  VALUE  FOR  sequenceName = full_table_ref  (OVER  LR_BRACKET  order_by_clause  RR_BRACKET)?
+        /// built_in_functions : NEXT VALUE FOR sequenceName=full_table_ref OVER LR_BRACKET order_by_clause RR_BRACKET 
         /// </summary>
         void VisitBuiltInFunctions(AstBuiltInFunctions.AstBuiltInFunctions24 a);
         
         /// <summary>
-        /// built_in_functions : OBJECT_DEFINITION  LR_BRACKET  object = expression  RR_BRACKET
+        /// built_in_functions : OBJECT_DEFINITION LR_BRACKET object=expression RR_BRACKET 
         /// </summary>
         void VisitBuiltInFunctions(AstBuiltInFunctions.AstBuiltInFunctions25 a);
         
         /// <summary>
-        /// built_in_functions : OBJECT_ID  LR_BRACKET  objectName = expression  (COMMA  object_type = expression)?  RR_BRACKET
+        /// built_in_functions : OBJECT_ID LR_BRACKET objectName=expression COMMA object_type=expression RR_BRACKET 
         /// </summary>
         void VisitBuiltInFunctions(AstBuiltInFunctions.AstBuiltInFunctions26 a);
         
         /// <summary>
-        /// built_in_functions : OBJECT_NAME  LR_BRACKET  object = expression  (COMMA  database = expression)?  RR_BRACKET
+        /// built_in_functions : OBJECT_NAME LR_BRACKET object=expression COMMA database=expression RR_BRACKET 
         /// </summary>
         void VisitBuiltInFunctions(AstBuiltInFunctions.AstBuiltInFunctions27 a);
         
         /// <summary>
-        /// built_in_functions : OBJECT_SCHEMA_NAME  LR_BRACKET  target_object = expression  (COMMA  database = expression)?  RR_BRACKET
+        /// built_in_functions : OBJECT_SCHEMA_NAME LR_BRACKET target_object=expression COMMA database=expression RR_BRACKET 
         /// </summary>
         void VisitBuiltInFunctions(AstBuiltInFunctions.AstBuiltInFunctions28 a);
         
         /// <summary>
-        /// built_in_functions : OBJECTPROPERTY  LR_BRACKET  idExpression = expression  COMMA  property = expression  RR_BRACKET
+        /// built_in_functions : OBJECTPROPERTY LR_BRACKET idExpression=expression COMMA property=expression RR_BRACKET 
         /// </summary>
         void VisitBuiltInFunctions(AstBuiltInFunctions.AstBuiltInFunctions29 a);
         
         /// <summary>
-        /// built_in_functions : OBJECTPROPERTYEX  LR_BRACKET  idExpression = expression  COMMA  property = expression  RR_BRACKET
+        /// built_in_functions : OBJECTPROPERTYEX LR_BRACKET idExpression=expression COMMA property=expression RR_BRACKET 
         /// </summary>
         void VisitBuiltInFunctions(AstBuiltInFunctions.AstBuiltInFunctions30 a);
         
         /// <summary>
-        /// built_in_functions : ORIGINAL_DB_NAME  LR_BRACKET  RR_BRACKET
+        /// built_in_functions : ORIGINAL_DB_NAME LR_BRACKET RR_BRACKET 
         /// </summary>
         void VisitBuiltInFunctions(AstBuiltInFunctions.AstBuiltInFunctions31 a);
         
         /// <summary>
-        /// built_in_functions : PARSENAME  LR_BRACKET  objectName = expression  COMMA  object_piece = expression  RR_BRACKET
+        /// built_in_functions : PARSENAME LR_BRACKET objectName=expression COMMA object_piece=expression RR_BRACKET 
         /// </summary>
         void VisitBuiltInFunctions(AstBuiltInFunctions.AstBuiltInFunctions32 a);
         
         /// <summary>
-        /// built_in_functions : SCHEMA_ID  LR_BRACKET  schemaName = expression  RR_BRACKET
+        /// built_in_functions : SCHEMA_ID LR_BRACKET schemaName=expression RR_BRACKET 
         /// </summary>
         void VisitBuiltInFunctions(AstBuiltInFunctions.AstBuiltInFunctions33 a);
         
         /// <summary>
-        /// built_in_functions : SCHEMA_NAME  LR_BRACKET  schemaId = expression  RR_BRACKET
+        /// built_in_functions : SCHEMA_NAME LR_BRACKET schemaId=expression RR_BRACKET 
         /// </summary>
         void VisitBuiltInFunctions(AstBuiltInFunctions.AstBuiltInFunctions34 a);
         
         /// <summary>
-        /// built_in_functions : SCOPE_IDENTITY  LR_BRACKET  RR_BRACKET
+        /// built_in_functions : SCOPE_IDENTITY LR_BRACKET RR_BRACKET 
         /// </summary>
         void VisitBuiltInFunctions(AstBuiltInFunctions.AstBuiltInFunctions35 a);
         
         /// <summary>
-        /// built_in_functions : SERVERPROPERTY  LR_BRACKET  property = expression  RR_BRACKET
+        /// built_in_functions : SERVERPROPERTY LR_BRACKET property=expression RR_BRACKET 
         /// </summary>
         void VisitBuiltInFunctions(AstBuiltInFunctions.AstBuiltInFunctions36 a);
         
         /// <summary>
-        /// built_in_functions : STATS_DATE  LR_BRACKET  target_object = expression  COMMA  stats = expression  RR_BRACKET
+        /// built_in_functions : STATS_DATE LR_BRACKET target_object=expression COMMA stats=expression RR_BRACKET 
         /// </summary>
         void VisitBuiltInFunctions(AstBuiltInFunctions.AstBuiltInFunctions37 a);
         
         /// <summary>
-        /// built_in_functions : TYPE_ID  LR_BRACKET  type_name = expression  RR_BRACKET
+        /// built_in_functions : TYPE_ID LR_BRACKET type_name=expression RR_BRACKET 
         /// </summary>
         void VisitBuiltInFunctions(AstBuiltInFunctions.AstBuiltInFunctions38 a);
         
         /// <summary>
-        /// built_in_functions : TYPE_NAME  LR_BRACKET  type = expression  RR_BRACKET
+        /// built_in_functions : TYPE_NAME LR_BRACKET type=expression RR_BRACKET 
         /// </summary>
         void VisitBuiltInFunctions(AstBuiltInFunctions.AstBuiltInFunctions39 a);
         
         /// <summary>
-        /// built_in_functions : TYPEPROPERTY  LR_BRACKET  type = expression  COMMA  property = expression  RR_BRACKET
+        /// built_in_functions : TYPEPROPERTY LR_BRACKET type=expression COMMA property=expression RR_BRACKET 
         /// </summary>
         void VisitBuiltInFunctions(AstBuiltInFunctions.AstBuiltInFunctions40 a);
         
         /// <summary>
-        /// built_in_functions : ASCII  LR_BRACKET  character_expression = expression  RR_BRACKET
+        /// built_in_functions : ASCII LR_BRACKET character_expression=expression RR_BRACKET 
         /// </summary>
         void VisitBuiltInFunctions(AstBuiltInFunctions.AstBuiltInFunctions41 a);
         
         /// <summary>
-        /// built_in_functions : CHAR  LR_BRACKET  integer_expression = expression  RR_BRACKET
+        /// built_in_functions : CHAR LR_BRACKET integer_expression=expression RR_BRACKET 
         /// </summary>
         void VisitBuiltInFunctions(AstBuiltInFunctions.AstBuiltInFunctions42 a);
         
         /// <summary>
-        /// built_in_functions : CHARINDEX  LR_BRACKET  expressionToFind = expression  COMMA  expressionToSearch = expression  (COMMA  start_location = expression)?  RR_BRACKET
+        /// built_in_functions : CHARINDEX LR_BRACKET expressionToFind=expression COMMA expressionToSearch=expression COMMA start_location=expression RR_BRACKET 
         /// </summary>
         void VisitBuiltInFunctions(AstBuiltInFunctions.AstBuiltInFunctions43 a);
         
         /// <summary>
-        /// built_in_functions : CONCAT  LR_BRACKET  expressions  RR_BRACKET
+        /// built_in_functions : CONCAT LR_BRACKET expressions RR_BRACKET 
         /// </summary>
         void VisitBuiltInFunctions(AstBuiltInFunctions.AstBuiltInFunctions44 a);
         
         /// <summary>
-        /// built_in_functions : CONCAT_WS  LR_BRACKET  expressions  RR_BRACKET
+        /// built_in_functions : CONCAT_WS LR_BRACKET expressions RR_BRACKET 
         /// </summary>
         void VisitBuiltInFunctions(AstBuiltInFunctions.AstBuiltInFunctions45 a);
         
         /// <summary>
-        /// built_in_functions : DIFFERENCE  LR_BRACKET  character_expression_1 = expression  COMMA  character_expression_2 = expression  RR_BRACKET
+        /// built_in_functions : DIFFERENCE LR_BRACKET character_expression_1=expression COMMA character_expression_2=expression RR_BRACKET 
         /// </summary>
         void VisitBuiltInFunctions(AstBuiltInFunctions.AstBuiltInFunctions46 a);
         
         /// <summary>
-        /// built_in_functions : FORMAT  LR_BRACKET  expressions  RR_BRACKET
+        /// built_in_functions : FORMAT LR_BRACKET expressions RR_BRACKET 
         /// </summary>
         void VisitBuiltInFunctions(AstBuiltInFunctions.AstBuiltInFunctions47 a);
         
         /// <summary>
-        /// built_in_functions : LEFT  LR_BRACKET  character_expression = expression  COMMA  integer_expression = expression  RR_BRACKET
+        /// built_in_functions : LEFT LR_BRACKET character_expression=expression COMMA integer_expression=expression RR_BRACKET 
         /// </summary>
         void VisitBuiltInFunctions(AstBuiltInFunctions.AstBuiltInFunctions48 a);
         
         /// <summary>
-        /// built_in_functions : LEN  LR_BRACKET  string_expression = expression  RR_BRACKET
+        /// built_in_functions : LEN LR_BRACKET string_expression=expression RR_BRACKET 
         /// </summary>
         void VisitBuiltInFunctions(AstBuiltInFunctions.AstBuiltInFunctions49 a);
         
         /// <summary>
-        /// built_in_functions : LOWER  LR_BRACKET  character_expression = expression  RR_BRACKET
+        /// built_in_functions : LOWER LR_BRACKET character_expression=expression RR_BRACKET 
         /// </summary>
         void VisitBuiltInFunctions(AstBuiltInFunctions.AstBuiltInFunctions50 a);
         
         /// <summary>
-        /// built_in_functions : LTRIM  LR_BRACKET  character_expression = expression  RR_BRACKET
+        /// built_in_functions : LTRIM LR_BRACKET character_expression=expression RR_BRACKET 
         /// </summary>
         void VisitBuiltInFunctions(AstBuiltInFunctions.AstBuiltInFunctions51 a);
         
         /// <summary>
-        /// built_in_functions : NCHAR  LR_BRACKET  integer_expression = expression  RR_BRACKET
+        /// built_in_functions : NCHAR LR_BRACKET integer_expression=expression RR_BRACKET 
         /// </summary>
         void VisitBuiltInFunctions(AstBuiltInFunctions.AstBuiltInFunctions52 a);
         
         /// <summary>
-        /// built_in_functions : PATINDEX  LR_BRACKET  pattern = expression  COMMA  string_expression = expression  RR_BRACKET
+        /// built_in_functions : PATINDEX LR_BRACKET pattern=expression COMMA string_expression=expression RR_BRACKET 
         /// </summary>
         void VisitBuiltInFunctions(AstBuiltInFunctions.AstBuiltInFunctions53 a);
         
         /// <summary>
-        /// built_in_functions : QUOTENAME  LR_BRACKET  character_string = expression  (COMMA  quote_character = expression)?  RR_BRACKET
+        /// built_in_functions : QUOTENAME LR_BRACKET character_string=expression COMMA quote_character=expression RR_BRACKET 
         /// </summary>
         void VisitBuiltInFunctions(AstBuiltInFunctions.AstBuiltInFunctions54 a);
         
         /// <summary>
-        /// built_in_functions : REPLACE  LR_BRACKET  input = expression  COMMA  replacing = expression  COMMA  with = expression  RR_BRACKET
+        /// built_in_functions : REPLACE LR_BRACKET input=expression COMMA replacing=expression COMMA with=expression RR_BRACKET 
         /// </summary>
         void VisitBuiltInFunctions(AstBuiltInFunctions.AstBuiltInFunctions55 a);
         
         /// <summary>
-        /// built_in_functions : REPLICATE  LR_BRACKET  string_expression = expression  COMMA  integer_expression = expression  RR_BRACKET
+        /// built_in_functions : REPLICATE LR_BRACKET string_expression=expression COMMA integer_expression=expression RR_BRACKET 
         /// </summary>
         void VisitBuiltInFunctions(AstBuiltInFunctions.AstBuiltInFunctions56 a);
         
         /// <summary>
-        /// built_in_functions : REVERSE  LR_BRACKET  string_expression = expression  RR_BRACKET
+        /// built_in_functions : REVERSE LR_BRACKET string_expression=expression RR_BRACKET 
         /// </summary>
         void VisitBuiltInFunctions(AstBuiltInFunctions.AstBuiltInFunctions57 a);
         
         /// <summary>
-        /// built_in_functions : RIGHT  LR_BRACKET  character_expression = expression  COMMA  integer_expression = expression  RR_BRACKET
+        /// built_in_functions : RIGHT LR_BRACKET character_expression=expression COMMA integer_expression=expression RR_BRACKET 
         /// </summary>
         void VisitBuiltInFunctions(AstBuiltInFunctions.AstBuiltInFunctions58 a);
         
         /// <summary>
-        /// built_in_functions : RTRIM  LR_BRACKET  character_expression = expression  RR_BRACKET
+        /// built_in_functions : RTRIM LR_BRACKET character_expression=expression RR_BRACKET 
         /// </summary>
         void VisitBuiltInFunctions(AstBuiltInFunctions.AstBuiltInFunctions59 a);
         
         /// <summary>
-        /// built_in_functions : SOUNDEX  LR_BRACKET  character_expression = expression  RR_BRACKET
+        /// built_in_functions : SOUNDEX LR_BRACKET character_expression=expression RR_BRACKET 
         /// </summary>
         void VisitBuiltInFunctions(AstBuiltInFunctions.AstBuiltInFunctions60 a);
         
         /// <summary>
-        /// built_in_functions : SPACE_KEYWORD  LR_BRACKET  integer_expression = expression  RR_BRACKET
+        /// built_in_functions : SPACE_KEYWORD LR_BRACKET integer_expression=expression RR_BRACKET 
         /// </summary>
         void VisitBuiltInFunctions(AstBuiltInFunctions.AstBuiltInFunctions61 a);
         
         /// <summary>
-        /// built_in_functions : STR  LR_BRACKET  float_expression = expression  (COMMA  length_expression = expression  (COMMA  decimal_expr = expression)?)?  RR_BRACKET
+        /// built_in_functions : STR LR_BRACKET float_expression=expression COMMA length_expression=expression COMMA decimal_expr=expression RR_BRACKET 
         /// </summary>
         void VisitBuiltInFunctions(AstBuiltInFunctions.AstBuiltInFunctions62 a);
         
         /// <summary>
-        /// built_in_functions : STRING_AGG  LR_BRACKET  expr = expression  COMMA  separator = expression  RR_BRACKET  (WITHIN  GROUP  LR_BRACKET  order_by_clause  RR_BRACKET)?
+        /// built_in_functions : STRING_AGG LR_BRACKET expr=expression COMMA separator=expression RR_BRACKET WITHIN GROUP LR_BRACKET order_by_clause RR_BRACKET 
         /// </summary>
         void VisitBuiltInFunctions(AstBuiltInFunctions.AstBuiltInFunctions63 a);
         
         /// <summary>
-        /// built_in_functions : STRING_ESCAPE  LR_BRACKET  text_ = expression  COMMA  type_ = expression  RR_BRACKET
+        /// built_in_functions : STRING_ESCAPE LR_BRACKET text_=expression COMMA type_=expression RR_BRACKET 
         /// </summary>
         void VisitBuiltInFunctions(AstBuiltInFunctions.AstBuiltInFunctions64 a);
         
         /// <summary>
-        /// built_in_functions : STUFF  LR_BRACKET  str = expression  COMMA  from = decimal  COMMA  to = decimal  COMMA  str_with = expression  RR_BRACKET
+        /// built_in_functions : STUFF LR_BRACKET str=expression COMMA from=decimal COMMA to=decimal COMMA str_with=expression RR_BRACKET 
         /// </summary>
         void VisitBuiltInFunctions(AstBuiltInFunctions.AstBuiltInFunctions65 a);
         
         /// <summary>
-        /// built_in_functions : SUBSTRING  LR_BRACKET  string_expression = expression  COMMA  start_ = expression  COMMA  length = expression  RR_BRACKET
+        /// built_in_functions : SUBSTRING LR_BRACKET string_expression=expression COMMA start_=expression COMMA length=expression RR_BRACKET 
         /// </summary>
         void VisitBuiltInFunctions(AstBuiltInFunctions.AstBuiltInFunctions66 a);
         
         /// <summary>
-        /// built_in_functions : TRANSLATE  LR_BRACKET  inputString = expression  COMMA  characters = expression  COMMA  translations = expression  RR_BRACKET
+        /// built_in_functions : TRANSLATE LR_BRACKET inputString=expression COMMA characters=expression COMMA translations=expression RR_BRACKET 
         /// </summary>
         void VisitBuiltInFunctions(AstBuiltInFunctions.AstBuiltInFunctions67 a);
         
         /// <summary>
-        /// built_in_functions : TRIM  LR_BRACKET  (characters = expression  FROM)?  string_ = expression  RR_BRACKET
+        /// built_in_functions : TRIM LR_BRACKET characters=expression FROM string_=expression RR_BRACKET 
         /// </summary>
         void VisitBuiltInFunctions(AstBuiltInFunctions.AstBuiltInFunctions68 a);
         
         /// <summary>
-        /// built_in_functions : UNICODE  LR_BRACKET  ncharacter_expression = expression  RR_BRACKET
+        /// built_in_functions : UNICODE LR_BRACKET ncharacter_expression=expression RR_BRACKET 
         /// </summary>
         void VisitBuiltInFunctions(AstBuiltInFunctions.AstBuiltInFunctions69 a);
         
         /// <summary>
-        /// built_in_functions : UPPER  LR_BRACKET  character_expression = expression  RR_BRACKET
+        /// built_in_functions : UPPER LR_BRACKET character_expression=expression RR_BRACKET 
         /// </summary>
         void VisitBuiltInFunctions(AstBuiltInFunctions.AstBuiltInFunctions70 a);
         
         /// <summary>
-        /// built_in_functions : BINARY_CHECKSUM  LR_BRACKET  expression_or_star  RR_BRACKET
+        /// built_in_functions : BINARY_CHECKSUM LR_BRACKET expression_or_star RR_BRACKET 
         /// </summary>
         void VisitBuiltInFunctions(AstBuiltInFunctions.AstBuiltInFunctions71 a);
         
         /// <summary>
-        /// built_in_functions : CHECKSUM  LR_BRACKET  expression_or_star  RR_BRACKET
+        /// built_in_functions : CHECKSUM LR_BRACKET expression_or_star RR_BRACKET 
         /// </summary>
         void VisitBuiltInFunctions(AstBuiltInFunctions.AstBuiltInFunctions72 a);
         
         /// <summary>
-        /// built_in_functions : COMPRESS  LR_BRACKET  expr = expression  RR_BRACKET
+        /// built_in_functions : COMPRESS LR_BRACKET expr=expression RR_BRACKET 
         /// </summary>
         void VisitBuiltInFunctions(AstBuiltInFunctions.AstBuiltInFunctions73 a);
         
         /// <summary>
-        /// built_in_functions : CONNECTIONPROPERTY  LR_BRACKET  cnx_property = stringtext  RR_BRACKET
+        /// built_in_functions : CONNECTIONPROPERTY LR_BRACKET cnx_property=stringtext RR_BRACKET 
         /// </summary>
         void VisitBuiltInFunctions(AstBuiltInFunctions.AstBuiltInFunctions74 a);
         
         /// <summary>
-        /// built_in_functions : CONTEXT_INFO  LR_BRACKET  RR_BRACKET
+        /// built_in_functions : CONTEXT_INFO LR_BRACKET RR_BRACKET 
         /// </summary>
         void VisitBuiltInFunctions(AstBuiltInFunctions.AstBuiltInFunctions75 a);
         
         /// <summary>
-        /// built_in_functions : CURRENT_REQUEST_ID  LR_BRACKET  RR_BRACKET
+        /// built_in_functions : CURRENT_REQUEST_ID LR_BRACKET RR_BRACKET 
         /// </summary>
         void VisitBuiltInFunctions(AstBuiltInFunctions.AstBuiltInFunctions76 a);
         
         /// <summary>
-        /// built_in_functions : CURRENT_TRANSACTION_ID  LR_BRACKET  RR_BRACKET
+        /// built_in_functions : CURRENT_TRANSACTION_ID LR_BRACKET RR_BRACKET 
         /// </summary>
         void VisitBuiltInFunctions(AstBuiltInFunctions.AstBuiltInFunctions77 a);
         
         /// <summary>
-        /// built_in_functions : DECOMPRESS  LR_BRACKET  expr = expression  RR_BRACKET
+        /// built_in_functions : DECOMPRESS LR_BRACKET expr=expression RR_BRACKET 
         /// </summary>
         void VisitBuiltInFunctions(AstBuiltInFunctions.AstBuiltInFunctions78 a);
         
         /// <summary>
-        /// built_in_functions : ERROR_LINE  LR_BRACKET  RR_BRACKET
+        /// built_in_functions : ERROR_LINE LR_BRACKET RR_BRACKET 
         /// </summary>
         void VisitBuiltInFunctions(AstBuiltInFunctions.AstBuiltInFunctions79 a);
         
         /// <summary>
-        /// built_in_functions : ERROR_MESSAGE  LR_BRACKET  RR_BRACKET
+        /// built_in_functions : ERROR_MESSAGE LR_BRACKET RR_BRACKET 
         /// </summary>
         void VisitBuiltInFunctions(AstBuiltInFunctions.AstBuiltInFunctions80 a);
         
         /// <summary>
-        /// built_in_functions : ERROR_NUMBER  LR_BRACKET  RR_BRACKET
+        /// built_in_functions : ERROR_NUMBER LR_BRACKET RR_BRACKET 
         /// </summary>
         void VisitBuiltInFunctions(AstBuiltInFunctions.AstBuiltInFunctions81 a);
         
         /// <summary>
-        /// built_in_functions : ERROR_PROCEDURE  LR_BRACKET  RR_BRACKET
+        /// built_in_functions : ERROR_PROCEDURE LR_BRACKET RR_BRACKET 
         /// </summary>
         void VisitBuiltInFunctions(AstBuiltInFunctions.AstBuiltInFunctions82 a);
         
         /// <summary>
-        /// built_in_functions : ERROR_SEVERITY  LR_BRACKET  RR_BRACKET
+        /// built_in_functions : ERROR_SEVERITY LR_BRACKET RR_BRACKET 
         /// </summary>
         void VisitBuiltInFunctions(AstBuiltInFunctions.AstBuiltInFunctions83 a);
         
         /// <summary>
-        /// built_in_functions : ERROR_STATE  LR_BRACKET  RR_BRACKET
+        /// built_in_functions : ERROR_STATE LR_BRACKET RR_BRACKET 
         /// </summary>
         void VisitBuiltInFunctions(AstBuiltInFunctions.AstBuiltInFunctions84 a);
         
         /// <summary>
-        /// built_in_functions : FORMATMESSAGE  LR_BRACKET  format_argument  COMMA  expressions  RR_BRACKET
+        /// built_in_functions : FORMATMESSAGE LR_BRACKET format_argument COMMA expressions RR_BRACKET 
         /// </summary>
         void VisitBuiltInFunctions(AstBuiltInFunctions.AstBuiltInFunctions85 a);
         
         /// <summary>
-        /// built_in_functions : GET_FILESTREAM_TRANSACTION_CONTEXT  LR_BRACKET  RR_BRACKET
+        /// built_in_functions : GET_FILESTREAM_TRANSACTION_CONTEXT LR_BRACKET RR_BRACKET 
         /// </summary>
         void VisitBuiltInFunctions(AstBuiltInFunctions.AstBuiltInFunctions86 a);
         
         /// <summary>
-        /// built_in_functions : GETANSINULL  LR_BRACKET  (database_name = stringtext)?  RR_BRACKET
+        /// built_in_functions : GETANSINULL LR_BRACKET database_name=stringtext RR_BRACKET 
         /// </summary>
         void VisitBuiltInFunctions(AstBuiltInFunctions.AstBuiltInFunctions87 a);
         
         /// <summary>
-        /// built_in_functions : HOST_ID  LR_BRACKET  RR_BRACKET
+        /// built_in_functions : HOST_ID LR_BRACKET RR_BRACKET 
         /// </summary>
         void VisitBuiltInFunctions(AstBuiltInFunctions.AstBuiltInFunctions88 a);
         
         /// <summary>
-        /// built_in_functions : HOST_NAME  LR_BRACKET  RR_BRACKET
+        /// built_in_functions : HOST_NAME LR_BRACKET RR_BRACKET 
         /// </summary>
         void VisitBuiltInFunctions(AstBuiltInFunctions.AstBuiltInFunctions89 a);
         
         /// <summary>
-        /// built_in_functions : ISNULL  LR_BRACKET  left = expression  COMMA  right = expression  RR_BRACKET
+        /// built_in_functions : ISNULL LR_BRACKET left=expression COMMA right=expression RR_BRACKET 
         /// </summary>
         void VisitBuiltInFunctions(AstBuiltInFunctions.AstBuiltInFunctions90 a);
         
         /// <summary>
-        /// built_in_functions : ISNUMERIC  LR_BRACKET  expression  RR_BRACKET
+        /// built_in_functions : ISNUMERIC LR_BRACKET expression RR_BRACKET 
         /// </summary>
         void VisitBuiltInFunctions(AstBuiltInFunctions.AstBuiltInFunctions91 a);
         
         /// <summary>
-        /// built_in_functions : MIN_ACTIVE_ROWVERSION  LR_BRACKET  RR_BRACKET
+        /// built_in_functions : NEWID LR_BRACKET RR_BRACKET 
         /// </summary>
         void VisitBuiltInFunctions(AstBuiltInFunctions.AstBuiltInFunctions92 a);
         
         /// <summary>
-        /// built_in_functions : NEWID  LR_BRACKET  RR_BRACKET
+        /// built_in_functions : NEWSEQUENTIALID LR_BRACKET RR_BRACKET 
         /// </summary>
         void VisitBuiltInFunctions(AstBuiltInFunctions.AstBuiltInFunctions93 a);
         
         /// <summary>
-        /// built_in_functions : NEWSEQUENTIALID  LR_BRACKET  RR_BRACKET
+        /// built_in_functions : ROWCOUNT_BIG LR_BRACKET RR_BRACKET 
         /// </summary>
         void VisitBuiltInFunctions(AstBuiltInFunctions.AstBuiltInFunctions94 a);
         
         /// <summary>
-        /// built_in_functions : ROWCOUNT_BIG  LR_BRACKET  RR_BRACKET
+        /// built_in_functions : SESSION_CONTEXT LR_BRACKET session_key=stringtext RR_BRACKET 
         /// </summary>
         void VisitBuiltInFunctions(AstBuiltInFunctions.AstBuiltInFunctions95 a);
         
         /// <summary>
-        /// built_in_functions : SESSION_CONTEXT  LR_BRACKET  session_key = stringtext  RR_BRACKET
+        /// built_in_functions : XACT_STATE LR_BRACKET RR_BRACKET 
         /// </summary>
         void VisitBuiltInFunctions(AstBuiltInFunctions.AstBuiltInFunctions96 a);
         
         /// <summary>
-        /// built_in_functions : XACT_STATE  LR_BRACKET  RR_BRACKET
+        /// built_in_functions : CAST LR_BRACKET expression AS data_type RR_BRACKET 
         /// </summary>
         void VisitBuiltInFunctions(AstBuiltInFunctions.AstBuiltInFunctions97 a);
         
         /// <summary>
-        /// built_in_functions : CAST  LR_BRACKET  expression  AS  data_type  RR_BRACKET
+        /// built_in_functions : TRY_CAST LR_BRACKET expression AS data_type RR_BRACKET 
         /// </summary>
         void VisitBuiltInFunctions(AstBuiltInFunctions.AstBuiltInFunctions98 a);
         
         /// <summary>
-        /// built_in_functions : TRY_CAST  LR_BRACKET  expression  AS  data_type  RR_BRACKET
+        /// built_in_functions : CONVERT LR_BRACKET convert_data_type=data_type COMMA expression2 RR_BRACKET 
         /// </summary>
         void VisitBuiltInFunctions(AstBuiltInFunctions.AstBuiltInFunctions99 a);
         
         /// <summary>
-        /// built_in_functions : CONVERT  LR_BRACKET  convert_data_type = data_type  COMMA  expression2  RR_BRACKET
+        /// built_in_functions : COALESCE LR_BRACKET expression_list RR_BRACKET 
         /// </summary>
         void VisitBuiltInFunctions(AstBuiltInFunctions.AstBuiltInFunctions100 a);
         
         /// <summary>
-        /// built_in_functions : COALESCE  LR_BRACKET  expression_list  RR_BRACKET
+        /// built_in_functions : CURRENT_DATE LR_BRACKET RR_BRACKET 
         /// </summary>
         void VisitBuiltInFunctions(AstBuiltInFunctions.AstBuiltInFunctions101 a);
         
         /// <summary>
-        /// built_in_functions : CURRENT_DATE  LR_BRACKET  RR_BRACKET
+        /// built_in_functions : CURRENT_TIMESTAMP 
         /// </summary>
         void VisitBuiltInFunctions(AstBuiltInFunctions.AstBuiltInFunctions102 a);
         
         /// <summary>
-        /// built_in_functions : CURRENT_TIMESTAMP
+        /// built_in_functions : CURRENT_USER 
         /// </summary>
         void VisitBuiltInFunctions(AstBuiltInFunctions.AstBuiltInFunctions103 a);
         
         /// <summary>
-        /// built_in_functions : CURRENT_USER
+        /// built_in_functions : DATEADD LR_BRACKET datepart=id_simple COMMA number=expression COMMA date=expression RR_BRACKET 
         /// </summary>
         void VisitBuiltInFunctions(AstBuiltInFunctions.AstBuiltInFunctions104 a);
         
         /// <summary>
-        /// built_in_functions : DATEADD  LR_BRACKET  datepart = id_simple  COMMA  number = expression  COMMA  date = expression  RR_BRACKET
+        /// built_in_functions : DATEDIFF LR_BRACKET datepart=id_simple COMMA date_first=expression COMMA date_second=expression RR_BRACKET 
         /// </summary>
         void VisitBuiltInFunctions(AstBuiltInFunctions.AstBuiltInFunctions105 a);
         
         /// <summary>
-        /// built_in_functions : DATEDIFF  LR_BRACKET  datepart = id_simple  COMMA  date_first = expression  COMMA  date_second = expression  RR_BRACKET
+        /// built_in_functions : DATENAME LR_BRACKET datepart=id_simple COMMA date=expression RR_BRACKET 
         /// </summary>
         void VisitBuiltInFunctions(AstBuiltInFunctions.AstBuiltInFunctions106 a);
         
         /// <summary>
-        /// built_in_functions : DATENAME  LR_BRACKET  datepart = id_simple  COMMA  date = expression  RR_BRACKET
+        /// built_in_functions : DATEPART LR_BRACKET datepart=id_simple COMMA date=expression RR_BRACKET 
         /// </summary>
         void VisitBuiltInFunctions(AstBuiltInFunctions.AstBuiltInFunctions107 a);
         
         /// <summary>
-        /// built_in_functions : DATEPART  LR_BRACKET  datepart = id_simple  COMMA  date = expression  RR_BRACKET
+        /// built_in_functions : GETDATE LR_BRACKET RR_BRACKET 
         /// </summary>
         void VisitBuiltInFunctions(AstBuiltInFunctions.AstBuiltInFunctions108 a);
         
         /// <summary>
-        /// built_in_functions : GETDATE  LR_BRACKET  RR_BRACKET
+        /// built_in_functions : GETUTCDATE LR_BRACKET RR_BRACKET 
         /// </summary>
         void VisitBuiltInFunctions(AstBuiltInFunctions.AstBuiltInFunctions109 a);
         
         /// <summary>
-        /// built_in_functions : GETUTCDATE  LR_BRACKET  RR_BRACKET
+        /// built_in_functions : IDENTITY LR_BRACKET data_type COMMA seed=decimal COMMA increment=decimal RR_BRACKET 
         /// </summary>
         void VisitBuiltInFunctions(AstBuiltInFunctions.AstBuiltInFunctions110 a);
         
         /// <summary>
-        /// built_in_functions : IDENTITY  LR_BRACKET  data_type  (COMMA  seed = decimal)?  (COMMA  increment = decimal)?  RR_BRACKET
+        /// built_in_functions : NULLIF LR_BRACKET left=expression COMMA right=expression RR_BRACKET 
         /// </summary>
         void VisitBuiltInFunctions(AstBuiltInFunctions.AstBuiltInFunctions111 a);
         
         /// <summary>
-        /// built_in_functions : MIN_ACTIVE_ROWVERSION  LR_BRACKET  RR_BRACKET
+        /// built_in_functions : SESSION_USER 
         /// </summary>
         void VisitBuiltInFunctions(AstBuiltInFunctions.AstBuiltInFunctions112 a);
         
         /// <summary>
-        /// built_in_functions : NULLIF  LR_BRACKET  left = expression  COMMA  right = expression  RR_BRACKET
+        /// built_in_functions : SYSTEM_USER 
         /// </summary>
         void VisitBuiltInFunctions(AstBuiltInFunctions.AstBuiltInFunctions113 a);
         
         /// <summary>
-        /// built_in_functions : SESSION_USER
+        /// built_in_functions : USER 
         /// </summary>
         void VisitBuiltInFunctions(AstBuiltInFunctions.AstBuiltInFunctions114 a);
         
         /// <summary>
-        /// built_in_functions : SYSTEM_USER
+        /// built_in_functions : PARSE LR_BRACKET str=expression AS data_type USING culture=expression RR_BRACKET 
         /// </summary>
         void VisitBuiltInFunctions(AstBuiltInFunctions.AstBuiltInFunctions115 a);
         
         /// <summary>
-        /// built_in_functions : USER
+        /// built_in_functions : xml_data_type_methods 
         /// </summary>
         void VisitBuiltInFunctions(AstBuiltInFunctions.AstBuiltInFunctions116 a);
         
         /// <summary>
-        /// built_in_functions : PARSE  LR_BRACKET  str = expression  AS  data_type  (USING  culture = expression)?  RR_BRACKET
+        /// built_in_functions : IIF LR_BRACKET cond=search_condition COMMA left=expression COMMA right=expression RR_BRACKET 
         /// </summary>
         void VisitBuiltInFunctions(AstBuiltInFunctions.AstBuiltInFunctions117 a);
         
         /// <summary>
-        /// built_in_functions : xml_data_type_methods
-        /// </summary>
-        void VisitBuiltInFunctions(AstBuiltInFunctions.AstBuiltInFunctions118 a);
-        
-        /// <summary>
-        /// built_in_functions : IIF  LR_BRACKET  cond = search_condition  COMMA  left = expression  COMMA  right = expression  RR_BRACKET
-        /// </summary>
-        void VisitBuiltInFunctions(AstBuiltInFunctions.AstBuiltInFunctions119 a);
-        
-        /// <summary>
-        /// expression_or_star : STAR
+        /// expression_or_star : STAR 
         /// </summary>
         void VisitExpressionOrStar(AstExpressionOrStar.AstExpressionOrStar1 a);
         
         /// <summary>
-        /// expression_or_star : expressions
+        /// expression_or_star : expressions 
         /// </summary>
         void VisitExpressionOrStar(AstExpressionOrStar.AstExpressionOrStar2 a);
         
         /// <summary>
-        /// format_argument : decimal
+        /// format_argument : decimal 
         /// </summary>
         void VisitFormatArgument(AstFormatArgument.AstFormatArgument1 a);
         
         /// <summary>
-        /// format_argument : stringtext
+        /// format_argument : stringtext 
         /// </summary>
         void VisitFormatArgument(AstFormatArgument.AstFormatArgument2 a);
         
         /// <summary>
-        /// format_argument : local_id
+        /// format_argument : local_id 
         /// </summary>
         void VisitFormatArgument(AstFormatArgument.AstFormatArgument3 a);
         
         /// <summary>
-        /// xml_data_type_methods : value_method
+        /// xml_data_type_methods : value_method 
         /// </summary>
         void VisitXmlDataTypeMethods(AstXmlDataTypeMethods.AstXmlDataTypeMethods1 a);
         
         /// <summary>
-        /// xml_data_type_methods : query_method
+        /// xml_data_type_methods : query_method 
         /// </summary>
         void VisitXmlDataTypeMethods(AstXmlDataTypeMethods.AstXmlDataTypeMethods2 a);
         
         /// <summary>
-        /// xml_data_type_methods : exist_method
+        /// xml_data_type_methods : exist_method 
         /// </summary>
         void VisitXmlDataTypeMethods(AstXmlDataTypeMethods.AstXmlDataTypeMethods3 a);
         
         /// <summary>
-        /// xml_data_type_methods : modify_method
+        /// xml_data_type_methods : modify_method 
         /// </summary>
         void VisitXmlDataTypeMethods(AstXmlDataTypeMethods.AstXmlDataTypeMethods4 a);
         
-        void VisitValueMethod(AstValueMethod a);
+        /// <summary>
+        /// value_method : loc=local_id DOT call=value_call 
+        /// </summary>
+        void VisitValueMethod(AstValueMethod.AstValueMethod1 a);
+        
+        /// <summary>
+        /// value_method : value=full_column_name DOT call=value_call 
+        /// </summary>
+        void VisitValueMethod(AstValueMethod.AstValueMethod2 a);
+        
+        /// <summary>
+        /// value_method : eventdata=EVENTDATA LR_BRACKET RR_BRACKET DOT call=value_call 
+        /// </summary>
+        void VisitValueMethod(AstValueMethod.AstValueMethod3 a);
+        
+        /// <summary>
+        /// value_method : query=query_method DOT call=value_call 
+        /// </summary>
+        void VisitValueMethod(AstValueMethod.AstValueMethod4 a);
+        
+        /// <summary>
+        /// value_method : LR_BRACKET subquery RR_BRACKET DOT call=value_call 
+        /// </summary>
+        void VisitValueMethod(AstValueMethod.AstValueMethod5 a);
         
         void VisitValueCall(AstValueCall a);
         
-        void VisitQueryMethod(AstQueryMethod a);
+        /// <summary>
+        /// query_method : loc=local_id DOT call=query_call 
+        /// </summary>
+        void VisitQueryMethod(AstQueryMethod.AstQueryMethod1 a);
+        
+        /// <summary>
+        /// query_method : value=full_column_name DOT call=query_call 
+        /// </summary>
+        void VisitQueryMethod(AstQueryMethod.AstQueryMethod2 a);
+        
+        /// <summary>
+        /// query_method : LR_BRACKET subquery RR_BRACKET DOT call=query_call 
+        /// </summary>
+        void VisitQueryMethod(AstQueryMethod.AstQueryMethod3 a);
         
         void VisitQueryCall(AstQueryCall a);
         
-        void VisitExistMethod(AstExistMethod a);
+        /// <summary>
+        /// exist_method : loc=local_id DOT call=exist_call 
+        /// </summary>
+        void VisitExistMethod(AstExistMethod.AstExistMethod1 a);
+        
+        /// <summary>
+        /// exist_method : value=full_column_name DOT call=exist_call 
+        /// </summary>
+        void VisitExistMethod(AstExistMethod.AstExistMethod2 a);
+        
+        /// <summary>
+        /// exist_method : LR_BRACKET subquery RR_BRACKET DOT call=exist_call 
+        /// </summary>
+        void VisitExistMethod(AstExistMethod.AstExistMethod3 a);
         
         void VisitExistCall(AstExistCall a);
         
-        void VisitModifyMethod(AstModifyMethod a);
+        /// <summary>
+        /// modify_method : loc=local_id DOT call=modify_call 
+        /// </summary>
+        void VisitModifyMethod(AstModifyMethod.AstModifyMethod1 a);
+        
+        /// <summary>
+        /// modify_method : value=full_column_name DOT call=modify_call 
+        /// </summary>
+        void VisitModifyMethod(AstModifyMethod.AstModifyMethod2 a);
+        
+        /// <summary>
+        /// modify_method : LR_BRACKET subquery RR_BRACKET DOT call=modify_call 
+        /// </summary>
+        void VisitModifyMethod(AstModifyMethod.AstModifyMethod3 a);
         
         void VisitModifyCall(AstModifyCall a);
         
         /// <summary>
-        /// hierarchyid_call : GETANCESTOR  LR_BRACKET  n = expression  RR_BRACKET
+        /// hierarchyid_call : GETANCESTOR LR_BRACKET n=expression RR_BRACKET 
         /// </summary>
         void VisitHierarchyidCall(AstHierarchyidCall.AstHierarchyidCall1 a);
         
         /// <summary>
-        /// hierarchyid_call : GETDESCENDANT  LR_BRACKET  child1 = expression  COMMA  child2 = expression  RR_BRACKET
+        /// hierarchyid_call : GETDESCENDANT LR_BRACKET child1=expression COMMA child2=expression RR_BRACKET 
         /// </summary>
         void VisitHierarchyidCall(AstHierarchyidCall.AstHierarchyidCall2 a);
         
         /// <summary>
-        /// hierarchyid_call : GETLEVEL  LR_BRACKET  RR_BRACKET
+        /// hierarchyid_call : GETLEVEL LR_BRACKET RR_BRACKET 
         /// </summary>
         void VisitHierarchyidCall(AstHierarchyidCall.AstHierarchyidCall3 a);
         
         /// <summary>
-        /// hierarchyid_call : ISDESCENDANTOF  LR_BRACKET  parent_ = expression  RR_BRACKET
+        /// hierarchyid_call : ISDESCENDANTOF LR_BRACKET parent_=expression RR_BRACKET 
         /// </summary>
         void VisitHierarchyidCall(AstHierarchyidCall.AstHierarchyidCall4 a);
         
         /// <summary>
-        /// hierarchyid_call : GETREPARENTEDVALUE  LR_BRACKET  oldroot = expression  COMMA  newroot = expression  RR_BRACKET
+        /// hierarchyid_call : GETREPARENTEDVALUE LR_BRACKET oldroot=expression COMMA newroot=expression RR_BRACKET 
         /// </summary>
         void VisitHierarchyidCall(AstHierarchyidCall.AstHierarchyidCall5 a);
         
         /// <summary>
-        /// hierarchyid_call : TOSTRING  LR_BRACKET  RR_BRACKET
+        /// hierarchyid_call : TOSTRING LR_BRACKET RR_BRACKET 
         /// </summary>
         void VisitHierarchyidCall(AstHierarchyidCall.AstHierarchyidCall6 a);
         
-        void VisitHierarchyidStaticMethod(AstHierarchyidStaticMethod a);
+        /// <summary>
+        /// hierarchyid_static_method : HIERARCHYID DOUBLE_COLON GETROOT LR_BRACKET RR_BRACKET 
+        /// </summary>
+        void VisitHierarchyidStaticMethod(AstHierarchyidStaticMethod.AstHierarchyidStaticMethod1 a);
         
-        void VisitNodesMethod(AstNodesMethod a);
+        /// <summary>
+        /// hierarchyid_static_method : HIERARCHYID DOUBLE_COLON PARSE LR_BRACKET input=expression RR_BRACKET 
+        /// </summary>
+        void VisitHierarchyidStaticMethod(AstHierarchyidStaticMethod.AstHierarchyidStaticMethod2 a);
+        
+        /// <summary>
+        /// nodes_method : loc=local_id DOT NODES LR_BRACKET xquery=stringtext RR_BRACKET 
+        /// </summary>
+        void VisitNodesMethod(AstNodesMethod.AstNodesMethod1 a);
+        
+        /// <summary>
+        /// nodes_method : value=full_column_name DOT NODES LR_BRACKET xquery=stringtext RR_BRACKET 
+        /// </summary>
+        void VisitNodesMethod(AstNodesMethod.AstNodesMethod2 a);
+        
+        /// <summary>
+        /// nodes_method : LR_BRACKET subquery RR_BRACKET DOT NODES LR_BRACKET xquery=stringtext RR_BRACKET 
+        /// </summary>
+        void VisitNodesMethod(AstNodesMethod.AstNodesMethod3 a);
         
         /// <summary>
         /// switch_section : Bb.Generators.ModelMethod
@@ -7913,152 +8468,152 @@ namespace Bb.SqlServer.Asts
         void VisitSybaseLegacyHint(AstSybaseLegacyHint a);
         
         /// <summary>
-        /// table_hint : NOEXPAND
+        /// table_hint : NOEXPAND 
         /// </summary>
         void VisitTableHint(AstTableHint.AstTableHint1 a);
         
         /// <summary>
-        /// table_hint : INDEX  hint_index
+        /// table_hint : INDEX hint_index 
         /// </summary>
         void VisitTableHint(AstTableHint.AstTableHint2 a);
         
         /// <summary>
-        /// table_hint : FORCESEEK  (LR_BRACKET  index_value  LR_BRACKET  column_name_list  RR_BRACKET  RR_BRACKET)?
+        /// table_hint : FORCESEEK LR_BRACKET index_value LR_BRACKET column_name_list RR_BRACKET RR_BRACKET 
         /// </summary>
         void VisitTableHint(AstTableHint.AstTableHint3 a);
         
         /// <summary>
-        /// table_hint : FORCESCAN
+        /// table_hint : FORCESCAN 
         /// </summary>
         void VisitTableHint(AstTableHint.AstTableHint4 a);
         
         /// <summary>
-        /// table_hint : HOLDLOCK
+        /// table_hint : HOLDLOCK 
         /// </summary>
         void VisitTableHint(AstTableHint.AstTableHint5 a);
         
         /// <summary>
-        /// table_hint : NOLOCK
+        /// table_hint : NOLOCK 
         /// </summary>
         void VisitTableHint(AstTableHint.AstTableHint6 a);
         
         /// <summary>
-        /// table_hint : NOWAIT
+        /// table_hint : NOWAIT 
         /// </summary>
         void VisitTableHint(AstTableHint.AstTableHint7 a);
         
         /// <summary>
-        /// table_hint : PAGLOCK
+        /// table_hint : PAGLOCK 
         /// </summary>
         void VisitTableHint(AstTableHint.AstTableHint8 a);
         
         /// <summary>
-        /// table_hint : READCOMMITTED
+        /// table_hint : READCOMMITTED 
         /// </summary>
         void VisitTableHint(AstTableHint.AstTableHint9 a);
         
         /// <summary>
-        /// table_hint : READCOMMITTEDLOCK
+        /// table_hint : READCOMMITTEDLOCK 
         /// </summary>
         void VisitTableHint(AstTableHint.AstTableHint10 a);
         
         /// <summary>
-        /// table_hint : READPAST
+        /// table_hint : READPAST 
         /// </summary>
         void VisitTableHint(AstTableHint.AstTableHint11 a);
         
         /// <summary>
-        /// table_hint : READUNCOMMITTED
+        /// table_hint : READUNCOMMITTED 
         /// </summary>
         void VisitTableHint(AstTableHint.AstTableHint12 a);
         
         /// <summary>
-        /// table_hint : REPEATABLEREAD
+        /// table_hint : REPEATABLEREAD 
         /// </summary>
         void VisitTableHint(AstTableHint.AstTableHint13 a);
         
         /// <summary>
-        /// table_hint : ROWLOCK
+        /// table_hint : ROWLOCK 
         /// </summary>
         void VisitTableHint(AstTableHint.AstTableHint14 a);
         
         /// <summary>
-        /// table_hint : SERIALIZABLE
+        /// table_hint : SERIALIZABLE 
         /// </summary>
         void VisitTableHint(AstTableHint.AstTableHint15 a);
         
         /// <summary>
-        /// table_hint : SNAPSHOT
+        /// table_hint : SNAPSHOT 
         /// </summary>
         void VisitTableHint(AstTableHint.AstTableHint16 a);
         
         /// <summary>
-        /// table_hint : SPATIAL_WINDOW_MAX_CELLS  EQUAL  decimal
+        /// table_hint : SPATIAL_WINDOW_MAX_CELLS EQUAL decimal 
         /// </summary>
         void VisitTableHint(AstTableHint.AstTableHint17 a);
         
         /// <summary>
-        /// table_hint : TABLOCK
+        /// table_hint : TABLOCK 
         /// </summary>
         void VisitTableHint(AstTableHint.AstTableHint18 a);
         
         /// <summary>
-        /// table_hint : TABLOCKX
+        /// table_hint : TABLOCKX 
         /// </summary>
         void VisitTableHint(AstTableHint.AstTableHint19 a);
         
         /// <summary>
-        /// table_hint : UPDLOCK
+        /// table_hint : UPDLOCK 
         /// </summary>
         void VisitTableHint(AstTableHint.AstTableHint20 a);
         
         /// <summary>
-        /// table_hint : XLOCK
+        /// table_hint : XLOCK 
         /// </summary>
         void VisitTableHint(AstTableHint.AstTableHint21 a);
         
         /// <summary>
-        /// table_hint : KEEPIDENTITY
+        /// table_hint : KEEPIDENTITY 
         /// </summary>
         void VisitTableHint(AstTableHint.AstTableHint22 a);
         
         /// <summary>
-        /// table_hint : KEEPDEFAULTS
+        /// table_hint : KEEPDEFAULTS 
         /// </summary>
         void VisitTableHint(AstTableHint.AstTableHint23 a);
         
         /// <summary>
-        /// table_hint : IGNORE_CONSTRAINTS
+        /// table_hint : IGNORE_CONSTRAINTS 
         /// </summary>
         void VisitTableHint(AstTableHint.AstTableHint24 a);
         
         /// <summary>
-        /// table_hint : IGNORE_TRIGGERS
+        /// table_hint : IGNORE_TRIGGERS 
         /// </summary>
         void VisitTableHint(AstTableHint.AstTableHint25 a);
         
         /// <summary>
-        /// hint_index : LR_BRACKET  index_values  RR_BRACKET
+        /// hint_index : LR_BRACKET index_values RR_BRACKET 
         /// </summary>
         void VisitHintIndex(AstHintIndex.AstHintIndex1 a);
         
         /// <summary>
-        /// hint_index : EQUAL  LR_BRACKET  index_value  RR_BRACKET
+        /// hint_index : EQUAL LR_BRACKET index_value RR_BRACKET 
         /// </summary>
         void VisitHintIndex(AstHintIndex.AstHintIndex2 a);
         
         /// <summary>
-        /// hint_index : EQUAL  index_value
+        /// hint_index : EQUAL index_value 
         /// </summary>
         void VisitHintIndex(AstHintIndex.AstHintIndex3 a);
         
         /// <summary>
-        /// index_value : id_
+        /// index_value : id_ 
         /// </summary>
         void VisitIndexValue(AstIndexValue.AstIndexValue1 a);
         
         /// <summary>
-        /// index_value : decimal
+        /// index_value : decimal 
         /// </summary>
         void VisitIndexValue(AstIndexValue.AstIndexValue2 a);
         
@@ -8068,67 +8623,67 @@ namespace Bb.SqlServer.Asts
         void VisitColumnAlias(AstColumnAlias a);
         
         /// <summary>
-        /// ranking_windowed_function : ranking_windowed  LR_BRACKET  RR_BRACKET  over_clause
+        /// ranking_windowed_function : ranking_windowed LR_BRACKET RR_BRACKET over_clause 
         /// </summary>
         void VisitRankingWindowedFunction(AstRankingWindowedFunction.AstRankingWindowedFunction1 a);
         
         /// <summary>
-        /// ranking_windowed_function : NTILE  LR_BRACKET  expression  RR_BRACKET  over_clause
+        /// ranking_windowed_function : NTILE LR_BRACKET expression RR_BRACKET over_clause 
         /// </summary>
         void VisitRankingWindowedFunction(AstRankingWindowedFunction.AstRankingWindowedFunction2 a);
         
         /// <summary>
-        /// aggregate_windowed_function : agg_function  LR_BRACKET  all_distinct_expression  RR_BRACKET  over_clause?
+        /// aggregate_windowed_function : agg_function LR_BRACKET all_distinct_expression RR_BRACKET over_clause? 
         /// </summary>
         void VisitAggregateWindowedFunction(AstAggregateWindowedFunction.AstAggregateWindowedFunction1 a);
         
         /// <summary>
-        /// aggregate_windowed_function : count_count_big  LR_BRACKET  all_distinct_expression_or_star  RR_BRACKET  over_clause?
+        /// aggregate_windowed_function : count_count_big LR_BRACKET all_distinct_expression_or_star RR_BRACKET over_clause? 
         /// </summary>
         void VisitAggregateWindowedFunction(AstAggregateWindowedFunction.AstAggregateWindowedFunction2 a);
         
         /// <summary>
-        /// aggregate_windowed_function : CHECKSUM_AGG  LR_BRACKET  all_distinct_expression  RR_BRACKET
+        /// aggregate_windowed_function : CHECKSUM_AGG LR_BRACKET all_distinct_expression RR_BRACKET 
         /// </summary>
         void VisitAggregateWindowedFunction(AstAggregateWindowedFunction.AstAggregateWindowedFunction3 a);
         
         /// <summary>
-        /// aggregate_windowed_function : GROUPING  LR_BRACKET  expression  RR_BRACKET
+        /// aggregate_windowed_function : GROUPING LR_BRACKET expression RR_BRACKET 
         /// </summary>
         void VisitAggregateWindowedFunction(AstAggregateWindowedFunction.AstAggregateWindowedFunction4 a);
         
         /// <summary>
-        /// aggregate_windowed_function : GROUPING_ID  LR_BRACKET  expression_list  RR_BRACKET
+        /// aggregate_windowed_function : GROUPING_ID LR_BRACKET expression_list RR_BRACKET 
         /// </summary>
         void VisitAggregateWindowedFunction(AstAggregateWindowedFunction.AstAggregateWindowedFunction5 a);
         
         /// <summary>
-        /// all_distinct_expression_or_star : STAR
+        /// all_distinct_expression_or_star : STAR 
         /// </summary>
         void VisitAllDistinctExpressionOrStar(AstAllDistinctExpressionOrStar.AstAllDistinctExpressionOrStar1 a);
         
         /// <summary>
-        /// all_distinct_expression_or_star : all_distinct_expression
+        /// all_distinct_expression_or_star : all_distinct_expression 
         /// </summary>
         void VisitAllDistinctExpressionOrStar(AstAllDistinctExpressionOrStar.AstAllDistinctExpressionOrStar2 a);
         
         /// <summary>
-        /// analytic_windowed_function : first_last_value  LR_BRACKET  expression  RR_BRACKET  over_clause
+        /// analytic_windowed_function : first_last_value LR_BRACKET expression RR_BRACKET over_clause 
         /// </summary>
         void VisitAnalyticWindowedFunction(AstAnalyticWindowedFunction.AstAnalyticWindowedFunction1 a);
         
         /// <summary>
-        /// analytic_windowed_function : lag_lead  LR_BRACKET  expression  (COMMA  expression2)?  RR_BRACKET  over_clause
+        /// analytic_windowed_function : lag_lead LR_BRACKET expression COMMA expression2 RR_BRACKET over_clause 
         /// </summary>
         void VisitAnalyticWindowedFunction(AstAnalyticWindowedFunction.AstAnalyticWindowedFunction2 a);
         
         /// <summary>
-        /// analytic_windowed_function : cume_percent  LR_BRACKET  RR_BRACKET  OVER  LR_BRACKET  (PARTITION  BY  expression_list)?  order_by_clause  RR_BRACKET
+        /// analytic_windowed_function : cume_percent LR_BRACKET RR_BRACKET OVER LR_BRACKET PARTITION BY expression_list order_by_clause RR_BRACKET 
         /// </summary>
         void VisitAnalyticWindowedFunction(AstAnalyticWindowedFunction.AstAnalyticWindowedFunction3 a);
         
         /// <summary>
-        /// analytic_windowed_function : percentil  LR_BRACKET  expression  RR_BRACKET  WITHIN  GROUP  LR_BRACKET  order_by_clause  RR_BRACKET  OVER  LR_BRACKET  (PARTITION  BY  expression_list)?  RR_BRACKET
+        /// analytic_windowed_function : percentil LR_BRACKET expression RR_BRACKET WITHIN GROUP LR_BRACKET order_by_clause RR_BRACKET OVER LR_BRACKET PARTITION BY expression_list RR_BRACKET 
         /// </summary>
         void VisitAnalyticWindowedFunction(AstAnalyticWindowedFunction.AstAnalyticWindowedFunction4 a);
         
@@ -8148,99 +8703,107 @@ namespace Bb.SqlServer.Asts
         void VisitRowOrRangeClause(AstRowOrRangeClause a);
         
         /// <summary>
-        /// window_frame_extent : window_frame_preceding
+        /// window_frame_extent : window_frame_preceding 
         /// </summary>
         void VisitWindowFrameExtent(AstWindowFrameExtent.AstWindowFrameExtent1 a);
         
         /// <summary>
-        /// window_frame_extent : BETWEEN  left = window_frame_bound  AND  right = window_frame_bound
+        /// window_frame_extent : BETWEEN left=window_frame_bound AND right=window_frame_bound 
         /// </summary>
         void VisitWindowFrameExtent(AstWindowFrameExtent.AstWindowFrameExtent2 a);
         
         /// <summary>
-        /// window_frame_bound : window_frame_preceding
+        /// window_frame_bound : window_frame_preceding 
         /// </summary>
         void VisitWindowFrameBound(AstWindowFrameBound.AstWindowFrameBound1 a);
         
         /// <summary>
-        /// window_frame_bound : window_frame_following
+        /// window_frame_bound : window_frame_following 
         /// </summary>
         void VisitWindowFrameBound(AstWindowFrameBound.AstWindowFrameBound2 a);
         
         /// <summary>
-        /// window_frame_preceding : UNBOUNDED  PRECEDING
+        /// window_frame_preceding : UNBOUNDED PRECEDING 
         /// </summary>
         void VisitWindowFramePreceding(AstWindowFramePreceding.AstWindowFramePreceding1 a);
         
         /// <summary>
-        /// window_frame_preceding : decimal  PRECEDING
+        /// window_frame_preceding : decimal PRECEDING 
         /// </summary>
         void VisitWindowFramePreceding(AstWindowFramePreceding.AstWindowFramePreceding2 a);
         
         /// <summary>
-        /// window_frame_preceding : CURRENT  ROW
+        /// window_frame_preceding : CURRENT ROW 
         /// </summary>
         void VisitWindowFramePreceding(AstWindowFramePreceding.AstWindowFramePreceding3 a);
         
         /// <summary>
-        /// window_frame_following : UNBOUNDED  FOLLOWING
+        /// window_frame_following : UNBOUNDED FOLLOWING 
         /// </summary>
         void VisitWindowFrameFollowing(AstWindowFrameFollowing.AstWindowFrameFollowing1 a);
         
         /// <summary>
-        /// window_frame_following : decimal  FOLLOWING
+        /// window_frame_following : decimal FOLLOWING 
         /// </summary>
         void VisitWindowFrameFollowing(AstWindowFrameFollowing.AstWindowFrameFollowing2 a);
         
         /// <summary>
-        /// create_database_option : FILESTREAM  database_filestream_options
+        /// create_database_option : FILESTREAM database_filestream_options 
         /// </summary>
         void VisitCreateDatabaseOption(AstCreateDatabaseOption.AstCreateDatabaseOption1 a);
         
         /// <summary>
-        /// create_database_option : DEFAULT_LANGUAGE  EQUAL  id_or_string
+        /// create_database_option : DEFAULT_LANGUAGE EQUAL id_or_string 
         /// </summary>
         void VisitCreateDatabaseOption(AstCreateDatabaseOption.AstCreateDatabaseOption2 a);
         
         /// <summary>
-        /// create_database_option : DEFAULT_FULLTEXT_LANGUAGE  EQUAL  id_or_string
+        /// create_database_option : DEFAULT_FULLTEXT_LANGUAGE EQUAL id_or_string 
         /// </summary>
         void VisitCreateDatabaseOption(AstCreateDatabaseOption.AstCreateDatabaseOption3 a);
         
         /// <summary>
-        /// create_database_option : NESTED_TRIGGERS  EQUAL  on_off
+        /// create_database_option : NESTED_TRIGGERS EQUAL on_off 
         /// </summary>
         void VisitCreateDatabaseOption(AstCreateDatabaseOption.AstCreateDatabaseOption4 a);
         
         /// <summary>
-        /// create_database_option : TRANSFORM_NOISE_WORDS  EQUAL  on_off
+        /// create_database_option : TRANSFORM_NOISE_WORDS EQUAL on_off 
         /// </summary>
         void VisitCreateDatabaseOption(AstCreateDatabaseOption.AstCreateDatabaseOption5 a);
         
         /// <summary>
-        /// create_database_option : TWO_DIGIT_YEAR_CUTOFF  EQUAL  decimal
+        /// create_database_option : TWO_DIGIT_YEAR_CUTOFF EQUAL decimal 
         /// </summary>
         void VisitCreateDatabaseOption(AstCreateDatabaseOption.AstCreateDatabaseOption6 a);
         
         /// <summary>
-        /// create_database_option : DB_CHAINING  on_off
+        /// create_database_option : DB_CHAINING on_off 
         /// </summary>
         void VisitCreateDatabaseOption(AstCreateDatabaseOption.AstCreateDatabaseOption7 a);
         
         /// <summary>
-        /// create_database_option : TRUSTWORTHY  on_off
+        /// create_database_option : TRUSTWORTHY on_off 
         /// </summary>
         void VisitCreateDatabaseOption(AstCreateDatabaseOption.AstCreateDatabaseOption8 a);
         
-        void VisitDatabaseFilestreamOption(AstDatabaseFilestreamOption a);
+        /// <summary>
+        /// database_filestream_option : LR_BRACKET NON_TRANSACTED_ACCESS EQUAL off_read_only_full RR_BRACKET 
+        /// </summary>
+        void VisitDatabaseFilestreamOption(AstDatabaseFilestreamOption.AstDatabaseFilestreamOption1 a);
         
         /// <summary>
-        /// database_file_spec : file_group
+        /// database_filestream_option : LR_BRACKET DIRECTORY_NAME EQUAL stringtext RR_BRACKET 
+        /// </summary>
+        void VisitDatabaseFilestreamOption(AstDatabaseFilestreamOption.AstDatabaseFilestreamOption2 a);
+        
+        /// <summary>
+        /// database_file_spec : file_group 
         /// </summary>
         void VisitDatabaseFileSpec(AstDatabaseFileSpec.AstDatabaseFileSpec1 a);
         
         /// <summary>
-        /// database_file_spec : file_spec
+        /// database_file_spec : file_spec 
         /// </summary>
         void VisitDatabaseFileSpec(AstDatabaseFileSpec.AstDatabaseFileSpec2 a);
         
@@ -8255,12 +8818,12 @@ namespace Bb.SqlServer.Asts
         void VisitFileSpec(AstFileSpec a);
         
         /// <summary>
-        /// max_file_size_value : file_size
+        /// max_file_size_value : file_size 
         /// </summary>
         void VisitMaxFileSizeValue(AstMaxFileSizeValue.AstMaxFileSizeValue1 a);
         
         /// <summary>
-        /// max_file_size_value : UNLIMITED
+        /// max_file_size_value : UNLIMITED 
         /// </summary>
         void VisitMaxFileSizeValue(AstMaxFileSizeValue.AstMaxFileSizeValue2 a);
         
@@ -8269,15 +8832,23 @@ namespace Bb.SqlServer.Asts
         /// </summary>
         void VisitCursorName(AstCursorName a);
         
-        void VisitNullOrDefault(AstNullOrDefault a);
+        /// <summary>
+        /// null_or_default : null_notnull 
+        /// </summary>
+        void VisitNullOrDefault(AstNullOrDefault.AstNullOrDefault1 a);
         
         /// <summary>
-        /// scalar_function_name : func_proc_name_server_database_schema
+        /// null_or_default : DEFAULT constant_expression COLLATE id_ WITH VALUES 
+        /// </summary>
+        void VisitNullOrDefault(AstNullOrDefault.AstNullOrDefault2 a);
+        
+        /// <summary>
+        /// scalar_function_name : func_proc_name_server_database_schema 
         /// </summary>
         void VisitScalarFunctionName(AstScalarFunctionName.AstScalarFunctionName1 a);
         
         /// <summary>
-        /// scalar_function_name : scalar_function_name_enum
+        /// scalar_function_name : scalar_function_name_enum 
         /// </summary>
         void VisitScalarFunctionName(AstScalarFunctionName.AstScalarFunctionName2 a);
         
@@ -8292,22 +8863,22 @@ namespace Bb.SqlServer.Asts
         void VisitBeginConversationDialog(AstBeginConversationDialog a);
         
         /// <summary>
-        /// contract_name_expression : id_
+        /// contract_name_expression : id_ 
         /// </summary>
         void VisitContractNameExpression(AstContractNameExpression.AstContractNameExpression1 a);
         
         /// <summary>
-        /// contract_name_expression : expression
+        /// contract_name_expression : expression 
         /// </summary>
         void VisitContractNameExpression(AstContractNameExpression.AstContractNameExpression2 a);
         
         /// <summary>
-        /// service_name_expr : id_
+        /// service_name_expr : id_ 
         /// </summary>
         void VisitServiceNameExpr(AstServiceNameExpr.AstServiceNameExpr1 a);
         
         /// <summary>
-        /// service_name_expr : expression
+        /// service_name_expr : expression 
         /// </summary>
         void VisitServiceNameExpr(AstServiceNameExpr.AstServiceNameExpr2 a);
         
@@ -8323,32 +8894,32 @@ namespace Bb.SqlServer.Asts
         void VisitSendConversation(AstSendConversation a);
         
         /// <summary>
-        /// data_type : scaled = data_type_scaled  LR_BRACKET  MAX  RR_BRACKET
+        /// data_type : scaled=data_type_scaled LR_BRACKET MAX RR_BRACKET 
         /// </summary>
         void VisitDataType(AstDataType.AstDataType1 a);
         
         /// <summary>
-        /// data_type : ext_type_id  LR_BRACKET  decimal_scale_prec  RR_BRACKET
+        /// data_type : ext_type_id LR_BRACKET decimal_scale_prec RR_BRACKET 
         /// </summary>
         void VisitDataType(AstDataType.AstDataType2 a);
         
         /// <summary>
-        /// data_type : ext_type_id  LR_BRACKET  scale = decimal  RR_BRACKET
+        /// data_type : ext_type_id LR_BRACKET scale=decimal RR_BRACKET 
         /// </summary>
         void VisitDataType(AstDataType.AstDataType3 a);
         
         /// <summary>
-        /// data_type : ext_type_id  IDENTITY  (LR_BRACKET  identity_seed  RR_BRACKET)?
+        /// data_type : ext_type_id IDENTITY LR_BRACKET identity_seed RR_BRACKET 
         /// </summary>
         void VisitDataType(AstDataType.AstDataType4 a);
         
         /// <summary>
-        /// data_type : double_prec = DOUBLE  PRECISION?
+        /// data_type : double_prec=DOUBLE PRECISION? 
         /// </summary>
         void VisitDataType(AstDataType.AstDataType5 a);
         
         /// <summary>
-        /// data_type : unscaled_type_id
+        /// data_type : unscaled_type_id 
         /// </summary>
         void VisitDataType(AstDataType.AstDataType6 a);
         
@@ -8363,57 +8934,57 @@ namespace Bb.SqlServer.Asts
         void VisitIdentitySeed(AstIdentitySeed a);
         
         /// <summary>
-        /// default_value : NULL_
+        /// default_value : NULL_ 
         /// </summary>
         void VisitDefaultValue(AstDefaultValue.AstDefaultValue1 a);
         
         /// <summary>
-        /// default_value : DEFAULT
+        /// default_value : DEFAULT 
         /// </summary>
         void VisitDefaultValue(AstDefaultValue.AstDefaultValue2 a);
         
         /// <summary>
-        /// default_value : constant
+        /// default_value : constant 
         /// </summary>
         void VisitDefaultValue(AstDefaultValue.AstDefaultValue3 a);
         
         /// <summary>
-        /// constant : stringtext
+        /// constant : stringtext 
         /// </summary>
         void VisitConstant(AstConstant.AstConstant1 a);
         
         /// <summary>
-        /// constant : binary_
+        /// constant : binary_ 
         /// </summary>
         void VisitConstant(AstConstant.AstConstant2 a);
         
         /// <summary>
-        /// constant : real
+        /// constant : real 
         /// </summary>
         void VisitConstant(AstConstant.AstConstant3 a);
         
         /// <summary>
-        /// constant : sign?  decimal_float
+        /// constant : sign? decimal_float 
         /// </summary>
         void VisitConstant(AstConstant.AstConstant4 a);
         
         /// <summary>
-        /// constant : sign?  dollar = DOLLAR  decimal_float
+        /// constant : sign? dollar=DOLLAR decimal_float 
         /// </summary>
         void VisitConstant(AstConstant.AstConstant5 a);
         
         /// <summary>
-        /// constant : parameter
+        /// constant : parameter 
         /// </summary>
         void VisitConstant(AstConstant.AstConstant6 a);
         
         /// <summary>
-        /// decimal_float : decimal
+        /// decimal_float : decimal 
         /// </summary>
         void VisitDecimalFloat(AstDecimalFloat.AstDecimalFloat1 a);
         
         /// <summary>
-        /// decimal_float : float
+        /// decimal_float : float 
         /// </summary>
         void VisitDecimalFloat(AstDecimalFloat.AstDecimalFloat2 a);
         
@@ -8968,17 +9539,17 @@ namespace Bb.SqlServer.Asts
         void VisitStringtext(AstStringtext a);
         
         /// <summary>
-        /// string_id2 : stringtext
+        /// string_id2 : stringtext 
         /// </summary>
         void VisitStringId2(AstStringId2.AstStringId21 a);
         
         /// <summary>
-        /// string_id2 : id_
+        /// string_id2 : id_ 
         /// </summary>
         void VisitStringId2(AstStringId2.AstStringId22 a);
         
         /// <summary>
-        /// string_id2 : local_id
+        /// string_id2 : local_id 
         /// </summary>
         void VisitStringId2(AstStringId2.AstStringId23 a);
         
@@ -9323,12 +9894,12 @@ namespace Bb.SqlServer.Asts
         void VisitPrivateKeys(AstPrivateKeys a);
         
         /// <summary>
-        /// privatekey : FILE  EQUAL  stringtext
+        /// privatekey : FILE EQUAL stringtext 
         /// </summary>
         void VisitPrivatekey(AstPrivatekey.AstPrivatekey1 a);
         
         /// <summary>
-        /// privatekey : by_password_crypt
+        /// privatekey : by_password_crypt 
         /// </summary>
         void VisitPrivatekey(AstPrivatekey.AstPrivatekey2 a);
         
@@ -9783,12 +10354,12 @@ namespace Bb.SqlServer.Asts
         void VisitDatabaseObjectServer(AstDatabaseObjectServer a);
         
         /// <summary>
-        /// all_server_database : ALL  SERVER
+        /// all_server_database : ALL SERVER 
         /// </summary>
         void VisitAllServerDatabase(AstAllServerDatabase.AstAllServerDatabase1 a);
         
         /// <summary>
-        /// all_server_database : DATABASE
+        /// all_server_database : DATABASE 
         /// </summary>
         void VisitAllServerDatabase(AstAllServerDatabase.AstAllServerDatabase2 a);
         
@@ -9977,7 +10548,20 @@ namespace Bb.SqlServer.Asts
         /// </summary>
         void VisitAuthenticationMode(AstAuthenticationMode a);
         
-        void VisitEncryptionState(AstEncryptionState a);
+        /// <summary>
+        /// encryption_state : ENCRYPTION EQUAL DISABLED 
+        /// </summary>
+        void VisitEncryptionState(AstEncryptionState.AstEncryptionState1 a);
+        
+        /// <summary>
+        /// encryption_state : ENCRYPTION EQUAL SUPPORTED 
+        /// </summary>
+        void VisitEncryptionState(AstEncryptionState.AstEncryptionState2 a);
+        
+        /// <summary>
+        /// encryption_state : ENCRYPTION EQUAL REQUIRED 
+        /// </summary>
+        void VisitEncryptionState(AstEncryptionState.AstEncryptionState3 a);
         
         /// <summary>
         /// encryption_algorithm : Bb.Generators.ModelMethod
@@ -10004,7 +10588,15 @@ namespace Bb.SqlServer.Asts
         /// </summary>
         void VisitSuspendResume(AstSuspendResume a);
         
-        void VisitParameterizationOption(AstParameterizationOption a);
+        /// <summary>
+        /// parameterization_option : PARAMETERIZATION SIMPLE 
+        /// </summary>
+        void VisitParameterizationOption(AstParameterizationOption.AstParameterizationOption1 a);
+        
+        /// <summary>
+        /// parameterization_option : PARAMETERIZATION FORCED 
+        /// </summary>
+        void VisitParameterizationOption(AstParameterizationOption.AstParameterizationOption2 a);
         
         /// <summary>
         /// recovery_option_enum : Bb.Generators.ModelMethod
@@ -10197,37 +10789,37 @@ namespace Bb.SqlServer.Asts
         void VisitAddDrop(AstAddDrop a);
         
         /// <summary>
-        /// event_session_predicate_leaf_ope : EQUAL
+        /// event_session_predicate_leaf_ope : EQUAL 
         /// </summary>
         void VisitEventSessionPredicateLeafOpe(AstEventSessionPredicateLeafOpe.AstEventSessionPredicateLeafOpe1 a);
         
         /// <summary>
-        /// event_session_predicate_leaf_ope : (LESS  GREATER)
+        /// event_session_predicate_leaf_ope : LESS GREATER 
         /// </summary>
         void VisitEventSessionPredicateLeafOpe(AstEventSessionPredicateLeafOpe.AstEventSessionPredicateLeafOpe2 a);
         
         /// <summary>
-        /// event_session_predicate_leaf_ope : (EXCLAMATION  EQUAL)
+        /// event_session_predicate_leaf_ope : EXCLAMATION EQUAL 
         /// </summary>
         void VisitEventSessionPredicateLeafOpe(AstEventSessionPredicateLeafOpe.AstEventSessionPredicateLeafOpe3 a);
         
         /// <summary>
-        /// event_session_predicate_leaf_ope : GREATER
+        /// event_session_predicate_leaf_ope : GREATER 
         /// </summary>
         void VisitEventSessionPredicateLeafOpe(AstEventSessionPredicateLeafOpe.AstEventSessionPredicateLeafOpe4 a);
         
         /// <summary>
-        /// event_session_predicate_leaf_ope : (GREATER  EQUAL)
+        /// event_session_predicate_leaf_ope : GREATER EQUAL 
         /// </summary>
         void VisitEventSessionPredicateLeafOpe(AstEventSessionPredicateLeafOpe.AstEventSessionPredicateLeafOpe5 a);
         
         /// <summary>
-        /// event_session_predicate_leaf_ope : LESS
+        /// event_session_predicate_leaf_ope : LESS 
         /// </summary>
         void VisitEventSessionPredicateLeafOpe(AstEventSessionPredicateLeafOpe.AstEventSessionPredicateLeafOpe6 a);
         
         /// <summary>
-        /// event_session_predicate_leaf_ope : LESS  EQUAL
+        /// event_session_predicate_leaf_ope : LESS EQUAL 
         /// </summary>
         void VisitEventSessionPredicateLeafOpe(AstEventSessionPredicateLeafOpe.AstEventSessionPredicateLeafOpe7 a);
         
@@ -10262,12 +10854,12 @@ namespace Bb.SqlServer.Asts
         void VisitMessageValidationValueEnum(AstMessageValidationValueEnum a);
         
         /// <summary>
-        /// sequence_cycle : CYCLE
+        /// sequence_cycle : CYCLE 
         /// </summary>
         void VisitSequenceCycle(AstSequenceCycle.AstSequenceCycle1 a);
         
         /// <summary>
-        /// sequence_cycle : NO  CYCLE
+        /// sequence_cycle : NO CYCLE 
         /// </summary>
         void VisitSequenceCycle(AstSequenceCycle.AstSequenceCycle2 a);
         
@@ -10292,22 +10884,22 @@ namespace Bb.SqlServer.Asts
         void VisitAndOr(AstAndOr a);
         
         /// <summary>
-        /// size_value : decimal  MB
+        /// size_value : decimal MB 
         /// </summary>
         void VisitSizeValue(AstSizeValue.AstSizeValue1 a);
         
         /// <summary>
-        /// size_value : DEFAULT
+        /// size_value : DEFAULT 
         /// </summary>
         void VisitSizeValue(AstSizeValue.AstSizeValue2 a);
         
         /// <summary>
-        /// decimal_default : decimal
+        /// decimal_default : decimal 
         /// </summary>
         void VisitDecimalDefault(AstDecimalDefault.AstDecimalDefault1 a);
         
         /// <summary>
-        /// decimal_default : DEFAULT
+        /// decimal_default : DEFAULT 
         /// </summary>
         void VisitDecimalDefault(AstDecimalDefault.AstDecimalDefault2 a);
         
@@ -10416,9 +11008,45 @@ namespace Bb.SqlServer.Asts
         /// </summary>
         void VisitTransaction(AstTransaction a);
         
-        void VisitOnDelete(AstOnDelete a);
+        /// <summary>
+        /// on_delete : ON DELETE NO ACTION 
+        /// </summary>
+        void VisitOnDelete(AstOnDelete.AstOnDelete1 a);
         
-        void VisitOnUpdate(AstOnUpdate a);
+        /// <summary>
+        /// on_delete : ON DELETE CASCADE 
+        /// </summary>
+        void VisitOnDelete(AstOnDelete.AstOnDelete2 a);
+        
+        /// <summary>
+        /// on_delete : ON DELETE SET NULL_ 
+        /// </summary>
+        void VisitOnDelete(AstOnDelete.AstOnDelete3 a);
+        
+        /// <summary>
+        /// on_delete : ON DELETE SET DEFAULT 
+        /// </summary>
+        void VisitOnDelete(AstOnDelete.AstOnDelete4 a);
+        
+        /// <summary>
+        /// on_update : ON UPDATE NO ACTION 
+        /// </summary>
+        void VisitOnUpdate(AstOnUpdate.AstOnUpdate1 a);
+        
+        /// <summary>
+        /// on_update : ON UPDATE CASCADE 
+        /// </summary>
+        void VisitOnUpdate(AstOnUpdate.AstOnUpdate2 a);
+        
+        /// <summary>
+        /// on_update : ON UPDATE SET NULL_ 
+        /// </summary>
+        void VisitOnUpdate(AstOnUpdate.AstOnUpdate3 a);
+        
+        /// <summary>
+        /// on_update : ON UPDATE SET DEFAULT 
+        /// </summary>
+        void VisitOnUpdate(AstOnUpdate.AstOnUpdate4 a);
         
         /// <summary>
         /// sensitive : Bb.Generators.ModelMethod
@@ -10455,7 +11083,15 @@ namespace Bb.SqlServer.Asts
         /// </summary>
         void VisitStarAsterisk(AstStarAsterisk a);
         
-        void VisitUpdatedAsterisk(AstUpdatedAsterisk a);
+        /// <summary>
+        /// updated_asterisk : INSERTED DOT STAR 
+        /// </summary>
+        void VisitUpdatedAsterisk(AstUpdatedAsterisk.AstUpdatedAsterisk1 a);
+        
+        /// <summary>
+        /// updated_asterisk : DELETED DOT STAR 
+        /// </summary>
+        void VisitUpdatedAsterisk(AstUpdatedAsterisk.AstUpdatedAsterisk2 a);
         
         /// <summary>
         /// join_type : Bb.Generators.ModelMethod
@@ -10555,87 +11191,87 @@ namespace Bb.SqlServer.Asts
         void VisitRelayedConversation(AstRelayedConversation a);
         
         /// <summary>
-        /// comparison_operator : EQUAL
+        /// comparison_operator : EQUAL 
         /// </summary>
         void VisitComparisonOperator(AstComparisonOperator.AstComparisonOperator1 a);
         
         /// <summary>
-        /// comparison_operator : GREATER
+        /// comparison_operator : GREATER 
         /// </summary>
         void VisitComparisonOperator(AstComparisonOperator.AstComparisonOperator2 a);
         
         /// <summary>
-        /// comparison_operator : LESS
+        /// comparison_operator : LESS 
         /// </summary>
         void VisitComparisonOperator(AstComparisonOperator.AstComparisonOperator3 a);
         
         /// <summary>
-        /// comparison_operator : LESS  EQUAL
+        /// comparison_operator : LESS EQUAL 
         /// </summary>
         void VisitComparisonOperator(AstComparisonOperator.AstComparisonOperator4 a);
         
         /// <summary>
-        /// comparison_operator : GREATER  EQUAL
+        /// comparison_operator : GREATER EQUAL 
         /// </summary>
         void VisitComparisonOperator(AstComparisonOperator.AstComparisonOperator5 a);
         
         /// <summary>
-        /// comparison_operator : LESS  GREATER
+        /// comparison_operator : LESS GREATER 
         /// </summary>
         void VisitComparisonOperator(AstComparisonOperator.AstComparisonOperator6 a);
         
         /// <summary>
-        /// comparison_operator : EXCLAMATION  EQUAL
+        /// comparison_operator : EXCLAMATION EQUAL 
         /// </summary>
         void VisitComparisonOperator(AstComparisonOperator.AstComparisonOperator7 a);
         
         /// <summary>
-        /// comparison_operator : EXCLAMATION  GREATER
+        /// comparison_operator : EXCLAMATION GREATER 
         /// </summary>
         void VisitComparisonOperator(AstComparisonOperator.AstComparisonOperator8 a);
         
         /// <summary>
-        /// comparison_operator : EXCLAMATION  LESS
+        /// comparison_operator : EXCLAMATION LESS 
         /// </summary>
         void VisitComparisonOperator(AstComparisonOperator.AstComparisonOperator9 a);
         
         /// <summary>
-        /// assignment_operator : PLUS_ASSIGN
+        /// assignment_operator : PLUS_ASSIGN 
         /// </summary>
         void VisitAssignmentOperator(AstAssignmentOperator.AstAssignmentOperator1 a);
         
         /// <summary>
-        /// assignment_operator : MINUS_ASSIGN
+        /// assignment_operator : MINUS_ASSIGN 
         /// </summary>
         void VisitAssignmentOperator(AstAssignmentOperator.AstAssignmentOperator2 a);
         
         /// <summary>
-        /// assignment_operator : MULT_ASSIGN
+        /// assignment_operator : MULT_ASSIGN 
         /// </summary>
         void VisitAssignmentOperator(AstAssignmentOperator.AstAssignmentOperator3 a);
         
         /// <summary>
-        /// assignment_operator : DIV_ASSIGN
+        /// assignment_operator : DIV_ASSIGN 
         /// </summary>
         void VisitAssignmentOperator(AstAssignmentOperator.AstAssignmentOperator4 a);
         
         /// <summary>
-        /// assignment_operator : MOD_ASSIGN
+        /// assignment_operator : MOD_ASSIGN 
         /// </summary>
         void VisitAssignmentOperator(AstAssignmentOperator.AstAssignmentOperator5 a);
         
         /// <summary>
-        /// assignment_operator : AND_ASSIGN
+        /// assignment_operator : AND_ASSIGN 
         /// </summary>
         void VisitAssignmentOperator(AstAssignmentOperator.AstAssignmentOperator6 a);
         
         /// <summary>
-        /// assignment_operator : XOR_ASSIGN
+        /// assignment_operator : XOR_ASSIGN 
         /// </summary>
         void VisitAssignmentOperator(AstAssignmentOperator.AstAssignmentOperator7 a);
         
         /// <summary>
-        /// assignment_operator : OR_ASSIGN
+        /// assignment_operator : OR_ASSIGN 
         /// </summary>
         void VisitAssignmentOperator(AstAssignmentOperator.AstAssignmentOperator8 a);
         

@@ -194,9 +194,9 @@ namespace Generate.Scripts
 
                                       var allCombinations = alternative.ResolveAllCombinations();
 
-                                      foreach (TreeRuleItem alt in allCombinations)
+                                      foreach (var altSource in allCombinations)
                                       {
-
+                                          var alt = altSource.Item;
                                           StringBuilder uniqeConstraintKeyMethod = new StringBuilder();
                                           var name = CodeHelper.FormatCsharp(ast.Name.Text);
                                           var t1 = ("Ast" + CodeHelper.FormatCsharp(ast.Name.Text)).AsType();

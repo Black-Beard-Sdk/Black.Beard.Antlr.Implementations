@@ -114,17 +114,17 @@ namespace Bb.Parsers
 
         }
 
-        private List<TreeRuleItem> Clone(List<TreeRuleItem> list)
-        {
+        //private List<TreeRuleItem> Clone(List<TreeRuleItem> list)
+        //{
 
-            var list2 = new List<TreeRuleItem>(list.Capacity);
+        //    var list2 = new List<TreeRuleItem>(list.Capacity);
 
-            foreach (var item in list)
-                list2.Add(item.Clone());
+        //    foreach (var item in list)
+        //        list2.Add(item.Clone());
 
-            return list2;
+        //    return list2;
 
-        }
+        //}
 
 
         private static bool RemoveRedondanteRulesInLines(List<TreeRuleItem> items)

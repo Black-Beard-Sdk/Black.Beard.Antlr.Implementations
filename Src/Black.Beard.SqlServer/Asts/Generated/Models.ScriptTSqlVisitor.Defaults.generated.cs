@@ -31,17 +31,7 @@ namespace Bb.SqlServer.Parser
         /// </summary>
         public override AstRoot VisitT_root(TSqlParser.T_rootContext context)
         {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
+            List<AstRoot> list = this.GetList(context);
             return AstTRoot.Create(context, list);
         }
         
@@ -56,17 +46,7 @@ namespace Bb.SqlServer.Parser
         /// </summary>
         public override AstRoot VisitBatch(TSqlParser.BatchContext context)
         {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
+            List<AstRoot> list = this.GetList(context);
             return AstBatch.Create(context, list);
         }
         
@@ -283,17 +263,7 @@ namespace Bb.SqlServer.Parser
         /// </summary>
         public override AstRoot VisitSql_clause(TSqlParser.Sql_clauseContext context)
         {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
+            List<AstRoot> list = this.GetList(context);
             return AstSqlClause.Create(context, list);
         }
         
@@ -304,17 +274,7 @@ namespace Bb.SqlServer.Parser
         /// </summary>
         public override AstRoot VisitGoto_statement(TSqlParser.Goto_statementContext context)
         {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
+            List<AstRoot> list = this.GetList(context);
             return AstGotoStatement.Create(context, list);
         }
         
@@ -324,18 +284,8 @@ namespace Bb.SqlServer.Parser
         /// </summary>
         public override AstRoot VisitThrow_statement(TSqlParser.Throw_statementContext context)
         {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
-            return new AstThrowStatement(context, list);
+            List<AstRoot> list = this.GetList(context);
+            return AstThrowStatement.Create(context, list);
         }
         
         /// <summary>
@@ -344,18 +294,8 @@ namespace Bb.SqlServer.Parser
         /// </summary>
         public override AstRoot VisitTry_catch_statement(TSqlParser.Try_catch_statementContext context)
         {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
-            return new AstTryCatchStatement(context, list);
+            List<AstRoot> list = this.GetList(context);
+            return AstTryCatchStatement.Create(context, list);
         }
         
         /// <summary>
@@ -366,17 +306,7 @@ namespace Bb.SqlServer.Parser
         /// </summary>
         public override AstRoot VisitWhile_statement_content(TSqlParser.While_statement_contentContext context)
         {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
+            List<AstRoot> list = this.GetList(context);
             return AstWhileStatementContent.Create(context, list);
         }
         
@@ -387,17 +317,7 @@ namespace Bb.SqlServer.Parser
         /// </summary>
         public override AstRoot VisitRaiseerror_statement(TSqlParser.Raiseerror_statementContext context)
         {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
+            List<AstRoot> list = this.GetList(context);
             return AstRaiseerrorStatement.Create(context, list);
         }
         
@@ -407,18 +327,8 @@ namespace Bb.SqlServer.Parser
         /// </summary>
         public override AstRoot VisitAlter_assembly_start(TSqlParser.Alter_assembly_startContext context)
         {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
-            return new AstAlterAssemblyStart(context, list);
+            List<AstRoot> list = this.GetList(context);
+            return AstAlterAssemblyStart.Create(context, list);
         }
         
         /// <summary>
@@ -428,17 +338,7 @@ namespace Bb.SqlServer.Parser
         /// </summary>
         public override AstRoot VisitAlter_assembly_drop_multiple_files(TSqlParser.Alter_assembly_drop_multiple_filesContext context)
         {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
+            List<AstRoot> list = this.GetList(context);
             return AstAlterAssemblyDropMultipleFiles.Create(context, list);
         }
         
@@ -450,17 +350,7 @@ namespace Bb.SqlServer.Parser
         /// </summary>
         public override AstRoot VisitClient_assembly_specifier(TSqlParser.Client_assembly_specifierContext context)
         {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
+            List<AstRoot> list = this.GetList(context);
             return AstClientAssemblySpecifier.Create(context, list);
         }
         
@@ -473,17 +363,7 @@ namespace Bb.SqlServer.Parser
         /// </summary>
         public override AstRoot VisitAssembly_option(TSqlParser.Assembly_optionContext context)
         {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
+            List<AstRoot> list = this.GetList(context);
             return AstAssemblyOption.Create(context, list);
         }
         
@@ -494,17 +374,7 @@ namespace Bb.SqlServer.Parser
         /// </summary>
         public override AstRoot VisitFile_path(TSqlParser.File_pathContext context)
         {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
+            List<AstRoot> list = this.GetList(context);
             return AstFilePath.Create(context, list);
         }
         
@@ -515,17 +385,7 @@ namespace Bb.SqlServer.Parser
         /// </summary>
         public override AstRoot VisitMultiple_local_files(TSqlParser.Multiple_local_filesContext context)
         {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
+            List<AstRoot> list = this.GetList(context);
             return AstMultipleLocalFiles.Create(context, list);
         }
         
@@ -536,17 +396,7 @@ namespace Bb.SqlServer.Parser
         /// </summary>
         public override AstRoot VisitBinary_content(TSqlParser.Binary_contentContext context)
         {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
+            List<AstRoot> list = this.GetList(context);
             return AstBinaryContent.Create(context, list);
         }
         
@@ -557,17 +407,7 @@ namespace Bb.SqlServer.Parser
         /// </summary>
         public override AstRoot VisitBy_password_crypt(TSqlParser.By_password_cryptContext context)
         {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
+            List<AstRoot> list = this.GetList(context);
             return AstByPasswordCrypt.Create(context, list);
         }
         
@@ -579,17 +419,7 @@ namespace Bb.SqlServer.Parser
         /// </summary>
         public override AstRoot VisitAsymetric_key_with_info(TSqlParser.Asymetric_key_with_infoContext context)
         {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
+            List<AstRoot> list = this.GetList(context);
             return AstAsymetricKeyWithInfo.Create(context, list);
         }
         
@@ -602,17 +432,7 @@ namespace Bb.SqlServer.Parser
         /// </summary>
         public override AstRoot VisitAsymetric_key_from(TSqlParser.Asymetric_key_fromContext context)
         {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
+            List<AstRoot> list = this.GetList(context);
             return AstAsymetricKeyFrom.Create(context, list);
         }
         
@@ -622,18 +442,8 @@ namespace Bb.SqlServer.Parser
         /// </summary>
         public override AstRoot VisitDrop_asymmetric_key(TSqlParser.Drop_asymmetric_keyContext context)
         {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
-            return new AstDropAsymmetricKey(context, list);
+            List<AstRoot> list = this.GetList(context);
+            return AstDropAsymmetricKey.Create(context, list);
         }
         
         /// <summary>
@@ -643,17 +453,7 @@ namespace Bb.SqlServer.Parser
         /// </summary>
         public override AstRoot VisitAuthorization_grantee(TSqlParser.Authorization_granteeContext context)
         {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
+            List<AstRoot> list = this.GetList(context);
             return AstAuthorizationGrantee.Create(context, list);
         }
         
@@ -665,17 +465,7 @@ namespace Bb.SqlServer.Parser
         /// </summary>
         public override AstRoot VisitClass_type_for_grant(TSqlParser.Class_type_for_grantContext context)
         {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
+            List<AstRoot> list = this.GetList(context);
             return AstClassTypeForGrant.Create(context, list);
         }
         
@@ -687,17 +477,7 @@ namespace Bb.SqlServer.Parser
         /// </summary>
         public override AstRoot VisitAlter_options_listener(TSqlParser.Alter_options_listenerContext context)
         {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
+            List<AstRoot> list = this.GetList(context);
             return AstAlterOptionsListener.Create(context, list);
         }
         
@@ -708,17 +488,7 @@ namespace Bb.SqlServer.Parser
         /// </summary>
         public override AstRoot VisitAlter_listener(TSqlParser.Alter_listenerContext context)
         {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
+            List<AstRoot> list = this.GetList(context);
             return AstAlterListener.Create(context, list);
         }
         
@@ -729,17 +499,7 @@ namespace Bb.SqlServer.Parser
         /// </summary>
         public override AstRoot VisitIp_listener(TSqlParser.Ip_listenerContext context)
         {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
+            List<AstRoot> list = this.GetList(context);
             return AstIpListener.Create(context, list);
         }
         
@@ -750,17 +510,7 @@ namespace Bb.SqlServer.Parser
         /// </summary>
         public override AstRoot VisitIp_listener_comma(TSqlParser.Ip_listener_commaContext context)
         {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
+            List<AstRoot> list = this.GetList(context);
             return AstIpListenerComma.Create(context, list);
         }
         
@@ -771,17 +521,7 @@ namespace Bb.SqlServer.Parser
         /// </summary>
         public override AstRoot VisitAddress_listener(TSqlParser.Address_listenerContext context)
         {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
+            List<AstRoot> list = this.GetList(context);
             return AstAddressListener.Create(context, list);
         }
         
@@ -795,17 +535,7 @@ namespace Bb.SqlServer.Parser
         /// </summary>
         public override AstRoot VisitAlter_availability_replicat_primary(TSqlParser.Alter_availability_replicat_primaryContext context)
         {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
+            List<AstRoot> list = this.GetList(context);
             return AstAlterAvailabilityReplicatPrimary.Create(context, list);
         }
         
@@ -817,17 +547,7 @@ namespace Bb.SqlServer.Parser
         /// </summary>
         public override AstRoot VisitAlter_availability_primary_role(TSqlParser.Alter_availability_primary_roleContext context)
         {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
+            List<AstRoot> list = this.GetList(context);
             return AstAlterAvailabilityPrimaryRole.Create(context, list);
         }
         
@@ -839,17 +559,7 @@ namespace Bb.SqlServer.Parser
         /// </summary>
         public override AstRoot VisitAlter_availability_replicat(TSqlParser.Alter_availability_replicatContext context)
         {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
+            List<AstRoot> list = this.GetList(context);
             return AstAlterAvailabilityReplicat.Create(context, list);
         }
         
@@ -861,17 +571,7 @@ namespace Bb.SqlServer.Parser
         /// </summary>
         public override AstRoot VisitAvailability_group_options(TSqlParser.Availability_group_optionsContext context)
         {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
+            List<AstRoot> list = this.GetList(context);
             return AstAvailabilityGroupOptions.Create(context, list);
         }
         
@@ -881,18 +581,8 @@ namespace Bb.SqlServer.Parser
         /// </summary>
         public override AstRoot VisitFailover_mode_manuel(TSqlParser.Failover_mode_manuelContext context)
         {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
-            return new AstFailoverModeManuel(context, list);
+            List<AstRoot> list = this.GetList(context);
+            return AstFailoverModeManuel.Create(context, list);
         }
         
         /// <summary>
@@ -902,17 +592,7 @@ namespace Bb.SqlServer.Parser
         /// </summary>
         public override AstRoot VisitAlter_role(TSqlParser.Alter_roleContext context)
         {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
+            List<AstRoot> list = this.GetList(context);
             return AstAlterRole.Create(context, list);
         }
         
@@ -924,17 +604,7 @@ namespace Bb.SqlServer.Parser
         /// </summary>
         public override AstRoot VisitPrimary_role_config(TSqlParser.Primary_role_configContext context)
         {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
+            List<AstRoot> list = this.GetList(context);
             return AstPrimaryRoleConfig.Create(context, list);
         }
         
@@ -945,17 +615,7 @@ namespace Bb.SqlServer.Parser
         /// </summary>
         public override AstRoot VisitString_list_not(TSqlParser.String_list_notContext context)
         {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
+            List<AstRoot> list = this.GetList(context);
             return AstStringListNot.Create(context, list);
         }
         
@@ -966,17 +626,7 @@ namespace Bb.SqlServer.Parser
         /// </summary>
         public override AstRoot VisitSecondary_role_config(TSqlParser.Secondary_role_configContext context)
         {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
+            List<AstRoot> list = this.GetList(context);
             return AstSecondaryRoleConfig.Create(context, list);
         }
         
@@ -996,17 +646,7 @@ namespace Bb.SqlServer.Parser
         /// </summary>
         public override AstRoot VisitAlter_availability_group_options(TSqlParser.Alter_availability_group_optionsContext context)
         {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
+            List<AstRoot> list = this.GetList(context);
             return AstAlterAvailabilityGroupOptions.Create(context, list);
         }
         
@@ -1020,17 +660,7 @@ namespace Bb.SqlServer.Parser
         /// </summary>
         public override AstRoot VisitAlter_availability_group_option_set(TSqlParser.Alter_availability_group_option_setContext context)
         {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
+            List<AstRoot> list = this.GetList(context);
             return AstAlterAvailabilityGroupOptionSet.Create(context, list);
         }
         
@@ -1040,18 +670,8 @@ namespace Bb.SqlServer.Parser
         /// </summary>
         public override AstRoot VisitBroker_local_service_name(TSqlParser.Broker_local_service_nameContext context)
         {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
-            return new AstBrokerLocalServiceName(context, list);
+            List<AstRoot> list = this.GetList(context);
+            return AstBrokerLocalServiceName.Create(context, list);
         }
         
         /// <summary>
@@ -1061,17 +681,7 @@ namespace Bb.SqlServer.Parser
         /// </summary>
         public override AstRoot VisitId_any(TSqlParser.Id_anyContext context)
         {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
+            List<AstRoot> list = this.GetList(context);
             return AstIdAny.Create(context, list);
         }
         
@@ -1082,17 +692,7 @@ namespace Bb.SqlServer.Parser
         /// </summary>
         public override AstRoot VisitStringtext_any(TSqlParser.Stringtext_anyContext context)
         {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
+            List<AstRoot> list = this.GetList(context);
             return AstStringtextAny.Create(context, list);
         }
         
@@ -1102,18 +702,8 @@ namespace Bb.SqlServer.Parser
         /// </summary>
         public override AstRoot VisitDrop_broker_priority(TSqlParser.Drop_broker_priorityContext context)
         {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
-            return new AstDropBrokerPriority(context, list);
+            List<AstRoot> list = this.GetList(context);
+            return AstDropBrokerPriority.Create(context, list);
         }
         
         /// <summary>
@@ -1122,18 +712,8 @@ namespace Bb.SqlServer.Parser
         /// </summary>
         public override AstRoot VisitDrop_contract(TSqlParser.Drop_contractContext context)
         {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
-            return new AstDropContract(context, list);
+            List<AstRoot> list = this.GetList(context);
+            return AstDropContract.Create(context, list);
         }
         
         /// <summary>
@@ -1142,18 +722,8 @@ namespace Bb.SqlServer.Parser
         /// </summary>
         public override AstRoot VisitDrop_database(TSqlParser.Drop_databaseContext context)
         {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
-            return new AstDropDatabase(context, list);
+            List<AstRoot> list = this.GetList(context);
+            return AstDropDatabase.Create(context, list);
         }
         
         /// <summary>
@@ -1162,18 +732,8 @@ namespace Bb.SqlServer.Parser
         /// </summary>
         public override AstRoot VisitDrop_database_encryption_key(TSqlParser.Drop_database_encryption_keyContext context)
         {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
-            return new AstDropDatabaseEncryptionKey(context, list);
+            List<AstRoot> list = this.GetList(context);
+            return AstDropDatabaseEncryptionKey.Create(context, list);
         }
         
         /// <summary>
@@ -1182,18 +742,8 @@ namespace Bb.SqlServer.Parser
         /// </summary>
         public override AstRoot VisitDrop_default(TSqlParser.Drop_defaultContext context)
         {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
-            return new AstDropDefault(context, list);
+            List<AstRoot> list = this.GetList(context);
+            return AstDropDefault.Create(context, list);
         }
         
         /// <summary>
@@ -1203,17 +753,7 @@ namespace Bb.SqlServer.Parser
         /// </summary>
         public override AstRoot VisitEvent_notification_on(TSqlParser.Event_notification_onContext context)
         {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
+            List<AstRoot> list = this.GetList(context);
             return AstEventNotificationOn.Create(context, list);
         }
         
@@ -1223,18 +763,8 @@ namespace Bb.SqlServer.Parser
         /// </summary>
         public override AstRoot VisitDrop_master_key(TSqlParser.Drop_master_keyContext context)
         {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
-            return new AstDropMasterKey(context, list);
+            List<AstRoot> list = this.GetList(context);
+            return AstDropMasterKey.Create(context, list);
         }
         
         /// <summary>
@@ -1243,18 +773,8 @@ namespace Bb.SqlServer.Parser
         /// </summary>
         public override AstRoot VisitDrop_rule(TSqlParser.Drop_ruleContext context)
         {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
-            return new AstDropRule(context, list);
+            List<AstRoot> list = this.GetList(context);
+            return AstDropRule.Create(context, list);
         }
         
         /// <summary>
@@ -1263,18 +783,8 @@ namespace Bb.SqlServer.Parser
         /// </summary>
         public override AstRoot VisitDrop_sequence(TSqlParser.Drop_sequenceContext context)
         {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
-            return new AstDropSequence(context, list);
+            List<AstRoot> list = this.GetList(context);
+            return AstDropSequence.Create(context, list);
         }
         
         /// <summary>
@@ -1284,17 +794,7 @@ namespace Bb.SqlServer.Parser
         /// </summary>
         public override AstRoot VisitDrop_signature_by(TSqlParser.Drop_signature_byContext context)
         {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
+            List<AstRoot> list = this.GetList(context);
             return AstDropSignatureBy.Create(context, list);
         }
         
@@ -1305,17 +805,7 @@ namespace Bb.SqlServer.Parser
         /// </summary>
         public override AstRoot VisitTrigger_name(TSqlParser.Trigger_nameContext context)
         {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
+            List<AstRoot> list = this.GetList(context);
             return AstTriggerName.Create(context, list);
         }
         
@@ -1326,17 +816,7 @@ namespace Bb.SqlServer.Parser
         /// </summary>
         public override AstRoot VisitTrigger_target(TSqlParser.Trigger_targetContext context)
         {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
+            List<AstRoot> list = this.GetList(context);
             return AstTriggerTarget.Create(context, list);
         }
         
@@ -1347,17 +827,7 @@ namespace Bb.SqlServer.Parser
         /// </summary>
         public override AstRoot VisitLock_table_delay(TSqlParser.Lock_table_delayContext context)
         {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
+            List<AstRoot> list = this.GetList(context);
             return AstLockTableDelay.Create(context, list);
         }
         
@@ -1367,18 +837,8 @@ namespace Bb.SqlServer.Parser
         /// </summary>
         public override AstRoot VisitCreate_column_master_key(TSqlParser.Create_column_master_keyContext context)
         {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
-            return new AstCreateColumnMasterKey(context, list);
+            List<AstRoot> list = this.GetList(context);
+            return AstCreateColumnMasterKey.Create(context, list);
         }
         
         /// <summary>
@@ -1387,18 +847,8 @@ namespace Bb.SqlServer.Parser
         /// </summary>
         public override AstRoot VisitCreate_or_alter_event_session_with(TSqlParser.Create_or_alter_event_session_withContext context)
         {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
-            return new AstCreateOrAlterEventSessionWith(context, list);
+            List<AstRoot> list = this.GetList(context);
+            return AstCreateOrAlterEventSessionWith.Create(context, list);
         }
         
         /// <summary>
@@ -1407,18 +857,8 @@ namespace Bb.SqlServer.Parser
         /// </summary>
         public override AstRoot VisitSession_arg_max_dispatch(TSqlParser.Session_arg_max_dispatchContext context)
         {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
-            return new AstSessionArgMaxDispatch(context, list);
+            List<AstRoot> list = this.GetList(context);
+            return AstSessionArgMaxDispatch.Create(context, list);
         }
         
         /// <summary>
@@ -1427,18 +867,8 @@ namespace Bb.SqlServer.Parser
         /// </summary>
         public override AstRoot VisitTarget_parameter_value(TSqlParser.Target_parameter_valueContext context)
         {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
-            return new AstTargetParameterValue(context, list);
+            List<AstRoot> list = this.GetList(context);
+            return AstTargetParameterValue.Create(context, list);
         }
         
         /// <summary>
@@ -1447,18 +877,8 @@ namespace Bb.SqlServer.Parser
         /// </summary>
         public override AstRoot VisitEvent_session_predicate_expression(TSqlParser.Event_session_predicate_expressionContext context)
         {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
-            return new AstEventSessionPredicateExpression(context, list);
+            List<AstRoot> list = this.GetList(context);
+            return AstEventSessionPredicateExpression.Create(context, list);
         }
         
         /// <summary>
@@ -1468,17 +888,7 @@ namespace Bb.SqlServer.Parser
         /// </summary>
         public override AstRoot VisitEvent_session_predicate_factor(TSqlParser.Event_session_predicate_factorContext context)
         {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
+            List<AstRoot> list = this.GetList(context);
             return AstEventSessionPredicateFactor.Create(context, list);
         }
         
@@ -1490,17 +900,7 @@ namespace Bb.SqlServer.Parser
         /// </summary>
         public override AstRoot VisitEvent_session_predicate_leaf(TSqlParser.Event_session_predicate_leafContext context)
         {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
+            List<AstRoot> list = this.GetList(context);
             return AstEventSessionPredicateLeaf.Create(context, list);
         }
         
@@ -1511,17 +911,7 @@ namespace Bb.SqlServer.Parser
         /// </summary>
         public override AstRoot VisitEvent_session_id_source1(TSqlParser.Event_session_id_source1Context context)
         {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
+            List<AstRoot> list = this.GetList(context);
             return AstEventSessionIdSource1.Create(context, list);
         }
         
@@ -1532,17 +922,7 @@ namespace Bb.SqlServer.Parser
         /// </summary>
         public override AstRoot VisitEvent_session_id_source2(TSqlParser.Event_session_id_source2Context context)
         {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
+            List<AstRoot> list = this.GetList(context);
             return AstEventSessionIdSource2.Create(context, list);
         }
         
@@ -1553,17 +933,7 @@ namespace Bb.SqlServer.Parser
         /// </summary>
         public override AstRoot VisitAlter_external_data_source(TSqlParser.Alter_external_data_sourceContext context)
         {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
+            List<AstRoot> list = this.GetList(context);
             return AstAlterExternalDataSource.Create(context, list);
         }
         
@@ -1575,17 +945,7 @@ namespace Bb.SqlServer.Parser
         /// </summary>
         public override AstRoot VisitExternal_source(TSqlParser.External_sourceContext context)
         {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
+            List<AstRoot> list = this.GetList(context);
             return AstExternalSource.Create(context, list);
         }
         
@@ -1597,17 +957,7 @@ namespace Bb.SqlServer.Parser
         /// </summary>
         public override AstRoot VisitCode_content(TSqlParser.Code_contentContext context)
         {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
+            List<AstRoot> list = this.GetList(context);
             return AstCodeContent.Create(context, list);
         }
         
@@ -1617,18 +967,8 @@ namespace Bb.SqlServer.Parser
         /// </summary>
         public override AstRoot VisitCreate_external_resource_pool(TSqlParser.Create_external_resource_poolContext context)
         {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
-            return new AstCreateExternalResourcePool(context, list);
+            List<AstRoot> list = this.GetList(context);
+            return AstCreateExternalResourcePool.Create(context, list);
         }
         
         /// <summary>
@@ -1639,17 +979,7 @@ namespace Bb.SqlServer.Parser
         /// </summary>
         public override AstRoot VisitFulltext_languageList(TSqlParser.Fulltext_languageListContext context)
         {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
+            List<AstRoot> list = this.GetList(context);
             return AstFulltextLanguagelist.Create(context, list);
         }
         
@@ -1661,17 +991,7 @@ namespace Bb.SqlServer.Parser
         /// </summary>
         public override AstRoot VisitAlter_login_sql_server_infos(TSqlParser.Alter_login_sql_server_infosContext context)
         {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
+            List<AstRoot> list = this.GetList(context);
             return AstAlterLoginSqlServerInfos.Create(context, list);
         }
         
@@ -1681,18 +1001,8 @@ namespace Bb.SqlServer.Parser
         /// </summary>
         public override AstRoot VisitCreate_login_sql_server_settings(TSqlParser.Create_login_sql_server_settingsContext context)
         {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
-            return new AstCreateLoginSqlServerSettings(context, list);
+            List<AstRoot> list = this.GetList(context);
+            return AstCreateLoginSqlServerSettings.Create(context, list);
         }
         
         /// <summary>
@@ -1703,17 +1013,7 @@ namespace Bb.SqlServer.Parser
         /// </summary>
         public override AstRoot VisitCreate_login_sql_server_from(TSqlParser.Create_login_sql_server_fromContext context)
         {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
+            List<AstRoot> list = this.GetList(context);
             return AstCreateLoginSqlServerFrom.Create(context, list);
         }
         
@@ -1724,17 +1024,7 @@ namespace Bb.SqlServer.Parser
         /// </summary>
         public override AstRoot VisitAlter_login_azure_sql_infos(TSqlParser.Alter_login_azure_sql_infosContext context)
         {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
+            List<AstRoot> list = this.GetList(context);
             return AstAlterLoginAzureSqlInfos.Create(context, list);
         }
         
@@ -1745,17 +1035,7 @@ namespace Bb.SqlServer.Parser
         /// </summary>
         public override AstRoot VisitAlter_login_azure_sql_with(TSqlParser.Alter_login_azure_sql_withContext context)
         {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
+            List<AstRoot> list = this.GetList(context);
             return AstAlterLoginAzureSqlWith.Create(context, list);
         }
         
@@ -1766,17 +1046,7 @@ namespace Bb.SqlServer.Parser
         /// </summary>
         public override AstRoot VisitLogin_pwd_strategy(TSqlParser.Login_pwd_strategyContext context)
         {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
+            List<AstRoot> list = this.GetList(context);
             return AstLoginPwdStrategy.Create(context, list);
         }
         
@@ -1787,17 +1057,7 @@ namespace Bb.SqlServer.Parser
         /// </summary>
         public override AstRoot VisitChange_password(TSqlParser.Change_passwordContext context)
         {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
+            List<AstRoot> list = this.GetList(context);
             return AstChangePassword.Create(context, list);
         }
         
@@ -1808,17 +1068,7 @@ namespace Bb.SqlServer.Parser
         /// </summary>
         public override AstRoot VisitLogin_pdw_pwd(TSqlParser.Login_pdw_pwdContext context)
         {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
+            List<AstRoot> list = this.GetList(context);
             return AstLoginPdwPwd.Create(context, list);
         }
         
@@ -1828,18 +1078,8 @@ namespace Bb.SqlServer.Parser
         /// </summary>
         public override AstRoot VisitAlter_master_key_sql_server(TSqlParser.Alter_master_key_sql_serverContext context)
         {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
-            return new AstAlterMasterKeySqlServer(context, list);
+            List<AstRoot> list = this.GetList(context);
+            return AstAlterMasterKeySqlServer.Create(context, list);
         }
         
         /// <summary>
@@ -1848,18 +1088,8 @@ namespace Bb.SqlServer.Parser
         /// </summary>
         public override AstRoot VisitAlter_master_key_azure_sql(TSqlParser.Alter_master_key_azure_sqlContext context)
         {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
-            return new AstAlterMasterKeyAzureSql(context, list);
+            List<AstRoot> list = this.GetList(context);
+            return AstAlterMasterKeyAzureSql.Create(context, list);
         }
         
         /// <summary>
@@ -1868,18 +1098,8 @@ namespace Bb.SqlServer.Parser
         /// </summary>
         public override AstRoot VisitAdd_master_key(TSqlParser.Add_master_keyContext context)
         {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
-            return new AstAddMasterKey(context, list);
+            List<AstRoot> list = this.GetList(context);
+            return AstAddMasterKey.Create(context, list);
         }
         
         /// <summary>
@@ -1889,17 +1109,7 @@ namespace Bb.SqlServer.Parser
         /// </summary>
         public override AstRoot VisitMessage_validation_value(TSqlParser.Message_validation_valueContext context)
         {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
+            List<AstRoot> list = this.GetList(context);
             return AstMessageValidationValue.Create(context, list);
         }
         
@@ -1909,18 +1119,8 @@ namespace Bb.SqlServer.Parser
         /// </summary>
         public override AstRoot VisitCreate_resource_pool_infos(TSqlParser.Create_resource_pool_infosContext context)
         {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
-            return new AstCreateResourcePoolInfos(context, list);
+            List<AstRoot> list = this.GetList(context);
+            return AstCreateResourcePoolInfos.Create(context, list);
         }
         
         /// <summary>
@@ -1931,17 +1131,7 @@ namespace Bb.SqlServer.Parser
         /// </summary>
         public override AstRoot VisitResource_affinity_scheduler_value(TSqlParser.Resource_affinity_scheduler_valueContext context)
         {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
+            List<AstRoot> list = this.GetList(context);
             return AstResourceAffinitySchedulerValue.Create(context, list);
         }
         
@@ -1951,18 +1141,8 @@ namespace Bb.SqlServer.Parser
         /// </summary>
         public override AstRoot VisitAlter_resource_governor(TSqlParser.Alter_resource_governorContext context)
         {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
-            return new AstAlterResourceGovernor(context, list);
+            List<AstRoot> list = this.GetList(context);
+            return AstAlterResourceGovernor.Create(context, list);
         }
         
         /// <summary>
@@ -1971,18 +1151,8 @@ namespace Bb.SqlServer.Parser
         /// </summary>
         public override AstRoot VisitAlter_db_role(TSqlParser.Alter_db_roleContext context)
         {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
-            return new AstAlterDbRole(context, list);
+            List<AstRoot> list = this.GetList(context);
+            return AstAlterDbRole.Create(context, list);
         }
         
         /// <summary>
@@ -1992,17 +1162,7 @@ namespace Bb.SqlServer.Parser
         /// </summary>
         public override AstRoot VisitCreate_schema_name(TSqlParser.Create_schema_nameContext context)
         {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
+            List<AstRoot> list = this.GetList(context);
             return AstCreateSchemaName.Create(context, list);
         }
         
@@ -2015,17 +1175,7 @@ namespace Bb.SqlServer.Parser
         /// </summary>
         public override AstRoot VisitCreate_schema_target(TSqlParser.Create_schema_targetContext context)
         {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
+            List<AstRoot> list = this.GetList(context);
             return AstCreateSchemaTarget.Create(context, list);
         }
         
@@ -2036,17 +1186,7 @@ namespace Bb.SqlServer.Parser
         /// </summary>
         public override AstRoot VisitSchema_table_ref_impact(TSqlParser.Schema_table_ref_impactContext context)
         {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
+            List<AstRoot> list = this.GetList(context);
             return AstSchemaTableRefImpact.Create(context, list);
         }
         
@@ -2056,18 +1196,8 @@ namespace Bb.SqlServer.Parser
         /// </summary>
         public override AstRoot VisitAlter_sequence_restart(TSqlParser.Alter_sequence_restartContext context)
         {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
-            return new AstAlterSequenceRestart(context, list);
+            List<AstRoot> list = this.GetList(context);
+            return AstAlterSequenceRestart.Create(context, list);
         }
         
         /// <summary>
@@ -2076,18 +1206,8 @@ namespace Bb.SqlServer.Parser
         /// </summary>
         public override AstRoot VisitAlter_sequence_increment(TSqlParser.Alter_sequence_incrementContext context)
         {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
-            return new AstAlterSequenceIncrement(context, list);
+            List<AstRoot> list = this.GetList(context);
+            return AstAlterSequenceIncrement.Create(context, list);
         }
         
         /// <summary>
@@ -2096,18 +1216,8 @@ namespace Bb.SqlServer.Parser
         /// </summary>
         public override AstRoot VisitSequence_cache(TSqlParser.Sequence_cacheContext context)
         {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
-            return new AstSequenceCache(context, list);
+            List<AstRoot> list = this.GetList(context);
+            return AstSequenceCache.Create(context, list);
         }
         
         /// <summary>
@@ -2116,18 +1226,8 @@ namespace Bb.SqlServer.Parser
         /// </summary>
         public override AstRoot VisitAlter_sequence_max_value(TSqlParser.Alter_sequence_max_valueContext context)
         {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
-            return new AstAlterSequenceMaxValue(context, list);
+            List<AstRoot> list = this.GetList(context);
+            return AstAlterSequenceMaxValue.Create(context, list);
         }
         
         /// <summary>
@@ -2137,17 +1237,7 @@ namespace Bb.SqlServer.Parser
         /// </summary>
         public override AstRoot VisitAlter_sequence_min_value(TSqlParser.Alter_sequence_min_valueContext context)
         {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
+            List<AstRoot> list = this.GetList(context);
             return AstAlterSequenceMinValue.Create(context, list);
         }
         
@@ -2158,17 +1248,7 @@ namespace Bb.SqlServer.Parser
         /// </summary>
         public override AstRoot VisitCreate_sequence_min_value(TSqlParser.Create_sequence_min_valueContext context)
         {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
+            List<AstRoot> list = this.GetList(context);
             return AstCreateSequenceMinValue.Create(context, list);
         }
         
@@ -2179,17 +1259,7 @@ namespace Bb.SqlServer.Parser
         /// </summary>
         public override AstRoot VisitCreate_sequence_max_value(TSqlParser.Create_sequence_max_valueContext context)
         {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
+            List<AstRoot> list = this.GetList(context);
             return AstCreateSequenceMaxValue.Create(context, list);
         }
         
@@ -2201,17 +1271,7 @@ namespace Bb.SqlServer.Parser
         /// </summary>
         public override AstRoot VisitAlter_server_audit_infos(TSqlParser.Alter_server_audit_infosContext context)
         {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
+            List<AstRoot> list = this.GetList(context);
             return AstAlterServerAuditInfos.Create(context, list);
         }
         
@@ -2223,17 +1283,7 @@ namespace Bb.SqlServer.Parser
         /// </summary>
         public override AstRoot VisitServer_audit_file_info(TSqlParser.Server_audit_file_infoContext context)
         {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
+            List<AstRoot> list = this.GetList(context);
             return AstServerAuditFileInfo.Create(context, list);
         }
         
@@ -2245,17 +1295,7 @@ namespace Bb.SqlServer.Parser
         /// </summary>
         public override AstRoot VisitServer_audit_file(TSqlParser.Server_audit_fileContext context)
         {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
+            List<AstRoot> list = this.GetList(context);
             return AstServerAuditFile.Create(context, list);
         }
         
@@ -2269,17 +1309,7 @@ namespace Bb.SqlServer.Parser
         /// </summary>
         public override AstRoot VisitServer_audit_file_spec(TSqlParser.Server_audit_file_specContext context)
         {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
+            List<AstRoot> list = this.GetList(context);
             return AstServerAuditFileSpec.Create(context, list);
         }
         
@@ -2290,17 +1320,7 @@ namespace Bb.SqlServer.Parser
         /// </summary>
         public override AstRoot VisitDecimal_unlimited(TSqlParser.Decimal_unlimitedContext context)
         {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
+            List<AstRoot> list = this.GetList(context);
             return AstDecimalUnlimited.Create(context, list);
         }
         
@@ -2310,18 +1330,8 @@ namespace Bb.SqlServer.Parser
         /// </summary>
         public override AstRoot VisitDecimal_size_unlimited(TSqlParser.Decimal_size_unlimitedContext context)
         {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
-            return new AstDecimalSizeUnlimited(context, list);
+            List<AstRoot> list = this.GetList(context);
+            return AstDecimalSizeUnlimited.Create(context, list);
         }
         
         /// <summary>
@@ -2331,17 +1341,7 @@ namespace Bb.SqlServer.Parser
         /// </summary>
         public override AstRoot VisitAlter_server_audit_condition(TSqlParser.Alter_server_audit_conditionContext context)
         {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
+            List<AstRoot> list = this.GetList(context);
             return AstAlterServerAuditCondition.Create(context, list);
         }
         
@@ -2353,17 +1353,7 @@ namespace Bb.SqlServer.Parser
         /// </summary>
         public override AstRoot VisitCreate_server_audit_to_infos(TSqlParser.Create_server_audit_to_infosContext context)
         {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
+            List<AstRoot> list = this.GetList(context);
             return AstCreateServerAuditToInfos.Create(context, list);
         }
         
@@ -2376,17 +1366,7 @@ namespace Bb.SqlServer.Parser
         /// </summary>
         public override AstRoot VisitCreate_server_audit_with(TSqlParser.Create_server_audit_withContext context)
         {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
+            List<AstRoot> list = this.GetList(context);
             return AstCreateServerAuditWith.Create(context, list);
         }
         
@@ -2396,18 +1376,8 @@ namespace Bb.SqlServer.Parser
         /// </summary>
         public override AstRoot VisitAlter_server_configuration(TSqlParser.Alter_server_configurationContext context)
         {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
-            return new AstAlterServerConfiguration(context, list);
+            List<AstRoot> list = this.GetList(context);
+            return AstAlterServerConfiguration.Create(context, list);
         }
         
         /// <summary>
@@ -2416,18 +1386,8 @@ namespace Bb.SqlServer.Parser
         /// </summary>
         public override AstRoot VisitServer_config_process_affinity(TSqlParser.Server_config_process_affinityContext context)
         {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
-            return new AstServerConfigProcessAffinity(context, list);
+            List<AstRoot> list = this.GetList(context);
+            return AstServerConfigProcessAffinity.Create(context, list);
         }
         
         /// <summary>
@@ -2436,18 +1396,8 @@ namespace Bb.SqlServer.Parser
         /// </summary>
         public override AstRoot VisitServer_config_diagnostic_log(TSqlParser.Server_config_diagnostic_logContext context)
         {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
-            return new AstServerConfigDiagnosticLog(context, list);
+            List<AstRoot> list = this.GetList(context);
+            return AstServerConfigDiagnosticLog.Create(context, list);
         }
         
         /// <summary>
@@ -2456,18 +1406,8 @@ namespace Bb.SqlServer.Parser
         /// </summary>
         public override AstRoot VisitServer_config_failover(TSqlParser.Server_config_failoverContext context)
         {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
-            return new AstServerConfigFailover(context, list);
+            List<AstRoot> list = this.GetList(context);
+            return AstServerConfigFailover.Create(context, list);
         }
         
         /// <summary>
@@ -2476,18 +1416,8 @@ namespace Bb.SqlServer.Parser
         /// </summary>
         public override AstRoot VisitServer_config_buffer_pool_ext(TSqlParser.Server_config_buffer_pool_extContext context)
         {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
-            return new AstServerConfigBufferPoolExt(context, list);
+            List<AstRoot> list = this.GetList(context);
+            return AstServerConfigBufferPoolExt.Create(context, list);
         }
         
         /// <summary>
@@ -2497,17 +1427,7 @@ namespace Bb.SqlServer.Parser
         /// </summary>
         public override AstRoot VisitString_or_default(TSqlParser.String_or_defaultContext context)
         {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
+            List<AstRoot> list = this.GetList(context);
             return AstStringOrDefault.Create(context, list);
         }
         
@@ -2518,17 +1438,7 @@ namespace Bb.SqlServer.Parser
         /// </summary>
         public override AstRoot VisitContract_ref(TSqlParser.Contract_refContext context)
         {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
+            List<AstRoot> list = this.GetList(context);
             return AstContractRef.Create(context, list);
         }
         
@@ -2539,17 +1449,7 @@ namespace Bb.SqlServer.Parser
         /// </summary>
         public override AstRoot VisitService_master_key_items(TSqlParser.Service_master_key_itemsContext context)
         {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
+            List<AstRoot> list = this.GetList(context);
             return AstServiceMasterKeyItems.Create(context, list);
         }
         
@@ -2560,17 +1460,7 @@ namespace Bb.SqlServer.Parser
         /// </summary>
         public override AstRoot VisitRegenerate_account(TSqlParser.Regenerate_accountContext context)
         {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
+            List<AstRoot> list = this.GetList(context);
             return AstRegenerateAccount.Create(context, list);
         }
         
@@ -2585,17 +1475,7 @@ namespace Bb.SqlServer.Parser
         /// </summary>
         public override AstRoot VisitAlter_user_item(TSqlParser.Alter_user_itemContext context)
         {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
+            List<AstRoot> list = this.GetList(context);
             return AstAlterUserItem.Create(context, list);
         }
         
@@ -2606,17 +1486,7 @@ namespace Bb.SqlServer.Parser
         /// </summary>
         public override AstRoot VisitSchema_id_null(TSqlParser.Schema_id_nullContext context)
         {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
+            List<AstRoot> list = this.GetList(context);
             return AstSchemaIdNull.Create(context, list);
         }
         
@@ -2628,17 +1498,7 @@ namespace Bb.SqlServer.Parser
         /// </summary>
         public override AstRoot VisitCreate_user(TSqlParser.Create_userContext context)
         {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
+            List<AstRoot> list = this.GetList(context);
             return AstCreateUser.Create(context, list);
         }
         
@@ -2648,18 +1508,8 @@ namespace Bb.SqlServer.Parser
         /// </summary>
         public override AstRoot VisitCreate_user_with_login(TSqlParser.Create_user_with_loginContext context)
         {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
-            return new AstCreateUserWithLogin(context, list);
+            List<AstRoot> list = this.GetList(context);
+            return AstCreateUserWithLogin.Create(context, list);
         }
         
         /// <summary>
@@ -2670,17 +1520,7 @@ namespace Bb.SqlServer.Parser
         /// </summary>
         public override AstRoot VisitCreate_user_without_login(TSqlParser.Create_user_without_loginContext context)
         {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
+            List<AstRoot> list = this.GetList(context);
             return AstCreateUserWithoutLogin.Create(context, list);
         }
         
@@ -2692,17 +1532,7 @@ namespace Bb.SqlServer.Parser
         /// </summary>
         public override AstRoot VisitCreate_user_windows_principal_id(TSqlParser.Create_user_windows_principal_idContext context)
         {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
+            List<AstRoot> list = this.GetList(context);
             return AstCreateUserWindowsPrincipalId.Create(context, list);
         }
         
@@ -2713,17 +1543,7 @@ namespace Bb.SqlServer.Parser
         /// </summary>
         public override AstRoot VisitPwd_value(TSqlParser.Pwd_valueContext context)
         {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
+            List<AstRoot> list = this.GetList(context);
             return AstPwdValue.Create(context, list);
         }
         
@@ -2734,17 +1554,7 @@ namespace Bb.SqlServer.Parser
         /// </summary>
         public override AstRoot VisitUser_settings_short(TSqlParser.User_settings_shortContext context)
         {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
+            List<AstRoot> list = this.GetList(context);
             return AstUserSettingsShort.Create(context, list);
         }
         
@@ -2757,17 +1567,7 @@ namespace Bb.SqlServer.Parser
         /// </summary>
         public override AstRoot VisitUser_setting(TSqlParser.User_settingContext context)
         {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
+            List<AstRoot> list = this.GetList(context);
             return AstUserSetting.Create(context, list);
         }
         
@@ -2778,17 +1578,7 @@ namespace Bb.SqlServer.Parser
         /// </summary>
         public override AstRoot VisitCreate_user_azure_sql_dw(TSqlParser.Create_user_azure_sql_dwContext context)
         {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
+            List<AstRoot> list = this.GetList(context);
             return AstCreateUserAzureSqlDw.Create(context, list);
         }
         
@@ -2799,17 +1589,7 @@ namespace Bb.SqlServer.Parser
         /// </summary>
         public override AstRoot VisitUser_strategy(TSqlParser.User_strategyContext context)
         {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
+            List<AstRoot> list = this.GetList(context);
             return AstUserStrategy.Create(context, list);
         }
         
@@ -2822,17 +1602,7 @@ namespace Bb.SqlServer.Parser
         /// </summary>
         public override AstRoot VisitAlter_user_azure_sql_info(TSqlParser.Alter_user_azure_sql_infoContext context)
         {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
+            List<AstRoot> list = this.GetList(context);
             return AstAlterUserAzureSqlInfo.Create(context, list);
         }
         
@@ -2843,17 +1613,7 @@ namespace Bb.SqlServer.Parser
         /// </summary>
         public override AstRoot VisitWorkload_group_name(TSqlParser.Workload_group_nameContext context)
         {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
+            List<AstRoot> list = this.GetList(context);
             return AstWorkloadGroupName.Create(context, list);
         }
         
@@ -2863,18 +1623,8 @@ namespace Bb.SqlServer.Parser
         /// </summary>
         public override AstRoot VisitAlter_workload_group_using(TSqlParser.Alter_workload_group_usingContext context)
         {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
-            return new AstAlterWorkloadGroupUsing(context, list);
+            List<AstRoot> list = this.GetList(context);
+            return AstAlterWorkloadGroupUsing.Create(context, list);
         }
         
         /// <summary>
@@ -2883,18 +1633,8 @@ namespace Bb.SqlServer.Parser
         /// </summary>
         public override AstRoot VisitWorkload_option_item(TSqlParser.Workload_option_itemContext context)
         {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
-            return new AstWorkloadOptionItem(context, list);
+            List<AstRoot> list = this.GetList(context);
+            return AstWorkloadOptionItem.Create(context, list);
         }
         
         /// <summary>
@@ -2904,17 +1644,7 @@ namespace Bb.SqlServer.Parser
         /// </summary>
         public override AstRoot VisitWorkload_group_id_or_default(TSqlParser.Workload_group_id_or_defaultContext context)
         {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
+            List<AstRoot> list = this.GetList(context);
             return AstWorkloadGroupIdOrDefault.Create(context, list);
         }
         
@@ -2924,18 +1654,8 @@ namespace Bb.SqlServer.Parser
         /// </summary>
         public override AstRoot VisitQueue_settings(TSqlParser.Queue_settingsContext context)
         {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
-            return new AstQueueSettings(context, list);
+            List<AstRoot> list = this.GetList(context);
+            return AstQueueSettings.Create(context, list);
         }
         
         /// <summary>
@@ -2945,17 +1665,7 @@ namespace Bb.SqlServer.Parser
         /// </summary>
         public override AstRoot VisitTable_or_queue(TSqlParser.Table_or_queueContext context)
         {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
+            List<AstRoot> list = this.GetList(context);
             return AstTableOrQueue.Create(context, list);
         }
         
@@ -2967,17 +1677,7 @@ namespace Bb.SqlServer.Parser
         /// </summary>
         public override AstRoot VisitQueue_action(TSqlParser.Queue_actionContext context)
         {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
+            List<AstRoot> list = this.GetList(context);
             return AstQueueAction.Create(context, list);
         }
         
@@ -2988,17 +1688,7 @@ namespace Bb.SqlServer.Parser
         /// </summary>
         public override AstRoot VisitId_default(TSqlParser.Id_defaultContext context)
         {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
+            List<AstRoot> list = this.GetList(context);
             return AstIdDefault.Create(context, list);
         }
         
@@ -3009,17 +1699,7 @@ namespace Bb.SqlServer.Parser
         /// </summary>
         public override AstRoot VisitContract_item_target(TSqlParser.Contract_item_targetContext context)
         {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
+            List<AstRoot> list = this.GetList(context);
             return AstContractItemTarget.Create(context, list);
         }
         
@@ -3031,17 +1711,7 @@ namespace Bb.SqlServer.Parser
         /// </summary>
         public override AstRoot VisitWhen_matche(TSqlParser.When_matcheContext context)
         {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
+            List<AstRoot> list = this.GetList(context);
             return AstWhenMatche.Create(context, list);
         }
         
@@ -3052,17 +1722,7 @@ namespace Bb.SqlServer.Parser
         /// </summary>
         public override AstRoot VisitMerge_matched(TSqlParser.Merge_matchedContext context)
         {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
+            List<AstRoot> list = this.GetList(context);
             return AstMergeMatched.Create(context, list);
         }
         
@@ -3072,18 +1732,8 @@ namespace Bb.SqlServer.Parser
         /// </summary>
         public override AstRoot VisitMerge_not_matched(TSqlParser.Merge_not_matchedContext context)
         {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
-            return new AstMergeNotMatched(context, list);
+            List<AstRoot> list = this.GetList(context);
+            return AstMergeNotMatched.Create(context, list);
         }
         
         /// <summary>
@@ -3094,17 +1744,7 @@ namespace Bb.SqlServer.Parser
         /// </summary>
         public override AstRoot VisitDelete_statement_from(TSqlParser.Delete_statement_fromContext context)
         {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
+            List<AstRoot> list = this.GetList(context);
             return AstDeleteStatementFrom.Create(context, list);
         }
         
@@ -3117,17 +1757,7 @@ namespace Bb.SqlServer.Parser
         /// </summary>
         public override AstRoot VisitInsert_statement_value(TSqlParser.Insert_statement_valueContext context)
         {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
+            List<AstRoot> list = this.GetList(context);
             return AstInsertStatementValue.Create(context, list);
         }
         
@@ -3138,17 +1768,7 @@ namespace Bb.SqlServer.Parser
         /// </summary>
         public override AstRoot VisitReceive_mode(TSqlParser.Receive_modeContext context)
         {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
+            List<AstRoot> list = this.GetList(context);
             return AstReceiveMode.Create(context, list);
         }
         
@@ -3158,18 +1778,8 @@ namespace Bb.SqlServer.Parser
         /// </summary>
         public override AstRoot VisitTimespan(TSqlParser.TimespanContext context)
         {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
-            return new AstTimespan(context, list);
+            List<AstRoot> list = this.GetList(context);
+            return AstTimespan.Create(context, list);
         }
         
         /// <summary>
@@ -3180,17 +1790,7 @@ namespace Bb.SqlServer.Parser
         /// </summary>
         public override AstRoot VisitRelational_index_option(TSqlParser.Relational_index_optionContext context)
         {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
+            List<AstRoot> list = this.GetList(context);
             return AstRelationalIndexOption.Create(context, list);
         }
         
@@ -3204,17 +1804,7 @@ namespace Bb.SqlServer.Parser
         /// </summary>
         public override AstRoot VisitIndex_status(TSqlParser.Index_statusContext context)
         {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
+            List<AstRoot> list = this.GetList(context);
             return AstIndexStatus.Create(context, list);
         }
         
@@ -3224,18 +1814,8 @@ namespace Bb.SqlServer.Parser
         /// </summary>
         public override AstRoot VisitIndex_name(TSqlParser.Index_nameContext context)
         {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
-            return new AstIndexName(context, list);
+            List<AstRoot> list = this.GetList(context);
+            return AstIndexName.Create(context, list);
         }
         
         /// <summary>
@@ -3246,17 +1826,7 @@ namespace Bb.SqlServer.Parser
         /// </summary>
         public override AstRoot VisitResumable_index_option(TSqlParser.Resumable_index_optionContext context)
         {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
+            List<AstRoot> list = this.GetList(context);
             return AstResumableIndexOption.Create(context, list);
         }
         
@@ -3267,17 +1837,7 @@ namespace Bb.SqlServer.Parser
         /// </summary>
         public override AstRoot VisitReorganize_option(TSqlParser.Reorganize_optionContext context)
         {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
+            List<AstRoot> list = this.GetList(context);
             return AstReorganizeOption.Create(context, list);
         }
         
@@ -3292,17 +1852,7 @@ namespace Bb.SqlServer.Parser
         /// </summary>
         public override AstRoot VisitSet_index_option(TSqlParser.Set_index_optionContext context)
         {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
+            List<AstRoot> list = this.GetList(context);
             return AstSetIndexOption.Create(context, list);
         }
         
@@ -3313,17 +1863,7 @@ namespace Bb.SqlServer.Parser
         /// </summary>
         public override AstRoot VisitRebuild_partition(TSqlParser.Rebuild_partitionContext context)
         {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
+            List<AstRoot> list = this.GetList(context);
             return AstRebuildPartition.Create(context, list);
         }
         
@@ -3346,17 +1886,7 @@ namespace Bb.SqlServer.Parser
         /// </summary>
         public override AstRoot VisitRebuild_index_option(TSqlParser.Rebuild_index_optionContext context)
         {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
+            List<AstRoot> list = this.GetList(context);
             return AstRebuildIndexOption.Create(context, list);
         }
         
@@ -3367,17 +1897,7 @@ namespace Bb.SqlServer.Parser
         /// </summary>
         public override AstRoot VisitOnline_value(TSqlParser.Online_valueContext context)
         {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
+            List<AstRoot> list = this.GetList(context);
             return AstOnlineValue.Create(context, list);
         }
         
@@ -3392,17 +1912,7 @@ namespace Bb.SqlServer.Parser
         /// </summary>
         public override AstRoot VisitSingle_partition_rebuild_index_option(TSqlParser.Single_partition_rebuild_index_optionContext context)
         {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
+            List<AstRoot> list = this.GetList(context);
             return AstSinglePartitionRebuildIndexOption.Create(context, list);
         }
         
@@ -3412,18 +1922,8 @@ namespace Bb.SqlServer.Parser
         /// </summary>
         public override AstRoot VisitPartition_nums(TSqlParser.Partition_numsContext context)
         {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
-            return new AstPartitionNums(context, list);
+            List<AstRoot> list = this.GetList(context);
+            return AstPartitionNums.Create(context, list);
         }
         
         /// <summary>
@@ -3436,17 +1936,7 @@ namespace Bb.SqlServer.Parser
         /// </summary>
         public override AstRoot VisitColumnstore_index_option(TSqlParser.Columnstore_index_optionContext context)
         {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
+            List<AstRoot> list = this.GetList(context);
             return AstColumnstoreIndexOption.Create(context, list);
         }
         
@@ -3465,17 +1955,7 @@ namespace Bb.SqlServer.Parser
         /// </summary>
         public override AstRoot VisitXml_index_option(TSqlParser.Xml_index_optionContext context)
         {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
+            List<AstRoot> list = this.GetList(context);
             return AstXmlIndexOption.Create(context, list);
         }
         
@@ -3486,17 +1966,7 @@ namespace Bb.SqlServer.Parser
         /// </summary>
         public override AstRoot VisitProcedure_declaration_arguments(TSqlParser.Procedure_declaration_argumentsContext context)
         {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
+            List<AstRoot> list = this.GetList(context);
             return AstProcedureDeclarationArguments.Create(context, list);
         }
         
@@ -3507,17 +1977,7 @@ namespace Bb.SqlServer.Parser
         /// </summary>
         public override AstRoot VisitProcedure_declaration(TSqlParser.Procedure_declarationContext context)
         {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
+            List<AstRoot> list = this.GetList(context);
             return AstProcedureDeclaration.Create(context, list);
         }
         
@@ -3527,18 +1987,8 @@ namespace Bb.SqlServer.Parser
         /// </summary>
         public override AstRoot VisitProcedure_declaration_create(TSqlParser.Procedure_declaration_createContext context)
         {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
-            return new AstProcedureDeclarationCreate(context, list);
+            List<AstRoot> list = this.GetList(context);
+            return AstProcedureDeclarationCreate.Create(context, list);
         }
         
         /// <summary>
@@ -3548,17 +1998,7 @@ namespace Bb.SqlServer.Parser
         /// </summary>
         public override AstRoot VisitReplication_alias(TSqlParser.Replication_aliasContext context)
         {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
+            List<AstRoot> list = this.GetList(context);
             return AstReplicationAlias.Create(context, list);
         }
         
@@ -3569,17 +2009,7 @@ namespace Bb.SqlServer.Parser
         /// </summary>
         public override AstRoot VisitCreate_or_alter_trigger(TSqlParser.Create_or_alter_triggerContext context)
         {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
+            List<AstRoot> list = this.GetList(context);
             return AstCreateOrAlterTrigger.Create(context, list);
         }
         
@@ -3590,17 +2020,7 @@ namespace Bb.SqlServer.Parser
         /// </summary>
         public override AstRoot VisitCreate_or_alter(TSqlParser.Create_or_alterContext context)
         {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
+            List<AstRoot> list = this.GetList(context);
             return AstCreateOrAlter.Create(context, list);
         }
         
@@ -3612,17 +2032,7 @@ namespace Bb.SqlServer.Parser
         /// </summary>
         public override AstRoot VisitFor_after_instead(TSqlParser.For_after_insteadContext context)
         {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
+            List<AstRoot> list = this.GetList(context);
             return AstForAfterInstead.Create(context, list);
         }
         
@@ -3633,17 +2043,7 @@ namespace Bb.SqlServer.Parser
         /// </summary>
         public override AstRoot VisitDml_trigger_option(TSqlParser.Dml_trigger_optionContext context)
         {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
+            List<AstRoot> list = this.GetList(context);
             return AstDmlTriggerOption.Create(context, list);
         }
         
@@ -3654,17 +2054,7 @@ namespace Bb.SqlServer.Parser
         /// </summary>
         public override AstRoot VisitProcedure_option(TSqlParser.Procedure_optionContext context)
         {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
+            List<AstRoot> list = this.GetList(context);
             return AstProcedureOption.Create(context, list);
         }
         
@@ -3675,17 +2065,7 @@ namespace Bb.SqlServer.Parser
         /// </summary>
         public override AstRoot VisitFunction_option(TSqlParser.Function_optionContext context)
         {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
+            List<AstRoot> list = this.GetList(context);
             return AstFunctionOption.Create(context, list);
         }
         
@@ -3697,17 +2077,7 @@ namespace Bb.SqlServer.Parser
         /// </summary>
         public override AstRoot VisitStatistics_with(TSqlParser.Statistics_withContext context)
         {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
+            List<AstRoot> list = this.GetList(context);
             return AstStatisticsWith.Create(context, list);
         }
         
@@ -3729,17 +2099,7 @@ namespace Bb.SqlServer.Parser
         /// </summary>
         public override AstRoot VisitUpdate_statistics_option(TSqlParser.Update_statistics_optionContext context)
         {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
+            List<AstRoot> list = this.GetList(context);
             return AstUpdateStatisticsOption.Create(context, list);
         }
         
@@ -3751,17 +2111,7 @@ namespace Bb.SqlServer.Parser
         /// </summary>
         public override AstRoot VisitTable_indices(TSqlParser.Table_indicesContext context)
         {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
+            List<AstRoot> list = this.GetList(context);
             return AstTableIndices.Create(context, list);
         }
         
@@ -3772,17 +2122,7 @@ namespace Bb.SqlServer.Parser
         /// </summary>
         public override AstRoot VisitTbl_option(TSqlParser.Tbl_optionContext context)
         {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
+            List<AstRoot> list = this.GetList(context);
             return AstTblOption.Create(context, list);
         }
         
@@ -3797,17 +2137,7 @@ namespace Bb.SqlServer.Parser
         /// </summary>
         public override AstRoot VisitTableoption(TSqlParser.TableoptionContext context)
         {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
+            List<AstRoot> list = this.GetList(context);
             return AstTableoption.Create(context, list);
         }
         
@@ -3817,18 +2147,8 @@ namespace Bb.SqlServer.Parser
         /// </summary>
         public override AstRoot VisitTable_opt_varname(TSqlParser.Table_opt_varnameContext context)
         {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
-            return new AstTableOptVarname(context, list);
+            List<AstRoot> list = this.GetList(context);
+            return AstTableOptVarname.Create(context, list);
         }
         
         /// <summary>
@@ -3837,18 +2157,8 @@ namespace Bb.SqlServer.Parser
         /// </summary>
         public override AstRoot VisitTable_opt_var_value(TSqlParser.Table_opt_var_valueContext context)
         {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
-            return new AstTableOptVarValue(context, list);
+            List<AstRoot> list = this.GetList(context);
+            return AstTableOptVarValue.Create(context, list);
         }
         
         /// <summary>
@@ -3858,17 +2168,7 @@ namespace Bb.SqlServer.Parser
         /// </summary>
         public override AstRoot VisitTable_distribution(TSqlParser.Table_distributionContext context)
         {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
+            List<AstRoot> list = this.GetList(context);
             return AstTableDistribution.Create(context, list);
         }
         
@@ -3879,17 +2179,7 @@ namespace Bb.SqlServer.Parser
         /// </summary>
         public override AstRoot VisitAlter_table_constraint(TSqlParser.Alter_table_constraintContext context)
         {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
+            List<AstRoot> list = this.GetList(context);
             return AstAlterTableConstraint.Create(context, list);
         }
         
@@ -3900,17 +2190,7 @@ namespace Bb.SqlServer.Parser
         /// </summary>
         public override AstRoot VisitConstraint_delete_or_update(TSqlParser.Constraint_delete_or_updateContext context)
         {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
+            List<AstRoot> list = this.GetList(context);
             return AstConstraintDeleteOrUpdate.Create(context, list);
         }
         
@@ -3920,18 +2200,8 @@ namespace Bb.SqlServer.Parser
         /// </summary>
         public override AstRoot VisitSwitch_partition(TSqlParser.Switch_partitionContext context)
         {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
-            return new AstSwitchPartition(context, list);
+            List<AstRoot> list = this.GetList(context);
+            return AstSwitchPartition.Create(context, list);
         }
         
         /// <summary>
@@ -3940,18 +2210,8 @@ namespace Bb.SqlServer.Parser
         /// </summary>
         public override AstRoot VisitLow_priority_lock_wait(TSqlParser.Low_priority_lock_waitContext context)
         {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
-            return new AstLowPriorityLockWait(context, list);
+            List<AstRoot> list = this.GetList(context);
+            return AstLowPriorityLockWait.Create(context, list);
         }
         
         /// <summary>
@@ -3964,17 +2224,7 @@ namespace Bb.SqlServer.Parser
         /// </summary>
         public override AstRoot VisitAlter_database_new_infos(TSqlParser.Alter_database_new_infosContext context)
         {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
+            List<AstRoot> list = this.GetList(context);
             return AstAlterDatabaseNewInfos.Create(context, list);
         }
         
@@ -3987,17 +2237,7 @@ namespace Bb.SqlServer.Parser
         /// </summary>
         public override AstRoot VisitAdd_or_modify_files(TSqlParser.Add_or_modify_filesContext context)
         {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
+            List<AstRoot> list = this.GetList(context);
             return AstAddOrModifyFiles.Create(context, list);
         }
         
@@ -4009,17 +2249,7 @@ namespace Bb.SqlServer.Parser
         /// </summary>
         public override AstRoot VisitAdd_or_modify_filegroups(TSqlParser.Add_or_modify_filegroupsContext context)
         {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
+            List<AstRoot> list = this.GetList(context);
             return AstAddOrModifyFilegroups.Create(context, list);
         }
         
@@ -4033,17 +2263,7 @@ namespace Bb.SqlServer.Parser
         /// </summary>
         public override AstRoot VisitModify_filegroups_options(TSqlParser.Modify_filegroups_optionsContext context)
         {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
+            List<AstRoot> list = this.GetList(context);
             return AstModifyFilegroupsOptions.Create(context, list);
         }
         
@@ -4074,17 +2294,7 @@ namespace Bb.SqlServer.Parser
         /// </summary>
         public override AstRoot VisitDatabase_optionspec(TSqlParser.Database_optionspecContext context)
         {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
+            List<AstRoot> list = this.GetList(context);
             return AstDatabaseOptionspec.Create(context, list);
         }
         
@@ -4098,17 +2308,7 @@ namespace Bb.SqlServer.Parser
         /// </summary>
         public override AstRoot VisitAuto_option(TSqlParser.Auto_optionContext context)
         {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
+            List<AstRoot> list = this.GetList(context);
             return AstAutoOption.Create(context, list);
         }
         
@@ -4118,18 +2318,8 @@ namespace Bb.SqlServer.Parser
         /// </summary>
         public override AstRoot VisitChange_tracking_set(TSqlParser.Change_tracking_setContext context)
         {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
-            return new AstChangeTrackingSet(context, list);
+            List<AstRoot> list = this.GetList(context);
+            return AstChangeTrackingSet.Create(context, list);
         }
         
         /// <summary>
@@ -4139,17 +2329,7 @@ namespace Bb.SqlServer.Parser
         /// </summary>
         public override AstRoot VisitChange_tracking_option_list(TSqlParser.Change_tracking_option_listContext context)
         {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
+            List<AstRoot> list = this.GetList(context);
             return AstChangeTrackingOptionList.Create(context, list);
         }
         
@@ -4160,17 +2340,7 @@ namespace Bb.SqlServer.Parser
         /// </summary>
         public override AstRoot VisitCursor_option(TSqlParser.Cursor_optionContext context)
         {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
+            List<AstRoot> list = this.GetList(context);
             return AstCursorOption.Create(context, list);
         }
         
@@ -4180,18 +2350,8 @@ namespace Bb.SqlServer.Parser
         /// </summary>
         public override AstRoot VisitListener_ip_addr(TSqlParser.Listener_ip_addrContext context)
         {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
-            return new AstListenerIpAddr(context, list);
+            List<AstRoot> list = this.GetList(context);
+            return AstListenerIpAddr.Create(context, list);
         }
         
         /// <summary>
@@ -4200,18 +2360,8 @@ namespace Bb.SqlServer.Parser
         /// </summary>
         public override AstRoot VisitAuthentication_configuration(TSqlParser.Authentication_configurationContext context)
         {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
-            return new AstAuthenticationConfiguration(context, list);
+            List<AstRoot> list = this.GetList(context);
+            return AstAuthenticationConfiguration.Create(context, list);
         }
         
         /// <summary>
@@ -4221,17 +2371,7 @@ namespace Bb.SqlServer.Parser
         /// </summary>
         public override AstRoot VisitMirroring_set_option(TSqlParser.Mirroring_set_optionContext context)
         {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
+            List<AstRoot> list = this.GetList(context);
             return AstMirroringSetOption.Create(context, list);
         }
         
@@ -4243,17 +2383,7 @@ namespace Bb.SqlServer.Parser
         /// </summary>
         public override AstRoot VisitPartner_option(TSqlParser.Partner_optionContext context)
         {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
+            List<AstRoot> list = this.GetList(context);
             return AstPartnerOption.Create(context, list);
         }
         
@@ -4264,17 +2394,7 @@ namespace Bb.SqlServer.Parser
         /// </summary>
         public override AstRoot VisitWitness_option(TSqlParser.Witness_optionContext context)
         {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
+            List<AstRoot> list = this.GetList(context);
             return AstWitnessOption.Create(context, list);
         }
         
@@ -4284,18 +2404,8 @@ namespace Bb.SqlServer.Parser
         /// </summary>
         public override AstRoot VisitPartner_server_tcp_prefix(TSqlParser.Partner_server_tcp_prefixContext context)
         {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
-            return new AstPartnerServerTcpPrefix(context, list);
+            List<AstRoot> list = this.GetList(context);
+            return AstPartnerServerTcpPrefix.Create(context, list);
         }
         
         /// <summary>
@@ -4310,17 +2420,7 @@ namespace Bb.SqlServer.Parser
         /// </summary>
         public override AstRoot VisitExternal_access_option(TSqlParser.External_access_optionContext context)
         {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
+            List<AstRoot> list = this.GetList(context);
             return AstExternalAccessOption.Create(context, list);
         }
         
@@ -4332,17 +2432,7 @@ namespace Bb.SqlServer.Parser
         /// </summary>
         public override AstRoot VisitLanguage_setting_value(TSqlParser.Language_setting_valueContext context)
         {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
+            List<AstRoot> list = this.GetList(context);
             return AstLanguageSettingValue.Create(context, list);
         }
         
@@ -4352,18 +2442,8 @@ namespace Bb.SqlServer.Parser
         /// </summary>
         public override AstRoot VisitHadr_options(TSqlParser.Hadr_optionsContext context)
         {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
-            return new AstHadrOptions(context, list);
+            List<AstRoot> list = this.GetList(context);
+            return AstHadrOptions.Create(context, list);
         }
         
         /// <summary>
@@ -4374,17 +2454,7 @@ namespace Bb.SqlServer.Parser
         /// </summary>
         public override AstRoot VisitRecovery_option(TSqlParser.Recovery_optionContext context)
         {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
+            List<AstRoot> list = this.GetList(context);
             return AstRecoveryOption.Create(context, list);
         }
         
@@ -4398,17 +2468,7 @@ namespace Bb.SqlServer.Parser
         /// </summary>
         public override AstRoot VisitService_broker_option(TSqlParser.Service_broker_optionContext context)
         {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
+            List<AstRoot> list = this.GetList(context);
             return AstServiceBrokerOption.Create(context, list);
         }
         
@@ -4420,17 +2480,7 @@ namespace Bb.SqlServer.Parser
         /// </summary>
         public override AstRoot VisitSnapshot_option(TSqlParser.Snapshot_optionContext context)
         {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
+            List<AstRoot> list = this.GetList(context);
             return AstSnapshotOption.Create(context, list);
         }
         
@@ -4449,17 +2499,7 @@ namespace Bb.SqlServer.Parser
         /// </summary>
         public override AstRoot VisitSql_option(TSqlParser.Sql_optionContext context)
         {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
+            List<AstRoot> list = this.GetList(context);
             return AstSqlOption.Create(context, list);
         }
         
@@ -4471,17 +2511,7 @@ namespace Bb.SqlServer.Parser
         /// </summary>
         public override AstRoot VisitTermination(TSqlParser.TerminationContext context)
         {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
+            List<AstRoot> list = this.GetList(context);
             return AstTermination.Create(context, list);
         }
         
@@ -4491,18 +2521,8 @@ namespace Bb.SqlServer.Parser
         /// </summary>
         public override AstRoot VisitIf_exists(TSqlParser.If_existsContext context)
         {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
-            return new AstIfExists(context, list);
+            List<AstRoot> list = this.GetList(context);
+            return AstIfExists.Create(context, list);
         }
         
         /// <summary>
@@ -4511,18 +2531,8 @@ namespace Bb.SqlServer.Parser
         /// </summary>
         public override AstRoot VisitCreate_type(TSqlParser.Create_typeContext context)
         {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
-            return new AstCreateType(context, list);
+            List<AstRoot> list = this.GetList(context);
+            return AstCreateType.Create(context, list);
         }
         
         /// <summary>
@@ -4531,18 +2541,8 @@ namespace Bb.SqlServer.Parser
         /// </summary>
         public override AstRoot VisitDrop_type(TSqlParser.Drop_typeContext context)
         {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
-            return new AstDropType(context, list);
+            List<AstRoot> list = this.GetList(context);
+            return AstDropType.Create(context, list);
         }
         
         /// <summary>
@@ -4552,17 +2552,7 @@ namespace Bb.SqlServer.Parser
         /// </summary>
         public override AstRoot VisitRowset_function_limited(TSqlParser.Rowset_function_limitedContext context)
         {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
+            List<AstRoot> list = this.GetList(context);
             return AstRowsetFunctionLimited.Create(context, list);
         }
         
@@ -4575,17 +2565,7 @@ namespace Bb.SqlServer.Parser
         /// </summary>
         public override AstRoot VisitDeclare_statement(TSqlParser.Declare_statementContext context)
         {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
+            List<AstRoot> list = this.GetList(context);
             return AstDeclareStatement.Create(context, list);
         }
         
@@ -4596,17 +2576,7 @@ namespace Bb.SqlServer.Parser
         /// </summary>
         public override AstRoot VisitDeclare_object_table(TSqlParser.Declare_object_tableContext context)
         {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
+            List<AstRoot> list = this.GetList(context);
             return AstDeclareObjectTable.Create(context, list);
         }
         
@@ -4617,17 +2587,7 @@ namespace Bb.SqlServer.Parser
         /// </summary>
         public override AstRoot VisitXml_declaration(TSqlParser.Xml_declarationContext context)
         {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
+            List<AstRoot> list = this.GetList(context);
             return AstXmlDeclaration.Create(context, list);
         }
         
@@ -4641,17 +2601,7 @@ namespace Bb.SqlServer.Parser
         /// </summary>
         public override AstRoot VisitCursor_statement(TSqlParser.Cursor_statementContext context)
         {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
+            List<AstRoot> list = this.GetList(context);
             return AstCursorStatement.Create(context, list);
         }
         
@@ -4661,18 +2611,8 @@ namespace Bb.SqlServer.Parser
         /// </summary>
         public override AstRoot VisitBackup_to(TSqlParser.Backup_toContext context)
         {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
-            return new AstBackupTo(context, list);
+            List<AstRoot> list = this.GetList(context);
+            return AstBackupTo.Create(context, list);
         }
         
         /// <summary>
@@ -4681,18 +2621,8 @@ namespace Bb.SqlServer.Parser
         /// </summary>
         public override AstRoot VisitBackup_to_mirror(TSqlParser.Backup_to_mirrorContext context)
         {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
-            return new AstBackupToMirror(context, list);
+            List<AstRoot> list = this.GetList(context);
+            return AstBackupToMirror.Create(context, list);
         }
         
         /// <summary>
@@ -4702,17 +2632,7 @@ namespace Bb.SqlServer.Parser
         /// </summary>
         public override AstRoot VisitBackup_certificate_private_key(TSqlParser.Backup_certificate_private_keyContext context)
         {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
+            List<AstRoot> list = this.GetList(context);
             return AstBackupCertificatePrivateKey.Create(context, list);
         }
         
@@ -4747,17 +2667,7 @@ namespace Bb.SqlServer.Parser
         /// </summary>
         public override AstRoot VisitBackup_setting(TSqlParser.Backup_settingContext context)
         {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
+            List<AstRoot> list = this.GetList(context);
             return AstBackupSetting.Create(context, list);
         }
         
@@ -4768,17 +2678,7 @@ namespace Bb.SqlServer.Parser
         /// </summary>
         public override AstRoot VisitServer_certificate_value(TSqlParser.Server_certificate_valueContext context)
         {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
+            List<AstRoot> list = this.GetList(context);
             return AstServerCertificateValue.Create(context, list);
         }
         
@@ -4788,18 +2688,8 @@ namespace Bb.SqlServer.Parser
         /// </summary>
         public override AstRoot VisitKill_statement(TSqlParser.Kill_statementContext context)
         {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
-            return new AstKillStatement(context, list);
+            List<AstRoot> list = this.GetList(context);
+            return AstKillStatement.Create(context, list);
         }
         
         /// <summary>
@@ -4808,18 +2698,8 @@ namespace Bb.SqlServer.Parser
         /// </summary>
         public override AstRoot VisitKill_process(TSqlParser.Kill_processContext context)
         {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
-            return new AstKillProcess(context, list);
+            List<AstRoot> list = this.GetList(context);
+            return AstKillProcess.Create(context, list);
         }
         
         /// <summary>
@@ -4828,18 +2708,8 @@ namespace Bb.SqlServer.Parser
         /// </summary>
         public override AstRoot VisitKill_query_notification(TSqlParser.Kill_query_notificationContext context)
         {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
-            return new AstKillQueryNotification(context, list);
+            List<AstRoot> list = this.GetList(context);
+            return AstKillQueryNotification.Create(context, list);
         }
         
         /// <summary>
@@ -4848,18 +2718,8 @@ namespace Bb.SqlServer.Parser
         /// </summary>
         public override AstRoot VisitKill_stats_job(TSqlParser.Kill_stats_jobContext context)
         {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
-            return new AstKillStatsJob(context, list);
+            List<AstRoot> list = this.GetList(context);
+            return AstKillStatsJob.Create(context, list);
         }
         
         /// <summary>
@@ -4869,17 +2729,7 @@ namespace Bb.SqlServer.Parser
         /// </summary>
         public override AstRoot VisitExecute_body(TSqlParser.Execute_bodyContext context)
         {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
+            List<AstRoot> list = this.GetList(context);
             return AstExecuteBody.Create(context, list);
         }
         
@@ -4890,17 +2740,7 @@ namespace Bb.SqlServer.Parser
         /// </summary>
         public override AstRoot VisitBody_kind(TSqlParser.Body_kindContext context)
         {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
+            List<AstRoot> list = this.GetList(context);
             return AstBodyKind.Create(context, list);
         }
         
@@ -4911,17 +2751,7 @@ namespace Bb.SqlServer.Parser
         /// </summary>
         public override AstRoot VisitExecute_statement_arg(TSqlParser.Execute_statement_argContext context)
         {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
+            List<AstRoot> list = this.GetList(context);
             return AstExecuteStatementArg.Create(context, list);
         }
         
@@ -4931,18 +2761,8 @@ namespace Bb.SqlServer.Parser
         /// </summary>
         public override AstRoot VisitExecute_statement_arg_named(TSqlParser.Execute_statement_arg_namedContext context)
         {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
-            return new AstExecuteStatementArgNamed(context, list);
+            List<AstRoot> list = this.GetList(context);
+            return AstExecuteStatementArgNamed.Create(context, list);
         }
         
         /// <summary>
@@ -4951,18 +2771,8 @@ namespace Bb.SqlServer.Parser
         /// </summary>
         public override AstRoot VisitExecute_statement_arg_unnamed(TSqlParser.Execute_statement_arg_unnamedContext context)
         {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
-            return new AstExecuteStatementArgUnnamed(context, list);
+            List<AstRoot> list = this.GetList(context);
+            return AstExecuteStatementArgUnnamed.Create(context, list);
         }
         
         /// <summary>
@@ -4975,17 +2785,7 @@ namespace Bb.SqlServer.Parser
         /// </summary>
         public override AstRoot VisitExecute_parameter(TSqlParser.Execute_parameterContext context)
         {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
+            List<AstRoot> list = this.GetList(context);
             return AstExecuteParameter.Create(context, list);
         }
         
@@ -4996,17 +2796,7 @@ namespace Bb.SqlServer.Parser
         /// </summary>
         public override AstRoot VisitExecute_var_string(TSqlParser.Execute_var_stringContext context)
         {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
+            List<AstRoot> list = this.GetList(context);
             return AstExecuteVarString.Create(context, list);
         }
         
@@ -5022,17 +2812,7 @@ namespace Bb.SqlServer.Parser
         /// </summary>
         public override AstRoot VisitSecurity_statement(TSqlParser.Security_statementContext context)
         {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
+            List<AstRoot> list = this.GetList(context);
             return AstSecurityStatement.Create(context, list);
         }
         
@@ -5043,17 +2823,7 @@ namespace Bb.SqlServer.Parser
         /// </summary>
         public override AstRoot VisitGrant_mode(TSqlParser.Grant_modeContext context)
         {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
+            List<AstRoot> list = this.GetList(context);
             return AstGrantMode.Create(context, list);
         }
         
@@ -5064,17 +2834,7 @@ namespace Bb.SqlServer.Parser
         /// </summary>
         public override AstRoot VisitExisting_keys(TSqlParser.Existing_keysContext context)
         {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
+            List<AstRoot> list = this.GetList(context);
             return AstExistingKeys.Create(context, list);
         }
         
@@ -5084,18 +2844,8 @@ namespace Bb.SqlServer.Parser
         /// </summary>
         public override AstRoot VisitPrivate_key_options(TSqlParser.Private_key_optionsContext context)
         {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
-            return new AstPrivateKeyOptions(context, list);
+            List<AstRoot> list = this.GetList(context);
+            return AstPrivateKeyOptions.Create(context, list);
         }
         
         /// <summary>
@@ -5105,17 +2855,7 @@ namespace Bb.SqlServer.Parser
         /// </summary>
         public override AstRoot VisitOpen_key(TSqlParser.Open_keyContext context)
         {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
+            List<AstRoot> list = this.GetList(context);
             return AstOpenKey.Create(context, list);
         }
         
@@ -5127,17 +2867,7 @@ namespace Bb.SqlServer.Parser
         /// </summary>
         public override AstRoot VisitClose_key(TSqlParser.Close_keyContext context)
         {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
+            List<AstRoot> list = this.GetList(context);
             return AstCloseKey.Create(context, list);
         }
         
@@ -5148,17 +2878,7 @@ namespace Bb.SqlServer.Parser
         /// </summary>
         public override AstRoot VisitCreate_key(TSqlParser.Create_keyContext context)
         {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
+            List<AstRoot> list = this.GetList(context);
             return AstCreateKey.Create(context, list);
         }
         
@@ -5169,17 +2889,7 @@ namespace Bb.SqlServer.Parser
         /// </summary>
         public override AstRoot VisitCreate_key_option(TSqlParser.Create_key_optionContext context)
         {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
+            List<AstRoot> list = this.GetList(context);
             return AstCreateKeyOption.Create(context, list);
         }
         
@@ -5193,17 +2903,7 @@ namespace Bb.SqlServer.Parser
         /// </summary>
         public override AstRoot VisitKey_options(TSqlParser.Key_optionsContext context)
         {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
+            List<AstRoot> list = this.GetList(context);
             return AstKeyOptions.Create(context, list);
         }
         
@@ -5216,17 +2916,7 @@ namespace Bb.SqlServer.Parser
         /// </summary>
         public override AstRoot VisitEncryption_mechanism(TSqlParser.Encryption_mechanismContext context)
         {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
+            List<AstRoot> list = this.GetList(context);
             return AstEncryptionMechanism.Create(context, list);
         }
         
@@ -5239,17 +2929,7 @@ namespace Bb.SqlServer.Parser
         /// </summary>
         public override AstRoot VisitDecryption_mechanism(TSqlParser.Decryption_mechanismContext context)
         {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
+            List<AstRoot> list = this.GetList(context);
             return AstDecryptionMechanism.Create(context, list);
         }
         
@@ -5261,17 +2941,7 @@ namespace Bb.SqlServer.Parser
         /// </summary>
         public override AstRoot VisitGrant_permission(TSqlParser.Grant_permissionContext context)
         {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
+            List<AstRoot> list = this.GetList(context);
             return AstGrantPermission.Create(context, list);
         }
         
@@ -5284,17 +2954,7 @@ namespace Bb.SqlServer.Parser
         /// </summary>
         public override AstRoot VisitSet_statement(TSqlParser.Set_statementContext context)
         {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
+            List<AstRoot> list = this.GetList(context);
             return AstSetStatement.Create(context, list);
         }
         
@@ -5305,17 +2965,7 @@ namespace Bb.SqlServer.Parser
         /// </summary>
         public override AstRoot VisitCursor_mode(TSqlParser.Cursor_modeContext context)
         {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
+            List<AstRoot> list = this.GetList(context);
             return AstCursorMode.Create(context, list);
         }
         
@@ -5333,17 +2983,7 @@ namespace Bb.SqlServer.Parser
         /// </summary>
         public override AstRoot VisitTransaction_statement(TSqlParser.Transaction_statementContext context)
         {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
+            List<AstRoot> list = this.GetList(context);
             return AstTransactionStatement.Create(context, list);
         }
         
@@ -5353,18 +2993,8 @@ namespace Bb.SqlServer.Parser
         /// </summary>
         public override AstRoot VisitGo_statement(TSqlParser.Go_statementContext context)
         {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
-            return new AstGoStatement(context, list);
+            List<AstRoot> list = this.GetList(context);
+            return AstGoStatement.Create(context, list);
         }
         
         /// <summary>
@@ -5373,18 +3003,8 @@ namespace Bb.SqlServer.Parser
         /// </summary>
         public override AstRoot VisitSetuser_statement(TSqlParser.Setuser_statementContext context)
         {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
-            return new AstSetuserStatement(context, list);
+            List<AstRoot> list = this.GetList(context);
+            return AstSetuserStatement.Create(context, list);
         }
         
         /// <summary>
@@ -5393,18 +3013,8 @@ namespace Bb.SqlServer.Parser
         /// </summary>
         public override AstRoot VisitReconfigure_statement(TSqlParser.Reconfigure_statementContext context)
         {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
-            return new AstReconfigureStatement(context, list);
+            List<AstRoot> list = this.GetList(context);
+            return AstReconfigureStatement.Create(context, list);
         }
         
         /// <summary>
@@ -5413,18 +3023,8 @@ namespace Bb.SqlServer.Parser
         /// </summary>
         public override AstRoot VisitShutdown_statement(TSqlParser.Shutdown_statementContext context)
         {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
-            return new AstShutdownStatement(context, list);
+            List<AstRoot> list = this.GetList(context);
+            return AstShutdownStatement.Create(context, list);
         }
         
         /// <summary>
@@ -5433,18 +3033,8 @@ namespace Bb.SqlServer.Parser
         /// </summary>
         public override AstRoot VisitCheckpoint_statement(TSqlParser.Checkpoint_statementContext context)
         {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
-            return new AstCheckpointStatement(context, list);
+            List<AstRoot> list = this.GetList(context);
+            return AstCheckpointStatement.Create(context, list);
         }
         
         /// <summary>
@@ -5453,18 +3043,8 @@ namespace Bb.SqlServer.Parser
         /// </summary>
         public override AstRoot VisitDbcc_special(TSqlParser.Dbcc_specialContext context)
         {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
-            return new AstDbccSpecial(context, list);
+            List<AstRoot> list = this.GetList(context);
+            return AstDbccSpecial.Create(context, list);
         }
         
         /// <summary>
@@ -5474,17 +3054,7 @@ namespace Bb.SqlServer.Parser
         /// </summary>
         public override AstRoot VisitDbcc_special_size(TSqlParser.Dbcc_special_sizeContext context)
         {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
+            List<AstRoot> list = this.GetList(context);
             return AstDbccSpecialSize.Create(context, list);
         }
         
@@ -5494,18 +3064,8 @@ namespace Bb.SqlServer.Parser
         /// </summary>
         public override AstRoot VisitDbcc_clause(TSqlParser.Dbcc_clauseContext context)
         {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
-            return new AstDbccClause(context, list);
+            List<AstRoot> list = this.GetList(context);
+            return AstDbccClause.Create(context, list);
         }
         
         /// <summary>
@@ -5515,17 +3075,7 @@ namespace Bb.SqlServer.Parser
         /// </summary>
         public override AstRoot VisitDbcc_command(TSqlParser.Dbcc_commandContext context)
         {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
+            List<AstRoot> list = this.GetList(context);
             return AstDbccCommand.Create(context, list);
         }
         
@@ -5536,17 +3086,7 @@ namespace Bb.SqlServer.Parser
         /// </summary>
         public override AstRoot VisitExecute_clause_mode(TSqlParser.Execute_clause_modeContext context)
         {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
+            List<AstRoot> list = this.GetList(context);
             return AstExecuteClauseMode.Create(context, list);
         }
         
@@ -5557,17 +3097,7 @@ namespace Bb.SqlServer.Parser
         /// </summary>
         public override AstRoot VisitTable_type_indice(TSqlParser.Table_type_indiceContext context)
         {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
+            List<AstRoot> list = this.GetList(context);
             return AstTableTypeIndice.Create(context, list);
         }
         
@@ -5578,17 +3108,7 @@ namespace Bb.SqlServer.Parser
         /// </summary>
         public override AstRoot VisitType_indice(TSqlParser.Type_indiceContext context)
         {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
+            List<AstRoot> list = this.GetList(context);
             return AstTypeIndice.Create(context, list);
         }
         
@@ -5599,38 +3119,18 @@ namespace Bb.SqlServer.Parser
         /// </summary>
         public override AstRoot VisitIndice_name(TSqlParser.Indice_nameContext context)
         {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
+            List<AstRoot> list = this.GetList(context);
             return AstIndiceName.Create(context, list);
         }
         
         /// <summary>
         /// xml_schema_collection
-        /// 	 : left = ID  DOT  right = ID
+        /// 	 : left = simple_id  DOT  right = simple_id
         /// </summary>
         public override AstRoot VisitXml_schema_collection(TSqlParser.Xml_schema_collectionContext context)
         {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
-            return new AstXmlSchemaCollection(context, list);
+            List<AstRoot> list = this.GetList(context);
+            return AstXmlSchemaCollection.Create(context, list);
         }
         
         /// <summary>
@@ -5641,17 +3141,7 @@ namespace Bb.SqlServer.Parser
         /// </summary>
         public override AstRoot VisitColumn_def_table_constraint(TSqlParser.Column_def_table_constraintContext context)
         {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
+            List<AstRoot> list = this.GetList(context);
             return AstColumnDefTableConstraint.Create(context, list);
         }
         
@@ -5671,17 +3161,7 @@ namespace Bb.SqlServer.Parser
         /// </summary>
         public override AstRoot VisitColumn_definition_element(TSqlParser.Column_definition_elementContext context)
         {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
+            List<AstRoot> list = this.GetList(context);
             return AstColumnDefinitionElement.Create(context, list);
         }
         
@@ -5691,18 +3171,8 @@ namespace Bb.SqlServer.Parser
         /// </summary>
         public override AstRoot VisitColumn_constraint(TSqlParser.Column_constraintContext context)
         {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
-            return new AstColumnConstraint(context, list);
+            List<AstRoot> list = this.GetList(context);
+            return AstColumnConstraint.Create(context, list);
         }
         
         /// <summary>
@@ -5711,18 +3181,8 @@ namespace Bb.SqlServer.Parser
         /// </summary>
         public override AstRoot VisitOn_partition_or_filegroup(TSqlParser.On_partition_or_filegroupContext context)
         {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
-            return new AstOnPartitionOrFilegroup(context, list);
+            List<AstRoot> list = this.GetList(context);
+            return AstOnPartitionOrFilegroup.Create(context, list);
         }
         
         /// <summary>
@@ -5731,18 +3191,8 @@ namespace Bb.SqlServer.Parser
         /// </summary>
         public override AstRoot VisitTable_constraint(TSqlParser.Table_constraintContext context)
         {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
-            return new AstTableConstraint(context, list);
+            List<AstRoot> list = this.GetList(context);
+            return AstTableConstraint.Create(context, list);
         }
         
         /// <summary>
@@ -5751,18 +3201,8 @@ namespace Bb.SqlServer.Parser
         /// </summary>
         public override AstRoot VisitConnection_node(TSqlParser.Connection_nodeContext context)
         {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
-            return new AstConnectionNode(context, list);
+            List<AstRoot> list = this.GetList(context);
+            return AstConnectionNode.Create(context, list);
         }
         
         /// <summary>
@@ -5785,17 +3225,7 @@ namespace Bb.SqlServer.Parser
         /// </summary>
         public override AstRoot VisitAlter_table_index_option(TSqlParser.Alter_table_index_optionContext context)
         {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
+            List<AstRoot> list = this.GetList(context);
             return AstAlterTableIndexOption.Create(context, list);
         }
         
@@ -5806,17 +3236,7 @@ namespace Bb.SqlServer.Parser
         /// </summary>
         public override AstRoot VisitDeclare_set_cursor_common_partial(TSqlParser.Declare_set_cursor_common_partialContext context)
         {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
+            List<AstRoot> list = this.GetList(context);
             return AstDeclareSetCursorCommonPartial.Create(context, list);
         }
         
@@ -5833,17 +3253,7 @@ namespace Bb.SqlServer.Parser
         /// </summary>
         public override AstRoot VisitSet_special(TSqlParser.Set_specialContext context)
         {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
+            List<AstRoot> list = this.GetList(context);
             return AstSetSpecial.Create(context, list);
         }
         
@@ -5854,17 +3264,7 @@ namespace Bb.SqlServer.Parser
         /// </summary>
         public override AstRoot VisitTransaction_level(TSqlParser.Transaction_levelContext context)
         {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
+            List<AstRoot> list = this.GetList(context);
             return AstTransactionLevel.Create(context, list);
         }
         
@@ -5875,17 +3275,7 @@ namespace Bb.SqlServer.Parser
         /// </summary>
         public override AstRoot VisitLocal_id_decimal(TSqlParser.Local_id_decimalContext context)
         {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
+            List<AstRoot> list = this.GetList(context);
             return AstLocalIdDecimal.Create(context, list);
         }
         
@@ -5897,17 +3287,7 @@ namespace Bb.SqlServer.Parser
         /// </summary>
         public override AstRoot VisitSet_special_set_value(TSqlParser.Set_special_set_valueContext context)
         {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
+            List<AstRoot> list = this.GetList(context);
             return AstSetSpecialSetValue.Create(context, list);
         }
         
@@ -5918,17 +3298,7 @@ namespace Bb.SqlServer.Parser
         /// </summary>
         public override AstRoot VisitConstant_local_id(TSqlParser.Constant_local_idContext context)
         {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
+            List<AstRoot> list = this.GetList(context);
             return AstConstantLocalId.Create(context, list);
         }
         
@@ -5950,17 +3320,7 @@ namespace Bb.SqlServer.Parser
         /// </summary>
         public override AstRoot VisitExpression(TSqlParser.ExpressionContext context)
         {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
+            List<AstRoot> list = this.GetList(context);
             return AstExpression.Create(context, list);
         }
         
@@ -5973,17 +3333,7 @@ namespace Bb.SqlServer.Parser
         /// </summary>
         public override AstRoot VisitExpression_chained(TSqlParser.Expression_chainedContext context)
         {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
+            List<AstRoot> list = this.GetList(context);
             return AstExpressionChained.Create(context, list);
         }
         
@@ -5996,17 +3346,7 @@ namespace Bb.SqlServer.Parser
         /// </summary>
         public override AstRoot VisitPrimitive_expression(TSqlParser.Primitive_expressionContext context)
         {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
+            List<AstRoot> list = this.GetList(context);
             return AstPrimitiveExpression.Create(context, list);
         }
         
@@ -6017,17 +3357,7 @@ namespace Bb.SqlServer.Parser
         /// </summary>
         public override AstRoot VisitCase_expression(TSqlParser.Case_expressionContext context)
         {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
+            List<AstRoot> list = this.GetList(context);
             return AstCaseExpression.Create(context, list);
         }
         
@@ -6038,17 +3368,7 @@ namespace Bb.SqlServer.Parser
         /// </summary>
         public override AstRoot VisitUnary_operator_expression(TSqlParser.Unary_operator_expressionContext context)
         {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
+            List<AstRoot> list = this.GetList(context);
             return AstUnaryOperatorExpression.Create(context, list);
         }
         
@@ -6059,17 +3379,7 @@ namespace Bb.SqlServer.Parser
         /// </summary>
         public override AstRoot VisitBracket_expression(TSqlParser.Bracket_expressionContext context)
         {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
+            List<AstRoot> list = this.GetList(context);
             return AstBracketExpression.Create(context, list);
         }
         
@@ -6083,17 +3393,7 @@ namespace Bb.SqlServer.Parser
         /// </summary>
         public override AstRoot VisitConstant_expression(TSqlParser.Constant_expressionContext context)
         {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
+            List<AstRoot> list = this.GetList(context);
             return AstConstantExpression.Create(context, list);
         }
         
@@ -6103,18 +3403,8 @@ namespace Bb.SqlServer.Parser
         /// </summary>
         public override AstRoot VisitCommon_table_expression(TSqlParser.Common_table_expressionContext context)
         {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
-            return new AstCommonTableExpression(context, list);
+            List<AstRoot> list = this.GetList(context);
+            return AstCommonTableExpression.Create(context, list);
         }
         
         /// <summary>
@@ -6125,17 +3415,7 @@ namespace Bb.SqlServer.Parser
         /// </summary>
         public override AstRoot VisitUpdate_elem(TSqlParser.Update_elemContext context)
         {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
+            List<AstRoot> list = this.GetList(context);
             return AstUpdateElem.Create(context, list);
         }
         
@@ -6146,17 +3426,7 @@ namespace Bb.SqlServer.Parser
         /// </summary>
         public override AstRoot VisitColumn_ref(TSqlParser.Column_refContext context)
         {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
+            List<AstRoot> list = this.GetList(context);
             return AstColumnRef.Create(context, list);
         }
         
@@ -6167,17 +3437,7 @@ namespace Bb.SqlServer.Parser
         /// </summary>
         public override AstRoot VisitUpdate_operator(TSqlParser.Update_operatorContext context)
         {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
+            List<AstRoot> list = this.GetList(context);
             return AstUpdateOperator.Create(context, list);
         }
         
@@ -6188,17 +3448,7 @@ namespace Bb.SqlServer.Parser
         /// </summary>
         public override AstRoot VisitUpdate_elem_merge(TSqlParser.Update_elem_mergeContext context)
         {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
+            List<AstRoot> list = this.GetList(context);
             return AstUpdateElemMerge.Create(context, list);
         }
         
@@ -6209,17 +3459,7 @@ namespace Bb.SqlServer.Parser
         /// </summary>
         public override AstRoot VisitSearch_condition(TSqlParser.Search_conditionContext context)
         {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
+            List<AstRoot> list = this.GetList(context);
             return AstSearchCondition.Create(context, list);
         }
         
@@ -6230,17 +3470,7 @@ namespace Bb.SqlServer.Parser
         /// </summary>
         public override AstRoot VisitSub_search_condition(TSqlParser.Sub_search_conditionContext context)
         {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
+            List<AstRoot> list = this.GetList(context);
             return AstSubSearchCondition.Create(context, list);
         }
         
@@ -6258,17 +3488,7 @@ namespace Bb.SqlServer.Parser
         /// </summary>
         public override AstRoot VisitPredicate_expr(TSqlParser.Predicate_exprContext context)
         {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
+            List<AstRoot> list = this.GetList(context);
             return AstPredicateExpr.Create(context, list);
         }
         
@@ -6280,17 +3500,7 @@ namespace Bb.SqlServer.Parser
         /// </summary>
         public override AstRoot VisitQuery_expression(TSqlParser.Query_expressionContext context)
         {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
+            List<AstRoot> list = this.GetList(context);
             return AstQueryExpression.Create(context, list);
         }
         
@@ -6301,17 +3511,7 @@ namespace Bb.SqlServer.Parser
         /// </summary>
         public override AstRoot VisitSql_union_def(TSqlParser.Sql_union_defContext context)
         {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
+            List<AstRoot> list = this.GetList(context);
             return AstSqlUnionDef.Create(context, list);
         }
         
@@ -6321,18 +3521,8 @@ namespace Bb.SqlServer.Parser
         /// </summary>
         public override AstRoot VisitTop_clause(TSqlParser.Top_clauseContext context)
         {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
-            return new AstTopClause(context, list);
+            List<AstRoot> list = this.GetList(context);
+            return AstTopClause.Create(context, list);
         }
         
         /// <summary>
@@ -6342,17 +3532,7 @@ namespace Bb.SqlServer.Parser
         /// </summary>
         public override AstRoot VisitTop_percent(TSqlParser.Top_percentContext context)
         {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
+            List<AstRoot> list = this.GetList(context);
             return AstTopPercent.Create(context, list);
         }
         
@@ -6364,17 +3544,7 @@ namespace Bb.SqlServer.Parser
         /// </summary>
         public override AstRoot VisitPercent_constant(TSqlParser.Percent_constantContext context)
         {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
+            List<AstRoot> list = this.GetList(context);
             return AstPercentConstant.Create(context, list);
         }
         
@@ -6385,17 +3555,7 @@ namespace Bb.SqlServer.Parser
         /// </summary>
         public override AstRoot VisitTop_count(TSqlParser.Top_countContext context)
         {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
+            List<AstRoot> list = this.GetList(context);
             return AstTopCount.Create(context, list);
         }
         
@@ -6409,17 +3569,7 @@ namespace Bb.SqlServer.Parser
         /// </summary>
         public override AstRoot VisitFor_clause(TSqlParser.For_clauseContext context)
         {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
+            List<AstRoot> list = this.GetList(context);
             return AstForClause.Create(context, list);
         }
         
@@ -6431,17 +3581,7 @@ namespace Bb.SqlServer.Parser
         /// </summary>
         public override AstRoot VisitXml_common_directive(TSqlParser.Xml_common_directiveContext context)
         {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
+            List<AstRoot> list = this.GetList(context);
             return AstXmlCommonDirective.Create(context, list);
         }
         
@@ -6453,17 +3593,7 @@ namespace Bb.SqlServer.Parser
         /// </summary>
         public override AstRoot VisitClause_json_info(TSqlParser.Clause_json_infoContext context)
         {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
+            List<AstRoot> list = this.GetList(context);
             return AstClauseJsonInfo.Create(context, list);
         }
         
@@ -6473,18 +3603,8 @@ namespace Bb.SqlServer.Parser
         /// </summary>
         public override AstRoot VisitOrder_by_expression(TSqlParser.Order_by_expressionContext context)
         {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
-            return new AstOrderByExpression(context, list);
+            List<AstRoot> list = this.GetList(context);
+            return AstOrderByExpression.Create(context, list);
         }
         
         /// <summary>
@@ -6494,17 +3614,7 @@ namespace Bb.SqlServer.Parser
         /// </summary>
         public override AstRoot VisitGrouping_sets_item(TSqlParser.Grouping_sets_itemContext context)
         {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
+            List<AstRoot> list = this.GetList(context);
             return AstGroupingSetsItem.Create(context, list);
         }
         
@@ -6519,17 +3629,7 @@ namespace Bb.SqlServer.Parser
         /// </summary>
         public override AstRoot VisitUpdate_option(TSqlParser.Update_optionContext context)
         {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
+            List<AstRoot> list = this.GetList(context);
             return AstUpdateOption.Create(context, list);
         }
         
@@ -6541,17 +3641,7 @@ namespace Bb.SqlServer.Parser
         /// </summary>
         public override AstRoot VisitAsterisk(TSqlParser.AsteriskContext context)
         {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
+            List<AstRoot> list = this.GetList(context);
             return AstAsterisk.Create(context, list);
         }
         
@@ -6564,17 +3654,7 @@ namespace Bb.SqlServer.Parser
         /// </summary>
         public override AstRoot VisitColumn_elem_target(TSqlParser.Column_elem_targetContext context)
         {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
+            List<AstRoot> list = this.GetList(context);
             return AstColumnElemTarget.Create(context, list);
         }
         
@@ -6585,17 +3665,7 @@ namespace Bb.SqlServer.Parser
         /// </summary>
         public override AstRoot VisitUdt_elem(TSqlParser.Udt_elemContext context)
         {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
+            List<AstRoot> list = this.GetList(context);
             return AstUdtElem.Create(context, list);
         }
         
@@ -6606,17 +3676,7 @@ namespace Bb.SqlServer.Parser
         /// </summary>
         public override AstRoot VisitExpression_elem(TSqlParser.Expression_elemContext context)
         {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
+            List<AstRoot> list = this.GetList(context);
             return AstExpressionElem.Create(context, list);
         }
         
@@ -6630,17 +3690,7 @@ namespace Bb.SqlServer.Parser
         /// </summary>
         public override AstRoot VisitSelect_list_elem(TSqlParser.Select_list_elemContext context)
         {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
+            List<AstRoot> list = this.GetList(context);
             return AstSelectListElem.Create(context, list);
         }
         
@@ -6651,17 +3701,7 @@ namespace Bb.SqlServer.Parser
         /// </summary>
         public override AstRoot VisitTable_source(TSqlParser.Table_sourceContext context)
         {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
+            List<AstRoot> list = this.GetList(context);
             return AstTableSource.Create(context, list);
         }
         
@@ -6672,17 +3712,7 @@ namespace Bb.SqlServer.Parser
         /// </summary>
         public override AstRoot VisitTable_source_item_joined(TSqlParser.Table_source_item_joinedContext context)
         {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
+            List<AstRoot> list = this.GetList(context);
             return AstTableSourceItemJoined.Create(context, list);
         }
         
@@ -6703,17 +3733,7 @@ namespace Bb.SqlServer.Parser
         /// </summary>
         public override AstRoot VisitTable_source_item(TSqlParser.Table_source_itemContext context)
         {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
+            List<AstRoot> list = this.GetList(context);
             return AstTableSourceItem.Create(context, list);
         }
         
@@ -6725,17 +3745,7 @@ namespace Bb.SqlServer.Parser
         /// </summary>
         public override AstRoot VisitTable_hints(TSqlParser.Table_hintsContext context)
         {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
+            List<AstRoot> list = this.GetList(context);
             return AstTableHints.Create(context, list);
         }
         
@@ -6746,17 +3756,7 @@ namespace Bb.SqlServer.Parser
         /// </summary>
         public override AstRoot VisitChange_table(TSqlParser.Change_tableContext context)
         {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
+            List<AstRoot> list = this.GetList(context);
             return AstChangeTable.Create(context, list);
         }
         
@@ -6766,18 +3766,8 @@ namespace Bb.SqlServer.Parser
         /// </summary>
         public override AstRoot VisitChange_table_changes(TSqlParser.Change_table_changesContext context)
         {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
-            return new AstChangeTableChanges(context, list);
+            List<AstRoot> list = this.GetList(context);
+            return AstChangeTableChanges.Create(context, list);
         }
         
         /// <summary>
@@ -6786,18 +3776,8 @@ namespace Bb.SqlServer.Parser
         /// </summary>
         public override AstRoot VisitChange_table_version(TSqlParser.Change_table_versionContext context)
         {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
-            return new AstChangeTableVersion(context, list);
+            List<AstRoot> list = this.GetList(context);
+            return AstChangeTableVersion.Create(context, list);
         }
         
         /// <summary>
@@ -6810,17 +3790,7 @@ namespace Bb.SqlServer.Parser
         /// </summary>
         public override AstRoot VisitJoin_part(TSqlParser.Join_partContext context)
         {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
+            List<AstRoot> list = this.GetList(context);
             return AstJoinPart.Create(context, list);
         }
         
@@ -6831,17 +3801,7 @@ namespace Bb.SqlServer.Parser
         /// </summary>
         public override AstRoot VisitRowset_function(TSqlParser.Rowset_functionContext context)
         {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
+            List<AstRoot> list = this.GetList(context);
             return AstRowsetFunction.Create(context, list);
         }
         
@@ -6852,17 +3812,7 @@ namespace Bb.SqlServer.Parser
         /// </summary>
         public override AstRoot VisitBuk_extended_options(TSqlParser.Buk_extended_optionsContext context)
         {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
+            List<AstRoot> list = this.GetList(context);
             return AstBukExtendedOptions.Create(context, list);
         }
         
@@ -6875,17 +3825,7 @@ namespace Bb.SqlServer.Parser
         /// </summary>
         public override AstRoot VisitDerived_table(TSqlParser.Derived_tableContext context)
         {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
+            List<AstRoot> list = this.GetList(context);
             return AstDerivedTable.Create(context, list);
         }
         
@@ -6902,17 +3842,7 @@ namespace Bb.SqlServer.Parser
         /// </summary>
         public override AstRoot VisitFunction_call(TSqlParser.Function_callContext context)
         {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
+            List<AstRoot> list = this.GetList(context);
             return AstFunctionCall.Create(context, list);
         }
         
@@ -6924,17 +3854,7 @@ namespace Bb.SqlServer.Parser
         /// </summary>
         public override AstRoot VisitFreetext_function(TSqlParser.Freetext_functionContext context)
         {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
+            List<AstRoot> list = this.GetList(context);
             return AstFreetextFunction.Create(context, list);
         }
         
@@ -6945,17 +3865,7 @@ namespace Bb.SqlServer.Parser
         /// </summary>
         public override AstRoot VisitFreetext_predicate(TSqlParser.Freetext_predicateContext context)
         {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
+            List<AstRoot> list = this.GetList(context);
             return AstFreetextPredicate.Create(context, list);
         }
         
@@ -6968,17 +3878,7 @@ namespace Bb.SqlServer.Parser
         /// </summary>
         public override AstRoot VisitPredicate_contains(TSqlParser.Predicate_containsContext context)
         {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
+            List<AstRoot> list = this.GetList(context);
             return AstPredicateContains.Create(context, list);
         }
         
@@ -7106,17 +4006,7 @@ namespace Bb.SqlServer.Parser
         /// </summary>
         public override AstRoot VisitBuilt_in_functions(TSqlParser.Built_in_functionsContext context)
         {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
+            List<AstRoot> list = this.GetList(context);
             return AstBuiltInFunctions.Create(context, list);
         }
         
@@ -7127,17 +4017,7 @@ namespace Bb.SqlServer.Parser
         /// </summary>
         public override AstRoot VisitExpression_or_star(TSqlParser.Expression_or_starContext context)
         {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
+            List<AstRoot> list = this.GetList(context);
             return AstExpressionOrStar.Create(context, list);
         }
         
@@ -7149,17 +4029,7 @@ namespace Bb.SqlServer.Parser
         /// </summary>
         public override AstRoot VisitFormat_argument(TSqlParser.Format_argumentContext context)
         {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
+            List<AstRoot> list = this.GetList(context);
             return AstFormatArgument.Create(context, list);
         }
         
@@ -7172,17 +4042,7 @@ namespace Bb.SqlServer.Parser
         /// </summary>
         public override AstRoot VisitXml_data_type_methods(TSqlParser.Xml_data_type_methodsContext context)
         {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
+            List<AstRoot> list = this.GetList(context);
             return AstXmlDataTypeMethods.Create(context, list);
         }
         
@@ -7192,18 +4052,8 @@ namespace Bb.SqlServer.Parser
         /// </summary>
         public override AstRoot VisitValue_method(TSqlParser.Value_methodContext context)
         {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
-            return new AstValueMethod(context, list);
+            List<AstRoot> list = this.GetList(context);
+            return AstValueMethod.Create(context, list);
         }
         
         /// <summary>
@@ -7212,18 +4062,8 @@ namespace Bb.SqlServer.Parser
         /// </summary>
         public override AstRoot VisitValue_call(TSqlParser.Value_callContext context)
         {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
-            return new AstValueCall(context, list);
+            List<AstRoot> list = this.GetList(context);
+            return AstValueCall.Create(context, list);
         }
         
         /// <summary>
@@ -7232,18 +4072,8 @@ namespace Bb.SqlServer.Parser
         /// </summary>
         public override AstRoot VisitQuery_method(TSqlParser.Query_methodContext context)
         {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
-            return new AstQueryMethod(context, list);
+            List<AstRoot> list = this.GetList(context);
+            return AstQueryMethod.Create(context, list);
         }
         
         /// <summary>
@@ -7252,18 +4082,8 @@ namespace Bb.SqlServer.Parser
         /// </summary>
         public override AstRoot VisitQuery_call(TSqlParser.Query_callContext context)
         {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
-            return new AstQueryCall(context, list);
+            List<AstRoot> list = this.GetList(context);
+            return AstQueryCall.Create(context, list);
         }
         
         /// <summary>
@@ -7272,18 +4092,8 @@ namespace Bb.SqlServer.Parser
         /// </summary>
         public override AstRoot VisitExist_method(TSqlParser.Exist_methodContext context)
         {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
-            return new AstExistMethod(context, list);
+            List<AstRoot> list = this.GetList(context);
+            return AstExistMethod.Create(context, list);
         }
         
         /// <summary>
@@ -7292,18 +4102,8 @@ namespace Bb.SqlServer.Parser
         /// </summary>
         public override AstRoot VisitExist_call(TSqlParser.Exist_callContext context)
         {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
-            return new AstExistCall(context, list);
+            List<AstRoot> list = this.GetList(context);
+            return AstExistCall.Create(context, list);
         }
         
         /// <summary>
@@ -7312,18 +4112,8 @@ namespace Bb.SqlServer.Parser
         /// </summary>
         public override AstRoot VisitModify_method(TSqlParser.Modify_methodContext context)
         {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
-            return new AstModifyMethod(context, list);
+            List<AstRoot> list = this.GetList(context);
+            return AstModifyMethod.Create(context, list);
         }
         
         /// <summary>
@@ -7332,18 +4122,8 @@ namespace Bb.SqlServer.Parser
         /// </summary>
         public override AstRoot VisitModify_call(TSqlParser.Modify_callContext context)
         {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
-            return new AstModifyCall(context, list);
+            List<AstRoot> list = this.GetList(context);
+            return AstModifyCall.Create(context, list);
         }
         
         /// <summary>
@@ -7357,17 +4137,7 @@ namespace Bb.SqlServer.Parser
         /// </summary>
         public override AstRoot VisitHierarchyid_call(TSqlParser.Hierarchyid_callContext context)
         {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
+            List<AstRoot> list = this.GetList(context);
             return AstHierarchyidCall.Create(context, list);
         }
         
@@ -7377,18 +4147,8 @@ namespace Bb.SqlServer.Parser
         /// </summary>
         public override AstRoot VisitHierarchyid_static_method(TSqlParser.Hierarchyid_static_methodContext context)
         {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
-            return new AstHierarchyidStaticMethod(context, list);
+            List<AstRoot> list = this.GetList(context);
+            return AstHierarchyidStaticMethod.Create(context, list);
         }
         
         /// <summary>
@@ -7397,18 +4157,8 @@ namespace Bb.SqlServer.Parser
         /// </summary>
         public override AstRoot VisitNodes_method(TSqlParser.Nodes_methodContext context)
         {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
-            return new AstNodesMethod(context, list);
+            List<AstRoot> list = this.GetList(context);
+            return AstNodesMethod.Create(context, list);
         }
         
         /// <summary>
@@ -7441,17 +4191,7 @@ namespace Bb.SqlServer.Parser
         /// </summary>
         public override AstRoot VisitTable_hint(TSqlParser.Table_hintContext context)
         {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
+            List<AstRoot> list = this.GetList(context);
             return AstTableHint.Create(context, list);
         }
         
@@ -7463,17 +4203,7 @@ namespace Bb.SqlServer.Parser
         /// </summary>
         public override AstRoot VisitHint_index(TSqlParser.Hint_indexContext context)
         {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
+            List<AstRoot> list = this.GetList(context);
             return AstHintIndex.Create(context, list);
         }
         
@@ -7484,17 +4214,7 @@ namespace Bb.SqlServer.Parser
         /// </summary>
         public override AstRoot VisitIndex_value(TSqlParser.Index_valueContext context)
         {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
+            List<AstRoot> list = this.GetList(context);
             return AstIndexValue.Create(context, list);
         }
         
@@ -7505,17 +4225,7 @@ namespace Bb.SqlServer.Parser
         /// </summary>
         public override AstRoot VisitRanking_windowed_function(TSqlParser.Ranking_windowed_functionContext context)
         {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
+            List<AstRoot> list = this.GetList(context);
             return AstRankingWindowedFunction.Create(context, list);
         }
         
@@ -7529,17 +4239,7 @@ namespace Bb.SqlServer.Parser
         /// </summary>
         public override AstRoot VisitAggregate_windowed_function(TSqlParser.Aggregate_windowed_functionContext context)
         {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
+            List<AstRoot> list = this.GetList(context);
             return AstAggregateWindowedFunction.Create(context, list);
         }
         
@@ -7550,17 +4250,7 @@ namespace Bb.SqlServer.Parser
         /// </summary>
         public override AstRoot VisitAll_distinct_expression_or_star(TSqlParser.All_distinct_expression_or_starContext context)
         {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
+            List<AstRoot> list = this.GetList(context);
             return AstAllDistinctExpressionOrStar.Create(context, list);
         }
         
@@ -7573,17 +4263,7 @@ namespace Bb.SqlServer.Parser
         /// </summary>
         public override AstRoot VisitAnalytic_windowed_function(TSqlParser.Analytic_windowed_functionContext context)
         {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
+            List<AstRoot> list = this.GetList(context);
             return AstAnalyticWindowedFunction.Create(context, list);
         }
         
@@ -7594,17 +4274,7 @@ namespace Bb.SqlServer.Parser
         /// </summary>
         public override AstRoot VisitWindow_frame_extent(TSqlParser.Window_frame_extentContext context)
         {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
+            List<AstRoot> list = this.GetList(context);
             return AstWindowFrameExtent.Create(context, list);
         }
         
@@ -7615,17 +4285,7 @@ namespace Bb.SqlServer.Parser
         /// </summary>
         public override AstRoot VisitWindow_frame_bound(TSqlParser.Window_frame_boundContext context)
         {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
+            List<AstRoot> list = this.GetList(context);
             return AstWindowFrameBound.Create(context, list);
         }
         
@@ -7637,17 +4297,7 @@ namespace Bb.SqlServer.Parser
         /// </summary>
         public override AstRoot VisitWindow_frame_preceding(TSqlParser.Window_frame_precedingContext context)
         {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
+            List<AstRoot> list = this.GetList(context);
             return AstWindowFramePreceding.Create(context, list);
         }
         
@@ -7658,17 +4308,7 @@ namespace Bb.SqlServer.Parser
         /// </summary>
         public override AstRoot VisitWindow_frame_following(TSqlParser.Window_frame_followingContext context)
         {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
+            List<AstRoot> list = this.GetList(context);
             return AstWindowFrameFollowing.Create(context, list);
         }
         
@@ -7685,17 +4325,7 @@ namespace Bb.SqlServer.Parser
         /// </summary>
         public override AstRoot VisitCreate_database_option(TSqlParser.Create_database_optionContext context)
         {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
+            List<AstRoot> list = this.GetList(context);
             return AstCreateDatabaseOption.Create(context, list);
         }
         
@@ -7705,18 +4335,8 @@ namespace Bb.SqlServer.Parser
         /// </summary>
         public override AstRoot VisitDatabase_filestream_option(TSqlParser.Database_filestream_optionContext context)
         {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
-            return new AstDatabaseFilestreamOption(context, list);
+            List<AstRoot> list = this.GetList(context);
+            return AstDatabaseFilestreamOption.Create(context, list);
         }
         
         /// <summary>
@@ -7726,17 +4346,7 @@ namespace Bb.SqlServer.Parser
         /// </summary>
         public override AstRoot VisitDatabase_file_spec(TSqlParser.Database_file_specContext context)
         {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
+            List<AstRoot> list = this.GetList(context);
             return AstDatabaseFileSpec.Create(context, list);
         }
         
@@ -7747,17 +4357,7 @@ namespace Bb.SqlServer.Parser
         /// </summary>
         public override AstRoot VisitMax_file_size_value(TSqlParser.Max_file_size_valueContext context)
         {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
+            List<AstRoot> list = this.GetList(context);
             return AstMaxFileSizeValue.Create(context, list);
         }
         
@@ -7767,18 +4367,8 @@ namespace Bb.SqlServer.Parser
         /// </summary>
         public override AstRoot VisitNull_or_default(TSqlParser.Null_or_defaultContext context)
         {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
-            return new AstNullOrDefault(context, list);
+            List<AstRoot> list = this.GetList(context);
+            return AstNullOrDefault.Create(context, list);
         }
         
         /// <summary>
@@ -7788,17 +4378,7 @@ namespace Bb.SqlServer.Parser
         /// </summary>
         public override AstRoot VisitScalar_function_name(TSqlParser.Scalar_function_nameContext context)
         {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
+            List<AstRoot> list = this.GetList(context);
             return AstScalarFunctionName.Create(context, list);
         }
         
@@ -7809,17 +4389,7 @@ namespace Bb.SqlServer.Parser
         /// </summary>
         public override AstRoot VisitContract_name_expression(TSqlParser.Contract_name_expressionContext context)
         {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
+            List<AstRoot> list = this.GetList(context);
             return AstContractNameExpression.Create(context, list);
         }
         
@@ -7830,17 +4400,7 @@ namespace Bb.SqlServer.Parser
         /// </summary>
         public override AstRoot VisitService_name_expr(TSqlParser.Service_name_exprContext context)
         {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
+            List<AstRoot> list = this.GetList(context);
             return AstServiceNameExpr.Create(context, list);
         }
         
@@ -7850,18 +4410,8 @@ namespace Bb.SqlServer.Parser
         /// </summary>
         public override AstRoot VisitEnd_conversation(TSqlParser.End_conversationContext context)
         {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
-            return new AstEndConversation(context, list);
+            List<AstRoot> list = this.GetList(context);
+            return AstEndConversation.Create(context, list);
         }
         
         /// <summary>
@@ -7870,18 +4420,8 @@ namespace Bb.SqlServer.Parser
         /// </summary>
         public override AstRoot VisitGet_conversation(TSqlParser.Get_conversationContext context)
         {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
-            return new AstGetConversation(context, list);
+            List<AstRoot> list = this.GetList(context);
+            return AstGetConversation.Create(context, list);
         }
         
         /// <summary>
@@ -7890,18 +4430,8 @@ namespace Bb.SqlServer.Parser
         /// </summary>
         public override AstRoot VisitSend_conversation(TSqlParser.Send_conversationContext context)
         {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
-            return new AstSendConversation(context, list);
+            List<AstRoot> list = this.GetList(context);
+            return AstSendConversation.Create(context, list);
         }
         
         /// <summary>
@@ -7915,17 +4445,7 @@ namespace Bb.SqlServer.Parser
         /// </summary>
         public override AstRoot VisitData_type(TSqlParser.Data_typeContext context)
         {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
+            List<AstRoot> list = this.GetList(context);
             return AstDataType.Create(context, list);
         }
         
@@ -7937,17 +4457,7 @@ namespace Bb.SqlServer.Parser
         /// </summary>
         public override AstRoot VisitDefault_value(TSqlParser.Default_valueContext context)
         {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
+            List<AstRoot> list = this.GetList(context);
             return AstDefaultValue.Create(context, list);
         }
         
@@ -7962,17 +4472,7 @@ namespace Bb.SqlServer.Parser
         /// </summary>
         public override AstRoot VisitConstant(TSqlParser.ConstantContext context)
         {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
+            List<AstRoot> list = this.GetList(context);
             return AstConstant.Create(context, list);
         }
         
@@ -7983,17 +4483,7 @@ namespace Bb.SqlServer.Parser
         /// </summary>
         public override AstRoot VisitDecimal_float(TSqlParser.Decimal_floatContext context)
         {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
+            List<AstRoot> list = this.GetList(context);
             return AstDecimalFloat.Create(context, list);
         }
         
@@ -8005,17 +4495,7 @@ namespace Bb.SqlServer.Parser
         /// </summary>
         public override AstRoot VisitString_id2(TSqlParser.String_id2Context context)
         {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
+            List<AstRoot> list = this.GetList(context);
             return AstStringId2.Create(context, list);
         }
         
@@ -8026,17 +4506,7 @@ namespace Bb.SqlServer.Parser
         /// </summary>
         public override AstRoot VisitPrivatekey(TSqlParser.PrivatekeyContext context)
         {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
+            List<AstRoot> list = this.GetList(context);
             return AstPrivatekey.Create(context, list);
         }
         
@@ -8047,17 +4517,7 @@ namespace Bb.SqlServer.Parser
         /// </summary>
         public override AstRoot VisitAll_server_database(TSqlParser.All_server_databaseContext context)
         {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
+            List<AstRoot> list = this.GetList(context);
             return AstAllServerDatabase.Create(context, list);
         }
         
@@ -8067,18 +4527,8 @@ namespace Bb.SqlServer.Parser
         /// </summary>
         public override AstRoot VisitEncryption_state(TSqlParser.Encryption_stateContext context)
         {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
-            return new AstEncryptionState(context, list);
+            List<AstRoot> list = this.GetList(context);
+            return AstEncryptionState.Create(context, list);
         }
         
         /// <summary>
@@ -8087,18 +4537,8 @@ namespace Bb.SqlServer.Parser
         /// </summary>
         public override AstRoot VisitParameterization_option(TSqlParser.Parameterization_optionContext context)
         {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
-            return new AstParameterizationOption(context, list);
+            List<AstRoot> list = this.GetList(context);
+            return AstParameterizationOption.Create(context, list);
         }
         
         /// <summary>
@@ -8113,17 +4553,7 @@ namespace Bb.SqlServer.Parser
         /// </summary>
         public override AstRoot VisitEvent_session_predicate_leaf_ope(TSqlParser.Event_session_predicate_leaf_opeContext context)
         {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
+            List<AstRoot> list = this.GetList(context);
             return AstEventSessionPredicateLeafOpe.Create(context, list);
         }
         
@@ -8134,17 +4564,7 @@ namespace Bb.SqlServer.Parser
         /// </summary>
         public override AstRoot VisitSequence_cycle(TSqlParser.Sequence_cycleContext context)
         {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
+            List<AstRoot> list = this.GetList(context);
             return AstSequenceCycle.Create(context, list);
         }
         
@@ -8155,17 +4575,7 @@ namespace Bb.SqlServer.Parser
         /// </summary>
         public override AstRoot VisitSize_value(TSqlParser.Size_valueContext context)
         {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
+            List<AstRoot> list = this.GetList(context);
             return AstSizeValue.Create(context, list);
         }
         
@@ -8176,17 +4586,7 @@ namespace Bb.SqlServer.Parser
         /// </summary>
         public override AstRoot VisitDecimal_default(TSqlParser.Decimal_defaultContext context)
         {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
+            List<AstRoot> list = this.GetList(context);
             return AstDecimalDefault.Create(context, list);
         }
         
@@ -8196,18 +4596,8 @@ namespace Bb.SqlServer.Parser
         /// </summary>
         public override AstRoot VisitOn_delete(TSqlParser.On_deleteContext context)
         {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
-            return new AstOnDelete(context, list);
+            List<AstRoot> list = this.GetList(context);
+            return AstOnDelete.Create(context, list);
         }
         
         /// <summary>
@@ -8216,18 +4606,8 @@ namespace Bb.SqlServer.Parser
         /// </summary>
         public override AstRoot VisitOn_update(TSqlParser.On_updateContext context)
         {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
-            return new AstOnUpdate(context, list);
+            List<AstRoot> list = this.GetList(context);
+            return AstOnUpdate.Create(context, list);
         }
         
         /// <summary>
@@ -8236,18 +4616,8 @@ namespace Bb.SqlServer.Parser
         /// </summary>
         public override AstRoot VisitUpdated_asterisk(TSqlParser.Updated_asteriskContext context)
         {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
-            return new AstUpdatedAsterisk(context, list);
+            List<AstRoot> list = this.GetList(context);
+            return AstUpdatedAsterisk.Create(context, list);
         }
         
         /// <summary>
@@ -8256,18 +4626,8 @@ namespace Bb.SqlServer.Parser
         /// </summary>
         public override AstRoot VisitNull_notnull(TSqlParser.Null_notnullContext context)
         {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
-            return new AstNullNotnull(context, list);
+            List<AstRoot> list = this.GetList(context);
+            return AstNullNotnull.Create(context, list);
         }
         
         /// <summary>
@@ -8284,17 +4644,7 @@ namespace Bb.SqlServer.Parser
         /// </summary>
         public override AstRoot VisitComparison_operator(TSqlParser.Comparison_operatorContext context)
         {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
+            List<AstRoot> list = this.GetList(context);
             return AstComparisonOperator.Create(context, list);
         }
         
@@ -8311,17 +4661,7 @@ namespace Bb.SqlServer.Parser
         /// </summary>
         public override AstRoot VisitAssignment_operator(TSqlParser.Assignment_operatorContext context)
         {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
+            List<AstRoot> list = this.GetList(context);
             return AstAssignmentOperator.Create(context, list);
         }
     }

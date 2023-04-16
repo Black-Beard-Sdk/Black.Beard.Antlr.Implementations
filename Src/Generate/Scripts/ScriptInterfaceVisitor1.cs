@@ -28,19 +28,23 @@ namespace Generate.Scripts
                 template.Namespace(Namespace, ns =>
                 {
                     ns.Using(Usings)
-                    .CreateOneType<AstRule>(ast => Generate(ast, ctx), null, (ast, type) =>
+                    .CreateOneType<AstRule>(ast => Generate(ast, ctx), ast =>
+                    {
+                        ctx.Variables["combinaisons"] = ast.ResolveAllCombinations();
+
+                    }, (ast, type) =>
                     {
                         type.AddTemplateSelector(() => TemplateSelector(ast, ctx))
                             .Name(() => "IAstTSqlVisitor")
                             .IsInterface()
                             
-                            .Methods(() => ast.Alternatives, (m, model) =>
+                            .Methods(() => ctx.Variables.Get<AlternativeTreeRuleItemList>("combinaisons"), (method, m) =>
                             {
 
-                                if (ast.Name.Text == "t_root")
-                                {
+                                var cc = ctx.Variables.Get<AlternativeTreeRuleItemList>("combinaisons");
 
-                                }
+                                var mo = m as AlternativeTreeRuleItem;
+                                var model = mo.Item;
 
                                 var t = ast.Configuration.Config.TemplateSetting.TemplateName
                                      ?? ast.Configuration.Config.CalculatedTemplateSetting.Setting.TemplateName;
@@ -48,27 +52,25 @@ namespace Generate.Scripts
                                 if (t == "_")
                                 {
                                     var type = "Ast" + CodeHelper.FormatCsharp(ast.Name.Text);
-                                    if (ast.Alternatives.Count == 1)
+                                    if (cc.Count == 1)
                                     {
-                                        m.Name(g => "Visit" + CodeHelper.FormatCsharp(ast.Name.Text))
+                                        method.Name(g => "Visit" + CodeHelper.FormatCsharp(ast.Name.Text))
                                          .Argument(() => type, "a")
                                         ;
                                     }
                                     else
                                     {
-                                        var index = ast.Alternatives.IndexOf((AstLabeledAlt)model) + 1;
-                                        m.Name(g => "Visit" + CodeHelper.FormatCsharp(ast.Name.Text))
-                                         .Argument(() => type + "." + type + index.ToString(), "a")
+                                        method.Name(g => "Visit" + CodeHelper.FormatCsharp(ast.Name.Text))
+                                         .Argument(() => type + "." + type + mo.AlternativeIdentifier.ToString(), "a")
                                          .Documentation(c => c.Summary(() => ast.Name.Text + " : " + model.ToString()))
-
                                          ;
                                     }
                                 }
                                 else
                                 {
-                                    m.Name(g => "Visit" + CodeHelper.FormatCsharp(ast.Name.Text))
+                                    method.Name(g => "Visit" + CodeHelper.FormatCsharp(ast.Name.Text))
                                      .Argument(() => "Ast" + CodeHelper.FormatCsharp(ast.Name.Text), "a")
-                                     .Documentation(c => c.Summary(() => ast.Name.Text + " : " + m.ToString()))
+                                     .Documentation(c => c.Summary(() => ast.Name.Text + " : " + method.ToString()))
                                      ;
 
                                 }

@@ -6,6 +6,95 @@ namespace Bb.Parsers
 {
 
 
+    public class AlternativeTreeRuleItemList : IEnumerable<AlternativeTreeRuleItem>
+    {
+
+
+        public AlternativeTreeRuleItemList()
+        {
+            _list = new List<AlternativeTreeRuleItem>();
+        }
+
+
+        public AlternativeTreeRuleItemList(int capacity)
+        {
+            _list = new List<AlternativeTreeRuleItem>(capacity);
+        }
+
+        public AlternativeTreeRuleItem this[int index] { get => _list[0]; set => _list[0] = value; }
+
+        public void Add(TreeRuleItem item)
+        {
+            Add(new AlternativeTreeRuleItem(item));
+        }
+
+
+        public void Add(AlternativeTreeRuleItem item)
+        {
+            _list.Add(item);
+            item.RebuildIndex(_list);
+        }
+
+
+        public void AddRange(IEnumerable<TreeRuleItem> items)
+        {
+
+            var l = new List<AlternativeTreeRuleItem>(items.Count());
+            foreach (var item in items)
+                l.Add(new AlternativeTreeRuleItem(item));
+
+            AddRange(l);
+        
+        }
+
+
+        public void AddRange(IEnumerable<AlternativeTreeRuleItem> items)
+        {
+            _list.AddRange(items);
+
+            foreach (var item in items)
+                item.RebuildIndex(_list);
+        }
+
+
+        public int Count => _list.Count;
+
+
+        public IEnumerator<AlternativeTreeRuleItem> GetEnumerator()
+        {
+            return _list.GetEnumerator();
+        }
+
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            return _list.GetEnumerator();
+        }
+
+        private List<AlternativeTreeRuleItem> _list;
+
+    }
+
+    public class AlternativeTreeRuleItem
+    {
+
+        public AlternativeTreeRuleItem(TreeRuleItem item)
+        {
+            this.Item = item;
+        }
+
+        public TreeRuleItem Item { get; }
+
+        public int AlternativeIdentifier { get; private set; }
+
+        internal void RebuildIndex(List<AlternativeTreeRuleItem> list)
+        {
+            this.AlternativeIdentifier = list.IndexOf(this) + 1;
+        }
+
+
+    }
+
+
     [DebuggerDisplay("{ToString()}")]
     public class TreeRuleItem : IEnumerable<TreeRuleItem>
     {
@@ -85,6 +174,7 @@ namespace Bb.Parsers
         public bool IsConstant { get; internal set; }
         public AstBase Origin { get; internal set; }
         public string Label { get; internal set; }
+        public int AlternativeIdentifier { get; internal set; }
 
         public override string ToString()
         {
@@ -265,6 +355,7 @@ namespace Bb.Parsers
                 IsConstant = this.IsConstant,
                 Origin = this.Origin,
                 Label= this.Label,
+                AlternativeIdentifier = this.AlternativeIdentifier,
             };
 
             if (action!= null)

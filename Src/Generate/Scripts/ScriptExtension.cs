@@ -39,6 +39,8 @@ namespace Generate.Scripts
 
         public static string Type(this AstBase item)
         {
+            
+            var ast = item;
 
             if (item.Type == "TOKEN_REF")
             {
@@ -47,11 +49,15 @@ namespace Generate.Scripts
                 {
                     var value1 = link.TerminalKind.Type();
                     if (value1 != null)
+                    {
+                        var occurence1 = ast.ResolveOccurence();
+                        if (occurence1 != null && occurence1.Value == OccurenceEnum.Any)
+                            value1 = "IEnumerable<" + value1 + ">";
                         return value1;
+                    }
                 }
             }
 
-            var ast = item;
             if (item is AstElementList a)
             {
                 if (a.Count == 1)
@@ -67,6 +73,11 @@ namespace Generate.Scripts
             string _name = (ast as AstBase).ResolveName();
 
             var result = "Ast" + CodeHelper.FormatCsharp(_name);
+
+            var occurence = ast.ResolveOccurence();
+            if (occurence != null && occurence.Value == OccurenceEnum.Any)
+                result = "IEnumerable<" + result + ">";
+
             return result;
 
         }
@@ -89,6 +100,10 @@ namespace Generate.Scripts
             string _name = ast.Name;
 
             var result = "Ast" + CodeHelper.FormatCsharp(_name);
+
+            if (ast.Occurence.Value == OccurenceEnum.Any)
+                result = "IEnumerable<" + result + ">";
+
             return result;
 
         }
@@ -266,55 +281,41 @@ namespace Generate.Scripts
 
         }
 
-        public static IEnumerable<TreeRuleItem> GetAlternativesWithOnlyRules(this AstRule ast, Context ctx)
-        {
+        //public static AlternativeTreeRuleItemList GetAlternativesWithOnlyRules(this AstRule ast, Context ctx)
+        //{
+        //    AlternativeTreeRuleItemList _results = new AlternativeTreeRuleItemList();
+        //    foreach (var alternative in ast.Alternatives)
+        //    {
+        //        var rule = alternative.GetRules().FirstOrDefault();
+        //        if (rule != null)
+        //        {
+        //            var ru1 = ctx.RootAst.Rules.ResolveByName(rule.Name.Text) as AstRule;
+        //            if (ru1 != null)
+        //            {
+        //                if (ru1.Configuration.Config.Generate)
+        //                {
+        //                    AlternativeTreeRuleItemList allCombinations = ru1.ResolveAllCombinations();
+        //                    foreach (var item in allCombinations)
+        //                        _results.Add(item);
+        //                }
+        //                else
+        //                {
+        //                    var res = GetAlternativesWithOnlyRules(ru1, ctx);
+        //                    _results.AddRange(res);
+        //                }
+        //            }
+        //        }
+        //    }
+        //    return _results;
+        //}
 
-            List<TreeRuleItem> _results = new List<TreeRuleItem>();
-
-            foreach (var alternative in ast.Alternatives)
-            {
-
-                var rule = alternative.GetRules().FirstOrDefault();
-                if (rule != null)
-                {
-
-                    var ru1 = ctx.RootAst.Rules.ResolveByName(rule.Name.Text) as AstRule;
-
-                    if (ru1 != null)
-                    {
-                        if (ru1.Configuration.Config.Generate)
-                        {
-
-                            List<TreeRuleItem> allCombinations = ru1.ResolveAllCombinations();
-                            foreach (var item in allCombinations)
-                                _results.Add(item);
-                        }
-                        else
-                        {
-                            var res = GetAlternativesWithOnlyRules(ru1, ctx);
-                            _results.AddRange(res);
-                        }
-                    }
-
-                }
-
-            }
-
-            return _results;
-
-        }
-
-        public static IEnumerable<TreeRuleItem> GetAlternatives(this AstRule ast, Context ctx)
-        {
-
-            List<TreeRuleItem> _results = new List<TreeRuleItem>();
-
-            foreach (var alternative in ast.Alternatives)
-                _results.AddRange(alternative.ResolveAllCombinations());
-
-            return _results;
-
-        }
+        //public static IEnumerable<TreeRuleItem> GetAlternatives(this AstRule ast, Context ctx)
+        //{
+        //    List<TreeRuleItem> _results = new List<TreeRuleItem>();
+        //    foreach (var alternative in ast.Alternatives)
+        //        _results.AddRange(alternative.ResolveAllCombinations());
+        //    return _results;
+        //}
 
         public static string ResolveKey(this TreeRuleItem item)
         {
@@ -485,6 +486,77 @@ namespace Generate.Scripts
                 act(itemAst);
 
         }
+
+
+        public static bool IsConstant(this AstRule ast)
+        {
+            var l = ast.Select(c => c.Type == nameof(AstTerminal)).FirstOrDefault();
+            if (l != null)
+            {
+                var m = l.Select(c => c.Type == "TOKEN_REF").FirstOrDefault();
+                if (m != null)
+                {
+                    var t = m.Link.TerminalKind;
+                    if (t == TokenTypeEnum.Constant)
+                        return true;
+
+                    if (t == TokenTypeEnum.Ponctuation)
+                        return true;
+
+                    if (t == TokenTypeEnum.Operator)
+                        return true;
+
+                    else
+                    {
+
+                    }
+                }
+            }
+
+            return false;
+
+        }
+
+        public static bool IsDynamic(this AstRule ast)
+        {
+            var l = ast.Select(c => c.Type == nameof(AstTerminal)).FirstOrDefault();
+            if (l != null)
+            {
+                var m = l.Select(c => c.Type == "TOKEN_REF").FirstOrDefault();
+                if (m != null)
+                {
+                    var t = m.Link.TerminalKind;
+                    switch (t)
+                    {
+
+
+                        case TokenTypeEnum.Identifier:
+                        case TokenTypeEnum.Boolean:
+                        case TokenTypeEnum.String:
+                        case TokenTypeEnum.Decimal:
+                        case TokenTypeEnum.Int:
+                        case TokenTypeEnum.Real:
+                        case TokenTypeEnum.Hexa:
+                        case TokenTypeEnum.Binary:
+                        case TokenTypeEnum.Pattern:
+                            return true;
+
+                        case TokenTypeEnum.Operator:
+                        case TokenTypeEnum.Other:
+                        case TokenTypeEnum.Constant:
+                        case TokenTypeEnum.Comment:
+                        case TokenTypeEnum.Ponctuation:
+                        default:
+                            break;
+                    }
+                }
+            }
+
+            return false;
+
+        }
+
+
 
         public static bool WhereRuleOrIdentifiers(this TreeRuleItem item)
         {

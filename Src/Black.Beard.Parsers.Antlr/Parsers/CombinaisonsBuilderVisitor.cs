@@ -92,6 +92,9 @@ namespace Bb.Parsers
                 result2.AddRange(item.Accept(this));
             }
 
+            foreach (var item in result2)
+                item.AlternativeIdentifier = result2.IndexOf(item) + 1;
+
             return result2;
 
         }

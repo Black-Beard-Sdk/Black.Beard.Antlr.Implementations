@@ -66,27 +66,27 @@ namespace Bb.SqlServer.Asts
     public partial class AstHost : AstTerminalIdentifier
     {
         
-        private AstHost _value;
+        private AstTerminalString _value;
         
-        public AstHost(ITerminalNode t, AstHost value) : 
+        public AstHost(ITerminalNode t, String value) : 
                 base(t)
         {
-            _value = value;
+            _value = ((AstTerminalString)(value));
         }
         
-        public AstHost(ParserRuleContext ctx, AstHost value) : 
+        public AstHost(ParserRuleContext ctx, String value) : 
                 base(ctx)
         {
-            _value = value;
+            _value = ((AstTerminalString)(value));
         }
         
-        public AstHost(Position position, AstHost value) : 
+        public AstHost(Position position, String value) : 
                 base(position)
         {
-            _value = value;
+            _value = ((AstTerminalString)(value));
         }
         
-        public virtual AstHost Value
+        public virtual AstTerminalString Value
         {
             get
             {

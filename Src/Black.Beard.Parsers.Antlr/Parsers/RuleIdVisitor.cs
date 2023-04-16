@@ -64,13 +64,18 @@ namespace Bb.Parsers
                 var b = item.Accept(this);
                 if (b != null)
                     result.Add(b);
+                b.AlternativeIdentifier = result.Count;
             }
 
             if (result.Count == 0)
                 return null;
 
             if (result.Count == 1)
-                return result[0];
+            {
+                var item = result[0];
+                item.AlternativeIdentifier = 0;
+                return item;
+            }
 
             return result;
         }

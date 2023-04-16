@@ -114,13 +114,13 @@ namespace Bb.SqlServer.Asts
         public static AstTRoot Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstTRoot.Resolve(list);
+            if ((index == 1))
+            {
+                return new AstTRoot.AstTRoot1(ctx, ((AstBatchs)(list[1])));
+            }
             if ((index == 2))
             {
-                return new AstTRoot.AstTRoot1(ctx, ((AstBatchs)(list[0])));
-            }
-            if ((index == 3))
-            {
-                return new AstTRoot.AstTRoot2(ctx, ((AstExecuteBodyBatch)(list[0])), ((AstGoStatements)(list[1])));
+                return new AstTRoot.AstTRoot2(ctx, ((AstExecuteBodyBatch)(list[2])), ((AstGoStatements)(list[2])));
             }
             return null;
         }
@@ -129,9 +129,9 @@ namespace Bb.SqlServer.Asts
         {
             if ((list.Count == 2))
             {
-                if (AstRoot.Eval(list[0], typeof(AstExecuteBodyBatch), false, false))
+                if (AstRoot.Eval(list[2], typeof(AstExecuteBodyBatch), false, false))
                 {
-                    if (AstRoot.Eval(list[1], typeof(AstGoStatements), false, false))
+                    if (AstRoot.Eval(list[2], typeof(AstGoStatements), false, false))
                     {
                         return 2;
                     }
@@ -139,7 +139,7 @@ namespace Bb.SqlServer.Asts
             }
             if ((list.Count == 1))
             {
-                if (AstRoot.Eval(list[0], typeof(AstBatchs), false, false))
+                if (AstRoot.Eval(list[1], typeof(AstBatchs), false, false))
                 {
                     return 1;
                 }
@@ -366,29 +366,29 @@ namespace Bb.SqlServer.Asts
         public static AstBatch Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstBatch.Resolve(list);
-            if ((index == 2))
+            if ((index == 1))
             {
-                return new AstBatch.AstBatch1(ctx, ((AstExecuteBodyBatch)(list[0])));
+                return new AstBatch.AstBatch1(ctx, ((AstExecuteBodyBatch)(list[1])));
             }
             if ((index == 2))
             {
-                return new AstBatch.AstBatch2(ctx, ((AstSqlClauses)(list[0])));
+                return new AstBatch.AstBatch2(ctx, ((AstSqlClauses)(list[2])));
             }
-            if ((index == 2))
+            if ((index == 3))
             {
-                return new AstBatch.AstBatch3(ctx, ((AstCreateOrAlterFunction)(list[0])));
+                return new AstBatch.AstBatch3(ctx, ((AstCreateOrAlterFunction)(list[3])));
             }
-            if ((index == 2))
+            if ((index == 4))
             {
-                return new AstBatch.AstBatch4(ctx, ((AstCreateOrAlterProcedure)(list[0])));
+                return new AstBatch.AstBatch4(ctx, ((AstCreateOrAlterProcedure)(list[4])));
             }
-            if ((index == 2))
+            if ((index == 5))
             {
-                return new AstBatch.AstBatch5(ctx, ((AstCreateOrAlterTrigger)(list[0])));
+                return new AstBatch.AstBatch5(ctx, ((AstCreateOrAlterTrigger)(list[5])));
             }
-            if ((index == 2))
+            if ((index == 6))
             {
-                return new AstBatch.AstBatch6(ctx, ((AstCreateView)(list[0])));
+                return new AstBatch.AstBatch6(ctx, ((AstCreateView)(list[6])));
             }
             return null;
         }
@@ -397,27 +397,27 @@ namespace Bb.SqlServer.Asts
         {
             if ((list.Count == 1))
             {
-                if (AstRoot.Eval(list[0], typeof(AstExecuteBodyBatch), false, false))
+                if (AstRoot.Eval(list[1], typeof(AstExecuteBodyBatch), false, false))
                 {
                     return 1;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstSqlClauses), false, false))
+                if (AstRoot.Eval(list[2], typeof(AstSqlClauses), false, false))
                 {
                     return 2;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstCreateOrAlterFunction), false, false))
+                if (AstRoot.Eval(list[3], typeof(AstCreateOrAlterFunction), false, false))
                 {
                     return 3;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstCreateOrAlterProcedure), false, false))
+                if (AstRoot.Eval(list[4], typeof(AstCreateOrAlterProcedure), false, false))
                 {
                     return 4;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstCreateOrAlterTrigger), false, false))
+                if (AstRoot.Eval(list[5], typeof(AstCreateOrAlterTrigger), false, false))
                 {
                     return 5;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstCreateView), false, false))
+                if (AstRoot.Eval(list[6], typeof(AstCreateView), false, false))
                 {
                     return 6;
                 }
@@ -6404,837 +6404,837 @@ namespace Bb.SqlServer.Asts
         public static AstSqlClause Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstSqlClause.Resolve(list);
-            if ((index == 2))
+            if ((index == 1))
             {
-                return new AstSqlClause.AstSqlClause1(ctx, ((AstMergeStatement)(list[0])));
+                return new AstSqlClause.AstSqlClause1(ctx, ((AstMergeStatement)(list[1])));
             }
             if ((index == 2))
             {
-                return new AstSqlClause.AstSqlClause2(ctx, ((AstDeleteStatement)(list[0])));
+                return new AstSqlClause.AstSqlClause2(ctx, ((AstDeleteStatement)(list[2])));
             }
-            if ((index == 2))
+            if ((index == 3))
             {
-                return new AstSqlClause.AstSqlClause3(ctx, ((AstInsertStatement)(list[0])));
+                return new AstSqlClause.AstSqlClause3(ctx, ((AstInsertStatement)(list[3])));
             }
-            if ((index == 2))
+            if ((index == 4))
             {
-                return new AstSqlClause.AstSqlClause4(ctx, ((AstSelectStatementStandalone)(list[0])));
+                return new AstSqlClause.AstSqlClause4(ctx, ((AstSelectStatementStandalone)(list[4])));
             }
-            if ((index == 2))
+            if ((index == 5))
             {
-                return new AstSqlClause.AstSqlClause5(ctx, ((AstUpdateStatement)(list[0])));
+                return new AstSqlClause.AstSqlClause5(ctx, ((AstUpdateStatement)(list[5])));
             }
-            if ((index == 2))
+            if ((index == 6))
             {
-                return new AstSqlClause.AstSqlClause6(ctx, ((AstAlterApplicationRole)(list[0])));
+                return new AstSqlClause.AstSqlClause6(ctx, ((AstAlterApplicationRole)(list[6])));
             }
-            if ((index == 2))
+            if ((index == 7))
             {
-                return new AstSqlClause.AstSqlClause7(ctx, ((AstAlterAssembly)(list[0])));
+                return new AstSqlClause.AstSqlClause7(ctx, ((AstAlterAssembly)(list[7])));
             }
-            if ((index == 2))
+            if ((index == 8))
             {
-                return new AstSqlClause.AstSqlClause8(ctx, ((AstAlterAsymmetricKey)(list[0])));
+                return new AstSqlClause.AstSqlClause8(ctx, ((AstAlterAsymmetricKey)(list[8])));
             }
-            if ((index == 2))
+            if ((index == 9))
             {
-                return new AstSqlClause.AstSqlClause9(ctx, ((AstAlterAuthorization)(list[0])));
+                return new AstSqlClause.AstSqlClause9(ctx, ((AstAlterAuthorization)(list[9])));
             }
-            if ((index == 2))
+            if ((index == 10))
             {
-                return new AstSqlClause.AstSqlClause10(ctx, ((AstAlterAuthorizationForAzureDw)(list[0])));
+                return new AstSqlClause.AstSqlClause10(ctx, ((AstAlterAuthorizationForAzureDw)(list[10])));
             }
-            if ((index == 2))
+            if ((index == 11))
             {
-                return new AstSqlClause.AstSqlClause11(ctx, ((AstAlterAuthorizationForParallelDw)(list[0])));
+                return new AstSqlClause.AstSqlClause11(ctx, ((AstAlterAuthorizationForParallelDw)(list[11])));
             }
-            if ((index == 2))
+            if ((index == 12))
             {
-                return new AstSqlClause.AstSqlClause12(ctx, ((AstAlterAuthorizationForSqlDatabase)(list[0])));
+                return new AstSqlClause.AstSqlClause12(ctx, ((AstAlterAuthorizationForSqlDatabase)(list[12])));
             }
-            if ((index == 2))
+            if ((index == 13))
             {
-                return new AstSqlClause.AstSqlClause13(ctx, ((AstAlterAvailabilityGroup)(list[0])));
+                return new AstSqlClause.AstSqlClause13(ctx, ((AstAlterAvailabilityGroup)(list[13])));
             }
-            if ((index == 2))
+            if ((index == 14))
             {
-                return new AstSqlClause.AstSqlClause14(ctx, ((AstAlterCertificate)(list[0])));
+                return new AstSqlClause.AstSqlClause14(ctx, ((AstAlterCertificate)(list[14])));
             }
-            if ((index == 2))
+            if ((index == 15))
             {
-                return new AstSqlClause.AstSqlClause15(ctx, ((AstAlterColumnEncryptionKey)(list[0])));
+                return new AstSqlClause.AstSqlClause15(ctx, ((AstAlterColumnEncryptionKey)(list[15])));
             }
-            if ((index == 2))
+            if ((index == 16))
             {
-                return new AstSqlClause.AstSqlClause16(ctx, ((AstAlterCredential)(list[0])));
+                return new AstSqlClause.AstSqlClause16(ctx, ((AstAlterCredential)(list[16])));
             }
-            if ((index == 2))
+            if ((index == 17))
             {
-                return new AstSqlClause.AstSqlClause17(ctx, ((AstAlterCryptographicProvider)(list[0])));
+                return new AstSqlClause.AstSqlClause17(ctx, ((AstAlterCryptographicProvider)(list[17])));
             }
-            if ((index == 2))
+            if ((index == 18))
             {
-                return new AstSqlClause.AstSqlClause18(ctx, ((AstAlterDatabase)(list[0])));
+                return new AstSqlClause.AstSqlClause18(ctx, ((AstAlterDatabase)(list[18])));
             }
-            if ((index == 2))
+            if ((index == 19))
             {
-                return new AstSqlClause.AstSqlClause19(ctx, ((AstAlterDbRole)(list[0])));
+                return new AstSqlClause.AstSqlClause19(ctx, ((AstAlterDbRole)(list[19])));
             }
-            if ((index == 2))
+            if ((index == 20))
             {
-                return new AstSqlClause.AstSqlClause20(ctx, ((AstAlterEndpoint)(list[0])));
+                return new AstSqlClause.AstSqlClause20(ctx, ((AstAlterEndpoint)(list[20])));
             }
-            if ((index == 2))
+            if ((index == 21))
             {
-                return new AstSqlClause.AstSqlClause21(ctx, ((AstCreateOrAlterEventSession)(list[0])));
+                return new AstSqlClause.AstSqlClause21(ctx, ((AstCreateOrAlterEventSession)(list[21])));
             }
-            if ((index == 2))
+            if ((index == 22))
             {
-                return new AstSqlClause.AstSqlClause22(ctx, ((AstAlterExternalDataSource)(list[0])));
+                return new AstSqlClause.AstSqlClause22(ctx, ((AstAlterExternalDataSource)(list[22])));
             }
-            if ((index == 2))
+            if ((index == 23))
             {
-                return new AstSqlClause.AstSqlClause23(ctx, ((AstAlterExternalLibrary)(list[0])));
+                return new AstSqlClause.AstSqlClause23(ctx, ((AstAlterExternalLibrary)(list[23])));
             }
-            if ((index == 2))
+            if ((index == 24))
             {
-                return new AstSqlClause.AstSqlClause24(ctx, ((AstAlterExternalResourcePool)(list[0])));
+                return new AstSqlClause.AstSqlClause24(ctx, ((AstAlterExternalResourcePool)(list[24])));
             }
-            if ((index == 2))
+            if ((index == 25))
             {
-                return new AstSqlClause.AstSqlClause25(ctx, ((AstAlterFulltextCatalog)(list[0])));
+                return new AstSqlClause.AstSqlClause25(ctx, ((AstAlterFulltextCatalog)(list[25])));
             }
-            if ((index == 2))
+            if ((index == 26))
             {
-                return new AstSqlClause.AstSqlClause26(ctx, ((AstAlterFulltextStoplist)(list[0])));
+                return new AstSqlClause.AstSqlClause26(ctx, ((AstAlterFulltextStoplist)(list[26])));
             }
-            if ((index == 2))
+            if ((index == 27))
             {
-                return new AstSqlClause.AstSqlClause27(ctx, ((AstAlterIndex)(list[0])));
+                return new AstSqlClause.AstSqlClause27(ctx, ((AstAlterIndex)(list[27])));
             }
-            if ((index == 2))
+            if ((index == 28))
             {
-                return new AstSqlClause.AstSqlClause28(ctx, ((AstAlterLoginAzureSql)(list[0])));
+                return new AstSqlClause.AstSqlClause28(ctx, ((AstAlterLoginAzureSql)(list[28])));
             }
-            if ((index == 2))
+            if ((index == 29))
             {
-                return new AstSqlClause.AstSqlClause29(ctx, ((AstAlterLoginAzureSqlDwAndPdw)(list[0])));
+                return new AstSqlClause.AstSqlClause29(ctx, ((AstAlterLoginAzureSqlDwAndPdw)(list[29])));
             }
-            if ((index == 2))
+            if ((index == 30))
             {
-                return new AstSqlClause.AstSqlClause30(ctx, ((AstAlterLoginSqlServer)(list[0])));
+                return new AstSqlClause.AstSqlClause30(ctx, ((AstAlterLoginSqlServer)(list[30])));
             }
-            if ((index == 2))
+            if ((index == 31))
             {
-                return new AstSqlClause.AstSqlClause31(ctx, ((AstAlterMasterKeyAzureSql)(list[0])));
+                return new AstSqlClause.AstSqlClause31(ctx, ((AstAlterMasterKeyAzureSql)(list[31])));
             }
-            if ((index == 2))
+            if ((index == 32))
             {
-                return new AstSqlClause.AstSqlClause32(ctx, ((AstAlterMasterKeySqlServer)(list[0])));
+                return new AstSqlClause.AstSqlClause32(ctx, ((AstAlterMasterKeySqlServer)(list[32])));
             }
-            if ((index == 2))
+            if ((index == 33))
             {
-                return new AstSqlClause.AstSqlClause33(ctx, ((AstAlterMessageType)(list[0])));
+                return new AstSqlClause.AstSqlClause33(ctx, ((AstAlterMessageType)(list[33])));
             }
-            if ((index == 2))
+            if ((index == 34))
             {
-                return new AstSqlClause.AstSqlClause34(ctx, ((AstAlterPartitionFunction)(list[0])));
+                return new AstSqlClause.AstSqlClause34(ctx, ((AstAlterPartitionFunction)(list[34])));
             }
-            if ((index == 2))
+            if ((index == 35))
             {
-                return new AstSqlClause.AstSqlClause35(ctx, ((AstAlterPartitionScheme)(list[0])));
+                return new AstSqlClause.AstSqlClause35(ctx, ((AstAlterPartitionScheme)(list[35])));
             }
-            if ((index == 2))
+            if ((index == 36))
             {
-                return new AstSqlClause.AstSqlClause36(ctx, ((AstAlterRemoteServiceBinding)(list[0])));
+                return new AstSqlClause.AstSqlClause36(ctx, ((AstAlterRemoteServiceBinding)(list[36])));
             }
-            if ((index == 2))
+            if ((index == 37))
             {
-                return new AstSqlClause.AstSqlClause37(ctx, ((AstAlterResourceGovernor)(list[0])));
+                return new AstSqlClause.AstSqlClause37(ctx, ((AstAlterResourceGovernor)(list[37])));
             }
-            if ((index == 2))
+            if ((index == 38))
             {
-                return new AstSqlClause.AstSqlClause38(ctx, ((AstAlterSchemaAzureSqlDwAndPdw)(list[0])));
+                return new AstSqlClause.AstSqlClause38(ctx, ((AstAlterSchemaAzureSqlDwAndPdw)(list[38])));
             }
-            if ((index == 2))
+            if ((index == 39))
             {
-                return new AstSqlClause.AstSqlClause39(ctx, ((AstAlterSchemaSql)(list[0])));
+                return new AstSqlClause.AstSqlClause39(ctx, ((AstAlterSchemaSql)(list[39])));
             }
-            if ((index == 2))
+            if ((index == 40))
             {
-                return new AstSqlClause.AstSqlClause40(ctx, ((AstAlterSequence)(list[0])));
+                return new AstSqlClause.AstSqlClause40(ctx, ((AstAlterSequence)(list[40])));
             }
-            if ((index == 2))
+            if ((index == 41))
             {
-                return new AstSqlClause.AstSqlClause41(ctx, ((AstAlterServerAudit)(list[0])));
+                return new AstSqlClause.AstSqlClause41(ctx, ((AstAlterServerAudit)(list[41])));
             }
-            if ((index == 2))
+            if ((index == 42))
             {
-                return new AstSqlClause.AstSqlClause42(ctx, ((AstAlterServerAuditSpecification)(list[0])));
+                return new AstSqlClause.AstSqlClause42(ctx, ((AstAlterServerAuditSpecification)(list[42])));
             }
-            if ((index == 2))
+            if ((index == 43))
             {
-                return new AstSqlClause.AstSqlClause43(ctx, ((AstAlterServerConfiguration)(list[0])));
+                return new AstSqlClause.AstSqlClause43(ctx, ((AstAlterServerConfiguration)(list[43])));
             }
-            if ((index == 2))
+            if ((index == 44))
             {
-                return new AstSqlClause.AstSqlClause44(ctx, ((AstAlterServerRole)(list[0])));
+                return new AstSqlClause.AstSqlClause44(ctx, ((AstAlterServerRole)(list[44])));
             }
-            if ((index == 2))
+            if ((index == 45))
             {
-                return new AstSqlClause.AstSqlClause45(ctx, ((AstAlterServerRolePdw)(list[0])));
+                return new AstSqlClause.AstSqlClause45(ctx, ((AstAlterServerRolePdw)(list[45])));
             }
-            if ((index == 2))
+            if ((index == 46))
             {
-                return new AstSqlClause.AstSqlClause46(ctx, ((AstAlterService)(list[0])));
+                return new AstSqlClause.AstSqlClause46(ctx, ((AstAlterService)(list[46])));
             }
-            if ((index == 2))
+            if ((index == 47))
             {
-                return new AstSqlClause.AstSqlClause47(ctx, ((AstAlterServiceMasterKey)(list[0])));
+                return new AstSqlClause.AstSqlClause47(ctx, ((AstAlterServiceMasterKey)(list[47])));
             }
-            if ((index == 2))
+            if ((index == 48))
             {
-                return new AstSqlClause.AstSqlClause48(ctx, ((AstAlterSymmetricKey)(list[0])));
+                return new AstSqlClause.AstSqlClause48(ctx, ((AstAlterSymmetricKey)(list[48])));
             }
-            if ((index == 2))
+            if ((index == 49))
             {
-                return new AstSqlClause.AstSqlClause49(ctx, ((AstAlterTable)(list[0])));
+                return new AstSqlClause.AstSqlClause49(ctx, ((AstAlterTable)(list[49])));
             }
-            if ((index == 2))
+            if ((index == 50))
             {
-                return new AstSqlClause.AstSqlClause50(ctx, ((AstAlterUser)(list[0])));
+                return new AstSqlClause.AstSqlClause50(ctx, ((AstAlterUser)(list[50])));
             }
-            if ((index == 2))
+            if ((index == 51))
             {
-                return new AstSqlClause.AstSqlClause51(ctx, ((AstAlterUserAzureSql)(list[0])));
+                return new AstSqlClause.AstSqlClause51(ctx, ((AstAlterUserAzureSql)(list[51])));
             }
-            if ((index == 2))
+            if ((index == 52))
             {
-                return new AstSqlClause.AstSqlClause52(ctx, ((AstAlterWorkloadGroup)(list[0])));
+                return new AstSqlClause.AstSqlClause52(ctx, ((AstAlterWorkloadGroup)(list[52])));
             }
-            if ((index == 2))
+            if ((index == 53))
             {
-                return new AstSqlClause.AstSqlClause53(ctx, ((AstCreateApplicationRole)(list[0])));
+                return new AstSqlClause.AstSqlClause53(ctx, ((AstCreateApplicationRole)(list[53])));
             }
-            if ((index == 2))
+            if ((index == 54))
             {
-                return new AstSqlClause.AstSqlClause54(ctx, ((AstCreateAssembly)(list[0])));
+                return new AstSqlClause.AstSqlClause54(ctx, ((AstCreateAssembly)(list[54])));
             }
-            if ((index == 2))
+            if ((index == 55))
             {
-                return new AstSqlClause.AstSqlClause55(ctx, ((AstCreateAsymmetricKey)(list[0])));
+                return new AstSqlClause.AstSqlClause55(ctx, ((AstCreateAsymmetricKey)(list[55])));
             }
-            if ((index == 2))
+            if ((index == 56))
             {
-                return new AstSqlClause.AstSqlClause56(ctx, ((AstCreateColumnEncryptionKey)(list[0])));
+                return new AstSqlClause.AstSqlClause56(ctx, ((AstCreateColumnEncryptionKey)(list[56])));
             }
-            if ((index == 2))
+            if ((index == 57))
             {
-                return new AstSqlClause.AstSqlClause57(ctx, ((AstCreateColumnMasterKey)(list[0])));
+                return new AstSqlClause.AstSqlClause57(ctx, ((AstCreateColumnMasterKey)(list[57])));
             }
-            if ((index == 2))
+            if ((index == 58))
             {
-                return new AstSqlClause.AstSqlClause58(ctx, ((AstCreateCredential)(list[0])));
+                return new AstSqlClause.AstSqlClause58(ctx, ((AstCreateCredential)(list[58])));
             }
-            if ((index == 2))
+            if ((index == 59))
             {
-                return new AstSqlClause.AstSqlClause59(ctx, ((AstCreateCryptographicProvider)(list[0])));
+                return new AstSqlClause.AstSqlClause59(ctx, ((AstCreateCryptographicProvider)(list[59])));
             }
-            if ((index == 2))
+            if ((index == 60))
             {
-                return new AstSqlClause.AstSqlClause60(ctx, ((AstCreateDatabase)(list[0])));
+                return new AstSqlClause.AstSqlClause60(ctx, ((AstCreateDatabase)(list[60])));
             }
-            if ((index == 2))
+            if ((index == 61))
             {
-                return new AstSqlClause.AstSqlClause61(ctx, ((AstCreateDbRole)(list[0])));
+                return new AstSqlClause.AstSqlClause61(ctx, ((AstCreateDbRole)(list[61])));
             }
-            if ((index == 2))
+            if ((index == 62))
             {
-                return new AstSqlClause.AstSqlClause62(ctx, ((AstCreateEventNotification)(list[0])));
+                return new AstSqlClause.AstSqlClause62(ctx, ((AstCreateEventNotification)(list[62])));
             }
-            if ((index == 2))
+            if ((index == 63))
             {
-                return new AstSqlClause.AstSqlClause63(ctx, ((AstCreateExternalLibrary)(list[0])));
+                return new AstSqlClause.AstSqlClause63(ctx, ((AstCreateExternalLibrary)(list[63])));
             }
-            if ((index == 2))
+            if ((index == 64))
             {
-                return new AstSqlClause.AstSqlClause64(ctx, ((AstCreateExternalResourcePool)(list[0])));
+                return new AstSqlClause.AstSqlClause64(ctx, ((AstCreateExternalResourcePool)(list[64])));
             }
-            if ((index == 2))
+            if ((index == 65))
             {
-                return new AstSqlClause.AstSqlClause65(ctx, ((AstCreateFulltextCatalog)(list[0])));
+                return new AstSqlClause.AstSqlClause65(ctx, ((AstCreateFulltextCatalog)(list[65])));
             }
-            if ((index == 2))
+            if ((index == 66))
             {
-                return new AstSqlClause.AstSqlClause66(ctx, ((AstCreateFulltextStoplist)(list[0])));
+                return new AstSqlClause.AstSqlClause66(ctx, ((AstCreateFulltextStoplist)(list[66])));
             }
-            if ((index == 2))
+            if ((index == 67))
             {
-                return new AstSqlClause.AstSqlClause67(ctx, ((AstCreateIndex)(list[0])));
+                return new AstSqlClause.AstSqlClause67(ctx, ((AstCreateIndex)(list[67])));
             }
-            if ((index == 2))
+            if ((index == 68))
             {
-                return new AstSqlClause.AstSqlClause68(ctx, ((AstCreateColumnstoreIndex)(list[0])));
+                return new AstSqlClause.AstSqlClause68(ctx, ((AstCreateColumnstoreIndex)(list[68])));
             }
-            if ((index == 2))
+            if ((index == 69))
             {
-                return new AstSqlClause.AstSqlClause69(ctx, ((AstCreateNonclusteredColumnstoreIndex)(list[0])));
+                return new AstSqlClause.AstSqlClause69(ctx, ((AstCreateNonclusteredColumnstoreIndex)(list[69])));
             }
-            if ((index == 2))
+            if ((index == 70))
             {
-                return new AstSqlClause.AstSqlClause70(ctx, ((AstCreateLoginAzureSql)(list[0])));
+                return new AstSqlClause.AstSqlClause70(ctx, ((AstCreateLoginAzureSql)(list[70])));
             }
-            if ((index == 2))
+            if ((index == 71))
             {
-                return new AstSqlClause.AstSqlClause71(ctx, ((AstCreateLoginPdw)(list[0])));
+                return new AstSqlClause.AstSqlClause71(ctx, ((AstCreateLoginPdw)(list[71])));
             }
-            if ((index == 2))
+            if ((index == 72))
             {
-                return new AstSqlClause.AstSqlClause72(ctx, ((AstCreateLoginSqlServer)(list[0])));
+                return new AstSqlClause.AstSqlClause72(ctx, ((AstCreateLoginSqlServer)(list[72])));
             }
-            if ((index == 2))
+            if ((index == 73))
             {
-                return new AstSqlClause.AstSqlClause73(ctx, ((AstCreateMasterKeyAzureSql)(list[0])));
+                return new AstSqlClause.AstSqlClause73(ctx, ((AstCreateMasterKeyAzureSql)(list[73])));
             }
-            if ((index == 2))
+            if ((index == 74))
             {
-                return new AstSqlClause.AstSqlClause74(ctx, ((AstCreateMasterKeySqlServer)(list[0])));
+                return new AstSqlClause.AstSqlClause74(ctx, ((AstCreateMasterKeySqlServer)(list[74])));
             }
-            if ((index == 2))
+            if ((index == 75))
             {
-                return new AstSqlClause.AstSqlClause75(ctx, ((AstCreateOrAlterBrokerPriority)(list[0])));
+                return new AstSqlClause.AstSqlClause75(ctx, ((AstCreateOrAlterBrokerPriority)(list[75])));
             }
-            if ((index == 2))
+            if ((index == 76))
             {
-                return new AstSqlClause.AstSqlClause76(ctx, ((AstCreateRemoteServiceBinding)(list[0])));
+                return new AstSqlClause.AstSqlClause76(ctx, ((AstCreateRemoteServiceBinding)(list[76])));
             }
-            if ((index == 2))
+            if ((index == 77))
             {
-                return new AstSqlClause.AstSqlClause77(ctx, ((AstCreateResourcePool)(list[0])));
+                return new AstSqlClause.AstSqlClause77(ctx, ((AstCreateResourcePool)(list[77])));
             }
-            if ((index == 2))
+            if ((index == 78))
             {
-                return new AstSqlClause.AstSqlClause78(ctx, ((AstCreateRoute)(list[0])));
+                return new AstSqlClause.AstSqlClause78(ctx, ((AstCreateRoute)(list[78])));
             }
-            if ((index == 2))
+            if ((index == 79))
             {
-                return new AstSqlClause.AstSqlClause79(ctx, ((AstCreateRule)(list[0])));
+                return new AstSqlClause.AstSqlClause79(ctx, ((AstCreateRule)(list[79])));
             }
-            if ((index == 2))
+            if ((index == 80))
             {
-                return new AstSqlClause.AstSqlClause80(ctx, ((AstCreateSchema)(list[0])));
+                return new AstSqlClause.AstSqlClause80(ctx, ((AstCreateSchema)(list[80])));
             }
-            if ((index == 2))
+            if ((index == 81))
             {
-                return new AstSqlClause.AstSqlClause81(ctx, ((AstCreateSchemaAzureSqlDwAndPdw)(list[0])));
+                return new AstSqlClause.AstSqlClause81(ctx, ((AstCreateSchemaAzureSqlDwAndPdw)(list[81])));
             }
-            if ((index == 2))
+            if ((index == 82))
             {
-                return new AstSqlClause.AstSqlClause82(ctx, ((AstCreateSearchPropertyList)(list[0])));
+                return new AstSqlClause.AstSqlClause82(ctx, ((AstCreateSearchPropertyList)(list[82])));
             }
-            if ((index == 2))
+            if ((index == 83))
             {
-                return new AstSqlClause.AstSqlClause83(ctx, ((AstCreateSecurityPolicy)(list[0])));
+                return new AstSqlClause.AstSqlClause83(ctx, ((AstCreateSecurityPolicy)(list[83])));
             }
-            if ((index == 2))
+            if ((index == 84))
             {
-                return new AstSqlClause.AstSqlClause84(ctx, ((AstCreateSequence)(list[0])));
+                return new AstSqlClause.AstSqlClause84(ctx, ((AstCreateSequence)(list[84])));
             }
-            if ((index == 2))
+            if ((index == 85))
             {
-                return new AstSqlClause.AstSqlClause85(ctx, ((AstCreateServerAudit)(list[0])));
+                return new AstSqlClause.AstSqlClause85(ctx, ((AstCreateServerAudit)(list[85])));
             }
-            if ((index == 2))
+            if ((index == 86))
             {
-                return new AstSqlClause.AstSqlClause86(ctx, ((AstCreateServerAuditSpecification)(list[0])));
+                return new AstSqlClause.AstSqlClause86(ctx, ((AstCreateServerAuditSpecification)(list[86])));
             }
-            if ((index == 2))
+            if ((index == 87))
             {
-                return new AstSqlClause.AstSqlClause87(ctx, ((AstCreateServerRole)(list[0])));
+                return new AstSqlClause.AstSqlClause87(ctx, ((AstCreateServerRole)(list[87])));
             }
-            if ((index == 2))
+            if ((index == 88))
             {
-                return new AstSqlClause.AstSqlClause88(ctx, ((AstCreateService)(list[0])));
+                return new AstSqlClause.AstSqlClause88(ctx, ((AstCreateService)(list[88])));
             }
-            if ((index == 2))
+            if ((index == 89))
             {
-                return new AstSqlClause.AstSqlClause89(ctx, ((AstCreateStatistics)(list[0])));
+                return new AstSqlClause.AstSqlClause89(ctx, ((AstCreateStatistics)(list[89])));
             }
-            if ((index == 2))
+            if ((index == 90))
             {
-                return new AstSqlClause.AstSqlClause90(ctx, ((AstCreateSynonym)(list[0])));
+                return new AstSqlClause.AstSqlClause90(ctx, ((AstCreateSynonym)(list[90])));
             }
-            if ((index == 2))
+            if ((index == 91))
             {
-                return new AstSqlClause.AstSqlClause91(ctx, ((AstCreateTable)(list[0])));
+                return new AstSqlClause.AstSqlClause91(ctx, ((AstCreateTable)(list[91])));
             }
-            if ((index == 2))
+            if ((index == 92))
             {
-                return new AstSqlClause.AstSqlClause92(ctx, ((AstCreateType)(list[0])));
+                return new AstSqlClause.AstSqlClause92(ctx, ((AstCreateType)(list[92])));
             }
-            if ((index == 2))
+            if ((index == 93))
             {
-                return new AstSqlClause.AstSqlClause93(ctx, ((AstCreateUser)(list[0])));
+                return new AstSqlClause.AstSqlClause93(ctx, ((AstCreateUser)(list[93])));
             }
-            if ((index == 2))
+            if ((index == 94))
             {
-                return new AstSqlClause.AstSqlClause94(ctx, ((AstCreateUserAzureSqlDw)(list[0])));
+                return new AstSqlClause.AstSqlClause94(ctx, ((AstCreateUserAzureSqlDw)(list[94])));
             }
-            if ((index == 2))
+            if ((index == 95))
             {
-                return new AstSqlClause.AstSqlClause95(ctx, ((AstCreateWorkloadGroup)(list[0])));
+                return new AstSqlClause.AstSqlClause95(ctx, ((AstCreateWorkloadGroup)(list[95])));
             }
-            if ((index == 2))
+            if ((index == 96))
             {
-                return new AstSqlClause.AstSqlClause96(ctx, ((AstCreateXmlIndex)(list[0])));
+                return new AstSqlClause.AstSqlClause96(ctx, ((AstCreateXmlIndex)(list[96])));
             }
-            if ((index == 2))
+            if ((index == 97))
             {
-                return new AstSqlClause.AstSqlClause97(ctx, ((AstCreateXmlSchemaCollection)(list[0])));
+                return new AstSqlClause.AstSqlClause97(ctx, ((AstCreateXmlSchemaCollection)(list[97])));
             }
-            if ((index == 2))
+            if ((index == 98))
             {
-                return new AstSqlClause.AstSqlClause98(ctx, ((AstCreatePartitionFunction)(list[0])));
+                return new AstSqlClause.AstSqlClause98(ctx, ((AstCreatePartitionFunction)(list[98])));
             }
-            if ((index == 2))
+            if ((index == 99))
             {
-                return new AstSqlClause.AstSqlClause99(ctx, ((AstCreatePartitionScheme)(list[0])));
+                return new AstSqlClause.AstSqlClause99(ctx, ((AstCreatePartitionScheme)(list[99])));
             }
-            if ((index == 2))
+            if ((index == 100))
             {
-                return new AstSqlClause.AstSqlClause100(ctx, ((AstDropAggregate)(list[0])));
+                return new AstSqlClause.AstSqlClause100(ctx, ((AstDropAggregate)(list[100])));
             }
-            if ((index == 2))
+            if ((index == 101))
             {
-                return new AstSqlClause.AstSqlClause101(ctx, ((AstDropApplicationRole)(list[0])));
+                return new AstSqlClause.AstSqlClause101(ctx, ((AstDropApplicationRole)(list[101])));
             }
-            if ((index == 2))
+            if ((index == 102))
             {
-                return new AstSqlClause.AstSqlClause102(ctx, ((AstDropAssembly)(list[0])));
+                return new AstSqlClause.AstSqlClause102(ctx, ((AstDropAssembly)(list[102])));
             }
-            if ((index == 2))
+            if ((index == 103))
             {
-                return new AstSqlClause.AstSqlClause103(ctx, ((AstDropAsymmetricKey)(list[0])));
+                return new AstSqlClause.AstSqlClause103(ctx, ((AstDropAsymmetricKey)(list[103])));
             }
-            if ((index == 2))
+            if ((index == 104))
             {
-                return new AstSqlClause.AstSqlClause104(ctx, ((AstDropAvailabilityGroup)(list[0])));
+                return new AstSqlClause.AstSqlClause104(ctx, ((AstDropAvailabilityGroup)(list[104])));
             }
-            if ((index == 2))
+            if ((index == 105))
             {
-                return new AstSqlClause.AstSqlClause105(ctx, ((AstDropBrokerPriority)(list[0])));
+                return new AstSqlClause.AstSqlClause105(ctx, ((AstDropBrokerPriority)(list[105])));
             }
-            if ((index == 2))
+            if ((index == 106))
             {
-                return new AstSqlClause.AstSqlClause106(ctx, ((AstDropCertificate)(list[0])));
+                return new AstSqlClause.AstSqlClause106(ctx, ((AstDropCertificate)(list[106])));
             }
-            if ((index == 2))
+            if ((index == 107))
             {
-                return new AstSqlClause.AstSqlClause107(ctx, ((AstDropColumnEncryptionKey)(list[0])));
+                return new AstSqlClause.AstSqlClause107(ctx, ((AstDropColumnEncryptionKey)(list[107])));
             }
-            if ((index == 2))
+            if ((index == 108))
             {
-                return new AstSqlClause.AstSqlClause108(ctx, ((AstDropColumnMasterKey)(list[0])));
+                return new AstSqlClause.AstSqlClause108(ctx, ((AstDropColumnMasterKey)(list[108])));
             }
-            if ((index == 2))
+            if ((index == 109))
             {
-                return new AstSqlClause.AstSqlClause109(ctx, ((AstDropContract)(list[0])));
+                return new AstSqlClause.AstSqlClause109(ctx, ((AstDropContract)(list[109])));
             }
-            if ((index == 2))
+            if ((index == 110))
             {
-                return new AstSqlClause.AstSqlClause110(ctx, ((AstDropCredential)(list[0])));
+                return new AstSqlClause.AstSqlClause110(ctx, ((AstDropCredential)(list[110])));
             }
-            if ((index == 2))
+            if ((index == 111))
             {
-                return new AstSqlClause.AstSqlClause111(ctx, ((AstDropCryptograhicProvider)(list[0])));
+                return new AstSqlClause.AstSqlClause111(ctx, ((AstDropCryptograhicProvider)(list[111])));
             }
-            if ((index == 2))
+            if ((index == 112))
             {
-                return new AstSqlClause.AstSqlClause112(ctx, ((AstDropDatabase)(list[0])));
+                return new AstSqlClause.AstSqlClause112(ctx, ((AstDropDatabase)(list[112])));
             }
-            if ((index == 2))
+            if ((index == 113))
             {
-                return new AstSqlClause.AstSqlClause113(ctx, ((AstDropDatabaseAuditSpecification)(list[0])));
+                return new AstSqlClause.AstSqlClause113(ctx, ((AstDropDatabaseAuditSpecification)(list[113])));
             }
-            if ((index == 2))
+            if ((index == 114))
             {
-                return new AstSqlClause.AstSqlClause114(ctx, ((AstDropDatabaseEncryptionKey)(list[0])));
+                return new AstSqlClause.AstSqlClause114(ctx, ((AstDropDatabaseEncryptionKey)(list[114])));
             }
-            if ((index == 2))
+            if ((index == 115))
             {
-                return new AstSqlClause.AstSqlClause115(ctx, ((AstDropDatabaseScopedCredential)(list[0])));
+                return new AstSqlClause.AstSqlClause115(ctx, ((AstDropDatabaseScopedCredential)(list[115])));
             }
-            if ((index == 2))
+            if ((index == 116))
             {
-                return new AstSqlClause.AstSqlClause116(ctx, ((AstDropDbRole)(list[0])));
+                return new AstSqlClause.AstSqlClause116(ctx, ((AstDropDbRole)(list[116])));
             }
-            if ((index == 2))
+            if ((index == 117))
             {
-                return new AstSqlClause.AstSqlClause117(ctx, ((AstDropDefault)(list[0])));
+                return new AstSqlClause.AstSqlClause117(ctx, ((AstDropDefault)(list[117])));
             }
-            if ((index == 2))
+            if ((index == 118))
             {
-                return new AstSqlClause.AstSqlClause118(ctx, ((AstDropEndpoint)(list[0])));
+                return new AstSqlClause.AstSqlClause118(ctx, ((AstDropEndpoint)(list[118])));
             }
-            if ((index == 2))
+            if ((index == 119))
             {
-                return new AstSqlClause.AstSqlClause119(ctx, ((AstDropEventNotifications)(list[0])));
+                return new AstSqlClause.AstSqlClause119(ctx, ((AstDropEventNotifications)(list[119])));
             }
-            if ((index == 2))
+            if ((index == 120))
             {
-                return new AstSqlClause.AstSqlClause120(ctx, ((AstDropEventSession)(list[0])));
+                return new AstSqlClause.AstSqlClause120(ctx, ((AstDropEventSession)(list[120])));
             }
-            if ((index == 2))
+            if ((index == 121))
             {
-                return new AstSqlClause.AstSqlClause121(ctx, ((AstDropExternalDataSource)(list[0])));
+                return new AstSqlClause.AstSqlClause121(ctx, ((AstDropExternalDataSource)(list[121])));
             }
-            if ((index == 2))
+            if ((index == 122))
             {
-                return new AstSqlClause.AstSqlClause122(ctx, ((AstDropExternalFileFormat)(list[0])));
+                return new AstSqlClause.AstSqlClause122(ctx, ((AstDropExternalFileFormat)(list[122])));
             }
-            if ((index == 2))
+            if ((index == 123))
             {
-                return new AstSqlClause.AstSqlClause123(ctx, ((AstDropExternalLibrary)(list[0])));
+                return new AstSqlClause.AstSqlClause123(ctx, ((AstDropExternalLibrary)(list[123])));
             }
-            if ((index == 2))
+            if ((index == 124))
             {
-                return new AstSqlClause.AstSqlClause124(ctx, ((AstDropExternalResourcePool)(list[0])));
+                return new AstSqlClause.AstSqlClause124(ctx, ((AstDropExternalResourcePool)(list[124])));
             }
-            if ((index == 2))
+            if ((index == 125))
             {
-                return new AstSqlClause.AstSqlClause125(ctx, ((AstDropExternalTable)(list[0])));
+                return new AstSqlClause.AstSqlClause125(ctx, ((AstDropExternalTable)(list[125])));
             }
-            if ((index == 2))
+            if ((index == 126))
             {
-                return new AstSqlClause.AstSqlClause126(ctx, ((AstDropFulltextCatalog)(list[0])));
+                return new AstSqlClause.AstSqlClause126(ctx, ((AstDropFulltextCatalog)(list[126])));
             }
-            if ((index == 2))
+            if ((index == 127))
             {
-                return new AstSqlClause.AstSqlClause127(ctx, ((AstDropFulltextIndex)(list[0])));
+                return new AstSqlClause.AstSqlClause127(ctx, ((AstDropFulltextIndex)(list[127])));
             }
-            if ((index == 2))
+            if ((index == 128))
             {
-                return new AstSqlClause.AstSqlClause128(ctx, ((AstDropFulltextStoplist)(list[0])));
+                return new AstSqlClause.AstSqlClause128(ctx, ((AstDropFulltextStoplist)(list[128])));
             }
-            if ((index == 2))
+            if ((index == 129))
             {
-                return new AstSqlClause.AstSqlClause129(ctx, ((AstDropFunction)(list[0])));
+                return new AstSqlClause.AstSqlClause129(ctx, ((AstDropFunction)(list[129])));
             }
-            if ((index == 2))
+            if ((index == 130))
             {
-                return new AstSqlClause.AstSqlClause130(ctx, ((AstDropIndex)(list[0])));
+                return new AstSqlClause.AstSqlClause130(ctx, ((AstDropIndex)(list[130])));
             }
-            if ((index == 2))
+            if ((index == 131))
             {
-                return new AstSqlClause.AstSqlClause131(ctx, ((AstDropLogin)(list[0])));
+                return new AstSqlClause.AstSqlClause131(ctx, ((AstDropLogin)(list[131])));
             }
-            if ((index == 2))
+            if ((index == 132))
             {
-                return new AstSqlClause.AstSqlClause132(ctx, ((AstDropMasterKey)(list[0])));
+                return new AstSqlClause.AstSqlClause132(ctx, ((AstDropMasterKey)(list[132])));
             }
-            if ((index == 2))
+            if ((index == 133))
             {
-                return new AstSqlClause.AstSqlClause133(ctx, ((AstDropMessageType)(list[0])));
+                return new AstSqlClause.AstSqlClause133(ctx, ((AstDropMessageType)(list[133])));
             }
-            if ((index == 2))
+            if ((index == 134))
             {
-                return new AstSqlClause.AstSqlClause134(ctx, ((AstDropPartitionFunction)(list[0])));
+                return new AstSqlClause.AstSqlClause134(ctx, ((AstDropPartitionFunction)(list[134])));
             }
-            if ((index == 2))
+            if ((index == 135))
             {
-                return new AstSqlClause.AstSqlClause135(ctx, ((AstDropPartitionScheme)(list[0])));
+                return new AstSqlClause.AstSqlClause135(ctx, ((AstDropPartitionScheme)(list[135])));
             }
-            if ((index == 2))
+            if ((index == 136))
             {
-                return new AstSqlClause.AstSqlClause136(ctx, ((AstDropProcedure)(list[0])));
+                return new AstSqlClause.AstSqlClause136(ctx, ((AstDropProcedure)(list[136])));
             }
-            if ((index == 2))
+            if ((index == 137))
             {
-                return new AstSqlClause.AstSqlClause137(ctx, ((AstDropQueue)(list[0])));
+                return new AstSqlClause.AstSqlClause137(ctx, ((AstDropQueue)(list[137])));
             }
-            if ((index == 2))
+            if ((index == 138))
             {
-                return new AstSqlClause.AstSqlClause138(ctx, ((AstDropRemoteServiceBinding)(list[0])));
+                return new AstSqlClause.AstSqlClause138(ctx, ((AstDropRemoteServiceBinding)(list[138])));
             }
-            if ((index == 2))
+            if ((index == 139))
             {
-                return new AstSqlClause.AstSqlClause139(ctx, ((AstDropResourcePool)(list[0])));
+                return new AstSqlClause.AstSqlClause139(ctx, ((AstDropResourcePool)(list[139])));
             }
-            if ((index == 2))
+            if ((index == 140))
             {
-                return new AstSqlClause.AstSqlClause140(ctx, ((AstDropRoute)(list[0])));
+                return new AstSqlClause.AstSqlClause140(ctx, ((AstDropRoute)(list[140])));
             }
-            if ((index == 2))
+            if ((index == 141))
             {
-                return new AstSqlClause.AstSqlClause141(ctx, ((AstDropRule)(list[0])));
+                return new AstSqlClause.AstSqlClause141(ctx, ((AstDropRule)(list[141])));
             }
-            if ((index == 2))
+            if ((index == 142))
             {
-                return new AstSqlClause.AstSqlClause142(ctx, ((AstDropSchema)(list[0])));
+                return new AstSqlClause.AstSqlClause142(ctx, ((AstDropSchema)(list[142])));
             }
-            if ((index == 2))
+            if ((index == 143))
             {
-                return new AstSqlClause.AstSqlClause143(ctx, ((AstDropSearchPropertyList)(list[0])));
+                return new AstSqlClause.AstSqlClause143(ctx, ((AstDropSearchPropertyList)(list[143])));
             }
-            if ((index == 2))
+            if ((index == 144))
             {
-                return new AstSqlClause.AstSqlClause144(ctx, ((AstDropSecurityPolicy)(list[0])));
+                return new AstSqlClause.AstSqlClause144(ctx, ((AstDropSecurityPolicy)(list[144])));
             }
-            if ((index == 2))
+            if ((index == 145))
             {
-                return new AstSqlClause.AstSqlClause145(ctx, ((AstDropSequence)(list[0])));
+                return new AstSqlClause.AstSqlClause145(ctx, ((AstDropSequence)(list[145])));
             }
-            if ((index == 2))
+            if ((index == 146))
             {
-                return new AstSqlClause.AstSqlClause146(ctx, ((AstDropServerAudit)(list[0])));
+                return new AstSqlClause.AstSqlClause146(ctx, ((AstDropServerAudit)(list[146])));
             }
-            if ((index == 2))
+            if ((index == 147))
             {
-                return new AstSqlClause.AstSqlClause147(ctx, ((AstDropServerAuditSpecification)(list[0])));
+                return new AstSqlClause.AstSqlClause147(ctx, ((AstDropServerAuditSpecification)(list[147])));
             }
-            if ((index == 2))
+            if ((index == 148))
             {
-                return new AstSqlClause.AstSqlClause148(ctx, ((AstDropServerRole)(list[0])));
+                return new AstSqlClause.AstSqlClause148(ctx, ((AstDropServerRole)(list[148])));
             }
-            if ((index == 2))
+            if ((index == 149))
             {
-                return new AstSqlClause.AstSqlClause149(ctx, ((AstDropService)(list[0])));
+                return new AstSqlClause.AstSqlClause149(ctx, ((AstDropService)(list[149])));
             }
-            if ((index == 2))
+            if ((index == 150))
             {
-                return new AstSqlClause.AstSqlClause150(ctx, ((AstDropSignature)(list[0])));
+                return new AstSqlClause.AstSqlClause150(ctx, ((AstDropSignature)(list[150])));
             }
-            if ((index == 2))
+            if ((index == 151))
             {
-                return new AstSqlClause.AstSqlClause151(ctx, ((AstDropStatistics)(list[0])));
+                return new AstSqlClause.AstSqlClause151(ctx, ((AstDropStatistics)(list[151])));
             }
-            if ((index == 2))
+            if ((index == 152))
             {
-                return new AstSqlClause.AstSqlClause152(ctx, ((AstDropStatisticsIdAzureDwAndPdw)(list[0])));
+                return new AstSqlClause.AstSqlClause152(ctx, ((AstDropStatisticsIdAzureDwAndPdw)(list[152])));
             }
-            if ((index == 2))
+            if ((index == 153))
             {
-                return new AstSqlClause.AstSqlClause153(ctx, ((AstDropSymmetricKey)(list[0])));
+                return new AstSqlClause.AstSqlClause153(ctx, ((AstDropSymmetricKey)(list[153])));
             }
-            if ((index == 2))
+            if ((index == 154))
             {
-                return new AstSqlClause.AstSqlClause154(ctx, ((AstDropSynonym)(list[0])));
+                return new AstSqlClause.AstSqlClause154(ctx, ((AstDropSynonym)(list[154])));
             }
-            if ((index == 2))
+            if ((index == 155))
             {
-                return new AstSqlClause.AstSqlClause155(ctx, ((AstDropTable)(list[0])));
+                return new AstSqlClause.AstSqlClause155(ctx, ((AstDropTable)(list[155])));
             }
-            if ((index == 2))
+            if ((index == 156))
             {
-                return new AstSqlClause.AstSqlClause156(ctx, ((AstDropDmlTrigger)(list[0])));
+                return new AstSqlClause.AstSqlClause156(ctx, ((AstDropDmlTrigger)(list[156])));
             }
-            if ((index == 2))
+            if ((index == 157))
             {
-                return new AstSqlClause.AstSqlClause157(ctx, ((AstDropDdlTrigger)(list[0])));
+                return new AstSqlClause.AstSqlClause157(ctx, ((AstDropDdlTrigger)(list[157])));
             }
-            if ((index == 2))
+            if ((index == 158))
             {
-                return new AstSqlClause.AstSqlClause158(ctx, ((AstDropType)(list[0])));
+                return new AstSqlClause.AstSqlClause158(ctx, ((AstDropType)(list[158])));
             }
-            if ((index == 2))
+            if ((index == 159))
             {
-                return new AstSqlClause.AstSqlClause159(ctx, ((AstDropUser)(list[0])));
+                return new AstSqlClause.AstSqlClause159(ctx, ((AstDropUser)(list[159])));
             }
-            if ((index == 2))
+            if ((index == 160))
             {
-                return new AstSqlClause.AstSqlClause160(ctx, ((AstDropView)(list[0])));
+                return new AstSqlClause.AstSqlClause160(ctx, ((AstDropView)(list[160])));
             }
-            if ((index == 2))
+            if ((index == 161))
             {
-                return new AstSqlClause.AstSqlClause161(ctx, ((AstDropWorkloadGroup)(list[0])));
+                return new AstSqlClause.AstSqlClause161(ctx, ((AstDropWorkloadGroup)(list[161])));
             }
-            if ((index == 2))
+            if ((index == 162))
             {
-                return new AstSqlClause.AstSqlClause162(ctx, ((AstDropXmlSchemaCollection)(list[0])));
+                return new AstSqlClause.AstSqlClause162(ctx, ((AstDropXmlSchemaCollection)(list[162])));
             }
-            if ((index == 2))
+            if ((index == 163))
             {
-                return new AstSqlClause.AstSqlClause163(ctx, ((AstDisableTrigger)(list[0])));
+                return new AstSqlClause.AstSqlClause163(ctx, ((AstDisableTrigger)(list[163])));
             }
-            if ((index == 2))
+            if ((index == 164))
             {
-                return new AstSqlClause.AstSqlClause164(ctx, ((AstEnableTrigger)(list[0])));
+                return new AstSqlClause.AstSqlClause164(ctx, ((AstEnableTrigger)(list[164])));
             }
-            if ((index == 2))
+            if ((index == 165))
             {
-                return new AstSqlClause.AstSqlClause165(ctx, ((AstLockTable)(list[0])));
+                return new AstSqlClause.AstSqlClause165(ctx, ((AstLockTable)(list[165])));
             }
-            if ((index == 2))
+            if ((index == 166))
             {
-                return new AstSqlClause.AstSqlClause166(ctx, ((AstTruncateTable)(list[0])));
+                return new AstSqlClause.AstSqlClause166(ctx, ((AstTruncateTable)(list[166])));
             }
-            if ((index == 2))
+            if ((index == 167))
             {
-                return new AstSqlClause.AstSqlClause167(ctx, ((AstUpdateStatistics)(list[0])));
+                return new AstSqlClause.AstSqlClause167(ctx, ((AstUpdateStatistics)(list[167])));
             }
-            if ((index == 2))
+            if ((index == 168))
             {
-                return new AstSqlClause.AstSqlClause168(ctx, ((AstBlockStatement)(list[0])));
+                return new AstSqlClause.AstSqlClause168(ctx, ((AstBlockStatement)(list[168])));
             }
-            if ((index == 2))
+            if ((index == 169))
             {
-                return new AstSqlClause.AstSqlClause169(ctx, ((AstBreakStatement)(list[0])));
+                return new AstSqlClause.AstSqlClause169(ctx, ((AstBreakStatement)(list[169])));
             }
-            if ((index == 2))
+            if ((index == 170))
             {
-                return new AstSqlClause.AstSqlClause170(ctx, ((AstContinueStatement)(list[0])));
+                return new AstSqlClause.AstSqlClause170(ctx, ((AstContinueStatement)(list[170])));
             }
-            if ((index == 2))
+            if ((index == 171))
             {
-                return new AstSqlClause.AstSqlClause171(ctx, ((AstGotoStatement)(list[0])));
+                return new AstSqlClause.AstSqlClause171(ctx, ((AstGotoStatement)(list[171])));
             }
-            if ((index == 2))
+            if ((index == 172))
             {
-                return new AstSqlClause.AstSqlClause172(ctx, ((AstIfStatement)(list[0])));
+                return new AstSqlClause.AstSqlClause172(ctx, ((AstIfStatement)(list[172])));
             }
-            if ((index == 2))
+            if ((index == 173))
             {
-                return new AstSqlClause.AstSqlClause173(ctx, ((AstReturnStatement)(list[0])));
+                return new AstSqlClause.AstSqlClause173(ctx, ((AstReturnStatement)(list[173])));
             }
-            if ((index == 2))
+            if ((index == 174))
             {
-                return new AstSqlClause.AstSqlClause174(ctx, ((AstThrowStatement)(list[0])));
+                return new AstSqlClause.AstSqlClause174(ctx, ((AstThrowStatement)(list[174])));
             }
-            if ((index == 2))
+            if ((index == 175))
             {
-                return new AstSqlClause.AstSqlClause175(ctx, ((AstTryCatchStatement)(list[0])));
+                return new AstSqlClause.AstSqlClause175(ctx, ((AstTryCatchStatement)(list[175])));
             }
-            if ((index == 2))
+            if ((index == 176))
             {
-                return new AstSqlClause.AstSqlClause176(ctx, ((AstWaitforStatement)(list[0])));
+                return new AstSqlClause.AstSqlClause176(ctx, ((AstWaitforStatement)(list[176])));
             }
-            if ((index == 2))
+            if ((index == 177))
             {
-                return new AstSqlClause.AstSqlClause177(ctx, ((AstWhileStatement)(list[0])));
+                return new AstSqlClause.AstSqlClause177(ctx, ((AstWhileStatement)(list[177])));
             }
-            if ((index == 2))
+            if ((index == 178))
             {
-                return new AstSqlClause.AstSqlClause178(ctx, ((AstPrintStatement)(list[0])));
+                return new AstSqlClause.AstSqlClause178(ctx, ((AstPrintStatement)(list[178])));
             }
-            if ((index == 2))
+            if ((index == 179))
             {
-                return new AstSqlClause.AstSqlClause179(ctx, ((AstRaiseerrorStatement)(list[0])));
+                return new AstSqlClause.AstSqlClause179(ctx, ((AstRaiseerrorStatement)(list[179])));
             }
-            if ((index == 2))
+            if ((index == 180))
             {
-                return new AstSqlClause.AstSqlClause180(ctx, ((AstDeclareStatement)(list[0])));
+                return new AstSqlClause.AstSqlClause180(ctx, ((AstDeclareStatement)(list[180])));
             }
-            if ((index == 2))
+            if ((index == 181))
             {
-                return new AstSqlClause.AstSqlClause181(ctx, ((AstExecuteStatement)(list[0])));
+                return new AstSqlClause.AstSqlClause181(ctx, ((AstExecuteStatement)(list[181])));
             }
-            if ((index == 2))
+            if ((index == 182))
             {
-                return new AstSqlClause.AstSqlClause182(ctx, ((AstCursorStatement)(list[0])));
+                return new AstSqlClause.AstSqlClause182(ctx, ((AstCursorStatement)(list[182])));
             }
-            if ((index == 2))
+            if ((index == 183))
             {
-                return new AstSqlClause.AstSqlClause183(ctx, ((AstBeginConversationTimer)(list[0])));
+                return new AstSqlClause.AstSqlClause183(ctx, ((AstBeginConversationTimer)(list[183])));
             }
-            if ((index == 2))
+            if ((index == 184))
             {
-                return new AstSqlClause.AstSqlClause184(ctx, ((AstBeginConversationDialog)(list[0])));
+                return new AstSqlClause.AstSqlClause184(ctx, ((AstBeginConversationDialog)(list[184])));
             }
-            if ((index == 2))
+            if ((index == 185))
             {
-                return new AstSqlClause.AstSqlClause185(ctx, ((AstEndConversation)(list[0])));
+                return new AstSqlClause.AstSqlClause185(ctx, ((AstEndConversation)(list[185])));
             }
-            if ((index == 2))
+            if ((index == 186))
             {
-                return new AstSqlClause.AstSqlClause186(ctx, ((AstGetConversation)(list[0])));
+                return new AstSqlClause.AstSqlClause186(ctx, ((AstGetConversation)(list[186])));
             }
-            if ((index == 2))
+            if ((index == 187))
             {
-                return new AstSqlClause.AstSqlClause187(ctx, ((AstSendConversation)(list[0])));
+                return new AstSqlClause.AstSqlClause187(ctx, ((AstSendConversation)(list[187])));
             }
-            if ((index == 2))
+            if ((index == 188))
             {
-                return new AstSqlClause.AstSqlClause188(ctx, ((AstWaitforConversation)(list[0])));
+                return new AstSqlClause.AstSqlClause188(ctx, ((AstWaitforConversation)(list[188])));
             }
-            if ((index == 2))
+            if ((index == 189))
             {
-                return new AstSqlClause.AstSqlClause189(ctx, ((AstCreateContract)(list[0])));
+                return new AstSqlClause.AstSqlClause189(ctx, ((AstCreateContract)(list[189])));
             }
-            if ((index == 2))
+            if ((index == 190))
             {
-                return new AstSqlClause.AstSqlClause190(ctx, ((AstCreateQueue)(list[0])));
+                return new AstSqlClause.AstSqlClause190(ctx, ((AstCreateQueue)(list[190])));
             }
-            if ((index == 2))
+            if ((index == 191))
             {
-                return new AstSqlClause.AstSqlClause191(ctx, ((AstAlterQueue)(list[0])));
+                return new AstSqlClause.AstSqlClause191(ctx, ((AstAlterQueue)(list[191])));
             }
-            if ((index == 2))
+            if ((index == 192))
             {
-                return new AstSqlClause.AstSqlClause192(ctx, ((AstKillStatement)(list[0])));
+                return new AstSqlClause.AstSqlClause192(ctx, ((AstKillStatement)(list[192])));
             }
-            if ((index == 2))
+            if ((index == 193))
             {
-                return new AstSqlClause.AstSqlClause193(ctx, ((AstMessageStatement)(list[0])));
+                return new AstSqlClause.AstSqlClause193(ctx, ((AstMessageStatement)(list[193])));
             }
-            if ((index == 2))
+            if ((index == 194))
             {
-                return new AstSqlClause.AstSqlClause194(ctx, ((AstSecurityStatement)(list[0])));
+                return new AstSqlClause.AstSqlClause194(ctx, ((AstSecurityStatement)(list[194])));
             }
-            if ((index == 2))
+            if ((index == 195))
             {
-                return new AstSqlClause.AstSqlClause195(ctx, ((AstSetStatement)(list[0])));
+                return new AstSqlClause.AstSqlClause195(ctx, ((AstSetStatement)(list[195])));
             }
-            if ((index == 2))
+            if ((index == 196))
             {
-                return new AstSqlClause.AstSqlClause196(ctx, ((AstTransactionStatement)(list[0])));
+                return new AstSqlClause.AstSqlClause196(ctx, ((AstTransactionStatement)(list[196])));
             }
-            if ((index == 2))
+            if ((index == 197))
             {
-                return new AstSqlClause.AstSqlClause197(ctx, ((AstUseStatement)(list[0])));
+                return new AstSqlClause.AstSqlClause197(ctx, ((AstUseStatement)(list[197])));
             }
-            if ((index == 2))
+            if ((index == 198))
             {
-                return new AstSqlClause.AstSqlClause198(ctx, ((AstSetuserStatement)(list[0])));
+                return new AstSqlClause.AstSqlClause198(ctx, ((AstSetuserStatement)(list[198])));
             }
-            if ((index == 2))
+            if ((index == 199))
             {
-                return new AstSqlClause.AstSqlClause199(ctx, ((AstReconfigureStatement)(list[0])));
+                return new AstSqlClause.AstSqlClause199(ctx, ((AstReconfigureStatement)(list[199])));
             }
-            if ((index == 2))
+            if ((index == 200))
             {
-                return new AstSqlClause.AstSqlClause200(ctx, ((AstShutdownStatement)(list[0])));
+                return new AstSqlClause.AstSqlClause200(ctx, ((AstShutdownStatement)(list[200])));
             }
-            if ((index == 2))
+            if ((index == 201))
             {
-                return new AstSqlClause.AstSqlClause201(ctx, ((AstCheckpointStatement)(list[0])));
+                return new AstSqlClause.AstSqlClause201(ctx, ((AstCheckpointStatement)(list[201])));
             }
-            if ((index == 2))
+            if ((index == 202))
             {
-                return new AstSqlClause.AstSqlClause202(ctx, ((AstBackupDatabase)(list[0])));
+                return new AstSqlClause.AstSqlClause202(ctx, ((AstBackupDatabase)(list[202])));
             }
-            if ((index == 2))
+            if ((index == 203))
             {
-                return new AstSqlClause.AstSqlClause203(ctx, ((AstBackupLog)(list[0])));
+                return new AstSqlClause.AstSqlClause203(ctx, ((AstBackupLog)(list[203])));
             }
-            if ((index == 2))
+            if ((index == 204))
             {
-                return new AstSqlClause.AstSqlClause204(ctx, ((AstBackupCertificate)(list[0])));
+                return new AstSqlClause.AstSqlClause204(ctx, ((AstBackupCertificate)(list[204])));
             }
-            if ((index == 2))
+            if ((index == 205))
             {
-                return new AstSqlClause.AstSqlClause205(ctx, ((AstBackupMasterKey)(list[0])));
+                return new AstSqlClause.AstSqlClause205(ctx, ((AstBackupMasterKey)(list[205])));
             }
-            if ((index == 2))
+            if ((index == 206))
             {
-                return new AstSqlClause.AstSqlClause206(ctx, ((AstBackupServiceMasterKey)(list[0])));
+                return new AstSqlClause.AstSqlClause206(ctx, ((AstBackupServiceMasterKey)(list[206])));
             }
-            if ((index == 2))
+            if ((index == 207))
             {
-                return new AstSqlClause.AstSqlClause207(ctx, ((AstDbccSpecial)(list[0])));
+                return new AstSqlClause.AstSqlClause207(ctx, ((AstDbccSpecial)(list[207])));
             }
-            if ((index == 2))
+            if ((index == 208))
             {
-                return new AstSqlClause.AstSqlClause208(ctx, ((AstDbccClause)(list[0])));
+                return new AstSqlClause.AstSqlClause208(ctx, ((AstDbccClause)(list[208])));
             }
             return null;
         }
@@ -7243,835 +7243,835 @@ namespace Bb.SqlServer.Asts
         {
             if ((list.Count == 1))
             {
-                if (AstRoot.Eval(list[0], typeof(AstMergeStatement), false, false))
+                if (AstRoot.Eval(list[1], typeof(AstMergeStatement), false, false))
                 {
                     return 1;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstDeleteStatement), false, false))
+                if (AstRoot.Eval(list[2], typeof(AstDeleteStatement), false, false))
                 {
                     return 2;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstInsertStatement), false, false))
+                if (AstRoot.Eval(list[3], typeof(AstInsertStatement), false, false))
                 {
                     return 3;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstSelectStatementStandalone), false, false))
+                if (AstRoot.Eval(list[4], typeof(AstSelectStatementStandalone), false, false))
                 {
                     return 4;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstUpdateStatement), false, false))
+                if (AstRoot.Eval(list[5], typeof(AstUpdateStatement), false, false))
                 {
                     return 5;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstAlterApplicationRole), false, false))
+                if (AstRoot.Eval(list[6], typeof(AstAlterApplicationRole), false, false))
                 {
                     return 6;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstAlterAssembly), false, false))
+                if (AstRoot.Eval(list[7], typeof(AstAlterAssembly), false, false))
                 {
                     return 7;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstAlterAsymmetricKey), false, false))
+                if (AstRoot.Eval(list[8], typeof(AstAlterAsymmetricKey), false, false))
                 {
                     return 8;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstAlterAuthorization), false, false))
+                if (AstRoot.Eval(list[9], typeof(AstAlterAuthorization), false, false))
                 {
                     return 9;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstAlterAuthorizationForAzureDw), false, false))
+                if (AstRoot.Eval(list[10], typeof(AstAlterAuthorizationForAzureDw), false, false))
                 {
                     return 10;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstAlterAuthorizationForParallelDw), false, false))
+                if (AstRoot.Eval(list[11], typeof(AstAlterAuthorizationForParallelDw), false, false))
                 {
                     return 11;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstAlterAuthorizationForSqlDatabase), false, false))
+                if (AstRoot.Eval(list[12], typeof(AstAlterAuthorizationForSqlDatabase), false, false))
                 {
                     return 12;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstAlterAvailabilityGroup), false, false))
+                if (AstRoot.Eval(list[13], typeof(AstAlterAvailabilityGroup), false, false))
                 {
                     return 13;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstAlterCertificate), false, false))
+                if (AstRoot.Eval(list[14], typeof(AstAlterCertificate), false, false))
                 {
                     return 14;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstAlterColumnEncryptionKey), false, false))
+                if (AstRoot.Eval(list[15], typeof(AstAlterColumnEncryptionKey), false, false))
                 {
                     return 15;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstAlterCredential), false, false))
+                if (AstRoot.Eval(list[16], typeof(AstAlterCredential), false, false))
                 {
                     return 16;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstAlterCryptographicProvider), false, false))
+                if (AstRoot.Eval(list[17], typeof(AstAlterCryptographicProvider), false, false))
                 {
                     return 17;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstAlterDatabase), false, false))
+                if (AstRoot.Eval(list[18], typeof(AstAlterDatabase), false, false))
                 {
                     return 18;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstAlterDbRole), false, false))
+                if (AstRoot.Eval(list[19], typeof(AstAlterDbRole), false, false))
                 {
                     return 19;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstAlterEndpoint), false, false))
+                if (AstRoot.Eval(list[20], typeof(AstAlterEndpoint), false, false))
                 {
                     return 20;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstCreateOrAlterEventSession), false, false))
+                if (AstRoot.Eval(list[21], typeof(AstCreateOrAlterEventSession), false, false))
                 {
                     return 21;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstAlterExternalDataSource), false, false))
+                if (AstRoot.Eval(list[22], typeof(AstAlterExternalDataSource), false, false))
                 {
                     return 22;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstAlterExternalLibrary), false, false))
+                if (AstRoot.Eval(list[23], typeof(AstAlterExternalLibrary), false, false))
                 {
                     return 23;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstAlterExternalResourcePool), false, false))
+                if (AstRoot.Eval(list[24], typeof(AstAlterExternalResourcePool), false, false))
                 {
                     return 24;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstAlterFulltextCatalog), false, false))
+                if (AstRoot.Eval(list[25], typeof(AstAlterFulltextCatalog), false, false))
                 {
                     return 25;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstAlterFulltextStoplist), false, false))
+                if (AstRoot.Eval(list[26], typeof(AstAlterFulltextStoplist), false, false))
                 {
                     return 26;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstAlterIndex), false, false))
+                if (AstRoot.Eval(list[27], typeof(AstAlterIndex), false, false))
                 {
                     return 27;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstAlterLoginAzureSql), false, false))
+                if (AstRoot.Eval(list[28], typeof(AstAlterLoginAzureSql), false, false))
                 {
                     return 28;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstAlterLoginAzureSqlDwAndPdw), false, false))
+                if (AstRoot.Eval(list[29], typeof(AstAlterLoginAzureSqlDwAndPdw), false, false))
                 {
                     return 29;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstAlterLoginSqlServer), false, false))
+                if (AstRoot.Eval(list[30], typeof(AstAlterLoginSqlServer), false, false))
                 {
                     return 30;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstAlterMasterKeyAzureSql), false, false))
+                if (AstRoot.Eval(list[31], typeof(AstAlterMasterKeyAzureSql), false, false))
                 {
                     return 31;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstAlterMasterKeySqlServer), false, false))
+                if (AstRoot.Eval(list[32], typeof(AstAlterMasterKeySqlServer), false, false))
                 {
                     return 32;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstAlterMessageType), false, false))
+                if (AstRoot.Eval(list[33], typeof(AstAlterMessageType), false, false))
                 {
                     return 33;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstAlterPartitionFunction), false, false))
+                if (AstRoot.Eval(list[34], typeof(AstAlterPartitionFunction), false, false))
                 {
                     return 34;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstAlterPartitionScheme), false, false))
+                if (AstRoot.Eval(list[35], typeof(AstAlterPartitionScheme), false, false))
                 {
                     return 35;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstAlterRemoteServiceBinding), false, false))
+                if (AstRoot.Eval(list[36], typeof(AstAlterRemoteServiceBinding), false, false))
                 {
                     return 36;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstAlterResourceGovernor), false, false))
+                if (AstRoot.Eval(list[37], typeof(AstAlterResourceGovernor), false, false))
                 {
                     return 37;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstAlterSchemaAzureSqlDwAndPdw), false, false))
+                if (AstRoot.Eval(list[38], typeof(AstAlterSchemaAzureSqlDwAndPdw), false, false))
                 {
                     return 38;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstAlterSchemaSql), false, false))
+                if (AstRoot.Eval(list[39], typeof(AstAlterSchemaSql), false, false))
                 {
                     return 39;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstAlterSequence), false, false))
+                if (AstRoot.Eval(list[40], typeof(AstAlterSequence), false, false))
                 {
                     return 40;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstAlterServerAudit), false, false))
+                if (AstRoot.Eval(list[41], typeof(AstAlterServerAudit), false, false))
                 {
                     return 41;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstAlterServerAuditSpecification), false, false))
+                if (AstRoot.Eval(list[42], typeof(AstAlterServerAuditSpecification), false, false))
                 {
                     return 42;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstAlterServerConfiguration), false, false))
+                if (AstRoot.Eval(list[43], typeof(AstAlterServerConfiguration), false, false))
                 {
                     return 43;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstAlterServerRole), false, false))
+                if (AstRoot.Eval(list[44], typeof(AstAlterServerRole), false, false))
                 {
                     return 44;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstAlterServerRolePdw), false, false))
+                if (AstRoot.Eval(list[45], typeof(AstAlterServerRolePdw), false, false))
                 {
                     return 45;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstAlterService), false, false))
+                if (AstRoot.Eval(list[46], typeof(AstAlterService), false, false))
                 {
                     return 46;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstAlterServiceMasterKey), false, false))
+                if (AstRoot.Eval(list[47], typeof(AstAlterServiceMasterKey), false, false))
                 {
                     return 47;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstAlterSymmetricKey), false, false))
+                if (AstRoot.Eval(list[48], typeof(AstAlterSymmetricKey), false, false))
                 {
                     return 48;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstAlterTable), false, false))
+                if (AstRoot.Eval(list[49], typeof(AstAlterTable), false, false))
                 {
                     return 49;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstAlterUser), false, false))
+                if (AstRoot.Eval(list[50], typeof(AstAlterUser), false, false))
                 {
                     return 50;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstAlterUserAzureSql), false, false))
+                if (AstRoot.Eval(list[51], typeof(AstAlterUserAzureSql), false, false))
                 {
                     return 51;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstAlterWorkloadGroup), false, false))
+                if (AstRoot.Eval(list[52], typeof(AstAlterWorkloadGroup), false, false))
                 {
                     return 52;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstCreateApplicationRole), false, false))
+                if (AstRoot.Eval(list[53], typeof(AstCreateApplicationRole), false, false))
                 {
                     return 53;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstCreateAssembly), false, false))
+                if (AstRoot.Eval(list[54], typeof(AstCreateAssembly), false, false))
                 {
                     return 54;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstCreateAsymmetricKey), false, false))
+                if (AstRoot.Eval(list[55], typeof(AstCreateAsymmetricKey), false, false))
                 {
                     return 55;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstCreateColumnEncryptionKey), false, false))
+                if (AstRoot.Eval(list[56], typeof(AstCreateColumnEncryptionKey), false, false))
                 {
                     return 56;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstCreateColumnMasterKey), false, false))
+                if (AstRoot.Eval(list[57], typeof(AstCreateColumnMasterKey), false, false))
                 {
                     return 57;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstCreateCredential), false, false))
+                if (AstRoot.Eval(list[58], typeof(AstCreateCredential), false, false))
                 {
                     return 58;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstCreateCryptographicProvider), false, false))
+                if (AstRoot.Eval(list[59], typeof(AstCreateCryptographicProvider), false, false))
                 {
                     return 59;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstCreateDatabase), false, false))
+                if (AstRoot.Eval(list[60], typeof(AstCreateDatabase), false, false))
                 {
                     return 60;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstCreateDbRole), false, false))
+                if (AstRoot.Eval(list[61], typeof(AstCreateDbRole), false, false))
                 {
                     return 61;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstCreateEventNotification), false, false))
+                if (AstRoot.Eval(list[62], typeof(AstCreateEventNotification), false, false))
                 {
                     return 62;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstCreateExternalLibrary), false, false))
+                if (AstRoot.Eval(list[63], typeof(AstCreateExternalLibrary), false, false))
                 {
                     return 63;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstCreateExternalResourcePool), false, false))
+                if (AstRoot.Eval(list[64], typeof(AstCreateExternalResourcePool), false, false))
                 {
                     return 64;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstCreateFulltextCatalog), false, false))
+                if (AstRoot.Eval(list[65], typeof(AstCreateFulltextCatalog), false, false))
                 {
                     return 65;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstCreateFulltextStoplist), false, false))
+                if (AstRoot.Eval(list[66], typeof(AstCreateFulltextStoplist), false, false))
                 {
                     return 66;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstCreateIndex), false, false))
+                if (AstRoot.Eval(list[67], typeof(AstCreateIndex), false, false))
                 {
                     return 67;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstCreateColumnstoreIndex), false, false))
+                if (AstRoot.Eval(list[68], typeof(AstCreateColumnstoreIndex), false, false))
                 {
                     return 68;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstCreateNonclusteredColumnstoreIndex), false, false))
+                if (AstRoot.Eval(list[69], typeof(AstCreateNonclusteredColumnstoreIndex), false, false))
                 {
                     return 69;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstCreateLoginAzureSql), false, false))
+                if (AstRoot.Eval(list[70], typeof(AstCreateLoginAzureSql), false, false))
                 {
                     return 70;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstCreateLoginPdw), false, false))
+                if (AstRoot.Eval(list[71], typeof(AstCreateLoginPdw), false, false))
                 {
                     return 71;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstCreateLoginSqlServer), false, false))
+                if (AstRoot.Eval(list[72], typeof(AstCreateLoginSqlServer), false, false))
                 {
                     return 72;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstCreateMasterKeyAzureSql), false, false))
+                if (AstRoot.Eval(list[73], typeof(AstCreateMasterKeyAzureSql), false, false))
                 {
                     return 73;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstCreateMasterKeySqlServer), false, false))
+                if (AstRoot.Eval(list[74], typeof(AstCreateMasterKeySqlServer), false, false))
                 {
                     return 74;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstCreateOrAlterBrokerPriority), false, false))
+                if (AstRoot.Eval(list[75], typeof(AstCreateOrAlterBrokerPriority), false, false))
                 {
                     return 75;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstCreateRemoteServiceBinding), false, false))
+                if (AstRoot.Eval(list[76], typeof(AstCreateRemoteServiceBinding), false, false))
                 {
                     return 76;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstCreateResourcePool), false, false))
+                if (AstRoot.Eval(list[77], typeof(AstCreateResourcePool), false, false))
                 {
                     return 77;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstCreateRoute), false, false))
+                if (AstRoot.Eval(list[78], typeof(AstCreateRoute), false, false))
                 {
                     return 78;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstCreateRule), false, false))
+                if (AstRoot.Eval(list[79], typeof(AstCreateRule), false, false))
                 {
                     return 79;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstCreateSchema), false, false))
+                if (AstRoot.Eval(list[80], typeof(AstCreateSchema), false, false))
                 {
                     return 80;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstCreateSchemaAzureSqlDwAndPdw), false, false))
+                if (AstRoot.Eval(list[81], typeof(AstCreateSchemaAzureSqlDwAndPdw), false, false))
                 {
                     return 81;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstCreateSearchPropertyList), false, false))
+                if (AstRoot.Eval(list[82], typeof(AstCreateSearchPropertyList), false, false))
                 {
                     return 82;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstCreateSecurityPolicy), false, false))
+                if (AstRoot.Eval(list[83], typeof(AstCreateSecurityPolicy), false, false))
                 {
                     return 83;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstCreateSequence), false, false))
+                if (AstRoot.Eval(list[84], typeof(AstCreateSequence), false, false))
                 {
                     return 84;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstCreateServerAudit), false, false))
+                if (AstRoot.Eval(list[85], typeof(AstCreateServerAudit), false, false))
                 {
                     return 85;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstCreateServerAuditSpecification), false, false))
+                if (AstRoot.Eval(list[86], typeof(AstCreateServerAuditSpecification), false, false))
                 {
                     return 86;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstCreateServerRole), false, false))
+                if (AstRoot.Eval(list[87], typeof(AstCreateServerRole), false, false))
                 {
                     return 87;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstCreateService), false, false))
+                if (AstRoot.Eval(list[88], typeof(AstCreateService), false, false))
                 {
                     return 88;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstCreateStatistics), false, false))
+                if (AstRoot.Eval(list[89], typeof(AstCreateStatistics), false, false))
                 {
                     return 89;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstCreateSynonym), false, false))
+                if (AstRoot.Eval(list[90], typeof(AstCreateSynonym), false, false))
                 {
                     return 90;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstCreateTable), false, false))
+                if (AstRoot.Eval(list[91], typeof(AstCreateTable), false, false))
                 {
                     return 91;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstCreateType), false, false))
+                if (AstRoot.Eval(list[92], typeof(AstCreateType), false, false))
                 {
                     return 92;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstCreateUser), false, false))
+                if (AstRoot.Eval(list[93], typeof(AstCreateUser), false, false))
                 {
                     return 93;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstCreateUserAzureSqlDw), false, false))
+                if (AstRoot.Eval(list[94], typeof(AstCreateUserAzureSqlDw), false, false))
                 {
                     return 94;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstCreateWorkloadGroup), false, false))
+                if (AstRoot.Eval(list[95], typeof(AstCreateWorkloadGroup), false, false))
                 {
                     return 95;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstCreateXmlIndex), false, false))
+                if (AstRoot.Eval(list[96], typeof(AstCreateXmlIndex), false, false))
                 {
                     return 96;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstCreateXmlSchemaCollection), false, false))
+                if (AstRoot.Eval(list[97], typeof(AstCreateXmlSchemaCollection), false, false))
                 {
                     return 97;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstCreatePartitionFunction), false, false))
+                if (AstRoot.Eval(list[98], typeof(AstCreatePartitionFunction), false, false))
                 {
                     return 98;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstCreatePartitionScheme), false, false))
+                if (AstRoot.Eval(list[99], typeof(AstCreatePartitionScheme), false, false))
                 {
                     return 99;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstDropAggregate), false, false))
+                if (AstRoot.Eval(list[100], typeof(AstDropAggregate), false, false))
                 {
                     return 100;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstDropApplicationRole), false, false))
+                if (AstRoot.Eval(list[101], typeof(AstDropApplicationRole), false, false))
                 {
                     return 101;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstDropAssembly), false, false))
+                if (AstRoot.Eval(list[102], typeof(AstDropAssembly), false, false))
                 {
                     return 102;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstDropAsymmetricKey), false, false))
+                if (AstRoot.Eval(list[103], typeof(AstDropAsymmetricKey), false, false))
                 {
                     return 103;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstDropAvailabilityGroup), false, false))
+                if (AstRoot.Eval(list[104], typeof(AstDropAvailabilityGroup), false, false))
                 {
                     return 104;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstDropBrokerPriority), false, false))
+                if (AstRoot.Eval(list[105], typeof(AstDropBrokerPriority), false, false))
                 {
                     return 105;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstDropCertificate), false, false))
+                if (AstRoot.Eval(list[106], typeof(AstDropCertificate), false, false))
                 {
                     return 106;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstDropColumnEncryptionKey), false, false))
+                if (AstRoot.Eval(list[107], typeof(AstDropColumnEncryptionKey), false, false))
                 {
                     return 107;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstDropColumnMasterKey), false, false))
+                if (AstRoot.Eval(list[108], typeof(AstDropColumnMasterKey), false, false))
                 {
                     return 108;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstDropContract), false, false))
+                if (AstRoot.Eval(list[109], typeof(AstDropContract), false, false))
                 {
                     return 109;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstDropCredential), false, false))
+                if (AstRoot.Eval(list[110], typeof(AstDropCredential), false, false))
                 {
                     return 110;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstDropCryptograhicProvider), false, false))
+                if (AstRoot.Eval(list[111], typeof(AstDropCryptograhicProvider), false, false))
                 {
                     return 111;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstDropDatabase), false, false))
+                if (AstRoot.Eval(list[112], typeof(AstDropDatabase), false, false))
                 {
                     return 112;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstDropDatabaseAuditSpecification), false, false))
+                if (AstRoot.Eval(list[113], typeof(AstDropDatabaseAuditSpecification), false, false))
                 {
                     return 113;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstDropDatabaseEncryptionKey), false, false))
+                if (AstRoot.Eval(list[114], typeof(AstDropDatabaseEncryptionKey), false, false))
                 {
                     return 114;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstDropDatabaseScopedCredential), false, false))
+                if (AstRoot.Eval(list[115], typeof(AstDropDatabaseScopedCredential), false, false))
                 {
                     return 115;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstDropDbRole), false, false))
+                if (AstRoot.Eval(list[116], typeof(AstDropDbRole), false, false))
                 {
                     return 116;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstDropDefault), false, false))
+                if (AstRoot.Eval(list[117], typeof(AstDropDefault), false, false))
                 {
                     return 117;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstDropEndpoint), false, false))
+                if (AstRoot.Eval(list[118], typeof(AstDropEndpoint), false, false))
                 {
                     return 118;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstDropEventNotifications), false, false))
+                if (AstRoot.Eval(list[119], typeof(AstDropEventNotifications), false, false))
                 {
                     return 119;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstDropEventSession), false, false))
+                if (AstRoot.Eval(list[120], typeof(AstDropEventSession), false, false))
                 {
                     return 120;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstDropExternalDataSource), false, false))
+                if (AstRoot.Eval(list[121], typeof(AstDropExternalDataSource), false, false))
                 {
                     return 121;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstDropExternalFileFormat), false, false))
+                if (AstRoot.Eval(list[122], typeof(AstDropExternalFileFormat), false, false))
                 {
                     return 122;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstDropExternalLibrary), false, false))
+                if (AstRoot.Eval(list[123], typeof(AstDropExternalLibrary), false, false))
                 {
                     return 123;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstDropExternalResourcePool), false, false))
+                if (AstRoot.Eval(list[124], typeof(AstDropExternalResourcePool), false, false))
                 {
                     return 124;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstDropExternalTable), false, false))
+                if (AstRoot.Eval(list[125], typeof(AstDropExternalTable), false, false))
                 {
                     return 125;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstDropFulltextCatalog), false, false))
+                if (AstRoot.Eval(list[126], typeof(AstDropFulltextCatalog), false, false))
                 {
                     return 126;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstDropFulltextIndex), false, false))
+                if (AstRoot.Eval(list[127], typeof(AstDropFulltextIndex), false, false))
                 {
                     return 127;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstDropFulltextStoplist), false, false))
+                if (AstRoot.Eval(list[128], typeof(AstDropFulltextStoplist), false, false))
                 {
                     return 128;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstDropFunction), false, false))
+                if (AstRoot.Eval(list[129], typeof(AstDropFunction), false, false))
                 {
                     return 129;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstDropIndex), false, false))
+                if (AstRoot.Eval(list[130], typeof(AstDropIndex), false, false))
                 {
                     return 130;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstDropLogin), false, false))
+                if (AstRoot.Eval(list[131], typeof(AstDropLogin), false, false))
                 {
                     return 131;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstDropMasterKey), false, false))
+                if (AstRoot.Eval(list[132], typeof(AstDropMasterKey), false, false))
                 {
                     return 132;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstDropMessageType), false, false))
+                if (AstRoot.Eval(list[133], typeof(AstDropMessageType), false, false))
                 {
                     return 133;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstDropPartitionFunction), false, false))
+                if (AstRoot.Eval(list[134], typeof(AstDropPartitionFunction), false, false))
                 {
                     return 134;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstDropPartitionScheme), false, false))
+                if (AstRoot.Eval(list[135], typeof(AstDropPartitionScheme), false, false))
                 {
                     return 135;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstDropProcedure), false, false))
+                if (AstRoot.Eval(list[136], typeof(AstDropProcedure), false, false))
                 {
                     return 136;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstDropQueue), false, false))
+                if (AstRoot.Eval(list[137], typeof(AstDropQueue), false, false))
                 {
                     return 137;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstDropRemoteServiceBinding), false, false))
+                if (AstRoot.Eval(list[138], typeof(AstDropRemoteServiceBinding), false, false))
                 {
                     return 138;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstDropResourcePool), false, false))
+                if (AstRoot.Eval(list[139], typeof(AstDropResourcePool), false, false))
                 {
                     return 139;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstDropRoute), false, false))
+                if (AstRoot.Eval(list[140], typeof(AstDropRoute), false, false))
                 {
                     return 140;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstDropRule), false, false))
+                if (AstRoot.Eval(list[141], typeof(AstDropRule), false, false))
                 {
                     return 141;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstDropSchema), false, false))
+                if (AstRoot.Eval(list[142], typeof(AstDropSchema), false, false))
                 {
                     return 142;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstDropSearchPropertyList), false, false))
+                if (AstRoot.Eval(list[143], typeof(AstDropSearchPropertyList), false, false))
                 {
                     return 143;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstDropSecurityPolicy), false, false))
+                if (AstRoot.Eval(list[144], typeof(AstDropSecurityPolicy), false, false))
                 {
                     return 144;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstDropSequence), false, false))
+                if (AstRoot.Eval(list[145], typeof(AstDropSequence), false, false))
                 {
                     return 145;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstDropServerAudit), false, false))
+                if (AstRoot.Eval(list[146], typeof(AstDropServerAudit), false, false))
                 {
                     return 146;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstDropServerAuditSpecification), false, false))
+                if (AstRoot.Eval(list[147], typeof(AstDropServerAuditSpecification), false, false))
                 {
                     return 147;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstDropServerRole), false, false))
+                if (AstRoot.Eval(list[148], typeof(AstDropServerRole), false, false))
                 {
                     return 148;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstDropService), false, false))
+                if (AstRoot.Eval(list[149], typeof(AstDropService), false, false))
                 {
                     return 149;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstDropSignature), false, false))
+                if (AstRoot.Eval(list[150], typeof(AstDropSignature), false, false))
                 {
                     return 150;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstDropStatistics), false, false))
+                if (AstRoot.Eval(list[151], typeof(AstDropStatistics), false, false))
                 {
                     return 151;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstDropStatisticsIdAzureDwAndPdw), false, false))
+                if (AstRoot.Eval(list[152], typeof(AstDropStatisticsIdAzureDwAndPdw), false, false))
                 {
                     return 152;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstDropSymmetricKey), false, false))
+                if (AstRoot.Eval(list[153], typeof(AstDropSymmetricKey), false, false))
                 {
                     return 153;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstDropSynonym), false, false))
+                if (AstRoot.Eval(list[154], typeof(AstDropSynonym), false, false))
                 {
                     return 154;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstDropTable), false, false))
+                if (AstRoot.Eval(list[155], typeof(AstDropTable), false, false))
                 {
                     return 155;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstDropDmlTrigger), false, false))
+                if (AstRoot.Eval(list[156], typeof(AstDropDmlTrigger), false, false))
                 {
                     return 156;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstDropDdlTrigger), false, false))
+                if (AstRoot.Eval(list[157], typeof(AstDropDdlTrigger), false, false))
                 {
                     return 157;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstDropType), false, false))
+                if (AstRoot.Eval(list[158], typeof(AstDropType), false, false))
                 {
                     return 158;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstDropUser), false, false))
+                if (AstRoot.Eval(list[159], typeof(AstDropUser), false, false))
                 {
                     return 159;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstDropView), false, false))
+                if (AstRoot.Eval(list[160], typeof(AstDropView), false, false))
                 {
                     return 160;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstDropWorkloadGroup), false, false))
+                if (AstRoot.Eval(list[161], typeof(AstDropWorkloadGroup), false, false))
                 {
                     return 161;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstDropXmlSchemaCollection), false, false))
+                if (AstRoot.Eval(list[162], typeof(AstDropXmlSchemaCollection), false, false))
                 {
                     return 162;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstDisableTrigger), false, false))
+                if (AstRoot.Eval(list[163], typeof(AstDisableTrigger), false, false))
                 {
                     return 163;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstEnableTrigger), false, false))
+                if (AstRoot.Eval(list[164], typeof(AstEnableTrigger), false, false))
                 {
                     return 164;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstLockTable), false, false))
+                if (AstRoot.Eval(list[165], typeof(AstLockTable), false, false))
                 {
                     return 165;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstTruncateTable), false, false))
+                if (AstRoot.Eval(list[166], typeof(AstTruncateTable), false, false))
                 {
                     return 166;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstUpdateStatistics), false, false))
+                if (AstRoot.Eval(list[167], typeof(AstUpdateStatistics), false, false))
                 {
                     return 167;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstBlockStatement), false, false))
+                if (AstRoot.Eval(list[168], typeof(AstBlockStatement), false, false))
                 {
                     return 168;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstBreakStatement), false, false))
+                if (AstRoot.Eval(list[169], typeof(AstBreakStatement), false, false))
                 {
                     return 169;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstContinueStatement), false, false))
+                if (AstRoot.Eval(list[170], typeof(AstContinueStatement), false, false))
                 {
                     return 170;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstGotoStatement), false, false))
+                if (AstRoot.Eval(list[171], typeof(AstGotoStatement), false, false))
                 {
                     return 171;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstIfStatement), false, false))
+                if (AstRoot.Eval(list[172], typeof(AstIfStatement), false, false))
                 {
                     return 172;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstReturnStatement), false, false))
+                if (AstRoot.Eval(list[173], typeof(AstReturnStatement), false, false))
                 {
                     return 173;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstThrowStatement), false, false))
+                if (AstRoot.Eval(list[174], typeof(AstThrowStatement), false, false))
                 {
                     return 174;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstTryCatchStatement), false, false))
+                if (AstRoot.Eval(list[175], typeof(AstTryCatchStatement), false, false))
                 {
                     return 175;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstWaitforStatement), false, false))
+                if (AstRoot.Eval(list[176], typeof(AstWaitforStatement), false, false))
                 {
                     return 176;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstWhileStatement), false, false))
+                if (AstRoot.Eval(list[177], typeof(AstWhileStatement), false, false))
                 {
                     return 177;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstPrintStatement), false, false))
+                if (AstRoot.Eval(list[178], typeof(AstPrintStatement), false, false))
                 {
                     return 178;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstRaiseerrorStatement), false, false))
+                if (AstRoot.Eval(list[179], typeof(AstRaiseerrorStatement), false, false))
                 {
                     return 179;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstDeclareStatement), false, false))
+                if (AstRoot.Eval(list[180], typeof(AstDeclareStatement), false, false))
                 {
                     return 180;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstExecuteStatement), false, false))
+                if (AstRoot.Eval(list[181], typeof(AstExecuteStatement), false, false))
                 {
                     return 181;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstCursorStatement), false, false))
+                if (AstRoot.Eval(list[182], typeof(AstCursorStatement), false, false))
                 {
                     return 182;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstBeginConversationTimer), false, false))
+                if (AstRoot.Eval(list[183], typeof(AstBeginConversationTimer), false, false))
                 {
                     return 183;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstBeginConversationDialog), false, false))
+                if (AstRoot.Eval(list[184], typeof(AstBeginConversationDialog), false, false))
                 {
                     return 184;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstEndConversation), false, false))
+                if (AstRoot.Eval(list[185], typeof(AstEndConversation), false, false))
                 {
                     return 185;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstGetConversation), false, false))
+                if (AstRoot.Eval(list[186], typeof(AstGetConversation), false, false))
                 {
                     return 186;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstSendConversation), false, false))
+                if (AstRoot.Eval(list[187], typeof(AstSendConversation), false, false))
                 {
                     return 187;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstWaitforConversation), false, false))
+                if (AstRoot.Eval(list[188], typeof(AstWaitforConversation), false, false))
                 {
                     return 188;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstCreateContract), false, false))
+                if (AstRoot.Eval(list[189], typeof(AstCreateContract), false, false))
                 {
                     return 189;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstCreateQueue), false, false))
+                if (AstRoot.Eval(list[190], typeof(AstCreateQueue), false, false))
                 {
                     return 190;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstAlterQueue), false, false))
+                if (AstRoot.Eval(list[191], typeof(AstAlterQueue), false, false))
                 {
                     return 191;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstKillStatement), false, false))
+                if (AstRoot.Eval(list[192], typeof(AstKillStatement), false, false))
                 {
                     return 192;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstMessageStatement), false, false))
+                if (AstRoot.Eval(list[193], typeof(AstMessageStatement), false, false))
                 {
                     return 193;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstSecurityStatement), false, false))
+                if (AstRoot.Eval(list[194], typeof(AstSecurityStatement), false, false))
                 {
                     return 194;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstSetStatement), false, false))
+                if (AstRoot.Eval(list[195], typeof(AstSetStatement), false, false))
                 {
                     return 195;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstTransactionStatement), false, false))
+                if (AstRoot.Eval(list[196], typeof(AstTransactionStatement), false, false))
                 {
                     return 196;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstUseStatement), false, false))
+                if (AstRoot.Eval(list[197], typeof(AstUseStatement), false, false))
                 {
                     return 197;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstSetuserStatement), false, false))
+                if (AstRoot.Eval(list[198], typeof(AstSetuserStatement), false, false))
                 {
                     return 198;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstReconfigureStatement), false, false))
+                if (AstRoot.Eval(list[199], typeof(AstReconfigureStatement), false, false))
                 {
                     return 199;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstShutdownStatement), false, false))
+                if (AstRoot.Eval(list[200], typeof(AstShutdownStatement), false, false))
                 {
                     return 200;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstCheckpointStatement), false, false))
+                if (AstRoot.Eval(list[201], typeof(AstCheckpointStatement), false, false))
                 {
                     return 201;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstBackupDatabase), false, false))
+                if (AstRoot.Eval(list[202], typeof(AstBackupDatabase), false, false))
                 {
                     return 202;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstBackupLog), false, false))
+                if (AstRoot.Eval(list[203], typeof(AstBackupLog), false, false))
                 {
                     return 203;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstBackupCertificate), false, false))
+                if (AstRoot.Eval(list[204], typeof(AstBackupCertificate), false, false))
                 {
                     return 204;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstBackupMasterKey), false, false))
+                if (AstRoot.Eval(list[205], typeof(AstBackupMasterKey), false, false))
                 {
                     return 205;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstBackupServiceMasterKey), false, false))
+                if (AstRoot.Eval(list[206], typeof(AstBackupServiceMasterKey), false, false))
                 {
                     return 206;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstDbccSpecial), false, false))
+                if (AstRoot.Eval(list[207], typeof(AstDbccSpecial), false, false))
                 {
                     return 207;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstDbccClause), false, false))
+                if (AstRoot.Eval(list[208], typeof(AstDbccClause), false, false))
                 {
                     return 208;
                 }
@@ -10245,13 +10245,13 @@ namespace Bb.SqlServer.Asts
         public static AstGotoStatement Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstGotoStatement.Resolve(list);
-            if ((index == 2))
+            if ((index == 1))
             {
-                return new AstGotoStatement.AstGotoStatement1(ctx, ((AstCodeLocationId)(list[0])));
+                return new AstGotoStatement.AstGotoStatement1(ctx, ((AstCodeLocationId)(list[1])));
             }
             if ((index == 2))
             {
-                return new AstGotoStatement.AstGotoStatement2(ctx, ((AstCodeLocationId)(list[0])));
+                return new AstGotoStatement.AstGotoStatement2(ctx, ((AstCodeLocationId)(list[2])));
             }
             return null;
         }
@@ -10260,11 +10260,11 @@ namespace Bb.SqlServer.Asts
         {
             if ((list.Count == 1))
             {
-                if (AstRoot.Eval(list[0], typeof(AstCodeLocationId), false, false))
+                if (AstRoot.Eval(list[1], typeof(AstCodeLocationId), false, false))
                 {
                     return 1;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstCodeLocationId), false, false))
+                if (AstRoot.Eval(list[2], typeof(AstCodeLocationId), false, false))
                 {
                     return 2;
                 }
@@ -10293,7 +10293,13 @@ namespace Bb.SqlServer.Asts
         protected static string _rule = "throw_statement\r\n\t : THROW  (throw_error_number  COMMA  throw_message  COMMA  thr" +
             "ow_state)?";
         
-        internal AstThrowStatement(ParserRuleContext ctx, List<AstRoot> list) : 
+        private AstThrowErrorNumber _throwErrorNumber;
+        
+        private AstThrowMessage _throwMessage;
+        
+        private AstThrowState _throwState;
+        
+        internal AstThrowStatement(ParserRuleContext ctx) : 
                 base(ctx)
         {
         }
@@ -10316,7 +10322,7 @@ namespace Bb.SqlServer.Asts
             _throwState = throwState;
         }
         
-        public virtual AstThrowErrorNumber _throwErrorNumber
+        public virtual AstThrowErrorNumber ThrowErrorNumber
         {
             get
             {
@@ -10324,7 +10330,7 @@ namespace Bb.SqlServer.Asts
             }
         }
         
-        public virtual AstThrowMessage _throwMessage
+        public virtual AstThrowMessage ThrowMessage
         {
             get
             {
@@ -10332,7 +10338,7 @@ namespace Bb.SqlServer.Asts
             }
         }
         
-        public virtual AstThrowState _throwState
+        public virtual AstThrowState ThrowState
         {
             get
             {
@@ -10343,6 +10349,11 @@ namespace Bb.SqlServer.Asts
         public override void Accept(IAstTSqlVisitor visitor)
         {
             visitor.VisitThrowStatement(this);
+        }
+        
+        public static AstThrowStatement Create(ParserRuleContext ctx, List<AstRoot> list)
+        {
+            return new AstThrowStatement(ctx, ((AstThrowErrorNumber)(list[0])), ((AstThrowMessage)(list[1])), ((AstThrowState)(list[2])));
         }
         
         /// <summary>
@@ -10366,7 +10377,11 @@ namespace Bb.SqlServer.Asts
         protected static string _rule = "try_catch_statement\r\n\t : BEGIN  TRY  SEMI?  try_clauses = sql_clauses  END  TRY  " +
             "SEMI?  BEGIN  CATCH  SEMI?  catch_clauses = sql_clauses  END  CATCH";
         
-        internal AstTryCatchStatement(ParserRuleContext ctx, List<AstRoot> list) : 
+        private AstSqlClauses _tryClauses;
+        
+        private AstSqlClauses _catchClauses;
+        
+        internal AstTryCatchStatement(ParserRuleContext ctx) : 
                 base(ctx)
         {
         }
@@ -10388,7 +10403,7 @@ namespace Bb.SqlServer.Asts
             _catchClauses = catchClauses;
         }
         
-        public virtual AstSqlClauses _tryClauses
+        public virtual AstSqlClauses TryClauses
         {
             get
             {
@@ -10396,7 +10411,7 @@ namespace Bb.SqlServer.Asts
             }
         }
         
-        public virtual AstSqlClauses _catchClauses
+        public virtual AstSqlClauses CatchClauses
         {
             get
             {
@@ -10407,6 +10422,11 @@ namespace Bb.SqlServer.Asts
         public override void Accept(IAstTSqlVisitor visitor)
         {
             visitor.VisitTryCatchStatement(this);
+        }
+        
+        public static AstTryCatchStatement Create(ParserRuleContext ctx, List<AstRoot> list)
+        {
+            return new AstTryCatchStatement(ctx, ((AstSqlClauses)(list[0])), ((AstSqlClauses)(list[1])));
         }
         
         /// <summary>
@@ -10511,15 +10531,15 @@ namespace Bb.SqlServer.Asts
         public static AstWhileStatementContent Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstWhileStatementContent.Resolve(list);
-            if ((index == 2))
-            {
-                return new AstWhileStatementContent.AstWhileStatementContent1(ctx, ((AstSqlClause)(list[0])));
-            }
             if ((index == 1))
+            {
+                return new AstWhileStatementContent.AstWhileStatementContent1(ctx, ((AstSqlClause)(list[1])));
+            }
+            if ((index == 2))
             {
                 return new AstWhileStatementContent.AstWhileStatementContent2(ctx);
             }
-            if ((index == 1))
+            if ((index == 3))
             {
                 return new AstWhileStatementContent.AstWhileStatementContent3(ctx);
             }
@@ -10530,7 +10550,7 @@ namespace Bb.SqlServer.Asts
         {
             if ((list.Count == 1))
             {
-                if (AstRoot.Eval(list[0], typeof(AstSqlClause), false, false))
+                if (AstRoot.Eval(list[1], typeof(AstSqlClause), false, false))
                 {
                     return 1;
                 }
@@ -10712,13 +10732,13 @@ namespace Bb.SqlServer.Asts
         public static AstRaiseerrorStatement Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstRaiseerrorStatement.Resolve(list);
-            if ((index == 6))
+            if ((index == 1))
             {
-                return new AstRaiseerrorStatement.AstRaiseerrorStatement1(ctx, ((AstDecimalStringLocalId)(list[0])), ((AstConstantLocalId)(list[1])), ((AstConstantLocalId)(list[2])), ((AstConstantLocalIds)(list[3])), ((AstLogSeterrorNowait)(list[4])));
+                return new AstRaiseerrorStatement.AstRaiseerrorStatement1(ctx, ((AstDecimalStringLocalId)(list[1])), ((AstConstantLocalId)(list[1])), ((AstConstantLocalId)(list[1])), ((AstConstantLocalIds)(list[1])), ((AstLogSeterrorNowait)(list[1])));
             }
-            if ((index == 4))
+            if ((index == 2))
             {
-                return new AstRaiseerrorStatement.AstRaiseerrorStatement2(ctx, ((AstDecimal)(list[0])), ((AstStringLocalIdDoubleQuoteId)(list[1])), ((AstDecimalStringLocals)(list[2])));
+                return new AstRaiseerrorStatement.AstRaiseerrorStatement2(ctx, ((AstDecimal)(list[2])), ((AstStringLocalIdDoubleQuoteId)(list[2])), ((AstDecimalStringLocals)(list[2])));
             }
             return null;
         }
@@ -10727,15 +10747,15 @@ namespace Bb.SqlServer.Asts
         {
             if ((list.Count == 5))
             {
-                if (AstRoot.Eval(list[0], typeof(AstDecimalStringLocalId), false, false))
+                if (AstRoot.Eval(list[1], typeof(AstDecimalStringLocalId), false, false))
                 {
                     if (AstRoot.Eval(list[1], typeof(AstConstantLocalId), false, false))
                     {
-                        if (AstRoot.Eval(list[2], typeof(AstConstantLocalId), false, false))
+                        if (AstRoot.Eval(list[1], typeof(AstConstantLocalId), false, false))
                         {
-                            if (AstRoot.Eval(list[3], typeof(AstConstantLocalIds), false, false))
+                            if (AstRoot.Eval(list[1], typeof(AstConstantLocalIds), false, false))
                             {
-                                if (AstRoot.Eval(list[4], typeof(AstLogSeterrorNowait), false, false))
+                                if (AstRoot.Eval(list[1], typeof(AstLogSeterrorNowait), false, false))
                                 {
                                     return 1;
                                 }
@@ -10746,9 +10766,9 @@ namespace Bb.SqlServer.Asts
             }
             if ((list.Count == 3))
             {
-                if (AstRoot.Eval(list[0], typeof(AstDecimal), false, false))
+                if (AstRoot.Eval(list[2], typeof(AstDecimal), false, false))
                 {
-                    if (AstRoot.Eval(list[1], typeof(AstStringLocalIdDoubleQuoteId), false, false))
+                    if (AstRoot.Eval(list[2], typeof(AstStringLocalIdDoubleQuoteId), false, false))
                     {
                         if (AstRoot.Eval(list[2], typeof(AstDecimalStringLocals), false, false))
                         {
@@ -10790,7 +10810,7 @@ namespace Bb.SqlServer.Asts
         
         protected static string _rule = "alter_assembly_start\r\n\t : ALTER  ASSEMBLY";
         
-        internal AstAlterAssemblyStart(ParserRuleContext ctx, List<AstRoot> list) : 
+        internal AstAlterAssemblyStart(ParserRuleContext ctx) : 
                 base(ctx)
         {
         }
@@ -10805,14 +10825,14 @@ namespace Bb.SqlServer.Asts
         {
         }
         
-        internal AstAlterAssemblyStart(ParserRuleContext ctx) : 
-                base(ctx)
-        {
-        }
-        
         public override void Accept(IAstTSqlVisitor visitor)
         {
             visitor.VisitAlterAssemblyStart(this);
+        }
+        
+        public static AstAlterAssemblyStart Create(ParserRuleContext ctx, List<AstRoot> list)
+        {
+            return new AstAlterAssemblyStart(ctx);
         }
         
         /// <summary>
@@ -10906,7 +10926,7 @@ namespace Bb.SqlServer.Asts
             }
             if ((index == 2))
             {
-                return new AstAlterAssemblyDropMultipleFiles.AstAlterAssemblyDropMultipleFiles2(ctx, ((AstMultipleLocalFiles)(list[0])));
+                return new AstAlterAssemblyDropMultipleFiles.AstAlterAssemblyDropMultipleFiles2(ctx, ((AstMultipleLocalFiles)(list[2])));
             }
             return null;
         }
@@ -10915,7 +10935,7 @@ namespace Bb.SqlServer.Asts
         {
             if ((list.Count == 1))
             {
-                if (AstRoot.Eval(list[0], typeof(AstMultipleLocalFiles), false, false))
+                if (AstRoot.Eval(list[2], typeof(AstMultipleLocalFiles), false, false))
                 {
                     return 1;
                 }
@@ -11058,17 +11078,17 @@ namespace Bb.SqlServer.Asts
         public static AstClientAssemblySpecifier Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstClientAssemblySpecifier.Resolve(list);
-            if ((index == 2))
+            if ((index == 1))
             {
-                return new AstClientAssemblySpecifier.AstClientAssemblySpecifier1(ctx, ((AstNetworkFileShare)(list[0])));
+                return new AstClientAssemblySpecifier.AstClientAssemblySpecifier1(ctx, ((AstNetworkFileShare)(list[1])));
             }
             if ((index == 2))
             {
-                return new AstClientAssemblySpecifier.AstClientAssemblySpecifier2(ctx, ((AstLocalFile)(list[0])));
+                return new AstClientAssemblySpecifier.AstClientAssemblySpecifier2(ctx, ((AstLocalFile)(list[2])));
             }
-            if ((index == 2))
+            if ((index == 3))
             {
-                return new AstClientAssemblySpecifier.AstClientAssemblySpecifier3(ctx, ((AstStringtext)(list[0])));
+                return new AstClientAssemblySpecifier.AstClientAssemblySpecifier3(ctx, ((AstStringtext)(list[3])));
             }
             return null;
         }
@@ -11077,15 +11097,15 @@ namespace Bb.SqlServer.Asts
         {
             if ((list.Count == 1))
             {
-                if (AstRoot.Eval(list[0], typeof(AstNetworkFileShare), false, false))
+                if (AstRoot.Eval(list[1], typeof(AstNetworkFileShare), false, false))
                 {
                     return 1;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstLocalFile), false, false))
+                if (AstRoot.Eval(list[2], typeof(AstLocalFile), false, false))
                 {
                     return 2;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstStringtext), false, false))
+                if (AstRoot.Eval(list[3], typeof(AstStringtext), false, false))
                 {
                     return 3;
                 }
@@ -11255,21 +11275,21 @@ namespace Bb.SqlServer.Asts
         public static AstAssemblyOption Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstAssemblyOption.Resolve(list);
-            if ((index == 2))
-            {
-                return new AstAssemblyOption.AstAssemblyOption1(ctx, ((AstAssemblyPermission)(list[0])));
-            }
-            if ((index == 2))
-            {
-                return new AstAssemblyOption.AstAssemblyOption2(ctx, ((AstOnOff)(list[0])));
-            }
             if ((index == 1))
+            {
+                return new AstAssemblyOption.AstAssemblyOption1(ctx, ((AstAssemblyPermission)(list[1])));
+            }
+            if ((index == 2))
+            {
+                return new AstAssemblyOption.AstAssemblyOption2(ctx, ((AstOnOff)(list[2])));
+            }
+            if ((index == 3))
             {
                 return new AstAssemblyOption.AstAssemblyOption3(ctx);
             }
-            if ((index == 2))
+            if ((index == 4))
             {
-                return new AstAssemblyOption.AstAssemblyOption4(ctx, ((AstAssemblyOption)(list[0])));
+                return new AstAssemblyOption.AstAssemblyOption4(ctx, ((AstAssemblyOption)(list[4])));
             }
             return null;
         }
@@ -11278,15 +11298,15 @@ namespace Bb.SqlServer.Asts
         {
             if ((list.Count == 1))
             {
-                if (AstRoot.Eval(list[0], typeof(AstAssemblyPermission), false, false))
+                if (AstRoot.Eval(list[1], typeof(AstAssemblyPermission), false, false))
                 {
                     return 1;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstOnOff), false, false))
+                if (AstRoot.Eval(list[2], typeof(AstOnOff), false, false))
                 {
                     return 2;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstAssemblyOption), false, false))
+                if (AstRoot.Eval(list[4], typeof(AstAssemblyOption), false, false))
                 {
                     return 3;
                 }
@@ -11431,13 +11451,13 @@ namespace Bb.SqlServer.Asts
         public static AstFilePath Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstFilePath.Resolve(list);
-            if ((index == 3))
+            if ((index == 1))
             {
-                return new AstFilePath.AstFilePath1(ctx, ((AstFileDirectoryPathSeparator)(list[0])), ((AstFilePath)(list[1])));
+                return new AstFilePath.AstFilePath1(ctx, ((AstFileDirectoryPathSeparator)(list[1])), ((AstFilePath)(list[1])));
             }
             if ((index == 2))
             {
-                return new AstFilePath.AstFilePath2(ctx, ((AstId)(list[0])));
+                return new AstFilePath.AstFilePath2(ctx, ((AstId)(list[2])));
             }
             return null;
         }
@@ -11446,7 +11466,7 @@ namespace Bb.SqlServer.Asts
         {
             if ((list.Count == 2))
             {
-                if (AstRoot.Eval(list[0], typeof(AstFileDirectoryPathSeparator), false, false))
+                if (AstRoot.Eval(list[1], typeof(AstFileDirectoryPathSeparator), false, false))
                 {
                     if (AstRoot.Eval(list[1], typeof(AstFilePath), false, false))
                     {
@@ -11456,7 +11476,7 @@ namespace Bb.SqlServer.Asts
             }
             if ((list.Count == 1))
             {
-                if (AstRoot.Eval(list[0], typeof(AstId), false, false))
+                if (AstRoot.Eval(list[2], typeof(AstId), false, false))
                 {
                     return 2;
                 }
@@ -11571,13 +11591,13 @@ namespace Bb.SqlServer.Asts
         public static AstMultipleLocalFiles Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstMultipleLocalFiles.Resolve(list);
-            if ((index == 2))
+            if ((index == 1))
             {
-                return new AstMultipleLocalFiles.AstMultipleLocalFiles1(ctx, ((AstLocalFile)(list[0])));
+                return new AstMultipleLocalFiles.AstMultipleLocalFiles1(ctx, ((AstLocalFile)(list[1])));
             }
             if ((index == 2))
             {
-                return new AstMultipleLocalFiles.AstMultipleLocalFiles2(ctx, ((AstLocalFile)(list[0])));
+                return new AstMultipleLocalFiles.AstMultipleLocalFiles2(ctx, ((AstLocalFile)(list[2])));
             }
             return null;
         }
@@ -11586,11 +11606,11 @@ namespace Bb.SqlServer.Asts
         {
             if ((list.Count == 1))
             {
-                if (AstRoot.Eval(list[0], typeof(AstLocalFile), false, false))
+                if (AstRoot.Eval(list[1], typeof(AstLocalFile), false, false))
                 {
                     return 1;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstLocalFile), false, false))
+                if (AstRoot.Eval(list[2], typeof(AstLocalFile), false, false))
                 {
                     return 2;
                 }
@@ -11694,13 +11714,13 @@ namespace Bb.SqlServer.Asts
         public static AstBinaryContent Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstBinaryContent.Resolve(list);
-            if ((index == 2))
+            if ((index == 1))
             {
-                return new AstBinaryContent.AstBinaryContent1(ctx, ((AstStringtext)(list[0])));
+                return new AstBinaryContent.AstBinaryContent1(ctx, ((AstStringtext)(list[1])));
             }
             if ((index == 2))
             {
-                return new AstBinaryContent.AstBinaryContent2(ctx, ((AstBinary)(list[0])));
+                return new AstBinaryContent.AstBinaryContent2(ctx, ((AstBinary)(list[2])));
             }
             return null;
         }
@@ -11709,11 +11729,11 @@ namespace Bb.SqlServer.Asts
         {
             if ((list.Count == 1))
             {
-                if (AstRoot.Eval(list[0], typeof(AstStringtext), false, false))
+                if (AstRoot.Eval(list[1], typeof(AstStringtext), false, false))
                 {
                     return 1;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstBinary), false, false))
+                if (AstRoot.Eval(list[2], typeof(AstBinary), false, false))
                 {
                     return 2;
                 }
@@ -11827,13 +11847,13 @@ namespace Bb.SqlServer.Asts
         public static AstByPasswordCrypt Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstByPasswordCrypt.Resolve(list);
-            if ((index == 2))
+            if ((index == 1))
             {
-                return new AstByPasswordCrypt.AstByPasswordCrypt1(ctx, ((AstDecryptionByPwd)(list[0])));
+                return new AstByPasswordCrypt.AstByPasswordCrypt1(ctx, ((AstDecryptionByPwd)(list[1])));
             }
             if ((index == 2))
             {
-                return new AstByPasswordCrypt.AstByPasswordCrypt2(ctx, ((AstEncryptionByPwd)(list[0])));
+                return new AstByPasswordCrypt.AstByPasswordCrypt2(ctx, ((AstEncryptionByPwd)(list[2])));
             }
             return null;
         }
@@ -11842,11 +11862,11 @@ namespace Bb.SqlServer.Asts
         {
             if ((list.Count == 1))
             {
-                if (AstRoot.Eval(list[0], typeof(AstDecryptionByPwd), false, false))
+                if (AstRoot.Eval(list[1], typeof(AstDecryptionByPwd), false, false))
                 {
                     return 1;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstEncryptionByPwd), false, false))
+                if (AstRoot.Eval(list[2], typeof(AstEncryptionByPwd), false, false))
                 {
                     return 2;
                 }
@@ -11990,17 +12010,17 @@ namespace Bb.SqlServer.Asts
         public static AstAsymetricKeyWithInfo Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstAsymetricKeyWithInfo.Resolve(list);
-            if ((index == 2))
+            if ((index == 1))
             {
-                return new AstAsymetricKeyWithInfo.AstAsymetricKeyWithInfo1(ctx, ((AstAsymetricAlgorithm)(list[0])));
+                return new AstAsymetricKeyWithInfo.AstAsymetricKeyWithInfo1(ctx, ((AstAsymetricAlgorithm)(list[1])));
             }
             if ((index == 2))
             {
-                return new AstAsymetricKeyWithInfo.AstAsymetricKeyWithInfo2(ctx, ((AstStringtext)(list[0])));
+                return new AstAsymetricKeyWithInfo.AstAsymetricKeyWithInfo2(ctx, ((AstStringtext)(list[2])));
             }
-            if ((index == 2))
+            if ((index == 3))
             {
-                return new AstAsymetricKeyWithInfo.AstAsymetricKeyWithInfo3(ctx, ((AstCreationDisposition)(list[0])));
+                return new AstAsymetricKeyWithInfo.AstAsymetricKeyWithInfo3(ctx, ((AstCreationDisposition)(list[3])));
             }
             return null;
         }
@@ -12009,15 +12029,15 @@ namespace Bb.SqlServer.Asts
         {
             if ((list.Count == 1))
             {
-                if (AstRoot.Eval(list[0], typeof(AstAsymetricAlgorithm), false, false))
+                if (AstRoot.Eval(list[1], typeof(AstAsymetricAlgorithm), false, false))
                 {
                     return 1;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstStringtext), false, false))
+                if (AstRoot.Eval(list[2], typeof(AstStringtext), false, false))
                 {
                     return 2;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstCreationDisposition), false, false))
+                if (AstRoot.Eval(list[3], typeof(AstCreationDisposition), false, false))
                 {
                     return 3;
                 }
@@ -12198,21 +12218,21 @@ namespace Bb.SqlServer.Asts
         public static AstAsymetricKeyFrom Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstAsymetricKeyFrom.Resolve(list);
-            if ((index == 2))
+            if ((index == 1))
             {
-                return new AstAsymetricKeyFrom.AstAsymetricKeyFrom1(ctx, ((AstStringtext)(list[0])));
+                return new AstAsymetricKeyFrom.AstAsymetricKeyFrom1(ctx, ((AstStringtext)(list[1])));
             }
             if ((index == 2))
             {
-                return new AstAsymetricKeyFrom.AstAsymetricKeyFrom2(ctx, ((AstStringtext)(list[0])));
+                return new AstAsymetricKeyFrom.AstAsymetricKeyFrom2(ctx, ((AstStringtext)(list[2])));
             }
-            if ((index == 2))
+            if ((index == 3))
             {
-                return new AstAsymetricKeyFrom.AstAsymetricKeyFrom3(ctx, ((AstAssemblyId)(list[0])));
+                return new AstAsymetricKeyFrom.AstAsymetricKeyFrom3(ctx, ((AstAssemblyId)(list[3])));
             }
-            if ((index == 2))
+            if ((index == 4))
             {
-                return new AstAsymetricKeyFrom.AstAsymetricKeyFrom4(ctx, ((AstProviderId)(list[0])));
+                return new AstAsymetricKeyFrom.AstAsymetricKeyFrom4(ctx, ((AstProviderId)(list[4])));
             }
             return null;
         }
@@ -12221,19 +12241,19 @@ namespace Bb.SqlServer.Asts
         {
             if ((list.Count == 1))
             {
-                if (AstRoot.Eval(list[0], typeof(AstStringtext), false, false))
+                if (AstRoot.Eval(list[1], typeof(AstStringtext), false, false))
                 {
                     return 1;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstStringtext), false, false))
+                if (AstRoot.Eval(list[2], typeof(AstStringtext), false, false))
                 {
                     return 2;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstAssemblyId), false, false))
+                if (AstRoot.Eval(list[3], typeof(AstAssemblyId), false, false))
                 {
                     return 3;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstProviderId), false, false))
+                if (AstRoot.Eval(list[4], typeof(AstProviderId), false, false))
                 {
                     return 4;
                 }
@@ -12282,7 +12302,9 @@ namespace Bb.SqlServer.Asts
         protected static string _rule = "drop_asymmetric_key\r\n\t : DROP  ASYMMETRIC  KEY  key_name = id_  (REMOVE  PROVIDER" +
             "  KEY)?";
         
-        internal AstDropAsymmetricKey(ParserRuleContext ctx, List<AstRoot> list) : 
+        private AstId _keyName;
+        
+        internal AstDropAsymmetricKey(ParserRuleContext ctx) : 
                 base(ctx)
         {
         }
@@ -12303,7 +12325,7 @@ namespace Bb.SqlServer.Asts
             _keyName = keyName;
         }
         
-        public virtual AstId _keyName
+        public virtual AstId KeyName
         {
             get
             {
@@ -12314,6 +12336,11 @@ namespace Bb.SqlServer.Asts
         public override void Accept(IAstTSqlVisitor visitor)
         {
             visitor.VisitDropAsymmetricKey(this);
+        }
+        
+        public static AstDropAsymmetricKey Create(ParserRuleContext ctx, List<AstRoot> list)
+        {
+            return new AstDropAsymmetricKey(ctx, ((AstId)(list[0])));
         }
         
         /// <summary>
@@ -12401,11 +12428,11 @@ namespace Bb.SqlServer.Asts
         public static AstAuthorizationGrantee Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstAuthorizationGrantee.Resolve(list);
-            if ((index == 2))
-            {
-                return new AstAuthorizationGrantee.AstAuthorizationGrantee1(ctx, ((AstId)(list[0])));
-            }
             if ((index == 1))
+            {
+                return new AstAuthorizationGrantee.AstAuthorizationGrantee1(ctx, ((AstId)(list[1])));
+            }
+            if ((index == 2))
             {
                 return new AstAuthorizationGrantee.AstAuthorizationGrantee2(ctx);
             }
@@ -12416,7 +12443,7 @@ namespace Bb.SqlServer.Asts
         {
             if ((list.Count == 1))
             {
-                if (AstRoot.Eval(list[0], typeof(AstId), false, false))
+                if (AstRoot.Eval(list[1], typeof(AstId), false, false))
                 {
                     return 1;
                 }
@@ -12559,17 +12586,17 @@ namespace Bb.SqlServer.Asts
         public static AstClassTypeForGrant Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstClassTypeForGrant.Resolve(list);
-            if ((index == 2))
+            if ((index == 1))
             {
-                return new AstClassTypeForGrant.AstClassTypeForGrant1(ctx, ((AstEncryptionMaster)(list[0])));
+                return new AstClassTypeForGrant.AstClassTypeForGrant1(ctx, ((AstEncryptionMaster)(list[1])));
             }
             if ((index == 2))
             {
-                return new AstClassTypeForGrant.AstClassTypeForGrant2(ctx, ((AstDatabaseObjectServer)(list[0])));
+                return new AstClassTypeForGrant.AstClassTypeForGrant2(ctx, ((AstDatabaseObjectServer)(list[2])));
             }
-            if ((index == 2))
+            if ((index == 3))
             {
-                return new AstClassTypeForGrant.AstClassTypeForGrant3(ctx, ((AstObjectTypeForGrant)(list[0])));
+                return new AstClassTypeForGrant.AstClassTypeForGrant3(ctx, ((AstObjectTypeForGrant)(list[3])));
             }
             return null;
         }
@@ -12578,15 +12605,15 @@ namespace Bb.SqlServer.Asts
         {
             if ((list.Count == 1))
             {
-                if (AstRoot.Eval(list[0], typeof(AstEncryptionMaster), false, false))
+                if (AstRoot.Eval(list[1], typeof(AstEncryptionMaster), false, false))
                 {
                     return 1;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstDatabaseObjectServer), false, false))
+                if (AstRoot.Eval(list[2], typeof(AstDatabaseObjectServer), false, false))
                 {
                     return 2;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstObjectTypeForGrant), false, false))
+                if (AstRoot.Eval(list[3], typeof(AstObjectTypeForGrant), false, false))
                 {
                     return 3;
                 }
@@ -12739,17 +12766,17 @@ namespace Bb.SqlServer.Asts
         public static AstAlterOptionsListener Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstAlterOptionsListener.Resolve(list);
-            if ((index == 2))
+            if ((index == 1))
             {
-                return new AstAlterOptionsListener.AstAlterOptionsListener1(ctx, ((AstAddListener)(list[0])));
+                return new AstAlterOptionsListener.AstAlterOptionsListener1(ctx, ((AstAddListener)(list[1])));
             }
             if ((index == 2))
             {
-                return new AstAlterOptionsListener.AstAlterOptionsListener2(ctx, ((AstAlterListener)(list[0])));
+                return new AstAlterOptionsListener.AstAlterOptionsListener2(ctx, ((AstAlterListener)(list[2])));
             }
-            if ((index == 2))
+            if ((index == 3))
             {
-                return new AstAlterOptionsListener.AstAlterOptionsListener3(ctx, ((AstRestartListener)(list[0])));
+                return new AstAlterOptionsListener.AstAlterOptionsListener3(ctx, ((AstRestartListener)(list[3])));
             }
             return null;
         }
@@ -12758,15 +12785,15 @@ namespace Bb.SqlServer.Asts
         {
             if ((list.Count == 1))
             {
-                if (AstRoot.Eval(list[0], typeof(AstAddListener), false, false))
+                if (AstRoot.Eval(list[1], typeof(AstAddListener), false, false))
                 {
                     return 1;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstAlterListener), false, false))
+                if (AstRoot.Eval(list[2], typeof(AstAlterListener), false, false))
                 {
                     return 2;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstRestartListener), false, false))
+                if (AstRoot.Eval(list[3], typeof(AstRestartListener), false, false))
                 {
                     return 3;
                 }
@@ -12891,13 +12918,13 @@ namespace Bb.SqlServer.Asts
         public static AstAlterListener Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstAlterListener.Resolve(list);
-            if ((index == 2))
+            if ((index == 1))
             {
-                return new AstAlterListener.AstAlterListener1(ctx, ((AstIpListener)(list[0])));
+                return new AstAlterListener.AstAlterListener1(ctx, ((AstIpListener)(list[1])));
             }
             if ((index == 2))
             {
-                return new AstAlterListener.AstAlterListener2(ctx, ((AstDecimal)(list[0])));
+                return new AstAlterListener.AstAlterListener2(ctx, ((AstDecimal)(list[2])));
             }
             return null;
         }
@@ -12906,11 +12933,11 @@ namespace Bb.SqlServer.Asts
         {
             if ((list.Count == 1))
             {
-                if (AstRoot.Eval(list[0], typeof(AstIpListener), false, false))
+                if (AstRoot.Eval(list[1], typeof(AstIpListener), false, false))
                 {
                     return 1;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstDecimal), false, false))
+                if (AstRoot.Eval(list[2], typeof(AstDecimal), false, false))
                 {
                     return 2;
                 }
@@ -13024,13 +13051,13 @@ namespace Bb.SqlServer.Asts
         public static AstIpListener Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstIpListener.Resolve(list);
-            if ((index == 2))
+            if ((index == 1))
             {
-                return new AstIpListener.AstIpListener1(ctx, ((AstRangeIpV4)(list[0])));
+                return new AstIpListener.AstIpListener1(ctx, ((AstRangeIpV4)(list[1])));
             }
             if ((index == 2))
             {
-                return new AstIpListener.AstIpListener2(ctx, ((AstIpv6)(list[0])));
+                return new AstIpListener.AstIpListener2(ctx, ((AstIpv6)(list[2])));
             }
             return null;
         }
@@ -13039,11 +13066,11 @@ namespace Bb.SqlServer.Asts
         {
             if ((list.Count == 1))
             {
-                if (AstRoot.Eval(list[0], typeof(AstRangeIpV4), false, false))
+                if (AstRoot.Eval(list[1], typeof(AstRangeIpV4), false, false))
                 {
                     return 1;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstIpv6), false, false))
+                if (AstRoot.Eval(list[2], typeof(AstIpv6), false, false))
                 {
                     return 2;
                 }
@@ -13157,13 +13184,13 @@ namespace Bb.SqlServer.Asts
         public static AstIpListenerComma Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstIpListenerComma.Resolve(list);
-            if ((index == 2))
+            if ((index == 1))
             {
-                return new AstIpListenerComma.AstIpListenerComma1(ctx, ((AstRangeIpCommaV4)(list[0])));
+                return new AstIpListenerComma.AstIpListenerComma1(ctx, ((AstRangeIpCommaV4)(list[1])));
             }
             if ((index == 2))
             {
-                return new AstIpListenerComma.AstIpListenerComma2(ctx, ((AstIpv6)(list[0])));
+                return new AstIpListenerComma.AstIpListenerComma2(ctx, ((AstIpv6)(list[2])));
             }
             return null;
         }
@@ -13172,11 +13199,11 @@ namespace Bb.SqlServer.Asts
         {
             if ((list.Count == 1))
             {
-                if (AstRoot.Eval(list[0], typeof(AstRangeIpCommaV4), false, false))
+                if (AstRoot.Eval(list[1], typeof(AstRangeIpCommaV4), false, false))
                 {
                     return 1;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstIpv6), false, false))
+                if (AstRoot.Eval(list[2], typeof(AstIpv6), false, false))
                 {
                     return 2;
                 }
@@ -13291,13 +13318,13 @@ namespace Bb.SqlServer.Asts
         public static AstAddressListener Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstAddressListener.Resolve(list);
-            if ((index == 2))
+            if ((index == 1))
             {
-                return new AstAddressListener.AstAddressListener1(ctx, ((AstListenerDhcp)(list[0])));
+                return new AstAddressListener.AstAddressListener1(ctx, ((AstListenerDhcp)(list[1])));
             }
             if ((index == 2))
             {
-                return new AstAddressListener.AstAddressListener2(ctx, ((AstListenerIpAddress)(list[0])));
+                return new AstAddressListener.AstAddressListener2(ctx, ((AstListenerIpAddress)(list[2])));
             }
             return null;
         }
@@ -13306,11 +13333,11 @@ namespace Bb.SqlServer.Asts
         {
             if ((list.Count == 1))
             {
-                if (AstRoot.Eval(list[0], typeof(AstListenerDhcp), false, false))
+                if (AstRoot.Eval(list[1], typeof(AstListenerDhcp), false, false))
                 {
                     return 1;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstListenerIpAddress), false, false))
+                if (AstRoot.Eval(list[2], typeof(AstListenerIpAddress), false, false))
                 {
                     return 2;
                 }
@@ -13510,25 +13537,25 @@ namespace Bb.SqlServer.Asts
         public static AstAlterAvailabilityReplicatPrimary Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstAlterAvailabilityReplicatPrimary.Resolve(list);
-            if ((index == 2))
+            if ((index == 1))
             {
-                return new AstAlterAvailabilityReplicatPrimary.AstAlterAvailabilityReplicatPrimary1(ctx, ((AstUrlValue)(list[0])));
+                return new AstAlterAvailabilityReplicatPrimary.AstAlterAvailabilityReplicatPrimary1(ctx, ((AstUrlValue)(list[1])));
             }
             if ((index == 2))
             {
-                return new AstAlterAvailabilityReplicatPrimary.AstAlterAvailabilityReplicatPrimary2(ctx, ((AstAvailabilityModeSet)(list[0])));
+                return new AstAlterAvailabilityReplicatPrimary.AstAlterAvailabilityReplicatPrimary2(ctx, ((AstAvailabilityModeSet)(list[2])));
             }
-            if ((index == 2))
+            if ((index == 3))
             {
-                return new AstAlterAvailabilityReplicatPrimary.AstAlterAvailabilityReplicatPrimary3(ctx, ((AstAutoManual)(list[0])));
+                return new AstAlterAvailabilityReplicatPrimary.AstAlterAvailabilityReplicatPrimary3(ctx, ((AstAutoManual)(list[3])));
             }
-            if ((index == 2))
+            if ((index == 4))
             {
-                return new AstAlterAvailabilityReplicatPrimary.AstAlterAvailabilityReplicatPrimary4(ctx, ((AstSeedingModeSet)(list[0])));
+                return new AstAlterAvailabilityReplicatPrimary.AstAlterAvailabilityReplicatPrimary4(ctx, ((AstSeedingModeSet)(list[4])));
             }
-            if ((index == 2))
+            if ((index == 5))
             {
-                return new AstAlterAvailabilityReplicatPrimary.AstAlterAvailabilityReplicatPrimary5(ctx, ((AstBackupPrioritySet)(list[0])));
+                return new AstAlterAvailabilityReplicatPrimary.AstAlterAvailabilityReplicatPrimary5(ctx, ((AstBackupPrioritySet)(list[5])));
             }
             return null;
         }
@@ -13537,23 +13564,23 @@ namespace Bb.SqlServer.Asts
         {
             if ((list.Count == 1))
             {
-                if (AstRoot.Eval(list[0], typeof(AstUrlValue), false, false))
+                if (AstRoot.Eval(list[1], typeof(AstUrlValue), false, false))
                 {
                     return 1;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstAvailabilityModeSet), false, false))
+                if (AstRoot.Eval(list[2], typeof(AstAvailabilityModeSet), false, false))
                 {
                     return 2;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstAutoManual), false, false))
+                if (AstRoot.Eval(list[3], typeof(AstAutoManual), false, false))
                 {
                     return 3;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstSeedingModeSet), false, false))
+                if (AstRoot.Eval(list[4], typeof(AstSeedingModeSet), false, false))
                 {
                     return 4;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstBackupPrioritySet), false, false))
+                if (AstRoot.Eval(list[5], typeof(AstBackupPrioritySet), false, false))
                 {
                     return 5;
                 }
@@ -13727,17 +13754,17 @@ namespace Bb.SqlServer.Asts
         public static AstAlterAvailabilityPrimaryRole Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstAlterAvailabilityPrimaryRole.Resolve(list);
-            if ((index == 2))
+            if ((index == 1))
             {
-                return new AstAlterAvailabilityPrimaryRole.AstAlterAvailabilityPrimaryRole1(ctx, ((AstAllowConnectionsSet)(list[0])));
+                return new AstAlterAvailabilityPrimaryRole.AstAlterAvailabilityPrimaryRole1(ctx, ((AstAllowConnectionsSet)(list[1])));
             }
             if ((index == 2))
             {
-                return new AstAlterAvailabilityPrimaryRole.AstAlterAvailabilityPrimaryRole2(ctx, ((AstRoutingList)(list[0])));
+                return new AstAlterAvailabilityPrimaryRole.AstAlterAvailabilityPrimaryRole2(ctx, ((AstRoutingList)(list[2])));
             }
-            if ((index == 2))
+            if ((index == 3))
             {
-                return new AstAlterAvailabilityPrimaryRole.AstAlterAvailabilityPrimaryRole3(ctx, ((AstDecimal)(list[0])));
+                return new AstAlterAvailabilityPrimaryRole.AstAlterAvailabilityPrimaryRole3(ctx, ((AstDecimal)(list[3])));
             }
             return null;
         }
@@ -13746,15 +13773,15 @@ namespace Bb.SqlServer.Asts
         {
             if ((list.Count == 1))
             {
-                if (AstRoot.Eval(list[0], typeof(AstAllowConnectionsSet), false, false))
+                if (AstRoot.Eval(list[1], typeof(AstAllowConnectionsSet), false, false))
                 {
                     return 1;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstRoutingList), false, false))
+                if (AstRoot.Eval(list[2], typeof(AstRoutingList), false, false))
                 {
                     return 2;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstDecimal), false, false))
+                if (AstRoot.Eval(list[3], typeof(AstDecimal), false, false))
                 {
                     return 3;
                 }
@@ -13907,17 +13934,17 @@ namespace Bb.SqlServer.Asts
         public static AstAlterAvailabilityReplicat Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstAlterAvailabilityReplicat.Resolve(list);
-            if ((index == 2))
+            if ((index == 1))
             {
-                return new AstAlterAvailabilityReplicat.AstAlterAvailabilityReplicat1(ctx, ((AstAlterAvailabilityReplicatAdd)(list[0])));
+                return new AstAlterAvailabilityReplicat.AstAlterAvailabilityReplicat1(ctx, ((AstAlterAvailabilityReplicatAdd)(list[1])));
             }
             if ((index == 2))
             {
-                return new AstAlterAvailabilityReplicat.AstAlterAvailabilityReplicat2(ctx, ((AstServerInstanceTxt)(list[0])));
+                return new AstAlterAvailabilityReplicat.AstAlterAvailabilityReplicat2(ctx, ((AstServerInstanceTxt)(list[2])));
             }
-            if ((index == 2))
+            if ((index == 3))
             {
-                return new AstAlterAvailabilityReplicat.AstAlterAvailabilityReplicat3(ctx, ((AstAlterAvailabilityReplicatModify)(list[0])));
+                return new AstAlterAvailabilityReplicat.AstAlterAvailabilityReplicat3(ctx, ((AstAlterAvailabilityReplicatModify)(list[3])));
             }
             return null;
         }
@@ -13926,15 +13953,15 @@ namespace Bb.SqlServer.Asts
         {
             if ((list.Count == 1))
             {
-                if (AstRoot.Eval(list[0], typeof(AstAlterAvailabilityReplicatAdd), false, false))
+                if (AstRoot.Eval(list[1], typeof(AstAlterAvailabilityReplicatAdd), false, false))
                 {
                     return 1;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstServerInstanceTxt), false, false))
+                if (AstRoot.Eval(list[2], typeof(AstServerInstanceTxt), false, false))
                 {
                     return 2;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstAlterAvailabilityReplicatModify), false, false))
+                if (AstRoot.Eval(list[3], typeof(AstAlterAvailabilityReplicatModify), false, false))
                 {
                     return 3;
                 }
@@ -14170,13 +14197,13 @@ namespace Bb.SqlServer.Asts
             {
                 return new AstAvailabilityGroupOptions.AstAvailabilityGroupOptions1(ctx);
             }
-            if ((index == 6))
+            if ((index == 2))
             {
-                return new AstAvailabilityGroupOptions.AstAvailabilityGroupOptions2(ctx, ((AstStringtext)(list[0])), ((AstListenerUrlSet)(list[1])), ((AstAvailabilityModeSet)(list[2])), ((AstFailoverModeManuel)(list[3])), ((AstSeedingModeSet)(list[4])));
+                return new AstAvailabilityGroupOptions.AstAvailabilityGroupOptions2(ctx, ((AstStringtext)(list[2])), ((AstListenerUrlSet)(list[2])), ((AstAvailabilityModeSet)(list[2])), ((AstFailoverModeManuel)(list[2])), ((AstSeedingModeSet)(list[2])));
             }
-            if ((index == 6))
+            if ((index == 3))
             {
-                return new AstAvailabilityGroupOptions.AstAvailabilityGroupOptions3(ctx, ((AstStringtext)(list[0])), ((AstListenerUrlSet)(list[1])), ((AstAvailabilityModeSet)(list[2])), ((AstFailoverModeManuel)(list[3])), ((AstSeedingModeSet)(list[4])));
+                return new AstAvailabilityGroupOptions.AstAvailabilityGroupOptions3(ctx, ((AstStringtext)(list[3])), ((AstListenerUrlSet)(list[3])), ((AstAvailabilityModeSet)(list[3])), ((AstFailoverModeManuel)(list[3])), ((AstSeedingModeSet)(list[3])));
             }
             return null;
         }
@@ -14185,15 +14212,15 @@ namespace Bb.SqlServer.Asts
         {
             if ((list.Count == 5))
             {
-                if (AstRoot.Eval(list[0], typeof(AstStringtext), false, false))
+                if (AstRoot.Eval(list[2], typeof(AstStringtext), false, false))
                 {
-                    if (AstRoot.Eval(list[1], typeof(AstListenerUrlSet), false, false))
+                    if (AstRoot.Eval(list[2], typeof(AstListenerUrlSet), false, false))
                     {
                         if (AstRoot.Eval(list[2], typeof(AstAvailabilityModeSet), false, false))
                         {
-                            if (AstRoot.Eval(list[3], typeof(AstFailoverModeManuel), false, false))
+                            if (AstRoot.Eval(list[2], typeof(AstFailoverModeManuel), false, false))
                             {
-                                if (AstRoot.Eval(list[4], typeof(AstSeedingModeSet), false, false))
+                                if (AstRoot.Eval(list[2], typeof(AstSeedingModeSet), false, false))
                                 {
                                     return 1;
                                 }
@@ -14201,15 +14228,15 @@ namespace Bb.SqlServer.Asts
                         }
                     }
                 }
-                if (AstRoot.Eval(list[0], typeof(AstStringtext), false, false))
+                if (AstRoot.Eval(list[3], typeof(AstStringtext), false, false))
                 {
-                    if (AstRoot.Eval(list[1], typeof(AstListenerUrlSet), false, false))
+                    if (AstRoot.Eval(list[3], typeof(AstListenerUrlSet), false, false))
                     {
-                        if (AstRoot.Eval(list[2], typeof(AstAvailabilityModeSet), false, false))
+                        if (AstRoot.Eval(list[3], typeof(AstAvailabilityModeSet), false, false))
                         {
                             if (AstRoot.Eval(list[3], typeof(AstFailoverModeManuel), false, false))
                             {
-                                if (AstRoot.Eval(list[4], typeof(AstSeedingModeSet), false, false))
+                                if (AstRoot.Eval(list[3], typeof(AstSeedingModeSet), false, false))
                                 {
                                     return 2;
                                 }
@@ -14251,7 +14278,7 @@ namespace Bb.SqlServer.Asts
         
         protected static string _rule = "failover_mode_manuel\r\n\t : FAILOVER_MODE  EQUAL  MANUAL";
         
-        internal AstFailoverModeManuel(ParserRuleContext ctx, List<AstRoot> list) : 
+        internal AstFailoverModeManuel(ParserRuleContext ctx) : 
                 base(ctx)
         {
         }
@@ -14266,14 +14293,14 @@ namespace Bb.SqlServer.Asts
         {
         }
         
-        internal AstFailoverModeManuel(ParserRuleContext ctx) : 
-                base(ctx)
-        {
-        }
-        
         public override void Accept(IAstTSqlVisitor visitor)
         {
             visitor.VisitFailoverModeManuel(this);
+        }
+        
+        public static AstFailoverModeManuel Create(ParserRuleContext ctx, List<AstRoot> list)
+        {
+            return new AstFailoverModeManuel(ctx);
         }
         
         /// <summary>
@@ -14372,13 +14399,13 @@ namespace Bb.SqlServer.Asts
         public static AstAlterRole Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstAlterRole.Resolve(list);
-            if ((index == 2))
+            if ((index == 1))
             {
-                return new AstAlterRole.AstAlterRole1(ctx, ((AstSecondaryRoleArgs)(list[0])));
+                return new AstAlterRole.AstAlterRole1(ctx, ((AstSecondaryRoleArgs)(list[1])));
             }
             if ((index == 2))
             {
-                return new AstAlterRole.AstAlterRole2(ctx, ((AstPrimaryRoleArgs)(list[0])));
+                return new AstAlterRole.AstAlterRole2(ctx, ((AstPrimaryRoleArgs)(list[2])));
             }
             return null;
         }
@@ -14387,11 +14414,11 @@ namespace Bb.SqlServer.Asts
         {
             if ((list.Count == 1))
             {
-                if (AstRoot.Eval(list[0], typeof(AstSecondaryRoleArgs), false, false))
+                if (AstRoot.Eval(list[1], typeof(AstSecondaryRoleArgs), false, false))
                 {
                     return 1;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstPrimaryRoleArgs), false, false))
+                if (AstRoot.Eval(list[2], typeof(AstPrimaryRoleArgs), false, false))
                 {
                     return 2;
                 }
@@ -14535,17 +14562,17 @@ namespace Bb.SqlServer.Asts
         public static AstPrimaryRoleConfig Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstPrimaryRoleConfig.Resolve(list);
-            if ((index == 2))
+            if ((index == 1))
             {
-                return new AstPrimaryRoleConfig.AstPrimaryRoleConfig1(ctx, ((AstAllowConnectionsSet)(list[0])));
+                return new AstPrimaryRoleConfig.AstPrimaryRoleConfig1(ctx, ((AstAllowConnectionsSet)(list[1])));
             }
             if ((index == 2))
             {
-                return new AstPrimaryRoleConfig.AstPrimaryRoleConfig2(ctx, ((AstStringListNot)(list[0])));
+                return new AstPrimaryRoleConfig.AstPrimaryRoleConfig2(ctx, ((AstStringListNot)(list[2])));
             }
-            if ((index == 2))
+            if ((index == 3))
             {
-                return new AstPrimaryRoleConfig.AstPrimaryRoleConfig3(ctx, ((AstDecimal)(list[0])));
+                return new AstPrimaryRoleConfig.AstPrimaryRoleConfig3(ctx, ((AstDecimal)(list[3])));
             }
             return null;
         }
@@ -14554,15 +14581,15 @@ namespace Bb.SqlServer.Asts
         {
             if ((list.Count == 1))
             {
-                if (AstRoot.Eval(list[0], typeof(AstAllowConnectionsSet), false, false))
+                if (AstRoot.Eval(list[1], typeof(AstAllowConnectionsSet), false, false))
                 {
                     return 1;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstStringListNot), false, false))
+                if (AstRoot.Eval(list[2], typeof(AstStringListNot), false, false))
                 {
                     return 2;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstDecimal), false, false))
+                if (AstRoot.Eval(list[3], typeof(AstDecimal), false, false))
                 {
                     return 3;
                 }
@@ -14675,11 +14702,11 @@ namespace Bb.SqlServer.Asts
         public static AstStringListNot Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstStringListNot.Resolve(list);
-            if ((index == 2))
-            {
-                return new AstStringListNot.AstStringListNot1(ctx, ((AstStringList)(list[0])));
-            }
             if ((index == 1))
+            {
+                return new AstStringListNot.AstStringListNot1(ctx, ((AstStringList)(list[1])));
+            }
+            if ((index == 2))
             {
                 return new AstStringListNot.AstStringListNot2(ctx);
             }
@@ -14690,7 +14717,7 @@ namespace Bb.SqlServer.Asts
         {
             if ((list.Count == 1))
             {
-                if (AstRoot.Eval(list[0], typeof(AstStringList), false, false))
+                if (AstRoot.Eval(list[1], typeof(AstStringList), false, false))
                 {
                     return 1;
                 }
@@ -14805,13 +14832,13 @@ namespace Bb.SqlServer.Asts
         public static AstSecondaryRoleConfig Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstSecondaryRoleConfig.Resolve(list);
-            if ((index == 2))
+            if ((index == 1))
             {
-                return new AstSecondaryRoleConfig.AstSecondaryRoleConfig1(ctx, ((AstAllowConnectionsSet)(list[0])));
+                return new AstSecondaryRoleConfig.AstSecondaryRoleConfig1(ctx, ((AstAllowConnectionsSet)(list[1])));
             }
             if ((index == 2))
             {
-                return new AstSecondaryRoleConfig.AstSecondaryRoleConfig2(ctx, ((AstStringtext)(list[0])));
+                return new AstSecondaryRoleConfig.AstSecondaryRoleConfig2(ctx, ((AstStringtext)(list[2])));
             }
             return null;
         }
@@ -14820,11 +14847,11 @@ namespace Bb.SqlServer.Asts
         {
             if ((list.Count == 1))
             {
-                if (AstRoot.Eval(list[0], typeof(AstAllowConnectionsSet), false, false))
+                if (AstRoot.Eval(list[1], typeof(AstAllowConnectionsSet), false, false))
                 {
                     return 1;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstStringtext), false, false))
+                if (AstRoot.Eval(list[2], typeof(AstStringtext), false, false))
                 {
                     return 2;
                 }
@@ -15157,47 +15184,47 @@ namespace Bb.SqlServer.Asts
         public static AstAlterAvailabilityGroupOptions Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstAlterAvailabilityGroupOptions.Resolve(list);
-            if ((index == 2))
-            {
-                return new AstAlterAvailabilityGroupOptions.AstAlterAvailabilityGroupOptions1(ctx, ((AstAlterAvailabilityGroupOptionSet)(list[0])));
-            }
-            if ((index == 2))
-            {
-                return new AstAlterAvailabilityGroupOptions.AstAlterAvailabilityGroupOptions2(ctx, ((AstAddRemoveDatabase)(list[0])));
-            }
-            if ((index == 2))
-            {
-                return new AstAlterAvailabilityGroupOptions.AstAlterAvailabilityGroupOptions3(ctx, ((AstAlterAvailabilityReplicat)(list[0])));
-            }
-            if ((index == 2))
-            {
-                return new AstAlterAvailabilityGroupOptions.AstAlterAvailabilityGroupOptions4(ctx, ((AstAlterOptionsListener)(list[0])));
-            }
-            if ((index == 2))
-            {
-                return new AstAlterAvailabilityGroupOptions.AstAlterAvailabilityGroupOptions5(ctx, ((AstAlterRole)(list[0])));
-            }
-            if ((index == 2))
-            {
-                return new AstAlterAvailabilityGroupOptions.AstAlterAvailabilityGroupOptions6(ctx, ((AstAvailabilityGroupOptions)(list[0])));
-            }
-            if ((index == 2))
-            {
-                return new AstAlterAvailabilityGroupOptions.AstAlterAvailabilityGroupOptions7(ctx, ((AstGrantDeny)(list[0])));
-            }
             if ((index == 1))
+            {
+                return new AstAlterAvailabilityGroupOptions.AstAlterAvailabilityGroupOptions1(ctx, ((AstAlterAvailabilityGroupOptionSet)(list[1])));
+            }
+            if ((index == 2))
+            {
+                return new AstAlterAvailabilityGroupOptions.AstAlterAvailabilityGroupOptions2(ctx, ((AstAddRemoveDatabase)(list[2])));
+            }
+            if ((index == 3))
+            {
+                return new AstAlterAvailabilityGroupOptions.AstAlterAvailabilityGroupOptions3(ctx, ((AstAlterAvailabilityReplicat)(list[3])));
+            }
+            if ((index == 4))
+            {
+                return new AstAlterAvailabilityGroupOptions.AstAlterAvailabilityGroupOptions4(ctx, ((AstAlterOptionsListener)(list[4])));
+            }
+            if ((index == 5))
+            {
+                return new AstAlterAvailabilityGroupOptions.AstAlterAvailabilityGroupOptions5(ctx, ((AstAlterRole)(list[5])));
+            }
+            if ((index == 6))
+            {
+                return new AstAlterAvailabilityGroupOptions.AstAlterAvailabilityGroupOptions6(ctx, ((AstAvailabilityGroupOptions)(list[6])));
+            }
+            if ((index == 7))
+            {
+                return new AstAlterAvailabilityGroupOptions.AstAlterAvailabilityGroupOptions7(ctx, ((AstGrantDeny)(list[7])));
+            }
+            if ((index == 8))
             {
                 return new AstAlterAvailabilityGroupOptions.AstAlterAvailabilityGroupOptions8(ctx);
             }
-            if ((index == 1))
+            if ((index == 9))
             {
                 return new AstAlterAvailabilityGroupOptions.AstAlterAvailabilityGroupOptions9(ctx);
             }
-            if ((index == 1))
+            if ((index == 10))
             {
                 return new AstAlterAvailabilityGroupOptions.AstAlterAvailabilityGroupOptions10(ctx);
             }
-            if ((index == 1))
+            if ((index == 11))
             {
                 return new AstAlterAvailabilityGroupOptions.AstAlterAvailabilityGroupOptions11(ctx);
             }
@@ -15208,31 +15235,31 @@ namespace Bb.SqlServer.Asts
         {
             if ((list.Count == 1))
             {
-                if (AstRoot.Eval(list[0], typeof(AstAlterAvailabilityGroupOptionSet), false, false))
+                if (AstRoot.Eval(list[1], typeof(AstAlterAvailabilityGroupOptionSet), false, false))
                 {
                     return 1;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstAddRemoveDatabase), false, false))
+                if (AstRoot.Eval(list[2], typeof(AstAddRemoveDatabase), false, false))
                 {
                     return 2;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstAlterAvailabilityReplicat), false, false))
+                if (AstRoot.Eval(list[3], typeof(AstAlterAvailabilityReplicat), false, false))
                 {
                     return 3;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstAlterOptionsListener), false, false))
+                if (AstRoot.Eval(list[4], typeof(AstAlterOptionsListener), false, false))
                 {
                     return 4;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstAlterRole), false, false))
+                if (AstRoot.Eval(list[5], typeof(AstAlterRole), false, false))
                 {
                     return 5;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstAvailabilityGroupOptions), false, false))
+                if (AstRoot.Eval(list[6], typeof(AstAvailabilityGroupOptions), false, false))
                 {
                     return 6;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstGrantDeny), false, false))
+                if (AstRoot.Eval(list[7], typeof(AstGrantDeny), false, false))
                 {
                     return 7;
                 }
@@ -15495,25 +15522,25 @@ namespace Bb.SqlServer.Asts
         public static AstAlterAvailabilityGroupOptionSet Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstAlterAvailabilityGroupOptionSet.Resolve(list);
-            if ((index == 2))
+            if ((index == 1))
             {
-                return new AstAlterAvailabilityGroupOptionSet.AstAlterAvailabilityGroupOptionSet1(ctx, ((AstPrimarySecondaryNone)(list[0])));
+                return new AstAlterAvailabilityGroupOptionSet.AstAlterAvailabilityGroupOptionSet1(ctx, ((AstPrimarySecondaryNone)(list[1])));
             }
             if ((index == 2))
             {
-                return new AstAlterAvailabilityGroupOptionSet.AstAlterAvailabilityGroupOptionSet2(ctx, ((AstDecimal)(list[0])));
+                return new AstAlterAvailabilityGroupOptionSet.AstAlterAvailabilityGroupOptionSet2(ctx, ((AstDecimal)(list[2])));
             }
-            if ((index == 2))
+            if ((index == 3))
             {
-                return new AstAlterAvailabilityGroupOptionSet.AstAlterAvailabilityGroupOptionSet3(ctx, ((AstDecimal)(list[0])));
+                return new AstAlterAvailabilityGroupOptionSet.AstAlterAvailabilityGroupOptionSet3(ctx, ((AstDecimal)(list[3])));
             }
-            if ((index == 2))
+            if ((index == 4))
             {
-                return new AstAlterAvailabilityGroupOptionSet.AstAlterAvailabilityGroupOptionSet4(ctx, ((AstOnOff)(list[0])));
+                return new AstAlterAvailabilityGroupOptionSet.AstAlterAvailabilityGroupOptionSet4(ctx, ((AstOnOff)(list[4])));
             }
-            if ((index == 2))
+            if ((index == 5))
             {
-                return new AstAlterAvailabilityGroupOptionSet.AstAlterAvailabilityGroupOptionSet5(ctx, ((AstDecimal)(list[0])));
+                return new AstAlterAvailabilityGroupOptionSet.AstAlterAvailabilityGroupOptionSet5(ctx, ((AstDecimal)(list[5])));
             }
             return null;
         }
@@ -15522,23 +15549,23 @@ namespace Bb.SqlServer.Asts
         {
             if ((list.Count == 1))
             {
-                if (AstRoot.Eval(list[0], typeof(AstPrimarySecondaryNone), false, false))
+                if (AstRoot.Eval(list[1], typeof(AstPrimarySecondaryNone), false, false))
                 {
                     return 1;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstDecimal), false, false))
+                if (AstRoot.Eval(list[2], typeof(AstDecimal), false, false))
                 {
                     return 2;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstDecimal), false, false))
+                if (AstRoot.Eval(list[3], typeof(AstDecimal), false, false))
                 {
                     return 3;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstOnOff), false, false))
+                if (AstRoot.Eval(list[4], typeof(AstOnOff), false, false))
                 {
                     return 4;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstDecimal), false, false))
+                if (AstRoot.Eval(list[5], typeof(AstDecimal), false, false))
                 {
                     return 5;
                 }
@@ -15651,11 +15678,11 @@ namespace Bb.SqlServer.Asts
         public static AstBrokerLocalServiceName Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstBrokerLocalServiceName.Resolve(list);
-            if ((index == 2))
-            {
-                return new AstBrokerLocalServiceName.AstBrokerLocalServiceName1(ctx, ((AstId)(list[0])));
-            }
             if ((index == 1))
+            {
+                return new AstBrokerLocalServiceName.AstBrokerLocalServiceName1(ctx, ((AstId)(list[1])));
+            }
+            if ((index == 2))
             {
                 return new AstBrokerLocalServiceName.AstBrokerLocalServiceName2(ctx);
             }
@@ -15666,7 +15693,7 @@ namespace Bb.SqlServer.Asts
         {
             if ((list.Count == 1))
             {
-                if (AstRoot.Eval(list[0], typeof(AstId), false, false))
+                if (AstRoot.Eval(list[1], typeof(AstId), false, false))
                 {
                     return 1;
                 }
@@ -15769,11 +15796,11 @@ namespace Bb.SqlServer.Asts
         public static AstIdAny Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstIdAny.Resolve(list);
-            if ((index == 2))
-            {
-                return new AstIdAny.AstIdAny1(ctx, ((AstId)(list[0])));
-            }
             if ((index == 1))
+            {
+                return new AstIdAny.AstIdAny1(ctx, ((AstId)(list[1])));
+            }
+            if ((index == 2))
             {
                 return new AstIdAny.AstIdAny2(ctx);
             }
@@ -15784,7 +15811,7 @@ namespace Bb.SqlServer.Asts
         {
             if ((list.Count == 1))
             {
-                if (AstRoot.Eval(list[0], typeof(AstId), false, false))
+                if (AstRoot.Eval(list[1], typeof(AstId), false, false))
                 {
                     return 1;
                 }
@@ -15887,11 +15914,11 @@ namespace Bb.SqlServer.Asts
         public static AstStringtextAny Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstStringtextAny.Resolve(list);
-            if ((index == 2))
-            {
-                return new AstStringtextAny.AstStringtextAny1(ctx, ((AstId)(list[0])));
-            }
             if ((index == 1))
+            {
+                return new AstStringtextAny.AstStringtextAny1(ctx, ((AstId)(list[1])));
+            }
+            if ((index == 2))
             {
                 return new AstStringtextAny.AstStringtextAny2(ctx);
             }
@@ -15902,7 +15929,7 @@ namespace Bb.SqlServer.Asts
         {
             if ((list.Count == 1))
             {
-                if (AstRoot.Eval(list[0], typeof(AstId), false, false))
+                if (AstRoot.Eval(list[1], typeof(AstId), false, false))
                 {
                     return 1;
                 }
@@ -15940,7 +15967,9 @@ namespace Bb.SqlServer.Asts
         
         protected static string _rule = "drop_broker_priority\r\n\t : DROP  BROKER  PRIORITY  ConversationPriorityName = id_";
         
-        internal AstDropBrokerPriority(ParserRuleContext ctx, List<AstRoot> list) : 
+        private AstId _ConversationPriorityName;
+        
+        internal AstDropBrokerPriority(ParserRuleContext ctx) : 
                 base(ctx)
         {
         }
@@ -15961,7 +15990,7 @@ namespace Bb.SqlServer.Asts
             _ConversationPriorityName = conversationPriorityName;
         }
         
-        public virtual AstId _ConversationPriorityName
+        public virtual AstId Conversationpriorityname
         {
             get
             {
@@ -15972,6 +16001,11 @@ namespace Bb.SqlServer.Asts
         public override void Accept(IAstTSqlVisitor visitor)
         {
             visitor.VisitDropBrokerPriority(this);
+        }
+        
+        public static AstDropBrokerPriority Create(ParserRuleContext ctx, List<AstRoot> list)
+        {
+            return new AstDropBrokerPriority(ctx, ((AstId)(list[0])));
         }
         
         /// <summary>
@@ -15994,7 +16028,9 @@ namespace Bb.SqlServer.Asts
         
         protected static string _rule = "drop_contract\r\n\t : DROP  CONTRACT  dropped_contract_name = id_";
         
-        internal AstDropContract(ParserRuleContext ctx, List<AstRoot> list) : 
+        private AstId _droppedContractName;
+        
+        internal AstDropContract(ParserRuleContext ctx) : 
                 base(ctx)
         {
         }
@@ -16015,7 +16051,7 @@ namespace Bb.SqlServer.Asts
             _droppedContractName = droppedContractName;
         }
         
-        public virtual AstId _droppedContractName
+        public virtual AstId DroppedContractName
         {
             get
             {
@@ -16026,6 +16062,11 @@ namespace Bb.SqlServer.Asts
         public override void Accept(IAstTSqlVisitor visitor)
         {
             visitor.VisitDropContract(this);
+        }
+        
+        public static AstDropContract Create(ParserRuleContext ctx, List<AstRoot> list)
+        {
+            return new AstDropContract(ctx, ((AstId)(list[0])));
         }
         
         /// <summary>
@@ -16048,7 +16089,9 @@ namespace Bb.SqlServer.Asts
         
         protected static string _rule = "drop_database\r\n\t : DROP  DATABASE  (IF  EXISTS)?  (COMMA?  database_id)+";
         
-        internal AstDropDatabase(ParserRuleContext ctx, List<AstRoot> list) : 
+        private AstDatabaseId _databaseId;
+        
+        internal AstDropDatabase(ParserRuleContext ctx) : 
                 base(ctx)
         {
         }
@@ -16069,7 +16112,7 @@ namespace Bb.SqlServer.Asts
             _databaseId = databaseId;
         }
         
-        public virtual AstDatabaseId _databaseId
+        public virtual AstDatabaseId DatabaseId
         {
             get
             {
@@ -16080,6 +16123,11 @@ namespace Bb.SqlServer.Asts
         public override void Accept(IAstTSqlVisitor visitor)
         {
             visitor.VisitDropDatabase(this);
+        }
+        
+        public static AstDropDatabase Create(ParserRuleContext ctx, List<AstRoot> list)
+        {
+            return new AstDropDatabase(ctx, ((AstDatabaseId)(list[0])));
         }
         
         /// <summary>
@@ -16102,7 +16150,7 @@ namespace Bb.SqlServer.Asts
         
         protected static string _rule = "drop_database_encryption_key\r\n\t : DROP  DATABASE  ENCRYPTION  KEY";
         
-        internal AstDropDatabaseEncryptionKey(ParserRuleContext ctx, List<AstRoot> list) : 
+        internal AstDropDatabaseEncryptionKey(ParserRuleContext ctx) : 
                 base(ctx)
         {
         }
@@ -16117,14 +16165,14 @@ namespace Bb.SqlServer.Asts
         {
         }
         
-        internal AstDropDatabaseEncryptionKey(ParserRuleContext ctx) : 
-                base(ctx)
-        {
-        }
-        
         public override void Accept(IAstTSqlVisitor visitor)
         {
             visitor.VisitDropDatabaseEncryptionKey(this);
+        }
+        
+        public static AstDropDatabaseEncryptionKey Create(ParserRuleContext ctx, List<AstRoot> list)
+        {
+            return new AstDropDatabaseEncryptionKey(ctx);
         }
         
         /// <summary>
@@ -16147,7 +16195,9 @@ namespace Bb.SqlServer.Asts
         
         protected static string _rule = "drop_default\r\n\t : DROP  DEFAULT  (IF  EXISTS)?  (COMMA?  default_ref)";
         
-        internal AstDropDefault(ParserRuleContext ctx, List<AstRoot> list) : 
+        private AstDefaultRef _defaultRef;
+        
+        internal AstDropDefault(ParserRuleContext ctx) : 
                 base(ctx)
         {
         }
@@ -16168,7 +16218,7 @@ namespace Bb.SqlServer.Asts
             _defaultRef = defaultRef;
         }
         
-        public virtual AstDefaultRef _defaultRef
+        public virtual AstDefaultRef DefaultRef
         {
             get
             {
@@ -16179,6 +16229,11 @@ namespace Bb.SqlServer.Asts
         public override void Accept(IAstTSqlVisitor visitor)
         {
             visitor.VisitDropDefault(this);
+        }
+        
+        public static AstDropDefault Create(ParserRuleContext ctx, List<AstRoot> list)
+        {
+            return new AstDropDefault(ctx, ((AstDefaultRef)(list[0])));
         }
         
         /// <summary>
@@ -16277,13 +16332,13 @@ namespace Bb.SqlServer.Asts
         public static AstEventNotificationOn Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstEventNotificationOn.Resolve(list);
-            if ((index == 2))
+            if ((index == 1))
             {
-                return new AstEventNotificationOn.AstEventNotificationOn1(ctx, ((AstServerDatabase)(list[0])));
+                return new AstEventNotificationOn.AstEventNotificationOn1(ctx, ((AstServerDatabase)(list[1])));
             }
             if ((index == 2))
             {
-                return new AstEventNotificationOn.AstEventNotificationOn2(ctx, ((AstQueueId)(list[0])));
+                return new AstEventNotificationOn.AstEventNotificationOn2(ctx, ((AstQueueId)(list[2])));
             }
             return null;
         }
@@ -16292,11 +16347,11 @@ namespace Bb.SqlServer.Asts
         {
             if ((list.Count == 1))
             {
-                if (AstRoot.Eval(list[0], typeof(AstServerDatabase), false, false))
+                if (AstRoot.Eval(list[1], typeof(AstServerDatabase), false, false))
                 {
                     return 1;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstQueueId), false, false))
+                if (AstRoot.Eval(list[2], typeof(AstQueueId), false, false))
                 {
                     return 2;
                 }
@@ -16334,7 +16389,7 @@ namespace Bb.SqlServer.Asts
         
         protected static string _rule = "drop_master_key\r\n\t : DROP  MASTER  KEY";
         
-        internal AstDropMasterKey(ParserRuleContext ctx, List<AstRoot> list) : 
+        internal AstDropMasterKey(ParserRuleContext ctx) : 
                 base(ctx)
         {
         }
@@ -16349,14 +16404,14 @@ namespace Bb.SqlServer.Asts
         {
         }
         
-        internal AstDropMasterKey(ParserRuleContext ctx) : 
-                base(ctx)
-        {
-        }
-        
         public override void Accept(IAstTSqlVisitor visitor)
         {
             visitor.VisitDropMasterKey(this);
+        }
+        
+        public static AstDropMasterKey Create(ParserRuleContext ctx, List<AstRoot> list)
+        {
+            return new AstDropMasterKey(ctx);
         }
         
         /// <summary>
@@ -16379,7 +16434,9 @@ namespace Bb.SqlServer.Asts
         
         protected static string _rule = "drop_rule\r\n\t : DROP  RULE  (IF  EXISTS)?  (COMMA?  schema_rule_ref)?";
         
-        internal AstDropRule(ParserRuleContext ctx, List<AstRoot> list) : 
+        private AstSchemaRuleRef _schemaRuleRef;
+        
+        internal AstDropRule(ParserRuleContext ctx) : 
                 base(ctx)
         {
         }
@@ -16400,7 +16457,7 @@ namespace Bb.SqlServer.Asts
             _schemaRuleRef = schemaRuleRef;
         }
         
-        public virtual AstSchemaRuleRef _schemaRuleRef
+        public virtual AstSchemaRuleRef SchemaRuleRef
         {
             get
             {
@@ -16411,6 +16468,11 @@ namespace Bb.SqlServer.Asts
         public override void Accept(IAstTSqlVisitor visitor)
         {
             visitor.VisitDropRule(this);
+        }
+        
+        public static AstDropRule Create(ParserRuleContext ctx, List<AstRoot> list)
+        {
+            return new AstDropRule(ctx, ((AstSchemaRuleRef)(list[0])));
         }
         
         /// <summary>
@@ -16434,7 +16496,9 @@ namespace Bb.SqlServer.Asts
         protected static string _rule = "drop_sequence\r\n\t : DROP  SEQUENCE  (IF  EXISTS)?  (COMMA?  database_schema_sequen" +
             "ce_ref)?";
         
-        internal AstDropSequence(ParserRuleContext ctx, List<AstRoot> list) : 
+        private AstDatabaseSchemaSequenceRef _databaseSchemaSequenceRef;
+        
+        internal AstDropSequence(ParserRuleContext ctx) : 
                 base(ctx)
         {
         }
@@ -16455,7 +16519,7 @@ namespace Bb.SqlServer.Asts
             _databaseSchemaSequenceRef = databaseSchemaSequenceRef;
         }
         
-        public virtual AstDatabaseSchemaSequenceRef _databaseSchemaSequenceRef
+        public virtual AstDatabaseSchemaSequenceRef DatabaseSchemaSequenceRef
         {
             get
             {
@@ -16466,6 +16530,11 @@ namespace Bb.SqlServer.Asts
         public override void Accept(IAstTSqlVisitor visitor)
         {
             visitor.VisitDropSequence(this);
+        }
+        
+        public static AstDropSequence Create(ParserRuleContext ctx, List<AstRoot> list)
+        {
+            return new AstDropSequence(ctx, ((AstDatabaseSchemaSequenceRef)(list[0])));
         }
         
         /// <summary>
@@ -16565,13 +16634,13 @@ namespace Bb.SqlServer.Asts
         public static AstDropSignatureBy Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstDropSignatureBy.Resolve(list);
-            if ((index == 2))
+            if ((index == 1))
             {
-                return new AstDropSignatureBy.AstDropSignatureBy1(ctx, ((AstCertificateId)(list[0])));
+                return new AstDropSignatureBy.AstDropSignatureBy1(ctx, ((AstCertificateId)(list[1])));
             }
             if ((index == 2))
             {
-                return new AstDropSignatureBy.AstDropSignatureBy2(ctx, ((AstAsymKeyId)(list[0])));
+                return new AstDropSignatureBy.AstDropSignatureBy2(ctx, ((AstAsymKeyId)(list[2])));
             }
             return null;
         }
@@ -16580,11 +16649,11 @@ namespace Bb.SqlServer.Asts
         {
             if ((list.Count == 1))
             {
-                if (AstRoot.Eval(list[0], typeof(AstCertificateId), false, false))
+                if (AstRoot.Eval(list[1], typeof(AstCertificateId), false, false))
                 {
                     return 1;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstAsymKeyId), false, false))
+                if (AstRoot.Eval(list[2], typeof(AstAsymKeyId), false, false))
                 {
                     return 2;
                 }
@@ -16687,11 +16756,11 @@ namespace Bb.SqlServer.Asts
         public static AstTriggerName Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstTriggerName.Resolve(list);
-            if ((index == 2))
-            {
-                return new AstTriggerName.AstTriggerName1(ctx, ((AstSchemaTriggerRefs)(list[0])));
-            }
             if ((index == 1))
+            {
+                return new AstTriggerName.AstTriggerName1(ctx, ((AstSchemaTriggerRefs)(list[1])));
+            }
+            if ((index == 2))
             {
                 return new AstTriggerName.AstTriggerName2(ctx);
             }
@@ -16702,7 +16771,7 @@ namespace Bb.SqlServer.Asts
         {
             if ((list.Count == 1))
             {
-                if (AstRoot.Eval(list[0], typeof(AstSchemaTriggerRefs), false, false))
+                if (AstRoot.Eval(list[1], typeof(AstSchemaTriggerRefs), false, false))
                 {
                     return 1;
                 }
@@ -16816,13 +16885,13 @@ namespace Bb.SqlServer.Asts
         public static AstTriggerTarget Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstTriggerTarget.Resolve(list);
-            if ((index == 2))
+            if ((index == 1))
             {
-                return new AstTriggerTarget.AstTriggerTarget1(ctx, ((AstSchemaObjectRef)(list[0])));
+                return new AstTriggerTarget.AstTriggerTarget1(ctx, ((AstSchemaObjectRef)(list[1])));
             }
             if ((index == 2))
             {
-                return new AstTriggerTarget.AstTriggerTarget2(ctx, ((AstAllServerDatabase)(list[0])));
+                return new AstTriggerTarget.AstTriggerTarget2(ctx, ((AstAllServerDatabase)(list[2])));
             }
             return null;
         }
@@ -16831,11 +16900,11 @@ namespace Bb.SqlServer.Asts
         {
             if ((list.Count == 1))
             {
-                if (AstRoot.Eval(list[0], typeof(AstSchemaObjectRef), false, false))
+                if (AstRoot.Eval(list[1], typeof(AstSchemaObjectRef), false, false))
                 {
                     return 1;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstAllServerDatabase), false, false))
+                if (AstRoot.Eval(list[2], typeof(AstAllServerDatabase), false, false))
                 {
                     return 2;
                 }
@@ -16938,11 +17007,11 @@ namespace Bb.SqlServer.Asts
         public static AstLockTableDelay Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstLockTableDelay.Resolve(list);
-            if ((index == 2))
-            {
-                return new AstLockTableDelay.AstLockTableDelay1(ctx, ((AstDecimal)(list[0])));
-            }
             if ((index == 1))
+            {
+                return new AstLockTableDelay.AstLockTableDelay1(ctx, ((AstDecimal)(list[1])));
+            }
+            if ((index == 2))
             {
                 return new AstLockTableDelay.AstLockTableDelay2(ctx);
             }
@@ -16953,7 +17022,7 @@ namespace Bb.SqlServer.Asts
         {
             if ((list.Count == 1))
             {
-                if (AstRoot.Eval(list[0], typeof(AstDecimal), false, false))
+                if (AstRoot.Eval(list[1], typeof(AstDecimal), false, false))
                 {
                     return 1;
                 }
@@ -16993,7 +17062,13 @@ namespace Bb.SqlServer.Asts
             "LR_BRACKET  KEY_STORE_PROVIDER_NAME  EQUAL  key_store_provider_name = stringtext" +
             "  COMMA  KEY_PATH  EQUAL  key_path = stringtext  RR_BRACKET";
         
-        internal AstCreateColumnMasterKey(ParserRuleContext ctx, List<AstRoot> list) : 
+        private AstId _keyName;
+        
+        private AstStringtext _keyStoreProviderName;
+        
+        private AstStringtext _keyPath;
+        
+        internal AstCreateColumnMasterKey(ParserRuleContext ctx) : 
                 base(ctx)
         {
         }
@@ -17016,7 +17091,7 @@ namespace Bb.SqlServer.Asts
             _keyPath = keyPath;
         }
         
-        public virtual AstId _keyName
+        public virtual AstId KeyName
         {
             get
             {
@@ -17024,7 +17099,7 @@ namespace Bb.SqlServer.Asts
             }
         }
         
-        public virtual AstStringtext _keyStoreProviderName
+        public virtual AstStringtext KeyStoreProviderName
         {
             get
             {
@@ -17032,7 +17107,7 @@ namespace Bb.SqlServer.Asts
             }
         }
         
-        public virtual AstStringtext _keyPath
+        public virtual AstStringtext KeyPath
         {
             get
             {
@@ -17043,6 +17118,11 @@ namespace Bb.SqlServer.Asts
         public override void Accept(IAstTSqlVisitor visitor)
         {
             visitor.VisitCreateColumnMasterKey(this);
+        }
+        
+        public static AstCreateColumnMasterKey Create(ParserRuleContext ctx, List<AstRoot> list)
+        {
+            return new AstCreateColumnMasterKey(ctx, ((AstId)(list[0])), ((AstStringtext)(list[1])), ((AstStringtext)(list[2])));
         }
         
         /// <summary>
@@ -17066,7 +17146,21 @@ namespace Bb.SqlServer.Asts
         protected static string _rule = @"create_or_alter_event_session_with
 	 : WITH  LR_BRACKET  (COMMA?  session_arg_max_memory)?  (COMMA?  session_arg_event_retention_mode)?  (COMMA?  session_arg_max_dispatch)?  (COMMA?  session_arg_max_event_size)?  (COMMA?  session_arg_memory_partition)?  (COMMA?  session_arg_track_causality)?  (COMMA?  session_arg_startup_state)?  RR_BRACKET";
         
-        internal AstCreateOrAlterEventSessionWith(ParserRuleContext ctx, List<AstRoot> list) : 
+        private AstSessionArgMaxMemory _sessionArgMaxMemory;
+        
+        private AstSessionArgEventRetentionMode _sessionArgEventRetentionMode;
+        
+        private AstSessionArgMaxDispatch _sessionArgMaxDispatch;
+        
+        private AstSessionArgMaxEventSize _sessionArgMaxEventSize;
+        
+        private AstSessionArgMemoryPartition _sessionArgMemoryPartition;
+        
+        private AstSessionArgTrackCausality _sessionArgTrackCausality;
+        
+        private AstSessionArgStartupState _sessionArgStartupState;
+        
+        internal AstCreateOrAlterEventSessionWith(ParserRuleContext ctx) : 
                 base(ctx)
         {
         }
@@ -17093,7 +17187,7 @@ namespace Bb.SqlServer.Asts
             _sessionArgStartupState = sessionArgStartupState;
         }
         
-        public virtual AstSessionArgMaxMemory _sessionArgMaxMemory
+        public virtual AstSessionArgMaxMemory SessionArgMaxMemory
         {
             get
             {
@@ -17101,7 +17195,7 @@ namespace Bb.SqlServer.Asts
             }
         }
         
-        public virtual AstSessionArgEventRetentionMode _sessionArgEventRetentionMode
+        public virtual AstSessionArgEventRetentionMode SessionArgEventRetentionMode
         {
             get
             {
@@ -17109,7 +17203,7 @@ namespace Bb.SqlServer.Asts
             }
         }
         
-        public virtual AstSessionArgMaxDispatch _sessionArgMaxDispatch
+        public virtual AstSessionArgMaxDispatch SessionArgMaxDispatch
         {
             get
             {
@@ -17117,7 +17211,7 @@ namespace Bb.SqlServer.Asts
             }
         }
         
-        public virtual AstSessionArgMaxEventSize _sessionArgMaxEventSize
+        public virtual AstSessionArgMaxEventSize SessionArgMaxEventSize
         {
             get
             {
@@ -17125,7 +17219,7 @@ namespace Bb.SqlServer.Asts
             }
         }
         
-        public virtual AstSessionArgMemoryPartition _sessionArgMemoryPartition
+        public virtual AstSessionArgMemoryPartition SessionArgMemoryPartition
         {
             get
             {
@@ -17133,7 +17227,7 @@ namespace Bb.SqlServer.Asts
             }
         }
         
-        public virtual AstSessionArgTrackCausality _sessionArgTrackCausality
+        public virtual AstSessionArgTrackCausality SessionArgTrackCausality
         {
             get
             {
@@ -17141,7 +17235,7 @@ namespace Bb.SqlServer.Asts
             }
         }
         
-        public virtual AstSessionArgStartupState _sessionArgStartupState
+        public virtual AstSessionArgStartupState SessionArgStartupState
         {
             get
             {
@@ -17152,6 +17246,11 @@ namespace Bb.SqlServer.Asts
         public override void Accept(IAstTSqlVisitor visitor)
         {
             visitor.VisitCreateOrAlterEventSessionWith(this);
+        }
+        
+        public static AstCreateOrAlterEventSessionWith Create(ParserRuleContext ctx, List<AstRoot> list)
+        {
+            return new AstCreateOrAlterEventSessionWith(ctx, ((AstSessionArgMaxMemory)(list[0])), ((AstSessionArgEventRetentionMode)(list[1])), ((AstSessionArgMaxDispatch)(list[2])), ((AstSessionArgMaxEventSize)(list[3])), ((AstSessionArgMemoryPartition)(list[4])), ((AstSessionArgTrackCausality)(list[5])), ((AstSessionArgStartupState)(list[6])));
         }
         
         /// <summary>
@@ -17239,11 +17338,11 @@ namespace Bb.SqlServer.Asts
         public static AstSessionArgMaxDispatch Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstSessionArgMaxDispatch.Resolve(list);
-            if ((index == 2))
-            {
-                return new AstSessionArgMaxDispatch.AstSessionArgMaxDispatch1(ctx, ((AstDecimal)(list[0])));
-            }
             if ((index == 1))
+            {
+                return new AstSessionArgMaxDispatch.AstSessionArgMaxDispatch1(ctx, ((AstDecimal)(list[1])));
+            }
+            if ((index == 2))
             {
                 return new AstSessionArgMaxDispatch.AstSessionArgMaxDispatch2(ctx);
             }
@@ -17254,7 +17353,7 @@ namespace Bb.SqlServer.Asts
         {
             if ((list.Count == 1))
             {
-                if (AstRoot.Eval(list[0], typeof(AstDecimal), false, false))
+                if (AstRoot.Eval(list[1], typeof(AstDecimal), false, false))
                 {
                     return 1;
                 }
@@ -17367,13 +17466,13 @@ namespace Bb.SqlServer.Asts
         public static AstTargetParameterValue Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstTargetParameterValue.Resolve(list);
-            if ((index == 2))
+            if ((index == 1))
             {
-                return new AstTargetParameterValue.AstTargetParameterValue1(ctx, ((AstDecimal)(list[0])));
+                return new AstTargetParameterValue.AstTargetParameterValue1(ctx, ((AstDecimal)(list[1])));
             }
             if ((index == 2))
             {
-                return new AstTargetParameterValue.AstTargetParameterValue2(ctx, ((AstStringtext)(list[0])));
+                return new AstTargetParameterValue.AstTargetParameterValue2(ctx, ((AstStringtext)(list[2])));
             }
             return null;
         }
@@ -17382,11 +17481,11 @@ namespace Bb.SqlServer.Asts
         {
             if ((list.Count == 1))
             {
-                if (AstRoot.Eval(list[0], typeof(AstDecimal), false, false))
+                if (AstRoot.Eval(list[1], typeof(AstDecimal), false, false))
                 {
                     return 1;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstStringtext), false, false))
+                if (AstRoot.Eval(list[2], typeof(AstStringtext), false, false))
                 {
                     return 2;
                 }
@@ -17522,13 +17621,13 @@ namespace Bb.SqlServer.Asts
         public static AstEventSessionPredicateExpression Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstEventSessionPredicateExpression.Resolve(list);
-            if ((index == 3))
+            if ((index == 1))
             {
-                return new AstEventSessionPredicateExpression.AstEventSessionPredicateExpression1(ctx, ((AstAndOr)(list[0])), ((AstEventSessionPredicateFactor)(list[1])));
+                return new AstEventSessionPredicateExpression.AstEventSessionPredicateExpression1(ctx, ((AstAndOr)(list[1])), ((AstEventSessionPredicateFactor)(list[1])));
             }
-            if ((index == 3))
+            if ((index == 2))
             {
-                return new AstEventSessionPredicateExpression.AstEventSessionPredicateExpression2(ctx, ((AstAndOr)(list[0])), ((AstEventSessionPredicateExpression)(list[1])));
+                return new AstEventSessionPredicateExpression.AstEventSessionPredicateExpression2(ctx, ((AstAndOr)(list[2])), ((AstEventSessionPredicateExpression)(list[2])));
             }
             return null;
         }
@@ -17537,16 +17636,16 @@ namespace Bb.SqlServer.Asts
         {
             if ((list.Count == 2))
             {
-                if (AstRoot.Eval(list[0], typeof(AstAndOr), false, false))
+                if (AstRoot.Eval(list[1], typeof(AstAndOr), false, false))
                 {
                     if (AstRoot.Eval(list[1], typeof(AstEventSessionPredicateFactor), false, false))
                     {
                         return 1;
                     }
                 }
-                if (AstRoot.Eval(list[0], typeof(AstAndOr), false, false))
+                if (AstRoot.Eval(list[2], typeof(AstAndOr), false, false))
                 {
-                    if (AstRoot.Eval(list[1], typeof(AstEventSessionPredicateExpression), false, false))
+                    if (AstRoot.Eval(list[2], typeof(AstEventSessionPredicateExpression), false, false))
                     {
                         return 2;
                     }
@@ -17662,13 +17761,13 @@ namespace Bb.SqlServer.Asts
         public static AstEventSessionPredicateFactor Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstEventSessionPredicateFactor.Resolve(list);
-            if ((index == 2))
+            if ((index == 1))
             {
-                return new AstEventSessionPredicateFactor.AstEventSessionPredicateFactor1(ctx, ((AstEventSessionPredicateLeaf)(list[0])));
+                return new AstEventSessionPredicateFactor.AstEventSessionPredicateFactor1(ctx, ((AstEventSessionPredicateLeaf)(list[1])));
             }
             if ((index == 2))
             {
-                return new AstEventSessionPredicateFactor.AstEventSessionPredicateFactor2(ctx, ((AstEventSessionPredicateExpression)(list[0])));
+                return new AstEventSessionPredicateFactor.AstEventSessionPredicateFactor2(ctx, ((AstEventSessionPredicateExpression)(list[2])));
             }
             return null;
         }
@@ -17677,11 +17776,11 @@ namespace Bb.SqlServer.Asts
         {
             if ((list.Count == 1))
             {
-                if (AstRoot.Eval(list[0], typeof(AstEventSessionPredicateLeaf), false, false))
+                if (AstRoot.Eval(list[1], typeof(AstEventSessionPredicateLeaf), false, false))
                 {
                     return 1;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstEventSessionPredicateExpression), false, false))
+                if (AstRoot.Eval(list[2], typeof(AstEventSessionPredicateExpression), false, false))
                 {
                     return 2;
                 }
@@ -17858,17 +17957,17 @@ namespace Bb.SqlServer.Asts
         public static AstEventSessionPredicateLeaf Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstEventSessionPredicateLeaf.Resolve(list);
+            if ((index == 1))
+            {
+                return new AstEventSessionPredicateLeaf.AstEventSessionPredicateLeaf1(ctx, ((AstEventFieldId)(list[1])));
+            }
             if ((index == 2))
             {
-                return new AstEventSessionPredicateLeaf.AstEventSessionPredicateLeaf1(ctx, ((AstEventFieldId)(list[0])));
-            }
-            if ((index == 4))
-            {
-                return new AstEventSessionPredicateLeaf.AstEventSessionPredicateLeaf2(ctx, ((AstEventSessionIdSource1)(list[0])), ((AstEventSessionPredicateLeafOpe)(list[1])), ((AstDecimalString)(list[2])));
+                return new AstEventSessionPredicateLeaf.AstEventSessionPredicateLeaf2(ctx, ((AstEventSessionIdSource1)(list[2])), ((AstEventSessionPredicateLeafOpe)(list[2])), ((AstDecimalString)(list[2])));
             }
             if ((index == 3))
             {
-                return new AstEventSessionPredicateLeaf.AstEventSessionPredicateLeaf3(ctx, ((AstFullPredicateSourceRef)(list[0])), ((AstEventSessionIdSource2)(list[1])));
+                return new AstEventSessionPredicateLeaf.AstEventSessionPredicateLeaf3(ctx, ((AstFullPredicateSourceRef)(list[3])), ((AstEventSessionIdSource2)(list[3])));
             }
             return null;
         }
@@ -17877,9 +17976,9 @@ namespace Bb.SqlServer.Asts
         {
             if ((list.Count == 3))
             {
-                if (AstRoot.Eval(list[0], typeof(AstEventSessionIdSource1), false, false))
+                if (AstRoot.Eval(list[2], typeof(AstEventSessionIdSource1), false, false))
                 {
-                    if (AstRoot.Eval(list[1], typeof(AstEventSessionPredicateLeafOpe), false, false))
+                    if (AstRoot.Eval(list[2], typeof(AstEventSessionPredicateLeafOpe), false, false))
                     {
                         if (AstRoot.Eval(list[2], typeof(AstDecimalString), false, false))
                         {
@@ -17890,9 +17989,9 @@ namespace Bb.SqlServer.Asts
             }
             if ((list.Count == 2))
             {
-                if (AstRoot.Eval(list[0], typeof(AstFullPredicateSourceRef), false, false))
+                if (AstRoot.Eval(list[3], typeof(AstFullPredicateSourceRef), false, false))
                 {
-                    if (AstRoot.Eval(list[1], typeof(AstEventSessionIdSource2), false, false))
+                    if (AstRoot.Eval(list[3], typeof(AstEventSessionIdSource2), false, false))
                     {
                         return 3;
                     }
@@ -17900,7 +17999,7 @@ namespace Bb.SqlServer.Asts
             }
             if ((list.Count == 1))
             {
-                if (AstRoot.Eval(list[0], typeof(AstEventFieldId), false, false))
+                if (AstRoot.Eval(list[1], typeof(AstEventFieldId), false, false))
                 {
                     return 1;
                 }
@@ -18024,13 +18123,13 @@ namespace Bb.SqlServer.Asts
         public static AstEventSessionIdSource1 Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstEventSessionIdSource1.Resolve(list);
-            if ((index == 2))
+            if ((index == 1))
             {
-                return new AstEventSessionIdSource1.AstEventSessionIdSource11(ctx, ((AstEventFieldId)(list[0])));
+                return new AstEventSessionIdSource1.AstEventSessionIdSource11(ctx, ((AstEventFieldId)(list[1])));
             }
             if ((index == 2))
             {
-                return new AstEventSessionIdSource1.AstEventSessionIdSource12(ctx, ((AstFullPredicateSourceRef)(list[0])));
+                return new AstEventSessionIdSource1.AstEventSessionIdSource12(ctx, ((AstFullPredicateSourceRef)(list[2])));
             }
             return null;
         }
@@ -18039,11 +18138,11 @@ namespace Bb.SqlServer.Asts
         {
             if ((list.Count == 1))
             {
-                if (AstRoot.Eval(list[0], typeof(AstEventFieldId), false, false))
+                if (AstRoot.Eval(list[1], typeof(AstEventFieldId), false, false))
                 {
                     return 1;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstFullPredicateSourceRef), false, false))
+                if (AstRoot.Eval(list[2], typeof(AstFullPredicateSourceRef), false, false))
                 {
                     return 2;
                 }
@@ -18169,13 +18268,13 @@ namespace Bb.SqlServer.Asts
         public static AstEventSessionIdSource2 Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstEventSessionIdSource2.Resolve(list);
+            if ((index == 1))
+            {
+                return new AstEventSessionIdSource2.AstEventSessionIdSource21(ctx, ((AstEventFieldId)(list[1])));
+            }
             if ((index == 2))
             {
-                return new AstEventSessionIdSource2.AstEventSessionIdSource21(ctx, ((AstEventFieldId)(list[0])));
-            }
-            if ((index == 3))
-            {
-                return new AstEventSessionIdSource2.AstEventSessionIdSource22(ctx, ((AstFullPredicateSourceRef)(list[0])), ((AstDecimalString)(list[1])));
+                return new AstEventSessionIdSource2.AstEventSessionIdSource22(ctx, ((AstFullPredicateSourceRef)(list[2])), ((AstDecimalString)(list[2])));
             }
             return null;
         }
@@ -18184,9 +18283,9 @@ namespace Bb.SqlServer.Asts
         {
             if ((list.Count == 2))
             {
-                if (AstRoot.Eval(list[0], typeof(AstFullPredicateSourceRef), false, false))
+                if (AstRoot.Eval(list[2], typeof(AstFullPredicateSourceRef), false, false))
                 {
-                    if (AstRoot.Eval(list[1], typeof(AstDecimalString), false, false))
+                    if (AstRoot.Eval(list[2], typeof(AstDecimalString), false, false))
                     {
                         return 2;
                     }
@@ -18194,7 +18293,7 @@ namespace Bb.SqlServer.Asts
             }
             if ((list.Count == 1))
             {
-                if (AstRoot.Eval(list[0], typeof(AstEventFieldId), false, false))
+                if (AstRoot.Eval(list[1], typeof(AstEventFieldId), false, false))
                 {
                     return 1;
                 }
@@ -18343,13 +18442,13 @@ namespace Bb.SqlServer.Asts
         public static AstAlterExternalDataSource Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstAlterExternalDataSource.Resolve(list);
-            if ((index == 3))
+            if ((index == 1))
             {
-                return new AstAlterExternalDataSource.AstAlterExternalDataSource1(ctx, ((AstDataSourceId)(list[0])), ((AstExternalSources)(list[1])));
+                return new AstAlterExternalDataSource.AstAlterExternalDataSource1(ctx, ((AstDataSourceId)(list[1])), ((AstExternalSources)(list[1])));
             }
-            if ((index == 4))
+            if ((index == 2))
             {
-                return new AstAlterExternalDataSource.AstAlterExternalDataSource2(ctx, ((AstDataSourceId)(list[0])), ((AstStringtext)(list[1])), ((AstExternalCredential)(list[2])));
+                return new AstAlterExternalDataSource.AstAlterExternalDataSource2(ctx, ((AstDataSourceId)(list[2])), ((AstStringtext)(list[2])), ((AstExternalCredential)(list[2])));
             }
             return null;
         }
@@ -18358,9 +18457,9 @@ namespace Bb.SqlServer.Asts
         {
             if ((list.Count == 3))
             {
-                if (AstRoot.Eval(list[0], typeof(AstDataSourceId), false, false))
+                if (AstRoot.Eval(list[2], typeof(AstDataSourceId), false, false))
                 {
-                    if (AstRoot.Eval(list[1], typeof(AstStringtext), false, false))
+                    if (AstRoot.Eval(list[2], typeof(AstStringtext), false, false))
                     {
                         if (AstRoot.Eval(list[2], typeof(AstExternalCredential), false, false))
                         {
@@ -18371,7 +18470,7 @@ namespace Bb.SqlServer.Asts
             }
             if ((list.Count == 2))
             {
-                if (AstRoot.Eval(list[0], typeof(AstDataSourceId), false, false))
+                if (AstRoot.Eval(list[1], typeof(AstDataSourceId), false, false))
                 {
                     if (AstRoot.Eval(list[1], typeof(AstExternalSources), false, false))
                     {
@@ -18518,17 +18617,17 @@ namespace Bb.SqlServer.Asts
         public static AstExternalSource Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstExternalSource.Resolve(list);
-            if ((index == 2))
+            if ((index == 1))
             {
-                return new AstExternalSource.AstExternalSource1(ctx, ((AstStringtext)(list[0])));
+                return new AstExternalSource.AstExternalSource1(ctx, ((AstStringtext)(list[1])));
             }
             if ((index == 2))
             {
-                return new AstExternalSource.AstExternalSource2(ctx, ((AstStringtext)(list[0])));
+                return new AstExternalSource.AstExternalSource2(ctx, ((AstStringtext)(list[2])));
             }
-            if ((index == 2))
+            if ((index == 3))
             {
-                return new AstExternalSource.AstExternalSource3(ctx, ((AstCredentialId)(list[0])));
+                return new AstExternalSource.AstExternalSource3(ctx, ((AstCredentialId)(list[3])));
             }
             return null;
         }
@@ -18537,15 +18636,15 @@ namespace Bb.SqlServer.Asts
         {
             if ((list.Count == 1))
             {
-                if (AstRoot.Eval(list[0], typeof(AstStringtext), false, false))
+                if (AstRoot.Eval(list[1], typeof(AstStringtext), false, false))
                 {
                     return 1;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstStringtext), false, false))
+                if (AstRoot.Eval(list[2], typeof(AstStringtext), false, false))
                 {
                     return 2;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstCredentialId), false, false))
+                if (AstRoot.Eval(list[3], typeof(AstCredentialId), false, false))
                 {
                     return 3;
                 }
@@ -18676,15 +18775,15 @@ namespace Bb.SqlServer.Asts
         public static AstCodeContent Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstCodeContent.Resolve(list);
-            if ((index == 2))
-            {
-                return new AstCodeContent.AstCodeContent1(ctx, ((AstStringtext)(list[0])));
-            }
-            if ((index == 2))
-            {
-                return new AstCodeContent.AstCodeContent2(ctx, ((AstBinary)(list[0])));
-            }
             if ((index == 1))
+            {
+                return new AstCodeContent.AstCodeContent1(ctx, ((AstStringtext)(list[1])));
+            }
+            if ((index == 2))
+            {
+                return new AstCodeContent.AstCodeContent2(ctx, ((AstBinary)(list[2])));
+            }
+            if ((index == 3))
             {
                 return new AstCodeContent.AstCodeContent3(ctx);
             }
@@ -18695,11 +18794,11 @@ namespace Bb.SqlServer.Asts
         {
             if ((list.Count == 1))
             {
-                if (AstRoot.Eval(list[0], typeof(AstStringtext), false, false))
+                if (AstRoot.Eval(list[1], typeof(AstStringtext), false, false))
                 {
                     return 1;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstBinary), false, false))
+                if (AstRoot.Eval(list[2], typeof(AstBinary), false, false))
                 {
                     return 2;
                 }
@@ -18748,7 +18847,11 @@ namespace Bb.SqlServer.Asts
         protected static string _rule = "create_external_resource_pool\r\n\t : CREATE  EXTERNAL  RESOURCE  POOL  pool_id  WIT" +
             "H  external_resource_with";
         
-        internal AstCreateExternalResourcePool(ParserRuleContext ctx, List<AstRoot> list) : 
+        private AstPoolId _poolId;
+        
+        private AstExternalResourceWith _externalResourceWith;
+        
+        internal AstCreateExternalResourcePool(ParserRuleContext ctx) : 
                 base(ctx)
         {
         }
@@ -18770,7 +18873,7 @@ namespace Bb.SqlServer.Asts
             _externalResourceWith = externalResourceWith;
         }
         
-        public virtual AstPoolId _poolId
+        public virtual AstPoolId PoolId
         {
             get
             {
@@ -18778,7 +18881,7 @@ namespace Bb.SqlServer.Asts
             }
         }
         
-        public virtual AstExternalResourceWith _externalResourceWith
+        public virtual AstExternalResourceWith ExternalResourceWith
         {
             get
             {
@@ -18789,6 +18892,11 @@ namespace Bb.SqlServer.Asts
         public override void Accept(IAstTSqlVisitor visitor)
         {
             visitor.VisitCreateExternalResourcePool(this);
+        }
+        
+        public static AstCreateExternalResourcePool Create(ParserRuleContext ctx, List<AstRoot> list)
+        {
+            return new AstCreateExternalResourcePool(ctx, ((AstPoolId)(list[0])), ((AstExternalResourceWith)(list[1])));
         }
         
         /// <summary>
@@ -18915,17 +19023,17 @@ namespace Bb.SqlServer.Asts
         public static AstFulltextLanguagelist Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstFulltextLanguagelist.Resolve(list);
-            if ((index == 2))
+            if ((index == 1))
             {
-                return new AstFulltextLanguagelist.AstFulltextLanguagelist1(ctx, ((AstStringtext)(list[0])));
+                return new AstFulltextLanguagelist.AstFulltextLanguagelist1(ctx, ((AstStringtext)(list[1])));
             }
             if ((index == 2))
             {
-                return new AstFulltextLanguagelist.AstFulltextLanguagelist2(ctx, ((AstDecimal)(list[0])));
+                return new AstFulltextLanguagelist.AstFulltextLanguagelist2(ctx, ((AstDecimal)(list[2])));
             }
-            if ((index == 2))
+            if ((index == 3))
             {
-                return new AstFulltextLanguagelist.AstFulltextLanguagelist3(ctx, ((AstBinary)(list[0])));
+                return new AstFulltextLanguagelist.AstFulltextLanguagelist3(ctx, ((AstBinary)(list[3])));
             }
             return null;
         }
@@ -18934,15 +19042,15 @@ namespace Bb.SqlServer.Asts
         {
             if ((list.Count == 1))
             {
-                if (AstRoot.Eval(list[0], typeof(AstStringtext), false, false))
+                if (AstRoot.Eval(list[1], typeof(AstStringtext), false, false))
                 {
                     return 1;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstDecimal), false, false))
+                if (AstRoot.Eval(list[2], typeof(AstDecimal), false, false))
                 {
                     return 2;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstBinary), false, false))
+                if (AstRoot.Eval(list[3], typeof(AstBinary), false, false))
                 {
                     return 3;
                 }
@@ -19106,17 +19214,17 @@ namespace Bb.SqlServer.Asts
         public static AstAlterLoginSqlServerInfos Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstAlterLoginSqlServerInfos.Resolve(list);
-            if ((index == 2))
+            if ((index == 1))
             {
-                return new AstAlterLoginSqlServerInfos.AstAlterLoginSqlServerInfos1(ctx, ((AstEnableDisable)(list[0])));
+                return new AstAlterLoginSqlServerInfos.AstAlterLoginSqlServerInfos1(ctx, ((AstEnableDisable)(list[1])));
             }
             if ((index == 2))
             {
-                return new AstAlterLoginSqlServerInfos.AstAlterLoginSqlServerInfos2(ctx, ((AstAlterLoginSqlServerSettings)(list[0])));
+                return new AstAlterLoginSqlServerInfos.AstAlterLoginSqlServerInfos2(ctx, ((AstAlterLoginSqlServerSettings)(list[2])));
             }
             if ((index == 3))
             {
-                return new AstAlterLoginSqlServerInfos.AstAlterLoginSqlServerInfos3(ctx, ((AstAddDrop)(list[0])), ((AstCredentialId)(list[1])));
+                return new AstAlterLoginSqlServerInfos.AstAlterLoginSqlServerInfos3(ctx, ((AstAddDrop)(list[3])), ((AstCredentialId)(list[3])));
             }
             return null;
         }
@@ -19125,9 +19233,9 @@ namespace Bb.SqlServer.Asts
         {
             if ((list.Count == 2))
             {
-                if (AstRoot.Eval(list[0], typeof(AstAddDrop), false, false))
+                if (AstRoot.Eval(list[3], typeof(AstAddDrop), false, false))
                 {
-                    if (AstRoot.Eval(list[1], typeof(AstCredentialId), false, false))
+                    if (AstRoot.Eval(list[3], typeof(AstCredentialId), false, false))
                     {
                         return 3;
                     }
@@ -19135,11 +19243,11 @@ namespace Bb.SqlServer.Asts
             }
             if ((list.Count == 1))
             {
-                if (AstRoot.Eval(list[0], typeof(AstEnableDisable), false, false))
+                if (AstRoot.Eval(list[1], typeof(AstEnableDisable), false, false))
                 {
                     return 1;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstAlterLoginSqlServerSettings), false, false))
+                if (AstRoot.Eval(list[2], typeof(AstAlterLoginSqlServerSettings), false, false))
                 {
                     return 2;
                 }
@@ -19188,7 +19296,23 @@ namespace Bb.SqlServer.Asts
         protected static string _rule = @"create_login_sql_server_settings
 	 : (PASSWORD  EQUAL  pwd_value  pwd_strategies?)?  (COMMA?  SID  EQUAL  sid = binary_)?  (COMMA?  DEFAULT_DATABASE  EQUAL  database_id)?  (COMMA?  DEFAULT_LANGUAGE  EQUAL  language_id)?  (COMMA?  CHECK_EXPIRATION  EQUAL  check_expiration = on_off)?  (COMMA?  CHECK_POLICY  EQUAL  check_policy = on_off)?  (COMMA?  CREDENTIAL  EQUAL  credential_id)?";
         
-        internal AstCreateLoginSqlServerSettings(ParserRuleContext ctx, List<AstRoot> list) : 
+        private AstPwdValue _pwdValue;
+        
+        private AstPwdStrategies _pwdStrategies;
+        
+        private AstBinary _sid;
+        
+        private AstDatabaseId _databaseId;
+        
+        private AstLanguageId _languageId;
+        
+        private AstOnOff _checkExpiration;
+        
+        private AstOnOff _checkPolicy;
+        
+        private AstCredentialId _credentialId;
+        
+        internal AstCreateLoginSqlServerSettings(ParserRuleContext ctx) : 
                 base(ctx)
         {
         }
@@ -19216,7 +19340,7 @@ namespace Bb.SqlServer.Asts
             _credentialId = credentialId;
         }
         
-        public virtual AstPwdValue _pwdValue
+        public virtual AstPwdValue PwdValue
         {
             get
             {
@@ -19224,7 +19348,7 @@ namespace Bb.SqlServer.Asts
             }
         }
         
-        public virtual AstPwdStrategies _pwdStrategies
+        public virtual AstPwdStrategies PwdStrategies
         {
             get
             {
@@ -19232,7 +19356,7 @@ namespace Bb.SqlServer.Asts
             }
         }
         
-        public virtual AstBinary _sid
+        public virtual AstBinary Sid
         {
             get
             {
@@ -19240,7 +19364,7 @@ namespace Bb.SqlServer.Asts
             }
         }
         
-        public virtual AstDatabaseId _databaseId
+        public virtual AstDatabaseId DatabaseId
         {
             get
             {
@@ -19248,7 +19372,7 @@ namespace Bb.SqlServer.Asts
             }
         }
         
-        public virtual AstLanguageId _languageId
+        public virtual AstLanguageId LanguageId
         {
             get
             {
@@ -19256,7 +19380,7 @@ namespace Bb.SqlServer.Asts
             }
         }
         
-        public virtual AstOnOff _checkExpiration
+        public virtual AstOnOff CheckExpiration
         {
             get
             {
@@ -19264,7 +19388,7 @@ namespace Bb.SqlServer.Asts
             }
         }
         
-        public virtual AstOnOff _checkPolicy
+        public virtual AstOnOff CheckPolicy
         {
             get
             {
@@ -19272,7 +19396,7 @@ namespace Bb.SqlServer.Asts
             }
         }
         
-        public virtual AstCredentialId _credentialId
+        public virtual AstCredentialId CredentialId
         {
             get
             {
@@ -19283,6 +19407,11 @@ namespace Bb.SqlServer.Asts
         public override void Accept(IAstTSqlVisitor visitor)
         {
             visitor.VisitCreateLoginSqlServerSettings(this);
+        }
+        
+        public static AstCreateLoginSqlServerSettings Create(ParserRuleContext ctx, List<AstRoot> list)
+        {
+            return new AstCreateLoginSqlServerSettings(ctx, ((AstPwdValue)(list[0])), ((AstPwdStrategies)(list[1])), ((AstBinary)(list[2])), ((AstDatabaseId)(list[3])), ((AstLanguageId)(list[4])), ((AstOnOff)(list[5])), ((AstOnOff)(list[6])), ((AstCredentialId)(list[7])));
         }
         
         /// <summary>
@@ -19422,17 +19551,17 @@ namespace Bb.SqlServer.Asts
         public static AstCreateLoginSqlServerFrom Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstCreateLoginSqlServerFrom.Resolve(list);
+            if ((index == 1))
+            {
+                return new AstCreateLoginSqlServerFrom.AstCreateLoginSqlServerFrom1(ctx, ((AstDatabaseId)(list[1])), ((AstStringtext)(list[1])));
+            }
+            if ((index == 2))
+            {
+                return new AstCreateLoginSqlServerFrom.AstCreateLoginSqlServerFrom2(ctx, ((AstCertificateId)(list[2])));
+            }
             if ((index == 3))
             {
-                return new AstCreateLoginSqlServerFrom.AstCreateLoginSqlServerFrom1(ctx, ((AstDatabaseId)(list[0])), ((AstStringtext)(list[1])));
-            }
-            if ((index == 2))
-            {
-                return new AstCreateLoginSqlServerFrom.AstCreateLoginSqlServerFrom2(ctx, ((AstCertificateId)(list[0])));
-            }
-            if ((index == 2))
-            {
-                return new AstCreateLoginSqlServerFrom.AstCreateLoginSqlServerFrom3(ctx, ((AstAsymKeyId)(list[0])));
+                return new AstCreateLoginSqlServerFrom.AstCreateLoginSqlServerFrom3(ctx, ((AstAsymKeyId)(list[3])));
             }
             return null;
         }
@@ -19441,7 +19570,7 @@ namespace Bb.SqlServer.Asts
         {
             if ((list.Count == 2))
             {
-                if (AstRoot.Eval(list[0], typeof(AstDatabaseId), false, false))
+                if (AstRoot.Eval(list[1], typeof(AstDatabaseId), false, false))
                 {
                     if (AstRoot.Eval(list[1], typeof(AstStringtext), false, false))
                     {
@@ -19451,11 +19580,11 @@ namespace Bb.SqlServer.Asts
             }
             if ((list.Count == 1))
             {
-                if (AstRoot.Eval(list[0], typeof(AstCertificateId), false, false))
+                if (AstRoot.Eval(list[2], typeof(AstCertificateId), false, false))
                 {
                     return 2;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstAsymKeyId), false, false))
+                if (AstRoot.Eval(list[3], typeof(AstAsymKeyId), false, false))
                 {
                     return 3;
                 }
@@ -19580,13 +19709,13 @@ namespace Bb.SqlServer.Asts
         public static AstAlterLoginAzureSqlInfos Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstAlterLoginAzureSqlInfos.Resolve(list);
-            if ((index == 2))
+            if ((index == 1))
             {
-                return new AstAlterLoginAzureSqlInfos.AstAlterLoginAzureSqlInfos1(ctx, ((AstEnableDisable)(list[0])));
+                return new AstAlterLoginAzureSqlInfos.AstAlterLoginAzureSqlInfos1(ctx, ((AstEnableDisable)(list[1])));
             }
             if ((index == 2))
             {
-                return new AstAlterLoginAzureSqlInfos.AstAlterLoginAzureSqlInfos2(ctx, ((AstAlterLoginAzureSqlWith)(list[0])));
+                return new AstAlterLoginAzureSqlInfos.AstAlterLoginAzureSqlInfos2(ctx, ((AstAlterLoginAzureSqlWith)(list[2])));
             }
             return null;
         }
@@ -19595,11 +19724,11 @@ namespace Bb.SqlServer.Asts
         {
             if ((list.Count == 1))
             {
-                if (AstRoot.Eval(list[0], typeof(AstEnableDisable), false, false))
+                if (AstRoot.Eval(list[1], typeof(AstEnableDisable), false, false))
                 {
                     return 1;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstAlterLoginAzureSqlWith), false, false))
+                if (AstRoot.Eval(list[2], typeof(AstAlterLoginAzureSqlWith), false, false))
                 {
                     return 2;
                 }
@@ -19725,13 +19854,13 @@ namespace Bb.SqlServer.Asts
         public static AstAlterLoginAzureSqlWith Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstAlterLoginAzureSqlWith.Resolve(list);
-            if ((index == 3))
+            if ((index == 1))
             {
-                return new AstAlterLoginAzureSqlWith.AstAlterLoginAzureSqlWith1(ctx, ((AstPasswordSetting)(list[0])), ((AstOldPwd)(list[1])));
+                return new AstAlterLoginAzureSqlWith.AstAlterLoginAzureSqlWith1(ctx, ((AstPasswordSetting)(list[1])), ((AstOldPwd)(list[1])));
             }
             if ((index == 2))
             {
-                return new AstAlterLoginAzureSqlWith.AstAlterLoginAzureSqlWith2(ctx, ((AstLoginId)(list[0])));
+                return new AstAlterLoginAzureSqlWith.AstAlterLoginAzureSqlWith2(ctx, ((AstLoginId)(list[2])));
             }
             return null;
         }
@@ -19740,7 +19869,7 @@ namespace Bb.SqlServer.Asts
         {
             if ((list.Count == 2))
             {
-                if (AstRoot.Eval(list[0], typeof(AstPasswordSetting), false, false))
+                if (AstRoot.Eval(list[1], typeof(AstPasswordSetting), false, false))
                 {
                     if (AstRoot.Eval(list[1], typeof(AstOldPwd), false, false))
                     {
@@ -19750,7 +19879,7 @@ namespace Bb.SqlServer.Asts
             }
             if ((list.Count == 1))
             {
-                if (AstRoot.Eval(list[0], typeof(AstLoginId), false, false))
+                if (AstRoot.Eval(list[2], typeof(AstLoginId), false, false))
                 {
                     return 2;
                 }
@@ -19864,13 +19993,13 @@ namespace Bb.SqlServer.Asts
         public static AstLoginPwdStrategy Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstLoginPwdStrategy.Resolve(list);
-            if ((index == 2))
+            if ((index == 1))
             {
-                return new AstLoginPwdStrategy.AstLoginPwdStrategy1(ctx, ((AstEnableDisable)(list[0])));
+                return new AstLoginPwdStrategy.AstLoginPwdStrategy1(ctx, ((AstEnableDisable)(list[1])));
             }
             if ((index == 2))
             {
-                return new AstLoginPwdStrategy.AstLoginPwdStrategy2(ctx, ((AstChangePassword)(list[0])));
+                return new AstLoginPwdStrategy.AstLoginPwdStrategy2(ctx, ((AstChangePassword)(list[2])));
             }
             return null;
         }
@@ -19879,11 +20008,11 @@ namespace Bb.SqlServer.Asts
         {
             if ((list.Count == 1))
             {
-                if (AstRoot.Eval(list[0], typeof(AstEnableDisable), false, false))
+                if (AstRoot.Eval(list[1], typeof(AstEnableDisable), false, false))
                 {
                     return 1;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstChangePassword), false, false))
+                if (AstRoot.Eval(list[2], typeof(AstChangePassword), false, false))
                 {
                     return 2;
                 }
@@ -20009,13 +20138,13 @@ namespace Bb.SqlServer.Asts
         public static AstChangePassword Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstChangePassword.Resolve(list);
-            if ((index == 3))
+            if ((index == 1))
             {
-                return new AstChangePassword.AstChangePassword1(ctx, ((AstPasswordSetting)(list[0])), ((AstOldPwdStrategies)(list[1])));
+                return new AstChangePassword.AstChangePassword1(ctx, ((AstPasswordSetting)(list[1])), ((AstOldPwdStrategies)(list[1])));
             }
             if ((index == 2))
             {
-                return new AstChangePassword.AstChangePassword2(ctx, ((AstLoginId)(list[0])));
+                return new AstChangePassword.AstChangePassword2(ctx, ((AstLoginId)(list[2])));
             }
             return null;
         }
@@ -20024,7 +20153,7 @@ namespace Bb.SqlServer.Asts
         {
             if ((list.Count == 2))
             {
-                if (AstRoot.Eval(list[0], typeof(AstPasswordSetting), false, false))
+                if (AstRoot.Eval(list[1], typeof(AstPasswordSetting), false, false))
                 {
                     if (AstRoot.Eval(list[1], typeof(AstOldPwdStrategies), false, false))
                     {
@@ -20034,7 +20163,7 @@ namespace Bb.SqlServer.Asts
             }
             if ((list.Count == 1))
             {
-                if (AstRoot.Eval(list[0], typeof(AstLoginId), false, false))
+                if (AstRoot.Eval(list[2], typeof(AstLoginId), false, false))
                 {
                     return 2;
                 }
@@ -20149,11 +20278,11 @@ namespace Bb.SqlServer.Asts
         public static AstLoginPdwPwd Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstLoginPdwPwd.Resolve(list);
-            if ((index == 3))
-            {
-                return new AstLoginPdwPwd.AstLoginPdwPwd1(ctx, ((AstPasswordSetting)(list[0])), ((AstOnOff)(list[1])));
-            }
             if ((index == 1))
+            {
+                return new AstLoginPdwPwd.AstLoginPdwPwd1(ctx, ((AstPasswordSetting)(list[1])), ((AstOnOff)(list[1])));
+            }
+            if ((index == 2))
             {
                 return new AstLoginPdwPwd.AstLoginPdwPwd2(ctx);
             }
@@ -20164,7 +20293,7 @@ namespace Bb.SqlServer.Asts
         {
             if ((list.Count == 2))
             {
-                if (AstRoot.Eval(list[0], typeof(AstPasswordSetting), false, false))
+                if (AstRoot.Eval(list[1], typeof(AstPasswordSetting), false, false))
                 {
                     if (AstRoot.Eval(list[1], typeof(AstOnOff), false, false))
                     {
@@ -20292,13 +20421,13 @@ namespace Bb.SqlServer.Asts
         public static AstAlterMasterKeySqlServer Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstAlterMasterKeySqlServer.Resolve(list);
+            if ((index == 1))
+            {
+                return new AstAlterMasterKeySqlServer.AstAlterMasterKeySqlServer1(ctx, ((AstRegenerateMaterKey)(list[1])));
+            }
             if ((index == 2))
             {
-                return new AstAlterMasterKeySqlServer.AstAlterMasterKeySqlServer1(ctx, ((AstRegenerateMaterKey)(list[0])));
-            }
-            if ((index == 3))
-            {
-                return new AstAlterMasterKeySqlServer.AstAlterMasterKeySqlServer2(ctx, ((AstAddDrop)(list[0])), ((AstAddMasterKey)(list[1])));
+                return new AstAlterMasterKeySqlServer.AstAlterMasterKeySqlServer2(ctx, ((AstAddDrop)(list[2])), ((AstAddMasterKey)(list[2])));
             }
             return null;
         }
@@ -20307,9 +20436,9 @@ namespace Bb.SqlServer.Asts
         {
             if ((list.Count == 2))
             {
-                if (AstRoot.Eval(list[0], typeof(AstAddDrop), false, false))
+                if (AstRoot.Eval(list[2], typeof(AstAddDrop), false, false))
                 {
-                    if (AstRoot.Eval(list[1], typeof(AstAddMasterKey), false, false))
+                    if (AstRoot.Eval(list[2], typeof(AstAddMasterKey), false, false))
                     {
                         return 2;
                     }
@@ -20317,7 +20446,7 @@ namespace Bb.SqlServer.Asts
             }
             if ((list.Count == 1))
             {
-                if (AstRoot.Eval(list[0], typeof(AstRegenerateMaterKey), false, false))
+                if (AstRoot.Eval(list[1], typeof(AstRegenerateMaterKey), false, false))
                 {
                     return 1;
                 }
@@ -20458,17 +20587,17 @@ namespace Bb.SqlServer.Asts
         public static AstAlterMasterKeyAzureSql Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstAlterMasterKeyAzureSql.Resolve(list);
-            if ((index == 2))
+            if ((index == 1))
             {
-                return new AstAlterMasterKeyAzureSql.AstAlterMasterKeyAzureSql1(ctx, ((AstRegenerateMaterKey)(list[0])));
+                return new AstAlterMasterKeyAzureSql.AstAlterMasterKeyAzureSql1(ctx, ((AstRegenerateMaterKey)(list[1])));
             }
             if ((index == 2))
             {
-                return new AstAlterMasterKeyAzureSql.AstAlterMasterKeyAzureSql2(ctx, ((AstAddMasterKey)(list[0])));
+                return new AstAlterMasterKeyAzureSql.AstAlterMasterKeyAzureSql2(ctx, ((AstAddMasterKey)(list[2])));
             }
-            if ((index == 2))
+            if ((index == 3))
             {
-                return new AstAlterMasterKeyAzureSql.AstAlterMasterKeyAzureSql3(ctx, ((AstEncryptionByPwd)(list[0])));
+                return new AstAlterMasterKeyAzureSql.AstAlterMasterKeyAzureSql3(ctx, ((AstEncryptionByPwd)(list[3])));
             }
             return null;
         }
@@ -20477,15 +20606,15 @@ namespace Bb.SqlServer.Asts
         {
             if ((list.Count == 1))
             {
-                if (AstRoot.Eval(list[0], typeof(AstRegenerateMaterKey), false, false))
+                if (AstRoot.Eval(list[1], typeof(AstRegenerateMaterKey), false, false))
                 {
                     return 1;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstAddMasterKey), false, false))
+                if (AstRoot.Eval(list[2], typeof(AstAddMasterKey), false, false))
                 {
                     return 2;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstEncryptionByPwd), false, false))
+                if (AstRoot.Eval(list[3], typeof(AstEncryptionByPwd), false, false))
                 {
                     return 3;
                 }
@@ -20603,7 +20732,7 @@ namespace Bb.SqlServer.Asts
             }
             if ((index == 2))
             {
-                return new AstAddMasterKey.AstAddMasterKey2(ctx, ((AstPasswordSetting)(list[0])));
+                return new AstAddMasterKey.AstAddMasterKey2(ctx, ((AstPasswordSetting)(list[2])));
             }
             return null;
         }
@@ -20612,7 +20741,7 @@ namespace Bb.SqlServer.Asts
         {
             if ((list.Count == 1))
             {
-                if (AstRoot.Eval(list[0], typeof(AstPasswordSetting), false, false))
+                if (AstRoot.Eval(list[2], typeof(AstPasswordSetting), false, false))
                 {
                     return 1;
                 }
@@ -20727,13 +20856,13 @@ namespace Bb.SqlServer.Asts
         public static AstMessageValidationValue Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstMessageValidationValue.Resolve(list);
-            if ((index == 2))
+            if ((index == 1))
             {
-                return new AstMessageValidationValue.AstMessageValidationValue1(ctx, ((AstMessageValidationValueEnum)(list[0])));
+                return new AstMessageValidationValue.AstMessageValidationValue1(ctx, ((AstMessageValidationValueEnum)(list[1])));
             }
             if ((index == 2))
             {
-                return new AstMessageValidationValue.AstMessageValidationValue2(ctx, ((AstSchemaCollectionId)(list[0])));
+                return new AstMessageValidationValue.AstMessageValidationValue2(ctx, ((AstSchemaCollectionId)(list[2])));
             }
             return null;
         }
@@ -20742,11 +20871,11 @@ namespace Bb.SqlServer.Asts
         {
             if ((list.Count == 1))
             {
-                if (AstRoot.Eval(list[0], typeof(AstMessageValidationValueEnum), false, false))
+                if (AstRoot.Eval(list[1], typeof(AstMessageValidationValueEnum), false, false))
                 {
                     return 1;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstSchemaCollectionId), false, false))
+                if (AstRoot.Eval(list[2], typeof(AstSchemaCollectionId), false, false))
                 {
                     return 2;
                 }
@@ -20785,7 +20914,23 @@ namespace Bb.SqlServer.Asts
         protected static string _rule = @"create_resource_pool_infos
 	 : WITH  LR_BRACKET  (COMMA?  MIN_CPU_PERCENT  EQUAL  min_cpu_percent = decimal)?  (COMMA?  MAX_CPU_PERCENT  EQUAL  max_cpu_percent = decimal)?  (COMMA?  CAP_CPU_PERCENT  EQUAL  cap_cpu_percent = decimal)?  (COMMA?  AFFINITY  SCHEDULER  EQUAL  resource_affinity_scheduler_value)?  (COMMA?  MIN_MEMORY_PERCENT  EQUAL  min_memory_percent = decimal)?  (COMMA?  MAX_MEMORY_PERCENT  EQUAL  max_memory_percent = decimal)?  (COMMA?  MIN_IOPS_PER_VOLUME  EQUAL  min_tops_percent = decimal)?  (COMMA?  MAX_IOPS_PER_VOLUME  EQUAL  max_tops_percent = decimal)?  RR_BRACKET";
         
-        internal AstCreateResourcePoolInfos(ParserRuleContext ctx, List<AstRoot> list) : 
+        private AstDecimal _minCpuPercent;
+        
+        private AstDecimal _maxCpuPercent;
+        
+        private AstDecimal _capCpuPercent;
+        
+        private AstResourceAffinitySchedulerValue _resourceAffinitySchedulerValue;
+        
+        private AstDecimal _minMemoryPercent;
+        
+        private AstDecimal _maxMemoryPercent;
+        
+        private AstDecimal _minTopsPercent;
+        
+        private AstDecimal _maxTopsPercent;
+        
+        internal AstCreateResourcePoolInfos(ParserRuleContext ctx) : 
                 base(ctx)
         {
         }
@@ -20813,7 +20958,7 @@ namespace Bb.SqlServer.Asts
             _maxTopsPercent = maxTopsPercent;
         }
         
-        public virtual AstDecimal _minCpuPercent
+        public virtual AstDecimal MinCpuPercent
         {
             get
             {
@@ -20821,7 +20966,7 @@ namespace Bb.SqlServer.Asts
             }
         }
         
-        public virtual AstDecimal _maxCpuPercent
+        public virtual AstDecimal MaxCpuPercent
         {
             get
             {
@@ -20829,7 +20974,7 @@ namespace Bb.SqlServer.Asts
             }
         }
         
-        public virtual AstDecimal _capCpuPercent
+        public virtual AstDecimal CapCpuPercent
         {
             get
             {
@@ -20837,7 +20982,7 @@ namespace Bb.SqlServer.Asts
             }
         }
         
-        public virtual AstResourceAffinitySchedulerValue _resourceAffinitySchedulerValue
+        public virtual AstResourceAffinitySchedulerValue ResourceAffinitySchedulerValue
         {
             get
             {
@@ -20845,7 +20990,7 @@ namespace Bb.SqlServer.Asts
             }
         }
         
-        public virtual AstDecimal _minMemoryPercent
+        public virtual AstDecimal MinMemoryPercent
         {
             get
             {
@@ -20853,7 +20998,7 @@ namespace Bb.SqlServer.Asts
             }
         }
         
-        public virtual AstDecimal _maxMemoryPercent
+        public virtual AstDecimal MaxMemoryPercent
         {
             get
             {
@@ -20861,7 +21006,7 @@ namespace Bb.SqlServer.Asts
             }
         }
         
-        public virtual AstDecimal _minTopsPercent
+        public virtual AstDecimal MinTopsPercent
         {
             get
             {
@@ -20869,7 +21014,7 @@ namespace Bb.SqlServer.Asts
             }
         }
         
-        public virtual AstDecimal _maxTopsPercent
+        public virtual AstDecimal MaxTopsPercent
         {
             get
             {
@@ -20880,6 +21025,11 @@ namespace Bb.SqlServer.Asts
         public override void Accept(IAstTSqlVisitor visitor)
         {
             visitor.VisitCreateResourcePoolInfos(this);
+        }
+        
+        public static AstCreateResourcePoolInfos Create(ParserRuleContext ctx, List<AstRoot> list)
+        {
+            return new AstCreateResourcePoolInfos(ctx, ((AstDecimal)(list[0])), ((AstDecimal)(list[1])), ((AstDecimal)(list[2])), ((AstResourceAffinitySchedulerValue)(list[3])), ((AstDecimal)(list[4])), ((AstDecimal)(list[5])), ((AstDecimal)(list[6])), ((AstDecimal)(list[7])));
         }
         
         /// <summary>
@@ -21002,11 +21152,11 @@ namespace Bb.SqlServer.Asts
             }
             if ((index == 2))
             {
-                return new AstResourceAffinitySchedulerValue.AstResourceAffinitySchedulerValue2(ctx, ((AstDecimalRanges)(list[0])));
+                return new AstResourceAffinitySchedulerValue.AstResourceAffinitySchedulerValue2(ctx, ((AstDecimalRanges)(list[2])));
             }
-            if ((index == 2))
+            if ((index == 3))
             {
-                return new AstResourceAffinitySchedulerValue.AstResourceAffinitySchedulerValue3(ctx, ((AstDecimalRanges)(list[0])));
+                return new AstResourceAffinitySchedulerValue.AstResourceAffinitySchedulerValue3(ctx, ((AstDecimalRanges)(list[3])));
             }
             return null;
         }
@@ -21015,11 +21165,11 @@ namespace Bb.SqlServer.Asts
         {
             if ((list.Count == 1))
             {
-                if (AstRoot.Eval(list[0], typeof(AstDecimalRanges), false, false))
+                if (AstRoot.Eval(list[2], typeof(AstDecimalRanges), false, false))
                 {
                     return 1;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstDecimalRanges), false, false))
+                if (AstRoot.Eval(list[3], typeof(AstDecimalRanges), false, false))
                 {
                     return 2;
                 }
@@ -21192,25 +21342,25 @@ namespace Bb.SqlServer.Asts
         public static AstAlterResourceGovernor Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstAlterResourceGovernor.Resolve(list);
-            if ((index == 2))
-            {
-                return new AstAlterResourceGovernor.AstAlterResourceGovernor1(ctx, ((AstDisableReconfigure)(list[0])));
-            }
-            if ((index == 2))
-            {
-                return new AstAlterResourceGovernor.AstAlterResourceGovernor2(ctx, ((AstSchemaFuncProcRef)(list[0])));
-            }
             if ((index == 1))
+            {
+                return new AstAlterResourceGovernor.AstAlterResourceGovernor1(ctx, ((AstDisableReconfigure)(list[1])));
+            }
+            if ((index == 2))
+            {
+                return new AstAlterResourceGovernor.AstAlterResourceGovernor2(ctx, ((AstSchemaFuncProcRef)(list[2])));
+            }
+            if ((index == 3))
             {
                 return new AstAlterResourceGovernor.AstAlterResourceGovernor3(ctx);
             }
-            if ((index == 1))
+            if ((index == 4))
             {
                 return new AstAlterResourceGovernor.AstAlterResourceGovernor4(ctx);
             }
-            if ((index == 2))
+            if ((index == 5))
             {
-                return new AstAlterResourceGovernor.AstAlterResourceGovernor5(ctx, ((AstDecimal)(list[0])));
+                return new AstAlterResourceGovernor.AstAlterResourceGovernor5(ctx, ((AstDecimal)(list[5])));
             }
             return null;
         }
@@ -21219,15 +21369,15 @@ namespace Bb.SqlServer.Asts
         {
             if ((list.Count == 1))
             {
-                if (AstRoot.Eval(list[0], typeof(AstDisableReconfigure), false, false))
+                if (AstRoot.Eval(list[1], typeof(AstDisableReconfigure), false, false))
                 {
                     return 1;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstSchemaFuncProcRef), false, false))
+                if (AstRoot.Eval(list[2], typeof(AstSchemaFuncProcRef), false, false))
                 {
                     return 2;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstDecimal), false, false))
+                if (AstRoot.Eval(list[5], typeof(AstDecimal), false, false))
                 {
                     return 3;
                 }
@@ -21394,13 +21544,13 @@ namespace Bb.SqlServer.Asts
         public static AstAlterDbRole Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstAlterDbRole.Resolve(list);
-            if ((index == 4))
+            if ((index == 1))
             {
-                return new AstAlterDbRole.AstAlterDbRole1(ctx, ((AstRoleId)(list[0])), ((AstAddDrop)(list[1])), ((AstDatabaseId)(list[2])));
+                return new AstAlterDbRole.AstAlterDbRole1(ctx, ((AstRoleId)(list[1])), ((AstAddDrop)(list[1])), ((AstDatabaseId)(list[1])));
             }
-            if ((index == 3))
+            if ((index == 2))
             {
-                return new AstAlterDbRole.AstAlterDbRole2(ctx, ((AstRoleId)(list[0])), ((AstRoleId)(list[1])));
+                return new AstAlterDbRole.AstAlterDbRole2(ctx, ((AstRoleId)(list[2])), ((AstRoleId)(list[2])));
             }
             return null;
         }
@@ -21409,11 +21559,11 @@ namespace Bb.SqlServer.Asts
         {
             if ((list.Count == 3))
             {
-                if (AstRoot.Eval(list[0], typeof(AstRoleId), false, false))
+                if (AstRoot.Eval(list[1], typeof(AstRoleId), false, false))
                 {
                     if (AstRoot.Eval(list[1], typeof(AstAddDrop), false, false))
                     {
-                        if (AstRoot.Eval(list[2], typeof(AstDatabaseId), false, false))
+                        if (AstRoot.Eval(list[1], typeof(AstDatabaseId), false, false))
                         {
                             return 1;
                         }
@@ -21422,9 +21572,9 @@ namespace Bb.SqlServer.Asts
             }
             if ((list.Count == 2))
             {
-                if (AstRoot.Eval(list[0], typeof(AstRoleId), false, false))
+                if (AstRoot.Eval(list[2], typeof(AstRoleId), false, false))
                 {
-                    if (AstRoot.Eval(list[1], typeof(AstRoleId), false, false))
+                    if (AstRoot.Eval(list[2], typeof(AstRoleId), false, false))
                     {
                         return 2;
                     }
@@ -21562,13 +21712,13 @@ namespace Bb.SqlServer.Asts
         public static AstCreateSchemaName Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstCreateSchemaName.Resolve(list);
-            if ((index == 3))
+            if ((index == 1))
             {
-                return new AstCreateSchemaName.AstCreateSchemaName1(ctx, ((AstSchemaIdentifier)(list[0])), ((AstSchemaAuthorization)(list[1])));
+                return new AstCreateSchemaName.AstCreateSchemaName1(ctx, ((AstSchemaIdentifier)(list[1])), ((AstSchemaAuthorization)(list[1])));
             }
-            if ((index == 3))
+            if ((index == 2))
             {
-                return new AstCreateSchemaName.AstCreateSchemaName2(ctx, ((AstSchemaIdentifier)(list[0])), ((AstSchemaAuthorization)(list[1])));
+                return new AstCreateSchemaName.AstCreateSchemaName2(ctx, ((AstSchemaIdentifier)(list[2])), ((AstSchemaAuthorization)(list[2])));
             }
             return null;
         }
@@ -21577,16 +21727,16 @@ namespace Bb.SqlServer.Asts
         {
             if ((list.Count == 2))
             {
-                if (AstRoot.Eval(list[0], typeof(AstSchemaIdentifier), false, false))
+                if (AstRoot.Eval(list[1], typeof(AstSchemaIdentifier), false, false))
                 {
                     if (AstRoot.Eval(list[1], typeof(AstSchemaAuthorization), false, false))
                     {
                         return 1;
                     }
                 }
-                if (AstRoot.Eval(list[0], typeof(AstSchemaIdentifier), false, false))
+                if (AstRoot.Eval(list[2], typeof(AstSchemaIdentifier), false, false))
                 {
-                    if (AstRoot.Eval(list[1], typeof(AstSchemaAuthorization), false, false))
+                    if (AstRoot.Eval(list[2], typeof(AstSchemaAuthorization), false, false))
                     {
                         return 2;
                     }
@@ -21804,21 +21954,21 @@ namespace Bb.SqlServer.Asts
         public static AstCreateSchemaTarget Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstCreateSchemaTarget.Resolve(list);
-            if ((index == 2))
+            if ((index == 1))
             {
-                return new AstCreateSchemaTarget.AstCreateSchemaTarget1(ctx, ((AstCreateTable)(list[0])));
+                return new AstCreateSchemaTarget.AstCreateSchemaTarget1(ctx, ((AstCreateTable)(list[1])));
             }
             if ((index == 2))
             {
-                return new AstCreateSchemaTarget.AstCreateSchemaTarget2(ctx, ((AstCreateView)(list[0])));
+                return new AstCreateSchemaTarget.AstCreateSchemaTarget2(ctx, ((AstCreateView)(list[2])));
             }
-            if ((index == 5))
+            if ((index == 3))
             {
-                return new AstCreateSchemaTarget.AstCreateSchemaTarget3(ctx, ((AstGrantDeny)(list[0])), ((AstEnumDml)(list[1])), ((AstObjectIdentifier)(list[2])), ((AstOwnerId)(list[3])));
+                return new AstCreateSchemaTarget.AstCreateSchemaTarget3(ctx, ((AstGrantDeny)(list[3])), ((AstEnumDml)(list[3])), ((AstObjectIdentifier)(list[3])), ((AstOwnerId)(list[3])));
             }
             if ((index == 4))
             {
-                return new AstCreateSchemaTarget.AstCreateSchemaTarget4(ctx, ((AstEnumDml)(list[0])), ((AstObjectIdentifier)(list[1])), ((AstOwnerId)(list[2])));
+                return new AstCreateSchemaTarget.AstCreateSchemaTarget4(ctx, ((AstEnumDml)(list[4])), ((AstObjectIdentifier)(list[4])), ((AstOwnerId)(list[4])));
             }
             return null;
         }
@@ -21827,11 +21977,11 @@ namespace Bb.SqlServer.Asts
         {
             if ((list.Count == 4))
             {
-                if (AstRoot.Eval(list[0], typeof(AstGrantDeny), false, false))
+                if (AstRoot.Eval(list[3], typeof(AstGrantDeny), false, false))
                 {
-                    if (AstRoot.Eval(list[1], typeof(AstEnumDml), false, false))
+                    if (AstRoot.Eval(list[3], typeof(AstEnumDml), false, false))
                     {
-                        if (AstRoot.Eval(list[2], typeof(AstObjectIdentifier), false, false))
+                        if (AstRoot.Eval(list[3], typeof(AstObjectIdentifier), false, false))
                         {
                             if (AstRoot.Eval(list[3], typeof(AstOwnerId), false, false))
                             {
@@ -21843,11 +21993,11 @@ namespace Bb.SqlServer.Asts
             }
             if ((list.Count == 3))
             {
-                if (AstRoot.Eval(list[0], typeof(AstEnumDml), false, false))
+                if (AstRoot.Eval(list[4], typeof(AstEnumDml), false, false))
                 {
-                    if (AstRoot.Eval(list[1], typeof(AstObjectIdentifier), false, false))
+                    if (AstRoot.Eval(list[4], typeof(AstObjectIdentifier), false, false))
                     {
-                        if (AstRoot.Eval(list[2], typeof(AstOwnerId), false, false))
+                        if (AstRoot.Eval(list[4], typeof(AstOwnerId), false, false))
                         {
                             return 4;
                         }
@@ -21856,11 +22006,11 @@ namespace Bb.SqlServer.Asts
             }
             if ((list.Count == 1))
             {
-                if (AstRoot.Eval(list[0], typeof(AstCreateTable), false, false))
+                if (AstRoot.Eval(list[1], typeof(AstCreateTable), false, false))
                 {
                     return 1;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstCreateView), false, false))
+                if (AstRoot.Eval(list[2], typeof(AstCreateView), false, false))
                 {
                     return 2;
                 }
@@ -21994,13 +22144,13 @@ namespace Bb.SqlServer.Asts
         public static AstSchemaTableRefImpact Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstSchemaTableRefImpact.Resolve(list);
-            if ((index == 2))
+            if ((index == 1))
             {
-                return new AstSchemaTableRefImpact.AstSchemaTableRefImpact1(ctx, ((AstInsertUpdate)(list[0])));
+                return new AstSchemaTableRefImpact.AstSchemaTableRefImpact1(ctx, ((AstInsertUpdate)(list[1])));
             }
             if ((index == 2))
             {
-                return new AstSchemaTableRefImpact.AstSchemaTableRefImpact2(ctx, ((AstUpdateDelate)(list[0])));
+                return new AstSchemaTableRefImpact.AstSchemaTableRefImpact2(ctx, ((AstUpdateDelate)(list[2])));
             }
             return null;
         }
@@ -22009,11 +22159,11 @@ namespace Bb.SqlServer.Asts
         {
             if ((list.Count == 1))
             {
-                if (AstRoot.Eval(list[0], typeof(AstInsertUpdate), false, false))
+                if (AstRoot.Eval(list[1], typeof(AstInsertUpdate), false, false))
                 {
                     return 1;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstUpdateDelate), false, false))
+                if (AstRoot.Eval(list[2], typeof(AstUpdateDelate), false, false))
                 {
                     return 2;
                 }
@@ -22051,7 +22201,9 @@ namespace Bb.SqlServer.Asts
         
         protected static string _rule = "alter_sequence_restart\r\n\t : RESTART  (WITH  decimal)?";
         
-        internal AstAlterSequenceRestart(ParserRuleContext ctx, List<AstRoot> list) : 
+        private AstDecimal _decimal;
+        
+        internal AstAlterSequenceRestart(ParserRuleContext ctx) : 
                 base(ctx)
         {
         }
@@ -22072,7 +22224,7 @@ namespace Bb.SqlServer.Asts
             _decimal = @decimal;
         }
         
-        public virtual AstDecimal _decimal
+        public virtual AstDecimal Decimal
         {
             get
             {
@@ -22083,6 +22235,11 @@ namespace Bb.SqlServer.Asts
         public override void Accept(IAstTSqlVisitor visitor)
         {
             visitor.VisitAlterSequenceRestart(this);
+        }
+        
+        public static AstAlterSequenceRestart Create(ParserRuleContext ctx, List<AstRoot> list)
+        {
+            return new AstAlterSequenceRestart(ctx, ((AstDecimal)(list[0])));
         }
         
         /// <summary>
@@ -22105,7 +22262,9 @@ namespace Bb.SqlServer.Asts
         
         protected static string _rule = "alter_sequence_increment\r\n\t : INCREMENT  BY  sequnce_increment = decimal";
         
-        internal AstAlterSequenceIncrement(ParserRuleContext ctx, List<AstRoot> list) : 
+        private AstDecimal _sequnceIncrement;
+        
+        internal AstAlterSequenceIncrement(ParserRuleContext ctx) : 
                 base(ctx)
         {
         }
@@ -22126,7 +22285,7 @@ namespace Bb.SqlServer.Asts
             _sequnceIncrement = sequnceIncrement;
         }
         
-        public virtual AstDecimal _sequnceIncrement
+        public virtual AstDecimal SequnceIncrement
         {
             get
             {
@@ -22137,6 +22296,11 @@ namespace Bb.SqlServer.Asts
         public override void Accept(IAstTSqlVisitor visitor)
         {
             visitor.VisitAlterSequenceIncrement(this);
+        }
+        
+        public static AstAlterSequenceIncrement Create(ParserRuleContext ctx, List<AstRoot> list)
+        {
+            return new AstAlterSequenceIncrement(ctx, ((AstDecimal)(list[0])));
         }
         
         /// <summary>
@@ -22223,11 +22387,11 @@ namespace Bb.SqlServer.Asts
         public static AstSequenceCache Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstSequenceCache.Resolve(list);
-            if ((index == 2))
-            {
-                return new AstSequenceCache.AstSequenceCache1(ctx, ((AstDecimal)(list[0])));
-            }
             if ((index == 1))
+            {
+                return new AstSequenceCache.AstSequenceCache1(ctx, ((AstDecimal)(list[1])));
+            }
+            if ((index == 2))
             {
                 return new AstSequenceCache.AstSequenceCache2(ctx);
             }
@@ -22238,7 +22402,7 @@ namespace Bb.SqlServer.Asts
         {
             if ((list.Count == 1))
             {
-                if (AstRoot.Eval(list[0], typeof(AstDecimal), false, false))
+                if (AstRoot.Eval(list[1], typeof(AstDecimal), false, false))
                 {
                     return 1;
                 }
@@ -22340,11 +22504,11 @@ namespace Bb.SqlServer.Asts
         public static AstAlterSequenceMaxValue Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstAlterSequenceMaxValue.Resolve(list);
-            if ((index == 2))
-            {
-                return new AstAlterSequenceMaxValue.AstAlterSequenceMaxValue1(ctx, ((AstDecimal)(list[0])));
-            }
             if ((index == 1))
+            {
+                return new AstAlterSequenceMaxValue.AstAlterSequenceMaxValue1(ctx, ((AstDecimal)(list[1])));
+            }
+            if ((index == 2))
             {
                 return new AstAlterSequenceMaxValue.AstAlterSequenceMaxValue2(ctx);
             }
@@ -22355,7 +22519,7 @@ namespace Bb.SqlServer.Asts
         {
             if ((list.Count == 1))
             {
-                if (AstRoot.Eval(list[0], typeof(AstDecimal), false, false))
+                if (AstRoot.Eval(list[1], typeof(AstDecimal), false, false))
                 {
                     return 1;
                 }
@@ -22458,11 +22622,11 @@ namespace Bb.SqlServer.Asts
         public static AstAlterSequenceMinValue Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstAlterSequenceMinValue.Resolve(list);
-            if ((index == 2))
-            {
-                return new AstAlterSequenceMinValue.AstAlterSequenceMinValue1(ctx, ((AstDecimal)(list[0])));
-            }
             if ((index == 1))
+            {
+                return new AstAlterSequenceMinValue.AstAlterSequenceMinValue1(ctx, ((AstDecimal)(list[1])));
+            }
+            if ((index == 2))
             {
                 return new AstAlterSequenceMinValue.AstAlterSequenceMinValue2(ctx);
             }
@@ -22473,7 +22637,7 @@ namespace Bb.SqlServer.Asts
         {
             if ((list.Count == 1))
             {
-                if (AstRoot.Eval(list[0], typeof(AstDecimal), false, false))
+                if (AstRoot.Eval(list[1], typeof(AstDecimal), false, false))
                 {
                     return 1;
                 }
@@ -22576,11 +22740,11 @@ namespace Bb.SqlServer.Asts
         public static AstCreateSequenceMinValue Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstCreateSequenceMinValue.Resolve(list);
-            if ((index == 2))
-            {
-                return new AstCreateSequenceMinValue.AstCreateSequenceMinValue1(ctx, ((AstReal)(list[0])));
-            }
             if ((index == 1))
+            {
+                return new AstCreateSequenceMinValue.AstCreateSequenceMinValue1(ctx, ((AstReal)(list[1])));
+            }
+            if ((index == 2))
             {
                 return new AstCreateSequenceMinValue.AstCreateSequenceMinValue2(ctx);
             }
@@ -22591,7 +22755,7 @@ namespace Bb.SqlServer.Asts
         {
             if ((list.Count == 1))
             {
-                if (AstRoot.Eval(list[0], typeof(AstReal), false, false))
+                if (AstRoot.Eval(list[1], typeof(AstReal), false, false))
                 {
                     return 1;
                 }
@@ -22694,11 +22858,11 @@ namespace Bb.SqlServer.Asts
         public static AstCreateSequenceMaxValue Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstCreateSequenceMaxValue.Resolve(list);
-            if ((index == 2))
-            {
-                return new AstCreateSequenceMaxValue.AstCreateSequenceMaxValue1(ctx, ((AstReal)(list[0])));
-            }
             if ((index == 1))
+            {
+                return new AstCreateSequenceMaxValue.AstCreateSequenceMaxValue1(ctx, ((AstReal)(list[1])));
+            }
+            if ((index == 2))
             {
                 return new AstCreateSequenceMaxValue.AstCreateSequenceMaxValue2(ctx);
             }
@@ -22709,7 +22873,7 @@ namespace Bb.SqlServer.Asts
         {
             if ((list.Count == 1))
             {
-                if (AstRoot.Eval(list[0], typeof(AstReal), false, false))
+                if (AstRoot.Eval(list[1], typeof(AstReal), false, false))
                 {
                     return 1;
                 }
@@ -22864,17 +23028,17 @@ namespace Bb.SqlServer.Asts
         public static AstAlterServerAuditInfos Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstAlterServerAuditInfos.Resolve(list);
-            if ((index == 4))
-            {
-                return new AstAlterServerAuditInfos.AstAlterServerAuditInfos1(ctx, ((AstServerAuditFile)(list[0])), ((AstWithServerAuditFile)(list[1])), ((AstWhereServerAuditCondition)(list[2])));
-            }
             if ((index == 1))
             {
-                return new AstAlterServerAuditInfos.AstAlterServerAuditInfos2(ctx);
+                return new AstAlterServerAuditInfos.AstAlterServerAuditInfos1(ctx, ((AstServerAuditFile)(list[1])), ((AstWithServerAuditFile)(list[1])), ((AstWhereServerAuditCondition)(list[1])));
             }
             if ((index == 2))
             {
-                return new AstAlterServerAuditInfos.AstAlterServerAuditInfos3(ctx, ((AstAuditId)(list[0])));
+                return new AstAlterServerAuditInfos.AstAlterServerAuditInfos2(ctx);
+            }
+            if ((index == 3))
+            {
+                return new AstAlterServerAuditInfos.AstAlterServerAuditInfos3(ctx, ((AstAuditId)(list[3])));
             }
             return null;
         }
@@ -22883,11 +23047,11 @@ namespace Bb.SqlServer.Asts
         {
             if ((list.Count == 3))
             {
-                if (AstRoot.Eval(list[0], typeof(AstServerAuditFile), false, false))
+                if (AstRoot.Eval(list[1], typeof(AstServerAuditFile), false, false))
                 {
                     if (AstRoot.Eval(list[1], typeof(AstWithServerAuditFile), false, false))
                     {
-                        if (AstRoot.Eval(list[2], typeof(AstWhereServerAuditCondition), false, false))
+                        if (AstRoot.Eval(list[1], typeof(AstWhereServerAuditCondition), false, false))
                         {
                             return 1;
                         }
@@ -22896,7 +23060,7 @@ namespace Bb.SqlServer.Asts
             }
             if ((list.Count == 1))
             {
-                if (AstRoot.Eval(list[0], typeof(AstAuditId), false, false))
+                if (AstRoot.Eval(list[3], typeof(AstAuditId), false, false))
                 {
                     return 2;
                 }
@@ -23049,17 +23213,17 @@ namespace Bb.SqlServer.Asts
         public static AstServerAuditFileInfo Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstServerAuditFileInfo.Resolve(list);
-            if ((index == 2))
+            if ((index == 1))
             {
-                return new AstServerAuditFileInfo.AstServerAuditFileInfo1(ctx, ((AstDecimal)(list[0])));
+                return new AstServerAuditFileInfo.AstServerAuditFileInfo1(ctx, ((AstDecimal)(list[1])));
             }
             if ((index == 2))
             {
-                return new AstServerAuditFileInfo.AstServerAuditFileInfo2(ctx, ((AstContinueShutdown)(list[0])));
+                return new AstServerAuditFileInfo.AstServerAuditFileInfo2(ctx, ((AstContinueShutdown)(list[2])));
             }
-            if ((index == 2))
+            if ((index == 3))
             {
-                return new AstServerAuditFileInfo.AstServerAuditFileInfo3(ctx, ((AstOnOff)(list[0])));
+                return new AstServerAuditFileInfo.AstServerAuditFileInfo3(ctx, ((AstOnOff)(list[3])));
             }
             return null;
         }
@@ -23068,15 +23232,15 @@ namespace Bb.SqlServer.Asts
         {
             if ((list.Count == 1))
             {
-                if (AstRoot.Eval(list[0], typeof(AstDecimal), false, false))
+                if (AstRoot.Eval(list[1], typeof(AstDecimal), false, false))
                 {
                     return 1;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstContinueShutdown), false, false))
+                if (AstRoot.Eval(list[2], typeof(AstContinueShutdown), false, false))
                 {
                     return 2;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstOnOff), false, false))
+                if (AstRoot.Eval(list[3], typeof(AstOnOff), false, false))
                 {
                     return 3;
                 }
@@ -23207,15 +23371,15 @@ namespace Bb.SqlServer.Asts
         public static AstServerAuditFile Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstServerAuditFile.Resolve(list);
-            if ((index == 2))
-            {
-                return new AstServerAuditFile.AstServerAuditFile1(ctx, ((AstServerAuditFileSpecs)(list[0])));
-            }
             if ((index == 1))
+            {
+                return new AstServerAuditFile.AstServerAuditFile1(ctx, ((AstServerAuditFileSpecs)(list[1])));
+            }
+            if ((index == 2))
             {
                 return new AstServerAuditFile.AstServerAuditFile2(ctx);
             }
-            if ((index == 1))
+            if ((index == 3))
             {
                 return new AstServerAuditFile.AstServerAuditFile3(ctx);
             }
@@ -23226,7 +23390,7 @@ namespace Bb.SqlServer.Asts
         {
             if ((list.Count == 1))
             {
-                if (AstRoot.Eval(list[0], typeof(AstServerAuditFileSpecs), false, false))
+                if (AstRoot.Eval(list[1], typeof(AstServerAuditFileSpecs), false, false))
                 {
                     return 1;
                 }
@@ -23429,25 +23593,25 @@ namespace Bb.SqlServer.Asts
         public static AstServerAuditFileSpec Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstServerAuditFileSpec.Resolve(list);
-            if ((index == 2))
+            if ((index == 1))
             {
-                return new AstServerAuditFileSpec.AstServerAuditFileSpec1(ctx, ((AstStringtext)(list[0])));
+                return new AstServerAuditFileSpec.AstServerAuditFileSpec1(ctx, ((AstStringtext)(list[1])));
             }
             if ((index == 2))
             {
-                return new AstServerAuditFileSpec.AstServerAuditFileSpec2(ctx, ((AstDecimalSizeUnlimited)(list[0])));
+                return new AstServerAuditFileSpec.AstServerAuditFileSpec2(ctx, ((AstDecimalSizeUnlimited)(list[2])));
             }
-            if ((index == 2))
+            if ((index == 3))
             {
-                return new AstServerAuditFileSpec.AstServerAuditFileSpec3(ctx, ((AstDecimalUnlimited)(list[0])));
+                return new AstServerAuditFileSpec.AstServerAuditFileSpec3(ctx, ((AstDecimalUnlimited)(list[3])));
             }
-            if ((index == 2))
+            if ((index == 4))
             {
-                return new AstServerAuditFileSpec.AstServerAuditFileSpec4(ctx, ((AstDecimal)(list[0])));
+                return new AstServerAuditFileSpec.AstServerAuditFileSpec4(ctx, ((AstDecimal)(list[4])));
             }
-            if ((index == 2))
+            if ((index == 5))
             {
-                return new AstServerAuditFileSpec.AstServerAuditFileSpec5(ctx, ((AstOnOff)(list[0])));
+                return new AstServerAuditFileSpec.AstServerAuditFileSpec5(ctx, ((AstOnOff)(list[5])));
             }
             return null;
         }
@@ -23456,23 +23620,23 @@ namespace Bb.SqlServer.Asts
         {
             if ((list.Count == 1))
             {
-                if (AstRoot.Eval(list[0], typeof(AstStringtext), false, false))
+                if (AstRoot.Eval(list[1], typeof(AstStringtext), false, false))
                 {
                     return 1;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstDecimalSizeUnlimited), false, false))
+                if (AstRoot.Eval(list[2], typeof(AstDecimalSizeUnlimited), false, false))
                 {
                     return 2;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstDecimalUnlimited), false, false))
+                if (AstRoot.Eval(list[3], typeof(AstDecimalUnlimited), false, false))
                 {
                     return 3;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstDecimal), false, false))
+                if (AstRoot.Eval(list[4], typeof(AstDecimal), false, false))
                 {
                     return 4;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstOnOff), false, false))
+                if (AstRoot.Eval(list[5], typeof(AstOnOff), false, false))
                 {
                     return 5;
                 }
@@ -23605,11 +23769,11 @@ namespace Bb.SqlServer.Asts
         public static AstDecimalUnlimited Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstDecimalUnlimited.Resolve(list);
-            if ((index == 2))
-            {
-                return new AstDecimalUnlimited.AstDecimalUnlimited1(ctx, ((AstDecimal)(list[0])));
-            }
             if ((index == 1))
+            {
+                return new AstDecimalUnlimited.AstDecimalUnlimited1(ctx, ((AstDecimal)(list[1])));
+            }
+            if ((index == 2))
             {
                 return new AstDecimalUnlimited.AstDecimalUnlimited2(ctx);
             }
@@ -23620,7 +23784,7 @@ namespace Bb.SqlServer.Asts
         {
             if ((list.Count == 1))
             {
-                if (AstRoot.Eval(list[0], typeof(AstDecimal), false, false))
+                if (AstRoot.Eval(list[1], typeof(AstDecimal), false, false))
                 {
                     return 1;
                 }
@@ -23733,11 +23897,11 @@ namespace Bb.SqlServer.Asts
         public static AstDecimalSizeUnlimited Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstDecimalSizeUnlimited.Resolve(list);
-            if ((index == 3))
-            {
-                return new AstDecimalSizeUnlimited.AstDecimalSizeUnlimited1(ctx, ((AstDecimal)(list[0])), ((AstSizeUnity)(list[1])));
-            }
             if ((index == 1))
+            {
+                return new AstDecimalSizeUnlimited.AstDecimalSizeUnlimited1(ctx, ((AstDecimal)(list[1])), ((AstSizeUnity)(list[1])));
+            }
+            if ((index == 2))
             {
                 return new AstDecimalSizeUnlimited.AstDecimalSizeUnlimited2(ctx);
             }
@@ -23748,7 +23912,7 @@ namespace Bb.SqlServer.Asts
         {
             if ((list.Count == 2))
             {
-                if (AstRoot.Eval(list[0], typeof(AstDecimal), false, false))
+                if (AstRoot.Eval(list[1], typeof(AstDecimal), false, false))
                 {
                     if (AstRoot.Eval(list[1], typeof(AstSizeUnity), false, false))
                     {
@@ -23910,13 +24074,13 @@ namespace Bb.SqlServer.Asts
         public static AstAlterServerAuditCondition Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstAlterServerAuditCondition.Resolve(list);
-            if ((index == 4))
+            if ((index == 1))
             {
-                return new AstAlterServerAuditCondition.AstAlterServerAuditCondition1(ctx, ((AstEventFieldId)(list[0])), ((AstAuditOperator)(list[1])), ((AstDecimalString)(list[2])));
+                return new AstAlterServerAuditCondition.AstAlterServerAuditCondition1(ctx, ((AstEventFieldId)(list[1])), ((AstAuditOperator)(list[1])), ((AstDecimalString)(list[1])));
             }
-            if ((index == 4))
+            if ((index == 2))
             {
-                return new AstAlterServerAuditCondition.AstAlterServerAuditCondition2(ctx, ((AstAndOr)(list[0])), ((AstAuditOperator)(list[1])), ((AstDecimalString)(list[2])));
+                return new AstAlterServerAuditCondition.AstAlterServerAuditCondition2(ctx, ((AstAndOr)(list[2])), ((AstAuditOperator)(list[2])), ((AstDecimalString)(list[2])));
             }
             return null;
         }
@@ -23925,19 +24089,19 @@ namespace Bb.SqlServer.Asts
         {
             if ((list.Count == 3))
             {
-                if (AstRoot.Eval(list[0], typeof(AstEventFieldId), false, false))
+                if (AstRoot.Eval(list[1], typeof(AstEventFieldId), false, false))
                 {
                     if (AstRoot.Eval(list[1], typeof(AstAuditOperator), false, false))
                     {
-                        if (AstRoot.Eval(list[2], typeof(AstDecimalString), false, false))
+                        if (AstRoot.Eval(list[1], typeof(AstDecimalString), false, false))
                         {
                             return 1;
                         }
                     }
                 }
-                if (AstRoot.Eval(list[0], typeof(AstAndOr), false, false))
+                if (AstRoot.Eval(list[2], typeof(AstAndOr), false, false))
                 {
-                    if (AstRoot.Eval(list[1], typeof(AstAuditOperator), false, false))
+                    if (AstRoot.Eval(list[2], typeof(AstAuditOperator), false, false))
                     {
                         if (AstRoot.Eval(list[2], typeof(AstDecimalString), false, false))
                         {
@@ -24096,17 +24260,17 @@ namespace Bb.SqlServer.Asts
         public static AstCreateServerAuditToInfos Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstCreateServerAuditToInfos.Resolve(list);
-            if ((index == 4))
-            {
-                return new AstCreateServerAuditToInfos.AstCreateServerAuditToInfos1(ctx, ((AstServerAuditFile)(list[0])), ((AstCreateServerAuditWiths)(list[1])), ((AstWhereServerAuditCondition)(list[2])));
-            }
             if ((index == 1))
             {
-                return new AstCreateServerAuditToInfos.AstCreateServerAuditToInfos2(ctx);
+                return new AstCreateServerAuditToInfos.AstCreateServerAuditToInfos1(ctx, ((AstServerAuditFile)(list[1])), ((AstCreateServerAuditWiths)(list[1])), ((AstWhereServerAuditCondition)(list[1])));
             }
             if ((index == 2))
             {
-                return new AstCreateServerAuditToInfos.AstCreateServerAuditToInfos3(ctx, ((AstAuditId)(list[0])));
+                return new AstCreateServerAuditToInfos.AstCreateServerAuditToInfos2(ctx);
+            }
+            if ((index == 3))
+            {
+                return new AstCreateServerAuditToInfos.AstCreateServerAuditToInfos3(ctx, ((AstAuditId)(list[3])));
             }
             return null;
         }
@@ -24115,11 +24279,11 @@ namespace Bb.SqlServer.Asts
         {
             if ((list.Count == 3))
             {
-                if (AstRoot.Eval(list[0], typeof(AstServerAuditFile), false, false))
+                if (AstRoot.Eval(list[1], typeof(AstServerAuditFile), false, false))
                 {
                     if (AstRoot.Eval(list[1], typeof(AstCreateServerAuditWiths), false, false))
                     {
-                        if (AstRoot.Eval(list[2], typeof(AstWhereServerAuditCondition), false, false))
+                        if (AstRoot.Eval(list[1], typeof(AstWhereServerAuditCondition), false, false))
                         {
                             return 1;
                         }
@@ -24128,7 +24292,7 @@ namespace Bb.SqlServer.Asts
             }
             if ((list.Count == 1))
             {
-                if (AstRoot.Eval(list[0], typeof(AstAuditId), false, false))
+                if (AstRoot.Eval(list[3], typeof(AstAuditId), false, false))
                 {
                     return 2;
                 }
@@ -24321,21 +24485,21 @@ namespace Bb.SqlServer.Asts
         public static AstCreateServerAuditWith Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstCreateServerAuditWith.Resolve(list);
-            if ((index == 2))
+            if ((index == 1))
             {
-                return new AstCreateServerAuditWith.AstCreateServerAuditWith1(ctx, ((AstDecimal)(list[0])));
+                return new AstCreateServerAuditWith.AstCreateServerAuditWith1(ctx, ((AstDecimal)(list[1])));
             }
             if ((index == 2))
             {
-                return new AstCreateServerAuditWith.AstCreateServerAuditWith2(ctx, ((AstContinueShutdown)(list[0])));
-            }
-            if ((index == 2))
-            {
-                return new AstCreateServerAuditWith.AstCreateServerAuditWith3(ctx, ((AstOnOff)(list[0])));
+                return new AstCreateServerAuditWith.AstCreateServerAuditWith2(ctx, ((AstContinueShutdown)(list[2])));
             }
             if ((index == 3))
             {
-                return new AstCreateServerAuditWith.AstCreateServerAuditWith4(ctx, ((AstAuditGuidId)(list[0])), ((AstAuditGuidId)(list[1])));
+                return new AstCreateServerAuditWith.AstCreateServerAuditWith3(ctx, ((AstOnOff)(list[3])));
+            }
+            if ((index == 4))
+            {
+                return new AstCreateServerAuditWith.AstCreateServerAuditWith4(ctx, ((AstAuditGuidId)(list[4])), ((AstAuditGuidId)(list[4])));
             }
             return null;
         }
@@ -24344,9 +24508,9 @@ namespace Bb.SqlServer.Asts
         {
             if ((list.Count == 2))
             {
-                if (AstRoot.Eval(list[0], typeof(AstAuditGuidId), false, false))
+                if (AstRoot.Eval(list[4], typeof(AstAuditGuidId), false, false))
                 {
-                    if (AstRoot.Eval(list[1], typeof(AstAuditGuidId), false, false))
+                    if (AstRoot.Eval(list[4], typeof(AstAuditGuidId), false, false))
                     {
                         return 4;
                     }
@@ -24354,15 +24518,15 @@ namespace Bb.SqlServer.Asts
             }
             if ((list.Count == 1))
             {
-                if (AstRoot.Eval(list[0], typeof(AstDecimal), false, false))
+                if (AstRoot.Eval(list[1], typeof(AstDecimal), false, false))
                 {
                     return 1;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstContinueShutdown), false, false))
+                if (AstRoot.Eval(list[2], typeof(AstContinueShutdown), false, false))
                 {
                     return 2;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstOnOff), false, false))
+                if (AstRoot.Eval(list[3], typeof(AstOnOff), false, false))
                 {
                     return 3;
                 }
@@ -24620,33 +24784,33 @@ namespace Bb.SqlServer.Asts
         public static AstAlterServerConfiguration Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstAlterServerConfiguration.Resolve(list);
-            if ((index == 2))
-            {
-                return new AstAlterServerConfiguration.AstAlterServerConfiguration1(ctx, ((AstServerConfigProcessAffinity)(list[0])));
-            }
-            if ((index == 2))
-            {
-                return new AstAlterServerConfiguration.AstAlterServerConfiguration2(ctx, ((AstServerConfigDiagnosticLog)(list[0])));
-            }
-            if ((index == 2))
-            {
-                return new AstAlterServerConfiguration.AstAlterServerConfiguration3(ctx, ((AstServerConfigFailover)(list[0])));
-            }
-            if ((index == 2))
-            {
-                return new AstAlterServerConfiguration.AstAlterServerConfiguration4(ctx, ((AstStringtext)(list[0])));
-            }
             if ((index == 1))
+            {
+                return new AstAlterServerConfiguration.AstAlterServerConfiguration1(ctx, ((AstServerConfigProcessAffinity)(list[1])));
+            }
+            if ((index == 2))
+            {
+                return new AstAlterServerConfiguration.AstAlterServerConfiguration2(ctx, ((AstServerConfigDiagnosticLog)(list[2])));
+            }
+            if ((index == 3))
+            {
+                return new AstAlterServerConfiguration.AstAlterServerConfiguration3(ctx, ((AstServerConfigFailover)(list[3])));
+            }
+            if ((index == 4))
+            {
+                return new AstAlterServerConfiguration.AstAlterServerConfiguration4(ctx, ((AstStringtext)(list[4])));
+            }
+            if ((index == 5))
             {
                 return new AstAlterServerConfiguration.AstAlterServerConfiguration5(ctx);
             }
-            if ((index == 2))
+            if ((index == 6))
             {
-                return new AstAlterServerConfiguration.AstAlterServerConfiguration6(ctx, ((AstServerConfigBufferPoolExt)(list[0])));
+                return new AstAlterServerConfiguration.AstAlterServerConfiguration6(ctx, ((AstServerConfigBufferPoolExt)(list[6])));
             }
-            if ((index == 2))
+            if ((index == 7))
             {
-                return new AstAlterServerConfiguration.AstAlterServerConfiguration7(ctx, ((AstOnOff)(list[0])));
+                return new AstAlterServerConfiguration.AstAlterServerConfiguration7(ctx, ((AstOnOff)(list[7])));
             }
             return null;
         }
@@ -24655,27 +24819,27 @@ namespace Bb.SqlServer.Asts
         {
             if ((list.Count == 1))
             {
-                if (AstRoot.Eval(list[0], typeof(AstServerConfigProcessAffinity), false, false))
+                if (AstRoot.Eval(list[1], typeof(AstServerConfigProcessAffinity), false, false))
                 {
                     return 1;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstServerConfigDiagnosticLog), false, false))
+                if (AstRoot.Eval(list[2], typeof(AstServerConfigDiagnosticLog), false, false))
                 {
                     return 2;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstServerConfigFailover), false, false))
+                if (AstRoot.Eval(list[3], typeof(AstServerConfigFailover), false, false))
                 {
                     return 3;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstStringtext), false, false))
+                if (AstRoot.Eval(list[4], typeof(AstStringtext), false, false))
                 {
                     return 4;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstServerConfigBufferPoolExt), false, false))
+                if (AstRoot.Eval(list[6], typeof(AstServerConfigBufferPoolExt), false, false))
                 {
                     return 5;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstOnOff), false, false))
+                if (AstRoot.Eval(list[7], typeof(AstOnOff), false, false))
                 {
                     return 6;
                 }
@@ -24881,13 +25045,13 @@ namespace Bb.SqlServer.Asts
             {
                 return new AstServerConfigProcessAffinity.AstServerConfigProcessAffinity1(ctx);
             }
-            if ((index == 3))
+            if ((index == 2))
             {
-                return new AstServerConfigProcessAffinity.AstServerConfigProcessAffinity2(ctx, ((AstDecimalRange)(list[0])), ((AstDecimalRanges)(list[1])));
+                return new AstServerConfigProcessAffinity.AstServerConfigProcessAffinity2(ctx, ((AstDecimalRange)(list[2])), ((AstDecimalRanges)(list[2])));
             }
             if ((index == 3))
             {
-                return new AstServerConfigProcessAffinity.AstServerConfigProcessAffinity3(ctx, ((AstDecimalRange)(list[0])), ((AstDecimalRanges)(list[1])));
+                return new AstServerConfigProcessAffinity.AstServerConfigProcessAffinity3(ctx, ((AstDecimalRange)(list[3])), ((AstDecimalRanges)(list[3])));
             }
             return null;
         }
@@ -24896,16 +25060,16 @@ namespace Bb.SqlServer.Asts
         {
             if ((list.Count == 2))
             {
-                if (AstRoot.Eval(list[0], typeof(AstDecimalRange), false, false))
+                if (AstRoot.Eval(list[2], typeof(AstDecimalRange), false, false))
                 {
-                    if (AstRoot.Eval(list[1], typeof(AstDecimalRanges), false, false))
+                    if (AstRoot.Eval(list[2], typeof(AstDecimalRanges), false, false))
                     {
                         return 1;
                     }
                 }
-                if (AstRoot.Eval(list[0], typeof(AstDecimalRange), false, false))
+                if (AstRoot.Eval(list[3], typeof(AstDecimalRange), false, false))
                 {
-                    if (AstRoot.Eval(list[1], typeof(AstDecimalRanges), false, false))
+                    if (AstRoot.Eval(list[3], typeof(AstDecimalRanges), false, false))
                     {
                         return 2;
                     }
@@ -25074,21 +25238,21 @@ namespace Bb.SqlServer.Asts
         public static AstServerConfigDiagnosticLog Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstServerConfigDiagnosticLog.Resolve(list);
-            if ((index == 2))
+            if ((index == 1))
             {
-                return new AstServerConfigDiagnosticLog.AstServerConfigDiagnosticLog1(ctx, ((AstOnOff)(list[0])));
+                return new AstServerConfigDiagnosticLog.AstServerConfigDiagnosticLog1(ctx, ((AstOnOff)(list[1])));
             }
             if ((index == 2))
             {
-                return new AstServerConfigDiagnosticLog.AstServerConfigDiagnosticLog2(ctx, ((AstStringOrDefault)(list[0])));
+                return new AstServerConfigDiagnosticLog.AstServerConfigDiagnosticLog2(ctx, ((AstStringOrDefault)(list[2])));
             }
-            if ((index == 2))
+            if ((index == 3))
             {
-                return new AstServerConfigDiagnosticLog.AstServerConfigDiagnosticLog3(ctx, ((AstSizeValue)(list[0])));
+                return new AstServerConfigDiagnosticLog.AstServerConfigDiagnosticLog3(ctx, ((AstSizeValue)(list[3])));
             }
-            if ((index == 2))
+            if ((index == 4))
             {
-                return new AstServerConfigDiagnosticLog.AstServerConfigDiagnosticLog4(ctx, ((AstDecimalDefault)(list[0])));
+                return new AstServerConfigDiagnosticLog.AstServerConfigDiagnosticLog4(ctx, ((AstDecimalDefault)(list[4])));
             }
             return null;
         }
@@ -25097,19 +25261,19 @@ namespace Bb.SqlServer.Asts
         {
             if ((list.Count == 1))
             {
-                if (AstRoot.Eval(list[0], typeof(AstOnOff), false, false))
+                if (AstRoot.Eval(list[1], typeof(AstOnOff), false, false))
                 {
                     return 1;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstStringOrDefault), false, false))
+                if (AstRoot.Eval(list[2], typeof(AstStringOrDefault), false, false))
                 {
                     return 2;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstSizeValue), false, false))
+                if (AstRoot.Eval(list[3], typeof(AstSizeValue), false, false))
                 {
                     return 3;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstDecimalDefault), false, false))
+                if (AstRoot.Eval(list[4], typeof(AstDecimalDefault), false, false))
                 {
                     return 4;
                 }
@@ -25351,29 +25515,29 @@ namespace Bb.SqlServer.Asts
         public static AstServerConfigFailover Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstServerConfigFailover.Resolve(list);
-            if ((index == 2))
+            if ((index == 1))
             {
-                return new AstServerConfigFailover.AstServerConfigFailover1(ctx, ((AstStringOrDefault)(list[0])));
+                return new AstServerConfigFailover.AstServerConfigFailover1(ctx, ((AstStringOrDefault)(list[1])));
             }
             if ((index == 2))
             {
-                return new AstServerConfigFailover.AstServerConfigFailover2(ctx, ((AstStringOrDefault)(list[0])));
+                return new AstServerConfigFailover.AstServerConfigFailover2(ctx, ((AstStringOrDefault)(list[2])));
             }
-            if ((index == 2))
+            if ((index == 3))
             {
-                return new AstServerConfigFailover.AstServerConfigFailover3(ctx, ((AstStringOrDefault)(list[0])));
+                return new AstServerConfigFailover.AstServerConfigFailover3(ctx, ((AstStringOrDefault)(list[3])));
             }
-            if ((index == 2))
+            if ((index == 4))
             {
-                return new AstServerConfigFailover.AstServerConfigFailover4(ctx, ((AstStringOrDefault)(list[0])));
+                return new AstServerConfigFailover.AstServerConfigFailover4(ctx, ((AstStringOrDefault)(list[4])));
             }
-            if ((index == 2))
+            if ((index == 5))
             {
-                return new AstServerConfigFailover.AstServerConfigFailover5(ctx, ((AstStringOrDefault)(list[0])));
+                return new AstServerConfigFailover.AstServerConfigFailover5(ctx, ((AstStringOrDefault)(list[5])));
             }
-            if ((index == 2))
+            if ((index == 6))
             {
-                return new AstServerConfigFailover.AstServerConfigFailover6(ctx, ((AstDecimalDefault)(list[0])));
+                return new AstServerConfigFailover.AstServerConfigFailover6(ctx, ((AstDecimalDefault)(list[6])));
             }
             return null;
         }
@@ -25382,27 +25546,27 @@ namespace Bb.SqlServer.Asts
         {
             if ((list.Count == 1))
             {
-                if (AstRoot.Eval(list[0], typeof(AstStringOrDefault), false, false))
+                if (AstRoot.Eval(list[1], typeof(AstStringOrDefault), false, false))
                 {
                     return 1;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstStringOrDefault), false, false))
+                if (AstRoot.Eval(list[2], typeof(AstStringOrDefault), false, false))
                 {
                     return 2;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstStringOrDefault), false, false))
+                if (AstRoot.Eval(list[3], typeof(AstStringOrDefault), false, false))
                 {
                     return 3;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstStringOrDefault), false, false))
+                if (AstRoot.Eval(list[4], typeof(AstStringOrDefault), false, false))
                 {
                     return 4;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstStringOrDefault), false, false))
+                if (AstRoot.Eval(list[5], typeof(AstStringOrDefault), false, false))
                 {
                     return 5;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstDecimalDefault), false, false))
+                if (AstRoot.Eval(list[6], typeof(AstDecimalDefault), false, false))
                 {
                     return 6;
                 }
@@ -25528,11 +25692,11 @@ namespace Bb.SqlServer.Asts
         public static AstServerConfigBufferPoolExt Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstServerConfigBufferPoolExt.Resolve(list);
-            if ((index == 4))
-            {
-                return new AstServerConfigBufferPoolExt.AstServerConfigBufferPoolExt1(ctx, ((AstStringtext)(list[0])), ((AstDecimal)(list[1])), ((AstSizeUnity)(list[2])));
-            }
             if ((index == 1))
+            {
+                return new AstServerConfigBufferPoolExt.AstServerConfigBufferPoolExt1(ctx, ((AstStringtext)(list[1])), ((AstDecimal)(list[1])), ((AstSizeUnity)(list[1])));
+            }
+            if ((index == 2))
             {
                 return new AstServerConfigBufferPoolExt.AstServerConfigBufferPoolExt2(ctx);
             }
@@ -25543,11 +25707,11 @@ namespace Bb.SqlServer.Asts
         {
             if ((list.Count == 3))
             {
-                if (AstRoot.Eval(list[0], typeof(AstStringtext), false, false))
+                if (AstRoot.Eval(list[1], typeof(AstStringtext), false, false))
                 {
                     if (AstRoot.Eval(list[1], typeof(AstDecimal), false, false))
                     {
-                        if (AstRoot.Eval(list[2], typeof(AstSizeUnity), false, false))
+                        if (AstRoot.Eval(list[1], typeof(AstSizeUnity), false, false))
                         {
                             return 1;
                         }
@@ -25652,11 +25816,11 @@ namespace Bb.SqlServer.Asts
         public static AstStringOrDefault Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstStringOrDefault.Resolve(list);
-            if ((index == 2))
-            {
-                return new AstStringOrDefault.AstStringOrDefault1(ctx, ((AstStringtext)(list[0])));
-            }
             if ((index == 1))
+            {
+                return new AstStringOrDefault.AstStringOrDefault1(ctx, ((AstStringtext)(list[1])));
+            }
+            if ((index == 2))
             {
                 return new AstStringOrDefault.AstStringOrDefault2(ctx);
             }
@@ -25667,7 +25831,7 @@ namespace Bb.SqlServer.Asts
         {
             if ((list.Count == 1))
             {
-                if (AstRoot.Eval(list[0], typeof(AstStringtext), false, false))
+                if (AstRoot.Eval(list[1], typeof(AstStringtext), false, false))
                 {
                     return 1;
                 }
@@ -25770,11 +25934,11 @@ namespace Bb.SqlServer.Asts
         public static AstContractRef Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstContractRef.Resolve(list);
-            if ((index == 2))
-            {
-                return new AstContractRef.AstContractRef1(ctx, ((AstContractId)(list[0])));
-            }
             if ((index == 1))
+            {
+                return new AstContractRef.AstContractRef1(ctx, ((AstContractId)(list[1])));
+            }
+            if ((index == 2))
             {
                 return new AstContractRef.AstContractRef2(ctx);
             }
@@ -25785,7 +25949,7 @@ namespace Bb.SqlServer.Asts
         {
             if ((list.Count == 1))
             {
-                if (AstRoot.Eval(list[0], typeof(AstContractId), false, false))
+                if (AstRoot.Eval(list[1], typeof(AstContractId), false, false))
                 {
                     return 1;
                 }
@@ -25894,7 +26058,7 @@ namespace Bb.SqlServer.Asts
             }
             if ((index == 2))
             {
-                return new AstServiceMasterKeyItems.AstServiceMasterKeyItems2(ctx, ((AstRegenerateAccount)(list[0])));
+                return new AstServiceMasterKeyItems.AstServiceMasterKeyItems2(ctx, ((AstRegenerateAccount)(list[2])));
             }
             return null;
         }
@@ -25903,7 +26067,7 @@ namespace Bb.SqlServer.Asts
         {
             if ((list.Count == 1))
             {
-                if (AstRoot.Eval(list[0], typeof(AstRegenerateAccount), false, false))
+                if (AstRoot.Eval(list[2], typeof(AstRegenerateAccount), false, false))
                 {
                     return 1;
                 }
@@ -26041,13 +26205,13 @@ namespace Bb.SqlServer.Asts
         public static AstRegenerateAccount Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstRegenerateAccount.Resolve(list);
-            if ((index == 3))
+            if ((index == 1))
             {
-                return new AstRegenerateAccount.AstRegenerateAccount1(ctx, ((AstStringtext)(list[0])), ((AstOldPwd)(list[1])));
+                return new AstRegenerateAccount.AstRegenerateAccount1(ctx, ((AstStringtext)(list[1])), ((AstOldPwd)(list[1])));
             }
-            if ((index == 3))
+            if ((index == 2))
             {
-                return new AstRegenerateAccount.AstRegenerateAccount2(ctx, ((AstStringtext)(list[0])), ((AstNewPasswordSet)(list[1])));
+                return new AstRegenerateAccount.AstRegenerateAccount2(ctx, ((AstStringtext)(list[2])), ((AstNewPasswordSet)(list[2])));
             }
             return null;
         }
@@ -26056,16 +26220,16 @@ namespace Bb.SqlServer.Asts
         {
             if ((list.Count == 2))
             {
-                if (AstRoot.Eval(list[0], typeof(AstStringtext), false, false))
+                if (AstRoot.Eval(list[1], typeof(AstStringtext), false, false))
                 {
                     if (AstRoot.Eval(list[1], typeof(AstOldPwd), false, false))
                     {
                         return 1;
                     }
                 }
-                if (AstRoot.Eval(list[0], typeof(AstStringtext), false, false))
+                if (AstRoot.Eval(list[2], typeof(AstStringtext), false, false))
                 {
-                    if (AstRoot.Eval(list[1], typeof(AstNewPasswordSet), false, false))
+                    if (AstRoot.Eval(list[2], typeof(AstNewPasswordSet), false, false))
                     {
                         return 2;
                     }
@@ -26201,9 +26365,9 @@ namespace Bb.SqlServer.Asts
             
             private AstPasswordSetting _passwordSetting;
             
-            private AstOldPwd _oldPwd;
+            private IEnumerable<AstOldPwd> _oldPwd;
             
-            internal AstAlterUserItem4(ParserRuleContext ctx, AstPasswordSetting passwordSetting, AstOldPwd oldPwd) : 
+            internal AstAlterUserItem4(ParserRuleContext ctx, AstPasswordSetting passwordSetting, IEnumerable<AstOldPwd> oldPwd) : 
                     base(ctx)
             {
                 _passwordSetting = passwordSetting;
@@ -26218,7 +26382,7 @@ namespace Bb.SqlServer.Asts
                 }
             }
             
-            public virtual AstOldPwd OldPwd
+            public virtual IEnumerable<AstOldPwd> OldPwd
             {
                 get
                 {
@@ -26306,29 +26470,29 @@ namespace Bb.SqlServer.Asts
         public static AstAlterUserItem Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstAlterUserItem.Resolve(list);
-            if ((index == 2))
+            if ((index == 1))
             {
-                return new AstAlterUserItem.AstAlterUserItem1(ctx, ((AstUserId)(list[0])));
+                return new AstAlterUserItem.AstAlterUserItem1(ctx, ((AstUserId)(list[1])));
             }
             if ((index == 2))
             {
-                return new AstAlterUserItem.AstAlterUserItem2(ctx, ((AstSchemaIdNull)(list[0])));
-            }
-            if ((index == 2))
-            {
-                return new AstAlterUserItem.AstAlterUserItem3(ctx, ((AstLoginId)(list[0])));
+                return new AstAlterUserItem.AstAlterUserItem2(ctx, ((AstSchemaIdNull)(list[2])));
             }
             if ((index == 3))
             {
-                return new AstAlterUserItem.AstAlterUserItem4(ctx, ((AstPasswordSetting)(list[0])), ((AstOldPwd)(list[1])));
+                return new AstAlterUserItem.AstAlterUserItem3(ctx, ((AstLoginId)(list[3])));
             }
-            if ((index == 2))
+            if ((index == 4))
             {
-                return new AstAlterUserItem.AstAlterUserItem5(ctx, ((AstLanguageSettingValue)(list[0])));
+                return new AstAlterUserItem.AstAlterUserItem4(ctx, ((AstPasswordSetting)(list[4])), ((IEnumerable<AstOldPwd>)(list[4])));
             }
-            if ((index == 2))
+            if ((index == 5))
             {
-                return new AstAlterUserItem.AstAlterUserItem6(ctx, ((AstOnOff)(list[0])));
+                return new AstAlterUserItem.AstAlterUserItem5(ctx, ((AstLanguageSettingValue)(list[5])));
+            }
+            if ((index == 6))
+            {
+                return new AstAlterUserItem.AstAlterUserItem6(ctx, ((AstOnOff)(list[6])));
             }
             return null;
         }
@@ -26337,9 +26501,9 @@ namespace Bb.SqlServer.Asts
         {
             if ((list.Count == 2))
             {
-                if (AstRoot.Eval(list[0], typeof(AstPasswordSetting), false, false))
+                if (AstRoot.Eval(list[4], typeof(AstPasswordSetting), false, false))
                 {
-                    if (AstRoot.Eval(list[1], typeof(AstOldPwd), false, false))
+                    if (AstRoot.Eval(list[4], typeof(IEnumerable<AstOldPwd>), false, false))
                     {
                         return 4;
                     }
@@ -26347,23 +26511,23 @@ namespace Bb.SqlServer.Asts
             }
             if ((list.Count == 1))
             {
-                if (AstRoot.Eval(list[0], typeof(AstUserId), false, false))
+                if (AstRoot.Eval(list[1], typeof(AstUserId), false, false))
                 {
                     return 1;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstSchemaIdNull), false, false))
+                if (AstRoot.Eval(list[2], typeof(AstSchemaIdNull), false, false))
                 {
                     return 2;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstLoginId), false, false))
+                if (AstRoot.Eval(list[3], typeof(AstLoginId), false, false))
                 {
                     return 3;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstLanguageSettingValue), false, false))
+                if (AstRoot.Eval(list[5], typeof(AstLanguageSettingValue), false, false))
                 {
                     return 5;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstOnOff), false, false))
+                if (AstRoot.Eval(list[6], typeof(AstOnOff), false, false))
                 {
                     return 6;
                 }
@@ -26506,11 +26670,11 @@ namespace Bb.SqlServer.Asts
         public static AstSchemaIdNull Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstSchemaIdNull.Resolve(list);
-            if ((index == 2))
-            {
-                return new AstSchemaIdNull.AstSchemaIdNull1(ctx, ((AstSchemaIdentifier)(list[0])));
-            }
             if ((index == 1))
+            {
+                return new AstSchemaIdNull.AstSchemaIdNull1(ctx, ((AstSchemaIdentifier)(list[1])));
+            }
+            if ((index == 2))
             {
                 return new AstSchemaIdNull.AstSchemaIdNull2(ctx);
             }
@@ -26521,7 +26685,7 @@ namespace Bb.SqlServer.Asts
         {
             if ((list.Count == 1))
             {
-                if (AstRoot.Eval(list[0], typeof(AstSchemaIdentifier), false, false))
+                if (AstRoot.Eval(list[1], typeof(AstSchemaIdentifier), false, false))
                 {
                     return 1;
                 }
@@ -26687,17 +26851,17 @@ namespace Bb.SqlServer.Asts
         public static AstCreateUser Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstCreateUser.Resolve(list);
-            if ((index == 3))
+            if ((index == 1))
             {
-                return new AstCreateUser.AstCreateUser1(ctx, ((AstUserId)(list[0])), ((AstCreateUserWithLogin)(list[1])));
+                return new AstCreateUser.AstCreateUser1(ctx, ((AstUserId)(list[1])), ((AstCreateUserWithLogin)(list[1])));
             }
             if ((index == 2))
             {
-                return new AstCreateUser.AstCreateUser2(ctx, ((AstCreateUserWindowsPrincipalId)(list[0])));
+                return new AstCreateUser.AstCreateUser2(ctx, ((AstCreateUserWindowsPrincipalId)(list[2])));
             }
             if ((index == 3))
             {
-                return new AstCreateUser.AstCreateUser3(ctx, ((AstUserId)(list[0])), ((AstCreateUserWithoutLogin)(list[1])));
+                return new AstCreateUser.AstCreateUser3(ctx, ((AstUserId)(list[3])), ((AstCreateUserWithoutLogin)(list[3])));
             }
             return null;
         }
@@ -26706,16 +26870,16 @@ namespace Bb.SqlServer.Asts
         {
             if ((list.Count == 2))
             {
-                if (AstRoot.Eval(list[0], typeof(AstUserId), false, false))
+                if (AstRoot.Eval(list[1], typeof(AstUserId), false, false))
                 {
                     if (AstRoot.Eval(list[1], typeof(AstCreateUserWithLogin), false, false))
                     {
                         return 1;
                     }
                 }
-                if (AstRoot.Eval(list[0], typeof(AstUserId), false, false))
+                if (AstRoot.Eval(list[3], typeof(AstUserId), false, false))
                 {
-                    if (AstRoot.Eval(list[1], typeof(AstCreateUserWithoutLogin), false, false))
+                    if (AstRoot.Eval(list[3], typeof(AstCreateUserWithoutLogin), false, false))
                     {
                         return 3;
                     }
@@ -26723,7 +26887,7 @@ namespace Bb.SqlServer.Asts
             }
             if ((list.Count == 1))
             {
-                if (AstRoot.Eval(list[0], typeof(AstCreateUserWindowsPrincipalId), false, false))
+                if (AstRoot.Eval(list[2], typeof(AstCreateUserWindowsPrincipalId), false, false))
                 {
                     return 2;
                 }
@@ -26772,7 +26936,13 @@ namespace Bb.SqlServer.Asts
         protected static string _rule = "create_user_with_login\r\n\t : (for_from  LOGIN  login_id)?  (WITH  user_settings_sh" +
             "orts)?";
         
-        internal AstCreateUserWithLogin(ParserRuleContext ctx, List<AstRoot> list) : 
+        private AstForFrom _forFrom;
+        
+        private AstLoginId _loginId;
+        
+        private AstUserSettingsShorts _userSettingsShorts;
+        
+        internal AstCreateUserWithLogin(ParserRuleContext ctx) : 
                 base(ctx)
         {
         }
@@ -26795,7 +26965,7 @@ namespace Bb.SqlServer.Asts
             _userSettingsShorts = userSettingsShorts;
         }
         
-        public virtual AstForFrom _forFrom
+        public virtual AstForFrom ForFrom
         {
             get
             {
@@ -26803,7 +26973,7 @@ namespace Bb.SqlServer.Asts
             }
         }
         
-        public virtual AstLoginId _loginId
+        public virtual AstLoginId LoginId
         {
             get
             {
@@ -26811,7 +26981,7 @@ namespace Bb.SqlServer.Asts
             }
         }
         
-        public virtual AstUserSettingsShorts _userSettingsShorts
+        public virtual AstUserSettingsShorts UserSettingsShorts
         {
             get
             {
@@ -26822,6 +26992,11 @@ namespace Bb.SqlServer.Asts
         public override void Accept(IAstTSqlVisitor visitor)
         {
             visitor.VisitCreateUserWithLogin(this);
+        }
+        
+        public static AstCreateUserWithLogin Create(ParserRuleContext ctx, List<AstRoot> list)
+        {
+            return new AstCreateUserWithLogin(ctx, ((AstForFrom)(list[0])), ((AstLoginId)(list[1])), ((AstUserSettingsShorts)(list[2])));
         }
         
         /// <summary>
@@ -26971,17 +27146,17 @@ namespace Bb.SqlServer.Asts
         public static AstCreateUserWithoutLogin Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstCreateUserWithoutLogin.Resolve(list);
+            if ((index == 1))
+            {
+                return new AstCreateUserWithoutLogin.AstCreateUserWithoutLogin1(ctx, ((AstUserSettingsShorts)(list[1])));
+            }
             if ((index == 2))
             {
-                return new AstCreateUserWithoutLogin.AstCreateUserWithoutLogin1(ctx, ((AstUserSettingsShorts)(list[0])));
+                return new AstCreateUserWithoutLogin.AstCreateUserWithoutLogin2(ctx, ((AstForFrom)(list[2])), ((AstCertificateId)(list[2])));
             }
             if ((index == 3))
             {
-                return new AstCreateUserWithoutLogin.AstCreateUserWithoutLogin2(ctx, ((AstForFrom)(list[0])), ((AstCertificateId)(list[1])));
-            }
-            if ((index == 3))
-            {
-                return new AstCreateUserWithoutLogin.AstCreateUserWithoutLogin3(ctx, ((AstForFrom)(list[0])), ((AstAsymKeyId)(list[1])));
+                return new AstCreateUserWithoutLogin.AstCreateUserWithoutLogin3(ctx, ((AstForFrom)(list[3])), ((AstAsymKeyId)(list[3])));
             }
             return null;
         }
@@ -26990,16 +27165,16 @@ namespace Bb.SqlServer.Asts
         {
             if ((list.Count == 2))
             {
-                if (AstRoot.Eval(list[0], typeof(AstForFrom), false, false))
+                if (AstRoot.Eval(list[2], typeof(AstForFrom), false, false))
                 {
-                    if (AstRoot.Eval(list[1], typeof(AstCertificateId), false, false))
+                    if (AstRoot.Eval(list[2], typeof(AstCertificateId), false, false))
                     {
                         return 2;
                     }
                 }
-                if (AstRoot.Eval(list[0], typeof(AstForFrom), false, false))
+                if (AstRoot.Eval(list[3], typeof(AstForFrom), false, false))
                 {
-                    if (AstRoot.Eval(list[1], typeof(AstAsymKeyId), false, false))
+                    if (AstRoot.Eval(list[3], typeof(AstAsymKeyId), false, false))
                     {
                         return 3;
                     }
@@ -27007,7 +27182,7 @@ namespace Bb.SqlServer.Asts
             }
             if ((list.Count == 1))
             {
-                if (AstRoot.Eval(list[0], typeof(AstUserSettingsShorts), false, false))
+                if (AstRoot.Eval(list[1], typeof(AstUserSettingsShorts), false, false))
                 {
                     return 1;
                 }
@@ -27194,17 +27369,17 @@ namespace Bb.SqlServer.Asts
         public static AstCreateUserWindowsPrincipalId Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstCreateUserWindowsPrincipalId.Resolve(list);
-            if ((index == 3))
+            if ((index == 1))
             {
-                return new AstCreateUserWindowsPrincipalId.AstCreateUserWindowsPrincipalId1(ctx, ((AstWindowsPrincipalId)(list[0])), ((AstUserSettings)(list[1])));
-            }
-            if ((index == 4))
-            {
-                return new AstCreateUserWindowsPrincipalId.AstCreateUserWindowsPrincipalId2(ctx, ((AstUserId)(list[0])), ((AstPasswordSetting)(list[1])), ((AstUserSettings)(list[2])));
+                return new AstCreateUserWindowsPrincipalId.AstCreateUserWindowsPrincipalId1(ctx, ((AstWindowsPrincipalId)(list[1])), ((AstUserSettings)(list[1])));
             }
             if ((index == 2))
             {
-                return new AstCreateUserWindowsPrincipalId.AstCreateUserWindowsPrincipalId3(ctx, ((AstUserId)(list[0])));
+                return new AstCreateUserWindowsPrincipalId.AstCreateUserWindowsPrincipalId2(ctx, ((AstUserId)(list[2])), ((AstPasswordSetting)(list[2])), ((AstUserSettings)(list[2])));
+            }
+            if ((index == 3))
+            {
+                return new AstCreateUserWindowsPrincipalId.AstCreateUserWindowsPrincipalId3(ctx, ((AstUserId)(list[3])));
             }
             return null;
         }
@@ -27213,9 +27388,9 @@ namespace Bb.SqlServer.Asts
         {
             if ((list.Count == 3))
             {
-                if (AstRoot.Eval(list[0], typeof(AstUserId), false, false))
+                if (AstRoot.Eval(list[2], typeof(AstUserId), false, false))
                 {
-                    if (AstRoot.Eval(list[1], typeof(AstPasswordSetting), false, false))
+                    if (AstRoot.Eval(list[2], typeof(AstPasswordSetting), false, false))
                     {
                         if (AstRoot.Eval(list[2], typeof(AstUserSettings), false, false))
                         {
@@ -27226,7 +27401,7 @@ namespace Bb.SqlServer.Asts
             }
             if ((list.Count == 2))
             {
-                if (AstRoot.Eval(list[0], typeof(AstWindowsPrincipalId), false, false))
+                if (AstRoot.Eval(list[1], typeof(AstWindowsPrincipalId), false, false))
                 {
                     if (AstRoot.Eval(list[1], typeof(AstUserSettings), false, false))
                     {
@@ -27236,7 +27411,7 @@ namespace Bb.SqlServer.Asts
             }
             if ((list.Count == 1))
             {
-                if (AstRoot.Eval(list[0], typeof(AstUserId), false, false))
+                if (AstRoot.Eval(list[3], typeof(AstUserId), false, false))
                 {
                     return 3;
                 }
@@ -27360,13 +27535,13 @@ namespace Bb.SqlServer.Asts
         public static AstPwdValue Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstPwdValue.Resolve(list);
-            if ((index == 2))
+            if ((index == 1))
             {
-                return new AstPwdValue.AstPwdValue1(ctx, ((AstPwd)(list[0])));
+                return new AstPwdValue.AstPwdValue1(ctx, ((AstPwd)(list[1])));
             }
             if ((index == 2))
             {
-                return new AstPwdValue.AstPwdValue2(ctx, ((AstBinary)(list[0])));
+                return new AstPwdValue.AstPwdValue2(ctx, ((AstBinary)(list[2])));
             }
             return null;
         }
@@ -27375,11 +27550,11 @@ namespace Bb.SqlServer.Asts
         {
             if ((list.Count == 1))
             {
-                if (AstRoot.Eval(list[0], typeof(AstPwd), false, false))
+                if (AstRoot.Eval(list[1], typeof(AstPwd), false, false))
                 {
                     return 1;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstBinary), false, false))
+                if (AstRoot.Eval(list[2], typeof(AstBinary), false, false))
                 {
                     return 2;
                 }
@@ -27494,13 +27669,13 @@ namespace Bb.SqlServer.Asts
         public static AstUserSettingsShort Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstUserSettingsShort.Resolve(list);
-            if ((index == 2))
+            if ((index == 1))
             {
-                return new AstUserSettingsShort.AstUserSettingsShort1(ctx, ((AstDefaultSchemaSet)(list[0])));
+                return new AstUserSettingsShort.AstUserSettingsShort1(ctx, ((AstDefaultSchemaSet)(list[1])));
             }
             if ((index == 2))
             {
-                return new AstUserSettingsShort.AstUserSettingsShort2(ctx, ((AstOnOff)(list[0])));
+                return new AstUserSettingsShort.AstUserSettingsShort2(ctx, ((AstOnOff)(list[2])));
             }
             return null;
         }
@@ -27509,11 +27684,11 @@ namespace Bb.SqlServer.Asts
         {
             if ((list.Count == 1))
             {
-                if (AstRoot.Eval(list[0], typeof(AstDefaultSchemaSet), false, false))
+                if (AstRoot.Eval(list[1], typeof(AstDefaultSchemaSet), false, false))
                 {
                     return 1;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstOnOff), false, false))
+                if (AstRoot.Eval(list[2], typeof(AstOnOff), false, false))
                 {
                     return 2;
                 }
@@ -27685,21 +27860,21 @@ namespace Bb.SqlServer.Asts
         public static AstUserSetting Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstUserSetting.Resolve(list);
-            if ((index == 2))
+            if ((index == 1))
             {
-                return new AstUserSetting.AstUserSetting1(ctx, ((AstDefaultSchemaSet)(list[0])));
+                return new AstUserSetting.AstUserSetting1(ctx, ((AstDefaultSchemaSet)(list[1])));
             }
             if ((index == 2))
             {
-                return new AstUserSetting.AstUserSetting2(ctx, ((AstLanguageSettingValue)(list[0])));
+                return new AstUserSetting.AstUserSetting2(ctx, ((AstLanguageSettingValue)(list[2])));
             }
-            if ((index == 2))
+            if ((index == 3))
             {
-                return new AstUserSetting.AstUserSetting3(ctx, ((AstBinary)(list[0])));
+                return new AstUserSetting.AstUserSetting3(ctx, ((AstBinary)(list[3])));
             }
-            if ((index == 2))
+            if ((index == 4))
             {
-                return new AstUserSetting.AstUserSetting4(ctx, ((AstOnOff)(list[0])));
+                return new AstUserSetting.AstUserSetting4(ctx, ((AstOnOff)(list[4])));
             }
             return null;
         }
@@ -27708,19 +27883,19 @@ namespace Bb.SqlServer.Asts
         {
             if ((list.Count == 1))
             {
-                if (AstRoot.Eval(list[0], typeof(AstDefaultSchemaSet), false, false))
+                if (AstRoot.Eval(list[1], typeof(AstDefaultSchemaSet), false, false))
                 {
                     return 1;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstLanguageSettingValue), false, false))
+                if (AstRoot.Eval(list[2], typeof(AstLanguageSettingValue), false, false))
                 {
                     return 2;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstBinary), false, false))
+                if (AstRoot.Eval(list[3], typeof(AstBinary), false, false))
                 {
                     return 3;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstOnOff), false, false))
+                if (AstRoot.Eval(list[4], typeof(AstOnOff), false, false))
                 {
                     return 4;
                 }
@@ -27889,13 +28064,13 @@ namespace Bb.SqlServer.Asts
         public static AstCreateUserAzureSqlDw Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstCreateUserAzureSqlDw.Resolve(list);
-            if ((index == 4))
+            if ((index == 1))
             {
-                return new AstCreateUserAzureSqlDw.AstCreateUserAzureSqlDw1(ctx, ((AstUserId)(list[0])), ((AstUserStrategy)(list[1])), ((AstDefaultSchemaSet)(list[2])));
+                return new AstCreateUserAzureSqlDw.AstCreateUserAzureSqlDw1(ctx, ((AstUserId)(list[1])), ((AstUserStrategy)(list[1])), ((AstDefaultSchemaSet)(list[1])));
             }
-            if ((index == 3))
+            if ((index == 2))
             {
-                return new AstCreateUserAzureSqlDw.AstCreateUserAzureSqlDw2(ctx, ((AstUserId)(list[0])), ((AstDefaultSchemaSet)(list[1])));
+                return new AstCreateUserAzureSqlDw.AstCreateUserAzureSqlDw2(ctx, ((AstUserId)(list[2])), ((AstDefaultSchemaSet)(list[2])));
             }
             return null;
         }
@@ -27904,11 +28079,11 @@ namespace Bb.SqlServer.Asts
         {
             if ((list.Count == 3))
             {
-                if (AstRoot.Eval(list[0], typeof(AstUserId), false, false))
+                if (AstRoot.Eval(list[1], typeof(AstUserId), false, false))
                 {
                     if (AstRoot.Eval(list[1], typeof(AstUserStrategy), false, false))
                     {
-                        if (AstRoot.Eval(list[2], typeof(AstDefaultSchemaSet), false, false))
+                        if (AstRoot.Eval(list[1], typeof(AstDefaultSchemaSet), false, false))
                         {
                             return 1;
                         }
@@ -27917,9 +28092,9 @@ namespace Bb.SqlServer.Asts
             }
             if ((list.Count == 2))
             {
-                if (AstRoot.Eval(list[0], typeof(AstUserId), false, false))
+                if (AstRoot.Eval(list[2], typeof(AstUserId), false, false))
                 {
-                    if (AstRoot.Eval(list[1], typeof(AstDefaultSchemaSet), false, false))
+                    if (AstRoot.Eval(list[2], typeof(AstDefaultSchemaSet), false, false))
                     {
                         return 2;
                     }
@@ -28034,11 +28209,11 @@ namespace Bb.SqlServer.Asts
         public static AstUserStrategy Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstUserStrategy.Resolve(list);
-            if ((index == 3))
-            {
-                return new AstUserStrategy.AstUserStrategy1(ctx, ((AstForFrom)(list[0])), ((AstLoginId)(list[1])));
-            }
             if ((index == 1))
+            {
+                return new AstUserStrategy.AstUserStrategy1(ctx, ((AstForFrom)(list[1])), ((AstLoginId)(list[1])));
+            }
+            if ((index == 2))
             {
                 return new AstUserStrategy.AstUserStrategy2(ctx);
             }
@@ -28049,7 +28224,7 @@ namespace Bb.SqlServer.Asts
         {
             if ((list.Count == 2))
             {
-                if (AstRoot.Eval(list[0], typeof(AstForFrom), false, false))
+                if (AstRoot.Eval(list[1], typeof(AstForFrom), false, false))
                 {
                     if (AstRoot.Eval(list[1], typeof(AstLoginId), false, false))
                     {
@@ -28223,21 +28398,21 @@ namespace Bb.SqlServer.Asts
         public static AstAlterUserAzureSqlInfo Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstAlterUserAzureSqlInfo.Resolve(list);
-            if ((index == 2))
+            if ((index == 1))
             {
-                return new AstAlterUserAzureSqlInfo.AstAlterUserAzureSqlInfo1(ctx, ((AstUserId)(list[0])));
+                return new AstAlterUserAzureSqlInfo.AstAlterUserAzureSqlInfo1(ctx, ((AstUserId)(list[1])));
             }
             if ((index == 2))
             {
-                return new AstAlterUserAzureSqlInfo.AstAlterUserAzureSqlInfo2(ctx, ((AstDefaultSchemaSet)(list[0])));
+                return new AstAlterUserAzureSqlInfo.AstAlterUserAzureSqlInfo2(ctx, ((AstDefaultSchemaSet)(list[2])));
             }
-            if ((index == 2))
+            if ((index == 3))
             {
-                return new AstAlterUserAzureSqlInfo.AstAlterUserAzureSqlInfo3(ctx, ((AstLoginId)(list[0])));
+                return new AstAlterUserAzureSqlInfo.AstAlterUserAzureSqlInfo3(ctx, ((AstLoginId)(list[3])));
             }
-            if ((index == 2))
+            if ((index == 4))
             {
-                return new AstAlterUserAzureSqlInfo.AstAlterUserAzureSqlInfo4(ctx, ((AstOnOff)(list[0])));
+                return new AstAlterUserAzureSqlInfo.AstAlterUserAzureSqlInfo4(ctx, ((AstOnOff)(list[4])));
             }
             return null;
         }
@@ -28246,19 +28421,19 @@ namespace Bb.SqlServer.Asts
         {
             if ((list.Count == 1))
             {
-                if (AstRoot.Eval(list[0], typeof(AstUserId), false, false))
+                if (AstRoot.Eval(list[1], typeof(AstUserId), false, false))
                 {
                     return 1;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstDefaultSchemaSet), false, false))
+                if (AstRoot.Eval(list[2], typeof(AstDefaultSchemaSet), false, false))
                 {
                     return 2;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstLoginId), false, false))
+                if (AstRoot.Eval(list[3], typeof(AstLoginId), false, false))
                 {
                     return 3;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstOnOff), false, false))
+                if (AstRoot.Eval(list[4], typeof(AstOnOff), false, false))
                 {
                     return 4;
                 }
@@ -28381,11 +28556,11 @@ namespace Bb.SqlServer.Asts
         public static AstWorkloadGroupName Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstWorkloadGroupName.Resolve(list);
-            if ((index == 2))
-            {
-                return new AstWorkloadGroupName.AstWorkloadGroupName1(ctx, ((AstWorkloadGroupGroupId)(list[0])));
-            }
             if ((index == 1))
+            {
+                return new AstWorkloadGroupName.AstWorkloadGroupName1(ctx, ((AstWorkloadGroupGroupId)(list[1])));
+            }
+            if ((index == 2))
             {
                 return new AstWorkloadGroupName.AstWorkloadGroupName2(ctx);
             }
@@ -28396,7 +28571,7 @@ namespace Bb.SqlServer.Asts
         {
             if ((list.Count == 1))
             {
-                if (AstRoot.Eval(list[0], typeof(AstWorkloadGroupGroupId), false, false))
+                if (AstRoot.Eval(list[1], typeof(AstWorkloadGroupGroupId), false, false))
                 {
                     return 1;
                 }
@@ -28499,11 +28674,11 @@ namespace Bb.SqlServer.Asts
         public static AstAlterWorkloadGroupUsing Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstAlterWorkloadGroupUsing.Resolve(list);
-            if ((index == 2))
-            {
-                return new AstAlterWorkloadGroupUsing.AstAlterWorkloadGroupUsing1(ctx, ((AstWorkloadGroupPoolId)(list[0])));
-            }
             if ((index == 1))
+            {
+                return new AstAlterWorkloadGroupUsing.AstAlterWorkloadGroupUsing1(ctx, ((AstWorkloadGroupPoolId)(list[1])));
+            }
+            if ((index == 2))
             {
                 return new AstAlterWorkloadGroupUsing.AstAlterWorkloadGroupUsing2(ctx);
             }
@@ -28514,7 +28689,7 @@ namespace Bb.SqlServer.Asts
         {
             if ((list.Count == 1))
             {
-                if (AstRoot.Eval(list[0], typeof(AstWorkloadGroupPoolId), false, false))
+                if (AstRoot.Eval(list[1], typeof(AstWorkloadGroupPoolId), false, false))
                 {
                     return 1;
                 }
@@ -28553,7 +28728,19 @@ namespace Bb.SqlServer.Asts
         protected static string _rule = @"workload_option_item
 	 : (IMPORTANCE  EQUAL  importance_level)?  (COMMA?  REQUEST_MAX_MEMORY_GRANT_PERCENT  EQUAL  request_max_memory_grant = decimal)?  (COMMA?  REQUEST_MAX_CPU_TIME_SEC  EQUAL  request_max_cpu_time_sec = decimal)?  (COMMA?  REQUEST_MEMORY_GRANT_TIMEOUT_SEC  EQUAL  request_memory_grant_timeout_sec = decimal)?  (COMMA?  MAX_DOP  EQUAL  max_dop = decimal)?  (COMMA?  GROUP_MAX_REQUESTS  EQUAL  group_max_requests = decimal)?";
         
-        internal AstWorkloadOptionItem(ParserRuleContext ctx, List<AstRoot> list) : 
+        private AstImportanceLevel _importanceLevel;
+        
+        private AstDecimal _requestMaxMemoryGrant;
+        
+        private AstDecimal _requestMaxCpuTimeSec;
+        
+        private AstDecimal _requestMemoryGrantTimeoutSec;
+        
+        private AstDecimal _maxDop;
+        
+        private AstDecimal _groupMaxRequests;
+        
+        internal AstWorkloadOptionItem(ParserRuleContext ctx) : 
                 base(ctx)
         {
         }
@@ -28579,7 +28766,7 @@ namespace Bb.SqlServer.Asts
             _groupMaxRequests = groupMaxRequests;
         }
         
-        public virtual AstImportanceLevel _importanceLevel
+        public virtual AstImportanceLevel ImportanceLevel
         {
             get
             {
@@ -28587,7 +28774,7 @@ namespace Bb.SqlServer.Asts
             }
         }
         
-        public virtual AstDecimal _requestMaxMemoryGrant
+        public virtual AstDecimal RequestMaxMemoryGrant
         {
             get
             {
@@ -28595,7 +28782,7 @@ namespace Bb.SqlServer.Asts
             }
         }
         
-        public virtual AstDecimal _requestMaxCpuTimeSec
+        public virtual AstDecimal RequestMaxCpuTimeSec
         {
             get
             {
@@ -28603,7 +28790,7 @@ namespace Bb.SqlServer.Asts
             }
         }
         
-        public virtual AstDecimal _requestMemoryGrantTimeoutSec
+        public virtual AstDecimal RequestMemoryGrantTimeoutSec
         {
             get
             {
@@ -28611,7 +28798,7 @@ namespace Bb.SqlServer.Asts
             }
         }
         
-        public virtual AstDecimal _maxDop
+        public virtual AstDecimal MaxDop
         {
             get
             {
@@ -28619,7 +28806,7 @@ namespace Bb.SqlServer.Asts
             }
         }
         
-        public virtual AstDecimal _groupMaxRequests
+        public virtual AstDecimal GroupMaxRequests
         {
             get
             {
@@ -28630,6 +28817,11 @@ namespace Bb.SqlServer.Asts
         public override void Accept(IAstTSqlVisitor visitor)
         {
             visitor.VisitWorkloadOptionItem(this);
+        }
+        
+        public static AstWorkloadOptionItem Create(ParserRuleContext ctx, List<AstRoot> list)
+        {
+            return new AstWorkloadOptionItem(ctx, ((AstImportanceLevel)(list[0])), ((AstDecimal)(list[1])), ((AstDecimal)(list[2])), ((AstDecimal)(list[3])), ((AstDecimal)(list[4])), ((AstDecimal)(list[5])));
         }
         
         /// <summary>
@@ -28718,11 +28910,11 @@ namespace Bb.SqlServer.Asts
         public static AstWorkloadGroupIdOrDefault Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstWorkloadGroupIdOrDefault.Resolve(list);
-            if ((index == 2))
-            {
-                return new AstWorkloadGroupIdOrDefault.AstWorkloadGroupIdOrDefault1(ctx, ((AstWorkloadGroupPoolId)(list[0])));
-            }
             if ((index == 1))
+            {
+                return new AstWorkloadGroupIdOrDefault.AstWorkloadGroupIdOrDefault1(ctx, ((AstWorkloadGroupPoolId)(list[1])));
+            }
+            if ((index == 2))
             {
                 return new AstWorkloadGroupIdOrDefault.AstWorkloadGroupIdOrDefault2(ctx);
             }
@@ -28733,7 +28925,7 @@ namespace Bb.SqlServer.Asts
         {
             if ((list.Count == 1))
             {
-                if (AstRoot.Eval(list[0], typeof(AstWorkloadGroupPoolId), false, false))
+                if (AstRoot.Eval(list[1], typeof(AstWorkloadGroupPoolId), false, false))
                 {
                     return 1;
                 }
@@ -29099,21 +29291,21 @@ namespace Bb.SqlServer.Asts
         public static AstQueueSettings Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstQueueSettings.Resolve(list);
-            if ((index == 7))
+            if ((index == 1))
             {
-                return new AstQueueSettings.AstQueueSettings1(ctx, ((AstOnOff)(list[0])), ((AstOnOff)(list[1])), ((AstOnOff)(list[2])), ((AstFuncProcNameDatabaseSchemaRef)(list[3])), ((AstDecimal)(list[4])), ((AstOnOff)(list[5])));
+                return new AstQueueSettings.AstQueueSettings1(ctx, ((AstOnOff)(list[1])), ((AstOnOff)(list[1])), ((AstOnOff)(list[1])), ((AstFuncProcNameDatabaseSchemaRef)(list[1])), ((AstDecimal)(list[1])), ((AstOnOff)(list[1])));
             }
-            if ((index == 8))
+            if ((index == 2))
             {
-                return new AstQueueSettings.AstQueueSettings2(ctx, ((AstOnOff)(list[0])), ((AstOnOff)(list[1])), ((AstOnOff)(list[2])), ((AstFuncProcNameDatabaseSchemaRef)(list[3])), ((AstDecimal)(list[4])), ((AstStringtext)(list[5])), ((AstOnOff)(list[6])));
+                return new AstQueueSettings.AstQueueSettings2(ctx, ((AstOnOff)(list[2])), ((AstOnOff)(list[2])), ((AstOnOff)(list[2])), ((AstFuncProcNameDatabaseSchemaRef)(list[2])), ((AstDecimal)(list[2])), ((AstStringtext)(list[2])), ((AstOnOff)(list[2])));
             }
-            if ((index == 7))
+            if ((index == 3))
             {
-                return new AstQueueSettings.AstQueueSettings3(ctx, ((AstOnOff)(list[0])), ((AstOnOff)(list[1])), ((AstOnOff)(list[2])), ((AstFuncProcNameDatabaseSchemaRef)(list[3])), ((AstDecimal)(list[4])), ((AstOnOff)(list[5])));
+                return new AstQueueSettings.AstQueueSettings3(ctx, ((AstOnOff)(list[3])), ((AstOnOff)(list[3])), ((AstOnOff)(list[3])), ((AstFuncProcNameDatabaseSchemaRef)(list[3])), ((AstDecimal)(list[3])), ((AstOnOff)(list[3])));
             }
             if ((index == 4))
             {
-                return new AstQueueSettings.AstQueueSettings4(ctx, ((AstOnOff)(list[0])), ((AstOnOff)(list[1])), ((AstOnOff)(list[2])));
+                return new AstQueueSettings.AstQueueSettings4(ctx, ((AstOnOff)(list[4])), ((AstOnOff)(list[4])), ((AstOnOff)(list[4])));
             }
             return null;
         }
@@ -29122,19 +29314,19 @@ namespace Bb.SqlServer.Asts
         {
             if ((list.Count == 7))
             {
-                if (AstRoot.Eval(list[0], typeof(AstOnOff), false, false))
+                if (AstRoot.Eval(list[2], typeof(AstOnOff), false, false))
                 {
-                    if (AstRoot.Eval(list[1], typeof(AstOnOff), false, false))
+                    if (AstRoot.Eval(list[2], typeof(AstOnOff), false, false))
                     {
                         if (AstRoot.Eval(list[2], typeof(AstOnOff), false, false))
                         {
-                            if (AstRoot.Eval(list[3], typeof(AstFuncProcNameDatabaseSchemaRef), false, false))
+                            if (AstRoot.Eval(list[2], typeof(AstFuncProcNameDatabaseSchemaRef), false, false))
                             {
-                                if (AstRoot.Eval(list[4], typeof(AstDecimal), false, false))
+                                if (AstRoot.Eval(list[2], typeof(AstDecimal), false, false))
                                 {
-                                    if (AstRoot.Eval(list[5], typeof(AstStringtext), false, false))
+                                    if (AstRoot.Eval(list[2], typeof(AstStringtext), false, false))
                                     {
-                                        if (AstRoot.Eval(list[6], typeof(AstOnOff), false, false))
+                                        if (AstRoot.Eval(list[2], typeof(AstOnOff), false, false))
                                         {
                                             return 2;
                                         }
@@ -29147,17 +29339,17 @@ namespace Bb.SqlServer.Asts
             }
             if ((list.Count == 6))
             {
-                if (AstRoot.Eval(list[0], typeof(AstOnOff), false, false))
+                if (AstRoot.Eval(list[1], typeof(AstOnOff), false, false))
                 {
                     if (AstRoot.Eval(list[1], typeof(AstOnOff), false, false))
                     {
-                        if (AstRoot.Eval(list[2], typeof(AstOnOff), false, false))
+                        if (AstRoot.Eval(list[1], typeof(AstOnOff), false, false))
                         {
-                            if (AstRoot.Eval(list[3], typeof(AstFuncProcNameDatabaseSchemaRef), false, false))
+                            if (AstRoot.Eval(list[1], typeof(AstFuncProcNameDatabaseSchemaRef), false, false))
                             {
-                                if (AstRoot.Eval(list[4], typeof(AstDecimal), false, false))
+                                if (AstRoot.Eval(list[1], typeof(AstDecimal), false, false))
                                 {
-                                    if (AstRoot.Eval(list[5], typeof(AstOnOff), false, false))
+                                    if (AstRoot.Eval(list[1], typeof(AstOnOff), false, false))
                                     {
                                         return 1;
                                     }
@@ -29166,17 +29358,17 @@ namespace Bb.SqlServer.Asts
                         }
                     }
                 }
-                if (AstRoot.Eval(list[0], typeof(AstOnOff), false, false))
+                if (AstRoot.Eval(list[3], typeof(AstOnOff), false, false))
                 {
-                    if (AstRoot.Eval(list[1], typeof(AstOnOff), false, false))
+                    if (AstRoot.Eval(list[3], typeof(AstOnOff), false, false))
                     {
-                        if (AstRoot.Eval(list[2], typeof(AstOnOff), false, false))
+                        if (AstRoot.Eval(list[3], typeof(AstOnOff), false, false))
                         {
                             if (AstRoot.Eval(list[3], typeof(AstFuncProcNameDatabaseSchemaRef), false, false))
                             {
-                                if (AstRoot.Eval(list[4], typeof(AstDecimal), false, false))
+                                if (AstRoot.Eval(list[3], typeof(AstDecimal), false, false))
                                 {
-                                    if (AstRoot.Eval(list[5], typeof(AstOnOff), false, false))
+                                    if (AstRoot.Eval(list[3], typeof(AstOnOff), false, false))
                                     {
                                         return 3;
                                     }
@@ -29188,11 +29380,11 @@ namespace Bb.SqlServer.Asts
             }
             if ((list.Count == 3))
             {
-                if (AstRoot.Eval(list[0], typeof(AstOnOff), false, false))
+                if (AstRoot.Eval(list[4], typeof(AstOnOff), false, false))
                 {
-                    if (AstRoot.Eval(list[1], typeof(AstOnOff), false, false))
+                    if (AstRoot.Eval(list[4], typeof(AstOnOff), false, false))
                     {
-                        if (AstRoot.Eval(list[2], typeof(AstOnOff), false, false))
+                        if (AstRoot.Eval(list[4], typeof(AstOnOff), false, false))
                         {
                             return 4;
                         }
@@ -29318,13 +29510,13 @@ namespace Bb.SqlServer.Asts
         public static AstTableOrQueue Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstTableOrQueue.Resolve(list);
-            if ((index == 2))
+            if ((index == 1))
             {
-                return new AstTableOrQueue.AstTableOrQueue1(ctx, ((AstCompleteTableRef)(list[0])));
+                return new AstTableOrQueue.AstTableOrQueue1(ctx, ((AstCompleteTableRef)(list[1])));
             }
             if ((index == 2))
             {
-                return new AstTableOrQueue.AstTableOrQueue2(ctx, ((AstQueueId)(list[0])));
+                return new AstTableOrQueue.AstTableOrQueue2(ctx, ((AstQueueId)(list[2])));
             }
             return null;
         }
@@ -29333,11 +29525,11 @@ namespace Bb.SqlServer.Asts
         {
             if ((list.Count == 1))
             {
-                if (AstRoot.Eval(list[0], typeof(AstCompleteTableRef), false, false))
+                if (AstRoot.Eval(list[1], typeof(AstCompleteTableRef), false, false))
                 {
                     return 1;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstQueueId), false, false))
+                if (AstRoot.Eval(list[2], typeof(AstQueueId), false, false))
                 {
                     return 2;
                 }
@@ -29492,17 +29684,17 @@ namespace Bb.SqlServer.Asts
         public static AstQueueAction Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstQueueAction.Resolve(list);
-            if ((index == 2))
+            if ((index == 1))
             {
-                return new AstQueueAction.AstQueueAction1(ctx, ((AstQueueRebuildOptions)(list[0])));
+                return new AstQueueAction.AstQueueAction1(ctx, ((AstQueueRebuildOptions)(list[1])));
             }
             if ((index == 2))
             {
-                return new AstQueueAction.AstQueueAction2(ctx, ((AstOnOff)(list[0])));
+                return new AstQueueAction.AstQueueAction2(ctx, ((AstOnOff)(list[2])));
             }
             if ((index == 3))
             {
-                return new AstQueueAction.AstQueueAction3(ctx, ((AstIdDefault)(list[0])), ((AstIdDefault)(list[1])));
+                return new AstQueueAction.AstQueueAction3(ctx, ((AstIdDefault)(list[3])), ((AstIdDefault)(list[3])));
             }
             return null;
         }
@@ -29511,9 +29703,9 @@ namespace Bb.SqlServer.Asts
         {
             if ((list.Count == 2))
             {
-                if (AstRoot.Eval(list[0], typeof(AstIdDefault), false, false))
+                if (AstRoot.Eval(list[3], typeof(AstIdDefault), false, false))
                 {
-                    if (AstRoot.Eval(list[1], typeof(AstIdDefault), false, false))
+                    if (AstRoot.Eval(list[3], typeof(AstIdDefault), false, false))
                     {
                         return 3;
                     }
@@ -29521,11 +29713,11 @@ namespace Bb.SqlServer.Asts
             }
             if ((list.Count == 1))
             {
-                if (AstRoot.Eval(list[0], typeof(AstQueueRebuildOptions), false, false))
+                if (AstRoot.Eval(list[1], typeof(AstQueueRebuildOptions), false, false))
                 {
                     return 1;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstOnOff), false, false))
+                if (AstRoot.Eval(list[2], typeof(AstOnOff), false, false))
                 {
                     return 2;
                 }
@@ -29638,11 +29830,11 @@ namespace Bb.SqlServer.Asts
         public static AstIdDefault Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstIdDefault.Resolve(list);
-            if ((index == 2))
-            {
-                return new AstIdDefault.AstIdDefault1(ctx, ((AstId)(list[0])));
-            }
             if ((index == 1))
+            {
+                return new AstIdDefault.AstIdDefault1(ctx, ((AstId)(list[1])));
+            }
+            if ((index == 2))
             {
                 return new AstIdDefault.AstIdDefault2(ctx);
             }
@@ -29653,7 +29845,7 @@ namespace Bb.SqlServer.Asts
         {
             if ((list.Count == 1))
             {
-                if (AstRoot.Eval(list[0], typeof(AstId), false, false))
+                if (AstRoot.Eval(list[1], typeof(AstId), false, false))
                 {
                     return 1;
                 }
@@ -29756,11 +29948,11 @@ namespace Bb.SqlServer.Asts
         public static AstContractItemTarget Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstContractItemTarget.Resolve(list);
-            if ((index == 2))
-            {
-                return new AstContractItemTarget.AstContractItemTarget1(ctx, ((AstMessageTypeId)(list[0])));
-            }
             if ((index == 1))
+            {
+                return new AstContractItemTarget.AstContractItemTarget1(ctx, ((AstMessageTypeId)(list[1])));
+            }
+            if ((index == 2))
             {
                 return new AstContractItemTarget.AstContractItemTarget2(ctx);
             }
@@ -29771,7 +29963,7 @@ namespace Bb.SqlServer.Asts
         {
             if ((list.Count == 1))
             {
-                if (AstRoot.Eval(list[0], typeof(AstMessageTypeId), false, false))
+                if (AstRoot.Eval(list[1], typeof(AstMessageTypeId), false, false))
                 {
                     return 1;
                 }
@@ -29949,17 +30141,17 @@ namespace Bb.SqlServer.Asts
         public static AstWhenMatche Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstWhenMatche.Resolve(list);
-            if ((index == 3))
+            if ((index == 1))
             {
-                return new AstWhenMatche.AstWhenMatche1(ctx, ((AstSearchCondition)(list[0])), ((AstMergeMatched)(list[1])));
+                return new AstWhenMatche.AstWhenMatche1(ctx, ((AstSearchCondition)(list[1])), ((AstMergeMatched)(list[1])));
+            }
+            if ((index == 2))
+            {
+                return new AstWhenMatche.AstWhenMatche2(ctx, ((AstSearchCondition)(list[2])), ((AstMergeNotMatched)(list[2])));
             }
             if ((index == 3))
             {
-                return new AstWhenMatche.AstWhenMatche2(ctx, ((AstSearchCondition)(list[0])), ((AstMergeNotMatched)(list[1])));
-            }
-            if ((index == 3))
-            {
-                return new AstWhenMatche.AstWhenMatche3(ctx, ((AstSearchCondition)(list[0])), ((AstMergeMatched)(list[1])));
+                return new AstWhenMatche.AstWhenMatche3(ctx, ((AstSearchCondition)(list[3])), ((AstMergeMatched)(list[3])));
             }
             return null;
         }
@@ -29968,23 +30160,23 @@ namespace Bb.SqlServer.Asts
         {
             if ((list.Count == 2))
             {
-                if (AstRoot.Eval(list[0], typeof(AstSearchCondition), false, false))
+                if (AstRoot.Eval(list[1], typeof(AstSearchCondition), false, false))
                 {
                     if (AstRoot.Eval(list[1], typeof(AstMergeMatched), false, false))
                     {
                         return 1;
                     }
                 }
-                if (AstRoot.Eval(list[0], typeof(AstSearchCondition), false, false))
+                if (AstRoot.Eval(list[2], typeof(AstSearchCondition), false, false))
                 {
-                    if (AstRoot.Eval(list[1], typeof(AstMergeNotMatched), false, false))
+                    if (AstRoot.Eval(list[2], typeof(AstMergeNotMatched), false, false))
                     {
                         return 2;
                     }
                 }
-                if (AstRoot.Eval(list[0], typeof(AstSearchCondition), false, false))
+                if (AstRoot.Eval(list[3], typeof(AstSearchCondition), false, false))
                 {
-                    if (AstRoot.Eval(list[1], typeof(AstMergeMatched), false, false))
+                    if (AstRoot.Eval(list[3], typeof(AstMergeMatched), false, false))
                     {
                         return 3;
                     }
@@ -30088,11 +30280,11 @@ namespace Bb.SqlServer.Asts
         public static AstMergeMatched Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstMergeMatched.Resolve(list);
-            if ((index == 2))
-            {
-                return new AstMergeMatched.AstMergeMatched1(ctx, ((AstUpdateElemMerges)(list[0])));
-            }
             if ((index == 1))
+            {
+                return new AstMergeMatched.AstMergeMatched1(ctx, ((AstUpdateElemMerges)(list[1])));
+            }
+            if ((index == 2))
             {
                 return new AstMergeMatched.AstMergeMatched2(ctx);
             }
@@ -30103,7 +30295,7 @@ namespace Bb.SqlServer.Asts
         {
             if ((list.Count == 1))
             {
-                if (AstRoot.Eval(list[0], typeof(AstUpdateElemMerges), false, false))
+                if (AstRoot.Eval(list[1], typeof(AstUpdateElemMerges), false, false))
                 {
                     return 1;
                 }
@@ -30228,13 +30420,13 @@ namespace Bb.SqlServer.Asts
         public static AstMergeNotMatched Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstMergeNotMatched.Resolve(list);
-            if ((index == 3))
+            if ((index == 1))
             {
-                return new AstMergeNotMatched.AstMergeNotMatched1(ctx, ((AstColumnNameList)(list[0])), ((AstTableValueConstructor)(list[1])));
+                return new AstMergeNotMatched.AstMergeNotMatched1(ctx, ((AstColumnNameList)(list[1])), ((AstTableValueConstructor)(list[1])));
             }
             if ((index == 2))
             {
-                return new AstMergeNotMatched.AstMergeNotMatched2(ctx, ((AstColumnNameList)(list[0])));
+                return new AstMergeNotMatched.AstMergeNotMatched2(ctx, ((AstColumnNameList)(list[2])));
             }
             return null;
         }
@@ -30243,7 +30435,7 @@ namespace Bb.SqlServer.Asts
         {
             if ((list.Count == 2))
             {
-                if (AstRoot.Eval(list[0], typeof(AstColumnNameList), false, false))
+                if (AstRoot.Eval(list[1], typeof(AstColumnNameList), false, false))
                 {
                     if (AstRoot.Eval(list[1], typeof(AstTableValueConstructor), false, false))
                     {
@@ -30253,7 +30445,7 @@ namespace Bb.SqlServer.Asts
             }
             if ((list.Count == 1))
             {
-                if (AstRoot.Eval(list[0], typeof(AstColumnNameList), false, false))
+                if (AstRoot.Eval(list[2], typeof(AstColumnNameList), false, false))
                 {
                     return 2;
                 }
@@ -30396,17 +30588,17 @@ namespace Bb.SqlServer.Asts
         public static AstDeleteStatementFrom Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstDeleteStatementFrom.Resolve(list);
-            if ((index == 2))
+            if ((index == 1))
             {
-                return new AstDeleteStatementFrom.AstDeleteStatementFrom1(ctx, ((AstDdlObject)(list[0])));
+                return new AstDeleteStatementFrom.AstDeleteStatementFrom1(ctx, ((AstDdlObject)(list[1])));
             }
             if ((index == 2))
             {
-                return new AstDeleteStatementFrom.AstDeleteStatementFrom2(ctx, ((AstRowsetFunctionLimited)(list[0])));
+                return new AstDeleteStatementFrom.AstDeleteStatementFrom2(ctx, ((AstRowsetFunctionLimited)(list[2])));
             }
-            if ((index == 2))
+            if ((index == 3))
             {
-                return new AstDeleteStatementFrom.AstDeleteStatementFrom3(ctx, ((AstLocalId)(list[0])));
+                return new AstDeleteStatementFrom.AstDeleteStatementFrom3(ctx, ((AstLocalId)(list[3])));
             }
             return null;
         }
@@ -30415,15 +30607,15 @@ namespace Bb.SqlServer.Asts
         {
             if ((list.Count == 1))
             {
-                if (AstRoot.Eval(list[0], typeof(AstDdlObject), false, false))
+                if (AstRoot.Eval(list[1], typeof(AstDdlObject), false, false))
                 {
                     return 1;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstRowsetFunctionLimited), false, false))
+                if (AstRoot.Eval(list[2], typeof(AstRowsetFunctionLimited), false, false))
                 {
                     return 2;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstLocalId), false, false))
+                if (AstRoot.Eval(list[3], typeof(AstLocalId), false, false))
                 {
                     return 3;
                 }
@@ -30593,19 +30785,19 @@ namespace Bb.SqlServer.Asts
         public static AstInsertStatementValue Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstInsertStatementValue.Resolve(list);
-            if ((index == 2))
-            {
-                return new AstInsertStatementValue.AstInsertStatementValue1(ctx, ((AstTableValueConstructor)(list[0])));
-            }
-            if ((index == 2))
-            {
-                return new AstInsertStatementValue.AstInsertStatementValue2(ctx, ((AstDerivedTable)(list[0])));
-            }
-            if ((index == 2))
-            {
-                return new AstInsertStatementValue.AstInsertStatementValue3(ctx, ((AstExecuteStatement)(list[0])));
-            }
             if ((index == 1))
+            {
+                return new AstInsertStatementValue.AstInsertStatementValue1(ctx, ((AstTableValueConstructor)(list[1])));
+            }
+            if ((index == 2))
+            {
+                return new AstInsertStatementValue.AstInsertStatementValue2(ctx, ((AstDerivedTable)(list[2])));
+            }
+            if ((index == 3))
+            {
+                return new AstInsertStatementValue.AstInsertStatementValue3(ctx, ((AstExecuteStatement)(list[3])));
+            }
+            if ((index == 4))
             {
                 return new AstInsertStatementValue.AstInsertStatementValue4(ctx);
             }
@@ -30616,15 +30808,15 @@ namespace Bb.SqlServer.Asts
         {
             if ((list.Count == 1))
             {
-                if (AstRoot.Eval(list[0], typeof(AstTableValueConstructor), false, false))
+                if (AstRoot.Eval(list[1], typeof(AstTableValueConstructor), false, false))
                 {
                     return 1;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstDerivedTable), false, false))
+                if (AstRoot.Eval(list[2], typeof(AstDerivedTable), false, false))
                 {
                     return 2;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstExecuteStatement), false, false))
+                if (AstRoot.Eval(list[3], typeof(AstExecuteStatement), false, false))
                 {
                     return 3;
                 }
@@ -30758,13 +30950,13 @@ namespace Bb.SqlServer.Asts
         public static AstReceiveMode Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstReceiveMode.Resolve(list);
-            if ((index == 2))
+            if ((index == 1))
             {
-                return new AstReceiveMode.AstReceiveMode1(ctx, ((AstReceiveModeEnum)(list[0])));
+                return new AstReceiveMode.AstReceiveMode1(ctx, ((AstReceiveModeEnum)(list[1])));
             }
             if ((index == 2))
             {
-                return new AstReceiveMode.AstReceiveMode2(ctx, ((AstTopClause)(list[0])));
+                return new AstReceiveMode.AstReceiveMode2(ctx, ((AstTopClause)(list[2])));
             }
             return null;
         }
@@ -30773,11 +30965,11 @@ namespace Bb.SqlServer.Asts
         {
             if ((list.Count == 1))
             {
-                if (AstRoot.Eval(list[0], typeof(AstReceiveModeEnum), false, false))
+                if (AstRoot.Eval(list[1], typeof(AstReceiveModeEnum), false, false))
                 {
                     return 1;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstTopClause), false, false))
+                if (AstRoot.Eval(list[2], typeof(AstTopClause), false, false))
                 {
                     return 2;
                 }
@@ -30890,13 +31082,13 @@ namespace Bb.SqlServer.Asts
         public static AstTimespan Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstTimespan.Resolve(list);
-            if ((index == 2))
+            if ((index == 1))
             {
-                return new AstTimespan.AstTimespan1(ctx, ((AstLocalId)(list[0])));
+                return new AstTimespan.AstTimespan1(ctx, ((AstLocalId)(list[1])));
             }
             if ((index == 2))
             {
-                return new AstTimespan.AstTimespan2(ctx, ((AstConstant)(list[0])));
+                return new AstTimespan.AstTimespan2(ctx, ((AstConstant)(list[2])));
             }
             return null;
         }
@@ -30905,11 +31097,11 @@ namespace Bb.SqlServer.Asts
         {
             if ((list.Count == 1))
             {
-                if (AstRoot.Eval(list[0], typeof(AstLocalId), false, false))
+                if (AstRoot.Eval(list[1], typeof(AstLocalId), false, false))
                 {
                     return 1;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstConstant), false, false))
+                if (AstRoot.Eval(list[2], typeof(AstConstant), false, false))
                 {
                     return 2;
                 }
@@ -31052,17 +31244,17 @@ namespace Bb.SqlServer.Asts
         public static AstRelationalIndexOption Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstRelationalIndexOption.Resolve(list);
-            if ((index == 2))
+            if ((index == 1))
             {
-                return new AstRelationalIndexOption.AstRelationalIndexOption1(ctx, ((AstRebuildIndexOption)(list[0])));
+                return new AstRelationalIndexOption.AstRelationalIndexOption1(ctx, ((AstRebuildIndexOption)(list[1])));
             }
             if ((index == 2))
             {
-                return new AstRelationalIndexOption.AstRelationalIndexOption2(ctx, ((AstOnOff)(list[0])));
+                return new AstRelationalIndexOption.AstRelationalIndexOption2(ctx, ((AstOnOff)(list[2])));
             }
-            if ((index == 2))
+            if ((index == 3))
             {
-                return new AstRelationalIndexOption.AstRelationalIndexOption3(ctx, ((AstOnOff)(list[0])));
+                return new AstRelationalIndexOption.AstRelationalIndexOption3(ctx, ((AstOnOff)(list[3])));
             }
             return null;
         }
@@ -31071,15 +31263,15 @@ namespace Bb.SqlServer.Asts
         {
             if ((list.Count == 1))
             {
-                if (AstRoot.Eval(list[0], typeof(AstRebuildIndexOption), false, false))
+                if (AstRoot.Eval(list[1], typeof(AstRebuildIndexOption), false, false))
                 {
                     return 1;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstOnOff), false, false))
+                if (AstRoot.Eval(list[2], typeof(AstOnOff), false, false))
                 {
                     return 2;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstOnOff), false, false))
+                if (AstRoot.Eval(list[3], typeof(AstOnOff), false, false))
                 {
                     return 3;
                 }
@@ -31278,25 +31470,25 @@ namespace Bb.SqlServer.Asts
         public static AstIndexStatus Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstIndexStatus.Resolve(list);
-            if ((index == 2))
+            if ((index == 1))
             {
-                return new AstIndexStatus.AstIndexStatus1(ctx, ((AstIndexStatusEnum)(list[0])));
+                return new AstIndexStatus.AstIndexStatus1(ctx, ((AstIndexStatusEnum)(list[1])));
             }
             if ((index == 2))
             {
-                return new AstIndexStatus.AstIndexStatus2(ctx, ((AstResumableIndexOptions)(list[0])));
+                return new AstIndexStatus.AstIndexStatus2(ctx, ((AstResumableIndexOptions)(list[2])));
             }
-            if ((index == 2))
+            if ((index == 3))
             {
-                return new AstIndexStatus.AstIndexStatus3(ctx, ((AstReorganizePartition)(list[0])));
+                return new AstIndexStatus.AstIndexStatus3(ctx, ((AstReorganizePartition)(list[3])));
             }
-            if ((index == 2))
+            if ((index == 4))
             {
-                return new AstIndexStatus.AstIndexStatus4(ctx, ((AstSetIndexOptions)(list[0])));
+                return new AstIndexStatus.AstIndexStatus4(ctx, ((AstSetIndexOptions)(list[4])));
             }
-            if ((index == 2))
+            if ((index == 5))
             {
-                return new AstIndexStatus.AstIndexStatus5(ctx, ((AstRebuildPartition)(list[0])));
+                return new AstIndexStatus.AstIndexStatus5(ctx, ((AstRebuildPartition)(list[5])));
             }
             return null;
         }
@@ -31305,23 +31497,23 @@ namespace Bb.SqlServer.Asts
         {
             if ((list.Count == 1))
             {
-                if (AstRoot.Eval(list[0], typeof(AstIndexStatusEnum), false, false))
+                if (AstRoot.Eval(list[1], typeof(AstIndexStatusEnum), false, false))
                 {
                     return 1;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstResumableIndexOptions), false, false))
+                if (AstRoot.Eval(list[2], typeof(AstResumableIndexOptions), false, false))
                 {
                     return 2;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstReorganizePartition), false, false))
+                if (AstRoot.Eval(list[3], typeof(AstReorganizePartition), false, false))
                 {
                     return 3;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstSetIndexOptions), false, false))
+                if (AstRoot.Eval(list[4], typeof(AstSetIndexOptions), false, false))
                 {
                     return 4;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstRebuildPartition), false, false))
+                if (AstRoot.Eval(list[5], typeof(AstRebuildPartition), false, false))
                 {
                     return 5;
                 }
@@ -31453,11 +31645,11 @@ namespace Bb.SqlServer.Asts
         public static AstIndexName Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstIndexName.Resolve(list);
-            if ((index == 2))
-            {
-                return new AstIndexName.AstIndexName1(ctx, ((AstId)(list[0])));
-            }
             if ((index == 1))
+            {
+                return new AstIndexName.AstIndexName1(ctx, ((AstId)(list[1])));
+            }
+            if ((index == 2))
             {
                 return new AstIndexName.AstIndexName2(ctx);
             }
@@ -31468,7 +31660,7 @@ namespace Bb.SqlServer.Asts
         {
             if ((list.Count == 1))
             {
-                if (AstRoot.Eval(list[0], typeof(AstId), false, false))
+                if (AstRoot.Eval(list[1], typeof(AstId), false, false))
                 {
                     return 1;
                 }
@@ -31612,17 +31804,17 @@ namespace Bb.SqlServer.Asts
         public static AstResumableIndexOption Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstResumableIndexOption.Resolve(list);
-            if ((index == 2))
+            if ((index == 1))
             {
-                return new AstResumableIndexOption.AstResumableIndexOption1(ctx, ((AstDecimal)(list[0])));
+                return new AstResumableIndexOption.AstResumableIndexOption1(ctx, ((AstDecimal)(list[1])));
             }
             if ((index == 2))
             {
-                return new AstResumableIndexOption.AstResumableIndexOption2(ctx, ((AstDecimal)(list[0])));
+                return new AstResumableIndexOption.AstResumableIndexOption2(ctx, ((AstDecimal)(list[2])));
             }
-            if ((index == 2))
+            if ((index == 3))
             {
-                return new AstResumableIndexOption.AstResumableIndexOption3(ctx, ((AstLowPriorityLockWait)(list[0])));
+                return new AstResumableIndexOption.AstResumableIndexOption3(ctx, ((AstLowPriorityLockWait)(list[3])));
             }
             return null;
         }
@@ -31631,15 +31823,15 @@ namespace Bb.SqlServer.Asts
         {
             if ((list.Count == 1))
             {
-                if (AstRoot.Eval(list[0], typeof(AstDecimal), false, false))
+                if (AstRoot.Eval(list[1], typeof(AstDecimal), false, false))
                 {
                     return 1;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstDecimal), false, false))
+                if (AstRoot.Eval(list[2], typeof(AstDecimal), false, false))
                 {
                     return 2;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstLowPriorityLockWait), false, false))
+                if (AstRoot.Eval(list[3], typeof(AstLowPriorityLockWait), false, false))
                 {
                     return 3;
                 }
@@ -31754,13 +31946,13 @@ namespace Bb.SqlServer.Asts
         public static AstReorganizeOption Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstReorganizeOption.Resolve(list);
-            if ((index == 2))
+            if ((index == 1))
             {
-                return new AstReorganizeOption.AstReorganizeOption1(ctx, ((AstOnOff)(list[0])));
+                return new AstReorganizeOption.AstReorganizeOption1(ctx, ((AstOnOff)(list[1])));
             }
             if ((index == 2))
             {
-                return new AstReorganizeOption.AstReorganizeOption2(ctx, ((AstOnOff)(list[0])));
+                return new AstReorganizeOption.AstReorganizeOption2(ctx, ((AstOnOff)(list[2])));
             }
             return null;
         }
@@ -31769,11 +31961,11 @@ namespace Bb.SqlServer.Asts
         {
             if ((list.Count == 1))
             {
-                if (AstRoot.Eval(list[0], typeof(AstOnOff), false, false))
+                if (AstRoot.Eval(list[1], typeof(AstOnOff), false, false))
                 {
                     return 1;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstOnOff), false, false))
+                if (AstRoot.Eval(list[2], typeof(AstOnOff), false, false))
                 {
                     return 2;
                 }
@@ -31995,29 +32187,29 @@ namespace Bb.SqlServer.Asts
         public static AstSetIndexOption Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstSetIndexOption.Resolve(list);
-            if ((index == 2))
+            if ((index == 1))
             {
-                return new AstSetIndexOption.AstSetIndexOption1(ctx, ((AstOnOff)(list[0])));
+                return new AstSetIndexOption.AstSetIndexOption1(ctx, ((AstOnOff)(list[1])));
             }
             if ((index == 2))
             {
-                return new AstSetIndexOption.AstSetIndexOption2(ctx, ((AstOnOff)(list[0])));
+                return new AstSetIndexOption.AstSetIndexOption2(ctx, ((AstOnOff)(list[2])));
             }
-            if ((index == 2))
+            if ((index == 3))
             {
-                return new AstSetIndexOption.AstSetIndexOption3(ctx, ((AstOnOff)(list[0])));
+                return new AstSetIndexOption.AstSetIndexOption3(ctx, ((AstOnOff)(list[3])));
             }
-            if ((index == 2))
+            if ((index == 4))
             {
-                return new AstSetIndexOption.AstSetIndexOption4(ctx, ((AstOnOff)(list[0])));
+                return new AstSetIndexOption.AstSetIndexOption4(ctx, ((AstOnOff)(list[4])));
             }
-            if ((index == 2))
+            if ((index == 5))
             {
-                return new AstSetIndexOption.AstSetIndexOption5(ctx, ((AstOnOff)(list[0])));
+                return new AstSetIndexOption.AstSetIndexOption5(ctx, ((AstOnOff)(list[5])));
             }
-            if ((index == 2))
+            if ((index == 6))
             {
-                return new AstSetIndexOption.AstSetIndexOption6(ctx, ((AstDecimal)(list[0])));
+                return new AstSetIndexOption.AstSetIndexOption6(ctx, ((AstDecimal)(list[6])));
             }
             return null;
         }
@@ -32026,27 +32218,27 @@ namespace Bb.SqlServer.Asts
         {
             if ((list.Count == 1))
             {
-                if (AstRoot.Eval(list[0], typeof(AstOnOff), false, false))
+                if (AstRoot.Eval(list[1], typeof(AstOnOff), false, false))
                 {
                     return 1;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstOnOff), false, false))
+                if (AstRoot.Eval(list[2], typeof(AstOnOff), false, false))
                 {
                     return 2;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstOnOff), false, false))
+                if (AstRoot.Eval(list[3], typeof(AstOnOff), false, false))
                 {
                     return 3;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstOnOff), false, false))
+                if (AstRoot.Eval(list[4], typeof(AstOnOff), false, false))
                 {
                     return 4;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstOnOff), false, false))
+                if (AstRoot.Eval(list[5], typeof(AstOnOff), false, false))
                 {
                     return 5;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstDecimal), false, false))
+                if (AstRoot.Eval(list[6], typeof(AstDecimal), false, false))
                 {
                     return 6;
                 }
@@ -32173,13 +32365,13 @@ namespace Bb.SqlServer.Asts
         public static AstRebuildPartition Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstRebuildPartition.Resolve(list);
+            if ((index == 1))
+            {
+                return new AstRebuildPartition.AstRebuildPartition1(ctx, ((AstRebuildIndexOptions)(list[1])));
+            }
             if ((index == 2))
             {
-                return new AstRebuildPartition.AstRebuildPartition1(ctx, ((AstRebuildIndexOptions)(list[0])));
-            }
-            if ((index == 3))
-            {
-                return new AstRebuildPartition.AstRebuildPartition2(ctx, ((AstDecimal)(list[0])), ((AstSinglePartitionRebuildIndexOptions)(list[1])));
+                return new AstRebuildPartition.AstRebuildPartition2(ctx, ((AstDecimal)(list[2])), ((AstSinglePartitionRebuildIndexOptions)(list[2])));
             }
             return null;
         }
@@ -32188,9 +32380,9 @@ namespace Bb.SqlServer.Asts
         {
             if ((list.Count == 2))
             {
-                if (AstRoot.Eval(list[0], typeof(AstDecimal), false, false))
+                if (AstRoot.Eval(list[2], typeof(AstDecimal), false, false))
                 {
-                    if (AstRoot.Eval(list[1], typeof(AstSinglePartitionRebuildIndexOptions), false, false))
+                    if (AstRoot.Eval(list[2], typeof(AstSinglePartitionRebuildIndexOptions), false, false))
                     {
                         return 2;
                     }
@@ -32198,7 +32390,7 @@ namespace Bb.SqlServer.Asts
             }
             if ((list.Count == 1))
             {
-                if (AstRoot.Eval(list[0], typeof(AstRebuildIndexOptions), false, false))
+                if (AstRoot.Eval(list[1], typeof(AstRebuildIndexOptions), false, false))
                 {
                     return 1;
                 }
@@ -32684,61 +32876,61 @@ namespace Bb.SqlServer.Asts
         public static AstRebuildIndexOption Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstRebuildIndexOption.Resolve(list);
-            if ((index == 2))
+            if ((index == 1))
             {
-                return new AstRebuildIndexOption.AstRebuildIndexOption1(ctx, ((AstOnOff)(list[0])));
+                return new AstRebuildIndexOption.AstRebuildIndexOption1(ctx, ((AstOnOff)(list[1])));
             }
             if ((index == 2))
             {
-                return new AstRebuildIndexOption.AstRebuildIndexOption2(ctx, ((AstDecimal)(list[0])));
-            }
-            if ((index == 2))
-            {
-                return new AstRebuildIndexOption.AstRebuildIndexOption3(ctx, ((AstOnOff)(list[0])));
-            }
-            if ((index == 2))
-            {
-                return new AstRebuildIndexOption.AstRebuildIndexOption4(ctx, ((AstOnOff)(list[0])));
-            }
-            if ((index == 2))
-            {
-                return new AstRebuildIndexOption.AstRebuildIndexOption5(ctx, ((AstOnOff)(list[0])));
-            }
-            if ((index == 2))
-            {
-                return new AstRebuildIndexOption.AstRebuildIndexOption6(ctx, ((AstOnOff)(list[0])));
-            }
-            if ((index == 2))
-            {
-                return new AstRebuildIndexOption.AstRebuildIndexOption7(ctx, ((AstOnlineValue)(list[0])));
-            }
-            if ((index == 2))
-            {
-                return new AstRebuildIndexOption.AstRebuildIndexOption8(ctx, ((AstOnOff)(list[0])));
-            }
-            if ((index == 2))
-            {
-                return new AstRebuildIndexOption.AstRebuildIndexOption9(ctx, ((AstDecimal)(list[0])));
-            }
-            if ((index == 2))
-            {
-                return new AstRebuildIndexOption.AstRebuildIndexOption10(ctx, ((AstOnOff)(list[0])));
-            }
-            if ((index == 2))
-            {
-                return new AstRebuildIndexOption.AstRebuildIndexOption11(ctx, ((AstOnOff)(list[0])));
-            }
-            if ((index == 2))
-            {
-                return new AstRebuildIndexOption.AstRebuildIndexOption12(ctx, ((AstDecimal)(list[0])));
+                return new AstRebuildIndexOption.AstRebuildIndexOption2(ctx, ((AstDecimal)(list[2])));
             }
             if ((index == 3))
             {
-                return new AstRebuildIndexOption.AstRebuildIndexOption13(ctx, ((AstDatacompressionMode)(list[0])), ((AstOnPartitions)(list[1])));
+                return new AstRebuildIndexOption.AstRebuildIndexOption3(ctx, ((AstOnOff)(list[3])));
             }
-            if ((index == 3))
+            if ((index == 4))
             {
-                return new AstRebuildIndexOption.AstRebuildIndexOption14(ctx, ((AstOnOff)(list[0])), ((AstOnPartitions)(list[1])));
+                return new AstRebuildIndexOption.AstRebuildIndexOption4(ctx, ((AstOnOff)(list[4])));
+            }
+            if ((index == 5))
+            {
+                return new AstRebuildIndexOption.AstRebuildIndexOption5(ctx, ((AstOnOff)(list[5])));
+            }
+            if ((index == 6))
+            {
+                return new AstRebuildIndexOption.AstRebuildIndexOption6(ctx, ((AstOnOff)(list[6])));
+            }
+            if ((index == 7))
+            {
+                return new AstRebuildIndexOption.AstRebuildIndexOption7(ctx, ((AstOnlineValue)(list[7])));
+            }
+            if ((index == 8))
+            {
+                return new AstRebuildIndexOption.AstRebuildIndexOption8(ctx, ((AstOnOff)(list[8])));
+            }
+            if ((index == 9))
+            {
+                return new AstRebuildIndexOption.AstRebuildIndexOption9(ctx, ((AstDecimal)(list[9])));
+            }
+            if ((index == 10))
+            {
+                return new AstRebuildIndexOption.AstRebuildIndexOption10(ctx, ((AstOnOff)(list[10])));
+            }
+            if ((index == 11))
+            {
+                return new AstRebuildIndexOption.AstRebuildIndexOption11(ctx, ((AstOnOff)(list[11])));
+            }
+            if ((index == 12))
+            {
+                return new AstRebuildIndexOption.AstRebuildIndexOption12(ctx, ((AstDecimal)(list[12])));
+            }
+            if ((index == 13))
+            {
+                return new AstRebuildIndexOption.AstRebuildIndexOption13(ctx, ((AstDatacompressionMode)(list[13])), ((AstOnPartitions)(list[13])));
+            }
+            if ((index == 14))
+            {
+                return new AstRebuildIndexOption.AstRebuildIndexOption14(ctx, ((AstOnOff)(list[14])), ((AstOnPartitions)(list[14])));
             }
             return null;
         }
@@ -32747,16 +32939,16 @@ namespace Bb.SqlServer.Asts
         {
             if ((list.Count == 2))
             {
-                if (AstRoot.Eval(list[0], typeof(AstDatacompressionMode), false, false))
+                if (AstRoot.Eval(list[13], typeof(AstDatacompressionMode), false, false))
                 {
-                    if (AstRoot.Eval(list[1], typeof(AstOnPartitions), false, false))
+                    if (AstRoot.Eval(list[13], typeof(AstOnPartitions), false, false))
                     {
                         return 13;
                     }
                 }
-                if (AstRoot.Eval(list[0], typeof(AstOnOff), false, false))
+                if (AstRoot.Eval(list[14], typeof(AstOnOff), false, false))
                 {
-                    if (AstRoot.Eval(list[1], typeof(AstOnPartitions), false, false))
+                    if (AstRoot.Eval(list[14], typeof(AstOnPartitions), false, false))
                     {
                         return 14;
                     }
@@ -32764,51 +32956,51 @@ namespace Bb.SqlServer.Asts
             }
             if ((list.Count == 1))
             {
-                if (AstRoot.Eval(list[0], typeof(AstOnOff), false, false))
+                if (AstRoot.Eval(list[1], typeof(AstOnOff), false, false))
                 {
                     return 1;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstDecimal), false, false))
+                if (AstRoot.Eval(list[2], typeof(AstDecimal), false, false))
                 {
                     return 2;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstOnOff), false, false))
+                if (AstRoot.Eval(list[3], typeof(AstOnOff), false, false))
                 {
                     return 3;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstOnOff), false, false))
+                if (AstRoot.Eval(list[4], typeof(AstOnOff), false, false))
                 {
                     return 4;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstOnOff), false, false))
+                if (AstRoot.Eval(list[5], typeof(AstOnOff), false, false))
                 {
                     return 5;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstOnOff), false, false))
+                if (AstRoot.Eval(list[6], typeof(AstOnOff), false, false))
                 {
                     return 6;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstOnlineValue), false, false))
+                if (AstRoot.Eval(list[7], typeof(AstOnlineValue), false, false))
                 {
                     return 7;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstOnOff), false, false))
+                if (AstRoot.Eval(list[8], typeof(AstOnOff), false, false))
                 {
                     return 8;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstDecimal), false, false))
+                if (AstRoot.Eval(list[9], typeof(AstDecimal), false, false))
                 {
                     return 9;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstOnOff), false, false))
+                if (AstRoot.Eval(list[10], typeof(AstOnOff), false, false))
                 {
                     return 10;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstOnOff), false, false))
+                if (AstRoot.Eval(list[11], typeof(AstOnOff), false, false))
                 {
                     return 11;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstDecimal), false, false))
+                if (AstRoot.Eval(list[12], typeof(AstDecimal), false, false))
                 {
                     return 12;
                 }
@@ -32941,11 +33133,11 @@ namespace Bb.SqlServer.Asts
         public static AstOnlineValue Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstOnlineValue.Resolve(list);
-            if ((index == 2))
-            {
-                return new AstOnlineValue.AstOnlineValue1(ctx, ((AstLowPriorityLockWait)(list[0])));
-            }
             if ((index == 1))
+            {
+                return new AstOnlineValue.AstOnlineValue1(ctx, ((AstLowPriorityLockWait)(list[1])));
+            }
+            if ((index == 2))
             {
                 return new AstOnlineValue.AstOnlineValue2(ctx);
             }
@@ -32956,7 +33148,7 @@ namespace Bb.SqlServer.Asts
         {
             if ((list.Count == 1))
             {
-                if (AstRoot.Eval(list[0], typeof(AstLowPriorityLockWait), false, false))
+                if (AstRoot.Eval(list[1], typeof(AstLowPriorityLockWait), false, false))
                 {
                     return 1;
                 }
@@ -33210,29 +33402,29 @@ namespace Bb.SqlServer.Asts
         public static AstSinglePartitionRebuildIndexOption Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstSinglePartitionRebuildIndexOption.Resolve(list);
-            if ((index == 2))
+            if ((index == 1))
             {
-                return new AstSinglePartitionRebuildIndexOption.AstSinglePartitionRebuildIndexOption1(ctx, ((AstOnOff)(list[0])));
+                return new AstSinglePartitionRebuildIndexOption.AstSinglePartitionRebuildIndexOption1(ctx, ((AstOnOff)(list[1])));
             }
             if ((index == 2))
             {
-                return new AstSinglePartitionRebuildIndexOption.AstSinglePartitionRebuildIndexOption2(ctx, ((AstDecimal)(list[0])));
-            }
-            if ((index == 2))
-            {
-                return new AstSinglePartitionRebuildIndexOption.AstSinglePartitionRebuildIndexOption3(ctx, ((AstOnOff)(list[0])));
+                return new AstSinglePartitionRebuildIndexOption.AstSinglePartitionRebuildIndexOption2(ctx, ((AstDecimal)(list[2])));
             }
             if ((index == 3))
             {
-                return new AstSinglePartitionRebuildIndexOption.AstSinglePartitionRebuildIndexOption4(ctx, ((AstDatacompressionMode)(list[0])), ((AstOnPartitions)(list[1])));
+                return new AstSinglePartitionRebuildIndexOption.AstSinglePartitionRebuildIndexOption3(ctx, ((AstOnOff)(list[3])));
             }
-            if ((index == 3))
+            if ((index == 4))
             {
-                return new AstSinglePartitionRebuildIndexOption.AstSinglePartitionRebuildIndexOption5(ctx, ((AstOnOff)(list[0])), ((AstOnPartitions)(list[1])));
+                return new AstSinglePartitionRebuildIndexOption.AstSinglePartitionRebuildIndexOption4(ctx, ((AstDatacompressionMode)(list[4])), ((AstOnPartitions)(list[4])));
             }
-            if ((index == 2))
+            if ((index == 5))
             {
-                return new AstSinglePartitionRebuildIndexOption.AstSinglePartitionRebuildIndexOption6(ctx, ((AstOnlineValue)(list[0])));
+                return new AstSinglePartitionRebuildIndexOption.AstSinglePartitionRebuildIndexOption5(ctx, ((AstOnOff)(list[5])), ((AstOnPartitions)(list[5])));
+            }
+            if ((index == 6))
+            {
+                return new AstSinglePartitionRebuildIndexOption.AstSinglePartitionRebuildIndexOption6(ctx, ((AstOnlineValue)(list[6])));
             }
             return null;
         }
@@ -33241,16 +33433,16 @@ namespace Bb.SqlServer.Asts
         {
             if ((list.Count == 2))
             {
-                if (AstRoot.Eval(list[0], typeof(AstDatacompressionMode), false, false))
+                if (AstRoot.Eval(list[4], typeof(AstDatacompressionMode), false, false))
                 {
-                    if (AstRoot.Eval(list[1], typeof(AstOnPartitions), false, false))
+                    if (AstRoot.Eval(list[4], typeof(AstOnPartitions), false, false))
                     {
                         return 4;
                     }
                 }
-                if (AstRoot.Eval(list[0], typeof(AstOnOff), false, false))
+                if (AstRoot.Eval(list[5], typeof(AstOnOff), false, false))
                 {
-                    if (AstRoot.Eval(list[1], typeof(AstOnPartitions), false, false))
+                    if (AstRoot.Eval(list[5], typeof(AstOnPartitions), false, false))
                     {
                         return 5;
                     }
@@ -33258,19 +33450,19 @@ namespace Bb.SqlServer.Asts
             }
             if ((list.Count == 1))
             {
-                if (AstRoot.Eval(list[0], typeof(AstOnOff), false, false))
+                if (AstRoot.Eval(list[1], typeof(AstOnOff), false, false))
                 {
                     return 1;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstDecimal), false, false))
+                if (AstRoot.Eval(list[2], typeof(AstDecimal), false, false))
                 {
                     return 2;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstOnOff), false, false))
+                if (AstRoot.Eval(list[3], typeof(AstOnOff), false, false))
                 {
                     return 3;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstOnlineValue), false, false))
+                if (AstRoot.Eval(list[6], typeof(AstOnlineValue), false, false))
                 {
                     return 6;
                 }
@@ -33339,7 +33531,11 @@ namespace Bb.SqlServer.Asts
         protected static string _rule = "partition_nums\r\n\t : partition_number = decimal  (TO  to_partition_number = decima" +
             "l)?";
         
-        internal AstPartitionNums(ParserRuleContext ctx, List<AstRoot> list) : 
+        private AstDecimal _partitionNumber;
+        
+        private AstDecimal _toPartitionNumber;
+        
+        internal AstPartitionNums(ParserRuleContext ctx) : 
                 base(ctx)
         {
         }
@@ -33361,7 +33557,7 @@ namespace Bb.SqlServer.Asts
             _toPartitionNumber = toPartitionNumber;
         }
         
-        public virtual AstDecimal _partitionNumber
+        public virtual AstDecimal PartitionNumber
         {
             get
             {
@@ -33369,7 +33565,7 @@ namespace Bb.SqlServer.Asts
             }
         }
         
-        public virtual AstDecimal _toPartitionNumber
+        public virtual AstDecimal ToPartitionNumber
         {
             get
             {
@@ -33380,6 +33576,11 @@ namespace Bb.SqlServer.Asts
         public override void Accept(IAstTSqlVisitor visitor)
         {
             visitor.VisitPartitionNums(this);
+        }
+        
+        public static AstPartitionNums Create(ParserRuleContext ctx, List<AstRoot> list)
+        {
+            return new AstPartitionNums(ctx, ((AstDecimal)(list[0])), ((AstDecimal)(list[1])));
         }
         
         /// <summary>
@@ -33578,25 +33779,25 @@ namespace Bb.SqlServer.Asts
         public static AstColumnstoreIndexOption Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstColumnstoreIndexOption.Resolve(list);
-            if ((index == 2))
+            if ((index == 1))
             {
-                return new AstColumnstoreIndexOption.AstColumnstoreIndexOption1(ctx, ((AstOnOff)(list[0])));
+                return new AstColumnstoreIndexOption.AstColumnstoreIndexOption1(ctx, ((AstOnOff)(list[1])));
             }
             if ((index == 2))
             {
-                return new AstColumnstoreIndexOption.AstColumnstoreIndexOption2(ctx, ((AstDecimal)(list[0])));
-            }
-            if ((index == 2))
-            {
-                return new AstColumnstoreIndexOption.AstColumnstoreIndexOption3(ctx, ((AstOnOff)(list[0])));
-            }
-            if ((index == 2))
-            {
-                return new AstColumnstoreIndexOption.AstColumnstoreIndexOption4(ctx, ((AstDecimal)(list[0])));
+                return new AstColumnstoreIndexOption.AstColumnstoreIndexOption2(ctx, ((AstDecimal)(list[2])));
             }
             if ((index == 3))
             {
-                return new AstColumnstoreIndexOption.AstColumnstoreIndexOption5(ctx, ((AstDatacompressionColumnMode)(list[0])), ((AstOnPartitions)(list[1])));
+                return new AstColumnstoreIndexOption.AstColumnstoreIndexOption3(ctx, ((AstOnOff)(list[3])));
+            }
+            if ((index == 4))
+            {
+                return new AstColumnstoreIndexOption.AstColumnstoreIndexOption4(ctx, ((AstDecimal)(list[4])));
+            }
+            if ((index == 5))
+            {
+                return new AstColumnstoreIndexOption.AstColumnstoreIndexOption5(ctx, ((AstDatacompressionColumnMode)(list[5])), ((AstOnPartitions)(list[5])));
             }
             return null;
         }
@@ -33605,9 +33806,9 @@ namespace Bb.SqlServer.Asts
         {
             if ((list.Count == 2))
             {
-                if (AstRoot.Eval(list[0], typeof(AstDatacompressionColumnMode), false, false))
+                if (AstRoot.Eval(list[5], typeof(AstDatacompressionColumnMode), false, false))
                 {
-                    if (AstRoot.Eval(list[1], typeof(AstOnPartitions), false, false))
+                    if (AstRoot.Eval(list[5], typeof(AstOnPartitions), false, false))
                     {
                         return 5;
                     }
@@ -33615,19 +33816,19 @@ namespace Bb.SqlServer.Asts
             }
             if ((list.Count == 1))
             {
-                if (AstRoot.Eval(list[0], typeof(AstOnOff), false, false))
+                if (AstRoot.Eval(list[1], typeof(AstOnOff), false, false))
                 {
                     return 1;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstDecimal), false, false))
+                if (AstRoot.Eval(list[2], typeof(AstDecimal), false, false))
                 {
                     return 2;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstOnOff), false, false))
+                if (AstRoot.Eval(list[3], typeof(AstOnOff), false, false))
                 {
                     return 3;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstDecimal), false, false))
+                if (AstRoot.Eval(list[4], typeof(AstDecimal), false, false))
                 {
                     return 4;
                 }
@@ -33985,45 +34186,45 @@ namespace Bb.SqlServer.Asts
         public static AstXmlIndexOption Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstXmlIndexOption.Resolve(list);
-            if ((index == 2))
+            if ((index == 1))
             {
-                return new AstXmlIndexOption.AstXmlIndexOption1(ctx, ((AstOnOff)(list[0])));
+                return new AstXmlIndexOption.AstXmlIndexOption1(ctx, ((AstOnOff)(list[1])));
             }
             if ((index == 2))
             {
-                return new AstXmlIndexOption.AstXmlIndexOption2(ctx, ((AstDecimal)(list[0])));
+                return new AstXmlIndexOption.AstXmlIndexOption2(ctx, ((AstDecimal)(list[2])));
             }
-            if ((index == 2))
+            if ((index == 3))
             {
-                return new AstXmlIndexOption.AstXmlIndexOption3(ctx, ((AstOnOff)(list[0])));
+                return new AstXmlIndexOption.AstXmlIndexOption3(ctx, ((AstOnOff)(list[3])));
             }
-            if ((index == 2))
+            if ((index == 4))
             {
-                return new AstXmlIndexOption.AstXmlIndexOption4(ctx, ((AstOnOff)(list[0])));
+                return new AstXmlIndexOption.AstXmlIndexOption4(ctx, ((AstOnOff)(list[4])));
             }
-            if ((index == 2))
+            if ((index == 5))
             {
-                return new AstXmlIndexOption.AstXmlIndexOption5(ctx, ((AstOnOff)(list[0])));
+                return new AstXmlIndexOption.AstXmlIndexOption5(ctx, ((AstOnOff)(list[5])));
             }
-            if ((index == 2))
+            if ((index == 6))
             {
-                return new AstXmlIndexOption.AstXmlIndexOption6(ctx, ((AstOnlineValue)(list[0])));
+                return new AstXmlIndexOption.AstXmlIndexOption6(ctx, ((AstOnlineValue)(list[6])));
             }
-            if ((index == 2))
+            if ((index == 7))
             {
-                return new AstXmlIndexOption.AstXmlIndexOption7(ctx, ((AstOnOff)(list[0])));
+                return new AstXmlIndexOption.AstXmlIndexOption7(ctx, ((AstOnOff)(list[7])));
             }
-            if ((index == 2))
+            if ((index == 8))
             {
-                return new AstXmlIndexOption.AstXmlIndexOption8(ctx, ((AstOnOff)(list[0])));
+                return new AstXmlIndexOption.AstXmlIndexOption8(ctx, ((AstOnOff)(list[8])));
             }
-            if ((index == 2))
+            if ((index == 9))
             {
-                return new AstXmlIndexOption.AstXmlIndexOption9(ctx, ((AstDecimal)(list[0])));
+                return new AstXmlIndexOption.AstXmlIndexOption9(ctx, ((AstDecimal)(list[9])));
             }
-            if ((index == 2))
+            if ((index == 10))
             {
-                return new AstXmlIndexOption.AstXmlIndexOption10(ctx, ((AstOnOff)(list[0])));
+                return new AstXmlIndexOption.AstXmlIndexOption10(ctx, ((AstOnOff)(list[10])));
             }
             return null;
         }
@@ -34032,43 +34233,43 @@ namespace Bb.SqlServer.Asts
         {
             if ((list.Count == 1))
             {
-                if (AstRoot.Eval(list[0], typeof(AstOnOff), false, false))
+                if (AstRoot.Eval(list[1], typeof(AstOnOff), false, false))
                 {
                     return 1;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstDecimal), false, false))
+                if (AstRoot.Eval(list[2], typeof(AstDecimal), false, false))
                 {
                     return 2;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstOnOff), false, false))
+                if (AstRoot.Eval(list[3], typeof(AstOnOff), false, false))
                 {
                     return 3;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstOnOff), false, false))
+                if (AstRoot.Eval(list[4], typeof(AstOnOff), false, false))
                 {
                     return 4;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstOnOff), false, false))
+                if (AstRoot.Eval(list[5], typeof(AstOnOff), false, false))
                 {
                     return 5;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstOnlineValue), false, false))
+                if (AstRoot.Eval(list[6], typeof(AstOnlineValue), false, false))
                 {
                     return 6;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstOnOff), false, false))
+                if (AstRoot.Eval(list[7], typeof(AstOnOff), false, false))
                 {
                     return 7;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstOnOff), false, false))
+                if (AstRoot.Eval(list[8], typeof(AstOnOff), false, false))
                 {
                     return 8;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstDecimal), false, false))
+                if (AstRoot.Eval(list[9], typeof(AstDecimal), false, false))
                 {
                     return 9;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstOnOff), false, false))
+                if (AstRoot.Eval(list[10], typeof(AstOnOff), false, false))
                 {
                     return 10;
                 }
@@ -34193,13 +34394,13 @@ namespace Bb.SqlServer.Asts
         public static AstProcedureDeclarationArguments Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstProcedureDeclarationArguments.Resolve(list);
-            if ((index == 2))
+            if ((index == 1))
             {
-                return new AstProcedureDeclarationArguments.AstProcedureDeclarationArguments1(ctx, ((AstProcedureParams)(list[0])));
+                return new AstProcedureDeclarationArguments.AstProcedureDeclarationArguments1(ctx, ((AstProcedureParams)(list[1])));
             }
             if ((index == 2))
             {
-                return new AstProcedureDeclarationArguments.AstProcedureDeclarationArguments2(ctx, ((AstProcedureParams)(list[0])));
+                return new AstProcedureDeclarationArguments.AstProcedureDeclarationArguments2(ctx, ((AstProcedureParams)(list[2])));
             }
             return null;
         }
@@ -34208,11 +34409,11 @@ namespace Bb.SqlServer.Asts
         {
             if ((list.Count == 1))
             {
-                if (AstRoot.Eval(list[0], typeof(AstProcedureParams), false, false))
+                if (AstRoot.Eval(list[1], typeof(AstProcedureParams), false, false))
                 {
                     return 1;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstProcedureParams), false, false))
+                if (AstRoot.Eval(list[2], typeof(AstProcedureParams), false, false))
                 {
                     return 2;
                 }
@@ -34305,11 +34506,11 @@ namespace Bb.SqlServer.Asts
         public static AstProcedureDeclaration Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstProcedureDeclaration.Resolve(list);
-            if ((index == 2))
-            {
-                return new AstProcedureDeclaration.AstProcedureDeclaration1(ctx, ((AstProcedureDeclarationCreate)(list[0])));
-            }
             if ((index == 1))
+            {
+                return new AstProcedureDeclaration.AstProcedureDeclaration1(ctx, ((AstProcedureDeclarationCreate)(list[1])));
+            }
+            if ((index == 2))
             {
                 return new AstProcedureDeclaration.AstProcedureDeclaration2(ctx);
             }
@@ -34320,7 +34521,7 @@ namespace Bb.SqlServer.Asts
         {
             if ((list.Count == 1))
             {
-                if (AstRoot.Eval(list[0], typeof(AstProcedureDeclarationCreate), false, false))
+                if (AstRoot.Eval(list[1], typeof(AstProcedureDeclarationCreate), false, false))
                 {
                     return 1;
                 }
@@ -34358,7 +34559,9 @@ namespace Bb.SqlServer.Asts
         
         protected static string _rule = "procedure_declaration_create\r\n\t : CREATE  (OR  alter_replace)?";
         
-        internal AstProcedureDeclarationCreate(ParserRuleContext ctx, List<AstRoot> list) : 
+        private AstAlterReplace _alterReplace;
+        
+        internal AstProcedureDeclarationCreate(ParserRuleContext ctx) : 
                 base(ctx)
         {
         }
@@ -34379,7 +34582,7 @@ namespace Bb.SqlServer.Asts
             _alterReplace = alterReplace;
         }
         
-        public virtual AstAlterReplace _alterReplace
+        public virtual AstAlterReplace AlterReplace
         {
             get
             {
@@ -34390,6 +34593,11 @@ namespace Bb.SqlServer.Asts
         public override void Accept(IAstTSqlVisitor visitor)
         {
             visitor.VisitProcedureDeclarationCreate(this);
+        }
+        
+        public static AstProcedureDeclarationCreate Create(ParserRuleContext ctx, List<AstRoot> list)
+        {
+            return new AstProcedureDeclarationCreate(ctx, ((AstAlterReplace)(list[0])));
         }
         
         /// <summary>
@@ -34488,13 +34696,13 @@ namespace Bb.SqlServer.Asts
         public static AstReplicationAlias Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstReplicationAlias.Resolve(list);
-            if ((index == 2))
+            if ((index == 1))
             {
-                return new AstReplicationAlias.AstReplicationAlias1(ctx, ((AstAsExternalName)(list[0])));
+                return new AstReplicationAlias.AstReplicationAlias1(ctx, ((AstAsExternalName)(list[1])));
             }
             if ((index == 2))
             {
-                return new AstReplicationAlias.AstReplicationAlias2(ctx, ((AstSqlClause)(list[0])));
+                return new AstReplicationAlias.AstReplicationAlias2(ctx, ((AstSqlClause)(list[2])));
             }
             return null;
         }
@@ -34503,11 +34711,11 @@ namespace Bb.SqlServer.Asts
         {
             if ((list.Count == 1))
             {
-                if (AstRoot.Eval(list[0], typeof(AstAsExternalName), false, false))
+                if (AstRoot.Eval(list[1], typeof(AstAsExternalName), false, false))
                 {
                     return 1;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstSqlClause), false, false))
+                if (AstRoot.Eval(list[2], typeof(AstSqlClause), false, false))
                 {
                     return 2;
                 }
@@ -34622,13 +34830,13 @@ namespace Bb.SqlServer.Asts
         public static AstCreateOrAlterTrigger Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstCreateOrAlterTrigger.Resolve(list);
-            if ((index == 2))
+            if ((index == 1))
             {
-                return new AstCreateOrAlterTrigger.AstCreateOrAlterTrigger1(ctx, ((AstCreateOrAlterDmlTrigger)(list[0])));
+                return new AstCreateOrAlterTrigger.AstCreateOrAlterTrigger1(ctx, ((AstCreateOrAlterDmlTrigger)(list[1])));
             }
             if ((index == 2))
             {
-                return new AstCreateOrAlterTrigger.AstCreateOrAlterTrigger2(ctx, ((AstCreateOrAlterDdlTrigger)(list[0])));
+                return new AstCreateOrAlterTrigger.AstCreateOrAlterTrigger2(ctx, ((AstCreateOrAlterDdlTrigger)(list[2])));
             }
             return null;
         }
@@ -34637,11 +34845,11 @@ namespace Bb.SqlServer.Asts
         {
             if ((list.Count == 1))
             {
-                if (AstRoot.Eval(list[0], typeof(AstCreateOrAlterDmlTrigger), false, false))
+                if (AstRoot.Eval(list[1], typeof(AstCreateOrAlterDmlTrigger), false, false))
                 {
                     return 1;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstCreateOrAlterDdlTrigger), false, false))
+                if (AstRoot.Eval(list[2], typeof(AstCreateOrAlterDdlTrigger), false, false))
                 {
                     return 2;
                 }
@@ -34737,7 +34945,7 @@ namespace Bb.SqlServer.Asts
             {
                 return new AstCreateOrAlter.AstCreateOrAlter1(ctx);
             }
-            if ((index == 1))
+            if ((index == 2))
             {
                 return new AstCreateOrAlter.AstCreateOrAlter2(ctx);
             }
@@ -34844,11 +35052,11 @@ namespace Bb.SqlServer.Asts
             {
                 return new AstForAfterInstead.AstForAfterInstead1(ctx);
             }
-            if ((index == 1))
+            if ((index == 2))
             {
                 return new AstForAfterInstead.AstForAfterInstead2(ctx);
             }
-            if ((index == 1))
+            if ((index == 3))
             {
                 return new AstForAfterInstead.AstForAfterInstead3(ctx);
             }
@@ -34951,7 +35159,7 @@ namespace Bb.SqlServer.Asts
             }
             if ((index == 2))
             {
-                return new AstDmlTriggerOption.AstDmlTriggerOption2(ctx, ((AstExecuteClause)(list[0])));
+                return new AstDmlTriggerOption.AstDmlTriggerOption2(ctx, ((AstExecuteClause)(list[2])));
             }
             return null;
         }
@@ -34960,7 +35168,7 @@ namespace Bb.SqlServer.Asts
         {
             if ((list.Count == 1))
             {
-                if (AstRoot.Eval(list[0], typeof(AstExecuteClause), false, false))
+                if (AstRoot.Eval(list[2], typeof(AstExecuteClause), false, false))
                 {
                     return 1;
                 }
@@ -35074,13 +35282,13 @@ namespace Bb.SqlServer.Asts
         public static AstProcedureOption Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstProcedureOption.Resolve(list);
-            if ((index == 2))
+            if ((index == 1))
             {
-                return new AstProcedureOption.AstProcedureOption1(ctx, ((AstProcedureOptionEnum)(list[0])));
+                return new AstProcedureOption.AstProcedureOption1(ctx, ((AstProcedureOptionEnum)(list[1])));
             }
             if ((index == 2))
             {
-                return new AstProcedureOption.AstProcedureOption2(ctx, ((AstExecuteClause)(list[0])));
+                return new AstProcedureOption.AstProcedureOption2(ctx, ((AstExecuteClause)(list[2])));
             }
             return null;
         }
@@ -35089,11 +35297,11 @@ namespace Bb.SqlServer.Asts
         {
             if ((list.Count == 1))
             {
-                if (AstRoot.Eval(list[0], typeof(AstProcedureOptionEnum), false, false))
+                if (AstRoot.Eval(list[1], typeof(AstProcedureOptionEnum), false, false))
                 {
                     return 1;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstExecuteClause), false, false))
+                if (AstRoot.Eval(list[2], typeof(AstExecuteClause), false, false))
                 {
                     return 2;
                 }
@@ -35207,13 +35415,13 @@ namespace Bb.SqlServer.Asts
         public static AstFunctionOption Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstFunctionOption.Resolve(list);
-            if ((index == 2))
+            if ((index == 1))
             {
-                return new AstFunctionOption.AstFunctionOption1(ctx, ((AstFunctionOptionEnum)(list[0])));
+                return new AstFunctionOption.AstFunctionOption1(ctx, ((AstFunctionOptionEnum)(list[1])));
             }
             if ((index == 2))
             {
-                return new AstFunctionOption.AstFunctionOption2(ctx, ((AstExecuteClause)(list[0])));
+                return new AstFunctionOption.AstFunctionOption2(ctx, ((AstExecuteClause)(list[2])));
             }
             return null;
         }
@@ -35222,11 +35430,11 @@ namespace Bb.SqlServer.Asts
         {
             if ((list.Count == 1))
             {
-                if (AstRoot.Eval(list[0], typeof(AstFunctionOptionEnum), false, false))
+                if (AstRoot.Eval(list[1], typeof(AstFunctionOptionEnum), false, false))
                 {
                     return 1;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstExecuteClause), false, false))
+                if (AstRoot.Eval(list[2], typeof(AstExecuteClause), false, false))
                 {
                     return 2;
                 }
@@ -35362,11 +35570,11 @@ namespace Bb.SqlServer.Asts
             {
                 return new AstStatisticsWith.AstStatisticsWith1(ctx);
             }
-            if ((index == 3))
+            if ((index == 2))
             {
-                return new AstStatisticsWith.AstStatisticsWith2(ctx, ((AstDecimal)(list[0])), ((AstPercentRow)(list[1])));
+                return new AstStatisticsWith.AstStatisticsWith2(ctx, ((AstDecimal)(list[2])), ((AstPercentRow)(list[2])));
             }
-            if ((index == 1))
+            if ((index == 3))
             {
                 return new AstStatisticsWith.AstStatisticsWith3(ctx);
             }
@@ -35377,9 +35585,9 @@ namespace Bb.SqlServer.Asts
         {
             if ((list.Count == 2))
             {
-                if (AstRoot.Eval(list[0], typeof(AstDecimal), false, false))
+                if (AstRoot.Eval(list[2], typeof(AstDecimal), false, false))
                 {
-                    if (AstRoot.Eval(list[1], typeof(AstPercentRow), false, false))
+                    if (AstRoot.Eval(list[2], typeof(AstPercentRow), false, false))
                     {
                         return 1;
                     }
@@ -35793,57 +36001,57 @@ namespace Bb.SqlServer.Asts
         public static AstUpdateStatisticsOption Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstUpdateStatisticsOption.Resolve(list);
+            if ((index == 1))
+            {
+                return new AstUpdateStatisticsOption.AstUpdateStatisticsOption1(ctx, ((AstOnOff)(list[1])));
+            }
             if ((index == 2))
             {
-                return new AstUpdateStatisticsOption.AstUpdateStatisticsOption1(ctx, ((AstOnOff)(list[0])));
+                return new AstUpdateStatisticsOption.AstUpdateStatisticsOption2(ctx, ((AstDecimal)(list[2])), ((AstPercentRow)(list[2])), ((AstOnOff)(list[2])));
+            }
+            if ((index == 3))
+            {
+                return new AstUpdateStatisticsOption.AstUpdateStatisticsOption3(ctx, ((AstOnPartitions)(list[3])));
             }
             if ((index == 4))
             {
-                return new AstUpdateStatisticsOption.AstUpdateStatisticsOption2(ctx, ((AstDecimal)(list[0])), ((AstPercentRow)(list[1])), ((AstOnOff)(list[2])));
+                return new AstUpdateStatisticsOption.AstUpdateStatisticsOption4(ctx, ((AstExpression)(list[4])));
             }
-            if ((index == 2))
+            if ((index == 5))
             {
-                return new AstUpdateStatisticsOption.AstUpdateStatisticsOption3(ctx, ((AstOnPartitions)(list[0])));
+                return new AstUpdateStatisticsOption.AstUpdateStatisticsOption5(ctx, ((AstDecimal)(list[5])));
             }
-            if ((index == 2))
+            if ((index == 6))
             {
-                return new AstUpdateStatisticsOption.AstUpdateStatisticsOption4(ctx, ((AstExpression)(list[0])));
+                return new AstUpdateStatisticsOption.AstUpdateStatisticsOption6(ctx, ((AstDecimal)(list[6])));
             }
-            if ((index == 2))
-            {
-                return new AstUpdateStatisticsOption.AstUpdateStatisticsOption5(ctx, ((AstDecimal)(list[0])));
-            }
-            if ((index == 2))
-            {
-                return new AstUpdateStatisticsOption.AstUpdateStatisticsOption6(ctx, ((AstDecimal)(list[0])));
-            }
-            if ((index == 1))
+            if ((index == 7))
             {
                 return new AstUpdateStatisticsOption.AstUpdateStatisticsOption7(ctx);
             }
-            if ((index == 1))
+            if ((index == 8))
             {
                 return new AstUpdateStatisticsOption.AstUpdateStatisticsOption8(ctx);
             }
-            if ((index == 1))
+            if ((index == 9))
             {
                 return new AstUpdateStatisticsOption.AstUpdateStatisticsOption9(ctx);
             }
-            if ((index == 1))
+            if ((index == 10))
             {
                 return new AstUpdateStatisticsOption.AstUpdateStatisticsOption10(ctx);
             }
-            if ((index == 2))
+            if ((index == 11))
             {
-                return new AstUpdateStatisticsOption.AstUpdateStatisticsOption11(ctx, ((AstOnOff)(list[0])));
+                return new AstUpdateStatisticsOption.AstUpdateStatisticsOption11(ctx, ((AstOnOff)(list[11])));
             }
-            if ((index == 2))
+            if ((index == 12))
             {
-                return new AstUpdateStatisticsOption.AstUpdateStatisticsOption12(ctx, ((AstDecimal)(list[0])));
+                return new AstUpdateStatisticsOption.AstUpdateStatisticsOption12(ctx, ((AstDecimal)(list[12])));
             }
-            if ((index == 2))
+            if ((index == 13))
             {
-                return new AstUpdateStatisticsOption.AstUpdateStatisticsOption13(ctx, ((AstOnOff)(list[0])));
+                return new AstUpdateStatisticsOption.AstUpdateStatisticsOption13(ctx, ((AstOnOff)(list[13])));
             }
             return null;
         }
@@ -35852,9 +36060,9 @@ namespace Bb.SqlServer.Asts
         {
             if ((list.Count == 3))
             {
-                if (AstRoot.Eval(list[0], typeof(AstDecimal), false, false))
+                if (AstRoot.Eval(list[2], typeof(AstDecimal), false, false))
                 {
-                    if (AstRoot.Eval(list[1], typeof(AstPercentRow), false, false))
+                    if (AstRoot.Eval(list[2], typeof(AstPercentRow), false, false))
                     {
                         if (AstRoot.Eval(list[2], typeof(AstOnOff), false, false))
                         {
@@ -35865,35 +36073,35 @@ namespace Bb.SqlServer.Asts
             }
             if ((list.Count == 1))
             {
-                if (AstRoot.Eval(list[0], typeof(AstOnOff), false, false))
+                if (AstRoot.Eval(list[1], typeof(AstOnOff), false, false))
                 {
                     return 1;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstOnPartitions), false, false))
+                if (AstRoot.Eval(list[3], typeof(AstOnPartitions), false, false))
                 {
                     return 3;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstExpression), false, false))
+                if (AstRoot.Eval(list[4], typeof(AstExpression), false, false))
                 {
                     return 4;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstDecimal), false, false))
+                if (AstRoot.Eval(list[5], typeof(AstDecimal), false, false))
                 {
                     return 5;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstDecimal), false, false))
+                if (AstRoot.Eval(list[6], typeof(AstDecimal), false, false))
                 {
                     return 6;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstOnOff), false, false))
+                if (AstRoot.Eval(list[11], typeof(AstOnOff), false, false))
                 {
                     return 7;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstDecimal), false, false))
+                if (AstRoot.Eval(list[12], typeof(AstDecimal), false, false))
                 {
                     return 8;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstOnOff), false, false))
+                if (AstRoot.Eval(list[13], typeof(AstOnOff), false, false))
                 {
                     return 9;
                 }
@@ -36133,17 +36341,17 @@ namespace Bb.SqlServer.Asts
         public static AstTableIndices Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstTableIndices.Resolve(list);
-            if ((index == 4))
+            if ((index == 1))
             {
-                return new AstTableIndices.AstTableIndices1(ctx, ((AstId)(list[0])), ((AstClustered)(list[1])), ((AstColumnNameListWithOrder)(list[2])));
+                return new AstTableIndices.AstTableIndices1(ctx, ((AstId)(list[1])), ((AstClustered)(list[1])), ((AstColumnNameListWithOrder)(list[1])));
             }
             if ((index == 2))
             {
-                return new AstTableIndices.AstTableIndices2(ctx, ((AstId)(list[0])));
+                return new AstTableIndices.AstTableIndices2(ctx, ((AstId)(list[2])));
             }
-            if ((index == 5))
+            if ((index == 3))
             {
-                return new AstTableIndices.AstTableIndices3(ctx, ((AstId)(list[0])), ((AstColumnNameList)(list[1])), ((AstCreateTableIndexOptions)(list[2])), ((AstGroupId)(list[3])));
+                return new AstTableIndices.AstTableIndices3(ctx, ((AstId)(list[3])), ((AstColumnNameList)(list[3])), ((AstCreateTableIndexOptions)(list[3])), ((AstGroupId)(list[3])));
             }
             return null;
         }
@@ -36152,11 +36360,11 @@ namespace Bb.SqlServer.Asts
         {
             if ((list.Count == 4))
             {
-                if (AstRoot.Eval(list[0], typeof(AstId), false, false))
+                if (AstRoot.Eval(list[3], typeof(AstId), false, false))
                 {
-                    if (AstRoot.Eval(list[1], typeof(AstColumnNameList), false, false))
+                    if (AstRoot.Eval(list[3], typeof(AstColumnNameList), false, false))
                     {
-                        if (AstRoot.Eval(list[2], typeof(AstCreateTableIndexOptions), false, false))
+                        if (AstRoot.Eval(list[3], typeof(AstCreateTableIndexOptions), false, false))
                         {
                             if (AstRoot.Eval(list[3], typeof(AstGroupId), false, false))
                             {
@@ -36168,11 +36376,11 @@ namespace Bb.SqlServer.Asts
             }
             if ((list.Count == 3))
             {
-                if (AstRoot.Eval(list[0], typeof(AstId), false, false))
+                if (AstRoot.Eval(list[1], typeof(AstId), false, false))
                 {
                     if (AstRoot.Eval(list[1], typeof(AstClustered), false, false))
                     {
-                        if (AstRoot.Eval(list[2], typeof(AstColumnNameListWithOrder), false, false))
+                        if (AstRoot.Eval(list[1], typeof(AstColumnNameListWithOrder), false, false))
                         {
                             return 1;
                         }
@@ -36181,7 +36389,7 @@ namespace Bb.SqlServer.Asts
             }
             if ((list.Count == 1))
             {
-                if (AstRoot.Eval(list[0], typeof(AstId), false, false))
+                if (AstRoot.Eval(list[2], typeof(AstId), false, false))
                 {
                     return 2;
                 }
@@ -36305,13 +36513,13 @@ namespace Bb.SqlServer.Asts
         public static AstTblOption Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstTblOption.Resolve(list);
-            if ((index == 2))
+            if ((index == 1))
             {
-                return new AstTblOption.AstTblOption1(ctx, ((AstTableoptions)(list[0])));
+                return new AstTblOption.AstTblOption1(ctx, ((AstTableoptions)(list[1])));
             }
             if ((index == 2))
             {
-                return new AstTblOption.AstTblOption2(ctx, ((AstTableoptions)(list[0])));
+                return new AstTblOption.AstTblOption2(ctx, ((AstTableoptions)(list[2])));
             }
             return null;
         }
@@ -36320,11 +36528,11 @@ namespace Bb.SqlServer.Asts
         {
             if ((list.Count == 1))
             {
-                if (AstRoot.Eval(list[0], typeof(AstTableoptions), false, false))
+                if (AstRoot.Eval(list[1], typeof(AstTableoptions), false, false))
                 {
                     return 1;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstTableoptions), false, false))
+                if (AstRoot.Eval(list[2], typeof(AstTableoptions), false, false))
                 {
                     return 2;
                 }
@@ -36579,29 +36787,29 @@ namespace Bb.SqlServer.Asts
         public static AstTableoption Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstTableoption.Resolve(list);
-            if ((index == 3))
+            if ((index == 1))
             {
-                return new AstTableoption.AstTableoption1(ctx, ((AstTableOptVarname)(list[0])), ((AstTableOptVarValue)(list[1])));
+                return new AstTableoption.AstTableoption1(ctx, ((AstTableOptVarname)(list[1])), ((AstTableOptVarValue)(list[1])));
             }
             if ((index == 2))
             {
-                return new AstTableoption.AstTableoption2(ctx, ((AstTableoptionClusterMode)(list[0])));
-            }
-            if ((index == 2))
-            {
-                return new AstTableoption.AstTableoption3(ctx, ((AstDecimal)(list[0])));
-            }
-            if ((index == 2))
-            {
-                return new AstTableoption.AstTableoption4(ctx, ((AstTableDistribution)(list[0])));
+                return new AstTableoption.AstTableoption2(ctx, ((AstTableoptionClusterMode)(list[2])));
             }
             if ((index == 3))
             {
-                return new AstTableoption.AstTableoption5(ctx, ((AstCompressionMode)(list[0])), ((AstOnPartitions)(list[1])));
+                return new AstTableoption.AstTableoption3(ctx, ((AstDecimal)(list[3])));
             }
-            if ((index == 3))
+            if ((index == 4))
             {
-                return new AstTableoption.AstTableoption6(ctx, ((AstOnOff)(list[0])), ((AstOnPartitions)(list[1])));
+                return new AstTableoption.AstTableoption4(ctx, ((AstTableDistribution)(list[4])));
+            }
+            if ((index == 5))
+            {
+                return new AstTableoption.AstTableoption5(ctx, ((AstCompressionMode)(list[5])), ((AstOnPartitions)(list[5])));
+            }
+            if ((index == 6))
+            {
+                return new AstTableoption.AstTableoption6(ctx, ((AstOnOff)(list[6])), ((AstOnPartitions)(list[6])));
             }
             return null;
         }
@@ -36610,23 +36818,23 @@ namespace Bb.SqlServer.Asts
         {
             if ((list.Count == 2))
             {
-                if (AstRoot.Eval(list[0], typeof(AstTableOptVarname), false, false))
+                if (AstRoot.Eval(list[1], typeof(AstTableOptVarname), false, false))
                 {
                     if (AstRoot.Eval(list[1], typeof(AstTableOptVarValue), false, false))
                     {
                         return 1;
                     }
                 }
-                if (AstRoot.Eval(list[0], typeof(AstCompressionMode), false, false))
+                if (AstRoot.Eval(list[5], typeof(AstCompressionMode), false, false))
                 {
-                    if (AstRoot.Eval(list[1], typeof(AstOnPartitions), false, false))
+                    if (AstRoot.Eval(list[5], typeof(AstOnPartitions), false, false))
                     {
                         return 5;
                     }
                 }
-                if (AstRoot.Eval(list[0], typeof(AstOnOff), false, false))
+                if (AstRoot.Eval(list[6], typeof(AstOnOff), false, false))
                 {
-                    if (AstRoot.Eval(list[1], typeof(AstOnPartitions), false, false))
+                    if (AstRoot.Eval(list[6], typeof(AstOnPartitions), false, false))
                     {
                         return 6;
                     }
@@ -36634,15 +36842,15 @@ namespace Bb.SqlServer.Asts
             }
             if ((list.Count == 1))
             {
-                if (AstRoot.Eval(list[0], typeof(AstTableoptionClusterMode), false, false))
+                if (AstRoot.Eval(list[2], typeof(AstTableoptionClusterMode), false, false))
                 {
                     return 2;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstDecimal), false, false))
+                if (AstRoot.Eval(list[3], typeof(AstDecimal), false, false))
                 {
                     return 3;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstTableDistribution), false, false))
+                if (AstRoot.Eval(list[4], typeof(AstTableDistribution), false, false))
                 {
                     return 4;
                 }
@@ -36795,13 +37003,13 @@ namespace Bb.SqlServer.Asts
         public static AstTableOptVarname Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstTableOptVarname.Resolve(list);
-            if ((index == 2))
+            if ((index == 1))
             {
-                return new AstTableOptVarname.AstTableOptVarname1(ctx, ((AstSimpleId)(list[0])));
+                return new AstTableOptVarname.AstTableOptVarname1(ctx, ((AstSimpleId)(list[1])));
             }
             if ((index == 2))
             {
-                return new AstTableOptVarname.AstTableOptVarname2(ctx, ((AstKeyword)(list[0])));
+                return new AstTableOptVarname.AstTableOptVarname2(ctx, ((AstKeyword)(list[2])));
             }
             return null;
         }
@@ -36810,11 +37018,11 @@ namespace Bb.SqlServer.Asts
         {
             if ((list.Count == 1))
             {
-                if (AstRoot.Eval(list[0], typeof(AstSimpleId), false, false))
+                if (AstRoot.Eval(list[1], typeof(AstSimpleId), false, false))
                 {
                     return 1;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstKeyword), false, false))
+                if (AstRoot.Eval(list[2], typeof(AstKeyword), false, false))
                 {
                     return 2;
                 }
@@ -36981,21 +37189,21 @@ namespace Bb.SqlServer.Asts
         public static AstTableOptVarValue Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstTableOptVarValue.Resolve(list);
-            if ((index == 2))
+            if ((index == 1))
             {
-                return new AstTableOptVarValue.AstTableOptVarValue1(ctx, ((AstSimpleId)(list[0])));
+                return new AstTableOptVarValue.AstTableOptVarValue1(ctx, ((AstSimpleId)(list[1])));
             }
             if ((index == 2))
             {
-                return new AstTableOptVarValue.AstTableOptVarValue2(ctx, ((AstKeyword)(list[0])));
+                return new AstTableOptVarValue.AstTableOptVarValue2(ctx, ((AstKeyword)(list[2])));
             }
-            if ((index == 2))
+            if ((index == 3))
             {
-                return new AstTableOptVarValue.AstTableOptVarValue3(ctx, ((AstOnOff)(list[0])));
+                return new AstTableOptVarValue.AstTableOptVarValue3(ctx, ((AstOnOff)(list[3])));
             }
-            if ((index == 2))
+            if ((index == 4))
             {
-                return new AstTableOptVarValue.AstTableOptVarValue4(ctx, ((AstDecimal)(list[0])));
+                return new AstTableOptVarValue.AstTableOptVarValue4(ctx, ((AstDecimal)(list[4])));
             }
             return null;
         }
@@ -37004,19 +37212,19 @@ namespace Bb.SqlServer.Asts
         {
             if ((list.Count == 1))
             {
-                if (AstRoot.Eval(list[0], typeof(AstSimpleId), false, false))
+                if (AstRoot.Eval(list[1], typeof(AstSimpleId), false, false))
                 {
                     return 1;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstKeyword), false, false))
+                if (AstRoot.Eval(list[2], typeof(AstKeyword), false, false))
                 {
                     return 2;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstOnOff), false, false))
+                if (AstRoot.Eval(list[3], typeof(AstOnOff), false, false))
                 {
                     return 3;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstDecimal), false, false))
+                if (AstRoot.Eval(list[4], typeof(AstDecimal), false, false))
                 {
                     return 4;
                 }
@@ -37151,13 +37359,13 @@ namespace Bb.SqlServer.Asts
         public static AstTableDistribution Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstTableDistribution.Resolve(list);
-            if ((index == 2))
+            if ((index == 1))
             {
-                return new AstTableDistribution.AstTableDistribution1(ctx, ((AstId)(list[0])));
+                return new AstTableDistribution.AstTableDistribution1(ctx, ((AstId)(list[1])));
             }
             if ((index == 2))
             {
-                return new AstTableDistribution.AstTableDistribution2(ctx, ((AstColumnNameListWithOrder)(list[0])));
+                return new AstTableDistribution.AstTableDistribution2(ctx, ((AstColumnNameListWithOrder)(list[2])));
             }
             return null;
         }
@@ -37166,11 +37374,11 @@ namespace Bb.SqlServer.Asts
         {
             if ((list.Count == 1))
             {
-                if (AstRoot.Eval(list[0], typeof(AstId), false, false))
+                if (AstRoot.Eval(list[1], typeof(AstId), false, false))
                 {
                     return 1;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstColumnNameListWithOrder), false, false))
+                if (AstRoot.Eval(list[2], typeof(AstColumnNameListWithOrder), false, false))
                 {
                     return 2;
                 }
@@ -37296,13 +37504,13 @@ namespace Bb.SqlServer.Asts
         public static AstAlterTableConstraint Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstAlterTableConstraint.Resolve(list);
-            if ((index == 3))
+            if ((index == 1))
             {
-                return new AstAlterTableConstraint.AstAlterTableConstraint1(ctx, ((AstConstraintId)(list[0])), ((AstAlterTableConstraintForeign)(list[1])));
+                return new AstAlterTableConstraint.AstAlterTableConstraint1(ctx, ((AstConstraintId)(list[1])), ((AstAlterTableConstraintForeign)(list[1])));
             }
             if ((index == 2))
             {
-                return new AstAlterTableConstraint.AstAlterTableConstraint2(ctx, ((AstSearchCondition)(list[0])));
+                return new AstAlterTableConstraint.AstAlterTableConstraint2(ctx, ((AstSearchCondition)(list[2])));
             }
             return null;
         }
@@ -37311,7 +37519,7 @@ namespace Bb.SqlServer.Asts
         {
             if ((list.Count == 2))
             {
-                if (AstRoot.Eval(list[0], typeof(AstConstraintId), false, false))
+                if (AstRoot.Eval(list[1], typeof(AstConstraintId), false, false))
                 {
                     if (AstRoot.Eval(list[1], typeof(AstAlterTableConstraintForeign), false, false))
                     {
@@ -37321,7 +37529,7 @@ namespace Bb.SqlServer.Asts
             }
             if ((list.Count == 1))
             {
-                if (AstRoot.Eval(list[0], typeof(AstSearchCondition), false, false))
+                if (AstRoot.Eval(list[2], typeof(AstSearchCondition), false, false))
                 {
                     return 2;
                 }
@@ -37435,13 +37643,13 @@ namespace Bb.SqlServer.Asts
         public static AstConstraintDeleteOrUpdate Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstConstraintDeleteOrUpdate.Resolve(list);
-            if ((index == 2))
+            if ((index == 1))
             {
-                return new AstConstraintDeleteOrUpdate.AstConstraintDeleteOrUpdate1(ctx, ((AstOnDelete)(list[0])));
+                return new AstConstraintDeleteOrUpdate.AstConstraintDeleteOrUpdate1(ctx, ((AstOnDelete)(list[1])));
             }
             if ((index == 2))
             {
-                return new AstConstraintDeleteOrUpdate.AstConstraintDeleteOrUpdate2(ctx, ((AstOnUpdate)(list[0])));
+                return new AstConstraintDeleteOrUpdate.AstConstraintDeleteOrUpdate2(ctx, ((AstOnUpdate)(list[2])));
             }
             return null;
         }
@@ -37450,11 +37658,11 @@ namespace Bb.SqlServer.Asts
         {
             if ((list.Count == 1))
             {
-                if (AstRoot.Eval(list[0], typeof(AstOnDelete), false, false))
+                if (AstRoot.Eval(list[1], typeof(AstOnDelete), false, false))
                 {
                     return 1;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstOnUpdate), false, false))
+                if (AstRoot.Eval(list[2], typeof(AstOnUpdate), false, false))
                 {
                     return 2;
                 }
@@ -37494,7 +37702,15 @@ namespace Bb.SqlServer.Asts
             "n)?  TO  target_table = full_table_ref  (PARTITION  target_partition_number_expr" +
             "ession = expression)?  (WITH  low_priority_lock_wait)?";
         
-        internal AstSwitchPartition(ParserRuleContext ctx, List<AstRoot> list) : 
+        private AstExpression _sourcePartitionNumberExpression;
+        
+        private AstFullTableRef _targetTable;
+        
+        private AstExpression _targetPartitionNumberExpression;
+        
+        private AstLowPriorityLockWait _lowPriorityLockWait;
+        
+        internal AstSwitchPartition(ParserRuleContext ctx) : 
                 base(ctx)
         {
         }
@@ -37518,7 +37734,7 @@ namespace Bb.SqlServer.Asts
             _lowPriorityLockWait = lowPriorityLockWait;
         }
         
-        public virtual AstExpression _sourcePartitionNumberExpression
+        public virtual AstExpression SourcePartitionNumberExpression
         {
             get
             {
@@ -37526,7 +37742,7 @@ namespace Bb.SqlServer.Asts
             }
         }
         
-        public virtual AstFullTableRef _targetTable
+        public virtual AstFullTableRef TargetTable
         {
             get
             {
@@ -37534,7 +37750,7 @@ namespace Bb.SqlServer.Asts
             }
         }
         
-        public virtual AstExpression _targetPartitionNumberExpression
+        public virtual AstExpression TargetPartitionNumberExpression
         {
             get
             {
@@ -37542,7 +37758,7 @@ namespace Bb.SqlServer.Asts
             }
         }
         
-        public virtual AstLowPriorityLockWait _lowPriorityLockWait
+        public virtual AstLowPriorityLockWait LowPriorityLockWait
         {
             get
             {
@@ -37553,6 +37769,11 @@ namespace Bb.SqlServer.Asts
         public override void Accept(IAstTSqlVisitor visitor)
         {
             visitor.VisitSwitchPartition(this);
+        }
+        
+        public static AstSwitchPartition Create(ParserRuleContext ctx, List<AstRoot> list)
+        {
+            return new AstSwitchPartition(ctx, ((AstExpression)(list[0])), ((AstFullTableRef)(list[1])), ((AstExpression)(list[2])), ((AstLowPriorityLockWait)(list[3])));
         }
         
         /// <summary>
@@ -37577,7 +37798,11 @@ namespace Bb.SqlServer.Asts
             "  max_duration = timespan  MINUTES?  COMMA  ABORT_AFTER_WAIT  EQUAL  abort_after" +
             "_wait = abord_after_mode  RR_BRACKET";
         
-        internal AstLowPriorityLockWait(ParserRuleContext ctx, List<AstRoot> list) : 
+        private AstTimespan _maxDuration;
+        
+        private AstAbordAfterMode _abortAfterWait;
+        
+        internal AstLowPriorityLockWait(ParserRuleContext ctx) : 
                 base(ctx)
         {
         }
@@ -37599,7 +37824,7 @@ namespace Bb.SqlServer.Asts
             _abortAfterWait = abortAfterWait;
         }
         
-        public virtual AstTimespan _maxDuration
+        public virtual AstTimespan MaxDuration
         {
             get
             {
@@ -37607,7 +37832,7 @@ namespace Bb.SqlServer.Asts
             }
         }
         
-        public virtual AstAbordAfterMode _abortAfterWait
+        public virtual AstAbordAfterMode AbortAfterWait
         {
             get
             {
@@ -37618,6 +37843,11 @@ namespace Bb.SqlServer.Asts
         public override void Accept(IAstTSqlVisitor visitor)
         {
             visitor.VisitLowPriorityLockWait(this);
+        }
+        
+        public static AstLowPriorityLockWait Create(ParserRuleContext ctx, List<AstRoot> list)
+        {
+            return new AstLowPriorityLockWait(ctx, ((AstTimespan)(list[0])), ((AstAbordAfterMode)(list[1])));
         }
         
         /// <summary>
@@ -37813,25 +38043,25 @@ namespace Bb.SqlServer.Asts
         public static AstAlterDatabaseNewInfos Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstAlterDatabaseNewInfos.Resolve(list);
-            if ((index == 2))
+            if ((index == 1))
             {
-                return new AstAlterDatabaseNewInfos.AstAlterDatabaseNewInfos1(ctx, ((AstDatabaseId)(list[0])));
+                return new AstAlterDatabaseNewInfos.AstAlterDatabaseNewInfos1(ctx, ((AstDatabaseId)(list[1])));
             }
             if ((index == 2))
             {
-                return new AstAlterDatabaseNewInfos.AstAlterDatabaseNewInfos2(ctx, ((AstCollationId)(list[0])));
+                return new AstAlterDatabaseNewInfos.AstAlterDatabaseNewInfos2(ctx, ((AstCollationId)(list[2])));
             }
             if ((index == 3))
             {
-                return new AstAlterDatabaseNewInfos.AstAlterDatabaseNewInfos3(ctx, ((AstDatabaseOptionspec)(list[0])), ((AstTermination)(list[1])));
+                return new AstAlterDatabaseNewInfos.AstAlterDatabaseNewInfos3(ctx, ((AstDatabaseOptionspec)(list[3])), ((AstTermination)(list[3])));
             }
-            if ((index == 2))
+            if ((index == 4))
             {
-                return new AstAlterDatabaseNewInfos.AstAlterDatabaseNewInfos4(ctx, ((AstAddOrModifyFiles)(list[0])));
+                return new AstAlterDatabaseNewInfos.AstAlterDatabaseNewInfos4(ctx, ((AstAddOrModifyFiles)(list[4])));
             }
-            if ((index == 2))
+            if ((index == 5))
             {
-                return new AstAlterDatabaseNewInfos.AstAlterDatabaseNewInfos5(ctx, ((AstAddOrModifyFilegroups)(list[0])));
+                return new AstAlterDatabaseNewInfos.AstAlterDatabaseNewInfos5(ctx, ((AstAddOrModifyFilegroups)(list[5])));
             }
             return null;
         }
@@ -37840,9 +38070,9 @@ namespace Bb.SqlServer.Asts
         {
             if ((list.Count == 2))
             {
-                if (AstRoot.Eval(list[0], typeof(AstDatabaseOptionspec), false, false))
+                if (AstRoot.Eval(list[3], typeof(AstDatabaseOptionspec), false, false))
                 {
-                    if (AstRoot.Eval(list[1], typeof(AstTermination), false, false))
+                    if (AstRoot.Eval(list[3], typeof(AstTermination), false, false))
                     {
                         return 3;
                     }
@@ -37850,19 +38080,19 @@ namespace Bb.SqlServer.Asts
             }
             if ((list.Count == 1))
             {
-                if (AstRoot.Eval(list[0], typeof(AstDatabaseId), false, false))
+                if (AstRoot.Eval(list[1], typeof(AstDatabaseId), false, false))
                 {
                     return 1;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstCollationId), false, false))
+                if (AstRoot.Eval(list[2], typeof(AstCollationId), false, false))
                 {
                     return 2;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstAddOrModifyFiles), false, false))
+                if (AstRoot.Eval(list[4], typeof(AstAddOrModifyFiles), false, false))
                 {
                     return 4;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstAddOrModifyFilegroups), false, false))
+                if (AstRoot.Eval(list[5], typeof(AstAddOrModifyFilegroups), false, false))
                 {
                     return 5;
                 }
@@ -38075,21 +38305,21 @@ namespace Bb.SqlServer.Asts
         public static AstAddOrModifyFiles Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstAddOrModifyFiles.Resolve(list);
+            if ((index == 1))
+            {
+                return new AstAddOrModifyFiles.AstAddOrModifyFiles1(ctx, ((AstFilespecs)(list[1])), ((AstFileGroupId)(list[1])));
+            }
+            if ((index == 2))
+            {
+                return new AstAddOrModifyFiles.AstAddOrModifyFiles2(ctx, ((AstFilespecs)(list[2])));
+            }
             if ((index == 3))
             {
-                return new AstAddOrModifyFiles.AstAddOrModifyFiles1(ctx, ((AstFilespecs)(list[0])), ((AstFileGroupId)(list[1])));
+                return new AstAddOrModifyFiles.AstAddOrModifyFiles3(ctx, ((AstFileGroupId)(list[3])));
             }
-            if ((index == 2))
+            if ((index == 4))
             {
-                return new AstAddOrModifyFiles.AstAddOrModifyFiles2(ctx, ((AstFilespecs)(list[0])));
-            }
-            if ((index == 2))
-            {
-                return new AstAddOrModifyFiles.AstAddOrModifyFiles3(ctx, ((AstFileGroupId)(list[0])));
-            }
-            if ((index == 2))
-            {
-                return new AstAddOrModifyFiles.AstAddOrModifyFiles4(ctx, ((AstFilespec)(list[0])));
+                return new AstAddOrModifyFiles.AstAddOrModifyFiles4(ctx, ((AstFilespec)(list[4])));
             }
             return null;
         }
@@ -38098,7 +38328,7 @@ namespace Bb.SqlServer.Asts
         {
             if ((list.Count == 2))
             {
-                if (AstRoot.Eval(list[0], typeof(AstFilespecs), false, false))
+                if (AstRoot.Eval(list[1], typeof(AstFilespecs), false, false))
                 {
                     if (AstRoot.Eval(list[1], typeof(AstFileGroupId), false, false))
                     {
@@ -38108,15 +38338,15 @@ namespace Bb.SqlServer.Asts
             }
             if ((list.Count == 1))
             {
-                if (AstRoot.Eval(list[0], typeof(AstFilespecs), false, false))
+                if (AstRoot.Eval(list[2], typeof(AstFilespecs), false, false))
                 {
                     return 2;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstFileGroupId), false, false))
+                if (AstRoot.Eval(list[3], typeof(AstFileGroupId), false, false))
                 {
                     return 3;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstFilespec), false, false))
+                if (AstRoot.Eval(list[4], typeof(AstFilespec), false, false))
                 {
                     return 4;
                 }
@@ -38302,17 +38532,17 @@ namespace Bb.SqlServer.Asts
         public static AstAddOrModifyFilegroups Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstAddOrModifyFilegroups.Resolve(list);
-            if ((index == 3))
+            if ((index == 1))
             {
-                return new AstAddOrModifyFilegroups.AstAddOrModifyFilegroups1(ctx, ((AstFileGroupId)(list[0])), ((AstFilegroupPredicate)(list[1])));
+                return new AstAddOrModifyFilegroups.AstAddOrModifyFilegroups1(ctx, ((AstFileGroupId)(list[1])), ((AstFilegroupPredicate)(list[1])));
             }
             if ((index == 2))
             {
-                return new AstAddOrModifyFilegroups.AstAddOrModifyFilegroups2(ctx, ((AstFileGroupId)(list[0])));
+                return new AstAddOrModifyFilegroups.AstAddOrModifyFilegroups2(ctx, ((AstFileGroupId)(list[2])));
             }
             if ((index == 3))
             {
-                return new AstAddOrModifyFilegroups.AstAddOrModifyFilegroups3(ctx, ((AstFileGroupId)(list[0])), ((AstModifyFilegroupsOptions)(list[1])));
+                return new AstAddOrModifyFilegroups.AstAddOrModifyFilegroups3(ctx, ((AstFileGroupId)(list[3])), ((AstModifyFilegroupsOptions)(list[3])));
             }
             return null;
         }
@@ -38321,16 +38551,16 @@ namespace Bb.SqlServer.Asts
         {
             if ((list.Count == 2))
             {
-                if (AstRoot.Eval(list[0], typeof(AstFileGroupId), false, false))
+                if (AstRoot.Eval(list[1], typeof(AstFileGroupId), false, false))
                 {
                     if (AstRoot.Eval(list[1], typeof(AstFilegroupPredicate), false, false))
                     {
                         return 1;
                     }
                 }
-                if (AstRoot.Eval(list[0], typeof(AstFileGroupId), false, false))
+                if (AstRoot.Eval(list[3], typeof(AstFileGroupId), false, false))
                 {
-                    if (AstRoot.Eval(list[1], typeof(AstModifyFilegroupsOptions), false, false))
+                    if (AstRoot.Eval(list[3], typeof(AstModifyFilegroupsOptions), false, false))
                     {
                         return 3;
                     }
@@ -38338,7 +38568,7 @@ namespace Bb.SqlServer.Asts
             }
             if ((list.Count == 1))
             {
-                if (AstRoot.Eval(list[0], typeof(AstFileGroupId), false, false))
+                if (AstRoot.Eval(list[2], typeof(AstFileGroupId), false, false))
                 {
                     return 2;
                 }
@@ -38514,23 +38744,23 @@ namespace Bb.SqlServer.Asts
         public static AstModifyFilegroupsOptions Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstModifyFilegroupsOptions.Resolve(list);
-            if ((index == 2))
-            {
-                return new AstModifyFilegroupsOptions.AstModifyFilegroupsOptions1(ctx, ((AstFilegroupUpdatabilityOption)(list[0])));
-            }
             if ((index == 1))
+            {
+                return new AstModifyFilegroupsOptions.AstModifyFilegroupsOptions1(ctx, ((AstFilegroupUpdatabilityOption)(list[1])));
+            }
+            if ((index == 2))
             {
                 return new AstModifyFilegroupsOptions.AstModifyFilegroupsOptions2(ctx);
             }
-            if ((index == 2))
+            if ((index == 3))
             {
-                return new AstModifyFilegroupsOptions.AstModifyFilegroupsOptions3(ctx, ((AstFileGroupId)(list[0])));
+                return new AstModifyFilegroupsOptions.AstModifyFilegroupsOptions3(ctx, ((AstFileGroupId)(list[3])));
             }
-            if ((index == 1))
+            if ((index == 4))
             {
                 return new AstModifyFilegroupsOptions.AstModifyFilegroupsOptions4(ctx);
             }
-            if ((index == 1))
+            if ((index == 5))
             {
                 return new AstModifyFilegroupsOptions.AstModifyFilegroupsOptions5(ctx);
             }
@@ -38541,11 +38771,11 @@ namespace Bb.SqlServer.Asts
         {
             if ((list.Count == 1))
             {
-                if (AstRoot.Eval(list[0], typeof(AstFilegroupUpdatabilityOption), false, false))
+                if (AstRoot.Eval(list[1], typeof(AstFilegroupUpdatabilityOption), false, false))
                 {
                     return 1;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstFileGroupId), false, false))
+                if (AstRoot.Eval(list[3], typeof(AstFileGroupId), false, false))
                 {
                     return 2;
                 }
@@ -39251,93 +39481,93 @@ namespace Bb.SqlServer.Asts
         public static AstDatabaseOptionspec Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstDatabaseOptionspec.Resolve(list);
-            if ((index == 2))
+            if ((index == 1))
             {
-                return new AstDatabaseOptionspec.AstDatabaseOptionspec1(ctx, ((AstAutoOption)(list[0])));
+                return new AstDatabaseOptionspec.AstDatabaseOptionspec1(ctx, ((AstAutoOption)(list[1])));
             }
             if ((index == 2))
             {
-                return new AstDatabaseOptionspec.AstDatabaseOptionspec2(ctx, ((AstChangeTrackingSet)(list[0])));
+                return new AstDatabaseOptionspec.AstDatabaseOptionspec2(ctx, ((AstChangeTrackingSet)(list[2])));
             }
-            if ((index == 2))
+            if ((index == 3))
             {
-                return new AstDatabaseOptionspec.AstDatabaseOptionspec3(ctx, ((AstContainmentOption)(list[0])));
+                return new AstDatabaseOptionspec.AstDatabaseOptionspec3(ctx, ((AstContainmentOption)(list[3])));
             }
-            if ((index == 2))
+            if ((index == 4))
             {
-                return new AstDatabaseOptionspec.AstDatabaseOptionspec4(ctx, ((AstCursorOption)(list[0])));
+                return new AstDatabaseOptionspec.AstDatabaseOptionspec4(ctx, ((AstCursorOption)(list[4])));
             }
-            if ((index == 2))
+            if ((index == 5))
             {
-                return new AstDatabaseOptionspec.AstDatabaseOptionspec5(ctx, ((AstDatabaseMirroringOption)(list[0])));
+                return new AstDatabaseOptionspec.AstDatabaseOptionspec5(ctx, ((AstDatabaseMirroringOption)(list[5])));
             }
-            if ((index == 2))
+            if ((index == 6))
             {
-                return new AstDatabaseOptionspec.AstDatabaseOptionspec6(ctx, ((AstDateCorrelationOptimizationOption)(list[0])));
+                return new AstDatabaseOptionspec.AstDatabaseOptionspec6(ctx, ((AstDateCorrelationOptimizationOption)(list[6])));
             }
-            if ((index == 2))
+            if ((index == 7))
             {
-                return new AstDatabaseOptionspec.AstDatabaseOptionspec7(ctx, ((AstDbEncryptionOption)(list[0])));
+                return new AstDatabaseOptionspec.AstDatabaseOptionspec7(ctx, ((AstDbEncryptionOption)(list[7])));
             }
-            if ((index == 2))
+            if ((index == 8))
             {
-                return new AstDatabaseOptionspec.AstDatabaseOptionspec8(ctx, ((AstDbStateOption)(list[0])));
+                return new AstDatabaseOptionspec.AstDatabaseOptionspec8(ctx, ((AstDbStateOption)(list[8])));
             }
-            if ((index == 2))
+            if ((index == 9))
             {
-                return new AstDatabaseOptionspec.AstDatabaseOptionspec9(ctx, ((AstDbUpdateOption)(list[0])));
+                return new AstDatabaseOptionspec.AstDatabaseOptionspec9(ctx, ((AstDbUpdateOption)(list[9])));
             }
-            if ((index == 2))
+            if ((index == 10))
             {
-                return new AstDatabaseOptionspec.AstDatabaseOptionspec10(ctx, ((AstDbUserAccessOption)(list[0])));
+                return new AstDatabaseOptionspec.AstDatabaseOptionspec10(ctx, ((AstDbUserAccessOption)(list[10])));
             }
-            if ((index == 2))
+            if ((index == 11))
             {
-                return new AstDatabaseOptionspec.AstDatabaseOptionspec11(ctx, ((AstDelayedDurabilityOption)(list[0])));
+                return new AstDatabaseOptionspec.AstDatabaseOptionspec11(ctx, ((AstDelayedDurabilityOption)(list[11])));
             }
-            if ((index == 2))
+            if ((index == 12))
             {
-                return new AstDatabaseOptionspec.AstDatabaseOptionspec12(ctx, ((AstExternalAccessOption)(list[0])));
+                return new AstDatabaseOptionspec.AstDatabaseOptionspec12(ctx, ((AstExternalAccessOption)(list[12])));
             }
-            if ((index == 2))
+            if ((index == 13))
             {
-                return new AstDatabaseOptionspec.AstDatabaseOptionspec13(ctx, ((AstDatabaseFilestream)(list[0])));
+                return new AstDatabaseOptionspec.AstDatabaseOptionspec13(ctx, ((AstDatabaseFilestream)(list[13])));
             }
-            if ((index == 2))
+            if ((index == 14))
             {
-                return new AstDatabaseOptionspec.AstDatabaseOptionspec14(ctx, ((AstHadrOptions)(list[0])));
+                return new AstDatabaseOptionspec.AstDatabaseOptionspec14(ctx, ((AstHadrOptions)(list[14])));
             }
-            if ((index == 2))
+            if ((index == 15))
             {
-                return new AstDatabaseOptionspec.AstDatabaseOptionspec15(ctx, ((AstMixedPageAllocationOption)(list[0])));
+                return new AstDatabaseOptionspec.AstDatabaseOptionspec15(ctx, ((AstMixedPageAllocationOption)(list[15])));
             }
-            if ((index == 2))
+            if ((index == 16))
             {
-                return new AstDatabaseOptionspec.AstDatabaseOptionspec16(ctx, ((AstParameterizationOption)(list[0])));
+                return new AstDatabaseOptionspec.AstDatabaseOptionspec16(ctx, ((AstParameterizationOption)(list[16])));
             }
-            if ((index == 2))
+            if ((index == 17))
             {
-                return new AstDatabaseOptionspec.AstDatabaseOptionspec17(ctx, ((AstRecoveryOption)(list[0])));
+                return new AstDatabaseOptionspec.AstDatabaseOptionspec17(ctx, ((AstRecoveryOption)(list[17])));
             }
-            if ((index == 2))
+            if ((index == 18))
             {
-                return new AstDatabaseOptionspec.AstDatabaseOptionspec18(ctx, ((AstServiceBrokerOption)(list[0])));
+                return new AstDatabaseOptionspec.AstDatabaseOptionspec18(ctx, ((AstServiceBrokerOption)(list[18])));
             }
-            if ((index == 2))
+            if ((index == 19))
             {
-                return new AstDatabaseOptionspec.AstDatabaseOptionspec19(ctx, ((AstSnapshotOption)(list[0])));
+                return new AstDatabaseOptionspec.AstDatabaseOptionspec19(ctx, ((AstSnapshotOption)(list[19])));
             }
-            if ((index == 2))
+            if ((index == 20))
             {
-                return new AstDatabaseOptionspec.AstDatabaseOptionspec20(ctx, ((AstSqlOption)(list[0])));
+                return new AstDatabaseOptionspec.AstDatabaseOptionspec20(ctx, ((AstSqlOption)(list[20])));
             }
-            if ((index == 2))
+            if ((index == 21))
             {
-                return new AstDatabaseOptionspec.AstDatabaseOptionspec21(ctx, ((AstTargetRecoveryTimeOption)(list[0])));
+                return new AstDatabaseOptionspec.AstDatabaseOptionspec21(ctx, ((AstTargetRecoveryTimeOption)(list[21])));
             }
-            if ((index == 2))
+            if ((index == 22))
             {
-                return new AstDatabaseOptionspec.AstDatabaseOptionspec22(ctx, ((AstTermination)(list[0])));
+                return new AstDatabaseOptionspec.AstDatabaseOptionspec22(ctx, ((AstTermination)(list[22])));
             }
             return null;
         }
@@ -39346,91 +39576,91 @@ namespace Bb.SqlServer.Asts
         {
             if ((list.Count == 1))
             {
-                if (AstRoot.Eval(list[0], typeof(AstAutoOption), false, false))
+                if (AstRoot.Eval(list[1], typeof(AstAutoOption), false, false))
                 {
                     return 1;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstChangeTrackingSet), false, false))
+                if (AstRoot.Eval(list[2], typeof(AstChangeTrackingSet), false, false))
                 {
                     return 2;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstContainmentOption), false, false))
+                if (AstRoot.Eval(list[3], typeof(AstContainmentOption), false, false))
                 {
                     return 3;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstCursorOption), false, false))
+                if (AstRoot.Eval(list[4], typeof(AstCursorOption), false, false))
                 {
                     return 4;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstDatabaseMirroringOption), false, false))
+                if (AstRoot.Eval(list[5], typeof(AstDatabaseMirroringOption), false, false))
                 {
                     return 5;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstDateCorrelationOptimizationOption), false, false))
+                if (AstRoot.Eval(list[6], typeof(AstDateCorrelationOptimizationOption), false, false))
                 {
                     return 6;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstDbEncryptionOption), false, false))
+                if (AstRoot.Eval(list[7], typeof(AstDbEncryptionOption), false, false))
                 {
                     return 7;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstDbStateOption), false, false))
+                if (AstRoot.Eval(list[8], typeof(AstDbStateOption), false, false))
                 {
                     return 8;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstDbUpdateOption), false, false))
+                if (AstRoot.Eval(list[9], typeof(AstDbUpdateOption), false, false))
                 {
                     return 9;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstDbUserAccessOption), false, false))
+                if (AstRoot.Eval(list[10], typeof(AstDbUserAccessOption), false, false))
                 {
                     return 10;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstDelayedDurabilityOption), false, false))
+                if (AstRoot.Eval(list[11], typeof(AstDelayedDurabilityOption), false, false))
                 {
                     return 11;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstExternalAccessOption), false, false))
+                if (AstRoot.Eval(list[12], typeof(AstExternalAccessOption), false, false))
                 {
                     return 12;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstDatabaseFilestream), false, false))
+                if (AstRoot.Eval(list[13], typeof(AstDatabaseFilestream), false, false))
                 {
                     return 13;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstHadrOptions), false, false))
+                if (AstRoot.Eval(list[14], typeof(AstHadrOptions), false, false))
                 {
                     return 14;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstMixedPageAllocationOption), false, false))
+                if (AstRoot.Eval(list[15], typeof(AstMixedPageAllocationOption), false, false))
                 {
                     return 15;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstParameterizationOption), false, false))
+                if (AstRoot.Eval(list[16], typeof(AstParameterizationOption), false, false))
                 {
                     return 16;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstRecoveryOption), false, false))
+                if (AstRoot.Eval(list[17], typeof(AstRecoveryOption), false, false))
                 {
                     return 17;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstServiceBrokerOption), false, false))
+                if (AstRoot.Eval(list[18], typeof(AstServiceBrokerOption), false, false))
                 {
                     return 18;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstSnapshotOption), false, false))
+                if (AstRoot.Eval(list[19], typeof(AstSnapshotOption), false, false))
                 {
                     return 19;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstSqlOption), false, false))
+                if (AstRoot.Eval(list[20], typeof(AstSqlOption), false, false))
                 {
                     return 20;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstTargetRecoveryTimeOption), false, false))
+                if (AstRoot.Eval(list[21], typeof(AstTargetRecoveryTimeOption), false, false))
                 {
                     return 21;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstTermination), false, false))
+                if (AstRoot.Eval(list[22], typeof(AstTermination), false, false))
                 {
                     return 22;
                 }
@@ -39830,25 +40060,25 @@ namespace Bb.SqlServer.Asts
         public static AstAutoOption Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstAutoOption.Resolve(list);
-            if ((index == 2))
+            if ((index == 1))
             {
-                return new AstAutoOption.AstAutoOption1(ctx, ((AstOnOff)(list[0])));
+                return new AstAutoOption.AstAutoOption1(ctx, ((AstOnOff)(list[1])));
             }
             if ((index == 2))
             {
-                return new AstAutoOption.AstAutoOption2(ctx, ((AstStatisticValue)(list[0])));
+                return new AstAutoOption.AstAutoOption2(ctx, ((AstStatisticValue)(list[2])));
             }
-            if ((index == 2))
+            if ((index == 3))
             {
-                return new AstAutoOption.AstAutoOption3(ctx, ((AstOnOff)(list[0])));
+                return new AstAutoOption.AstAutoOption3(ctx, ((AstOnOff)(list[3])));
             }
-            if ((index == 2))
+            if ((index == 4))
             {
-                return new AstAutoOption.AstAutoOption4(ctx, ((AstOnOff)(list[0])));
+                return new AstAutoOption.AstAutoOption4(ctx, ((AstOnOff)(list[4])));
             }
-            if ((index == 2))
+            if ((index == 5))
             {
-                return new AstAutoOption.AstAutoOption5(ctx, ((AstOnOff)(list[0])));
+                return new AstAutoOption.AstAutoOption5(ctx, ((AstOnOff)(list[5])));
             }
             return null;
         }
@@ -39857,23 +40087,23 @@ namespace Bb.SqlServer.Asts
         {
             if ((list.Count == 1))
             {
-                if (AstRoot.Eval(list[0], typeof(AstOnOff), false, false))
+                if (AstRoot.Eval(list[1], typeof(AstOnOff), false, false))
                 {
                     return 1;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstStatisticValue), false, false))
+                if (AstRoot.Eval(list[2], typeof(AstStatisticValue), false, false))
                 {
                     return 2;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstOnOff), false, false))
+                if (AstRoot.Eval(list[3], typeof(AstOnOff), false, false))
                 {
                     return 3;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstOnOff), false, false))
+                if (AstRoot.Eval(list[4], typeof(AstOnOff), false, false))
                 {
                     return 4;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstOnOff), false, false))
+                if (AstRoot.Eval(list[5], typeof(AstOnOff), false, false))
                 {
                     return 5;
                 }
@@ -39982,7 +40212,7 @@ namespace Bb.SqlServer.Asts
             }
             if ((index == 2))
             {
-                return new AstChangeTrackingSet.AstChangeTrackingSet2(ctx, ((AstChangeTrackingOptionList)(list[0])));
+                return new AstChangeTrackingSet.AstChangeTrackingSet2(ctx, ((AstChangeTrackingOptionList)(list[2])));
             }
             return null;
         }
@@ -39991,7 +40221,7 @@ namespace Bb.SqlServer.Asts
         {
             if ((list.Count == 1))
             {
-                if (AstRoot.Eval(list[0], typeof(AstChangeTrackingOptionList), false, false))
+                if (AstRoot.Eval(list[2], typeof(AstChangeTrackingOptionList), false, false))
                 {
                     return 1;
                 }
@@ -40106,13 +40336,13 @@ namespace Bb.SqlServer.Asts
         public static AstChangeTrackingOptionList Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstChangeTrackingOptionList.Resolve(list);
-            if ((index == 2))
+            if ((index == 1))
             {
-                return new AstChangeTrackingOptionList.AstChangeTrackingOptionList1(ctx, ((AstOnOff)(list[0])));
+                return new AstChangeTrackingOptionList.AstChangeTrackingOptionList1(ctx, ((AstOnOff)(list[1])));
             }
             if ((index == 2))
             {
-                return new AstChangeTrackingOptionList.AstChangeTrackingOptionList2(ctx, ((AstPeriod)(list[0])));
+                return new AstChangeTrackingOptionList.AstChangeTrackingOptionList2(ctx, ((AstPeriod)(list[2])));
             }
             return null;
         }
@@ -40121,11 +40351,11 @@ namespace Bb.SqlServer.Asts
         {
             if ((list.Count == 1))
             {
-                if (AstRoot.Eval(list[0], typeof(AstOnOff), false, false))
+                if (AstRoot.Eval(list[1], typeof(AstOnOff), false, false))
                 {
                     return 1;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstPeriod), false, false))
+                if (AstRoot.Eval(list[2], typeof(AstPeriod), false, false))
                 {
                     return 2;
                 }
@@ -40240,13 +40470,13 @@ namespace Bb.SqlServer.Asts
         public static AstCursorOption Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstCursorOption.Resolve(list);
-            if ((index == 2))
+            if ((index == 1))
             {
-                return new AstCursorOption.AstCursorOption1(ctx, ((AstOnOff)(list[0])));
+                return new AstCursorOption.AstCursorOption1(ctx, ((AstOnOff)(list[1])));
             }
             if ((index == 2))
             {
-                return new AstCursorOption.AstCursorOption2(ctx, ((AstLocalGlobal)(list[0])));
+                return new AstCursorOption.AstCursorOption2(ctx, ((AstLocalGlobal)(list[2])));
             }
             return null;
         }
@@ -40255,11 +40485,11 @@ namespace Bb.SqlServer.Asts
         {
             if ((list.Count == 1))
             {
-                if (AstRoot.Eval(list[0], typeof(AstOnOff), false, false))
+                if (AstRoot.Eval(list[1], typeof(AstOnOff), false, false))
                 {
                     return 1;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstLocalGlobal), false, false))
+                if (AstRoot.Eval(list[2], typeof(AstLocalGlobal), false, false))
                 {
                     return 2;
                 }
@@ -40421,15 +40651,15 @@ namespace Bb.SqlServer.Asts
             }
             if ((index == 2))
             {
-                return new AstListenerIpAddr.AstListenerIpAddr2(ctx, ((AstIpv4)(list[0])));
+                return new AstListenerIpAddr.AstListenerIpAddr2(ctx, ((AstIpv4)(list[2])));
             }
-            if ((index == 2))
+            if ((index == 3))
             {
-                return new AstListenerIpAddr.AstListenerIpAddr3(ctx, ((AstIpv6)(list[0])));
+                return new AstListenerIpAddr.AstListenerIpAddr3(ctx, ((AstIpv6)(list[3])));
             }
-            if ((index == 2))
+            if ((index == 4))
             {
-                return new AstListenerIpAddr.AstListenerIpAddr4(ctx, ((AstStringtext)(list[0])));
+                return new AstListenerIpAddr.AstListenerIpAddr4(ctx, ((AstStringtext)(list[4])));
             }
             return null;
         }
@@ -40438,15 +40668,15 @@ namespace Bb.SqlServer.Asts
         {
             if ((list.Count == 1))
             {
-                if (AstRoot.Eval(list[0], typeof(AstIpv4), false, false))
+                if (AstRoot.Eval(list[2], typeof(AstIpv4), false, false))
                 {
                     return 1;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstIpv6), false, false))
+                if (AstRoot.Eval(list[3], typeof(AstIpv6), false, false))
                 {
                     return 2;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstStringtext), false, false))
+                if (AstRoot.Eval(list[4], typeof(AstStringtext), false, false))
                 {
                     return 3;
                 }
@@ -40603,13 +40833,13 @@ namespace Bb.SqlServer.Asts
         public static AstAuthenticationConfiguration Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstAuthenticationConfiguration.Resolve(list);
-            if ((index == 3))
+            if ((index == 1))
             {
-                return new AstAuthenticationConfiguration.AstAuthenticationConfiguration1(ctx, ((AstAuthenticationMode)(list[0])), ((AstCertificateId)(list[1])));
+                return new AstAuthenticationConfiguration.AstAuthenticationConfiguration1(ctx, ((AstAuthenticationMode)(list[1])), ((AstCertificateId)(list[1])));
             }
-            if ((index == 3))
+            if ((index == 2))
             {
-                return new AstAuthenticationConfiguration.AstAuthenticationConfiguration2(ctx, ((AstCertificateId)(list[0])), ((AstAuthenticationMode)(list[1])));
+                return new AstAuthenticationConfiguration.AstAuthenticationConfiguration2(ctx, ((AstCertificateId)(list[2])), ((AstAuthenticationMode)(list[2])));
             }
             return null;
         }
@@ -40618,16 +40848,16 @@ namespace Bb.SqlServer.Asts
         {
             if ((list.Count == 2))
             {
-                if (AstRoot.Eval(list[0], typeof(AstAuthenticationMode), false, false))
+                if (AstRoot.Eval(list[1], typeof(AstAuthenticationMode), false, false))
                 {
                     if (AstRoot.Eval(list[1], typeof(AstCertificateId), false, false))
                     {
                         return 1;
                     }
                 }
-                if (AstRoot.Eval(list[0], typeof(AstCertificateId), false, false))
+                if (AstRoot.Eval(list[2], typeof(AstCertificateId), false, false))
                 {
-                    if (AstRoot.Eval(list[1], typeof(AstAuthenticationMode), false, false))
+                    if (AstRoot.Eval(list[2], typeof(AstAuthenticationMode), false, false))
                     {
                         return 2;
                     }
@@ -40765,13 +40995,13 @@ namespace Bb.SqlServer.Asts
         public static AstMirroringSetOption Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstMirroringSetOption.Resolve(list);
-            if ((index == 3))
+            if ((index == 1))
             {
-                return new AstMirroringSetOption.AstMirroringSetOption1(ctx, ((AstMirroringPartner)(list[0])), ((AstPartnerOption)(list[1])));
+                return new AstMirroringSetOption.AstMirroringSetOption1(ctx, ((AstMirroringPartner)(list[1])), ((AstPartnerOption)(list[1])));
             }
-            if ((index == 3))
+            if ((index == 2))
             {
-                return new AstMirroringSetOption.AstMirroringSetOption2(ctx, ((AstMirroringWitness)(list[0])), ((AstWitnessOption)(list[1])));
+                return new AstMirroringSetOption.AstMirroringSetOption2(ctx, ((AstMirroringWitness)(list[2])), ((AstWitnessOption)(list[2])));
             }
             return null;
         }
@@ -40780,16 +41010,16 @@ namespace Bb.SqlServer.Asts
         {
             if ((list.Count == 2))
             {
-                if (AstRoot.Eval(list[0], typeof(AstMirroringPartner), false, false))
+                if (AstRoot.Eval(list[1], typeof(AstMirroringPartner), false, false))
                 {
                     if (AstRoot.Eval(list[1], typeof(AstPartnerOption), false, false))
                     {
                         return 1;
                     }
                 }
-                if (AstRoot.Eval(list[0], typeof(AstMirroringWitness), false, false))
+                if (AstRoot.Eval(list[2], typeof(AstMirroringWitness), false, false))
                 {
-                    if (AstRoot.Eval(list[1], typeof(AstWitnessOption), false, false))
+                    if (AstRoot.Eval(list[2], typeof(AstWitnessOption), false, false))
                     {
                         return 2;
                     }
@@ -40944,17 +41174,17 @@ namespace Bb.SqlServer.Asts
         public static AstPartnerOption Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstPartnerOption.Resolve(list);
+            if ((index == 1))
+            {
+                return new AstPartnerOption.AstPartnerOption1(ctx, ((AstWitnessPartnerEqual)(list[1])), ((AstPartnerServer)(list[1])));
+            }
+            if ((index == 2))
+            {
+                return new AstPartnerOption.AstPartnerOption2(ctx, ((AstDecimal)(list[2])));
+            }
             if ((index == 3))
             {
-                return new AstPartnerOption.AstPartnerOption1(ctx, ((AstWitnessPartnerEqual)(list[0])), ((AstPartnerServer)(list[1])));
-            }
-            if ((index == 2))
-            {
-                return new AstPartnerOption.AstPartnerOption2(ctx, ((AstDecimal)(list[0])));
-            }
-            if ((index == 2))
-            {
-                return new AstPartnerOption.AstPartnerOption3(ctx, ((AstPartnerOptionEnum)(list[0])));
+                return new AstPartnerOption.AstPartnerOption3(ctx, ((AstPartnerOptionEnum)(list[3])));
             }
             return null;
         }
@@ -40963,7 +41193,7 @@ namespace Bb.SqlServer.Asts
         {
             if ((list.Count == 2))
             {
-                if (AstRoot.Eval(list[0], typeof(AstWitnessPartnerEqual), false, false))
+                if (AstRoot.Eval(list[1], typeof(AstWitnessPartnerEqual), false, false))
                 {
                     if (AstRoot.Eval(list[1], typeof(AstPartnerServer), false, false))
                     {
@@ -40973,11 +41203,11 @@ namespace Bb.SqlServer.Asts
             }
             if ((list.Count == 1))
             {
-                if (AstRoot.Eval(list[0], typeof(AstDecimal), false, false))
+                if (AstRoot.Eval(list[2], typeof(AstDecimal), false, false))
                 {
                     return 2;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstPartnerOptionEnum), false, false))
+                if (AstRoot.Eval(list[3], typeof(AstPartnerOptionEnum), false, false))
                 {
                     return 3;
                 }
@@ -41101,11 +41331,11 @@ namespace Bb.SqlServer.Asts
         public static AstWitnessOption Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstWitnessOption.Resolve(list);
-            if ((index == 3))
-            {
-                return new AstWitnessOption.AstWitnessOption1(ctx, ((AstWitnessPartnerEqual)(list[0])), ((AstWitnessServer)(list[1])));
-            }
             if ((index == 1))
+            {
+                return new AstWitnessOption.AstWitnessOption1(ctx, ((AstWitnessPartnerEqual)(list[1])), ((AstWitnessServer)(list[1])));
+            }
+            if ((index == 2))
             {
                 return new AstWitnessOption.AstWitnessOption2(ctx);
             }
@@ -41116,7 +41346,7 @@ namespace Bb.SqlServer.Asts
         {
             if ((list.Count == 2))
             {
-                if (AstRoot.Eval(list[0], typeof(AstWitnessPartnerEqual), false, false))
+                if (AstRoot.Eval(list[1], typeof(AstWitnessPartnerEqual), false, false))
                 {
                     if (AstRoot.Eval(list[1], typeof(AstWitnessServer), false, false))
                     {
@@ -41157,7 +41387,7 @@ namespace Bb.SqlServer.Asts
         
         protected static string _rule = "partner_server_tcp_prefix\r\n\t : TCP  COLON  DOUBLE_FORWARD_SLASH";
         
-        internal AstPartnerServerTcpPrefix(ParserRuleContext ctx, List<AstRoot> list) : 
+        internal AstPartnerServerTcpPrefix(ParserRuleContext ctx) : 
                 base(ctx)
         {
         }
@@ -41172,14 +41402,14 @@ namespace Bb.SqlServer.Asts
         {
         }
         
-        internal AstPartnerServerTcpPrefix(ParserRuleContext ctx) : 
-                base(ctx)
-        {
-        }
-        
         public override void Accept(IAstTSqlVisitor visitor)
         {
             visitor.VisitPartnerServerTcpPrefix(this);
+        }
+        
+        public static AstPartnerServerTcpPrefix Create(ParserRuleContext ctx, List<AstRoot> list)
+        {
+            return new AstPartnerServerTcpPrefix(ctx);
         }
         
         /// <summary>
@@ -41425,33 +41655,33 @@ namespace Bb.SqlServer.Asts
         public static AstExternalAccessOption Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstExternalAccessOption.Resolve(list);
-            if ((index == 2))
+            if ((index == 1))
             {
-                return new AstExternalAccessOption.AstExternalAccessOption1(ctx, ((AstOnOff)(list[0])));
+                return new AstExternalAccessOption.AstExternalAccessOption1(ctx, ((AstOnOff)(list[1])));
             }
             if ((index == 2))
             {
-                return new AstExternalAccessOption.AstExternalAccessOption2(ctx, ((AstOnOff)(list[0])));
+                return new AstExternalAccessOption.AstExternalAccessOption2(ctx, ((AstOnOff)(list[2])));
             }
-            if ((index == 2))
+            if ((index == 3))
             {
-                return new AstExternalAccessOption.AstExternalAccessOption3(ctx, ((AstLanguageSetting)(list[0])));
+                return new AstExternalAccessOption.AstExternalAccessOption3(ctx, ((AstLanguageSetting)(list[3])));
             }
-            if ((index == 2))
+            if ((index == 4))
             {
-                return new AstExternalAccessOption.AstExternalAccessOption4(ctx, ((AstLanguageSetting)(list[0])));
+                return new AstExternalAccessOption.AstExternalAccessOption4(ctx, ((AstLanguageSetting)(list[4])));
             }
-            if ((index == 2))
+            if ((index == 5))
             {
-                return new AstExternalAccessOption.AstExternalAccessOption5(ctx, ((AstOnOff)(list[0])));
+                return new AstExternalAccessOption.AstExternalAccessOption5(ctx, ((AstOnOff)(list[5])));
             }
-            if ((index == 2))
+            if ((index == 6))
             {
-                return new AstExternalAccessOption.AstExternalAccessOption6(ctx, ((AstOnOff)(list[0])));
+                return new AstExternalAccessOption.AstExternalAccessOption6(ctx, ((AstOnOff)(list[6])));
             }
-            if ((index == 2))
+            if ((index == 7))
             {
-                return new AstExternalAccessOption.AstExternalAccessOption7(ctx, ((AstDecimal)(list[0])));
+                return new AstExternalAccessOption.AstExternalAccessOption7(ctx, ((AstDecimal)(list[7])));
             }
             return null;
         }
@@ -41460,31 +41690,31 @@ namespace Bb.SqlServer.Asts
         {
             if ((list.Count == 1))
             {
-                if (AstRoot.Eval(list[0], typeof(AstOnOff), false, false))
+                if (AstRoot.Eval(list[1], typeof(AstOnOff), false, false))
                 {
                     return 1;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstOnOff), false, false))
+                if (AstRoot.Eval(list[2], typeof(AstOnOff), false, false))
                 {
                     return 2;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstLanguageSetting), false, false))
+                if (AstRoot.Eval(list[3], typeof(AstLanguageSetting), false, false))
                 {
                     return 3;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstLanguageSetting), false, false))
+                if (AstRoot.Eval(list[4], typeof(AstLanguageSetting), false, false))
                 {
                     return 4;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstOnOff), false, false))
+                if (AstRoot.Eval(list[5], typeof(AstOnOff), false, false))
                 {
                     return 5;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstOnOff), false, false))
+                if (AstRoot.Eval(list[6], typeof(AstOnOff), false, false))
                 {
                     return 6;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstDecimal), false, false))
+                if (AstRoot.Eval(list[7], typeof(AstDecimal), false, false))
                 {
                     return 7;
                 }
@@ -41631,11 +41861,11 @@ namespace Bb.SqlServer.Asts
             }
             if ((index == 2))
             {
-                return new AstLanguageSettingValue.AstLanguageSettingValue2(ctx, ((AstDecimal)(list[0])));
+                return new AstLanguageSettingValue.AstLanguageSettingValue2(ctx, ((AstDecimal)(list[2])));
             }
-            if ((index == 2))
+            if ((index == 3))
             {
-                return new AstLanguageSettingValue.AstLanguageSettingValue3(ctx, ((AstLanguageId)(list[0])));
+                return new AstLanguageSettingValue.AstLanguageSettingValue3(ctx, ((AstLanguageId)(list[3])));
             }
             return null;
         }
@@ -41644,11 +41874,11 @@ namespace Bb.SqlServer.Asts
         {
             if ((list.Count == 1))
             {
-                if (AstRoot.Eval(list[0], typeof(AstDecimal), false, false))
+                if (AstRoot.Eval(list[2], typeof(AstDecimal), false, false))
                 {
                     return 1;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstLanguageId), false, false))
+                if (AstRoot.Eval(list[3], typeof(AstLanguageId), false, false))
                 {
                     return 2;
                 }
@@ -41788,17 +42018,17 @@ namespace Bb.SqlServer.Asts
         public static AstHadrOptions Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstHadrOptions.Resolve(list);
-            if ((index == 2))
-            {
-                return new AstHadrOptions.AstHadrOptions1(ctx, ((AstGroupId)(list[0])));
-            }
             if ((index == 1))
+            {
+                return new AstHadrOptions.AstHadrOptions1(ctx, ((AstGroupId)(list[1])));
+            }
+            if ((index == 2))
             {
                 return new AstHadrOptions.AstHadrOptions2(ctx);
             }
-            if ((index == 2))
+            if ((index == 3))
             {
-                return new AstHadrOptions.AstHadrOptions3(ctx, ((AstSuspendResume)(list[0])));
+                return new AstHadrOptions.AstHadrOptions3(ctx, ((AstSuspendResume)(list[3])));
             }
             return null;
         }
@@ -41807,11 +42037,11 @@ namespace Bb.SqlServer.Asts
         {
             if ((list.Count == 1))
             {
-                if (AstRoot.Eval(list[0], typeof(AstGroupId), false, false))
+                if (AstRoot.Eval(list[1], typeof(AstGroupId), false, false))
                 {
                     return 1;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstSuspendResume), false, false))
+                if (AstRoot.Eval(list[3], typeof(AstSuspendResume), false, false))
                 {
                     return 2;
                 }
@@ -41964,17 +42194,17 @@ namespace Bb.SqlServer.Asts
         public static AstRecoveryOption Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstRecoveryOption.Resolve(list);
-            if ((index == 2))
+            if ((index == 1))
             {
-                return new AstRecoveryOption.AstRecoveryOption1(ctx, ((AstRecoveryOptionEnum)(list[0])));
+                return new AstRecoveryOption.AstRecoveryOption1(ctx, ((AstRecoveryOptionEnum)(list[1])));
             }
             if ((index == 2))
             {
-                return new AstRecoveryOption.AstRecoveryOption2(ctx, ((AstOnOff)(list[0])));
+                return new AstRecoveryOption.AstRecoveryOption2(ctx, ((AstOnOff)(list[2])));
             }
-            if ((index == 2))
+            if ((index == 3))
             {
-                return new AstRecoveryOption.AstRecoveryOption3(ctx, ((AstOnOff)(list[0])));
+                return new AstRecoveryOption.AstRecoveryOption3(ctx, ((AstOnOff)(list[3])));
             }
             return null;
         }
@@ -41983,15 +42213,15 @@ namespace Bb.SqlServer.Asts
         {
             if ((list.Count == 1))
             {
-                if (AstRoot.Eval(list[0], typeof(AstRecoveryOptionEnum), false, false))
+                if (AstRoot.Eval(list[1], typeof(AstRecoveryOptionEnum), false, false))
                 {
                     return 1;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstOnOff), false, false))
+                if (AstRoot.Eval(list[2], typeof(AstOnOff), false, false))
                 {
                     return 2;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstOnOff), false, false))
+                if (AstRoot.Eval(list[3], typeof(AstOnOff), false, false))
                 {
                     return 3;
                 }
@@ -42150,21 +42380,21 @@ namespace Bb.SqlServer.Asts
             {
                 return new AstServiceBrokerOption.AstServiceBrokerOption1(ctx);
             }
-            if ((index == 1))
+            if ((index == 2))
             {
                 return new AstServiceBrokerOption.AstServiceBrokerOption2(ctx);
             }
-            if ((index == 1))
+            if ((index == 3))
             {
                 return new AstServiceBrokerOption.AstServiceBrokerOption3(ctx);
             }
-            if ((index == 1))
+            if ((index == 4))
             {
                 return new AstServiceBrokerOption.AstServiceBrokerOption4(ctx);
             }
-            if ((index == 2))
+            if ((index == 5))
             {
-                return new AstServiceBrokerOption.AstServiceBrokerOption5(ctx, ((AstOnOff)(list[0])));
+                return new AstServiceBrokerOption.AstServiceBrokerOption5(ctx, ((AstOnOff)(list[5])));
             }
             return null;
         }
@@ -42173,7 +42403,7 @@ namespace Bb.SqlServer.Asts
         {
             if ((list.Count == 1))
             {
-                if (AstRoot.Eval(list[0], typeof(AstOnOff), false, false))
+                if (AstRoot.Eval(list[5], typeof(AstOnOff), false, false))
                 {
                     return 1;
                 }
@@ -42316,17 +42546,17 @@ namespace Bb.SqlServer.Asts
         public static AstSnapshotOption Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstSnapshotOption.Resolve(list);
-            if ((index == 2))
+            if ((index == 1))
             {
-                return new AstSnapshotOption.AstSnapshotOption1(ctx, ((AstOnOff)(list[0])));
+                return new AstSnapshotOption.AstSnapshotOption1(ctx, ((AstOnOff)(list[1])));
             }
             if ((index == 2))
             {
-                return new AstSnapshotOption.AstSnapshotOption2(ctx, ((AstOnOff)(list[0])));
+                return new AstSnapshotOption.AstSnapshotOption2(ctx, ((AstOnOff)(list[2])));
             }
-            if ((index == 2))
+            if ((index == 3))
             {
-                return new AstSnapshotOption.AstSnapshotOption3(ctx, ((AstOnOff)(list[0])));
+                return new AstSnapshotOption.AstSnapshotOption3(ctx, ((AstOnOff)(list[3])));
             }
             return null;
         }
@@ -42335,15 +42565,15 @@ namespace Bb.SqlServer.Asts
         {
             if ((list.Count == 1))
             {
-                if (AstRoot.Eval(list[0], typeof(AstOnOff), false, false))
+                if (AstRoot.Eval(list[1], typeof(AstOnOff), false, false))
                 {
                     return 1;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstOnOff), false, false))
+                if (AstRoot.Eval(list[2], typeof(AstOnOff), false, false))
                 {
                     return 2;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstOnOff), false, false))
+                if (AstRoot.Eval(list[3], typeof(AstOnOff), false, false))
                 {
                     return 3;
                 }
@@ -42681,45 +42911,45 @@ namespace Bb.SqlServer.Asts
         public static AstSqlOption Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstSqlOption.Resolve(list);
-            if ((index == 2))
+            if ((index == 1))
             {
-                return new AstSqlOption.AstSqlOption1(ctx, ((AstOnOff)(list[0])));
+                return new AstSqlOption.AstSqlOption1(ctx, ((AstOnOff)(list[1])));
             }
             if ((index == 2))
             {
-                return new AstSqlOption.AstSqlOption2(ctx, ((AstOnOff)(list[0])));
+                return new AstSqlOption.AstSqlOption2(ctx, ((AstOnOff)(list[2])));
             }
-            if ((index == 2))
+            if ((index == 3))
             {
-                return new AstSqlOption.AstSqlOption3(ctx, ((AstOnOff)(list[0])));
+                return new AstSqlOption.AstSqlOption3(ctx, ((AstOnOff)(list[3])));
             }
-            if ((index == 2))
+            if ((index == 4))
             {
-                return new AstSqlOption.AstSqlOption4(ctx, ((AstOnOff)(list[0])));
+                return new AstSqlOption.AstSqlOption4(ctx, ((AstOnOff)(list[4])));
             }
-            if ((index == 2))
+            if ((index == 5))
             {
-                return new AstSqlOption.AstSqlOption5(ctx, ((AstOnOff)(list[0])));
+                return new AstSqlOption.AstSqlOption5(ctx, ((AstOnOff)(list[5])));
             }
-            if ((index == 2))
+            if ((index == 6))
             {
-                return new AstSqlOption.AstSqlOption6(ctx, ((AstDecimal)(list[0])));
+                return new AstSqlOption.AstSqlOption6(ctx, ((AstDecimal)(list[6])));
             }
-            if ((index == 2))
+            if ((index == 7))
             {
-                return new AstSqlOption.AstSqlOption7(ctx, ((AstOnOff)(list[0])));
+                return new AstSqlOption.AstSqlOption7(ctx, ((AstOnOff)(list[7])));
             }
-            if ((index == 2))
+            if ((index == 8))
             {
-                return new AstSqlOption.AstSqlOption8(ctx, ((AstOnOff)(list[0])));
+                return new AstSqlOption.AstSqlOption8(ctx, ((AstOnOff)(list[8])));
             }
-            if ((index == 2))
+            if ((index == 9))
             {
-                return new AstSqlOption.AstSqlOption9(ctx, ((AstOnOff)(list[0])));
+                return new AstSqlOption.AstSqlOption9(ctx, ((AstOnOff)(list[9])));
             }
-            if ((index == 2))
+            if ((index == 10))
             {
-                return new AstSqlOption.AstSqlOption10(ctx, ((AstOnOff)(list[0])));
+                return new AstSqlOption.AstSqlOption10(ctx, ((AstOnOff)(list[10])));
             }
             return null;
         }
@@ -42728,43 +42958,43 @@ namespace Bb.SqlServer.Asts
         {
             if ((list.Count == 1))
             {
-                if (AstRoot.Eval(list[0], typeof(AstOnOff), false, false))
+                if (AstRoot.Eval(list[1], typeof(AstOnOff), false, false))
                 {
                     return 1;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstOnOff), false, false))
+                if (AstRoot.Eval(list[2], typeof(AstOnOff), false, false))
                 {
                     return 2;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstOnOff), false, false))
+                if (AstRoot.Eval(list[3], typeof(AstOnOff), false, false))
                 {
                     return 3;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstOnOff), false, false))
+                if (AstRoot.Eval(list[4], typeof(AstOnOff), false, false))
                 {
                     return 4;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstOnOff), false, false))
+                if (AstRoot.Eval(list[5], typeof(AstOnOff), false, false))
                 {
                     return 5;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstDecimal), false, false))
+                if (AstRoot.Eval(list[6], typeof(AstDecimal), false, false))
                 {
                     return 6;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstOnOff), false, false))
+                if (AstRoot.Eval(list[7], typeof(AstOnOff), false, false))
                 {
                     return 7;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstOnOff), false, false))
+                if (AstRoot.Eval(list[8], typeof(AstOnOff), false, false))
                 {
                     return 8;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstOnOff), false, false))
+                if (AstRoot.Eval(list[9], typeof(AstOnOff), false, false))
                 {
                     return 9;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstOnOff), false, false))
+                if (AstRoot.Eval(list[10], typeof(AstOnOff), false, false))
                 {
                     return 10;
                 }
@@ -42885,15 +43115,15 @@ namespace Bb.SqlServer.Asts
         public static AstTermination Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstTermination.Resolve(list);
-            if ((index == 2))
-            {
-                return new AstTermination.AstTermination1(ctx, ((AstDecimal)(list[0])));
-            }
             if ((index == 1))
+            {
+                return new AstTermination.AstTermination1(ctx, ((AstDecimal)(list[1])));
+            }
+            if ((index == 2))
             {
                 return new AstTermination.AstTermination2(ctx);
             }
-            if ((index == 1))
+            if ((index == 3))
             {
                 return new AstTermination.AstTermination3(ctx);
             }
@@ -42904,7 +43134,7 @@ namespace Bb.SqlServer.Asts
         {
             if ((list.Count == 1))
             {
-                if (AstRoot.Eval(list[0], typeof(AstDecimal), false, false))
+                if (AstRoot.Eval(list[1], typeof(AstDecimal), false, false))
                 {
                     return 1;
                 }
@@ -42942,7 +43172,7 @@ namespace Bb.SqlServer.Asts
         
         protected static string _rule = "if_exists\r\n\t : IF  EXISTS";
         
-        internal AstIfExists(ParserRuleContext ctx, List<AstRoot> list) : 
+        internal AstIfExists(ParserRuleContext ctx) : 
                 base(ctx)
         {
         }
@@ -42957,14 +43187,14 @@ namespace Bb.SqlServer.Asts
         {
         }
         
-        internal AstIfExists(ParserRuleContext ctx) : 
-                base(ctx)
-        {
-        }
-        
         public override void Accept(IAstTSqlVisitor visitor)
         {
             visitor.VisitIfExists(this);
+        }
+        
+        public static AstIfExists Create(ParserRuleContext ctx, List<AstRoot> list)
+        {
+            return new AstIfExists(ctx);
         }
         
         /// <summary>
@@ -42988,7 +43218,15 @@ namespace Bb.SqlServer.Asts
         protected static string _rule = "create_type\r\n\t : CREATE  TYPE  name = schema_type_ref  (FROM  data_type  default_" +
             "value)?  (AS  TABLE  LR_BRACKET  column_def_table_constraints  RR_BRACKET)?";
         
-        internal AstCreateType(ParserRuleContext ctx, List<AstRoot> list) : 
+        private AstSchemaTypeRef _name;
+        
+        private AstDataType _dataType;
+        
+        private AstDefaultValue _defaultValue;
+        
+        private AstColumnDefTableConstraints _columnDefTableConstraints;
+        
+        internal AstCreateType(ParserRuleContext ctx) : 
                 base(ctx)
         {
         }
@@ -43012,7 +43250,7 @@ namespace Bb.SqlServer.Asts
             _columnDefTableConstraints = columnDefTableConstraints;
         }
         
-        public virtual AstSchemaTypeRef _name
+        public virtual AstSchemaTypeRef Name
         {
             get
             {
@@ -43020,7 +43258,7 @@ namespace Bb.SqlServer.Asts
             }
         }
         
-        public virtual AstDataType _dataType
+        public virtual AstDataType DataType
         {
             get
             {
@@ -43028,7 +43266,7 @@ namespace Bb.SqlServer.Asts
             }
         }
         
-        public virtual AstDefaultValue _defaultValue
+        public virtual AstDefaultValue DefaultValue
         {
             get
             {
@@ -43036,7 +43274,7 @@ namespace Bb.SqlServer.Asts
             }
         }
         
-        public virtual AstColumnDefTableConstraints _columnDefTableConstraints
+        public virtual AstColumnDefTableConstraints ColumnDefTableConstraints
         {
             get
             {
@@ -43047,6 +43285,11 @@ namespace Bb.SqlServer.Asts
         public override void Accept(IAstTSqlVisitor visitor)
         {
             visitor.VisitCreateType(this);
+        }
+        
+        public static AstCreateType Create(ParserRuleContext ctx, List<AstRoot> list)
+        {
+            return new AstCreateType(ctx, ((AstSchemaTypeRef)(list[0])), ((AstDataType)(list[1])), ((AstDefaultValue)(list[2])), ((AstColumnDefTableConstraints)(list[3])));
         }
         
         /// <summary>
@@ -43069,7 +43312,9 @@ namespace Bb.SqlServer.Asts
         
         protected static string _rule = "drop_type\r\n\t : DROP  TYPE  (IF  EXISTS)?  name = schema_type_ref";
         
-        internal AstDropType(ParserRuleContext ctx, List<AstRoot> list) : 
+        private AstSchemaTypeRef _name;
+        
+        internal AstDropType(ParserRuleContext ctx) : 
                 base(ctx)
         {
         }
@@ -43090,7 +43335,7 @@ namespace Bb.SqlServer.Asts
             _name = name;
         }
         
-        public virtual AstSchemaTypeRef _name
+        public virtual AstSchemaTypeRef Name
         {
             get
             {
@@ -43101,6 +43346,11 @@ namespace Bb.SqlServer.Asts
         public override void Accept(IAstTSqlVisitor visitor)
         {
             visitor.VisitDropType(this);
+        }
+        
+        public static AstDropType Create(ParserRuleContext ctx, List<AstRoot> list)
+        {
+            return new AstDropType(ctx, ((AstSchemaTypeRef)(list[0])));
         }
         
         /// <summary>
@@ -43199,13 +43449,13 @@ namespace Bb.SqlServer.Asts
         public static AstRowsetFunctionLimited Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstRowsetFunctionLimited.Resolve(list);
-            if ((index == 2))
+            if ((index == 1))
             {
-                return new AstRowsetFunctionLimited.AstRowsetFunctionLimited1(ctx, ((AstOpenqueryArgs)(list[0])));
+                return new AstRowsetFunctionLimited.AstRowsetFunctionLimited1(ctx, ((AstOpenqueryArgs)(list[1])));
             }
             if ((index == 2))
             {
-                return new AstRowsetFunctionLimited.AstRowsetFunctionLimited2(ctx, ((AstOpenDataSource)(list[0])));
+                return new AstRowsetFunctionLimited.AstRowsetFunctionLimited2(ctx, ((AstOpenDataSource)(list[2])));
             }
             return null;
         }
@@ -43214,11 +43464,11 @@ namespace Bb.SqlServer.Asts
         {
             if ((list.Count == 1))
             {
-                if (AstRoot.Eval(list[0], typeof(AstOpenqueryArgs), false, false))
+                if (AstRoot.Eval(list[1], typeof(AstOpenqueryArgs), false, false))
                 {
                     return 1;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstOpenDataSource), false, false))
+                if (AstRoot.Eval(list[2], typeof(AstOpenDataSource), false, false))
                 {
                     return 2;
                 }
@@ -43412,21 +43662,21 @@ namespace Bb.SqlServer.Asts
         public static AstDeclareStatement Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstDeclareStatement.Resolve(list);
-            if ((index == 3))
+            if ((index == 1))
             {
-                return new AstDeclareStatement.AstDeclareStatement1(ctx, ((AstLocalId)(list[0])), ((AstDeclareObjectTable)(list[1])));
+                return new AstDeclareStatement.AstDeclareStatement1(ctx, ((AstLocalId)(list[1])), ((AstDeclareObjectTable)(list[1])));
             }
             if ((index == 2))
             {
-                return new AstDeclareStatement.AstDeclareStatement2(ctx, ((AstDeclareLocals)(list[0])));
+                return new AstDeclareStatement.AstDeclareStatement2(ctx, ((AstDeclareLocals)(list[2])));
             }
             if ((index == 3))
             {
-                return new AstDeclareStatement.AstDeclareStatement3(ctx, ((AstLocalId)(list[0])), ((AstXmlTypeDefinition)(list[1])));
+                return new AstDeclareStatement.AstDeclareStatement3(ctx, ((AstLocalId)(list[3])), ((AstXmlTypeDefinition)(list[3])));
             }
-            if ((index == 2))
+            if ((index == 4))
             {
-                return new AstDeclareStatement.AstDeclareStatement4(ctx, ((AstXmlDeclarations)(list[0])));
+                return new AstDeclareStatement.AstDeclareStatement4(ctx, ((AstXmlDeclarations)(list[4])));
             }
             return null;
         }
@@ -43435,16 +43685,16 @@ namespace Bb.SqlServer.Asts
         {
             if ((list.Count == 2))
             {
-                if (AstRoot.Eval(list[0], typeof(AstLocalId), false, false))
+                if (AstRoot.Eval(list[1], typeof(AstLocalId), false, false))
                 {
                     if (AstRoot.Eval(list[1], typeof(AstDeclareObjectTable), false, false))
                     {
                         return 1;
                     }
                 }
-                if (AstRoot.Eval(list[0], typeof(AstLocalId), false, false))
+                if (AstRoot.Eval(list[3], typeof(AstLocalId), false, false))
                 {
-                    if (AstRoot.Eval(list[1], typeof(AstXmlTypeDefinition), false, false))
+                    if (AstRoot.Eval(list[3], typeof(AstXmlTypeDefinition), false, false))
                     {
                         return 3;
                     }
@@ -43452,11 +43702,11 @@ namespace Bb.SqlServer.Asts
             }
             if ((list.Count == 1))
             {
-                if (AstRoot.Eval(list[0], typeof(AstDeclareLocals), false, false))
+                if (AstRoot.Eval(list[2], typeof(AstDeclareLocals), false, false))
                 {
                     return 2;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstXmlDeclarations), false, false))
+                if (AstRoot.Eval(list[4], typeof(AstXmlDeclarations), false, false))
                 {
                     return 4;
                 }
@@ -43590,13 +43840,13 @@ namespace Bb.SqlServer.Asts
         public static AstDeclareObjectTable Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstDeclareObjectTable.Resolve(list);
-            if ((index == 2))
+            if ((index == 1))
             {
-                return new AstDeclareObjectTable.AstDeclareObjectTable1(ctx, ((AstTableTypeDefinition)(list[0])));
+                return new AstDeclareObjectTable.AstDeclareObjectTable1(ctx, ((AstTableTypeDefinition)(list[1])));
             }
             if ((index == 2))
             {
-                return new AstDeclareObjectTable.AstDeclareObjectTable2(ctx, ((AstFullTableRef)(list[0])));
+                return new AstDeclareObjectTable.AstDeclareObjectTable2(ctx, ((AstFullTableRef)(list[2])));
             }
             return null;
         }
@@ -43605,11 +43855,11 @@ namespace Bb.SqlServer.Asts
         {
             if ((list.Count == 1))
             {
-                if (AstRoot.Eval(list[0], typeof(AstTableTypeDefinition), false, false))
+                if (AstRoot.Eval(list[1], typeof(AstTableTypeDefinition), false, false))
                 {
                     return 1;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstFullTableRef), false, false))
+                if (AstRoot.Eval(list[2], typeof(AstFullTableRef), false, false))
                 {
                     return 2;
                 }
@@ -43735,13 +43985,13 @@ namespace Bb.SqlServer.Asts
         public static AstXmlDeclaration Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstXmlDeclaration.Resolve(list);
-            if ((index == 3))
+            if ((index == 1))
             {
-                return new AstXmlDeclaration.AstXmlDeclaration1(ctx, ((AstStringtext)(list[0])), ((AstId)(list[1])));
+                return new AstXmlDeclaration.AstXmlDeclaration1(ctx, ((AstStringtext)(list[1])), ((AstId)(list[1])));
             }
             if ((index == 2))
             {
-                return new AstXmlDeclaration.AstXmlDeclaration2(ctx, ((AstStringtext)(list[0])));
+                return new AstXmlDeclaration.AstXmlDeclaration2(ctx, ((AstStringtext)(list[2])));
             }
             return null;
         }
@@ -43750,7 +44000,7 @@ namespace Bb.SqlServer.Asts
         {
             if ((list.Count == 2))
             {
-                if (AstRoot.Eval(list[0], typeof(AstStringtext), false, false))
+                if (AstRoot.Eval(list[1], typeof(AstStringtext), false, false))
                 {
                     if (AstRoot.Eval(list[1], typeof(AstId), false, false))
                     {
@@ -43760,7 +44010,7 @@ namespace Bb.SqlServer.Asts
             }
             if ((list.Count == 1))
             {
-                if (AstRoot.Eval(list[0], typeof(AstStringtext), false, false))
+                if (AstRoot.Eval(list[2], typeof(AstStringtext), false, false))
                 {
                     return 2;
                 }
@@ -43960,25 +44210,25 @@ namespace Bb.SqlServer.Asts
         public static AstCursorStatement Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstCursorStatement.Resolve(list);
-            if ((index == 2))
+            if ((index == 1))
             {
-                return new AstCursorStatement.AstCursorStatement1(ctx, ((AstCursorName)(list[0])));
+                return new AstCursorStatement.AstCursorStatement1(ctx, ((AstCursorName)(list[1])));
             }
             if ((index == 2))
             {
-                return new AstCursorStatement.AstCursorStatement2(ctx, ((AstCursorName)(list[0])));
+                return new AstCursorStatement.AstCursorStatement2(ctx, ((AstCursorName)(list[2])));
             }
-            if ((index == 2))
+            if ((index == 3))
             {
-                return new AstCursorStatement.AstCursorStatement3(ctx, ((AstDeclareCursor)(list[0])));
+                return new AstCursorStatement.AstCursorStatement3(ctx, ((AstDeclareCursor)(list[3])));
             }
-            if ((index == 2))
+            if ((index == 4))
             {
-                return new AstCursorStatement.AstCursorStatement4(ctx, ((AstFetchCursor)(list[0])));
+                return new AstCursorStatement.AstCursorStatement4(ctx, ((AstFetchCursor)(list[4])));
             }
-            if ((index == 2))
+            if ((index == 5))
             {
-                return new AstCursorStatement.AstCursorStatement5(ctx, ((AstCursorName)(list[0])));
+                return new AstCursorStatement.AstCursorStatement5(ctx, ((AstCursorName)(list[5])));
             }
             return null;
         }
@@ -43987,23 +44237,23 @@ namespace Bb.SqlServer.Asts
         {
             if ((list.Count == 1))
             {
-                if (AstRoot.Eval(list[0], typeof(AstCursorName), false, false))
+                if (AstRoot.Eval(list[1], typeof(AstCursorName), false, false))
                 {
                     return 1;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstCursorName), false, false))
+                if (AstRoot.Eval(list[2], typeof(AstCursorName), false, false))
                 {
                     return 2;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstDeclareCursor), false, false))
+                if (AstRoot.Eval(list[3], typeof(AstDeclareCursor), false, false))
                 {
                     return 3;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstFetchCursor), false, false))
+                if (AstRoot.Eval(list[4], typeof(AstFetchCursor), false, false))
                 {
                     return 4;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstCursorName), false, false))
+                if (AstRoot.Eval(list[5], typeof(AstCursorName), false, false))
                 {
                     return 5;
                 }
@@ -44051,7 +44301,11 @@ namespace Bb.SqlServer.Asts
         
         protected static string _rule = "backup_to\r\n\t : TO  (logical_device_ids  TO  disk_tape_url_values)";
         
-        internal AstBackupTo(ParserRuleContext ctx, List<AstRoot> list) : 
+        private AstLogicalDeviceIds _logicalDeviceIds;
+        
+        private AstDiskTapeUrlValues _diskTapeUrlValues;
+        
+        internal AstBackupTo(ParserRuleContext ctx) : 
                 base(ctx)
         {
         }
@@ -44073,7 +44327,7 @@ namespace Bb.SqlServer.Asts
             _diskTapeUrlValues = diskTapeUrlValues;
         }
         
-        public virtual AstLogicalDeviceIds _logicalDeviceIds
+        public virtual AstLogicalDeviceIds LogicalDeviceIds
         {
             get
             {
@@ -44081,7 +44335,7 @@ namespace Bb.SqlServer.Asts
             }
         }
         
-        public virtual AstDiskTapeUrlValues _diskTapeUrlValues
+        public virtual AstDiskTapeUrlValues DiskTapeUrlValues
         {
             get
             {
@@ -44092,6 +44346,11 @@ namespace Bb.SqlServer.Asts
         public override void Accept(IAstTSqlVisitor visitor)
         {
             visitor.VisitBackupTo(this);
+        }
+        
+        public static AstBackupTo Create(ParserRuleContext ctx, List<AstRoot> list)
+        {
+            return new AstBackupTo(ctx, ((AstLogicalDeviceIds)(list[0])), ((AstDiskTapeUrlValues)(list[1])));
         }
         
         /// <summary>
@@ -44189,13 +44448,13 @@ namespace Bb.SqlServer.Asts
         public static AstBackupToMirror Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstBackupToMirror.Resolve(list);
-            if ((index == 2))
+            if ((index == 1))
             {
-                return new AstBackupToMirror.AstBackupToMirror1(ctx, ((AstLogicalDeviceIds)(list[0])));
+                return new AstBackupToMirror.AstBackupToMirror1(ctx, ((AstLogicalDeviceIds)(list[1])));
             }
             if ((index == 2))
             {
-                return new AstBackupToMirror.AstBackupToMirror2(ctx, ((AstDiskTapeUrlValues)(list[0])));
+                return new AstBackupToMirror.AstBackupToMirror2(ctx, ((AstDiskTapeUrlValues)(list[2])));
             }
             return null;
         }
@@ -44204,11 +44463,11 @@ namespace Bb.SqlServer.Asts
         {
             if ((list.Count == 1))
             {
-                if (AstRoot.Eval(list[0], typeof(AstLogicalDeviceIds), false, false))
+                if (AstRoot.Eval(list[1], typeof(AstLogicalDeviceIds), false, false))
                 {
                     return 1;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstDiskTapeUrlValues), false, false))
+                if (AstRoot.Eval(list[2], typeof(AstDiskTapeUrlValues), false, false))
                 {
                     return 2;
                 }
@@ -44323,13 +44582,13 @@ namespace Bb.SqlServer.Asts
         public static AstBackupCertificatePrivateKey Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstBackupCertificatePrivateKey.Resolve(list);
-            if ((index == 2))
+            if ((index == 1))
             {
-                return new AstBackupCertificatePrivateKey.AstBackupCertificatePrivateKey1(ctx, ((AstStringtext)(list[0])));
+                return new AstBackupCertificatePrivateKey.AstBackupCertificatePrivateKey1(ctx, ((AstStringtext)(list[1])));
             }
             if ((index == 2))
             {
-                return new AstBackupCertificatePrivateKey.AstBackupCertificatePrivateKey2(ctx, ((AstByPasswordCrypt)(list[0])));
+                return new AstBackupCertificatePrivateKey.AstBackupCertificatePrivateKey2(ctx, ((AstByPasswordCrypt)(list[2])));
             }
             return null;
         }
@@ -44338,11 +44597,11 @@ namespace Bb.SqlServer.Asts
         {
             if ((list.Count == 1))
             {
-                if (AstRoot.Eval(list[0], typeof(AstStringtext), false, false))
+                if (AstRoot.Eval(list[1], typeof(AstStringtext), false, false))
                 {
                     return 1;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstByPasswordCrypt), false, false))
+                if (AstRoot.Eval(list[2], typeof(AstByPasswordCrypt), false, false))
                 {
                     return 2;
                 }
@@ -45070,105 +45329,105 @@ namespace Bb.SqlServer.Asts
             {
                 return new AstBackupSetting.AstBackupSetting1(ctx);
             }
-            if ((index == 1))
+            if ((index == 2))
             {
                 return new AstBackupSetting.AstBackupSetting2(ctx);
             }
-            if ((index == 1))
+            if ((index == 3))
             {
                 return new AstBackupSetting.AstBackupSetting3(ctx);
             }
-            if ((index == 1))
+            if ((index == 4))
             {
                 return new AstBackupSetting.AstBackupSetting4(ctx);
             }
-            if ((index == 1))
+            if ((index == 5))
             {
                 return new AstBackupSetting.AstBackupSetting5(ctx);
             }
-            if ((index == 1))
+            if ((index == 6))
             {
                 return new AstBackupSetting.AstBackupSetting6(ctx);
             }
-            if ((index == 1))
+            if ((index == 7))
             {
                 return new AstBackupSetting.AstBackupSetting7(ctx);
             }
-            if ((index == 1))
+            if ((index == 8))
             {
                 return new AstBackupSetting.AstBackupSetting8(ctx);
             }
-            if ((index == 1))
+            if ((index == 9))
             {
                 return new AstBackupSetting.AstBackupSetting9(ctx);
             }
-            if ((index == 2))
+            if ((index == 10))
             {
-                return new AstBackupSetting.AstBackupSetting10(ctx, ((AstStringId)(list[0])));
+                return new AstBackupSetting.AstBackupSetting10(ctx, ((AstStringId)(list[10])));
             }
-            if ((index == 2))
+            if ((index == 11))
             {
-                return new AstBackupSetting.AstBackupSetting11(ctx, ((AstBackupId)(list[0])));
+                return new AstBackupSetting.AstBackupSetting11(ctx, ((AstBackupId)(list[11])));
             }
-            if ((index == 2))
+            if ((index == 12))
             {
-                return new AstBackupSetting.AstBackupSetting12(ctx, ((AstStringId)(list[0])));
+                return new AstBackupSetting.AstBackupSetting12(ctx, ((AstStringId)(list[12])));
             }
-            if ((index == 2))
+            if ((index == 13))
             {
-                return new AstBackupSetting.AstBackupSetting13(ctx, ((AstDecimalId)(list[0])));
+                return new AstBackupSetting.AstBackupSetting13(ctx, ((AstDecimalId)(list[13])));
             }
-            if ((index == 2))
+            if ((index == 14))
             {
-                return new AstBackupSetting.AstBackupSetting14(ctx, ((AstStringId)(list[0])));
+                return new AstBackupSetting.AstBackupSetting14(ctx, ((AstStringId)(list[14])));
             }
-            if ((index == 2))
+            if ((index == 15))
             {
-                return new AstBackupSetting.AstBackupSetting15(ctx, ((AstStringtext)(list[0])));
+                return new AstBackupSetting.AstBackupSetting15(ctx, ((AstStringtext)(list[15])));
             }
-            if ((index == 2))
+            if ((index == 16))
             {
-                return new AstBackupSetting.AstBackupSetting16(ctx, ((AstDecimalId)(list[0])));
+                return new AstBackupSetting.AstBackupSetting16(ctx, ((AstDecimalId)(list[16])));
             }
-            if ((index == 2))
+            if ((index == 17))
             {
-                return new AstBackupSetting.AstBackupSetting17(ctx, ((AstDecimalId)(list[0])));
+                return new AstBackupSetting.AstBackupSetting17(ctx, ((AstDecimalId)(list[17])));
             }
-            if ((index == 2))
+            if ((index == 18))
             {
-                return new AstBackupSetting.AstBackupSetting18(ctx, ((AstDecimalId)(list[0])));
+                return new AstBackupSetting.AstBackupSetting18(ctx, ((AstDecimalId)(list[18])));
             }
-            if ((index == 2))
+            if ((index == 19))
             {
-                return new AstBackupSetting.AstBackupSetting19(ctx, ((AstDecimal)(list[0])));
+                return new AstBackupSetting.AstBackupSetting19(ctx, ((AstDecimal)(list[19])));
             }
-            if ((index == 3))
+            if ((index == 20))
             {
-                return new AstBackupSetting.AstBackupSetting20(ctx, ((AstAlgorithmShort)(list[0])), ((AstServerCertificateValue)(list[1])));
+                return new AstBackupSetting.AstBackupSetting20(ctx, ((AstAlgorithmShort)(list[20])), ((AstServerCertificateValue)(list[20])));
             }
-            if ((index == 2))
+            if ((index == 21))
             {
-                return new AstBackupSetting.AstBackupSetting21(ctx, ((AstCompression)(list[0])));
+                return new AstBackupSetting.AstBackupSetting21(ctx, ((AstCompression)(list[21])));
             }
-            if ((index == 2))
+            if ((index == 22))
             {
-                return new AstBackupSetting.AstBackupSetting22(ctx, ((AstRewind)(list[0])));
+                return new AstBackupSetting.AstBackupSetting22(ctx, ((AstRewind)(list[22])));
             }
-            if ((index == 2))
+            if ((index == 23))
             {
-                return new AstBackupSetting.AstBackupSetting23(ctx, ((AstLoadMounLoad)(list[0])));
+                return new AstBackupSetting.AstBackupSetting23(ctx, ((AstLoadMounLoad)(list[23])));
             }
-            if ((index == 2))
+            if ((index == 24))
             {
-                return new AstBackupSetting.AstBackupSetting24(ctx, ((AstInitNoInit)(list[0])));
+                return new AstBackupSetting.AstBackupSetting24(ctx, ((AstInitNoInit)(list[24])));
             }
-            if ((index == 2))
+            if ((index == 25))
             {
-                return new AstBackupSetting.AstBackupSetting25(ctx, ((AstNoSkip)(list[0])));
+                return new AstBackupSetting.AstBackupSetting25(ctx, ((AstNoSkip)(list[25])));
             }
-            if ((index == 2))
+            if ((index == 26))
             {
-                return new AstBackupSetting.AstBackupSetting26(ctx, ((AstFormatNoformat)(list[0])));
+                return new AstBackupSetting.AstBackupSetting26(ctx, ((AstFormatNoformat)(list[26])));
             }
             return null;
         }
@@ -45177,9 +45436,9 @@ namespace Bb.SqlServer.Asts
         {
             if ((list.Count == 2))
             {
-                if (AstRoot.Eval(list[0], typeof(AstAlgorithmShort), false, false))
+                if (AstRoot.Eval(list[20], typeof(AstAlgorithmShort), false, false))
                 {
-                    if (AstRoot.Eval(list[1], typeof(AstServerCertificateValue), false, false))
+                    if (AstRoot.Eval(list[20], typeof(AstServerCertificateValue), false, false))
                     {
                         return 11;
                     }
@@ -45187,67 +45446,67 @@ namespace Bb.SqlServer.Asts
             }
             if ((list.Count == 1))
             {
-                if (AstRoot.Eval(list[0], typeof(AstStringId), false, false))
+                if (AstRoot.Eval(list[10], typeof(AstStringId), false, false))
                 {
                     return 1;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstBackupId), false, false))
+                if (AstRoot.Eval(list[11], typeof(AstBackupId), false, false))
                 {
                     return 2;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstStringId), false, false))
+                if (AstRoot.Eval(list[12], typeof(AstStringId), false, false))
                 {
                     return 3;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstDecimalId), false, false))
+                if (AstRoot.Eval(list[13], typeof(AstDecimalId), false, false))
                 {
                     return 4;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstStringId), false, false))
+                if (AstRoot.Eval(list[14], typeof(AstStringId), false, false))
                 {
                     return 5;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstStringtext), false, false))
+                if (AstRoot.Eval(list[15], typeof(AstStringtext), false, false))
                 {
                     return 6;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstDecimalId), false, false))
+                if (AstRoot.Eval(list[16], typeof(AstDecimalId), false, false))
                 {
                     return 7;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstDecimalId), false, false))
+                if (AstRoot.Eval(list[17], typeof(AstDecimalId), false, false))
                 {
                     return 8;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstDecimalId), false, false))
+                if (AstRoot.Eval(list[18], typeof(AstDecimalId), false, false))
                 {
                     return 9;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstDecimal), false, false))
+                if (AstRoot.Eval(list[19], typeof(AstDecimal), false, false))
                 {
                     return 10;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstCompression), false, false))
+                if (AstRoot.Eval(list[21], typeof(AstCompression), false, false))
                 {
                     return 12;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstRewind), false, false))
+                if (AstRoot.Eval(list[22], typeof(AstRewind), false, false))
                 {
                     return 13;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstLoadMounLoad), false, false))
+                if (AstRoot.Eval(list[23], typeof(AstLoadMounLoad), false, false))
                 {
                     return 14;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstInitNoInit), false, false))
+                if (AstRoot.Eval(list[24], typeof(AstInitNoInit), false, false))
                 {
                     return 15;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstNoSkip), false, false))
+                if (AstRoot.Eval(list[25], typeof(AstNoSkip), false, false))
                 {
                     return 16;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstFormatNoformat), false, false))
+                if (AstRoot.Eval(list[26], typeof(AstFormatNoformat), false, false))
                 {
                     return 17;
                 }
@@ -45472,13 +45731,13 @@ namespace Bb.SqlServer.Asts
         public static AstServerCertificateValue Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstServerCertificateValue.Resolve(list);
-            if ((index == 2))
+            if ((index == 1))
             {
-                return new AstServerCertificateValue.AstServerCertificateValue1(ctx, ((AstEncryptorId)(list[0])));
+                return new AstServerCertificateValue.AstServerCertificateValue1(ctx, ((AstEncryptorId)(list[1])));
             }
             if ((index == 2))
             {
-                return new AstServerCertificateValue.AstServerCertificateValue2(ctx, ((AstEncryptorId)(list[0])));
+                return new AstServerCertificateValue.AstServerCertificateValue2(ctx, ((AstEncryptorId)(list[2])));
             }
             return null;
         }
@@ -45487,11 +45746,11 @@ namespace Bb.SqlServer.Asts
         {
             if ((list.Count == 1))
             {
-                if (AstRoot.Eval(list[0], typeof(AstEncryptorId), false, false))
+                if (AstRoot.Eval(list[1], typeof(AstEncryptorId), false, false))
                 {
                     return 1;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstEncryptorId), false, false))
+                if (AstRoot.Eval(list[2], typeof(AstEncryptorId), false, false))
                 {
                     return 2;
                 }
@@ -45622,17 +45881,17 @@ namespace Bb.SqlServer.Asts
         public static AstKillStatement Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstKillStatement.Resolve(list);
-            if ((index == 2))
+            if ((index == 1))
             {
-                return new AstKillStatement.AstKillStatement1(ctx, ((AstKillProcess)(list[0])));
+                return new AstKillStatement.AstKillStatement1(ctx, ((AstKillProcess)(list[1])));
             }
             if ((index == 2))
             {
-                return new AstKillStatement.AstKillStatement2(ctx, ((AstKillQueryNotification)(list[0])));
+                return new AstKillStatement.AstKillStatement2(ctx, ((AstKillQueryNotification)(list[2])));
             }
-            if ((index == 2))
+            if ((index == 3))
             {
-                return new AstKillStatement.AstKillStatement3(ctx, ((AstKillStatsJob)(list[0])));
+                return new AstKillStatement.AstKillStatement3(ctx, ((AstKillStatsJob)(list[3])));
             }
             return null;
         }
@@ -45641,15 +45900,15 @@ namespace Bb.SqlServer.Asts
         {
             if ((list.Count == 1))
             {
-                if (AstRoot.Eval(list[0], typeof(AstKillProcess), false, false))
+                if (AstRoot.Eval(list[1], typeof(AstKillProcess), false, false))
                 {
                     return 1;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstKillQueryNotification), false, false))
+                if (AstRoot.Eval(list[2], typeof(AstKillQueryNotification), false, false))
                 {
                     return 2;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstKillStatsJob), false, false))
+                if (AstRoot.Eval(list[3], typeof(AstKillStatsJob), false, false))
                 {
                     return 3;
                 }
@@ -45761,11 +46020,11 @@ namespace Bb.SqlServer.Asts
         public static AstKillProcess Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstKillProcess.Resolve(list);
-            if ((index == 2))
-            {
-                return new AstKillProcess.AstKillProcess1(ctx, ((AstDecimalString)(list[0])));
-            }
             if ((index == 1))
+            {
+                return new AstKillProcess.AstKillProcess1(ctx, ((AstDecimalString)(list[1])));
+            }
+            if ((index == 2))
             {
                 return new AstKillProcess.AstKillProcess2(ctx);
             }
@@ -45776,7 +46035,7 @@ namespace Bb.SqlServer.Asts
         {
             if ((list.Count == 1))
             {
-                if (AstRoot.Eval(list[0], typeof(AstDecimalString), false, false))
+                if (AstRoot.Eval(list[1], typeof(AstDecimalString), false, false))
                 {
                     return 1;
                 }
@@ -45885,7 +46144,7 @@ namespace Bb.SqlServer.Asts
             }
             if ((index == 2))
             {
-                return new AstKillQueryNotification.AstKillQueryNotification2(ctx, ((AstDecimal)(list[0])));
+                return new AstKillQueryNotification.AstKillQueryNotification2(ctx, ((AstDecimal)(list[2])));
             }
             return null;
         }
@@ -45894,7 +46153,7 @@ namespace Bb.SqlServer.Asts
         {
             if ((list.Count == 1))
             {
-                if (AstRoot.Eval(list[0], typeof(AstDecimal), false, false))
+                if (AstRoot.Eval(list[2], typeof(AstDecimal), false, false))
                 {
                     return 1;
                 }
@@ -45932,7 +46191,9 @@ namespace Bb.SqlServer.Asts
         
         protected static string _rule = "kill_stats_job\r\n\t : STATS  JOB  job = decimal";
         
-        internal AstKillStatsJob(ParserRuleContext ctx, List<AstRoot> list) : 
+        private AstDecimal _job;
+        
+        internal AstKillStatsJob(ParserRuleContext ctx) : 
                 base(ctx)
         {
         }
@@ -45953,7 +46214,7 @@ namespace Bb.SqlServer.Asts
             _job = job;
         }
         
-        public virtual AstDecimal _job
+        public virtual AstDecimal Job
         {
             get
             {
@@ -45964,6 +46225,11 @@ namespace Bb.SqlServer.Asts
         public override void Accept(IAstTSqlVisitor visitor)
         {
             visitor.VisitKillStatsJob(this);
+        }
+        
+        public static AstKillStatsJob Create(ParserRuleContext ctx, List<AstRoot> list)
+        {
+            return new AstKillStatsJob(ctx, ((AstDecimal)(list[0])));
         }
         
         /// <summary>
@@ -46119,13 +46385,13 @@ namespace Bb.SqlServer.Asts
         public static AstExecuteBody Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstExecuteBody.Resolve(list);
-            if ((index == 4))
+            if ((index == 1))
             {
-                return new AstExecuteBody.AstExecuteBody1(ctx, ((AstLocalId)(list[0])), ((AstBodyKind)(list[1])), ((AstExecuteStatementArg)(list[2])));
+                return new AstExecuteBody.AstExecuteBody1(ctx, ((AstLocalId)(list[1])), ((AstBodyKind)(list[1])), ((AstExecuteStatementArg)(list[1])));
             }
-            if ((index == 5))
+            if ((index == 2))
             {
-                return new AstExecuteBody.AstExecuteBody2(ctx, ((AstExecuteVarStrings)(list[0])), ((AstLoginUser)(list[1])), ((AstStringtext)(list[2])), ((AstServerId)(list[3])));
+                return new AstExecuteBody.AstExecuteBody2(ctx, ((AstExecuteVarStrings)(list[2])), ((AstLoginUser)(list[2])), ((AstStringtext)(list[2])), ((AstServerId)(list[2])));
             }
             return null;
         }
@@ -46134,13 +46400,13 @@ namespace Bb.SqlServer.Asts
         {
             if ((list.Count == 4))
             {
-                if (AstRoot.Eval(list[0], typeof(AstExecuteVarStrings), false, false))
+                if (AstRoot.Eval(list[2], typeof(AstExecuteVarStrings), false, false))
                 {
-                    if (AstRoot.Eval(list[1], typeof(AstLoginUser), false, false))
+                    if (AstRoot.Eval(list[2], typeof(AstLoginUser), false, false))
                     {
                         if (AstRoot.Eval(list[2], typeof(AstStringtext), false, false))
                         {
-                            if (AstRoot.Eval(list[3], typeof(AstServerId), false, false))
+                            if (AstRoot.Eval(list[2], typeof(AstServerId), false, false))
                             {
                                 return 2;
                             }
@@ -46150,11 +46416,11 @@ namespace Bb.SqlServer.Asts
             }
             if ((list.Count == 3))
             {
-                if (AstRoot.Eval(list[0], typeof(AstLocalId), false, false))
+                if (AstRoot.Eval(list[1], typeof(AstLocalId), false, false))
                 {
                     if (AstRoot.Eval(list[1], typeof(AstBodyKind), false, false))
                     {
-                        if (AstRoot.Eval(list[2], typeof(AstExecuteStatementArg), false, false))
+                        if (AstRoot.Eval(list[1], typeof(AstExecuteStatementArg), false, false))
                         {
                             return 1;
                         }
@@ -46270,13 +46536,13 @@ namespace Bb.SqlServer.Asts
         public static AstBodyKind Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstBodyKind.Resolve(list);
-            if ((index == 2))
+            if ((index == 1))
             {
-                return new AstBodyKind.AstBodyKind1(ctx, ((AstFuncProcNameServerDatabaseSchema)(list[0])));
+                return new AstBodyKind.AstBodyKind1(ctx, ((AstFuncProcNameServerDatabaseSchema)(list[1])));
             }
             if ((index == 2))
             {
-                return new AstBodyKind.AstBodyKind2(ctx, ((AstExecuteVarString)(list[0])));
+                return new AstBodyKind.AstBodyKind2(ctx, ((AstExecuteVarString)(list[2])));
             }
             return null;
         }
@@ -46285,11 +46551,11 @@ namespace Bb.SqlServer.Asts
         {
             if ((list.Count == 1))
             {
-                if (AstRoot.Eval(list[0], typeof(AstFuncProcNameServerDatabaseSchema), false, false))
+                if (AstRoot.Eval(list[1], typeof(AstFuncProcNameServerDatabaseSchema), false, false))
                 {
                     return 1;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstExecuteVarString), false, false))
+                if (AstRoot.Eval(list[2], typeof(AstExecuteVarString), false, false))
                 {
                     return 2;
                 }
@@ -46415,13 +46681,13 @@ namespace Bb.SqlServer.Asts
         public static AstExecuteStatementArg Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstExecuteStatementArg.Resolve(list);
-            if ((index == 3))
+            if ((index == 1))
             {
-                return new AstExecuteStatementArg.AstExecuteStatementArg1(ctx, ((AstExecuteStatementArgUnnamed)(list[0])), ((AstExecuteStatementArgs)(list[1])));
+                return new AstExecuteStatementArg.AstExecuteStatementArg1(ctx, ((AstExecuteStatementArgUnnamed)(list[1])), ((AstExecuteStatementArgs)(list[1])));
             }
             if ((index == 2))
             {
-                return new AstExecuteStatementArg.AstExecuteStatementArg2(ctx, ((AstExecuteStatementArgNameds)(list[0])));
+                return new AstExecuteStatementArg.AstExecuteStatementArg2(ctx, ((AstExecuteStatementArgNameds)(list[2])));
             }
             return null;
         }
@@ -46430,7 +46696,7 @@ namespace Bb.SqlServer.Asts
         {
             if ((list.Count == 2))
             {
-                if (AstRoot.Eval(list[0], typeof(AstExecuteStatementArgUnnamed), false, false))
+                if (AstRoot.Eval(list[1], typeof(AstExecuteStatementArgUnnamed), false, false))
                 {
                     if (AstRoot.Eval(list[1], typeof(AstExecuteStatementArgs), false, false))
                     {
@@ -46440,7 +46706,7 @@ namespace Bb.SqlServer.Asts
             }
             if ((list.Count == 1))
             {
-                if (AstRoot.Eval(list[0], typeof(AstExecuteStatementArgNameds), false, false))
+                if (AstRoot.Eval(list[2], typeof(AstExecuteStatementArgNameds), false, false))
                 {
                     return 2;
                 }
@@ -46479,7 +46745,11 @@ namespace Bb.SqlServer.Asts
         protected static string _rule = "execute_statement_arg_named\r\n\t : name = local_id  EQUAL  value = execute_paramete" +
             "r";
         
-        internal AstExecuteStatementArgNamed(ParserRuleContext ctx, List<AstRoot> list) : 
+        private AstLocalId _name;
+        
+        private AstExecuteParameter _value;
+        
+        internal AstExecuteStatementArgNamed(ParserRuleContext ctx) : 
                 base(ctx)
         {
         }
@@ -46501,7 +46771,7 @@ namespace Bb.SqlServer.Asts
             _value = value;
         }
         
-        public virtual AstLocalId _name
+        public virtual AstLocalId Name
         {
             get
             {
@@ -46509,7 +46779,7 @@ namespace Bb.SqlServer.Asts
             }
         }
         
-        public virtual AstExecuteParameter _value
+        public virtual AstExecuteParameter Value
         {
             get
             {
@@ -46520,6 +46790,11 @@ namespace Bb.SqlServer.Asts
         public override void Accept(IAstTSqlVisitor visitor)
         {
             visitor.VisitExecuteStatementArgNamed(this);
+        }
+        
+        public static AstExecuteStatementArgNamed Create(ParserRuleContext ctx, List<AstRoot> list)
+        {
+            return new AstExecuteStatementArgNamed(ctx, ((AstLocalId)(list[0])), ((AstExecuteParameter)(list[1])));
         }
         
         /// <summary>
@@ -46542,7 +46817,9 @@ namespace Bb.SqlServer.Asts
         
         protected static string _rule = "execute_statement_arg_unnamed\r\n\t : value = execute_parameter";
         
-        internal AstExecuteStatementArgUnnamed(ParserRuleContext ctx, List<AstRoot> list) : 
+        private AstExecuteParameter _value;
+        
+        internal AstExecuteStatementArgUnnamed(ParserRuleContext ctx) : 
                 base(ctx)
         {
         }
@@ -46563,7 +46840,7 @@ namespace Bb.SqlServer.Asts
             _value = value;
         }
         
-        public virtual AstExecuteParameter _value
+        public virtual AstExecuteParameter Value
         {
             get
             {
@@ -46574,6 +46851,11 @@ namespace Bb.SqlServer.Asts
         public override void Accept(IAstTSqlVisitor visitor)
         {
             visitor.VisitExecuteStatementArgUnnamed(this);
+        }
+        
+        public static AstExecuteStatementArgUnnamed Create(ParserRuleContext ctx, List<AstRoot> list)
+        {
+            return new AstExecuteStatementArgUnnamed(ctx, ((AstExecuteParameter)(list[0])));
         }
         
         /// <summary>
@@ -46746,23 +47028,23 @@ namespace Bb.SqlServer.Asts
         public static AstExecuteParameter Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstExecuteParameter.Resolve(list);
+            if ((index == 1))
+            {
+                return new AstExecuteParameter.AstExecuteParameter1(ctx, ((AstConstant)(list[1])));
+            }
             if ((index == 2))
             {
-                return new AstExecuteParameter.AstExecuteParameter1(ctx, ((AstConstant)(list[0])));
+                return new AstExecuteParameter.AstExecuteParameter2(ctx, ((AstLocalId)(list[2])), ((AstOutputOut)(list[2])));
             }
             if ((index == 3))
             {
-                return new AstExecuteParameter.AstExecuteParameter2(ctx, ((AstLocalId)(list[0])), ((AstOutputOut)(list[1])));
+                return new AstExecuteParameter.AstExecuteParameter3(ctx, ((AstId)(list[3])));
             }
-            if ((index == 2))
-            {
-                return new AstExecuteParameter.AstExecuteParameter3(ctx, ((AstId)(list[0])));
-            }
-            if ((index == 1))
+            if ((index == 4))
             {
                 return new AstExecuteParameter.AstExecuteParameter4(ctx);
             }
-            if ((index == 1))
+            if ((index == 5))
             {
                 return new AstExecuteParameter.AstExecuteParameter5(ctx);
             }
@@ -46773,9 +47055,9 @@ namespace Bb.SqlServer.Asts
         {
             if ((list.Count == 2))
             {
-                if (AstRoot.Eval(list[0], typeof(AstLocalId), false, false))
+                if (AstRoot.Eval(list[2], typeof(AstLocalId), false, false))
                 {
-                    if (AstRoot.Eval(list[1], typeof(AstOutputOut), false, false))
+                    if (AstRoot.Eval(list[2], typeof(AstOutputOut), false, false))
                     {
                         return 2;
                     }
@@ -46783,11 +47065,11 @@ namespace Bb.SqlServer.Asts
             }
             if ((list.Count == 1))
             {
-                if (AstRoot.Eval(list[0], typeof(AstConstant), false, false))
+                if (AstRoot.Eval(list[1], typeof(AstConstant), false, false))
                 {
                     return 1;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstId), false, false))
+                if (AstRoot.Eval(list[3], typeof(AstId), false, false))
                 {
                     return 3;
                 }
@@ -46978,13 +47260,13 @@ namespace Bb.SqlServer.Asts
         public static AstExecuteVarString Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstExecuteVarString.Resolve(list);
-            if ((index == 5))
+            if ((index == 1))
             {
-                return new AstExecuteVarString.AstExecuteVarString1(ctx, ((AstLocalId)(list[0])), ((AstOutputOut)(list[1])), ((AstLocalId)(list[2])), ((AstExecuteVarString)(list[3])));
+                return new AstExecuteVarString.AstExecuteVarString1(ctx, ((AstLocalId)(list[1])), ((AstOutputOut)(list[1])), ((AstLocalId)(list[1])), ((AstExecuteVarString)(list[1])));
             }
-            if ((index == 4))
+            if ((index == 2))
             {
-                return new AstExecuteVarString.AstExecuteVarString2(ctx, ((AstStringtext)(list[0])), ((AstLocalId)(list[1])), ((AstExecuteVarString)(list[2])));
+                return new AstExecuteVarString.AstExecuteVarString2(ctx, ((AstStringtext)(list[2])), ((AstLocalId)(list[2])), ((AstExecuteVarString)(list[2])));
             }
             return null;
         }
@@ -46993,13 +47275,13 @@ namespace Bb.SqlServer.Asts
         {
             if ((list.Count == 4))
             {
-                if (AstRoot.Eval(list[0], typeof(AstLocalId), false, false))
+                if (AstRoot.Eval(list[1], typeof(AstLocalId), false, false))
                 {
                     if (AstRoot.Eval(list[1], typeof(AstOutputOut), false, false))
                     {
-                        if (AstRoot.Eval(list[2], typeof(AstLocalId), false, false))
+                        if (AstRoot.Eval(list[1], typeof(AstLocalId), false, false))
                         {
-                            if (AstRoot.Eval(list[3], typeof(AstExecuteVarString), false, false))
+                            if (AstRoot.Eval(list[1], typeof(AstExecuteVarString), false, false))
                             {
                                 return 1;
                             }
@@ -47009,9 +47291,9 @@ namespace Bb.SqlServer.Asts
             }
             if ((list.Count == 3))
             {
-                if (AstRoot.Eval(list[0], typeof(AstStringtext), false, false))
+                if (AstRoot.Eval(list[2], typeof(AstStringtext), false, false))
                 {
-                    if (AstRoot.Eval(list[1], typeof(AstLocalId), false, false))
+                    if (AstRoot.Eval(list[2], typeof(AstLocalId), false, false))
                     {
                         if (AstRoot.Eval(list[2], typeof(AstExecuteVarString), false, false))
                         {
@@ -47320,33 +47602,33 @@ namespace Bb.SqlServer.Asts
         public static AstSecurityStatement Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstSecurityStatement.Resolve(list);
+            if ((index == 1))
+            {
+                return new AstSecurityStatement.AstSecurityStatement1(ctx, ((AstExecuteClause)(list[1])));
+            }
             if ((index == 2))
             {
-                return new AstSecurityStatement.AstSecurityStatement1(ctx, ((AstExecuteClause)(list[0])));
+                return new AstSecurityStatement.AstSecurityStatement2(ctx, ((AstGrantMode)(list[2])), ((AstClassTypeForGrant)(list[2])), ((AstFullTableRef)(list[2])), ((AstToPrincipalRincipalIds)(list[2])), ((AstPrincipalId)(list[2])));
+            }
+            if ((index == 3))
+            {
+                return new AstSecurityStatement.AstSecurityStatement3(ctx, ((AstLocalId)(list[3])));
+            }
+            if ((index == 4))
+            {
+                return new AstSecurityStatement.AstSecurityStatement4(ctx, ((AstOpenKey)(list[4])));
+            }
+            if ((index == 5))
+            {
+                return new AstSecurityStatement.AstSecurityStatement5(ctx, ((AstCloseKey)(list[5])));
             }
             if ((index == 6))
             {
-                return new AstSecurityStatement.AstSecurityStatement2(ctx, ((AstGrantMode)(list[0])), ((AstClassTypeForGrant)(list[1])), ((AstFullTableRef)(list[2])), ((AstToPrincipalRincipalIds)(list[3])), ((AstPrincipalId)(list[4])));
+                return new AstSecurityStatement.AstSecurityStatement6(ctx, ((AstCreateKey)(list[6])));
             }
-            if ((index == 2))
+            if ((index == 7))
             {
-                return new AstSecurityStatement.AstSecurityStatement3(ctx, ((AstLocalId)(list[0])));
-            }
-            if ((index == 2))
-            {
-                return new AstSecurityStatement.AstSecurityStatement4(ctx, ((AstOpenKey)(list[0])));
-            }
-            if ((index == 2))
-            {
-                return new AstSecurityStatement.AstSecurityStatement5(ctx, ((AstCloseKey)(list[0])));
-            }
-            if ((index == 2))
-            {
-                return new AstSecurityStatement.AstSecurityStatement6(ctx, ((AstCreateKey)(list[0])));
-            }
-            if ((index == 2))
-            {
-                return new AstSecurityStatement.AstSecurityStatement7(ctx, ((AstCreateCertificate)(list[0])));
+                return new AstSecurityStatement.AstSecurityStatement7(ctx, ((AstCreateCertificate)(list[7])));
             }
             return null;
         }
@@ -47355,15 +47637,15 @@ namespace Bb.SqlServer.Asts
         {
             if ((list.Count == 5))
             {
-                if (AstRoot.Eval(list[0], typeof(AstGrantMode), false, false))
+                if (AstRoot.Eval(list[2], typeof(AstGrantMode), false, false))
                 {
-                    if (AstRoot.Eval(list[1], typeof(AstClassTypeForGrant), false, false))
+                    if (AstRoot.Eval(list[2], typeof(AstClassTypeForGrant), false, false))
                     {
                         if (AstRoot.Eval(list[2], typeof(AstFullTableRef), false, false))
                         {
-                            if (AstRoot.Eval(list[3], typeof(AstToPrincipalRincipalIds), false, false))
+                            if (AstRoot.Eval(list[2], typeof(AstToPrincipalRincipalIds), false, false))
                             {
-                                if (AstRoot.Eval(list[4], typeof(AstPrincipalId), false, false))
+                                if (AstRoot.Eval(list[2], typeof(AstPrincipalId), false, false))
                                 {
                                     return 2;
                                 }
@@ -47374,27 +47656,27 @@ namespace Bb.SqlServer.Asts
             }
             if ((list.Count == 1))
             {
-                if (AstRoot.Eval(list[0], typeof(AstExecuteClause), false, false))
+                if (AstRoot.Eval(list[1], typeof(AstExecuteClause), false, false))
                 {
                     return 1;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstLocalId), false, false))
+                if (AstRoot.Eval(list[3], typeof(AstLocalId), false, false))
                 {
                     return 3;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstOpenKey), false, false))
+                if (AstRoot.Eval(list[4], typeof(AstOpenKey), false, false))
                 {
                     return 4;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstCloseKey), false, false))
+                if (AstRoot.Eval(list[5], typeof(AstCloseKey), false, false))
                 {
                     return 5;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstCreateKey), false, false))
+                if (AstRoot.Eval(list[6], typeof(AstCreateKey), false, false))
                 {
                     return 6;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstCreateCertificate), false, false))
+                if (AstRoot.Eval(list[7], typeof(AstCreateCertificate), false, false))
                 {
                     return 7;
                 }
@@ -47563,9 +47845,9 @@ namespace Bb.SqlServer.Asts
             {
                 return new AstGrantMode.AstGrantMode1(ctx);
             }
-            if ((index == 3))
+            if ((index == 2))
             {
-                return new AstGrantMode.AstGrantMode2(ctx, ((AstGrantPermission)(list[0])), ((AstColumnNameList)(list[1])));
+                return new AstGrantMode.AstGrantMode2(ctx, ((AstGrantPermission)(list[2])), ((AstColumnNameList)(list[2])));
             }
             return null;
         }
@@ -47574,9 +47856,9 @@ namespace Bb.SqlServer.Asts
         {
             if ((list.Count == 2))
             {
-                if (AstRoot.Eval(list[0], typeof(AstGrantPermission), false, false))
+                if (AstRoot.Eval(list[2], typeof(AstGrantPermission), false, false))
                 {
-                    if (AstRoot.Eval(list[1], typeof(AstColumnNameList), false, false))
+                    if (AstRoot.Eval(list[2], typeof(AstColumnNameList), false, false))
                     {
                         return 1;
                     }
@@ -47704,13 +47986,13 @@ namespace Bb.SqlServer.Asts
         public static AstExistingKeys Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstExistingKeys.Resolve(list);
+            if ((index == 1))
+            {
+                return new AstExistingKeys.AstExistingKeys1(ctx, ((AstAssemblyId)(list[1])));
+            }
             if ((index == 2))
             {
-                return new AstExistingKeys.AstExistingKeys1(ctx, ((AstAssemblyId)(list[0])));
-            }
-            if ((index == 3))
-            {
-                return new AstExistingKeys.AstExistingKeys2(ctx, ((AstStringtext)(list[0])), ((AstPrivateKeyOptions)(list[1])));
+                return new AstExistingKeys.AstExistingKeys2(ctx, ((AstStringtext)(list[2])), ((AstPrivateKeyOptions)(list[2])));
             }
             return null;
         }
@@ -47719,9 +48001,9 @@ namespace Bb.SqlServer.Asts
         {
             if ((list.Count == 2))
             {
-                if (AstRoot.Eval(list[0], typeof(AstStringtext), false, false))
+                if (AstRoot.Eval(list[2], typeof(AstStringtext), false, false))
                 {
-                    if (AstRoot.Eval(list[1], typeof(AstPrivateKeyOptions), false, false))
+                    if (AstRoot.Eval(list[2], typeof(AstPrivateKeyOptions), false, false))
                     {
                         return 2;
                     }
@@ -47729,7 +48011,7 @@ namespace Bb.SqlServer.Asts
             }
             if ((list.Count == 1))
             {
-                if (AstRoot.Eval(list[0], typeof(AstAssemblyId), false, false))
+                if (AstRoot.Eval(list[1], typeof(AstAssemblyId), false, false))
                 {
                     return 1;
                 }
@@ -47898,13 +48180,13 @@ namespace Bb.SqlServer.Asts
         public static AstPrivateKeyOptions Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstPrivateKeyOptions.Resolve(list);
-            if ((index == 4))
+            if ((index == 1))
             {
-                return new AstPrivateKeyOptions.AstPrivateKeyOptions1(ctx, ((AstStringtext)(list[0])), ((AstEncryptionDecryption)(list[1])), ((AstPasswordSetting)(list[2])));
+                return new AstPrivateKeyOptions.AstPrivateKeyOptions1(ctx, ((AstStringtext)(list[1])), ((AstEncryptionDecryption)(list[1])), ((AstPasswordSetting)(list[1])));
             }
-            if ((index == 5))
+            if ((index == 2))
             {
-                return new AstPrivateKeyOptions.AstPrivateKeyOptions2(ctx, ((AstBinary)(list[0])), ((AstStringtext)(list[1])), ((AstEncryptionDecryption)(list[2])), ((AstPasswordSetting)(list[3])));
+                return new AstPrivateKeyOptions.AstPrivateKeyOptions2(ctx, ((AstBinary)(list[2])), ((AstStringtext)(list[2])), ((AstEncryptionDecryption)(list[2])), ((AstPasswordSetting)(list[2])));
             }
             return null;
         }
@@ -47913,13 +48195,13 @@ namespace Bb.SqlServer.Asts
         {
             if ((list.Count == 4))
             {
-                if (AstRoot.Eval(list[0], typeof(AstBinary), false, false))
+                if (AstRoot.Eval(list[2], typeof(AstBinary), false, false))
                 {
-                    if (AstRoot.Eval(list[1], typeof(AstStringtext), false, false))
+                    if (AstRoot.Eval(list[2], typeof(AstStringtext), false, false))
                     {
                         if (AstRoot.Eval(list[2], typeof(AstEncryptionDecryption), false, false))
                         {
-                            if (AstRoot.Eval(list[3], typeof(AstPasswordSetting), false, false))
+                            if (AstRoot.Eval(list[2], typeof(AstPasswordSetting), false, false))
                             {
                                 return 2;
                             }
@@ -47929,11 +48211,11 @@ namespace Bb.SqlServer.Asts
             }
             if ((list.Count == 3))
             {
-                if (AstRoot.Eval(list[0], typeof(AstStringtext), false, false))
+                if (AstRoot.Eval(list[1], typeof(AstStringtext), false, false))
                 {
                     if (AstRoot.Eval(list[1], typeof(AstEncryptionDecryption), false, false))
                     {
-                        if (AstRoot.Eval(list[2], typeof(AstPasswordSetting), false, false))
+                        if (AstRoot.Eval(list[1], typeof(AstPasswordSetting), false, false))
                         {
                             return 1;
                         }
@@ -48061,13 +48343,13 @@ namespace Bb.SqlServer.Asts
         public static AstOpenKey Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstOpenKey.Resolve(list);
-            if ((index == 3))
+            if ((index == 1))
             {
-                return new AstOpenKey.AstOpenKey1(ctx, ((AstSymmetricKeyId)(list[0])), ((AstDecryptionMechanism)(list[1])));
+                return new AstOpenKey.AstOpenKey1(ctx, ((AstSymmetricKeyId)(list[1])), ((AstDecryptionMechanism)(list[1])));
             }
             if ((index == 2))
             {
-                return new AstOpenKey.AstOpenKey2(ctx, ((AstDecryptionByPwd)(list[0])));
+                return new AstOpenKey.AstOpenKey2(ctx, ((AstDecryptionByPwd)(list[2])));
             }
             return null;
         }
@@ -48076,7 +48358,7 @@ namespace Bb.SqlServer.Asts
         {
             if ((list.Count == 2))
             {
-                if (AstRoot.Eval(list[0], typeof(AstSymmetricKeyId), false, false))
+                if (AstRoot.Eval(list[1], typeof(AstSymmetricKeyId), false, false))
                 {
                     if (AstRoot.Eval(list[1], typeof(AstDecryptionMechanism), false, false))
                     {
@@ -48086,7 +48368,7 @@ namespace Bb.SqlServer.Asts
             }
             if ((list.Count == 1))
             {
-                if (AstRoot.Eval(list[0], typeof(AstDecryptionByPwd), false, false))
+                if (AstRoot.Eval(list[2], typeof(AstDecryptionByPwd), false, false))
                 {
                     return 2;
                 }
@@ -48207,15 +48489,15 @@ namespace Bb.SqlServer.Asts
         public static AstCloseKey Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstCloseKey.Resolve(list);
-            if ((index == 2))
-            {
-                return new AstCloseKey.AstCloseKey1(ctx, ((AstSymmetricKeyId)(list[0])));
-            }
             if ((index == 1))
+            {
+                return new AstCloseKey.AstCloseKey1(ctx, ((AstSymmetricKeyId)(list[1])));
+            }
+            if ((index == 2))
             {
                 return new AstCloseKey.AstCloseKey2(ctx);
             }
-            if ((index == 1))
+            if ((index == 3))
             {
                 return new AstCloseKey.AstCloseKey3(ctx);
             }
@@ -48226,7 +48508,7 @@ namespace Bb.SqlServer.Asts
         {
             if ((list.Count == 1))
             {
-                if (AstRoot.Eval(list[0], typeof(AstSymmetricKeyId), false, false))
+                if (AstRoot.Eval(list[1], typeof(AstSymmetricKeyId), false, false))
                 {
                     return 1;
                 }
@@ -48375,13 +48657,13 @@ namespace Bb.SqlServer.Asts
         public static AstCreateKey Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstCreateKey.Resolve(list);
+            if ((index == 1))
+            {
+                return new AstCreateKey.AstCreateKey1(ctx, ((AstEncryptionByPwd)(list[1])));
+            }
             if ((index == 2))
             {
-                return new AstCreateKey.AstCreateKey1(ctx, ((AstEncryptionByPwd)(list[0])));
-            }
-            if ((index == 5))
-            {
-                return new AstCreateKey.AstCreateKey2(ctx, ((AstSymmetricKeyId)(list[0])), ((AstUserId)(list[1])), ((AstProviderId)(list[2])), ((AstCreateKeyOptions)(list[3])));
+                return new AstCreateKey.AstCreateKey2(ctx, ((AstSymmetricKeyId)(list[2])), ((AstUserId)(list[2])), ((AstProviderId)(list[2])), ((AstCreateKeyOptions)(list[2])));
             }
             return null;
         }
@@ -48390,13 +48672,13 @@ namespace Bb.SqlServer.Asts
         {
             if ((list.Count == 4))
             {
-                if (AstRoot.Eval(list[0], typeof(AstSymmetricKeyId), false, false))
+                if (AstRoot.Eval(list[2], typeof(AstSymmetricKeyId), false, false))
                 {
-                    if (AstRoot.Eval(list[1], typeof(AstUserId), false, false))
+                    if (AstRoot.Eval(list[2], typeof(AstUserId), false, false))
                     {
                         if (AstRoot.Eval(list[2], typeof(AstProviderId), false, false))
                         {
-                            if (AstRoot.Eval(list[3], typeof(AstCreateKeyOptions), false, false))
+                            if (AstRoot.Eval(list[2], typeof(AstCreateKeyOptions), false, false))
                             {
                                 return 2;
                             }
@@ -48406,7 +48688,7 @@ namespace Bb.SqlServer.Asts
             }
             if ((list.Count == 1))
             {
-                if (AstRoot.Eval(list[0], typeof(AstEncryptionByPwd), false, false))
+                if (AstRoot.Eval(list[1], typeof(AstEncryptionByPwd), false, false))
                 {
                     return 1;
                 }
@@ -48520,13 +48802,13 @@ namespace Bb.SqlServer.Asts
         public static AstCreateKeyOption Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstCreateKeyOption.Resolve(list);
-            if ((index == 2))
+            if ((index == 1))
             {
-                return new AstCreateKeyOption.AstCreateKeyOption1(ctx, ((AstKeyOptions)(list[0])));
+                return new AstCreateKeyOption.AstCreateKeyOption1(ctx, ((AstKeyOptions)(list[1])));
             }
             if ((index == 2))
             {
-                return new AstCreateKeyOption.AstCreateKeyOption2(ctx, ((AstEncryptionMechanism)(list[0])));
+                return new AstCreateKeyOption.AstCreateKeyOption2(ctx, ((AstEncryptionMechanism)(list[2])));
             }
             return null;
         }
@@ -48535,11 +48817,11 @@ namespace Bb.SqlServer.Asts
         {
             if ((list.Count == 1))
             {
-                if (AstRoot.Eval(list[0], typeof(AstKeyOptions), false, false))
+                if (AstRoot.Eval(list[1], typeof(AstKeyOptions), false, false))
                 {
                     return 1;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstEncryptionMechanism), false, false))
+                if (AstRoot.Eval(list[2], typeof(AstEncryptionMechanism), false, false))
                 {
                     return 2;
                 }
@@ -48742,25 +49024,25 @@ namespace Bb.SqlServer.Asts
         public static AstKeyOptions Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstKeyOptions.Resolve(list);
-            if ((index == 2))
+            if ((index == 1))
             {
-                return new AstKeyOptions.AstKeyOptions1(ctx, ((AstStringtext)(list[0])));
+                return new AstKeyOptions.AstKeyOptions1(ctx, ((AstStringtext)(list[1])));
             }
             if ((index == 2))
             {
-                return new AstKeyOptions.AstKeyOptions2(ctx, ((AstAlgorithm)(list[0])));
+                return new AstKeyOptions.AstKeyOptions2(ctx, ((AstAlgorithm)(list[2])));
             }
-            if ((index == 2))
+            if ((index == 3))
             {
-                return new AstKeyOptions.AstKeyOptions3(ctx, ((AstStringtext)(list[0])));
+                return new AstKeyOptions.AstKeyOptions3(ctx, ((AstStringtext)(list[3])));
             }
-            if ((index == 2))
+            if ((index == 4))
             {
-                return new AstKeyOptions.AstKeyOptions4(ctx, ((AstStringtext)(list[0])));
+                return new AstKeyOptions.AstKeyOptions4(ctx, ((AstStringtext)(list[4])));
             }
-            if ((index == 2))
+            if ((index == 5))
             {
-                return new AstKeyOptions.AstKeyOptions5(ctx, ((AstCreationDisposition)(list[0])));
+                return new AstKeyOptions.AstKeyOptions5(ctx, ((AstCreationDisposition)(list[5])));
             }
             return null;
         }
@@ -48769,23 +49051,23 @@ namespace Bb.SqlServer.Asts
         {
             if ((list.Count == 1))
             {
-                if (AstRoot.Eval(list[0], typeof(AstStringtext), false, false))
+                if (AstRoot.Eval(list[1], typeof(AstStringtext), false, false))
                 {
                     return 1;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstAlgorithm), false, false))
+                if (AstRoot.Eval(list[2], typeof(AstAlgorithm), false, false))
                 {
                     return 2;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstStringtext), false, false))
+                if (AstRoot.Eval(list[3], typeof(AstStringtext), false, false))
                 {
                     return 3;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstStringtext), false, false))
+                if (AstRoot.Eval(list[4], typeof(AstStringtext), false, false))
                 {
                     return 4;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstCreationDisposition), false, false))
+                if (AstRoot.Eval(list[5], typeof(AstCreationDisposition), false, false))
                 {
                     return 5;
                 }
@@ -48966,21 +49248,21 @@ namespace Bb.SqlServer.Asts
         public static AstEncryptionMechanism Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstEncryptionMechanism.Resolve(list);
-            if ((index == 2))
+            if ((index == 1))
             {
-                return new AstEncryptionMechanism.AstEncryptionMechanism1(ctx, ((AstCertificateId)(list[0])));
+                return new AstEncryptionMechanism.AstEncryptionMechanism1(ctx, ((AstCertificateId)(list[1])));
             }
             if ((index == 2))
             {
-                return new AstEncryptionMechanism.AstEncryptionMechanism2(ctx, ((AstAsymKeyId)(list[0])));
+                return new AstEncryptionMechanism.AstEncryptionMechanism2(ctx, ((AstAsymKeyId)(list[2])));
             }
-            if ((index == 2))
+            if ((index == 3))
             {
-                return new AstEncryptionMechanism.AstEncryptionMechanism3(ctx, ((AstSymmetricKeyId)(list[0])));
+                return new AstEncryptionMechanism.AstEncryptionMechanism3(ctx, ((AstSymmetricKeyId)(list[3])));
             }
-            if ((index == 2))
+            if ((index == 4))
             {
-                return new AstEncryptionMechanism.AstEncryptionMechanism4(ctx, ((AstPasswordSetting)(list[0])));
+                return new AstEncryptionMechanism.AstEncryptionMechanism4(ctx, ((AstPasswordSetting)(list[4])));
             }
             return null;
         }
@@ -48989,19 +49271,19 @@ namespace Bb.SqlServer.Asts
         {
             if ((list.Count == 1))
             {
-                if (AstRoot.Eval(list[0], typeof(AstCertificateId), false, false))
+                if (AstRoot.Eval(list[1], typeof(AstCertificateId), false, false))
                 {
                     return 1;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstAsymKeyId), false, false))
+                if (AstRoot.Eval(list[2], typeof(AstAsymKeyId), false, false))
                 {
                     return 2;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstSymmetricKeyId), false, false))
+                if (AstRoot.Eval(list[3], typeof(AstSymmetricKeyId), false, false))
                 {
                     return 3;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstPasswordSetting), false, false))
+                if (AstRoot.Eval(list[4], typeof(AstPasswordSetting), false, false))
                 {
                     return 4;
                 }
@@ -49215,21 +49497,21 @@ namespace Bb.SqlServer.Asts
         public static AstDecryptionMechanism Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstDecryptionMechanism.Resolve(list);
-            if ((index == 3))
+            if ((index == 1))
             {
-                return new AstDecryptionMechanism.AstDecryptionMechanism1(ctx, ((AstCertificateId)(list[0])), ((AstPasswordSetting)(list[1])));
-            }
-            if ((index == 3))
-            {
-                return new AstDecryptionMechanism.AstDecryptionMechanism2(ctx, ((AstAsymKeyId)(list[0])), ((AstPasswordSetting)(list[1])));
+                return new AstDecryptionMechanism.AstDecryptionMechanism1(ctx, ((AstCertificateId)(list[1])), ((AstPasswordSetting)(list[1])));
             }
             if ((index == 2))
             {
-                return new AstDecryptionMechanism.AstDecryptionMechanism3(ctx, ((AstSymmetricKeyId)(list[0])));
+                return new AstDecryptionMechanism.AstDecryptionMechanism2(ctx, ((AstAsymKeyId)(list[2])), ((AstPasswordSetting)(list[2])));
             }
-            if ((index == 2))
+            if ((index == 3))
             {
-                return new AstDecryptionMechanism.AstDecryptionMechanism4(ctx, ((AstPasswordSetting)(list[0])));
+                return new AstDecryptionMechanism.AstDecryptionMechanism3(ctx, ((AstSymmetricKeyId)(list[3])));
+            }
+            if ((index == 4))
+            {
+                return new AstDecryptionMechanism.AstDecryptionMechanism4(ctx, ((AstPasswordSetting)(list[4])));
             }
             return null;
         }
@@ -49238,16 +49520,16 @@ namespace Bb.SqlServer.Asts
         {
             if ((list.Count == 2))
             {
-                if (AstRoot.Eval(list[0], typeof(AstCertificateId), false, false))
+                if (AstRoot.Eval(list[1], typeof(AstCertificateId), false, false))
                 {
                     if (AstRoot.Eval(list[1], typeof(AstPasswordSetting), false, false))
                     {
                         return 1;
                     }
                 }
-                if (AstRoot.Eval(list[0], typeof(AstAsymKeyId), false, false))
+                if (AstRoot.Eval(list[2], typeof(AstAsymKeyId), false, false))
                 {
-                    if (AstRoot.Eval(list[1], typeof(AstPasswordSetting), false, false))
+                    if (AstRoot.Eval(list[2], typeof(AstPasswordSetting), false, false))
                     {
                         return 2;
                     }
@@ -49255,11 +49537,11 @@ namespace Bb.SqlServer.Asts
             }
             if ((list.Count == 1))
             {
-                if (AstRoot.Eval(list[0], typeof(AstSymmetricKeyId), false, false))
+                if (AstRoot.Eval(list[3], typeof(AstSymmetricKeyId), false, false))
                 {
                     return 3;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstPasswordSetting), false, false))
+                if (AstRoot.Eval(list[4], typeof(AstPasswordSetting), false, false))
                 {
                     return 4;
                 }
@@ -49422,17 +49704,17 @@ namespace Bb.SqlServer.Asts
         public static AstGrantPermission Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstGrantPermission.Resolve(list);
-            if ((index == 2))
+            if ((index == 1))
             {
-                return new AstGrantPermission.AstGrantPermission1(ctx, ((AstGrantPermissionEnum)(list[0])));
+                return new AstGrantPermission.AstGrantPermission1(ctx, ((AstGrantPermissionEnum)(list[1])));
             }
             if ((index == 2))
             {
-                return new AstGrantPermission.AstGrantPermission2(ctx, ((AstGrantPermissionAlter)(list[0])));
+                return new AstGrantPermission.AstGrantPermission2(ctx, ((AstGrantPermissionAlter)(list[2])));
             }
-            if ((index == 2))
+            if ((index == 3))
             {
-                return new AstGrantPermission.AstGrantPermission3(ctx, ((AstGrantPermissionCreate)(list[0])));
+                return new AstGrantPermission.AstGrantPermission3(ctx, ((AstGrantPermissionCreate)(list[3])));
             }
             return null;
         }
@@ -49441,15 +49723,15 @@ namespace Bb.SqlServer.Asts
         {
             if ((list.Count == 1))
             {
-                if (AstRoot.Eval(list[0], typeof(AstGrantPermissionEnum), false, false))
+                if (AstRoot.Eval(list[1], typeof(AstGrantPermissionEnum), false, false))
                 {
                     return 1;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstGrantPermissionAlter), false, false))
+                if (AstRoot.Eval(list[2], typeof(AstGrantPermissionAlter), false, false))
                 {
                     return 2;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstGrantPermissionCreate), false, false))
+                if (AstRoot.Eval(list[3], typeof(AstGrantPermissionCreate), false, false))
                 {
                     return 3;
                 }
@@ -49697,21 +49979,21 @@ namespace Bb.SqlServer.Asts
         public static AstSetStatement Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstSetStatement.Resolve(list);
-            if ((index == 4))
+            if ((index == 1))
             {
-                return new AstSetStatement.AstSetStatement1(ctx, ((AstLocalId)(list[0])), ((AstId)(list[1])), ((AstExpression)(list[2])));
-            }
-            if ((index == 4))
-            {
-                return new AstSetStatement.AstSetStatement2(ctx, ((AstLocalId)(list[0])), ((AstAssignmentOperator)(list[1])), ((AstExpression)(list[2])));
-            }
-            if ((index == 4))
-            {
-                return new AstSetStatement.AstSetStatement3(ctx, ((AstLocalId)(list[0])), ((AstDeclareSetCursorCommon)(list[1])), ((AstCursorMode)(list[2])));
+                return new AstSetStatement.AstSetStatement1(ctx, ((AstLocalId)(list[1])), ((AstId)(list[1])), ((AstExpression)(list[1])));
             }
             if ((index == 2))
             {
-                return new AstSetStatement.AstSetStatement4(ctx, ((AstSetSpecial)(list[0])));
+                return new AstSetStatement.AstSetStatement2(ctx, ((AstLocalId)(list[2])), ((AstAssignmentOperator)(list[2])), ((AstExpression)(list[2])));
+            }
+            if ((index == 3))
+            {
+                return new AstSetStatement.AstSetStatement3(ctx, ((AstLocalId)(list[3])), ((AstDeclareSetCursorCommon)(list[3])), ((AstCursorMode)(list[3])));
+            }
+            if ((index == 4))
+            {
+                return new AstSetStatement.AstSetStatement4(ctx, ((AstSetSpecial)(list[4])));
             }
             return null;
         }
@@ -49720,19 +50002,19 @@ namespace Bb.SqlServer.Asts
         {
             if ((list.Count == 3))
             {
-                if (AstRoot.Eval(list[0], typeof(AstLocalId), false, false))
+                if (AstRoot.Eval(list[1], typeof(AstLocalId), false, false))
                 {
                     if (AstRoot.Eval(list[1], typeof(AstId), false, false))
                     {
-                        if (AstRoot.Eval(list[2], typeof(AstExpression), false, false))
+                        if (AstRoot.Eval(list[1], typeof(AstExpression), false, false))
                         {
                             return 1;
                         }
                     }
                 }
-                if (AstRoot.Eval(list[0], typeof(AstLocalId), false, false))
+                if (AstRoot.Eval(list[2], typeof(AstLocalId), false, false))
                 {
-                    if (AstRoot.Eval(list[1], typeof(AstAssignmentOperator), false, false))
+                    if (AstRoot.Eval(list[2], typeof(AstAssignmentOperator), false, false))
                     {
                         if (AstRoot.Eval(list[2], typeof(AstExpression), false, false))
                         {
@@ -49740,11 +50022,11 @@ namespace Bb.SqlServer.Asts
                         }
                     }
                 }
-                if (AstRoot.Eval(list[0], typeof(AstLocalId), false, false))
+                if (AstRoot.Eval(list[3], typeof(AstLocalId), false, false))
                 {
-                    if (AstRoot.Eval(list[1], typeof(AstDeclareSetCursorCommon), false, false))
+                    if (AstRoot.Eval(list[3], typeof(AstDeclareSetCursorCommon), false, false))
                     {
-                        if (AstRoot.Eval(list[2], typeof(AstCursorMode), false, false))
+                        if (AstRoot.Eval(list[3], typeof(AstCursorMode), false, false))
                         {
                             return 3;
                         }
@@ -49753,7 +50035,7 @@ namespace Bb.SqlServer.Asts
             }
             if ((list.Count == 1))
             {
-                if (AstRoot.Eval(list[0], typeof(AstSetSpecial), false, false))
+                if (AstRoot.Eval(list[4], typeof(AstSetSpecial), false, false))
                 {
                     return 4;
                 }
@@ -49882,7 +50164,7 @@ namespace Bb.SqlServer.Asts
             }
             if ((index == 2))
             {
-                return new AstCursorMode.AstCursorMode2(ctx, ((AstColumnNameList)(list[0])));
+                return new AstCursorMode.AstCursorMode2(ctx, ((AstColumnNameList)(list[2])));
             }
             return null;
         }
@@ -49891,7 +50173,7 @@ namespace Bb.SqlServer.Asts
         {
             if ((list.Count == 1))
             {
-                if (AstRoot.Eval(list[0], typeof(AstColumnNameList), false, false))
+                if (AstRoot.Eval(list[2], typeof(AstColumnNameList), false, false))
                 {
                     return 1;
                 }
@@ -50265,41 +50547,41 @@ namespace Bb.SqlServer.Asts
         public static AstTransactionStatement Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstTransactionStatement.Resolve(list);
+            if ((index == 1))
+            {
+                return new AstTransactionStatement.AstTransactionStatement1(ctx, ((AstTransaction)(list[1])), ((AstTransactionRef)(list[1])));
+            }
+            if ((index == 2))
+            {
+                return new AstTransactionStatement.AstTransactionStatement2(ctx, ((AstTransaction)(list[2])), ((AstTransactionRef)(list[2])), ((AstStringtext)(list[2])));
+            }
             if ((index == 3))
             {
-                return new AstTransactionStatement.AstTransactionStatement1(ctx, ((AstTransaction)(list[0])), ((AstTransactionRef)(list[1])));
+                return new AstTransactionStatement.AstTransactionStatement3(ctx, ((AstTransaction)(list[3])), ((AstTransactionRef)(list[3])), ((AstOnOff)(list[3])));
             }
             if ((index == 4))
-            {
-                return new AstTransactionStatement.AstTransactionStatement2(ctx, ((AstTransaction)(list[0])), ((AstTransactionRef)(list[1])), ((AstStringtext)(list[2])));
-            }
-            if ((index == 4))
-            {
-                return new AstTransactionStatement.AstTransactionStatement3(ctx, ((AstTransaction)(list[0])), ((AstTransactionRef)(list[1])), ((AstOnOff)(list[2])));
-            }
-            if ((index == 1))
             {
                 return new AstTransactionStatement.AstTransactionStatement4(ctx);
             }
-            if ((index == 2))
+            if ((index == 5))
             {
-                return new AstTransactionStatement.AstTransactionStatement5(ctx, ((AstTransactionIdentifier)(list[0])));
+                return new AstTransactionStatement.AstTransactionStatement5(ctx, ((AstTransactionIdentifier)(list[5])));
             }
-            if ((index == 2))
+            if ((index == 6))
             {
-                return new AstTransactionStatement.AstTransactionStatement6(ctx, ((AstTransactionIdentifier)(list[0])));
+                return new AstTransactionStatement.AstTransactionStatement6(ctx, ((AstTransactionIdentifier)(list[6])));
             }
-            if ((index == 3))
+            if ((index == 7))
             {
-                return new AstTransactionStatement.AstTransactionStatement7(ctx, ((AstTransaction)(list[0])), ((AstTransactionRef)(list[1])));
+                return new AstTransactionStatement.AstTransactionStatement7(ctx, ((AstTransaction)(list[7])), ((AstTransactionRef)(list[7])));
             }
-            if ((index == 1))
+            if ((index == 8))
             {
                 return new AstTransactionStatement.AstTransactionStatement8(ctx);
             }
-            if ((index == 3))
+            if ((index == 9))
             {
-                return new AstTransactionStatement.AstTransactionStatement9(ctx, ((AstTransaction)(list[0])), ((AstTransactionRef)(list[1])));
+                return new AstTransactionStatement.AstTransactionStatement9(ctx, ((AstTransaction)(list[9])), ((AstTransactionRef)(list[9])));
             }
             return null;
         }
@@ -50308,9 +50590,9 @@ namespace Bb.SqlServer.Asts
         {
             if ((list.Count == 3))
             {
-                if (AstRoot.Eval(list[0], typeof(AstTransaction), false, false))
+                if (AstRoot.Eval(list[2], typeof(AstTransaction), false, false))
                 {
-                    if (AstRoot.Eval(list[1], typeof(AstTransactionRef), false, false))
+                    if (AstRoot.Eval(list[2], typeof(AstTransactionRef), false, false))
                     {
                         if (AstRoot.Eval(list[2], typeof(AstStringtext), false, false))
                         {
@@ -50318,11 +50600,11 @@ namespace Bb.SqlServer.Asts
                         }
                     }
                 }
-                if (AstRoot.Eval(list[0], typeof(AstTransaction), false, false))
+                if (AstRoot.Eval(list[3], typeof(AstTransaction), false, false))
                 {
-                    if (AstRoot.Eval(list[1], typeof(AstTransactionRef), false, false))
+                    if (AstRoot.Eval(list[3], typeof(AstTransactionRef), false, false))
                     {
-                        if (AstRoot.Eval(list[2], typeof(AstOnOff), false, false))
+                        if (AstRoot.Eval(list[3], typeof(AstOnOff), false, false))
                         {
                             return 3;
                         }
@@ -50331,23 +50613,23 @@ namespace Bb.SqlServer.Asts
             }
             if ((list.Count == 2))
             {
-                if (AstRoot.Eval(list[0], typeof(AstTransaction), false, false))
+                if (AstRoot.Eval(list[1], typeof(AstTransaction), false, false))
                 {
                     if (AstRoot.Eval(list[1], typeof(AstTransactionRef), false, false))
                     {
                         return 1;
                     }
                 }
-                if (AstRoot.Eval(list[0], typeof(AstTransaction), false, false))
+                if (AstRoot.Eval(list[7], typeof(AstTransaction), false, false))
                 {
-                    if (AstRoot.Eval(list[1], typeof(AstTransactionRef), false, false))
+                    if (AstRoot.Eval(list[7], typeof(AstTransactionRef), false, false))
                     {
                         return 6;
                     }
                 }
-                if (AstRoot.Eval(list[0], typeof(AstTransaction), false, false))
+                if (AstRoot.Eval(list[9], typeof(AstTransaction), false, false))
                 {
-                    if (AstRoot.Eval(list[1], typeof(AstTransactionRef), false, false))
+                    if (AstRoot.Eval(list[9], typeof(AstTransactionRef), false, false))
                     {
                         return 7;
                     }
@@ -50355,11 +50637,11 @@ namespace Bb.SqlServer.Asts
             }
             if ((list.Count == 1))
             {
-                if (AstRoot.Eval(list[0], typeof(AstTransactionIdentifier), false, false))
+                if (AstRoot.Eval(list[5], typeof(AstTransactionIdentifier), false, false))
                 {
                     return 4;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstTransactionIdentifier), false, false))
+                if (AstRoot.Eval(list[6], typeof(AstTransactionIdentifier), false, false))
                 {
                     return 5;
                 }
@@ -50427,7 +50709,9 @@ namespace Bb.SqlServer.Asts
         
         protected static string _rule = "go_statement\r\n\t : GO  (count = decimal)?";
         
-        internal AstGoStatement(ParserRuleContext ctx, List<AstRoot> list) : 
+        private AstDecimal _count;
+        
+        internal AstGoStatement(ParserRuleContext ctx) : 
                 base(ctx)
         {
         }
@@ -50448,7 +50732,7 @@ namespace Bb.SqlServer.Asts
             _count = count;
         }
         
-        public virtual AstDecimal _count
+        public virtual AstDecimal Count
         {
             get
             {
@@ -50459,6 +50743,11 @@ namespace Bb.SqlServer.Asts
         public override void Accept(IAstTSqlVisitor visitor)
         {
             visitor.VisitGoStatement(this);
+        }
+        
+        public static AstGoStatement Create(ParserRuleContext ctx, List<AstRoot> list)
+        {
+            return new AstGoStatement(ctx, ((AstDecimal)(list[0])));
         }
         
         /// <summary>
@@ -50481,7 +50770,9 @@ namespace Bb.SqlServer.Asts
         
         protected static string _rule = "setuser_statement\r\n\t : SETUSER  user = stringtext";
         
-        internal AstSetuserStatement(ParserRuleContext ctx, List<AstRoot> list) : 
+        private AstStringtext _user;
+        
+        internal AstSetuserStatement(ParserRuleContext ctx) : 
                 base(ctx)
         {
         }
@@ -50502,7 +50793,7 @@ namespace Bb.SqlServer.Asts
             _user = user;
         }
         
-        public virtual AstStringtext _user
+        public virtual AstStringtext User
         {
             get
             {
@@ -50513,6 +50804,11 @@ namespace Bb.SqlServer.Asts
         public override void Accept(IAstTSqlVisitor visitor)
         {
             visitor.VisitSetuserStatement(this);
+        }
+        
+        public static AstSetuserStatement Create(ParserRuleContext ctx, List<AstRoot> list)
+        {
+            return new AstSetuserStatement(ctx, ((AstStringtext)(list[0])));
         }
         
         /// <summary>
@@ -50535,7 +50831,7 @@ namespace Bb.SqlServer.Asts
         
         protected static string _rule = "reconfigure_statement\r\n\t : RECONFIGURE  (WITH  OVERRIDE)?";
         
-        internal AstReconfigureStatement(ParserRuleContext ctx, List<AstRoot> list) : 
+        internal AstReconfigureStatement(ParserRuleContext ctx) : 
                 base(ctx)
         {
         }
@@ -50550,14 +50846,14 @@ namespace Bb.SqlServer.Asts
         {
         }
         
-        internal AstReconfigureStatement(ParserRuleContext ctx) : 
-                base(ctx)
-        {
-        }
-        
         public override void Accept(IAstTSqlVisitor visitor)
         {
             visitor.VisitReconfigureStatement(this);
+        }
+        
+        public static AstReconfigureStatement Create(ParserRuleContext ctx, List<AstRoot> list)
+        {
+            return new AstReconfigureStatement(ctx);
         }
         
         /// <summary>
@@ -50580,7 +50876,7 @@ namespace Bb.SqlServer.Asts
         
         protected static string _rule = "shutdown_statement\r\n\t : SHUTDOWN  (WITH  NOWAIT)?";
         
-        internal AstShutdownStatement(ParserRuleContext ctx, List<AstRoot> list) : 
+        internal AstShutdownStatement(ParserRuleContext ctx) : 
                 base(ctx)
         {
         }
@@ -50595,14 +50891,14 @@ namespace Bb.SqlServer.Asts
         {
         }
         
-        internal AstShutdownStatement(ParserRuleContext ctx) : 
-                base(ctx)
-        {
-        }
-        
         public override void Accept(IAstTSqlVisitor visitor)
         {
             visitor.VisitShutdownStatement(this);
+        }
+        
+        public static AstShutdownStatement Create(ParserRuleContext ctx, List<AstRoot> list)
+        {
+            return new AstShutdownStatement(ctx);
         }
         
         /// <summary>
@@ -50625,7 +50921,9 @@ namespace Bb.SqlServer.Asts
         
         protected static string _rule = "checkpoint_statement\r\n\t : CHECKPOINT  (checkPointDuration = decimal)?";
         
-        internal AstCheckpointStatement(ParserRuleContext ctx, List<AstRoot> list) : 
+        private AstDecimal _checkPointDuration;
+        
+        internal AstCheckpointStatement(ParserRuleContext ctx) : 
                 base(ctx)
         {
         }
@@ -50646,7 +50944,7 @@ namespace Bb.SqlServer.Asts
             _checkPointDuration = checkPointDuration;
         }
         
-        public virtual AstDecimal _checkPointDuration
+        public virtual AstDecimal Checkpointduration
         {
             get
             {
@@ -50657,6 +50955,11 @@ namespace Bb.SqlServer.Asts
         public override void Accept(IAstTSqlVisitor visitor)
         {
             visitor.VisitCheckpointStatement(this);
+        }
+        
+        public static AstCheckpointStatement Create(ParserRuleContext ctx, List<AstRoot> list)
+        {
+            return new AstCheckpointStatement(ctx, ((AstDecimal)(list[0])));
         }
         
         /// <summary>
@@ -50680,7 +50983,9 @@ namespace Bb.SqlServer.Asts
         protected static string _rule = "dbcc_special\r\n\t : DBCC  SHRINKLOG  (LR_BRACKET  SIZE  EQUAL  dbcc_special_size  R" +
             "R_BRACKET)?";
         
-        internal AstDbccSpecial(ParserRuleContext ctx, List<AstRoot> list) : 
+        private AstDbccSpecialSize _dbccSpecialSize;
+        
+        internal AstDbccSpecial(ParserRuleContext ctx) : 
                 base(ctx)
         {
         }
@@ -50701,7 +51006,7 @@ namespace Bb.SqlServer.Asts
             _dbccSpecialSize = dbccSpecialSize;
         }
         
-        public virtual AstDbccSpecialSize _dbccSpecialSize
+        public virtual AstDbccSpecialSize DbccSpecialSize
         {
             get
             {
@@ -50712,6 +51017,11 @@ namespace Bb.SqlServer.Asts
         public override void Accept(IAstTSqlVisitor visitor)
         {
             visitor.VisitDbccSpecial(this);
+        }
+        
+        public static AstDbccSpecial Create(ParserRuleContext ctx, List<AstRoot> list)
+        {
+            return new AstDbccSpecial(ctx, ((AstDbccSpecialSize)(list[0])));
         }
         
         /// <summary>
@@ -50810,11 +51120,11 @@ namespace Bb.SqlServer.Asts
         public static AstDbccSpecialSize Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstDbccSpecialSize.Resolve(list);
-            if ((index == 3))
-            {
-                return new AstDbccSpecialSize.AstDbccSpecialSize1(ctx, ((AstConstantExpression)(list[0])), ((AstId)(list[1])));
-            }
             if ((index == 1))
+            {
+                return new AstDbccSpecialSize.AstDbccSpecialSize1(ctx, ((AstConstantExpression)(list[1])), ((AstId)(list[1])));
+            }
+            if ((index == 2))
             {
                 return new AstDbccSpecialSize.AstDbccSpecialSize2(ctx);
             }
@@ -50825,7 +51135,7 @@ namespace Bb.SqlServer.Asts
         {
             if ((list.Count == 2))
             {
-                if (AstRoot.Eval(list[0], typeof(AstConstantExpression), false, false))
+                if (AstRoot.Eval(list[1], typeof(AstConstantExpression), false, false))
                 {
                     if (AstRoot.Eval(list[1], typeof(AstId), false, false))
                     {
@@ -50867,7 +51177,13 @@ namespace Bb.SqlServer.Asts
         protected static string _rule = "dbcc_clause\r\n\t : DBCC  name = dbcc_command  (LR_BRACKET  expression_list  RR_BRAC" +
             "KET)?  (WITH  dbcc_options)?";
         
-        internal AstDbccClause(ParserRuleContext ctx, List<AstRoot> list) : 
+        private AstDbccCommand _name;
+        
+        private AstExpressionList _expressionList;
+        
+        private AstDbccOptions _dbccOptions;
+        
+        internal AstDbccClause(ParserRuleContext ctx) : 
                 base(ctx)
         {
         }
@@ -50890,7 +51206,7 @@ namespace Bb.SqlServer.Asts
             _dbccOptions = dbccOptions;
         }
         
-        public virtual AstDbccCommand _name
+        public virtual AstDbccCommand Name
         {
             get
             {
@@ -50898,7 +51214,7 @@ namespace Bb.SqlServer.Asts
             }
         }
         
-        public virtual AstExpressionList _expressionList
+        public virtual AstExpressionList ExpressionList
         {
             get
             {
@@ -50906,7 +51222,7 @@ namespace Bb.SqlServer.Asts
             }
         }
         
-        public virtual AstDbccOptions _dbccOptions
+        public virtual AstDbccOptions DbccOptions
         {
             get
             {
@@ -50917,6 +51233,11 @@ namespace Bb.SqlServer.Asts
         public override void Accept(IAstTSqlVisitor visitor)
         {
             visitor.VisitDbccClause(this);
+        }
+        
+        public static AstDbccClause Create(ParserRuleContext ctx, List<AstRoot> list)
+        {
+            return new AstDbccClause(ctx, ((AstDbccCommand)(list[0])), ((AstExpressionList)(list[1])), ((AstDbccOptions)(list[2])));
         }
         
         /// <summary>
@@ -51015,13 +51336,13 @@ namespace Bb.SqlServer.Asts
         public static AstDbccCommand Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstDbccCommand.Resolve(list);
-            if ((index == 2))
+            if ((index == 1))
             {
-                return new AstDbccCommand.AstDbccCommand1(ctx, ((AstSimpleId)(list[0])));
+                return new AstDbccCommand.AstDbccCommand1(ctx, ((AstSimpleId)(list[1])));
             }
             if ((index == 2))
             {
-                return new AstDbccCommand.AstDbccCommand2(ctx, ((AstKeyword)(list[0])));
+                return new AstDbccCommand.AstDbccCommand2(ctx, ((AstKeyword)(list[2])));
             }
             return null;
         }
@@ -51030,11 +51351,11 @@ namespace Bb.SqlServer.Asts
         {
             if ((list.Count == 1))
             {
-                if (AstRoot.Eval(list[0], typeof(AstSimpleId), false, false))
+                if (AstRoot.Eval(list[1], typeof(AstSimpleId), false, false))
                 {
                     return 1;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstKeyword), false, false))
+                if (AstRoot.Eval(list[2], typeof(AstKeyword), false, false))
                 {
                     return 2;
                 }
@@ -51148,13 +51469,13 @@ namespace Bb.SqlServer.Asts
         public static AstExecuteClauseMode Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstExecuteClauseMode.Resolve(list);
-            if ((index == 2))
+            if ((index == 1))
             {
-                return new AstExecuteClauseMode.AstExecuteClauseMode1(ctx, ((AstExecuteClauseModeEnum)(list[0])));
+                return new AstExecuteClauseMode.AstExecuteClauseMode1(ctx, ((AstExecuteClauseModeEnum)(list[1])));
             }
             if ((index == 2))
             {
-                return new AstExecuteClauseMode.AstExecuteClauseMode2(ctx, ((AstStringtext)(list[0])));
+                return new AstExecuteClauseMode.AstExecuteClauseMode2(ctx, ((AstStringtext)(list[2])));
             }
             return null;
         }
@@ -51163,11 +51484,11 @@ namespace Bb.SqlServer.Asts
         {
             if ((list.Count == 1))
             {
-                if (AstRoot.Eval(list[0], typeof(AstExecuteClauseModeEnum), false, false))
+                if (AstRoot.Eval(list[1], typeof(AstExecuteClauseModeEnum), false, false))
                 {
                     return 1;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstStringtext), false, false))
+                if (AstRoot.Eval(list[2], typeof(AstStringtext), false, false))
                 {
                     return 2;
                 }
@@ -51293,13 +51614,13 @@ namespace Bb.SqlServer.Asts
         public static AstTableTypeIndice Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstTableTypeIndice.Resolve(list);
-            if ((index == 3))
+            if ((index == 1))
             {
-                return new AstTableTypeIndice.AstTableTypeIndice1(ctx, ((AstTypeIndice)(list[0])), ((AstColumnNameListWithOrder)(list[1])));
+                return new AstTableTypeIndice.AstTableTypeIndice1(ctx, ((AstTypeIndice)(list[1])), ((AstColumnNameListWithOrder)(list[1])));
             }
             if ((index == 2))
             {
-                return new AstTableTypeIndice.AstTableTypeIndice2(ctx, ((AstSearchCondition)(list[0])));
+                return new AstTableTypeIndice.AstTableTypeIndice2(ctx, ((AstSearchCondition)(list[2])));
             }
             return null;
         }
@@ -51308,7 +51629,7 @@ namespace Bb.SqlServer.Asts
         {
             if ((list.Count == 2))
             {
-                if (AstRoot.Eval(list[0], typeof(AstTypeIndice), false, false))
+                if (AstRoot.Eval(list[1], typeof(AstTypeIndice), false, false))
                 {
                     if (AstRoot.Eval(list[1], typeof(AstColumnNameListWithOrder), false, false))
                     {
@@ -51318,7 +51639,7 @@ namespace Bb.SqlServer.Asts
             }
             if ((list.Count == 1))
             {
-                if (AstRoot.Eval(list[0], typeof(AstSearchCondition), false, false))
+                if (AstRoot.Eval(list[2], typeof(AstSearchCondition), false, false))
                 {
                     return 2;
                 }
@@ -51432,11 +51753,11 @@ namespace Bb.SqlServer.Asts
         public static AstTypeIndice Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstTypeIndice.Resolve(list);
-            if ((index == 3))
-            {
-                return new AstTypeIndice.AstTypeIndice1(ctx, ((AstIndiceName)(list[0])), ((AstClustered)(list[1])));
-            }
             if ((index == 1))
+            {
+                return new AstTypeIndice.AstTypeIndice1(ctx, ((AstIndiceName)(list[1])), ((AstClustered)(list[1])));
+            }
+            if ((index == 2))
             {
                 return new AstTypeIndice.AstTypeIndice2(ctx);
             }
@@ -51447,7 +51768,7 @@ namespace Bb.SqlServer.Asts
         {
             if ((list.Count == 2))
             {
-                if (AstRoot.Eval(list[0], typeof(AstIndiceName), false, false))
+                if (AstRoot.Eval(list[1], typeof(AstIndiceName), false, false))
                 {
                     if (AstRoot.Eval(list[1], typeof(AstClustered), false, false))
                     {
@@ -51559,7 +51880,7 @@ namespace Bb.SqlServer.Asts
             }
             if ((index == 2))
             {
-                return new AstIndiceName.AstIndiceName2(ctx, ((AstIndexId)(list[0])));
+                return new AstIndiceName.AstIndiceName2(ctx, ((AstIndexId)(list[2])));
             }
             return null;
         }
@@ -51568,7 +51889,7 @@ namespace Bb.SqlServer.Asts
         {
             if ((list.Count == 1))
             {
-                if (AstRoot.Eval(list[0], typeof(AstIndexId), false, false))
+                if (AstRoot.Eval(list[2], typeof(AstIndexId), false, false))
                 {
                     return 1;
                 }
@@ -51599,14 +51920,18 @@ namespace Bb.SqlServer.Asts
     
     /// <summary>
     /// xml_schema_collection
-    /// 	 : left = ID  DOT  right = ID
+    /// 	 : left = simple_id  DOT  right = simple_id
     /// </summary>
     public partial class AstXmlSchemaCollection : AstBnfRule
     {
         
-        protected static string _rule = "xml_schema_collection\r\n\t : left = ID  DOT  right = ID";
+        protected static string _rule = "xml_schema_collection\r\n\t : left = simple_id  DOT  right = simple_id";
         
-        internal AstXmlSchemaCollection(ParserRuleContext ctx, List<AstRoot> list) : 
+        private AstSimpleId _left;
+        
+        private AstSimpleId _right;
+        
+        internal AstXmlSchemaCollection(ParserRuleContext ctx) : 
                 base(ctx)
         {
         }
@@ -51621,14 +51946,14 @@ namespace Bb.SqlServer.Asts
         {
         }
         
-        internal AstXmlSchemaCollection(ParserRuleContext ctx, String left, String right) : 
+        internal AstXmlSchemaCollection(ParserRuleContext ctx, AstSimpleId left, AstSimpleId right) : 
                 base(ctx)
         {
             _left = left;
             _right = right;
         }
         
-        public virtual String _left
+        public virtual AstSimpleId Left
         {
             get
             {
@@ -51636,7 +51961,7 @@ namespace Bb.SqlServer.Asts
             }
         }
         
-        public virtual String _right
+        public virtual AstSimpleId Right
         {
             get
             {
@@ -51649,11 +51974,16 @@ namespace Bb.SqlServer.Asts
             visitor.VisitXmlSchemaCollection(this);
         }
         
+        public static AstXmlSchemaCollection Create(ParserRuleContext ctx, List<AstRoot> list)
+        {
+            return new AstXmlSchemaCollection(ctx, ((AstSimpleId)(list[0])), ((AstSimpleId)(list[1])));
+        }
+        
         /// <summary>
         /// xml_schema_collection : 
-        ///    left=ID . right=ID 
+        ///    left=simple_id . right=simple_id 
         /// </summary>
-        public static AstXmlSchemaCollection XmlSchemaCollection(ParserRuleContext ctx, String left, String right)
+        public static AstXmlSchemaCollection XmlSchemaCollection(ParserRuleContext ctx, AstSimpleId left, AstSimpleId right)
         {
             AstXmlSchemaCollection result = new AstXmlSchemaCollection(ctx, left, right);
             return result;
@@ -51774,17 +52104,17 @@ namespace Bb.SqlServer.Asts
         public static AstColumnDefTableConstraint Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstColumnDefTableConstraint.Resolve(list);
-            if ((index == 2))
+            if ((index == 1))
             {
-                return new AstColumnDefTableConstraint.AstColumnDefTableConstraint1(ctx, ((AstColumnDefinition)(list[0])));
+                return new AstColumnDefTableConstraint.AstColumnDefTableConstraint1(ctx, ((AstColumnDefinition)(list[1])));
             }
             if ((index == 2))
             {
-                return new AstColumnDefTableConstraint.AstColumnDefTableConstraint2(ctx, ((AstMaterializedColumnDefinition)(list[0])));
+                return new AstColumnDefTableConstraint.AstColumnDefTableConstraint2(ctx, ((AstMaterializedColumnDefinition)(list[2])));
             }
-            if ((index == 2))
+            if ((index == 3))
             {
-                return new AstColumnDefTableConstraint.AstColumnDefTableConstraint3(ctx, ((AstTableConstraint)(list[0])));
+                return new AstColumnDefTableConstraint.AstColumnDefTableConstraint3(ctx, ((AstTableConstraint)(list[3])));
             }
             return null;
         }
@@ -51793,15 +52123,15 @@ namespace Bb.SqlServer.Asts
         {
             if ((list.Count == 1))
             {
-                if (AstRoot.Eval(list[0], typeof(AstColumnDefinition), false, false))
+                if (AstRoot.Eval(list[1], typeof(AstColumnDefinition), false, false))
                 {
                     return 1;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstMaterializedColumnDefinition), false, false))
+                if (AstRoot.Eval(list[2], typeof(AstMaterializedColumnDefinition), false, false))
                 {
                     return 2;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstTableConstraint), false, false))
+                if (AstRoot.Eval(list[3], typeof(AstTableConstraint), false, false))
                 {
                     return 3;
                 }
@@ -52216,43 +52546,43 @@ namespace Bb.SqlServer.Asts
             }
             if ((index == 2))
             {
-                return new AstColumnDefinitionElement.AstColumnDefinitionElement2(ctx, ((AstCollationId)(list[0])));
+                return new AstColumnDefinitionElement.AstColumnDefinitionElement2(ctx, ((AstCollationId)(list[2])));
             }
-            if ((index == 1))
+            if ((index == 3))
             {
                 return new AstColumnDefinitionElement.AstColumnDefinitionElement3(ctx);
             }
-            if ((index == 2))
+            if ((index == 4))
             {
-                return new AstColumnDefinitionElement.AstColumnDefinitionElement4(ctx, ((AstStringtext)(list[0])));
-            }
-            if ((index == 3))
-            {
-                return new AstColumnDefinitionElement.AstColumnDefinitionElement5(ctx, ((AstConstraintId)(list[0])), ((AstExpression)(list[1])));
-            }
-            if ((index == 3))
-            {
-                return new AstColumnDefinitionElement.AstColumnDefinitionElement6(ctx, ((AstDecimal)(list[0])), ((AstDecimal)(list[1])));
-            }
-            if ((index == 1))
-            {
-                return new AstColumnDefinitionElement.AstColumnDefinitionElement7(ctx);
-            }
-            if ((index == 3))
-            {
-                return new AstColumnDefinitionElement.AstColumnDefinitionElement8(ctx, ((AstGenerationMode)(list[0])), ((AstStartEnd)(list[1])));
-            }
-            if ((index == 1))
-            {
-                return new AstColumnDefinitionElement.AstColumnDefinitionElement9(ctx);
+                return new AstColumnDefinitionElement.AstColumnDefinitionElement4(ctx, ((AstStringtext)(list[4])));
             }
             if ((index == 5))
             {
-                return new AstColumnDefinitionElement.AstColumnDefinitionElement10(ctx, ((AstColumnEncryptionKeyId)(list[0])), ((AstStringtext)(list[1])), ((AstEncryptionMode)(list[2])), ((AstStringtext)(list[3])));
+                return new AstColumnDefinitionElement.AstColumnDefinitionElement5(ctx, ((AstConstraintId)(list[5])), ((AstExpression)(list[5])));
             }
-            if ((index == 2))
+            if ((index == 6))
             {
-                return new AstColumnDefinitionElement.AstColumnDefinitionElement11(ctx, ((AstColumnConstraint)(list[0])));
+                return new AstColumnDefinitionElement.AstColumnDefinitionElement6(ctx, ((AstDecimal)(list[6])), ((AstDecimal)(list[6])));
+            }
+            if ((index == 7))
+            {
+                return new AstColumnDefinitionElement.AstColumnDefinitionElement7(ctx);
+            }
+            if ((index == 8))
+            {
+                return new AstColumnDefinitionElement.AstColumnDefinitionElement8(ctx, ((AstGenerationMode)(list[8])), ((AstStartEnd)(list[8])));
+            }
+            if ((index == 9))
+            {
+                return new AstColumnDefinitionElement.AstColumnDefinitionElement9(ctx);
+            }
+            if ((index == 10))
+            {
+                return new AstColumnDefinitionElement.AstColumnDefinitionElement10(ctx, ((AstColumnEncryptionKeyId)(list[10])), ((AstStringtext)(list[10])), ((AstEncryptionMode)(list[10])), ((AstStringtext)(list[10])));
+            }
+            if ((index == 11))
+            {
+                return new AstColumnDefinitionElement.AstColumnDefinitionElement11(ctx, ((AstColumnConstraint)(list[11])));
             }
             return null;
         }
@@ -52261,13 +52591,13 @@ namespace Bb.SqlServer.Asts
         {
             if ((list.Count == 4))
             {
-                if (AstRoot.Eval(list[0], typeof(AstColumnEncryptionKeyId), false, false))
+                if (AstRoot.Eval(list[10], typeof(AstColumnEncryptionKeyId), false, false))
                 {
-                    if (AstRoot.Eval(list[1], typeof(AstStringtext), false, false))
+                    if (AstRoot.Eval(list[10], typeof(AstStringtext), false, false))
                     {
-                        if (AstRoot.Eval(list[2], typeof(AstEncryptionMode), false, false))
+                        if (AstRoot.Eval(list[10], typeof(AstEncryptionMode), false, false))
                         {
-                            if (AstRoot.Eval(list[3], typeof(AstStringtext), false, false))
+                            if (AstRoot.Eval(list[10], typeof(AstStringtext), false, false))
                             {
                                 return 6;
                             }
@@ -52277,23 +52607,23 @@ namespace Bb.SqlServer.Asts
             }
             if ((list.Count == 2))
             {
-                if (AstRoot.Eval(list[0], typeof(AstConstraintId), false, false))
+                if (AstRoot.Eval(list[5], typeof(AstConstraintId), false, false))
                 {
-                    if (AstRoot.Eval(list[1], typeof(AstExpression), false, false))
+                    if (AstRoot.Eval(list[5], typeof(AstExpression), false, false))
                     {
                         return 3;
                     }
                 }
-                if (AstRoot.Eval(list[0], typeof(AstDecimal), false, false))
+                if (AstRoot.Eval(list[6], typeof(AstDecimal), false, false))
                 {
-                    if (AstRoot.Eval(list[1], typeof(AstDecimal), false, false))
+                    if (AstRoot.Eval(list[6], typeof(AstDecimal), false, false))
                     {
                         return 4;
                     }
                 }
-                if (AstRoot.Eval(list[0], typeof(AstGenerationMode), false, false))
+                if (AstRoot.Eval(list[8], typeof(AstGenerationMode), false, false))
                 {
-                    if (AstRoot.Eval(list[1], typeof(AstStartEnd), false, false))
+                    if (AstRoot.Eval(list[8], typeof(AstStartEnd), false, false))
                     {
                         return 5;
                     }
@@ -52301,15 +52631,15 @@ namespace Bb.SqlServer.Asts
             }
             if ((list.Count == 1))
             {
-                if (AstRoot.Eval(list[0], typeof(AstCollationId), false, false))
+                if (AstRoot.Eval(list[2], typeof(AstCollationId), false, false))
                 {
                     return 1;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstStringtext), false, false))
+                if (AstRoot.Eval(list[4], typeof(AstStringtext), false, false))
                 {
                     return 2;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstColumnConstraint), false, false))
+                if (AstRoot.Eval(list[11], typeof(AstColumnConstraint), false, false))
                 {
                     return 7;
                 }
@@ -52604,21 +52934,21 @@ namespace Bb.SqlServer.Asts
         public static AstColumnConstraint Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstColumnConstraint.Resolve(list);
-            if ((index == 3))
+            if ((index == 1))
             {
-                return new AstColumnConstraint.AstColumnConstraint1(ctx, ((AstConstraintId)(list[0])), ((AstNullNotnull)(list[1])));
+                return new AstColumnConstraint.AstColumnConstraint1(ctx, ((AstConstraintId)(list[1])), ((AstNullNotnull)(list[1])));
             }
-            if ((index == 5))
+            if ((index == 2))
             {
-                return new AstColumnConstraint.AstColumnConstraint2(ctx, ((AstConstraintId)(list[0])), ((AstPrimaryKeyUnique)(list[1])), ((AstClustered)(list[2])), ((AstPrimaryKeyOptions)(list[3])));
-            }
-            if ((index == 3))
-            {
-                return new AstColumnConstraint.AstColumnConstraint3(ctx, ((AstConstraintId)(list[0])), ((AstForeignKeyOptions)(list[1])));
+                return new AstColumnConstraint.AstColumnConstraint2(ctx, ((AstConstraintId)(list[2])), ((AstPrimaryKeyUnique)(list[2])), ((AstClustered)(list[2])), ((AstPrimaryKeyOptions)(list[2])));
             }
             if ((index == 3))
             {
-                return new AstColumnConstraint.AstColumnConstraint4(ctx, ((AstConstraintId)(list[0])), ((AstCheckConstraint)(list[1])));
+                return new AstColumnConstraint.AstColumnConstraint3(ctx, ((AstConstraintId)(list[3])), ((AstForeignKeyOptions)(list[3])));
+            }
+            if ((index == 4))
+            {
+                return new AstColumnConstraint.AstColumnConstraint4(ctx, ((AstConstraintId)(list[4])), ((AstCheckConstraint)(list[4])));
             }
             return null;
         }
@@ -52627,13 +52957,13 @@ namespace Bb.SqlServer.Asts
         {
             if ((list.Count == 4))
             {
-                if (AstRoot.Eval(list[0], typeof(AstConstraintId), false, false))
+                if (AstRoot.Eval(list[2], typeof(AstConstraintId), false, false))
                 {
-                    if (AstRoot.Eval(list[1], typeof(AstPrimaryKeyUnique), false, false))
+                    if (AstRoot.Eval(list[2], typeof(AstPrimaryKeyUnique), false, false))
                     {
                         if (AstRoot.Eval(list[2], typeof(AstClustered), false, false))
                         {
-                            if (AstRoot.Eval(list[3], typeof(AstPrimaryKeyOptions), false, false))
+                            if (AstRoot.Eval(list[2], typeof(AstPrimaryKeyOptions), false, false))
                             {
                                 return 2;
                             }
@@ -52643,23 +52973,23 @@ namespace Bb.SqlServer.Asts
             }
             if ((list.Count == 2))
             {
-                if (AstRoot.Eval(list[0], typeof(AstConstraintId), false, false))
+                if (AstRoot.Eval(list[1], typeof(AstConstraintId), false, false))
                 {
                     if (AstRoot.Eval(list[1], typeof(AstNullNotnull), false, false))
                     {
                         return 1;
                     }
                 }
-                if (AstRoot.Eval(list[0], typeof(AstConstraintId), false, false))
+                if (AstRoot.Eval(list[3], typeof(AstConstraintId), false, false))
                 {
-                    if (AstRoot.Eval(list[1], typeof(AstForeignKeyOptions), false, false))
+                    if (AstRoot.Eval(list[3], typeof(AstForeignKeyOptions), false, false))
                     {
                         return 3;
                     }
                 }
-                if (AstRoot.Eval(list[0], typeof(AstConstraintId), false, false))
+                if (AstRoot.Eval(list[4], typeof(AstConstraintId), false, false))
                 {
-                    if (AstRoot.Eval(list[1], typeof(AstCheckConstraint), false, false))
+                    if (AstRoot.Eval(list[4], typeof(AstCheckConstraint), false, false))
                     {
                         return 4;
                     }
@@ -52821,15 +53151,15 @@ namespace Bb.SqlServer.Asts
         public static AstOnPartitionOrFilegroup Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstOnPartitionOrFilegroup.Resolve(list);
-            if ((index == 3))
+            if ((index == 1))
             {
-                return new AstOnPartitionOrFilegroup.AstOnPartitionOrFilegroup1(ctx, ((AstPartitionSchemeId)(list[0])), ((AstPartitionColumnId)(list[1])));
+                return new AstOnPartitionOrFilegroup.AstOnPartitionOrFilegroup1(ctx, ((AstPartitionSchemeId)(list[1])), ((AstPartitionColumnId)(list[1])));
             }
             if ((index == 2))
             {
-                return new AstOnPartitionOrFilegroup.AstOnPartitionOrFilegroup2(ctx, ((AstFileGroupId)(list[0])));
+                return new AstOnPartitionOrFilegroup.AstOnPartitionOrFilegroup2(ctx, ((AstFileGroupId)(list[2])));
             }
-            if ((index == 1))
+            if ((index == 3))
             {
                 return new AstOnPartitionOrFilegroup.AstOnPartitionOrFilegroup3(ctx);
             }
@@ -52840,7 +53170,7 @@ namespace Bb.SqlServer.Asts
         {
             if ((list.Count == 2))
             {
-                if (AstRoot.Eval(list[0], typeof(AstPartitionSchemeId), false, false))
+                if (AstRoot.Eval(list[1], typeof(AstPartitionSchemeId), false, false))
                 {
                     if (AstRoot.Eval(list[1], typeof(AstPartitionColumnId), false, false))
                     {
@@ -52850,7 +53180,7 @@ namespace Bb.SqlServer.Asts
             }
             if ((list.Count == 1))
             {
-                if (AstRoot.Eval(list[0], typeof(AstFileGroupId), false, false))
+                if (AstRoot.Eval(list[2], typeof(AstFileGroupId), false, false))
                 {
                     return 2;
                 }
@@ -53350,41 +53680,41 @@ namespace Bb.SqlServer.Asts
         public static AstTableConstraint Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstTableConstraint.Resolve(list);
+            if ((index == 1))
+            {
+                return new AstTableConstraint.AstTableConstraint1(ctx, ((AstConstraintId)(list[1])), ((AstPrimaryKeyUnique)(list[1])), ((AstClustered)(list[1])), ((AstColumnNameListWithOrder)(list[1])), ((AstPrimaryKeyOptions)(list[1])));
+            }
+            if ((index == 2))
+            {
+                return new AstTableConstraint.AstTableConstraint2(ctx, ((AstConstraintId)(list[2])), ((AstColumnNameList)(list[2])), ((AstForeignKeyOptions)(list[2])));
+            }
+            if ((index == 3))
+            {
+                return new AstTableConstraint.AstTableConstraint3(ctx, ((AstConstraintId)(list[3])), ((AstConnectionNodes)(list[3])));
+            }
+            if ((index == 4))
+            {
+                return new AstTableConstraint.AstTableConstraint4(ctx, ((AstConstraintId)(list[4])), ((AstStringtext)(list[4])), ((AstId)(list[4])));
+            }
+            if ((index == 5))
+            {
+                return new AstTableConstraint.AstTableConstraint5(ctx, ((AstConstraintId)(list[5])), ((AstId)(list[5])));
+            }
             if ((index == 6))
             {
-                return new AstTableConstraint.AstTableConstraint1(ctx, ((AstConstraintId)(list[0])), ((AstPrimaryKeyUnique)(list[1])), ((AstClustered)(list[2])), ((AstColumnNameListWithOrder)(list[3])), ((AstPrimaryKeyOptions)(list[4])));
+                return new AstTableConstraint.AstTableConstraint6(ctx, ((AstConstraintId)(list[6])), ((AstFunctionCall)(list[6])), ((AstId)(list[6])));
             }
-            if ((index == 4))
+            if ((index == 7))
             {
-                return new AstTableConstraint.AstTableConstraint2(ctx, ((AstConstraintId)(list[0])), ((AstColumnNameList)(list[1])), ((AstForeignKeyOptions)(list[2])));
+                return new AstTableConstraint.AstTableConstraint7(ctx, ((AstConstraintId)(list[7])), ((AstDecimal)(list[7])), ((AstId)(list[7])));
             }
-            if ((index == 3))
+            if ((index == 8))
             {
-                return new AstTableConstraint.AstTableConstraint3(ctx, ((AstConstraintId)(list[0])), ((AstConnectionNodes)(list[1])));
+                return new AstTableConstraint.AstTableConstraint8(ctx, ((AstConstraintId)(list[8])), ((AstFullTableRef)(list[8])), ((AstId)(list[8])));
             }
-            if ((index == 4))
+            if ((index == 9))
             {
-                return new AstTableConstraint.AstTableConstraint4(ctx, ((AstConstraintId)(list[0])), ((AstStringtext)(list[1])), ((AstId)(list[2])));
-            }
-            if ((index == 3))
-            {
-                return new AstTableConstraint.AstTableConstraint5(ctx, ((AstConstraintId)(list[0])), ((AstId)(list[1])));
-            }
-            if ((index == 4))
-            {
-                return new AstTableConstraint.AstTableConstraint6(ctx, ((AstConstraintId)(list[0])), ((AstFunctionCall)(list[1])), ((AstId)(list[2])));
-            }
-            if ((index == 4))
-            {
-                return new AstTableConstraint.AstTableConstraint7(ctx, ((AstConstraintId)(list[0])), ((AstDecimal)(list[1])), ((AstId)(list[2])));
-            }
-            if ((index == 4))
-            {
-                return new AstTableConstraint.AstTableConstraint8(ctx, ((AstConstraintId)(list[0])), ((AstFullTableRef)(list[1])), ((AstId)(list[2])));
-            }
-            if ((index == 3))
-            {
-                return new AstTableConstraint.AstTableConstraint9(ctx, ((AstConstraintId)(list[0])), ((AstCheckConstraint)(list[1])));
+                return new AstTableConstraint.AstTableConstraint9(ctx, ((AstConstraintId)(list[9])), ((AstCheckConstraint)(list[9])));
             }
             return null;
         }
@@ -53393,15 +53723,15 @@ namespace Bb.SqlServer.Asts
         {
             if ((list.Count == 5))
             {
-                if (AstRoot.Eval(list[0], typeof(AstConstraintId), false, false))
+                if (AstRoot.Eval(list[1], typeof(AstConstraintId), false, false))
                 {
                     if (AstRoot.Eval(list[1], typeof(AstPrimaryKeyUnique), false, false))
                     {
-                        if (AstRoot.Eval(list[2], typeof(AstClustered), false, false))
+                        if (AstRoot.Eval(list[1], typeof(AstClustered), false, false))
                         {
-                            if (AstRoot.Eval(list[3], typeof(AstColumnNameListWithOrder), false, false))
+                            if (AstRoot.Eval(list[1], typeof(AstColumnNameListWithOrder), false, false))
                             {
-                                if (AstRoot.Eval(list[4], typeof(AstPrimaryKeyOptions), false, false))
+                                if (AstRoot.Eval(list[1], typeof(AstPrimaryKeyOptions), false, false))
                                 {
                                     return 1;
                                 }
@@ -53412,9 +53742,9 @@ namespace Bb.SqlServer.Asts
             }
             if ((list.Count == 3))
             {
-                if (AstRoot.Eval(list[0], typeof(AstConstraintId), false, false))
+                if (AstRoot.Eval(list[2], typeof(AstConstraintId), false, false))
                 {
-                    if (AstRoot.Eval(list[1], typeof(AstColumnNameList), false, false))
+                    if (AstRoot.Eval(list[2], typeof(AstColumnNameList), false, false))
                     {
                         if (AstRoot.Eval(list[2], typeof(AstForeignKeyOptions), false, false))
                         {
@@ -53422,41 +53752,41 @@ namespace Bb.SqlServer.Asts
                         }
                     }
                 }
-                if (AstRoot.Eval(list[0], typeof(AstConstraintId), false, false))
+                if (AstRoot.Eval(list[4], typeof(AstConstraintId), false, false))
                 {
-                    if (AstRoot.Eval(list[1], typeof(AstStringtext), false, false))
+                    if (AstRoot.Eval(list[4], typeof(AstStringtext), false, false))
                     {
-                        if (AstRoot.Eval(list[2], typeof(AstId), false, false))
+                        if (AstRoot.Eval(list[4], typeof(AstId), false, false))
                         {
                             return 4;
                         }
                     }
                 }
-                if (AstRoot.Eval(list[0], typeof(AstConstraintId), false, false))
+                if (AstRoot.Eval(list[6], typeof(AstConstraintId), false, false))
                 {
-                    if (AstRoot.Eval(list[1], typeof(AstFunctionCall), false, false))
+                    if (AstRoot.Eval(list[6], typeof(AstFunctionCall), false, false))
                     {
-                        if (AstRoot.Eval(list[2], typeof(AstId), false, false))
+                        if (AstRoot.Eval(list[6], typeof(AstId), false, false))
                         {
                             return 6;
                         }
                     }
                 }
-                if (AstRoot.Eval(list[0], typeof(AstConstraintId), false, false))
+                if (AstRoot.Eval(list[7], typeof(AstConstraintId), false, false))
                 {
-                    if (AstRoot.Eval(list[1], typeof(AstDecimal), false, false))
+                    if (AstRoot.Eval(list[7], typeof(AstDecimal), false, false))
                     {
-                        if (AstRoot.Eval(list[2], typeof(AstId), false, false))
+                        if (AstRoot.Eval(list[7], typeof(AstId), false, false))
                         {
                             return 7;
                         }
                     }
                 }
-                if (AstRoot.Eval(list[0], typeof(AstConstraintId), false, false))
+                if (AstRoot.Eval(list[8], typeof(AstConstraintId), false, false))
                 {
-                    if (AstRoot.Eval(list[1], typeof(AstFullTableRef), false, false))
+                    if (AstRoot.Eval(list[8], typeof(AstFullTableRef), false, false))
                     {
-                        if (AstRoot.Eval(list[2], typeof(AstId), false, false))
+                        if (AstRoot.Eval(list[8], typeof(AstId), false, false))
                         {
                             return 8;
                         }
@@ -53465,23 +53795,23 @@ namespace Bb.SqlServer.Asts
             }
             if ((list.Count == 2))
             {
-                if (AstRoot.Eval(list[0], typeof(AstConstraintId), false, false))
+                if (AstRoot.Eval(list[3], typeof(AstConstraintId), false, false))
                 {
-                    if (AstRoot.Eval(list[1], typeof(AstConnectionNodes), false, false))
+                    if (AstRoot.Eval(list[3], typeof(AstConnectionNodes), false, false))
                     {
                         return 3;
                     }
                 }
-                if (AstRoot.Eval(list[0], typeof(AstConstraintId), false, false))
+                if (AstRoot.Eval(list[5], typeof(AstConstraintId), false, false))
                 {
-                    if (AstRoot.Eval(list[1], typeof(AstId), false, false))
+                    if (AstRoot.Eval(list[5], typeof(AstId), false, false))
                     {
                         return 5;
                     }
                 }
-                if (AstRoot.Eval(list[0], typeof(AstConstraintId), false, false))
+                if (AstRoot.Eval(list[9], typeof(AstConstraintId), false, false))
                 {
-                    if (AstRoot.Eval(list[1], typeof(AstCheckConstraint), false, false))
+                    if (AstRoot.Eval(list[9], typeof(AstCheckConstraint), false, false))
                     {
                         return 9;
                     }
@@ -53590,7 +53920,11 @@ namespace Bb.SqlServer.Asts
         
         protected static string _rule = "connection_node\r\n\t : from_node_table = id_  TO  to_node_table = id_";
         
-        internal AstConnectionNode(ParserRuleContext ctx, List<AstRoot> list) : 
+        private AstId _fromNodeTable;
+        
+        private AstId _toNodeTable;
+        
+        internal AstConnectionNode(ParserRuleContext ctx) : 
                 base(ctx)
         {
         }
@@ -53612,7 +53946,7 @@ namespace Bb.SqlServer.Asts
             _toNodeTable = toNodeTable;
         }
         
-        public virtual AstId _fromNodeTable
+        public virtual AstId FromNodeTable
         {
             get
             {
@@ -53620,7 +53954,7 @@ namespace Bb.SqlServer.Asts
             }
         }
         
-        public virtual AstId _toNodeTable
+        public virtual AstId ToNodeTable
         {
             get
             {
@@ -53631,6 +53965,11 @@ namespace Bb.SqlServer.Asts
         public override void Accept(IAstTSqlVisitor visitor)
         {
             visitor.VisitConnectionNode(this);
+        }
+        
+        public static AstConnectionNode Create(ParserRuleContext ctx, List<AstRoot> list)
+        {
+            return new AstConnectionNode(ctx, ((AstId)(list[0])), ((AstId)(list[1])));
         }
         
         /// <summary>
@@ -54130,65 +54469,65 @@ namespace Bb.SqlServer.Asts
         public static AstAlterTableIndexOption Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstAlterTableIndexOption.Resolve(list);
-            if ((index == 2))
+            if ((index == 1))
             {
-                return new AstAlterTableIndexOption.AstAlterTableIndexOption1(ctx, ((AstOnOff)(list[0])));
+                return new AstAlterTableIndexOption.AstAlterTableIndexOption1(ctx, ((AstOnOff)(list[1])));
             }
             if ((index == 2))
             {
-                return new AstAlterTableIndexOption.AstAlterTableIndexOption2(ctx, ((AstDecimal)(list[0])));
-            }
-            if ((index == 2))
-            {
-                return new AstAlterTableIndexOption.AstAlterTableIndexOption3(ctx, ((AstOnOff)(list[0])));
-            }
-            if ((index == 2))
-            {
-                return new AstAlterTableIndexOption.AstAlterTableIndexOption4(ctx, ((AstOnOff)(list[0])));
-            }
-            if ((index == 2))
-            {
-                return new AstAlterTableIndexOption.AstAlterTableIndexOption5(ctx, ((AstOnOff)(list[0])));
-            }
-            if ((index == 2))
-            {
-                return new AstAlterTableIndexOption.AstAlterTableIndexOption6(ctx, ((AstOnOff)(list[0])));
-            }
-            if ((index == 2))
-            {
-                return new AstAlterTableIndexOption.AstAlterTableIndexOption7(ctx, ((AstOnOff)(list[0])));
-            }
-            if ((index == 2))
-            {
-                return new AstAlterTableIndexOption.AstAlterTableIndexOption8(ctx, ((AstOnOff)(list[0])));
-            }
-            if ((index == 2))
-            {
-                return new AstAlterTableIndexOption.AstAlterTableIndexOption9(ctx, ((AstDecimal)(list[0])));
+                return new AstAlterTableIndexOption.AstAlterTableIndexOption2(ctx, ((AstDecimal)(list[2])));
             }
             if ((index == 3))
             {
-                return new AstAlterTableIndexOption.AstAlterTableIndexOption10(ctx, ((AstIndexStrategy)(list[0])), ((AstOnPartitions)(list[1])));
+                return new AstAlterTableIndexOption.AstAlterTableIndexOption3(ctx, ((AstOnOff)(list[3])));
             }
-            if ((index == 3))
+            if ((index == 4))
             {
-                return new AstAlterTableIndexOption.AstAlterTableIndexOption11(ctx, ((AstOnOff)(list[0])), ((AstOnPartitions)(list[1])));
+                return new AstAlterTableIndexOption.AstAlterTableIndexOption4(ctx, ((AstOnOff)(list[4])));
             }
-            if ((index == 2))
+            if ((index == 5))
             {
-                return new AstAlterTableIndexOption.AstAlterTableIndexOption12(ctx, ((AstTableDistribution)(list[0])));
+                return new AstAlterTableIndexOption.AstAlterTableIndexOption5(ctx, ((AstOnOff)(list[5])));
             }
-            if ((index == 2))
+            if ((index == 6))
             {
-                return new AstAlterTableIndexOption.AstAlterTableIndexOption13(ctx, ((AstOnlineValue)(list[0])));
+                return new AstAlterTableIndexOption.AstAlterTableIndexOption6(ctx, ((AstOnOff)(list[6])));
             }
-            if ((index == 2))
+            if ((index == 7))
             {
-                return new AstAlterTableIndexOption.AstAlterTableIndexOption14(ctx, ((AstOnOff)(list[0])));
+                return new AstAlterTableIndexOption.AstAlterTableIndexOption7(ctx, ((AstOnOff)(list[7])));
             }
-            if ((index == 2))
+            if ((index == 8))
             {
-                return new AstAlterTableIndexOption.AstAlterTableIndexOption15(ctx, ((AstDecimal)(list[0])));
+                return new AstAlterTableIndexOption.AstAlterTableIndexOption8(ctx, ((AstOnOff)(list[8])));
+            }
+            if ((index == 9))
+            {
+                return new AstAlterTableIndexOption.AstAlterTableIndexOption9(ctx, ((AstDecimal)(list[9])));
+            }
+            if ((index == 10))
+            {
+                return new AstAlterTableIndexOption.AstAlterTableIndexOption10(ctx, ((AstIndexStrategy)(list[10])), ((AstOnPartitions)(list[10])));
+            }
+            if ((index == 11))
+            {
+                return new AstAlterTableIndexOption.AstAlterTableIndexOption11(ctx, ((AstOnOff)(list[11])), ((AstOnPartitions)(list[11])));
+            }
+            if ((index == 12))
+            {
+                return new AstAlterTableIndexOption.AstAlterTableIndexOption12(ctx, ((AstTableDistribution)(list[12])));
+            }
+            if ((index == 13))
+            {
+                return new AstAlterTableIndexOption.AstAlterTableIndexOption13(ctx, ((AstOnlineValue)(list[13])));
+            }
+            if ((index == 14))
+            {
+                return new AstAlterTableIndexOption.AstAlterTableIndexOption14(ctx, ((AstOnOff)(list[14])));
+            }
+            if ((index == 15))
+            {
+                return new AstAlterTableIndexOption.AstAlterTableIndexOption15(ctx, ((AstDecimal)(list[15])));
             }
             return null;
         }
@@ -54197,16 +54536,16 @@ namespace Bb.SqlServer.Asts
         {
             if ((list.Count == 2))
             {
-                if (AstRoot.Eval(list[0], typeof(AstIndexStrategy), false, false))
+                if (AstRoot.Eval(list[10], typeof(AstIndexStrategy), false, false))
                 {
-                    if (AstRoot.Eval(list[1], typeof(AstOnPartitions), false, false))
+                    if (AstRoot.Eval(list[10], typeof(AstOnPartitions), false, false))
                     {
                         return 10;
                     }
                 }
-                if (AstRoot.Eval(list[0], typeof(AstOnOff), false, false))
+                if (AstRoot.Eval(list[11], typeof(AstOnOff), false, false))
                 {
-                    if (AstRoot.Eval(list[1], typeof(AstOnPartitions), false, false))
+                    if (AstRoot.Eval(list[11], typeof(AstOnPartitions), false, false))
                     {
                         return 11;
                     }
@@ -54214,55 +54553,55 @@ namespace Bb.SqlServer.Asts
             }
             if ((list.Count == 1))
             {
-                if (AstRoot.Eval(list[0], typeof(AstOnOff), false, false))
+                if (AstRoot.Eval(list[1], typeof(AstOnOff), false, false))
                 {
                     return 1;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstDecimal), false, false))
+                if (AstRoot.Eval(list[2], typeof(AstDecimal), false, false))
                 {
                     return 2;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstOnOff), false, false))
+                if (AstRoot.Eval(list[3], typeof(AstOnOff), false, false))
                 {
                     return 3;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstOnOff), false, false))
+                if (AstRoot.Eval(list[4], typeof(AstOnOff), false, false))
                 {
                     return 4;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstOnOff), false, false))
+                if (AstRoot.Eval(list[5], typeof(AstOnOff), false, false))
                 {
                     return 5;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstOnOff), false, false))
+                if (AstRoot.Eval(list[6], typeof(AstOnOff), false, false))
                 {
                     return 6;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstOnOff), false, false))
+                if (AstRoot.Eval(list[7], typeof(AstOnOff), false, false))
                 {
                     return 7;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstOnOff), false, false))
+                if (AstRoot.Eval(list[8], typeof(AstOnOff), false, false))
                 {
                     return 8;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstDecimal), false, false))
+                if (AstRoot.Eval(list[9], typeof(AstDecimal), false, false))
                 {
                     return 9;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstTableDistribution), false, false))
+                if (AstRoot.Eval(list[12], typeof(AstTableDistribution), false, false))
                 {
                     return 12;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstOnlineValue), false, false))
+                if (AstRoot.Eval(list[13], typeof(AstOnlineValue), false, false))
                 {
                     return 13;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstOnOff), false, false))
+                if (AstRoot.Eval(list[14], typeof(AstOnOff), false, false))
                 {
                     return 14;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstDecimal), false, false))
+                if (AstRoot.Eval(list[15], typeof(AstDecimal), false, false))
                 {
                     return 15;
                 }
@@ -54417,13 +54756,13 @@ namespace Bb.SqlServer.Asts
         public static AstDeclareSetCursorCommonPartial Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstDeclareSetCursorCommonPartial.Resolve(list);
-            if ((index == 2))
+            if ((index == 1))
             {
-                return new AstDeclareSetCursorCommonPartial.AstDeclareSetCursorCommonPartial1(ctx, ((AstLocalGlobal)(list[0])));
+                return new AstDeclareSetCursorCommonPartial.AstDeclareSetCursorCommonPartial1(ctx, ((AstLocalGlobal)(list[1])));
             }
             if ((index == 2))
             {
-                return new AstDeclareSetCursorCommonPartial.AstDeclareSetCursorCommonPartial2(ctx, ((AstDeclareSetCursorCommonPartialEnum)(list[0])));
+                return new AstDeclareSetCursorCommonPartial.AstDeclareSetCursorCommonPartial2(ctx, ((AstDeclareSetCursorCommonPartialEnum)(list[2])));
             }
             return null;
         }
@@ -54432,11 +54771,11 @@ namespace Bb.SqlServer.Asts
         {
             if ((list.Count == 1))
             {
-                if (AstRoot.Eval(list[0], typeof(AstLocalGlobal), false, false))
+                if (AstRoot.Eval(list[1], typeof(AstLocalGlobal), false, false))
                 {
                     return 1;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstDeclareSetCursorCommonPartialEnum), false, false))
+                if (AstRoot.Eval(list[2], typeof(AstDeclareSetCursorCommonPartialEnum), false, false))
                 {
                     return 2;
                 }
@@ -54770,37 +55109,37 @@ namespace Bb.SqlServer.Asts
         public static AstSetSpecial Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstSetSpecial.Resolve(list);
-            if ((index == 3))
+            if ((index == 1))
             {
-                return new AstSetSpecial.AstSetSpecial1(ctx, ((AstId)(list[0])), ((AstSetSpecialSetValue)(list[1])));
-            }
-            if ((index == 3))
-            {
-                return new AstSetSpecial.AstSetSpecial2(ctx, ((AstStatisticKind)(list[0])), ((AstOnOff)(list[1])));
+                return new AstSetSpecial.AstSetSpecial1(ctx, ((AstId)(list[1])), ((AstSetSpecialSetValue)(list[1])));
             }
             if ((index == 2))
             {
-                return new AstSetSpecial.AstSetSpecial3(ctx, ((AstLocalIdDecimal)(list[0])));
-            }
-            if ((index == 2))
-            {
-                return new AstSetSpecial.AstSetSpecial4(ctx, ((AstDecimal)(list[0])));
-            }
-            if ((index == 2))
-            {
-                return new AstSetSpecial.AstSetSpecial5(ctx, ((AstTransactionLevel)(list[0])));
+                return new AstSetSpecial.AstSetSpecial2(ctx, ((AstStatisticKind)(list[2])), ((AstOnOff)(list[2])));
             }
             if ((index == 3))
             {
-                return new AstSetSpecial.AstSetSpecial6(ctx, ((AstFullTableRef)(list[0])), ((AstOnOff)(list[1])));
+                return new AstSetSpecial.AstSetSpecial3(ctx, ((AstLocalIdDecimal)(list[3])));
             }
-            if ((index == 3))
+            if ((index == 4))
             {
-                return new AstSetSpecial.AstSetSpecial7(ctx, ((AstSpecialLists)(list[0])), ((AstOnOff)(list[1])));
+                return new AstSetSpecial.AstSetSpecial4(ctx, ((AstDecimal)(list[4])));
             }
-            if ((index == 2))
+            if ((index == 5))
             {
-                return new AstSetSpecial.AstSetSpecial8(ctx, ((AstModifyMethod)(list[0])));
+                return new AstSetSpecial.AstSetSpecial5(ctx, ((AstTransactionLevel)(list[5])));
+            }
+            if ((index == 6))
+            {
+                return new AstSetSpecial.AstSetSpecial6(ctx, ((AstFullTableRef)(list[6])), ((AstOnOff)(list[6])));
+            }
+            if ((index == 7))
+            {
+                return new AstSetSpecial.AstSetSpecial7(ctx, ((AstSpecialLists)(list[7])), ((AstOnOff)(list[7])));
+            }
+            if ((index == 8))
+            {
+                return new AstSetSpecial.AstSetSpecial8(ctx, ((AstModifyMethod)(list[8])));
             }
             return null;
         }
@@ -54809,30 +55148,30 @@ namespace Bb.SqlServer.Asts
         {
             if ((list.Count == 2))
             {
-                if (AstRoot.Eval(list[0], typeof(AstId), false, false))
+                if (AstRoot.Eval(list[1], typeof(AstId), false, false))
                 {
                     if (AstRoot.Eval(list[1], typeof(AstSetSpecialSetValue), false, false))
                     {
                         return 1;
                     }
                 }
-                if (AstRoot.Eval(list[0], typeof(AstStatisticKind), false, false))
+                if (AstRoot.Eval(list[2], typeof(AstStatisticKind), false, false))
                 {
-                    if (AstRoot.Eval(list[1], typeof(AstOnOff), false, false))
+                    if (AstRoot.Eval(list[2], typeof(AstOnOff), false, false))
                     {
                         return 2;
                     }
                 }
-                if (AstRoot.Eval(list[0], typeof(AstFullTableRef), false, false))
+                if (AstRoot.Eval(list[6], typeof(AstFullTableRef), false, false))
                 {
-                    if (AstRoot.Eval(list[1], typeof(AstOnOff), false, false))
+                    if (AstRoot.Eval(list[6], typeof(AstOnOff), false, false))
                     {
                         return 6;
                     }
                 }
-                if (AstRoot.Eval(list[0], typeof(AstSpecialLists), false, false))
+                if (AstRoot.Eval(list[7], typeof(AstSpecialLists), false, false))
                 {
-                    if (AstRoot.Eval(list[1], typeof(AstOnOff), false, false))
+                    if (AstRoot.Eval(list[7], typeof(AstOnOff), false, false))
                     {
                         return 7;
                     }
@@ -54840,19 +55179,19 @@ namespace Bb.SqlServer.Asts
             }
             if ((list.Count == 1))
             {
-                if (AstRoot.Eval(list[0], typeof(AstLocalIdDecimal), false, false))
+                if (AstRoot.Eval(list[3], typeof(AstLocalIdDecimal), false, false))
                 {
                     return 3;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstDecimal), false, false))
+                if (AstRoot.Eval(list[4], typeof(AstDecimal), false, false))
                 {
                     return 4;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstTransactionLevel), false, false))
+                if (AstRoot.Eval(list[5], typeof(AstTransactionLevel), false, false))
                 {
                     return 5;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstModifyMethod), false, false))
+                if (AstRoot.Eval(list[8], typeof(AstModifyMethod), false, false))
                 {
                     return 8;
                 }
@@ -55026,13 +55365,13 @@ namespace Bb.SqlServer.Asts
         public static AstTransactionLevel Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstTransactionLevel.Resolve(list);
-            if ((index == 2))
+            if ((index == 1))
             {
-                return new AstTransactionLevel.AstTransactionLevel1(ctx, ((AstTransactionIsolation)(list[0])));
+                return new AstTransactionLevel.AstTransactionLevel1(ctx, ((AstTransactionIsolation)(list[1])));
             }
             if ((index == 2))
             {
-                return new AstTransactionLevel.AstTransactionLevel2(ctx, ((AstDecimal)(list[0])));
+                return new AstTransactionLevel.AstTransactionLevel2(ctx, ((AstDecimal)(list[2])));
             }
             return null;
         }
@@ -55041,11 +55380,11 @@ namespace Bb.SqlServer.Asts
         {
             if ((list.Count == 1))
             {
-                if (AstRoot.Eval(list[0], typeof(AstTransactionIsolation), false, false))
+                if (AstRoot.Eval(list[1], typeof(AstTransactionIsolation), false, false))
                 {
                     return 1;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstDecimal), false, false))
+                if (AstRoot.Eval(list[2], typeof(AstDecimal), false, false))
                 {
                     return 2;
                 }
@@ -55159,13 +55498,13 @@ namespace Bb.SqlServer.Asts
         public static AstLocalIdDecimal Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstLocalIdDecimal.Resolve(list);
-            if ((index == 2))
+            if ((index == 1))
             {
-                return new AstLocalIdDecimal.AstLocalIdDecimal1(ctx, ((AstLocalId)(list[0])));
+                return new AstLocalIdDecimal.AstLocalIdDecimal1(ctx, ((AstLocalId)(list[1])));
             }
             if ((index == 2))
             {
-                return new AstLocalIdDecimal.AstLocalIdDecimal2(ctx, ((AstDecimal)(list[0])));
+                return new AstLocalIdDecimal.AstLocalIdDecimal2(ctx, ((AstDecimal)(list[2])));
             }
             return null;
         }
@@ -55174,11 +55513,11 @@ namespace Bb.SqlServer.Asts
         {
             if ((list.Count == 1))
             {
-                if (AstRoot.Eval(list[0], typeof(AstLocalId), false, false))
+                if (AstRoot.Eval(list[1], typeof(AstLocalId), false, false))
                 {
                     return 1;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstDecimal), false, false))
+                if (AstRoot.Eval(list[2], typeof(AstDecimal), false, false))
                 {
                     return 2;
                 }
@@ -55320,17 +55659,17 @@ namespace Bb.SqlServer.Asts
         public static AstSetSpecialSetValue Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstSetSpecialSetValue.Resolve(list);
-            if ((index == 2))
+            if ((index == 1))
             {
-                return new AstSetSpecialSetValue.AstSetSpecialSetValue1(ctx, ((AstId)(list[0])));
+                return new AstSetSpecialSetValue.AstSetSpecialSetValue1(ctx, ((AstId)(list[1])));
             }
             if ((index == 2))
             {
-                return new AstSetSpecialSetValue.AstSetSpecialSetValue2(ctx, ((AstConstantLocalId)(list[0])));
+                return new AstSetSpecialSetValue.AstSetSpecialSetValue2(ctx, ((AstConstantLocalId)(list[2])));
             }
-            if ((index == 2))
+            if ((index == 3))
             {
-                return new AstSetSpecialSetValue.AstSetSpecialSetValue3(ctx, ((AstOnOff)(list[0])));
+                return new AstSetSpecialSetValue.AstSetSpecialSetValue3(ctx, ((AstOnOff)(list[3])));
             }
             return null;
         }
@@ -55339,15 +55678,15 @@ namespace Bb.SqlServer.Asts
         {
             if ((list.Count == 1))
             {
-                if (AstRoot.Eval(list[0], typeof(AstId), false, false))
+                if (AstRoot.Eval(list[1], typeof(AstId), false, false))
                 {
                     return 1;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstConstantLocalId), false, false))
+                if (AstRoot.Eval(list[2], typeof(AstConstantLocalId), false, false))
                 {
                     return 2;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstOnOff), false, false))
+                if (AstRoot.Eval(list[3], typeof(AstOnOff), false, false))
                 {
                     return 3;
                 }
@@ -55471,13 +55810,13 @@ namespace Bb.SqlServer.Asts
         public static AstConstantLocalId Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstConstantLocalId.Resolve(list);
-            if ((index == 2))
+            if ((index == 1))
             {
-                return new AstConstantLocalId.AstConstantLocalId1(ctx, ((AstConstant)(list[0])));
+                return new AstConstantLocalId.AstConstantLocalId1(ctx, ((AstConstant)(list[1])));
             }
             if ((index == 2))
             {
-                return new AstConstantLocalId.AstConstantLocalId2(ctx, ((AstLocalId)(list[0])));
+                return new AstConstantLocalId.AstConstantLocalId2(ctx, ((AstLocalId)(list[2])));
             }
             return null;
         }
@@ -55486,11 +55825,11 @@ namespace Bb.SqlServer.Asts
         {
             if ((list.Count == 1))
             {
-                if (AstRoot.Eval(list[0], typeof(AstConstant), false, false))
+                if (AstRoot.Eval(list[1], typeof(AstConstant), false, false))
                 {
                     return 1;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstLocalId), false, false))
+                if (AstRoot.Eval(list[2], typeof(AstLocalId), false, false))
                 {
                     return 2;
                 }
@@ -55980,55 +56319,55 @@ namespace Bb.SqlServer.Asts
         public static AstExpression Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstExpression.Resolve(list);
-            if ((index == 2))
+            if ((index == 1))
             {
-                return new AstExpression.AstExpression1(ctx, ((AstPrimitiveExpression)(list[0])));
+                return new AstExpression.AstExpression1(ctx, ((AstPrimitiveExpression)(list[1])));
             }
             if ((index == 2))
             {
-                return new AstExpression.AstExpression2(ctx, ((AstFunctionCall)(list[0])));
+                return new AstExpression.AstExpression2(ctx, ((AstFunctionCall)(list[2])));
             }
             if ((index == 3))
             {
-                return new AstExpression.AstExpression3(ctx, ((AstExpression)(list[0])), ((AstExpressionChained)(list[1])));
-            }
-            if ((index == 3))
-            {
-                return new AstExpression.AstExpression4(ctx, ((AstExpression)(list[0])), ((AstHierarchyidCall)(list[1])));
-            }
-            if ((index == 3))
-            {
-                return new AstExpression.AstExpression5(ctx, ((AstExpression)(list[0])), ((AstId)(list[1])));
-            }
-            if ((index == 2))
-            {
-                return new AstExpression.AstExpression6(ctx, ((AstCaseExpression)(list[0])));
-            }
-            if ((index == 2))
-            {
-                return new AstExpression.AstExpression7(ctx, ((AstFullColumnName)(list[0])));
-            }
-            if ((index == 2))
-            {
-                return new AstExpression.AstExpression8(ctx, ((AstBracketExpression)(list[0])));
-            }
-            if ((index == 2))
-            {
-                return new AstExpression.AstExpression9(ctx, ((AstUnaryOperatorExpression)(list[0])));
+                return new AstExpression.AstExpression3(ctx, ((AstExpression)(list[3])), ((AstExpressionChained)(list[3])));
             }
             if ((index == 4))
             {
-                return new AstExpression.AstExpression10(ctx, ((AstExpression)(list[0])), ((AstExpressionOperator)(list[1])), ((AstExpression)(list[2])));
+                return new AstExpression.AstExpression4(ctx, ((AstExpression)(list[4])), ((AstHierarchyidCall)(list[4])));
             }
-            if ((index == 3))
+            if ((index == 5))
             {
-                return new AstExpression.AstExpression11(ctx, ((AstExpression)(list[0])), ((AstTimeZone)(list[1])));
+                return new AstExpression.AstExpression5(ctx, ((AstExpression)(list[5])), ((AstId)(list[5])));
             }
-            if ((index == 2))
+            if ((index == 6))
             {
-                return new AstExpression.AstExpression12(ctx, ((AstOverClause)(list[0])));
+                return new AstExpression.AstExpression6(ctx, ((AstCaseExpression)(list[6])));
             }
-            if ((index == 1))
+            if ((index == 7))
+            {
+                return new AstExpression.AstExpression7(ctx, ((AstFullColumnName)(list[7])));
+            }
+            if ((index == 8))
+            {
+                return new AstExpression.AstExpression8(ctx, ((AstBracketExpression)(list[8])));
+            }
+            if ((index == 9))
+            {
+                return new AstExpression.AstExpression9(ctx, ((AstUnaryOperatorExpression)(list[9])));
+            }
+            if ((index == 10))
+            {
+                return new AstExpression.AstExpression10(ctx, ((AstExpression)(list[10])), ((AstExpressionOperator)(list[10])), ((AstExpression)(list[10])));
+            }
+            if ((index == 11))
+            {
+                return new AstExpression.AstExpression11(ctx, ((AstExpression)(list[11])), ((AstTimeZone)(list[11])));
+            }
+            if ((index == 12))
+            {
+                return new AstExpression.AstExpression12(ctx, ((AstOverClause)(list[12])));
+            }
+            if ((index == 13))
             {
                 return new AstExpression.AstExpression13(ctx);
             }
@@ -56039,11 +56378,11 @@ namespace Bb.SqlServer.Asts
         {
             if ((list.Count == 3))
             {
-                if (AstRoot.Eval(list[0], typeof(AstExpression), false, false))
+                if (AstRoot.Eval(list[10], typeof(AstExpression), false, false))
                 {
-                    if (AstRoot.Eval(list[1], typeof(AstExpressionOperator), false, false))
+                    if (AstRoot.Eval(list[10], typeof(AstExpressionOperator), false, false))
                     {
-                        if (AstRoot.Eval(list[2], typeof(AstExpression), false, false))
+                        if (AstRoot.Eval(list[10], typeof(AstExpression), false, false))
                         {
                             return 10;
                         }
@@ -56052,30 +56391,30 @@ namespace Bb.SqlServer.Asts
             }
             if ((list.Count == 2))
             {
-                if (AstRoot.Eval(list[0], typeof(AstExpression), false, false))
+                if (AstRoot.Eval(list[3], typeof(AstExpression), false, false))
                 {
-                    if (AstRoot.Eval(list[1], typeof(AstExpressionChained), false, false))
+                    if (AstRoot.Eval(list[3], typeof(AstExpressionChained), false, false))
                     {
                         return 3;
                     }
                 }
-                if (AstRoot.Eval(list[0], typeof(AstExpression), false, false))
+                if (AstRoot.Eval(list[4], typeof(AstExpression), false, false))
                 {
-                    if (AstRoot.Eval(list[1], typeof(AstHierarchyidCall), false, false))
+                    if (AstRoot.Eval(list[4], typeof(AstHierarchyidCall), false, false))
                     {
                         return 4;
                     }
                 }
-                if (AstRoot.Eval(list[0], typeof(AstExpression), false, false))
+                if (AstRoot.Eval(list[5], typeof(AstExpression), false, false))
                 {
-                    if (AstRoot.Eval(list[1], typeof(AstId), false, false))
+                    if (AstRoot.Eval(list[5], typeof(AstId), false, false))
                     {
                         return 5;
                     }
                 }
-                if (AstRoot.Eval(list[0], typeof(AstExpression), false, false))
+                if (AstRoot.Eval(list[11], typeof(AstExpression), false, false))
                 {
-                    if (AstRoot.Eval(list[1], typeof(AstTimeZone), false, false))
+                    if (AstRoot.Eval(list[11], typeof(AstTimeZone), false, false))
                     {
                         return 11;
                     }
@@ -56083,31 +56422,31 @@ namespace Bb.SqlServer.Asts
             }
             if ((list.Count == 1))
             {
-                if (AstRoot.Eval(list[0], typeof(AstPrimitiveExpression), false, false))
+                if (AstRoot.Eval(list[1], typeof(AstPrimitiveExpression), false, false))
                 {
                     return 1;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstFunctionCall), false, false))
+                if (AstRoot.Eval(list[2], typeof(AstFunctionCall), false, false))
                 {
                     return 2;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstCaseExpression), false, false))
+                if (AstRoot.Eval(list[6], typeof(AstCaseExpression), false, false))
                 {
                     return 6;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstFullColumnName), false, false))
+                if (AstRoot.Eval(list[7], typeof(AstFullColumnName), false, false))
                 {
                     return 7;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstBracketExpression), false, false))
+                if (AstRoot.Eval(list[8], typeof(AstBracketExpression), false, false))
                 {
                     return 8;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstUnaryOperatorExpression), false, false))
+                if (AstRoot.Eval(list[9], typeof(AstUnaryOperatorExpression), false, false))
                 {
                     return 9;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstOverClause), false, false))
+                if (AstRoot.Eval(list[12], typeof(AstOverClause), false, false))
                 {
                     return 12;
                 }
@@ -56388,21 +56727,21 @@ namespace Bb.SqlServer.Asts
         public static AstExpressionChained Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstExpressionChained.Resolve(list);
-            if ((index == 2))
+            if ((index == 1))
             {
-                return new AstExpressionChained.AstExpressionChained1(ctx, ((AstValueCall)(list[0])));
+                return new AstExpressionChained.AstExpressionChained1(ctx, ((AstValueCall)(list[1])));
             }
             if ((index == 2))
             {
-                return new AstExpressionChained.AstExpressionChained2(ctx, ((AstQueryCall)(list[0])));
+                return new AstExpressionChained.AstExpressionChained2(ctx, ((AstQueryCall)(list[2])));
             }
-            if ((index == 2))
+            if ((index == 3))
             {
-                return new AstExpressionChained.AstExpressionChained3(ctx, ((AstExistCall)(list[0])));
+                return new AstExpressionChained.AstExpressionChained3(ctx, ((AstExistCall)(list[3])));
             }
-            if ((index == 2))
+            if ((index == 4))
             {
-                return new AstExpressionChained.AstExpressionChained4(ctx, ((AstModifyCall)(list[0])));
+                return new AstExpressionChained.AstExpressionChained4(ctx, ((AstModifyCall)(list[4])));
             }
             return null;
         }
@@ -56411,19 +56750,19 @@ namespace Bb.SqlServer.Asts
         {
             if ((list.Count == 1))
             {
-                if (AstRoot.Eval(list[0], typeof(AstValueCall), false, false))
+                if (AstRoot.Eval(list[1], typeof(AstValueCall), false, false))
                 {
                     return 1;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstQueryCall), false, false))
+                if (AstRoot.Eval(list[2], typeof(AstQueryCall), false, false))
                 {
                     return 2;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstExistCall), false, false))
+                if (AstRoot.Eval(list[3], typeof(AstExistCall), false, false))
                 {
                     return 3;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstModifyCall), false, false))
+                if (AstRoot.Eval(list[4], typeof(AstModifyCall), false, false))
                 {
                     return 4;
                 }
@@ -56595,17 +56934,17 @@ namespace Bb.SqlServer.Asts
             {
                 return new AstPrimitiveExpression.AstPrimitiveExpression1(ctx);
             }
-            if ((index == 1))
+            if ((index == 2))
             {
                 return new AstPrimitiveExpression.AstPrimitiveExpression2(ctx);
             }
-            if ((index == 2))
+            if ((index == 3))
             {
-                return new AstPrimitiveExpression.AstPrimitiveExpression3(ctx, ((AstLocalId)(list[0])));
+                return new AstPrimitiveExpression.AstPrimitiveExpression3(ctx, ((AstLocalId)(list[3])));
             }
-            if ((index == 2))
+            if ((index == 4))
             {
-                return new AstPrimitiveExpression.AstPrimitiveExpression4(ctx, ((AstConstant)(list[0])));
+                return new AstPrimitiveExpression.AstPrimitiveExpression4(ctx, ((AstConstant)(list[4])));
             }
             return null;
         }
@@ -56614,11 +56953,11 @@ namespace Bb.SqlServer.Asts
         {
             if ((list.Count == 1))
             {
-                if (AstRoot.Eval(list[0], typeof(AstLocalId), false, false))
+                if (AstRoot.Eval(list[3], typeof(AstLocalId), false, false))
                 {
                     return 1;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstConstant), false, false))
+                if (AstRoot.Eval(list[4], typeof(AstConstant), false, false))
                 {
                     return 2;
                 }
@@ -56677,11 +57016,11 @@ namespace Bb.SqlServer.Asts
             
             private AstExpression _caseExpr;
             
-            private AstSwitchSection _switchSection;
+            private IEnumerable<AstSwitchSection> _switchSection;
             
             private AstExpression _elseExpr;
             
-            internal AstCaseExpression1(ParserRuleContext ctx, AstExpression caseExpr, AstSwitchSection switchSection, AstExpression elseExpr) : 
+            internal AstCaseExpression1(ParserRuleContext ctx, AstExpression caseExpr, IEnumerable<AstSwitchSection> switchSection, AstExpression elseExpr) : 
                     base(ctx)
             {
                 _caseExpr = caseExpr;
@@ -56697,7 +57036,7 @@ namespace Bb.SqlServer.Asts
                 }
             }
             
-            public virtual AstSwitchSection SwitchSection
+            public virtual IEnumerable<AstSwitchSection> SwitchSection
             {
                 get
                 {
@@ -56724,18 +57063,18 @@ namespace Bb.SqlServer.Asts
         public partial class AstCaseExpression2 : AstCaseExpression
         {
             
-            private AstSwitchSearchConditionSection _switchSearchConditionSection;
+            private IEnumerable<AstSwitchSearchConditionSection> _switchSearchConditionSection;
             
             private AstExpression _elseExpr;
             
-            internal AstCaseExpression2(ParserRuleContext ctx, AstSwitchSearchConditionSection switchSearchConditionSection, AstExpression elseExpr) : 
+            internal AstCaseExpression2(ParserRuleContext ctx, IEnumerable<AstSwitchSearchConditionSection> switchSearchConditionSection, AstExpression elseExpr) : 
                     base(ctx)
             {
                 _switchSearchConditionSection = switchSearchConditionSection;
                 _elseExpr = elseExpr;
             }
             
-            public virtual AstSwitchSearchConditionSection SwitchSearchConditionSection
+            public virtual IEnumerable<AstSwitchSearchConditionSection> SwitchSearchConditionSection
             {
                 get
                 {
@@ -56777,13 +57116,13 @@ namespace Bb.SqlServer.Asts
         public static AstCaseExpression Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstCaseExpression.Resolve(list);
-            if ((index == 4))
+            if ((index == 1))
             {
-                return new AstCaseExpression.AstCaseExpression1(ctx, ((AstExpression)(list[0])), ((AstSwitchSection)(list[1])), ((AstExpression)(list[2])));
+                return new AstCaseExpression.AstCaseExpression1(ctx, ((AstExpression)(list[1])), ((IEnumerable<AstSwitchSection>)(list[1])), ((AstExpression)(list[1])));
             }
-            if ((index == 3))
+            if ((index == 2))
             {
-                return new AstCaseExpression.AstCaseExpression2(ctx, ((AstSwitchSearchConditionSection)(list[0])), ((AstExpression)(list[1])));
+                return new AstCaseExpression.AstCaseExpression2(ctx, ((IEnumerable<AstSwitchSearchConditionSection>)(list[2])), ((AstExpression)(list[2])));
             }
             return null;
         }
@@ -56792,11 +57131,11 @@ namespace Bb.SqlServer.Asts
         {
             if ((list.Count == 3))
             {
-                if (AstRoot.Eval(list[0], typeof(AstExpression), false, false))
+                if (AstRoot.Eval(list[1], typeof(AstExpression), false, false))
                 {
-                    if (AstRoot.Eval(list[1], typeof(AstSwitchSection), false, false))
+                    if (AstRoot.Eval(list[1], typeof(IEnumerable<AstSwitchSection>), false, false))
                     {
-                        if (AstRoot.Eval(list[2], typeof(AstExpression), false, false))
+                        if (AstRoot.Eval(list[1], typeof(AstExpression), false, false))
                         {
                             return 1;
                         }
@@ -56805,9 +57144,9 @@ namespace Bb.SqlServer.Asts
             }
             if ((list.Count == 2))
             {
-                if (AstRoot.Eval(list[0], typeof(AstSwitchSearchConditionSection), false, false))
+                if (AstRoot.Eval(list[2], typeof(IEnumerable<AstSwitchSearchConditionSection>), false, false))
                 {
-                    if (AstRoot.Eval(list[1], typeof(AstExpression), false, false))
+                    if (AstRoot.Eval(list[2], typeof(AstExpression), false, false))
                     {
                         return 2;
                     }
@@ -56933,13 +57272,13 @@ namespace Bb.SqlServer.Asts
         public static AstUnaryOperatorExpression Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstUnaryOperatorExpression.Resolve(list);
+            if ((index == 1))
+            {
+                return new AstUnaryOperatorExpression.AstUnaryOperatorExpression1(ctx, ((AstExpression)(list[1])));
+            }
             if ((index == 2))
             {
-                return new AstUnaryOperatorExpression.AstUnaryOperatorExpression1(ctx, ((AstExpression)(list[0])));
-            }
-            if ((index == 3))
-            {
-                return new AstUnaryOperatorExpression.AstUnaryOperatorExpression2(ctx, ((AstPlusMinus)(list[0])), ((AstExpression)(list[1])));
+                return new AstUnaryOperatorExpression.AstUnaryOperatorExpression2(ctx, ((AstPlusMinus)(list[2])), ((AstExpression)(list[2])));
             }
             return null;
         }
@@ -56948,9 +57287,9 @@ namespace Bb.SqlServer.Asts
         {
             if ((list.Count == 2))
             {
-                if (AstRoot.Eval(list[0], typeof(AstPlusMinus), false, false))
+                if (AstRoot.Eval(list[2], typeof(AstPlusMinus), false, false))
                 {
-                    if (AstRoot.Eval(list[1], typeof(AstExpression), false, false))
+                    if (AstRoot.Eval(list[2], typeof(AstExpression), false, false))
                     {
                         return 2;
                     }
@@ -56958,7 +57297,7 @@ namespace Bb.SqlServer.Asts
             }
             if ((list.Count == 1))
             {
-                if (AstRoot.Eval(list[0], typeof(AstExpression), false, false))
+                if (AstRoot.Eval(list[1], typeof(AstExpression), false, false))
                 {
                     return 1;
                 }
@@ -57073,13 +57412,13 @@ namespace Bb.SqlServer.Asts
         public static AstBracketExpression Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstBracketExpression.Resolve(list);
-            if ((index == 2))
+            if ((index == 1))
             {
-                return new AstBracketExpression.AstBracketExpression1(ctx, ((AstExpression)(list[0])));
+                return new AstBracketExpression.AstBracketExpression1(ctx, ((AstExpression)(list[1])));
             }
             if ((index == 2))
             {
-                return new AstBracketExpression.AstBracketExpression2(ctx, ((AstSubquery)(list[0])));
+                return new AstBracketExpression.AstBracketExpression2(ctx, ((AstSubquery)(list[2])));
             }
             return null;
         }
@@ -57088,11 +57427,11 @@ namespace Bb.SqlServer.Asts
         {
             if ((list.Count == 1))
             {
-                if (AstRoot.Eval(list[0], typeof(AstExpression), false, false))
+                if (AstRoot.Eval(list[1], typeof(AstExpression), false, false))
                 {
                     return 1;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstSubquery), false, false))
+                if (AstRoot.Eval(list[2], typeof(AstSubquery), false, false))
                 {
                     return 2;
                 }
@@ -57286,19 +57625,19 @@ namespace Bb.SqlServer.Asts
             }
             if ((index == 2))
             {
-                return new AstConstantExpression.AstConstantExpression2(ctx, ((AstConstant)(list[0])));
+                return new AstConstantExpression.AstConstantExpression2(ctx, ((AstConstant)(list[2])));
             }
-            if ((index == 2))
+            if ((index == 3))
             {
-                return new AstConstantExpression.AstConstantExpression3(ctx, ((AstFunctionCall)(list[0])));
+                return new AstConstantExpression.AstConstantExpression3(ctx, ((AstFunctionCall)(list[3])));
             }
-            if ((index == 2))
+            if ((index == 4))
             {
-                return new AstConstantExpression.AstConstantExpression4(ctx, ((AstLocalId)(list[0])));
+                return new AstConstantExpression.AstConstantExpression4(ctx, ((AstLocalId)(list[4])));
             }
-            if ((index == 2))
+            if ((index == 5))
             {
-                return new AstConstantExpression.AstConstantExpression5(ctx, ((AstConstantExpression)(list[0])));
+                return new AstConstantExpression.AstConstantExpression5(ctx, ((AstConstantExpression)(list[5])));
             }
             return null;
         }
@@ -57307,19 +57646,19 @@ namespace Bb.SqlServer.Asts
         {
             if ((list.Count == 1))
             {
-                if (AstRoot.Eval(list[0], typeof(AstConstant), false, false))
+                if (AstRoot.Eval(list[2], typeof(AstConstant), false, false))
                 {
                     return 1;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstFunctionCall), false, false))
+                if (AstRoot.Eval(list[3], typeof(AstFunctionCall), false, false))
                 {
                     return 2;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstLocalId), false, false))
+                if (AstRoot.Eval(list[4], typeof(AstLocalId), false, false))
                 {
                     return 3;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstConstantExpression), false, false))
+                if (AstRoot.Eval(list[5], typeof(AstConstantExpression), false, false))
                 {
                     return 4;
                 }
@@ -57389,7 +57728,13 @@ namespace Bb.SqlServer.Asts
             "_name_list  RR_BRACKET)?  AS  LR_BRACKET  cte_query = select_statement  RR_BRACK" +
             "ET";
         
-        internal AstCommonTableExpression(ParserRuleContext ctx, List<AstRoot> list) : 
+        private AstId _expressionName;
+        
+        private AstColumnNameList _columns;
+        
+        private AstSelectStatement _cteQuery;
+        
+        internal AstCommonTableExpression(ParserRuleContext ctx) : 
                 base(ctx)
         {
         }
@@ -57412,7 +57757,7 @@ namespace Bb.SqlServer.Asts
             _cteQuery = cteQuery;
         }
         
-        public virtual AstId _expressionName
+        public virtual AstId ExpressionName
         {
             get
             {
@@ -57420,7 +57765,7 @@ namespace Bb.SqlServer.Asts
             }
         }
         
-        public virtual AstColumnNameList _columns
+        public virtual AstColumnNameList Columns
         {
             get
             {
@@ -57428,7 +57773,7 @@ namespace Bb.SqlServer.Asts
             }
         }
         
-        public virtual AstSelectStatement _cteQuery
+        public virtual AstSelectStatement CteQuery
         {
             get
             {
@@ -57439,6 +57784,11 @@ namespace Bb.SqlServer.Asts
         public override void Accept(IAstTSqlVisitor visitor)
         {
             visitor.VisitCommonTableExpression(this);
+        }
+        
+        public static AstCommonTableExpression Create(ParserRuleContext ctx, List<AstRoot> list)
+        {
+            return new AstCommonTableExpression(ctx, ((AstId)(list[0])), ((AstColumnNameList)(list[1])), ((AstSelectStatement)(list[2])));
         }
         
         /// <summary>
@@ -57644,17 +57994,17 @@ namespace Bb.SqlServer.Asts
         public static AstUpdateElem Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstUpdateElem.Resolve(list);
-            if ((index == 5))
+            if ((index == 1))
             {
-                return new AstUpdateElem.AstUpdateElem1(ctx, ((AstLocalId)(list[0])), ((AstFullColumnName)(list[1])), ((AstUpdateOperator)(list[2])), ((AstExpression)(list[3])));
+                return new AstUpdateElem.AstUpdateElem1(ctx, ((AstLocalId)(list[1])), ((AstFullColumnName)(list[1])), ((AstUpdateOperator)(list[1])), ((AstExpression)(list[1])));
             }
-            if ((index == 4))
+            if ((index == 2))
             {
-                return new AstUpdateElem.AstUpdateElem2(ctx, ((AstColumnRef)(list[0])), ((AstUpdateOperator)(list[1])), ((AstExpression)(list[2])));
+                return new AstUpdateElem.AstUpdateElem2(ctx, ((AstColumnRef)(list[2])), ((AstUpdateOperator)(list[2])), ((AstExpression)(list[2])));
             }
-            if ((index == 4))
+            if ((index == 3))
             {
-                return new AstUpdateElem.AstUpdateElem3(ctx, ((AstUdtColumnId)(list[0])), ((AstMethodId)(list[1])), ((AstExpressionList)(list[2])));
+                return new AstUpdateElem.AstUpdateElem3(ctx, ((AstUdtColumnId)(list[3])), ((AstMethodId)(list[3])), ((AstExpressionList)(list[3])));
             }
             return null;
         }
@@ -57663,13 +58013,13 @@ namespace Bb.SqlServer.Asts
         {
             if ((list.Count == 4))
             {
-                if (AstRoot.Eval(list[0], typeof(AstLocalId), false, false))
+                if (AstRoot.Eval(list[1], typeof(AstLocalId), false, false))
                 {
                     if (AstRoot.Eval(list[1], typeof(AstFullColumnName), false, false))
                     {
-                        if (AstRoot.Eval(list[2], typeof(AstUpdateOperator), false, false))
+                        if (AstRoot.Eval(list[1], typeof(AstUpdateOperator), false, false))
                         {
-                            if (AstRoot.Eval(list[3], typeof(AstExpression), false, false))
+                            if (AstRoot.Eval(list[1], typeof(AstExpression), false, false))
                             {
                                 return 1;
                             }
@@ -57679,9 +58029,9 @@ namespace Bb.SqlServer.Asts
             }
             if ((list.Count == 3))
             {
-                if (AstRoot.Eval(list[0], typeof(AstColumnRef), false, false))
+                if (AstRoot.Eval(list[2], typeof(AstColumnRef), false, false))
                 {
-                    if (AstRoot.Eval(list[1], typeof(AstUpdateOperator), false, false))
+                    if (AstRoot.Eval(list[2], typeof(AstUpdateOperator), false, false))
                     {
                         if (AstRoot.Eval(list[2], typeof(AstExpression), false, false))
                         {
@@ -57689,11 +58039,11 @@ namespace Bb.SqlServer.Asts
                         }
                     }
                 }
-                if (AstRoot.Eval(list[0], typeof(AstUdtColumnId), false, false))
+                if (AstRoot.Eval(list[3], typeof(AstUdtColumnId), false, false))
                 {
-                    if (AstRoot.Eval(list[1], typeof(AstMethodId), false, false))
+                    if (AstRoot.Eval(list[3], typeof(AstMethodId), false, false))
                     {
-                        if (AstRoot.Eval(list[2], typeof(AstExpressionList), false, false))
+                        if (AstRoot.Eval(list[3], typeof(AstExpressionList), false, false))
                         {
                             return 3;
                         }
@@ -57819,13 +58169,13 @@ namespace Bb.SqlServer.Asts
         public static AstColumnRef Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstColumnRef.Resolve(list);
-            if ((index == 2))
+            if ((index == 1))
             {
-                return new AstColumnRef.AstColumnRef1(ctx, ((AstFullColumnName)(list[0])));
+                return new AstColumnRef.AstColumnRef1(ctx, ((AstFullColumnName)(list[1])));
             }
             if ((index == 2))
             {
-                return new AstColumnRef.AstColumnRef2(ctx, ((AstLocalId)(list[0])));
+                return new AstColumnRef.AstColumnRef2(ctx, ((AstLocalId)(list[2])));
             }
             return null;
         }
@@ -57834,11 +58184,11 @@ namespace Bb.SqlServer.Asts
         {
             if ((list.Count == 1))
             {
-                if (AstRoot.Eval(list[0], typeof(AstFullColumnName), false, false))
+                if (AstRoot.Eval(list[1], typeof(AstFullColumnName), false, false))
                 {
                     return 1;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstLocalId), false, false))
+                if (AstRoot.Eval(list[2], typeof(AstLocalId), false, false))
                 {
                     return 2;
                 }
@@ -57947,7 +58297,7 @@ namespace Bb.SqlServer.Asts
             }
             if ((index == 2))
             {
-                return new AstUpdateOperator.AstUpdateOperator2(ctx, ((AstAssignmentOperator)(list[0])));
+                return new AstUpdateOperator.AstUpdateOperator2(ctx, ((AstAssignmentOperator)(list[2])));
             }
             return null;
         }
@@ -57956,7 +58306,7 @@ namespace Bb.SqlServer.Asts
         {
             if ((list.Count == 1))
             {
-                if (AstRoot.Eval(list[0], typeof(AstAssignmentOperator), false, false))
+                if (AstRoot.Eval(list[2], typeof(AstAssignmentOperator), false, false))
                 {
                     return 1;
                 }
@@ -58115,13 +58465,13 @@ namespace Bb.SqlServer.Asts
         public static AstUpdateElemMerge Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstUpdateElemMerge.Resolve(list);
-            if ((index == 4))
+            if ((index == 1))
             {
-                return new AstUpdateElemMerge.AstUpdateElemMerge1(ctx, ((AstColumnRef)(list[0])), ((AstUpdateOperator)(list[1])), ((AstExpression)(list[2])));
+                return new AstUpdateElemMerge.AstUpdateElemMerge1(ctx, ((AstColumnRef)(list[1])), ((AstUpdateOperator)(list[1])), ((AstExpression)(list[1])));
             }
-            if ((index == 4))
+            if ((index == 2))
             {
-                return new AstUpdateElemMerge.AstUpdateElemMerge2(ctx, ((AstUdtColumnId)(list[0])), ((AstMethodId)(list[1])), ((AstExpressionList)(list[2])));
+                return new AstUpdateElemMerge.AstUpdateElemMerge2(ctx, ((AstUdtColumnId)(list[2])), ((AstMethodId)(list[2])), ((AstExpressionList)(list[2])));
             }
             return null;
         }
@@ -58130,19 +58480,19 @@ namespace Bb.SqlServer.Asts
         {
             if ((list.Count == 3))
             {
-                if (AstRoot.Eval(list[0], typeof(AstColumnRef), false, false))
+                if (AstRoot.Eval(list[1], typeof(AstColumnRef), false, false))
                 {
                     if (AstRoot.Eval(list[1], typeof(AstUpdateOperator), false, false))
                     {
-                        if (AstRoot.Eval(list[2], typeof(AstExpression), false, false))
+                        if (AstRoot.Eval(list[1], typeof(AstExpression), false, false))
                         {
                             return 1;
                         }
                     }
                 }
-                if (AstRoot.Eval(list[0], typeof(AstUdtColumnId), false, false))
+                if (AstRoot.Eval(list[2], typeof(AstUdtColumnId), false, false))
                 {
-                    if (AstRoot.Eval(list[1], typeof(AstMethodId), false, false))
+                    if (AstRoot.Eval(list[2], typeof(AstMethodId), false, false))
                     {
                         if (AstRoot.Eval(list[2], typeof(AstExpressionList), false, false))
                         {
@@ -58283,13 +58633,13 @@ namespace Bb.SqlServer.Asts
         public static AstSearchCondition Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstSearchCondition.Resolve(list);
+            if ((index == 1))
+            {
+                return new AstSearchCondition.AstSearchCondition1(ctx, ((AstSubSearchCondition)(list[1])));
+            }
             if ((index == 2))
             {
-                return new AstSearchCondition.AstSearchCondition1(ctx, ((AstSubSearchCondition)(list[0])));
-            }
-            if ((index == 4))
-            {
-                return new AstSearchCondition.AstSearchCondition2(ctx, ((AstSearchCondition)(list[0])), ((AstAndOr)(list[1])), ((AstSearchCondition)(list[2])));
+                return new AstSearchCondition.AstSearchCondition2(ctx, ((AstSearchCondition)(list[2])), ((AstAndOr)(list[2])), ((AstSearchCondition)(list[2])));
             }
             return null;
         }
@@ -58298,9 +58648,9 @@ namespace Bb.SqlServer.Asts
         {
             if ((list.Count == 3))
             {
-                if (AstRoot.Eval(list[0], typeof(AstSearchCondition), false, false))
+                if (AstRoot.Eval(list[2], typeof(AstSearchCondition), false, false))
                 {
-                    if (AstRoot.Eval(list[1], typeof(AstAndOr), false, false))
+                    if (AstRoot.Eval(list[2], typeof(AstAndOr), false, false))
                     {
                         if (AstRoot.Eval(list[2], typeof(AstSearchCondition), false, false))
                         {
@@ -58311,7 +58661,7 @@ namespace Bb.SqlServer.Asts
             }
             if ((list.Count == 1))
             {
-                if (AstRoot.Eval(list[0], typeof(AstSubSearchCondition), false, false))
+                if (AstRoot.Eval(list[1], typeof(AstSubSearchCondition), false, false))
                 {
                     return 1;
                 }
@@ -58426,13 +58776,13 @@ namespace Bb.SqlServer.Asts
         public static AstSubSearchCondition Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstSubSearchCondition.Resolve(list);
-            if ((index == 2))
+            if ((index == 1))
             {
-                return new AstSubSearchCondition.AstSubSearchCondition1(ctx, ((AstPredicateExpr)(list[0])));
+                return new AstSubSearchCondition.AstSubSearchCondition1(ctx, ((AstPredicateExpr)(list[1])));
             }
             if ((index == 2))
             {
-                return new AstSubSearchCondition.AstSubSearchCondition2(ctx, ((AstSearchCondition)(list[0])));
+                return new AstSubSearchCondition.AstSubSearchCondition2(ctx, ((AstSearchCondition)(list[2])));
             }
             return null;
         }
@@ -58441,11 +58791,11 @@ namespace Bb.SqlServer.Asts
         {
             if ((list.Count == 1))
             {
-                if (AstRoot.Eval(list[0], typeof(AstPredicateExpr), false, false))
+                if (AstRoot.Eval(list[1], typeof(AstPredicateExpr), false, false))
                 {
                     return 1;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstSearchCondition), false, false))
+                if (AstRoot.Eval(list[2], typeof(AstSearchCondition), false, false))
                 {
                     return 2;
                 }
@@ -58808,41 +59158,41 @@ namespace Bb.SqlServer.Asts
         public static AstPredicateExpr Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstPredicateExpr.Resolve(list);
-            if ((index == 2))
+            if ((index == 1))
             {
-                return new AstPredicateExpr.AstPredicateExpr1(ctx, ((AstSubquery)(list[0])));
+                return new AstPredicateExpr.AstPredicateExpr1(ctx, ((AstSubquery)(list[1])));
             }
             if ((index == 2))
             {
-                return new AstPredicateExpr.AstPredicateExpr2(ctx, ((AstFreetextPredicate)(list[0])));
-            }
-            if ((index == 2))
-            {
-                return new AstPredicateExpr.AstPredicateExpr3(ctx, ((AstPredicateBinary)(list[0])));
-            }
-            if ((index == 2))
-            {
-                return new AstPredicateExpr.AstPredicateExpr4(ctx, ((AstPredicateMultiAssign)(list[0])));
-            }
-            if ((index == 5))
-            {
-                return new AstPredicateExpr.AstPredicateExpr5(ctx, ((AstExpression)(list[0])), ((AstComparisonOperator)(list[1])), ((AstAllSomeAny)(list[2])), ((AstSubquery)(list[3])));
-            }
-            if ((index == 2))
-            {
-                return new AstPredicateExpr.AstPredicateExpr6(ctx, ((AstPredicateTier)(list[0])));
-            }
-            if ((index == 2))
-            {
-                return new AstPredicateExpr.AstPredicateExpr7(ctx, ((AstPredicateNotIn)(list[0])));
-            }
-            if ((index == 2))
-            {
-                return new AstPredicateExpr.AstPredicateExpr8(ctx, ((AstPredicateNotLike)(list[0])));
+                return new AstPredicateExpr.AstPredicateExpr2(ctx, ((AstFreetextPredicate)(list[2])));
             }
             if ((index == 3))
             {
-                return new AstPredicateExpr.AstPredicateExpr9(ctx, ((AstExpression)(list[0])), ((AstNullNotnull)(list[1])));
+                return new AstPredicateExpr.AstPredicateExpr3(ctx, ((AstPredicateBinary)(list[3])));
+            }
+            if ((index == 4))
+            {
+                return new AstPredicateExpr.AstPredicateExpr4(ctx, ((AstPredicateMultiAssign)(list[4])));
+            }
+            if ((index == 5))
+            {
+                return new AstPredicateExpr.AstPredicateExpr5(ctx, ((AstExpression)(list[5])), ((AstComparisonOperator)(list[5])), ((AstAllSomeAny)(list[5])), ((AstSubquery)(list[5])));
+            }
+            if ((index == 6))
+            {
+                return new AstPredicateExpr.AstPredicateExpr6(ctx, ((AstPredicateTier)(list[6])));
+            }
+            if ((index == 7))
+            {
+                return new AstPredicateExpr.AstPredicateExpr7(ctx, ((AstPredicateNotIn)(list[7])));
+            }
+            if ((index == 8))
+            {
+                return new AstPredicateExpr.AstPredicateExpr8(ctx, ((AstPredicateNotLike)(list[8])));
+            }
+            if ((index == 9))
+            {
+                return new AstPredicateExpr.AstPredicateExpr9(ctx, ((AstExpression)(list[9])), ((AstNullNotnull)(list[9])));
             }
             return null;
         }
@@ -58851,13 +59201,13 @@ namespace Bb.SqlServer.Asts
         {
             if ((list.Count == 4))
             {
-                if (AstRoot.Eval(list[0], typeof(AstExpression), false, false))
+                if (AstRoot.Eval(list[5], typeof(AstExpression), false, false))
                 {
-                    if (AstRoot.Eval(list[1], typeof(AstComparisonOperator), false, false))
+                    if (AstRoot.Eval(list[5], typeof(AstComparisonOperator), false, false))
                     {
-                        if (AstRoot.Eval(list[2], typeof(AstAllSomeAny), false, false))
+                        if (AstRoot.Eval(list[5], typeof(AstAllSomeAny), false, false))
                         {
-                            if (AstRoot.Eval(list[3], typeof(AstSubquery), false, false))
+                            if (AstRoot.Eval(list[5], typeof(AstSubquery), false, false))
                             {
                                 return 5;
                             }
@@ -58867,9 +59217,9 @@ namespace Bb.SqlServer.Asts
             }
             if ((list.Count == 2))
             {
-                if (AstRoot.Eval(list[0], typeof(AstExpression), false, false))
+                if (AstRoot.Eval(list[9], typeof(AstExpression), false, false))
                 {
-                    if (AstRoot.Eval(list[1], typeof(AstNullNotnull), false, false))
+                    if (AstRoot.Eval(list[9], typeof(AstNullNotnull), false, false))
                     {
                         return 9;
                     }
@@ -58877,31 +59227,31 @@ namespace Bb.SqlServer.Asts
             }
             if ((list.Count == 1))
             {
-                if (AstRoot.Eval(list[0], typeof(AstSubquery), false, false))
+                if (AstRoot.Eval(list[1], typeof(AstSubquery), false, false))
                 {
                     return 1;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstFreetextPredicate), false, false))
+                if (AstRoot.Eval(list[2], typeof(AstFreetextPredicate), false, false))
                 {
                     return 2;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstPredicateBinary), false, false))
+                if (AstRoot.Eval(list[3], typeof(AstPredicateBinary), false, false))
                 {
                     return 3;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstPredicateMultiAssign), false, false))
+                if (AstRoot.Eval(list[4], typeof(AstPredicateMultiAssign), false, false))
                 {
                     return 4;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstPredicateTier), false, false))
+                if (AstRoot.Eval(list[6], typeof(AstPredicateTier), false, false))
                 {
                     return 6;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstPredicateNotIn), false, false))
+                if (AstRoot.Eval(list[7], typeof(AstPredicateNotIn), false, false))
                 {
                     return 7;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstPredicateNotLike), false, false))
+                if (AstRoot.Eval(list[8], typeof(AstPredicateNotLike), false, false))
                 {
                     return 8;
                 }
@@ -59148,17 +59498,17 @@ namespace Bb.SqlServer.Asts
         public static AstQueryExpression Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstQueryExpression.Resolve(list);
+            if ((index == 1))
+            {
+                return new AstQueryExpression.AstQueryExpression1(ctx, ((AstQuerySpecification)(list[1])));
+            }
             if ((index == 2))
             {
-                return new AstQueryExpression.AstQueryExpression1(ctx, ((AstQuerySpecification)(list[0])));
+                return new AstQueryExpression.AstQueryExpression2(ctx, ((AstQueryExpression)(list[2])), ((AstQueryExpression)(list[2])));
             }
             if ((index == 3))
             {
-                return new AstQueryExpression.AstQueryExpression2(ctx, ((AstQueryExpression)(list[0])), ((AstQueryExpression)(list[1])));
-            }
-            if ((index == 4))
-            {
-                return new AstQueryExpression.AstQueryExpression3(ctx, ((AstQuerySpecification)(list[0])), ((AstSelectOrderByClause)(list[1])), ((AstSqlUnions)(list[2])));
+                return new AstQueryExpression.AstQueryExpression3(ctx, ((AstQuerySpecification)(list[3])), ((AstSelectOrderByClause)(list[3])), ((AstSqlUnions)(list[3])));
             }
             return null;
         }
@@ -59167,11 +59517,11 @@ namespace Bb.SqlServer.Asts
         {
             if ((list.Count == 3))
             {
-                if (AstRoot.Eval(list[0], typeof(AstQuerySpecification), false, false))
+                if (AstRoot.Eval(list[3], typeof(AstQuerySpecification), false, false))
                 {
-                    if (AstRoot.Eval(list[1], typeof(AstSelectOrderByClause), false, false))
+                    if (AstRoot.Eval(list[3], typeof(AstSelectOrderByClause), false, false))
                     {
-                        if (AstRoot.Eval(list[2], typeof(AstSqlUnions), false, false))
+                        if (AstRoot.Eval(list[3], typeof(AstSqlUnions), false, false))
                         {
                             return 3;
                         }
@@ -59180,9 +59530,9 @@ namespace Bb.SqlServer.Asts
             }
             if ((list.Count == 2))
             {
-                if (AstRoot.Eval(list[0], typeof(AstQueryExpression), false, false))
+                if (AstRoot.Eval(list[2], typeof(AstQueryExpression), false, false))
                 {
-                    if (AstRoot.Eval(list[1], typeof(AstQueryExpression), false, false))
+                    if (AstRoot.Eval(list[2], typeof(AstQueryExpression), false, false))
                     {
                         return 2;
                     }
@@ -59190,7 +59540,7 @@ namespace Bb.SqlServer.Asts
             }
             if ((list.Count == 1))
             {
-                if (AstRoot.Eval(list[0], typeof(AstQuerySpecification), false, false))
+                if (AstRoot.Eval(list[1], typeof(AstQuerySpecification), false, false))
                 {
                     return 1;
                 }
@@ -59315,13 +59665,13 @@ namespace Bb.SqlServer.Asts
         public static AstSqlUnionDef Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstSqlUnionDef.Resolve(list);
-            if ((index == 2))
+            if ((index == 1))
             {
-                return new AstSqlUnionDef.AstSqlUnionDef1(ctx, ((AstQuerySpecification)(list[0])));
+                return new AstSqlUnionDef.AstSqlUnionDef1(ctx, ((AstQuerySpecification)(list[1])));
             }
             if ((index == 2))
             {
-                return new AstSqlUnionDef.AstSqlUnionDef2(ctx, ((AstQueryExpression)(list[0])));
+                return new AstSqlUnionDef.AstSqlUnionDef2(ctx, ((AstQueryExpression)(list[2])));
             }
             return null;
         }
@@ -59330,11 +59680,11 @@ namespace Bb.SqlServer.Asts
         {
             if ((list.Count == 1))
             {
-                if (AstRoot.Eval(list[0], typeof(AstQuerySpecification), false, false))
+                if (AstRoot.Eval(list[1], typeof(AstQuerySpecification), false, false))
                 {
                     return 1;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstQueryExpression), false, false))
+                if (AstRoot.Eval(list[2], typeof(AstQueryExpression), false, false))
                 {
                     return 2;
                 }
@@ -59447,13 +59797,13 @@ namespace Bb.SqlServer.Asts
         public static AstTopClause Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstTopClause.Resolve(list);
-            if ((index == 2))
+            if ((index == 1))
             {
-                return new AstTopClause.AstTopClause1(ctx, ((AstTopPercent)(list[0])));
+                return new AstTopClause.AstTopClause1(ctx, ((AstTopPercent)(list[1])));
             }
             if ((index == 2))
             {
-                return new AstTopClause.AstTopClause2(ctx, ((AstTopCount)(list[0])));
+                return new AstTopClause.AstTopClause2(ctx, ((AstTopCount)(list[2])));
             }
             return null;
         }
@@ -59462,11 +59812,11 @@ namespace Bb.SqlServer.Asts
         {
             if ((list.Count == 1))
             {
-                if (AstRoot.Eval(list[0], typeof(AstTopPercent), false, false))
+                if (AstRoot.Eval(list[1], typeof(AstTopPercent), false, false))
                 {
                     return 1;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstTopCount), false, false))
+                if (AstRoot.Eval(list[2], typeof(AstTopCount), false, false))
                 {
                     return 2;
                 }
@@ -59581,13 +59931,13 @@ namespace Bb.SqlServer.Asts
         public static AstTopPercent Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstTopPercent.Resolve(list);
-            if ((index == 2))
+            if ((index == 1))
             {
-                return new AstTopPercent.AstTopPercent1(ctx, ((AstPercentConstant)(list[0])));
+                return new AstTopPercent.AstTopPercent1(ctx, ((AstPercentConstant)(list[1])));
             }
             if ((index == 2))
             {
-                return new AstTopPercent.AstTopPercent2(ctx, ((AstExpression)(list[0])));
+                return new AstTopPercent.AstTopPercent2(ctx, ((AstExpression)(list[2])));
             }
             return null;
         }
@@ -59596,11 +59946,11 @@ namespace Bb.SqlServer.Asts
         {
             if ((list.Count == 1))
             {
-                if (AstRoot.Eval(list[0], typeof(AstPercentConstant), false, false))
+                if (AstRoot.Eval(list[1], typeof(AstPercentConstant), false, false))
                 {
                     return 1;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstExpression), false, false))
+                if (AstRoot.Eval(list[2], typeof(AstExpression), false, false))
                 {
                     return 2;
                 }
@@ -59742,17 +60092,17 @@ namespace Bb.SqlServer.Asts
         public static AstPercentConstant Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstPercentConstant.Resolve(list);
-            if ((index == 2))
+            if ((index == 1))
             {
-                return new AstPercentConstant.AstPercentConstant1(ctx, ((AstReal)(list[0])));
+                return new AstPercentConstant.AstPercentConstant1(ctx, ((AstReal)(list[1])));
             }
             if ((index == 2))
             {
-                return new AstPercentConstant.AstPercentConstant2(ctx, ((AstFloat)(list[0])));
+                return new AstPercentConstant.AstPercentConstant2(ctx, ((AstFloat)(list[2])));
             }
-            if ((index == 2))
+            if ((index == 3))
             {
-                return new AstPercentConstant.AstPercentConstant3(ctx, ((AstDecimal)(list[0])));
+                return new AstPercentConstant.AstPercentConstant3(ctx, ((AstDecimal)(list[3])));
             }
             return null;
         }
@@ -59761,15 +60111,15 @@ namespace Bb.SqlServer.Asts
         {
             if ((list.Count == 1))
             {
-                if (AstRoot.Eval(list[0], typeof(AstReal), false, false))
+                if (AstRoot.Eval(list[1], typeof(AstReal), false, false))
                 {
                     return 1;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstFloat), false, false))
+                if (AstRoot.Eval(list[2], typeof(AstFloat), false, false))
                 {
                     return 2;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstDecimal), false, false))
+                if (AstRoot.Eval(list[3], typeof(AstDecimal), false, false))
                 {
                     return 3;
                 }
@@ -59894,13 +60244,13 @@ namespace Bb.SqlServer.Asts
         public static AstTopCount Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstTopCount.Resolve(list);
-            if ((index == 2))
+            if ((index == 1))
             {
-                return new AstTopCount.AstTopCount1(ctx, ((AstDecimal)(list[0])));
+                return new AstTopCount.AstTopCount1(ctx, ((AstDecimal)(list[1])));
             }
             if ((index == 2))
             {
-                return new AstTopCount.AstTopCount2(ctx, ((AstExpression)(list[0])));
+                return new AstTopCount.AstTopCount2(ctx, ((AstExpression)(list[2])));
             }
             return null;
         }
@@ -59909,11 +60259,11 @@ namespace Bb.SqlServer.Asts
         {
             if ((list.Count == 1))
             {
-                if (AstRoot.Eval(list[0], typeof(AstDecimal), false, false))
+                if (AstRoot.Eval(list[1], typeof(AstDecimal), false, false))
                 {
                     return 1;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstExpression), false, false))
+                if (AstRoot.Eval(list[2], typeof(AstExpression), false, false))
                 {
                     return 2;
                 }
@@ -60133,19 +60483,19 @@ namespace Bb.SqlServer.Asts
             }
             if ((index == 2))
             {
-                return new AstForClause.AstForClause2(ctx, ((AstForClauseXmlRaw)(list[0])));
+                return new AstForClause.AstForClause2(ctx, ((AstForClauseXmlRaw)(list[2])));
             }
-            if ((index == 2))
+            if ((index == 3))
             {
-                return new AstForClause.AstForClause3(ctx, ((AstXmlCommonDirectives)(list[0])));
+                return new AstForClause.AstForClause3(ctx, ((AstXmlCommonDirectives)(list[3])));
             }
             if ((index == 4))
             {
-                return new AstForClause.AstForClause4(ctx, ((AstStringtext)(list[0])), ((AstXmlCommonDirectives)(list[1])), ((AstAbsentXsinil)(list[2])));
+                return new AstForClause.AstForClause4(ctx, ((AstStringtext)(list[4])), ((AstXmlCommonDirectives)(list[4])), ((AstAbsentXsinil)(list[4])));
             }
-            if ((index == 2))
+            if ((index == 5))
             {
-                return new AstForClause.AstForClause5(ctx, ((AstForClauseJson)(list[0])));
+                return new AstForClause.AstForClause5(ctx, ((AstForClauseJson)(list[5])));
             }
             return null;
         }
@@ -60154,11 +60504,11 @@ namespace Bb.SqlServer.Asts
         {
             if ((list.Count == 3))
             {
-                if (AstRoot.Eval(list[0], typeof(AstStringtext), false, false))
+                if (AstRoot.Eval(list[4], typeof(AstStringtext), false, false))
                 {
-                    if (AstRoot.Eval(list[1], typeof(AstXmlCommonDirectives), false, false))
+                    if (AstRoot.Eval(list[4], typeof(AstXmlCommonDirectives), false, false))
                     {
-                        if (AstRoot.Eval(list[2], typeof(AstAbsentXsinil), false, false))
+                        if (AstRoot.Eval(list[4], typeof(AstAbsentXsinil), false, false))
                         {
                             return 3;
                         }
@@ -60167,15 +60517,15 @@ namespace Bb.SqlServer.Asts
             }
             if ((list.Count == 1))
             {
-                if (AstRoot.Eval(list[0], typeof(AstForClauseXmlRaw), false, false))
+                if (AstRoot.Eval(list[2], typeof(AstForClauseXmlRaw), false, false))
                 {
                     return 1;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstXmlCommonDirectives), false, false))
+                if (AstRoot.Eval(list[3], typeof(AstXmlCommonDirectives), false, false))
                 {
                     return 2;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstForClauseJson), false, false))
+                if (AstRoot.Eval(list[5], typeof(AstForClauseJson), false, false))
                 {
                     return 4;
                 }
@@ -60330,13 +60680,13 @@ namespace Bb.SqlServer.Asts
             {
                 return new AstXmlCommonDirective.AstXmlCommonDirective1(ctx);
             }
-            if ((index == 1))
+            if ((index == 2))
             {
                 return new AstXmlCommonDirective.AstXmlCommonDirective2(ctx);
             }
-            if ((index == 2))
+            if ((index == 3))
             {
-                return new AstXmlCommonDirective.AstXmlCommonDirective3(ctx, ((AstStringtext)(list[0])));
+                return new AstXmlCommonDirective.AstXmlCommonDirective3(ctx, ((AstStringtext)(list[3])));
             }
             return null;
         }
@@ -60345,7 +60695,7 @@ namespace Bb.SqlServer.Asts
         {
             if ((list.Count == 1))
             {
-                if (AstRoot.Eval(list[0], typeof(AstStringtext), false, false))
+                if (AstRoot.Eval(list[3], typeof(AstStringtext), false, false))
                 {
                     return 1;
                 }
@@ -60466,15 +60816,15 @@ namespace Bb.SqlServer.Asts
         public static AstClauseJsonInfo Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstClauseJsonInfo.Resolve(list);
-            if ((index == 2))
-            {
-                return new AstClauseJsonInfo.AstClauseJsonInfo1(ctx, ((AstStringtext)(list[0])));
-            }
             if ((index == 1))
+            {
+                return new AstClauseJsonInfo.AstClauseJsonInfo1(ctx, ((AstStringtext)(list[1])));
+            }
+            if ((index == 2))
             {
                 return new AstClauseJsonInfo.AstClauseJsonInfo2(ctx);
             }
-            if ((index == 1))
+            if ((index == 3))
             {
                 return new AstClauseJsonInfo.AstClauseJsonInfo3(ctx);
             }
@@ -60485,7 +60835,7 @@ namespace Bb.SqlServer.Asts
         {
             if ((list.Count == 1))
             {
-                if (AstRoot.Eval(list[0], typeof(AstStringtext), false, false))
+                if (AstRoot.Eval(list[1], typeof(AstStringtext), false, false))
                 {
                     return 1;
                 }
@@ -60599,13 +60949,13 @@ namespace Bb.SqlServer.Asts
         public static AstOrderByExpression Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstOrderByExpression.Resolve(list);
-            if ((index == 2))
+            if ((index == 1))
             {
-                return new AstOrderByExpression.AstOrderByExpression1(ctx, ((AstExpression)(list[0])));
+                return new AstOrderByExpression.AstOrderByExpression1(ctx, ((AstExpression)(list[1])));
             }
             if ((index == 2))
             {
-                return new AstOrderByExpression.AstOrderByExpression2(ctx, ((AstExpression)(list[0])));
+                return new AstOrderByExpression.AstOrderByExpression2(ctx, ((AstExpression)(list[2])));
             }
             return null;
         }
@@ -60614,11 +60964,11 @@ namespace Bb.SqlServer.Asts
         {
             if ((list.Count == 1))
             {
-                if (AstRoot.Eval(list[0], typeof(AstExpression), false, false))
+                if (AstRoot.Eval(list[1], typeof(AstExpression), false, false))
                 {
                     return 1;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstExpression), false, false))
+                if (AstRoot.Eval(list[2], typeof(AstExpression), false, false))
                 {
                     return 2;
                 }
@@ -60723,13 +61073,13 @@ namespace Bb.SqlServer.Asts
         public static AstGroupingSetsItem Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstGroupingSetsItem.Resolve(list);
-            if ((index == 2))
+            if ((index == 1))
             {
-                return new AstGroupingSetsItem.AstGroupingSetsItem1(ctx, ((AstGroupingSetsList)(list[0])));
+                return new AstGroupingSetsItem.AstGroupingSetsItem1(ctx, ((AstGroupingSetsList)(list[1])));
             }
             if ((index == 2))
             {
-                return new AstGroupingSetsItem.AstGroupingSetsItem2(ctx, ((AstGroupingSetsList)(list[0])));
+                return new AstGroupingSetsItem.AstGroupingSetsItem2(ctx, ((AstGroupingSetsList)(list[2])));
             }
             return null;
         }
@@ -60738,11 +61088,11 @@ namespace Bb.SqlServer.Asts
         {
             if ((list.Count == 1))
             {
-                if (AstRoot.Eval(list[0], typeof(AstGroupingSetsList), false, false))
+                if (AstRoot.Eval(list[1], typeof(AstGroupingSetsList), false, false))
                 {
                     return 1;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstGroupingSetsList), false, false))
+                if (AstRoot.Eval(list[2], typeof(AstGroupingSetsList), false, false))
                 {
                     return 2;
                 }
@@ -60961,29 +61311,29 @@ namespace Bb.SqlServer.Asts
         public static AstUpdateOption Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstUpdateOption.Resolve(list);
-            if ((index == 2))
+            if ((index == 1))
             {
-                return new AstUpdateOption.AstUpdateOption1(ctx, ((AstDecimal)(list[0])));
+                return new AstUpdateOption.AstUpdateOption1(ctx, ((AstDecimal)(list[1])));
             }
             if ((index == 2))
             {
-                return new AstUpdateOption.AstUpdateOption2(ctx, ((AstDecimal)(list[0])));
+                return new AstUpdateOption.AstUpdateOption2(ctx, ((AstDecimal)(list[2])));
             }
-            if ((index == 2))
+            if ((index == 3))
             {
-                return new AstUpdateOption.AstUpdateOption3(ctx, ((AstDecimal)(list[0])));
+                return new AstUpdateOption.AstUpdateOption3(ctx, ((AstDecimal)(list[3])));
             }
-            if ((index == 2))
+            if ((index == 4))
             {
-                return new AstUpdateOption.AstUpdateOption4(ctx, ((AstStringtext)(list[0])));
+                return new AstUpdateOption.AstUpdateOption4(ctx, ((AstStringtext)(list[4])));
             }
-            if ((index == 2))
+            if ((index == 5))
             {
-                return new AstUpdateOption.AstUpdateOption5(ctx, ((AstOptimizeForArgs)(list[0])));
+                return new AstUpdateOption.AstUpdateOption5(ctx, ((AstOptimizeForArgs)(list[5])));
             }
-            if ((index == 2))
+            if ((index == 6))
             {
-                return new AstUpdateOption.AstUpdateOption6(ctx, ((AstUpdateOptionEnum)(list[0])));
+                return new AstUpdateOption.AstUpdateOption6(ctx, ((AstUpdateOptionEnum)(list[6])));
             }
             return null;
         }
@@ -60992,27 +61342,27 @@ namespace Bb.SqlServer.Asts
         {
             if ((list.Count == 1))
             {
-                if (AstRoot.Eval(list[0], typeof(AstDecimal), false, false))
+                if (AstRoot.Eval(list[1], typeof(AstDecimal), false, false))
                 {
                     return 1;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstDecimal), false, false))
+                if (AstRoot.Eval(list[2], typeof(AstDecimal), false, false))
                 {
                     return 2;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstDecimal), false, false))
+                if (AstRoot.Eval(list[3], typeof(AstDecimal), false, false))
                 {
                     return 3;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstStringtext), false, false))
+                if (AstRoot.Eval(list[4], typeof(AstStringtext), false, false))
                 {
                     return 4;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstOptimizeForArgs), false, false))
+                if (AstRoot.Eval(list[5], typeof(AstOptimizeForArgs), false, false))
                 {
                     return 5;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstUpdateOptionEnum), false, false))
+                if (AstRoot.Eval(list[6], typeof(AstUpdateOptionEnum), false, false))
                 {
                     return 6;
                 }
@@ -61174,17 +61524,17 @@ namespace Bb.SqlServer.Asts
         public static AstAsterisk Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstAsterisk.Resolve(list);
-            if ((index == 2))
+            if ((index == 1))
             {
-                return new AstAsterisk.AstAsterisk1(ctx, ((AstStarAsterisk)(list[0])));
+                return new AstAsterisk.AstAsterisk1(ctx, ((AstStarAsterisk)(list[1])));
             }
             if ((index == 2))
             {
-                return new AstAsterisk.AstAsterisk2(ctx, ((AstTableAsterisk)(list[0])));
+                return new AstAsterisk.AstAsterisk2(ctx, ((AstTableAsterisk)(list[2])));
             }
-            if ((index == 2))
+            if ((index == 3))
             {
-                return new AstAsterisk.AstAsterisk3(ctx, ((AstUpdatedAsterisk)(list[0])));
+                return new AstAsterisk.AstAsterisk3(ctx, ((AstUpdatedAsterisk)(list[3])));
             }
             return null;
         }
@@ -61193,15 +61543,15 @@ namespace Bb.SqlServer.Asts
         {
             if ((list.Count == 1))
             {
-                if (AstRoot.Eval(list[0], typeof(AstStarAsterisk), false, false))
+                if (AstRoot.Eval(list[1], typeof(AstStarAsterisk), false, false))
                 {
                     return 1;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstTableAsterisk), false, false))
+                if (AstRoot.Eval(list[2], typeof(AstTableAsterisk), false, false))
                 {
                     return 2;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstUpdatedAsterisk), false, false))
+                if (AstRoot.Eval(list[3], typeof(AstUpdatedAsterisk), false, false))
                 {
                     return 3;
                 }
@@ -61349,19 +61699,19 @@ namespace Bb.SqlServer.Asts
         public static AstColumnElemTarget Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstColumnElemTarget.Resolve(list);
-            if ((index == 2))
-            {
-                return new AstColumnElemTarget.AstColumnElemTarget1(ctx, ((AstFullColumnName)(list[0])));
-            }
             if ((index == 1))
+            {
+                return new AstColumnElemTarget.AstColumnElemTarget1(ctx, ((AstFullColumnName)(list[1])));
+            }
+            if ((index == 2))
             {
                 return new AstColumnElemTarget.AstColumnElemTarget2(ctx);
             }
-            if ((index == 1))
+            if ((index == 3))
             {
                 return new AstColumnElemTarget.AstColumnElemTarget3(ctx);
             }
-            if ((index == 1))
+            if ((index == 4))
             {
                 return new AstColumnElemTarget.AstColumnElemTarget4(ctx);
             }
@@ -61372,7 +61722,7 @@ namespace Bb.SqlServer.Asts
         {
             if ((list.Count == 1))
             {
-                if (AstRoot.Eval(list[0], typeof(AstFullColumnName), false, false))
+                if (AstRoot.Eval(list[1], typeof(AstFullColumnName), false, false))
                 {
                     return 1;
                 }
@@ -61554,13 +61904,13 @@ namespace Bb.SqlServer.Asts
         public static AstUdtElem Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstUdtElem.Resolve(list);
-            if ((index == 5))
+            if ((index == 1))
             {
-                return new AstUdtElem.AstUdtElem1(ctx, ((AstUdtColumnId)(list[0])), ((AstNonStaticAttrId)(list[1])), ((AstUdtMethodArguments)(list[2])), ((AstAsColumnAlias)(list[3])));
+                return new AstUdtElem.AstUdtElem1(ctx, ((AstUdtColumnId)(list[1])), ((AstNonStaticAttrId)(list[1])), ((AstUdtMethodArguments)(list[1])), ((AstAsColumnAlias)(list[1])));
             }
-            if ((index == 5))
+            if ((index == 2))
             {
-                return new AstUdtElem.AstUdtElem2(ctx, ((AstUdtColumnId)(list[0])), ((AstStaticAttrId)(list[1])), ((AstUdtMethodArguments)(list[2])), ((AstAsColumnAlias)(list[3])));
+                return new AstUdtElem.AstUdtElem2(ctx, ((AstUdtColumnId)(list[2])), ((AstStaticAttrId)(list[2])), ((AstUdtMethodArguments)(list[2])), ((AstAsColumnAlias)(list[2])));
             }
             return null;
         }
@@ -61569,26 +61919,26 @@ namespace Bb.SqlServer.Asts
         {
             if ((list.Count == 4))
             {
-                if (AstRoot.Eval(list[0], typeof(AstUdtColumnId), false, false))
+                if (AstRoot.Eval(list[1], typeof(AstUdtColumnId), false, false))
                 {
                     if (AstRoot.Eval(list[1], typeof(AstNonStaticAttrId), false, false))
                     {
-                        if (AstRoot.Eval(list[2], typeof(AstUdtMethodArguments), false, false))
+                        if (AstRoot.Eval(list[1], typeof(AstUdtMethodArguments), false, false))
                         {
-                            if (AstRoot.Eval(list[3], typeof(AstAsColumnAlias), false, false))
+                            if (AstRoot.Eval(list[1], typeof(AstAsColumnAlias), false, false))
                             {
                                 return 1;
                             }
                         }
                     }
                 }
-                if (AstRoot.Eval(list[0], typeof(AstUdtColumnId), false, false))
+                if (AstRoot.Eval(list[2], typeof(AstUdtColumnId), false, false))
                 {
-                    if (AstRoot.Eval(list[1], typeof(AstStaticAttrId), false, false))
+                    if (AstRoot.Eval(list[2], typeof(AstStaticAttrId), false, false))
                     {
                         if (AstRoot.Eval(list[2], typeof(AstUdtMethodArguments), false, false))
                         {
-                            if (AstRoot.Eval(list[3], typeof(AstAsColumnAlias), false, false))
+                            if (AstRoot.Eval(list[2], typeof(AstAsColumnAlias), false, false))
                             {
                                 return 2;
                             }
@@ -61728,13 +62078,13 @@ namespace Bb.SqlServer.Asts
         public static AstExpressionElem Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstExpressionElem.Resolve(list);
-            if ((index == 3))
+            if ((index == 1))
             {
-                return new AstExpressionElem.AstExpressionElem1(ctx, ((AstColumnAlias)(list[0])), ((AstExpression)(list[1])));
+                return new AstExpressionElem.AstExpressionElem1(ctx, ((AstColumnAlias)(list[1])), ((AstExpression)(list[1])));
             }
-            if ((index == 3))
+            if ((index == 2))
             {
-                return new AstExpressionElem.AstExpressionElem2(ctx, ((AstExpression)(list[0])), ((AstAsColumnAlias)(list[1])));
+                return new AstExpressionElem.AstExpressionElem2(ctx, ((AstExpression)(list[2])), ((AstAsColumnAlias)(list[2])));
             }
             return null;
         }
@@ -61743,16 +62093,16 @@ namespace Bb.SqlServer.Asts
         {
             if ((list.Count == 2))
             {
-                if (AstRoot.Eval(list[0], typeof(AstColumnAlias), false, false))
+                if (AstRoot.Eval(list[1], typeof(AstColumnAlias), false, false))
                 {
                     if (AstRoot.Eval(list[1], typeof(AstExpression), false, false))
                     {
                         return 1;
                     }
                 }
-                if (AstRoot.Eval(list[0], typeof(AstExpression), false, false))
+                if (AstRoot.Eval(list[2], typeof(AstExpression), false, false))
                 {
-                    if (AstRoot.Eval(list[1], typeof(AstAsColumnAlias), false, false))
+                    if (AstRoot.Eval(list[2], typeof(AstAsColumnAlias), false, false))
                     {
                         return 2;
                     }
@@ -61952,25 +62302,25 @@ namespace Bb.SqlServer.Asts
         public static AstSelectListElem Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstSelectListElem.Resolve(list);
-            if ((index == 2))
+            if ((index == 1))
             {
-                return new AstSelectListElem.AstSelectListElem1(ctx, ((AstAsterisk)(list[0])));
+                return new AstSelectListElem.AstSelectListElem1(ctx, ((AstAsterisk)(list[1])));
             }
             if ((index == 2))
             {
-                return new AstSelectListElem.AstSelectListElem2(ctx, ((AstColumnElem)(list[0])));
+                return new AstSelectListElem.AstSelectListElem2(ctx, ((AstColumnElem)(list[2])));
             }
-            if ((index == 2))
+            if ((index == 3))
             {
-                return new AstSelectListElem.AstSelectListElem3(ctx, ((AstUdtElem)(list[0])));
+                return new AstSelectListElem.AstSelectListElem3(ctx, ((AstUdtElem)(list[3])));
             }
-            if ((index == 2))
+            if ((index == 4))
             {
-                return new AstSelectListElem.AstSelectListElem4(ctx, ((AstExpressionAssignElem)(list[0])));
+                return new AstSelectListElem.AstSelectListElem4(ctx, ((AstExpressionAssignElem)(list[4])));
             }
-            if ((index == 2))
+            if ((index == 5))
             {
-                return new AstSelectListElem.AstSelectListElem5(ctx, ((AstExpressionElem)(list[0])));
+                return new AstSelectListElem.AstSelectListElem5(ctx, ((AstExpressionElem)(list[5])));
             }
             return null;
         }
@@ -61979,23 +62329,23 @@ namespace Bb.SqlServer.Asts
         {
             if ((list.Count == 1))
             {
-                if (AstRoot.Eval(list[0], typeof(AstAsterisk), false, false))
+                if (AstRoot.Eval(list[1], typeof(AstAsterisk), false, false))
                 {
                     return 1;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstColumnElem), false, false))
+                if (AstRoot.Eval(list[2], typeof(AstColumnElem), false, false))
                 {
                     return 2;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstUdtElem), false, false))
+                if (AstRoot.Eval(list[3], typeof(AstUdtElem), false, false))
                 {
                     return 3;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstExpressionAssignElem), false, false))
+                if (AstRoot.Eval(list[4], typeof(AstExpressionAssignElem), false, false))
                 {
                     return 4;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstExpressionElem), false, false))
+                if (AstRoot.Eval(list[5], typeof(AstExpressionElem), false, false))
                 {
                     return 5;
                 }
@@ -62140,13 +62490,13 @@ namespace Bb.SqlServer.Asts
         public static AstTableSource Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstTableSource.Resolve(list);
-            if ((index == 2))
+            if ((index == 1))
             {
-                return new AstTableSource.AstTableSource1(ctx, ((AstTableSourceItemJoined)(list[0])));
+                return new AstTableSource.AstTableSource1(ctx, ((AstTableSourceItemJoined)(list[1])));
             }
             if ((index == 2))
             {
-                return new AstTableSource.AstTableSource2(ctx, ((AstTableSource)(list[0])));
+                return new AstTableSource.AstTableSource2(ctx, ((AstTableSource)(list[2])));
             }
             return null;
         }
@@ -62155,11 +62505,11 @@ namespace Bb.SqlServer.Asts
         {
             if ((list.Count == 1))
             {
-                if (AstRoot.Eval(list[0], typeof(AstTableSourceItemJoined), false, false))
+                if (AstRoot.Eval(list[1], typeof(AstTableSourceItemJoined), false, false))
                 {
                     return 1;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstTableSource), false, false))
+                if (AstRoot.Eval(list[2], typeof(AstTableSource), false, false))
                 {
                     return 2;
                 }
@@ -62296,13 +62646,13 @@ namespace Bb.SqlServer.Asts
         public static AstTableSourceItemJoined Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstTableSourceItemJoined.Resolve(list);
-            if ((index == 3))
+            if ((index == 1))
             {
-                return new AstTableSourceItemJoined.AstTableSourceItemJoined1(ctx, ((AstTableSourceItem)(list[0])), ((AstJoinPart)(list[1])));
+                return new AstTableSourceItemJoined.AstTableSourceItemJoined1(ctx, ((AstTableSourceItem)(list[1])), ((AstJoinPart)(list[1])));
             }
-            if ((index == 3))
+            if ((index == 2))
             {
-                return new AstTableSourceItemJoined.AstTableSourceItemJoined2(ctx, ((AstTableSourceItemJoined)(list[0])), ((AstJoinPart)(list[1])));
+                return new AstTableSourceItemJoined.AstTableSourceItemJoined2(ctx, ((AstTableSourceItemJoined)(list[2])), ((AstJoinPart)(list[2])));
             }
             return null;
         }
@@ -62311,16 +62661,16 @@ namespace Bb.SqlServer.Asts
         {
             if ((list.Count == 2))
             {
-                if (AstRoot.Eval(list[0], typeof(AstTableSourceItem), false, false))
+                if (AstRoot.Eval(list[1], typeof(AstTableSourceItem), false, false))
                 {
                     if (AstRoot.Eval(list[1], typeof(AstJoinPart), false, false))
                     {
                         return 1;
                     }
                 }
-                if (AstRoot.Eval(list[0], typeof(AstTableSourceItemJoined), false, false))
+                if (AstRoot.Eval(list[2], typeof(AstTableSourceItemJoined), false, false))
                 {
-                    if (AstRoot.Eval(list[1], typeof(AstJoinPart), false, false))
+                    if (AstRoot.Eval(list[2], typeof(AstJoinPart), false, false))
                     {
                         return 2;
                     }
@@ -62870,53 +63220,53 @@ namespace Bb.SqlServer.Asts
         public static AstTableSourceItem Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstTableSourceItem.Resolve(list);
-            if ((index == 4))
+            if ((index == 1))
             {
-                return new AstTableSourceItem.AstTableSourceItem1(ctx, ((AstCompleteTableRef)(list[0])), ((AstDeprecatedTableHint)(list[1])), ((AstAsTableAlias)(list[2])));
-            }
-            if ((index == 4))
-            {
-                return new AstTableSourceItem.AstTableSourceItem2(ctx, ((AstCompleteTableRef)(list[0])), ((AstAsTableAlias)(list[1])), ((AstTableHints)(list[2])));
-            }
-            if ((index == 3))
-            {
-                return new AstTableSourceItem.AstTableSourceItem3(ctx, ((AstRowsetFunction)(list[0])), ((AstAsTableAlias)(list[1])));
-            }
-            if ((index == 3))
-            {
-                return new AstTableSourceItem.AstTableSourceItem4(ctx, ((AstDerivedTable)(list[0])), ((AstAsTableAliasColumn)(list[1])));
-            }
-            if ((index == 3))
-            {
-                return new AstTableSourceItem.AstTableSourceItem5(ctx, ((AstChangeTable)(list[0])), ((AstAsTableAlias)(list[1])));
-            }
-            if ((index == 3))
-            {
-                return new AstTableSourceItem.AstTableSourceItem6(ctx, ((AstNodesMethod)(list[0])), ((AstAsTableAliasColumn)(list[1])));
-            }
-            if ((index == 3))
-            {
-                return new AstTableSourceItem.AstTableSourceItem7(ctx, ((AstFunctionCall)(list[0])), ((AstAsTableAliasColumn)(list[1])));
-            }
-            if ((index == 3))
-            {
-                return new AstTableSourceItem.AstTableSourceItem8(ctx, ((AstLocalId)(list[0])), ((AstAsTableAlias)(list[1])));
-            }
-            if ((index == 4))
-            {
-                return new AstTableSourceItem.AstTableSourceItem9(ctx, ((AstLocalId)(list[0])), ((AstFunctionCall)(list[1])), ((AstAsTableAliasColumn)(list[2])));
+                return new AstTableSourceItem.AstTableSourceItem1(ctx, ((AstCompleteTableRef)(list[1])), ((AstDeprecatedTableHint)(list[1])), ((AstAsTableAlias)(list[1])));
             }
             if ((index == 2))
             {
-                return new AstTableSourceItem.AstTableSourceItem10(ctx, ((AstOpenXml)(list[0])));
-            }
-            if ((index == 2))
-            {
-                return new AstTableSourceItem.AstTableSourceItem11(ctx, ((AstOpenJson)(list[0])));
+                return new AstTableSourceItem.AstTableSourceItem2(ctx, ((AstCompleteTableRef)(list[2])), ((AstAsTableAlias)(list[2])), ((AstTableHints)(list[2])));
             }
             if ((index == 3))
             {
-                return new AstTableSourceItem.AstTableSourceItem12(ctx, ((AstFunctionCall)(list[0])), ((AstAsTableAlias)(list[1])));
+                return new AstTableSourceItem.AstTableSourceItem3(ctx, ((AstRowsetFunction)(list[3])), ((AstAsTableAlias)(list[3])));
+            }
+            if ((index == 4))
+            {
+                return new AstTableSourceItem.AstTableSourceItem4(ctx, ((AstDerivedTable)(list[4])), ((AstAsTableAliasColumn)(list[4])));
+            }
+            if ((index == 5))
+            {
+                return new AstTableSourceItem.AstTableSourceItem5(ctx, ((AstChangeTable)(list[5])), ((AstAsTableAlias)(list[5])));
+            }
+            if ((index == 6))
+            {
+                return new AstTableSourceItem.AstTableSourceItem6(ctx, ((AstNodesMethod)(list[6])), ((AstAsTableAliasColumn)(list[6])));
+            }
+            if ((index == 7))
+            {
+                return new AstTableSourceItem.AstTableSourceItem7(ctx, ((AstFunctionCall)(list[7])), ((AstAsTableAliasColumn)(list[7])));
+            }
+            if ((index == 8))
+            {
+                return new AstTableSourceItem.AstTableSourceItem8(ctx, ((AstLocalId)(list[8])), ((AstAsTableAlias)(list[8])));
+            }
+            if ((index == 9))
+            {
+                return new AstTableSourceItem.AstTableSourceItem9(ctx, ((AstLocalId)(list[9])), ((AstFunctionCall)(list[9])), ((AstAsTableAliasColumn)(list[9])));
+            }
+            if ((index == 10))
+            {
+                return new AstTableSourceItem.AstTableSourceItem10(ctx, ((AstOpenXml)(list[10])));
+            }
+            if ((index == 11))
+            {
+                return new AstTableSourceItem.AstTableSourceItem11(ctx, ((AstOpenJson)(list[11])));
+            }
+            if ((index == 12))
+            {
+                return new AstTableSourceItem.AstTableSourceItem12(ctx, ((AstFunctionCall)(list[12])), ((AstAsTableAlias)(list[12])));
             }
             return null;
         }
@@ -62925,19 +63275,19 @@ namespace Bb.SqlServer.Asts
         {
             if ((list.Count == 3))
             {
-                if (AstRoot.Eval(list[0], typeof(AstCompleteTableRef), false, false))
+                if (AstRoot.Eval(list[1], typeof(AstCompleteTableRef), false, false))
                 {
                     if (AstRoot.Eval(list[1], typeof(AstDeprecatedTableHint), false, false))
                     {
-                        if (AstRoot.Eval(list[2], typeof(AstAsTableAlias), false, false))
+                        if (AstRoot.Eval(list[1], typeof(AstAsTableAlias), false, false))
                         {
                             return 1;
                         }
                     }
                 }
-                if (AstRoot.Eval(list[0], typeof(AstCompleteTableRef), false, false))
+                if (AstRoot.Eval(list[2], typeof(AstCompleteTableRef), false, false))
                 {
-                    if (AstRoot.Eval(list[1], typeof(AstAsTableAlias), false, false))
+                    if (AstRoot.Eval(list[2], typeof(AstAsTableAlias), false, false))
                     {
                         if (AstRoot.Eval(list[2], typeof(AstTableHints), false, false))
                         {
@@ -62945,11 +63295,11 @@ namespace Bb.SqlServer.Asts
                         }
                     }
                 }
-                if (AstRoot.Eval(list[0], typeof(AstLocalId), false, false))
+                if (AstRoot.Eval(list[9], typeof(AstLocalId), false, false))
                 {
-                    if (AstRoot.Eval(list[1], typeof(AstFunctionCall), false, false))
+                    if (AstRoot.Eval(list[9], typeof(AstFunctionCall), false, false))
                     {
-                        if (AstRoot.Eval(list[2], typeof(AstAsTableAliasColumn), false, false))
+                        if (AstRoot.Eval(list[9], typeof(AstAsTableAliasColumn), false, false))
                         {
                             return 9;
                         }
@@ -62958,51 +63308,51 @@ namespace Bb.SqlServer.Asts
             }
             if ((list.Count == 2))
             {
-                if (AstRoot.Eval(list[0], typeof(AstRowsetFunction), false, false))
+                if (AstRoot.Eval(list[3], typeof(AstRowsetFunction), false, false))
                 {
-                    if (AstRoot.Eval(list[1], typeof(AstAsTableAlias), false, false))
+                    if (AstRoot.Eval(list[3], typeof(AstAsTableAlias), false, false))
                     {
                         return 3;
                     }
                 }
-                if (AstRoot.Eval(list[0], typeof(AstDerivedTable), false, false))
+                if (AstRoot.Eval(list[4], typeof(AstDerivedTable), false, false))
                 {
-                    if (AstRoot.Eval(list[1], typeof(AstAsTableAliasColumn), false, false))
+                    if (AstRoot.Eval(list[4], typeof(AstAsTableAliasColumn), false, false))
                     {
                         return 4;
                     }
                 }
-                if (AstRoot.Eval(list[0], typeof(AstChangeTable), false, false))
+                if (AstRoot.Eval(list[5], typeof(AstChangeTable), false, false))
                 {
-                    if (AstRoot.Eval(list[1], typeof(AstAsTableAlias), false, false))
+                    if (AstRoot.Eval(list[5], typeof(AstAsTableAlias), false, false))
                     {
                         return 5;
                     }
                 }
-                if (AstRoot.Eval(list[0], typeof(AstNodesMethod), false, false))
+                if (AstRoot.Eval(list[6], typeof(AstNodesMethod), false, false))
                 {
-                    if (AstRoot.Eval(list[1], typeof(AstAsTableAliasColumn), false, false))
+                    if (AstRoot.Eval(list[6], typeof(AstAsTableAliasColumn), false, false))
                     {
                         return 6;
                     }
                 }
-                if (AstRoot.Eval(list[0], typeof(AstFunctionCall), false, false))
+                if (AstRoot.Eval(list[7], typeof(AstFunctionCall), false, false))
                 {
-                    if (AstRoot.Eval(list[1], typeof(AstAsTableAliasColumn), false, false))
+                    if (AstRoot.Eval(list[7], typeof(AstAsTableAliasColumn), false, false))
                     {
                         return 7;
                     }
                 }
-                if (AstRoot.Eval(list[0], typeof(AstLocalId), false, false))
+                if (AstRoot.Eval(list[8], typeof(AstLocalId), false, false))
                 {
-                    if (AstRoot.Eval(list[1], typeof(AstAsTableAlias), false, false))
+                    if (AstRoot.Eval(list[8], typeof(AstAsTableAlias), false, false))
                     {
                         return 8;
                     }
                 }
-                if (AstRoot.Eval(list[0], typeof(AstFunctionCall), false, false))
+                if (AstRoot.Eval(list[12], typeof(AstFunctionCall), false, false))
                 {
-                    if (AstRoot.Eval(list[1], typeof(AstAsTableAlias), false, false))
+                    if (AstRoot.Eval(list[12], typeof(AstAsTableAlias), false, false))
                     {
                         return 12;
                     }
@@ -63010,11 +63360,11 @@ namespace Bb.SqlServer.Asts
             }
             if ((list.Count == 1))
             {
-                if (AstRoot.Eval(list[0], typeof(AstOpenXml), false, false))
+                if (AstRoot.Eval(list[10], typeof(AstOpenXml), false, false))
                 {
                     return 10;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstOpenJson), false, false))
+                if (AstRoot.Eval(list[11], typeof(AstOpenJson), false, false))
                 {
                     return 11;
                 }
@@ -63257,17 +63607,17 @@ namespace Bb.SqlServer.Asts
         public static AstTableHints Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstTableHints.Resolve(list);
-            if ((index == 2))
+            if ((index == 1))
             {
-                return new AstTableHints.AstTableHints1(ctx, ((AstWithTableHints)(list[0])));
+                return new AstTableHints.AstTableHints1(ctx, ((AstWithTableHints)(list[1])));
             }
             if ((index == 2))
             {
-                return new AstTableHints.AstTableHints2(ctx, ((AstDeprecatedTableHint)(list[0])));
+                return new AstTableHints.AstTableHints2(ctx, ((AstDeprecatedTableHint)(list[2])));
             }
-            if ((index == 2))
+            if ((index == 3))
             {
-                return new AstTableHints.AstTableHints3(ctx, ((AstSybaseLegacyHints)(list[0])));
+                return new AstTableHints.AstTableHints3(ctx, ((AstSybaseLegacyHints)(list[3])));
             }
             return null;
         }
@@ -63276,15 +63626,15 @@ namespace Bb.SqlServer.Asts
         {
             if ((list.Count == 1))
             {
-                if (AstRoot.Eval(list[0], typeof(AstWithTableHints), false, false))
+                if (AstRoot.Eval(list[1], typeof(AstWithTableHints), false, false))
                 {
                     return 1;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstDeprecatedTableHint), false, false))
+                if (AstRoot.Eval(list[2], typeof(AstDeprecatedTableHint), false, false))
                 {
                     return 2;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstSybaseLegacyHints), false, false))
+                if (AstRoot.Eval(list[3], typeof(AstSybaseLegacyHints), false, false))
                 {
                     return 3;
                 }
@@ -63408,13 +63758,13 @@ namespace Bb.SqlServer.Asts
         public static AstChangeTable Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstChangeTable.Resolve(list);
-            if ((index == 2))
+            if ((index == 1))
             {
-                return new AstChangeTable.AstChangeTable1(ctx, ((AstChangeTableChanges)(list[0])));
+                return new AstChangeTable.AstChangeTable1(ctx, ((AstChangeTableChanges)(list[1])));
             }
             if ((index == 2))
             {
-                return new AstChangeTable.AstChangeTable2(ctx, ((AstChangeTableVersion)(list[0])));
+                return new AstChangeTable.AstChangeTable2(ctx, ((AstChangeTableVersion)(list[2])));
             }
             return null;
         }
@@ -63423,11 +63773,11 @@ namespace Bb.SqlServer.Asts
         {
             if ((list.Count == 1))
             {
-                if (AstRoot.Eval(list[0], typeof(AstChangeTableChanges), false, false))
+                if (AstRoot.Eval(list[1], typeof(AstChangeTableChanges), false, false))
                 {
                     return 1;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstChangeTableVersion), false, false))
+                if (AstRoot.Eval(list[2], typeof(AstChangeTableVersion), false, false))
                 {
                     return 2;
                 }
@@ -63552,13 +63902,13 @@ namespace Bb.SqlServer.Asts
         public static AstChangeTableChanges Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstChangeTableChanges.Resolve(list);
+            if ((index == 1))
+            {
+                return new AstChangeTableChanges.AstChangeTableChanges1(ctx, ((AstFullTableRef)(list[1])));
+            }
             if ((index == 2))
             {
-                return new AstChangeTableChanges.AstChangeTableChanges1(ctx, ((AstFullTableRef)(list[0])));
-            }
-            if ((index == 3))
-            {
-                return new AstChangeTableChanges.AstChangeTableChanges2(ctx, ((AstFullTableRef)(list[0])), ((AstDecimalLocalId)(list[1])));
+                return new AstChangeTableChanges.AstChangeTableChanges2(ctx, ((AstFullTableRef)(list[2])), ((AstDecimalLocalId)(list[2])));
             }
             return null;
         }
@@ -63567,9 +63917,9 @@ namespace Bb.SqlServer.Asts
         {
             if ((list.Count == 2))
             {
-                if (AstRoot.Eval(list[0], typeof(AstFullTableRef), false, false))
+                if (AstRoot.Eval(list[2], typeof(AstFullTableRef), false, false))
                 {
-                    if (AstRoot.Eval(list[1], typeof(AstDecimalLocalId), false, false))
+                    if (AstRoot.Eval(list[2], typeof(AstDecimalLocalId), false, false))
                     {
                         return 2;
                     }
@@ -63577,7 +63927,7 @@ namespace Bb.SqlServer.Asts
             }
             if ((list.Count == 1))
             {
-                if (AstRoot.Eval(list[0], typeof(AstFullTableRef), false, false))
+                if (AstRoot.Eval(list[1], typeof(AstFullTableRef), false, false))
                 {
                     return 1;
                 }
@@ -63617,7 +63967,13 @@ namespace Bb.SqlServer.Asts
             "able_ref  COMMA  pk_columns = full_column_name_list  COMMA  pk_values = select_l" +
             "ist  RR_BRACKET";
         
-        internal AstChangeTableVersion(ParserRuleContext ctx, List<AstRoot> list) : 
+        private AstFullTableRef _versiontable;
+        
+        private AstFullColumnNameList _pkColumns;
+        
+        private AstSelectList _pkValues;
+        
+        internal AstChangeTableVersion(ParserRuleContext ctx) : 
                 base(ctx)
         {
         }
@@ -63640,7 +63996,7 @@ namespace Bb.SqlServer.Asts
             _pkValues = pkValues;
         }
         
-        public virtual AstFullTableRef _versiontable
+        public virtual AstFullTableRef Versiontable
         {
             get
             {
@@ -63648,7 +64004,7 @@ namespace Bb.SqlServer.Asts
             }
         }
         
-        public virtual AstFullColumnNameList _pkColumns
+        public virtual AstFullColumnNameList PkColumns
         {
             get
             {
@@ -63656,7 +64012,7 @@ namespace Bb.SqlServer.Asts
             }
         }
         
-        public virtual AstSelectList _pkValues
+        public virtual AstSelectList PkValues
         {
             get
             {
@@ -63667,6 +64023,11 @@ namespace Bb.SqlServer.Asts
         public override void Accept(IAstTSqlVisitor visitor)
         {
             visitor.VisitChangeTableVersion(this);
+        }
+        
+        public static AstChangeTableVersion Create(ParserRuleContext ctx, List<AstRoot> list)
+        {
+            return new AstChangeTableVersion(ctx, ((AstFullTableRef)(list[0])), ((AstFullColumnNameList)(list[1])), ((AstSelectList)(list[2])));
         }
         
         /// <summary>
@@ -63850,25 +64211,25 @@ namespace Bb.SqlServer.Asts
         public static AstJoinPart Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstJoinPart.Resolve(list);
-            if ((index == 2))
+            if ((index == 1))
             {
-                return new AstJoinPart.AstJoinPart1(ctx, ((AstJoinOn)(list[0])));
+                return new AstJoinPart.AstJoinPart1(ctx, ((AstJoinOn)(list[1])));
             }
             if ((index == 2))
             {
-                return new AstJoinPart.AstJoinPart2(ctx, ((AstCrossJoin)(list[0])));
+                return new AstJoinPart.AstJoinPart2(ctx, ((AstCrossJoin)(list[2])));
             }
-            if ((index == 2))
+            if ((index == 3))
             {
-                return new AstJoinPart.AstJoinPart3(ctx, ((AstApplyEnum)(list[0])));
+                return new AstJoinPart.AstJoinPart3(ctx, ((AstApplyEnum)(list[3])));
             }
-            if ((index == 2))
+            if ((index == 4))
             {
-                return new AstJoinPart.AstJoinPart4(ctx, ((AstPivotJoin)(list[0])));
+                return new AstJoinPart.AstJoinPart4(ctx, ((AstPivotJoin)(list[4])));
             }
-            if ((index == 2))
+            if ((index == 5))
             {
-                return new AstJoinPart.AstJoinPart5(ctx, ((AstUnpivotJoin)(list[0])));
+                return new AstJoinPart.AstJoinPart5(ctx, ((AstUnpivotJoin)(list[5])));
             }
             return null;
         }
@@ -63877,23 +64238,23 @@ namespace Bb.SqlServer.Asts
         {
             if ((list.Count == 1))
             {
-                if (AstRoot.Eval(list[0], typeof(AstJoinOn), false, false))
+                if (AstRoot.Eval(list[1], typeof(AstJoinOn), false, false))
                 {
                     return 1;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstCrossJoin), false, false))
+                if (AstRoot.Eval(list[2], typeof(AstCrossJoin), false, false))
                 {
                     return 2;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstApplyEnum), false, false))
+                if (AstRoot.Eval(list[3], typeof(AstApplyEnum), false, false))
                 {
                     return 3;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstPivotJoin), false, false))
+                if (AstRoot.Eval(list[4], typeof(AstPivotJoin), false, false))
                 {
                     return 4;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstUnpivotJoin), false, false))
+                if (AstRoot.Eval(list[5], typeof(AstUnpivotJoin), false, false))
                 {
                     return 5;
                 }
@@ -64073,13 +64434,13 @@ namespace Bb.SqlServer.Asts
         public static AstRowsetFunction Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstRowsetFunction.Resolve(list);
-            if ((index == 4))
+            if ((index == 1))
             {
-                return new AstRowsetFunction.AstRowsetFunction1(ctx, ((AstStringtext)(list[0])), ((AstStringtext)(list[1])), ((AstStringtext)(list[2])));
+                return new AstRowsetFunction.AstRowsetFunction1(ctx, ((AstStringtext)(list[1])), ((AstStringtext)(list[1])), ((AstStringtext)(list[1])));
             }
-            if ((index == 3))
+            if ((index == 2))
             {
-                return new AstRowsetFunction.AstRowsetFunction2(ctx, ((AstStringtext)(list[0])), ((AstBukExtendedOptions)(list[1])));
+                return new AstRowsetFunction.AstRowsetFunction2(ctx, ((AstStringtext)(list[2])), ((AstBukExtendedOptions)(list[2])));
             }
             return null;
         }
@@ -64088,11 +64449,11 @@ namespace Bb.SqlServer.Asts
         {
             if ((list.Count == 3))
             {
-                if (AstRoot.Eval(list[0], typeof(AstStringtext), false, false))
+                if (AstRoot.Eval(list[1], typeof(AstStringtext), false, false))
                 {
                     if (AstRoot.Eval(list[1], typeof(AstStringtext), false, false))
                     {
-                        if (AstRoot.Eval(list[2], typeof(AstStringtext), false, false))
+                        if (AstRoot.Eval(list[1], typeof(AstStringtext), false, false))
                         {
                             return 1;
                         }
@@ -64101,9 +64462,9 @@ namespace Bb.SqlServer.Asts
             }
             if ((list.Count == 2))
             {
-                if (AstRoot.Eval(list[0], typeof(AstStringtext), false, false))
+                if (AstRoot.Eval(list[2], typeof(AstStringtext), false, false))
                 {
-                    if (AstRoot.Eval(list[1], typeof(AstBukExtendedOptions), false, false))
+                    if (AstRoot.Eval(list[2], typeof(AstBukExtendedOptions), false, false))
                     {
                         return 2;
                     }
@@ -64218,13 +64579,13 @@ namespace Bb.SqlServer.Asts
         public static AstBukExtendedOptions Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstBukExtendedOptions.Resolve(list);
-            if ((index == 2))
+            if ((index == 1))
             {
-                return new AstBukExtendedOptions.AstBukExtendedOptions1(ctx, ((AstBulkOptions)(list[0])));
+                return new AstBukExtendedOptions.AstBukExtendedOptions1(ctx, ((AstBulkOptions)(list[1])));
             }
             if ((index == 2))
             {
-                return new AstBukExtendedOptions.AstBukExtendedOptions2(ctx, ((AstId)(list[0])));
+                return new AstBukExtendedOptions.AstBukExtendedOptions2(ctx, ((AstId)(list[2])));
             }
             return null;
         }
@@ -64233,11 +64594,11 @@ namespace Bb.SqlServer.Asts
         {
             if ((list.Count == 1))
             {
-                if (AstRoot.Eval(list[0], typeof(AstBulkOptions), false, false))
+                if (AstRoot.Eval(list[1], typeof(AstBulkOptions), false, false))
                 {
                     return 1;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstId), false, false))
+                if (AstRoot.Eval(list[2], typeof(AstId), false, false))
                 {
                     return 2;
                 }
@@ -64408,21 +64769,21 @@ namespace Bb.SqlServer.Asts
         public static AstDerivedTable Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstDerivedTable.Resolve(list);
-            if ((index == 2))
+            if ((index == 1))
             {
-                return new AstDerivedTable.AstDerivedTable1(ctx, ((AstSubquery)(list[0])));
+                return new AstDerivedTable.AstDerivedTable1(ctx, ((AstSubquery)(list[1])));
             }
             if ((index == 2))
             {
-                return new AstDerivedTable.AstDerivedTable2(ctx, ((AstSubqueries)(list[0])));
+                return new AstDerivedTable.AstDerivedTable2(ctx, ((AstSubqueries)(list[2])));
             }
-            if ((index == 2))
+            if ((index == 3))
             {
-                return new AstDerivedTable.AstDerivedTable3(ctx, ((AstTableValueConstructor)(list[0])));
+                return new AstDerivedTable.AstDerivedTable3(ctx, ((AstTableValueConstructor)(list[3])));
             }
-            if ((index == 2))
+            if ((index == 4))
             {
-                return new AstDerivedTable.AstDerivedTable4(ctx, ((AstTableValueConstructor)(list[0])));
+                return new AstDerivedTable.AstDerivedTable4(ctx, ((AstTableValueConstructor)(list[4])));
             }
             return null;
         }
@@ -64431,19 +64792,19 @@ namespace Bb.SqlServer.Asts
         {
             if ((list.Count == 1))
             {
-                if (AstRoot.Eval(list[0], typeof(AstSubquery), false, false))
+                if (AstRoot.Eval(list[1], typeof(AstSubquery), false, false))
                 {
                     return 1;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstSubqueries), false, false))
+                if (AstRoot.Eval(list[2], typeof(AstSubqueries), false, false))
                 {
                     return 2;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstTableValueConstructor), false, false))
+                if (AstRoot.Eval(list[3], typeof(AstTableValueConstructor), false, false))
                 {
                     return 3;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstTableValueConstructor), false, false))
+                if (AstRoot.Eval(list[4], typeof(AstTableValueConstructor), false, false))
                 {
                     return 4;
                 }
@@ -64754,37 +65115,37 @@ namespace Bb.SqlServer.Asts
         public static AstFunctionCall Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstFunctionCall.Resolve(list);
-            if ((index == 2))
+            if ((index == 1))
             {
-                return new AstFunctionCall.AstFunctionCall1(ctx, ((AstRankingWindowedFunction)(list[0])));
+                return new AstFunctionCall.AstFunctionCall1(ctx, ((AstRankingWindowedFunction)(list[1])));
             }
             if ((index == 2))
             {
-                return new AstFunctionCall.AstFunctionCall2(ctx, ((AstAggregateWindowedFunction)(list[0])));
-            }
-            if ((index == 2))
-            {
-                return new AstFunctionCall.AstFunctionCall3(ctx, ((AstAnalyticWindowedFunction)(list[0])));
-            }
-            if ((index == 2))
-            {
-                return new AstFunctionCall.AstFunctionCall4(ctx, ((AstBuiltInFunctions)(list[0])));
+                return new AstFunctionCall.AstFunctionCall2(ctx, ((AstAggregateWindowedFunction)(list[2])));
             }
             if ((index == 3))
             {
-                return new AstFunctionCall.AstFunctionCall5(ctx, ((AstScalarFunctionName)(list[0])), ((AstExpressionList)(list[1])));
+                return new AstFunctionCall.AstFunctionCall3(ctx, ((AstAnalyticWindowedFunction)(list[3])));
             }
-            if ((index == 2))
+            if ((index == 4))
             {
-                return new AstFunctionCall.AstFunctionCall6(ctx, ((AstFreetextFunction)(list[0])));
+                return new AstFunctionCall.AstFunctionCall4(ctx, ((AstBuiltInFunctions)(list[4])));
             }
-            if ((index == 2))
+            if ((index == 5))
             {
-                return new AstFunctionCall.AstFunctionCall7(ctx, ((AstPartitionFunction)(list[0])));
+                return new AstFunctionCall.AstFunctionCall5(ctx, ((AstScalarFunctionName)(list[5])), ((AstExpressionList)(list[5])));
             }
-            if ((index == 2))
+            if ((index == 6))
             {
-                return new AstFunctionCall.AstFunctionCall8(ctx, ((AstHierarchyidStaticMethod)(list[0])));
+                return new AstFunctionCall.AstFunctionCall6(ctx, ((AstFreetextFunction)(list[6])));
+            }
+            if ((index == 7))
+            {
+                return new AstFunctionCall.AstFunctionCall7(ctx, ((AstPartitionFunction)(list[7])));
+            }
+            if ((index == 8))
+            {
+                return new AstFunctionCall.AstFunctionCall8(ctx, ((AstHierarchyidStaticMethod)(list[8])));
             }
             return null;
         }
@@ -64793,9 +65154,9 @@ namespace Bb.SqlServer.Asts
         {
             if ((list.Count == 2))
             {
-                if (AstRoot.Eval(list[0], typeof(AstScalarFunctionName), false, false))
+                if (AstRoot.Eval(list[5], typeof(AstScalarFunctionName), false, false))
                 {
-                    if (AstRoot.Eval(list[1], typeof(AstExpressionList), false, false))
+                    if (AstRoot.Eval(list[5], typeof(AstExpressionList), false, false))
                     {
                         return 5;
                     }
@@ -64803,31 +65164,31 @@ namespace Bb.SqlServer.Asts
             }
             if ((list.Count == 1))
             {
-                if (AstRoot.Eval(list[0], typeof(AstRankingWindowedFunction), false, false))
+                if (AstRoot.Eval(list[1], typeof(AstRankingWindowedFunction), false, false))
                 {
                     return 1;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstAggregateWindowedFunction), false, false))
+                if (AstRoot.Eval(list[2], typeof(AstAggregateWindowedFunction), false, false))
                 {
                     return 2;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstAnalyticWindowedFunction), false, false))
+                if (AstRoot.Eval(list[3], typeof(AstAnalyticWindowedFunction), false, false))
                 {
                     return 3;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstBuiltInFunctions), false, false))
+                if (AstRoot.Eval(list[4], typeof(AstBuiltInFunctions), false, false))
                 {
                     return 4;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstFreetextFunction), false, false))
+                if (AstRoot.Eval(list[6], typeof(AstFreetextFunction), false, false))
                 {
                     return 6;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstPartitionFunction), false, false))
+                if (AstRoot.Eval(list[7], typeof(AstPartitionFunction), false, false))
                 {
                     return 7;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstHierarchyidStaticMethod), false, false))
+                if (AstRoot.Eval(list[8], typeof(AstHierarchyidStaticMethod), false, false))
                 {
                     return 8;
                 }
@@ -65131,17 +65492,17 @@ namespace Bb.SqlServer.Asts
         public static AstFreetextFunction Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstFreetextFunction.Resolve(list);
-            if ((index == 5))
+            if ((index == 1))
             {
-                return new AstFreetextFunction.AstFreetextFunction1(ctx, ((AstContainstableFreetexttable)(list[0])), ((AstFreetextTableAndcolumnNames)(list[1])), ((AstExpressionLanguage)(list[2])), ((AstExpression)(list[3])));
+                return new AstFreetextFunction.AstFreetextFunction1(ctx, ((AstContainstableFreetexttable)(list[1])), ((AstFreetextTableAndcolumnNames)(list[1])), ((AstExpressionLanguage)(list[1])), ((AstExpression)(list[1])));
             }
-            if ((index == 4))
+            if ((index == 2))
             {
-                return new AstFreetextFunction.AstFreetextFunction2(ctx, ((AstSemanticTable)(list[0])), ((AstFreetextTableAndcolumnNames)(list[1])), ((AstExpression)(list[2])));
+                return new AstFreetextFunction.AstFreetextFunction2(ctx, ((AstSemanticTable)(list[2])), ((AstFreetextTableAndcolumnNames)(list[2])), ((AstExpression)(list[2])));
             }
-            if ((index == 6))
+            if ((index == 3))
             {
-                return new AstFreetextFunction.AstFreetextFunction3(ctx, ((AstFullTableRef)(list[0])), ((AstFullColumnName)(list[1])), ((AstExpression)(list[2])), ((AstFullColumnName)(list[3])), ((AstExpression)(list[4])));
+                return new AstFreetextFunction.AstFreetextFunction3(ctx, ((AstFullTableRef)(list[3])), ((AstFullColumnName)(list[3])), ((AstExpression)(list[3])), ((AstFullColumnName)(list[3])), ((AstExpression)(list[3])));
             }
             return null;
         }
@@ -65150,15 +65511,15 @@ namespace Bb.SqlServer.Asts
         {
             if ((list.Count == 5))
             {
-                if (AstRoot.Eval(list[0], typeof(AstFullTableRef), false, false))
+                if (AstRoot.Eval(list[3], typeof(AstFullTableRef), false, false))
                 {
-                    if (AstRoot.Eval(list[1], typeof(AstFullColumnName), false, false))
+                    if (AstRoot.Eval(list[3], typeof(AstFullColumnName), false, false))
                     {
-                        if (AstRoot.Eval(list[2], typeof(AstExpression), false, false))
+                        if (AstRoot.Eval(list[3], typeof(AstExpression), false, false))
                         {
                             if (AstRoot.Eval(list[3], typeof(AstFullColumnName), false, false))
                             {
-                                if (AstRoot.Eval(list[4], typeof(AstExpression), false, false))
+                                if (AstRoot.Eval(list[3], typeof(AstExpression), false, false))
                                 {
                                     return 3;
                                 }
@@ -65169,13 +65530,13 @@ namespace Bb.SqlServer.Asts
             }
             if ((list.Count == 4))
             {
-                if (AstRoot.Eval(list[0], typeof(AstContainstableFreetexttable), false, false))
+                if (AstRoot.Eval(list[1], typeof(AstContainstableFreetexttable), false, false))
                 {
                     if (AstRoot.Eval(list[1], typeof(AstFreetextTableAndcolumnNames), false, false))
                     {
-                        if (AstRoot.Eval(list[2], typeof(AstExpressionLanguage), false, false))
+                        if (AstRoot.Eval(list[1], typeof(AstExpressionLanguage), false, false))
                         {
-                            if (AstRoot.Eval(list[3], typeof(AstExpression), false, false))
+                            if (AstRoot.Eval(list[1], typeof(AstExpression), false, false))
                             {
                                 return 1;
                             }
@@ -65185,9 +65546,9 @@ namespace Bb.SqlServer.Asts
             }
             if ((list.Count == 3))
             {
-                if (AstRoot.Eval(list[0], typeof(AstSemanticTable), false, false))
+                if (AstRoot.Eval(list[2], typeof(AstSemanticTable), false, false))
                 {
-                    if (AstRoot.Eval(list[1], typeof(AstFreetextTableAndcolumnNames), false, false))
+                    if (AstRoot.Eval(list[2], typeof(AstFreetextTableAndcolumnNames), false, false))
                     {
                         if (AstRoot.Eval(list[2], typeof(AstExpression), false, false))
                         {
@@ -65339,13 +65700,13 @@ namespace Bb.SqlServer.Asts
         public static AstFreetextPredicate Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstFreetextPredicate.Resolve(list);
-            if ((index == 3))
+            if ((index == 1))
             {
-                return new AstFreetextPredicate.AstFreetextPredicate1(ctx, ((AstPredicateContains)(list[0])), ((AstExpression)(list[1])));
+                return new AstFreetextPredicate.AstFreetextPredicate1(ctx, ((AstPredicateContains)(list[1])), ((AstExpression)(list[1])));
             }
-            if ((index == 3))
+            if ((index == 2))
             {
-                return new AstFreetextPredicate.AstFreetextPredicate2(ctx, ((AstFreetextTableAndcolumnNames)(list[0])), ((AstExpressionLanguage)(list[1])));
+                return new AstFreetextPredicate.AstFreetextPredicate2(ctx, ((AstFreetextTableAndcolumnNames)(list[2])), ((AstExpressionLanguage)(list[2])));
             }
             return null;
         }
@@ -65354,16 +65715,16 @@ namespace Bb.SqlServer.Asts
         {
             if ((list.Count == 2))
             {
-                if (AstRoot.Eval(list[0], typeof(AstPredicateContains), false, false))
+                if (AstRoot.Eval(list[1], typeof(AstPredicateContains), false, false))
                 {
                     if (AstRoot.Eval(list[1], typeof(AstExpression), false, false))
                     {
                         return 1;
                     }
                 }
-                if (AstRoot.Eval(list[0], typeof(AstFreetextTableAndcolumnNames), false, false))
+                if (AstRoot.Eval(list[2], typeof(AstFreetextTableAndcolumnNames), false, false))
                 {
-                    if (AstRoot.Eval(list[1], typeof(AstExpressionLanguage), false, false))
+                    if (AstRoot.Eval(list[2], typeof(AstExpressionLanguage), false, false))
                     {
                         return 2;
                     }
@@ -65535,21 +65896,21 @@ namespace Bb.SqlServer.Asts
         public static AstPredicateContains Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstPredicateContains.Resolve(list);
-            if ((index == 2))
-            {
-                return new AstPredicateContains.AstPredicateContains1(ctx, ((AstFullColumnName)(list[0])));
-            }
-            if ((index == 2))
-            {
-                return new AstPredicateContains.AstPredicateContains2(ctx, ((AstFullColumnNames)(list[0])));
-            }
             if ((index == 1))
             {
-                return new AstPredicateContains.AstPredicateContains3(ctx);
+                return new AstPredicateContains.AstPredicateContains1(ctx, ((AstFullColumnName)(list[1])));
+            }
+            if ((index == 2))
+            {
+                return new AstPredicateContains.AstPredicateContains2(ctx, ((AstFullColumnNames)(list[2])));
             }
             if ((index == 3))
             {
-                return new AstPredicateContains.AstPredicateContains4(ctx, ((AstFullColumnName)(list[0])), ((AstExpression)(list[1])));
+                return new AstPredicateContains.AstPredicateContains3(ctx);
+            }
+            if ((index == 4))
+            {
+                return new AstPredicateContains.AstPredicateContains4(ctx, ((AstFullColumnName)(list[4])), ((AstExpression)(list[4])));
             }
             return null;
         }
@@ -65558,9 +65919,9 @@ namespace Bb.SqlServer.Asts
         {
             if ((list.Count == 2))
             {
-                if (AstRoot.Eval(list[0], typeof(AstFullColumnName), false, false))
+                if (AstRoot.Eval(list[4], typeof(AstFullColumnName), false, false))
                 {
-                    if (AstRoot.Eval(list[1], typeof(AstExpression), false, false))
+                    if (AstRoot.Eval(list[4], typeof(AstExpression), false, false))
                     {
                         return 3;
                     }
@@ -65568,11 +65929,11 @@ namespace Bb.SqlServer.Asts
             }
             if ((list.Count == 1))
             {
-                if (AstRoot.Eval(list[0], typeof(AstFullColumnName), false, false))
+                if (AstRoot.Eval(list[1], typeof(AstFullColumnName), false, false))
                 {
                     return 1;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstFullColumnNames), false, false))
+                if (AstRoot.Eval(list[2], typeof(AstFullColumnNames), false, false))
                 {
                     return 2;
                 }
@@ -69540,469 +69901,469 @@ namespace Bb.SqlServer.Asts
             {
                 return new AstBuiltInFunctions.AstBuiltInFunctions1(ctx);
             }
+            if ((index == 2))
+            {
+                return new AstBuiltInFunctions.AstBuiltInFunctions2(ctx, ((AstExpression)(list[2])), ((AstExpression)(list[2])), ((AstExpression)(list[2])));
+            }
+            if ((index == 3))
+            {
+                return new AstBuiltInFunctions.AstBuiltInFunctions3(ctx, ((AstExpression)(list[3])), ((AstExpression)(list[3])), ((AstExpression)(list[3])), ((AstExpression)(list[3])));
+            }
             if ((index == 4))
             {
-                return new AstBuiltInFunctions.AstBuiltInFunctions2(ctx, ((AstExpression)(list[0])), ((AstExpression)(list[1])), ((AstExpression)(list[2])));
+                return new AstBuiltInFunctions.AstBuiltInFunctions4(ctx, ((AstExpression)(list[4])), ((AstExpression)(list[4])));
             }
             if ((index == 5))
             {
-                return new AstBuiltInFunctions.AstBuiltInFunctions3(ctx, ((AstExpression)(list[0])), ((AstExpression)(list[1])), ((AstExpression)(list[2])), ((AstExpression)(list[3])));
+                return new AstBuiltInFunctions.AstBuiltInFunctions5(ctx, ((AstExpression)(list[5])), ((AstExpression)(list[5])));
             }
-            if ((index == 3))
+            if ((index == 6))
             {
-                return new AstBuiltInFunctions.AstBuiltInFunctions4(ctx, ((AstExpression)(list[0])), ((AstExpression)(list[1])));
+                return new AstBuiltInFunctions.AstBuiltInFunctions6(ctx, ((AstExpression)(list[6])), ((AstExpression)(list[6])));
             }
-            if ((index == 3))
+            if ((index == 7))
             {
-                return new AstBuiltInFunctions.AstBuiltInFunctions5(ctx, ((AstExpression)(list[0])), ((AstExpression)(list[1])));
+                return new AstBuiltInFunctions.AstBuiltInFunctions7(ctx, ((AstExpression)(list[7])), ((AstExpression)(list[7])), ((AstExpression)(list[7])));
             }
-            if ((index == 3))
+            if ((index == 8))
             {
-                return new AstBuiltInFunctions.AstBuiltInFunctions6(ctx, ((AstExpression)(list[0])), ((AstExpression)(list[1])));
+                return new AstBuiltInFunctions.AstBuiltInFunctions8(ctx, ((AstExpression)(list[8])), ((AstExpression)(list[8])));
             }
-            if ((index == 4))
+            if ((index == 9))
             {
-                return new AstBuiltInFunctions.AstBuiltInFunctions7(ctx, ((AstExpression)(list[0])), ((AstExpression)(list[1])), ((AstExpression)(list[2])));
+                return new AstBuiltInFunctions.AstBuiltInFunctions9(ctx, ((AstExpression)(list[9])));
             }
-            if ((index == 3))
+            if ((index == 10))
             {
-                return new AstBuiltInFunctions.AstBuiltInFunctions8(ctx, ((AstExpression)(list[0])), ((AstExpression)(list[1])));
+                return new AstBuiltInFunctions.AstBuiltInFunctions10(ctx, ((AstExpression)(list[10])));
             }
-            if ((index == 2))
+            if ((index == 11))
             {
-                return new AstBuiltInFunctions.AstBuiltInFunctions9(ctx, ((AstExpression)(list[0])));
+                return new AstBuiltInFunctions.AstBuiltInFunctions11(ctx, ((AstExpression)(list[11])));
             }
-            if ((index == 2))
+            if ((index == 12))
             {
-                return new AstBuiltInFunctions.AstBuiltInFunctions10(ctx, ((AstExpression)(list[0])));
+                return new AstBuiltInFunctions.AstBuiltInFunctions12(ctx, ((AstExpression)(list[12])));
             }
-            if ((index == 2))
+            if ((index == 13))
             {
-                return new AstBuiltInFunctions.AstBuiltInFunctions11(ctx, ((AstExpression)(list[0])));
+                return new AstBuiltInFunctions.AstBuiltInFunctions13(ctx, ((AstExpression)(list[13])));
             }
-            if ((index == 2))
+            if ((index == 14))
             {
-                return new AstBuiltInFunctions.AstBuiltInFunctions12(ctx, ((AstExpression)(list[0])));
+                return new AstBuiltInFunctions.AstBuiltInFunctions14(ctx, ((AstExpression)(list[14])));
             }
-            if ((index == 2))
+            if ((index == 15))
             {
-                return new AstBuiltInFunctions.AstBuiltInFunctions13(ctx, ((AstExpression)(list[0])));
+                return new AstBuiltInFunctions.AstBuiltInFunctions15(ctx, ((AstExpression)(list[15])));
             }
-            if ((index == 2))
+            if ((index == 16))
             {
-                return new AstBuiltInFunctions.AstBuiltInFunctions14(ctx, ((AstExpression)(list[0])));
+                return new AstBuiltInFunctions.AstBuiltInFunctions16(ctx, ((AstExpression)(list[16])), ((AstExpression)(list[16])));
             }
-            if ((index == 2))
+            if ((index == 17))
             {
-                return new AstBuiltInFunctions.AstBuiltInFunctions15(ctx, ((AstExpression)(list[0])));
+                return new AstBuiltInFunctions.AstBuiltInFunctions17(ctx, ((AstExpression)(list[17])), ((AstExpression)(list[17])));
             }
-            if ((index == 3))
+            if ((index == 18))
             {
-                return new AstBuiltInFunctions.AstBuiltInFunctions16(ctx, ((AstExpression)(list[0])), ((AstExpression)(list[1])));
+                return new AstBuiltInFunctions.AstBuiltInFunctions18(ctx, ((AstExpression)(list[18])), ((AstExpression)(list[18])));
             }
-            if ((index == 3))
+            if ((index == 19))
             {
-                return new AstBuiltInFunctions.AstBuiltInFunctions17(ctx, ((AstExpression)(list[0])), ((AstExpression)(list[1])));
+                return new AstBuiltInFunctions.AstBuiltInFunctions19(ctx, ((AstExpression)(list[19])), ((AstExpression)(list[19])));
             }
-            if ((index == 3))
+            if ((index == 20))
             {
-                return new AstBuiltInFunctions.AstBuiltInFunctions18(ctx, ((AstExpression)(list[0])), ((AstExpression)(list[1])));
+                return new AstBuiltInFunctions.AstBuiltInFunctions20(ctx, ((AstExpression)(list[20])));
             }
-            if ((index == 3))
+            if ((index == 21))
             {
-                return new AstBuiltInFunctions.AstBuiltInFunctions19(ctx, ((AstExpression)(list[0])), ((AstExpression)(list[1])));
+                return new AstBuiltInFunctions.AstBuiltInFunctions21(ctx, ((AstExpression)(list[21])), ((AstExpression)(list[21])), ((AstExpression)(list[21])));
             }
-            if ((index == 2))
+            if ((index == 22))
             {
-                return new AstBuiltInFunctions.AstBuiltInFunctions20(ctx, ((AstExpression)(list[0])));
+                return new AstBuiltInFunctions.AstBuiltInFunctions22(ctx, ((AstExpression)(list[22])), ((AstExpression)(list[22])), ((AstExpression)(list[22])), ((AstExpression)(list[22])));
             }
-            if ((index == 4))
+            if ((index == 23))
             {
-                return new AstBuiltInFunctions.AstBuiltInFunctions21(ctx, ((AstExpression)(list[0])), ((AstExpression)(list[1])), ((AstExpression)(list[2])));
+                return new AstBuiltInFunctions.AstBuiltInFunctions23(ctx, ((AstExpression)(list[23])), ((AstExpression)(list[23])), ((AstExpression)(list[23])));
             }
-            if ((index == 5))
+            if ((index == 24))
             {
-                return new AstBuiltInFunctions.AstBuiltInFunctions22(ctx, ((AstExpression)(list[0])), ((AstExpression)(list[1])), ((AstExpression)(list[2])), ((AstExpression)(list[3])));
+                return new AstBuiltInFunctions.AstBuiltInFunctions24(ctx, ((AstFullTableRef)(list[24])), ((AstOrderByClause)(list[24])));
             }
-            if ((index == 4))
+            if ((index == 25))
             {
-                return new AstBuiltInFunctions.AstBuiltInFunctions23(ctx, ((AstExpression)(list[0])), ((AstExpression)(list[1])), ((AstExpression)(list[2])));
+                return new AstBuiltInFunctions.AstBuiltInFunctions25(ctx, ((AstExpression)(list[25])));
             }
-            if ((index == 3))
+            if ((index == 26))
             {
-                return new AstBuiltInFunctions.AstBuiltInFunctions24(ctx, ((AstFullTableRef)(list[0])), ((AstOrderByClause)(list[1])));
+                return new AstBuiltInFunctions.AstBuiltInFunctions26(ctx, ((AstExpression)(list[26])), ((AstExpression)(list[26])));
             }
-            if ((index == 2))
+            if ((index == 27))
             {
-                return new AstBuiltInFunctions.AstBuiltInFunctions25(ctx, ((AstExpression)(list[0])));
+                return new AstBuiltInFunctions.AstBuiltInFunctions27(ctx, ((AstExpression)(list[27])), ((AstExpression)(list[27])));
             }
-            if ((index == 3))
+            if ((index == 28))
             {
-                return new AstBuiltInFunctions.AstBuiltInFunctions26(ctx, ((AstExpression)(list[0])), ((AstExpression)(list[1])));
+                return new AstBuiltInFunctions.AstBuiltInFunctions28(ctx, ((AstExpression)(list[28])), ((AstExpression)(list[28])));
             }
-            if ((index == 3))
+            if ((index == 29))
             {
-                return new AstBuiltInFunctions.AstBuiltInFunctions27(ctx, ((AstExpression)(list[0])), ((AstExpression)(list[1])));
+                return new AstBuiltInFunctions.AstBuiltInFunctions29(ctx, ((AstExpression)(list[29])), ((AstExpression)(list[29])));
             }
-            if ((index == 3))
+            if ((index == 30))
             {
-                return new AstBuiltInFunctions.AstBuiltInFunctions28(ctx, ((AstExpression)(list[0])), ((AstExpression)(list[1])));
+                return new AstBuiltInFunctions.AstBuiltInFunctions30(ctx, ((AstExpression)(list[30])), ((AstExpression)(list[30])));
             }
-            if ((index == 3))
-            {
-                return new AstBuiltInFunctions.AstBuiltInFunctions29(ctx, ((AstExpression)(list[0])), ((AstExpression)(list[1])));
-            }
-            if ((index == 3))
-            {
-                return new AstBuiltInFunctions.AstBuiltInFunctions30(ctx, ((AstExpression)(list[0])), ((AstExpression)(list[1])));
-            }
-            if ((index == 1))
+            if ((index == 31))
             {
                 return new AstBuiltInFunctions.AstBuiltInFunctions31(ctx);
             }
-            if ((index == 3))
+            if ((index == 32))
             {
-                return new AstBuiltInFunctions.AstBuiltInFunctions32(ctx, ((AstExpression)(list[0])), ((AstExpression)(list[1])));
+                return new AstBuiltInFunctions.AstBuiltInFunctions32(ctx, ((AstExpression)(list[32])), ((AstExpression)(list[32])));
             }
-            if ((index == 2))
+            if ((index == 33))
             {
-                return new AstBuiltInFunctions.AstBuiltInFunctions33(ctx, ((AstExpression)(list[0])));
+                return new AstBuiltInFunctions.AstBuiltInFunctions33(ctx, ((AstExpression)(list[33])));
             }
-            if ((index == 2))
+            if ((index == 34))
             {
-                return new AstBuiltInFunctions.AstBuiltInFunctions34(ctx, ((AstExpression)(list[0])));
+                return new AstBuiltInFunctions.AstBuiltInFunctions34(ctx, ((AstExpression)(list[34])));
             }
-            if ((index == 1))
+            if ((index == 35))
             {
                 return new AstBuiltInFunctions.AstBuiltInFunctions35(ctx);
             }
-            if ((index == 2))
+            if ((index == 36))
             {
-                return new AstBuiltInFunctions.AstBuiltInFunctions36(ctx, ((AstExpression)(list[0])));
+                return new AstBuiltInFunctions.AstBuiltInFunctions36(ctx, ((AstExpression)(list[36])));
             }
-            if ((index == 3))
+            if ((index == 37))
             {
-                return new AstBuiltInFunctions.AstBuiltInFunctions37(ctx, ((AstExpression)(list[0])), ((AstExpression)(list[1])));
+                return new AstBuiltInFunctions.AstBuiltInFunctions37(ctx, ((AstExpression)(list[37])), ((AstExpression)(list[37])));
             }
-            if ((index == 2))
+            if ((index == 38))
             {
-                return new AstBuiltInFunctions.AstBuiltInFunctions38(ctx, ((AstExpression)(list[0])));
+                return new AstBuiltInFunctions.AstBuiltInFunctions38(ctx, ((AstExpression)(list[38])));
             }
-            if ((index == 2))
+            if ((index == 39))
             {
-                return new AstBuiltInFunctions.AstBuiltInFunctions39(ctx, ((AstExpression)(list[0])));
+                return new AstBuiltInFunctions.AstBuiltInFunctions39(ctx, ((AstExpression)(list[39])));
             }
-            if ((index == 3))
+            if ((index == 40))
             {
-                return new AstBuiltInFunctions.AstBuiltInFunctions40(ctx, ((AstExpression)(list[0])), ((AstExpression)(list[1])));
+                return new AstBuiltInFunctions.AstBuiltInFunctions40(ctx, ((AstExpression)(list[40])), ((AstExpression)(list[40])));
             }
-            if ((index == 2))
+            if ((index == 41))
             {
-                return new AstBuiltInFunctions.AstBuiltInFunctions41(ctx, ((AstExpression)(list[0])));
+                return new AstBuiltInFunctions.AstBuiltInFunctions41(ctx, ((AstExpression)(list[41])));
             }
-            if ((index == 2))
+            if ((index == 42))
             {
-                return new AstBuiltInFunctions.AstBuiltInFunctions42(ctx, ((AstExpression)(list[0])));
+                return new AstBuiltInFunctions.AstBuiltInFunctions42(ctx, ((AstExpression)(list[42])));
             }
-            if ((index == 4))
+            if ((index == 43))
             {
-                return new AstBuiltInFunctions.AstBuiltInFunctions43(ctx, ((AstExpression)(list[0])), ((AstExpression)(list[1])), ((AstExpression)(list[2])));
+                return new AstBuiltInFunctions.AstBuiltInFunctions43(ctx, ((AstExpression)(list[43])), ((AstExpression)(list[43])), ((AstExpression)(list[43])));
             }
-            if ((index == 2))
+            if ((index == 44))
             {
-                return new AstBuiltInFunctions.AstBuiltInFunctions44(ctx, ((AstExpressions)(list[0])));
+                return new AstBuiltInFunctions.AstBuiltInFunctions44(ctx, ((AstExpressions)(list[44])));
             }
-            if ((index == 2))
+            if ((index == 45))
             {
-                return new AstBuiltInFunctions.AstBuiltInFunctions45(ctx, ((AstExpressions)(list[0])));
+                return new AstBuiltInFunctions.AstBuiltInFunctions45(ctx, ((AstExpressions)(list[45])));
             }
-            if ((index == 3))
+            if ((index == 46))
             {
-                return new AstBuiltInFunctions.AstBuiltInFunctions46(ctx, ((AstExpression)(list[0])), ((AstExpression)(list[1])));
+                return new AstBuiltInFunctions.AstBuiltInFunctions46(ctx, ((AstExpression)(list[46])), ((AstExpression)(list[46])));
             }
-            if ((index == 2))
+            if ((index == 47))
             {
-                return new AstBuiltInFunctions.AstBuiltInFunctions47(ctx, ((AstExpressions)(list[0])));
+                return new AstBuiltInFunctions.AstBuiltInFunctions47(ctx, ((AstExpressions)(list[47])));
             }
-            if ((index == 3))
+            if ((index == 48))
             {
-                return new AstBuiltInFunctions.AstBuiltInFunctions48(ctx, ((AstExpression)(list[0])), ((AstExpression)(list[1])));
+                return new AstBuiltInFunctions.AstBuiltInFunctions48(ctx, ((AstExpression)(list[48])), ((AstExpression)(list[48])));
             }
-            if ((index == 2))
+            if ((index == 49))
             {
-                return new AstBuiltInFunctions.AstBuiltInFunctions49(ctx, ((AstExpression)(list[0])));
+                return new AstBuiltInFunctions.AstBuiltInFunctions49(ctx, ((AstExpression)(list[49])));
             }
-            if ((index == 2))
+            if ((index == 50))
             {
-                return new AstBuiltInFunctions.AstBuiltInFunctions50(ctx, ((AstExpression)(list[0])));
+                return new AstBuiltInFunctions.AstBuiltInFunctions50(ctx, ((AstExpression)(list[50])));
             }
-            if ((index == 2))
+            if ((index == 51))
             {
-                return new AstBuiltInFunctions.AstBuiltInFunctions51(ctx, ((AstExpression)(list[0])));
+                return new AstBuiltInFunctions.AstBuiltInFunctions51(ctx, ((AstExpression)(list[51])));
             }
-            if ((index == 2))
+            if ((index == 52))
             {
-                return new AstBuiltInFunctions.AstBuiltInFunctions52(ctx, ((AstExpression)(list[0])));
+                return new AstBuiltInFunctions.AstBuiltInFunctions52(ctx, ((AstExpression)(list[52])));
             }
-            if ((index == 3))
+            if ((index == 53))
             {
-                return new AstBuiltInFunctions.AstBuiltInFunctions53(ctx, ((AstExpression)(list[0])), ((AstExpression)(list[1])));
+                return new AstBuiltInFunctions.AstBuiltInFunctions53(ctx, ((AstExpression)(list[53])), ((AstExpression)(list[53])));
             }
-            if ((index == 3))
+            if ((index == 54))
             {
-                return new AstBuiltInFunctions.AstBuiltInFunctions54(ctx, ((AstExpression)(list[0])), ((AstExpression)(list[1])));
+                return new AstBuiltInFunctions.AstBuiltInFunctions54(ctx, ((AstExpression)(list[54])), ((AstExpression)(list[54])));
             }
-            if ((index == 4))
+            if ((index == 55))
             {
-                return new AstBuiltInFunctions.AstBuiltInFunctions55(ctx, ((AstExpression)(list[0])), ((AstExpression)(list[1])), ((AstExpression)(list[2])));
+                return new AstBuiltInFunctions.AstBuiltInFunctions55(ctx, ((AstExpression)(list[55])), ((AstExpression)(list[55])), ((AstExpression)(list[55])));
             }
-            if ((index == 3))
+            if ((index == 56))
             {
-                return new AstBuiltInFunctions.AstBuiltInFunctions56(ctx, ((AstExpression)(list[0])), ((AstExpression)(list[1])));
+                return new AstBuiltInFunctions.AstBuiltInFunctions56(ctx, ((AstExpression)(list[56])), ((AstExpression)(list[56])));
             }
-            if ((index == 2))
+            if ((index == 57))
             {
-                return new AstBuiltInFunctions.AstBuiltInFunctions57(ctx, ((AstExpression)(list[0])));
+                return new AstBuiltInFunctions.AstBuiltInFunctions57(ctx, ((AstExpression)(list[57])));
             }
-            if ((index == 3))
+            if ((index == 58))
             {
-                return new AstBuiltInFunctions.AstBuiltInFunctions58(ctx, ((AstExpression)(list[0])), ((AstExpression)(list[1])));
+                return new AstBuiltInFunctions.AstBuiltInFunctions58(ctx, ((AstExpression)(list[58])), ((AstExpression)(list[58])));
             }
-            if ((index == 2))
+            if ((index == 59))
             {
-                return new AstBuiltInFunctions.AstBuiltInFunctions59(ctx, ((AstExpression)(list[0])));
+                return new AstBuiltInFunctions.AstBuiltInFunctions59(ctx, ((AstExpression)(list[59])));
             }
-            if ((index == 2))
+            if ((index == 60))
             {
-                return new AstBuiltInFunctions.AstBuiltInFunctions60(ctx, ((AstExpression)(list[0])));
+                return new AstBuiltInFunctions.AstBuiltInFunctions60(ctx, ((AstExpression)(list[60])));
             }
-            if ((index == 2))
+            if ((index == 61))
             {
-                return new AstBuiltInFunctions.AstBuiltInFunctions61(ctx, ((AstExpression)(list[0])));
+                return new AstBuiltInFunctions.AstBuiltInFunctions61(ctx, ((AstExpression)(list[61])));
             }
-            if ((index == 4))
+            if ((index == 62))
             {
-                return new AstBuiltInFunctions.AstBuiltInFunctions62(ctx, ((AstExpression)(list[0])), ((AstExpression)(list[1])), ((AstExpression)(list[2])));
+                return new AstBuiltInFunctions.AstBuiltInFunctions62(ctx, ((AstExpression)(list[62])), ((AstExpression)(list[62])), ((AstExpression)(list[62])));
             }
-            if ((index == 4))
+            if ((index == 63))
             {
-                return new AstBuiltInFunctions.AstBuiltInFunctions63(ctx, ((AstExpression)(list[0])), ((AstExpression)(list[1])), ((AstOrderByClause)(list[2])));
+                return new AstBuiltInFunctions.AstBuiltInFunctions63(ctx, ((AstExpression)(list[63])), ((AstExpression)(list[63])), ((AstOrderByClause)(list[63])));
             }
-            if ((index == 3))
+            if ((index == 64))
             {
-                return new AstBuiltInFunctions.AstBuiltInFunctions64(ctx, ((AstExpression)(list[0])), ((AstExpression)(list[1])));
+                return new AstBuiltInFunctions.AstBuiltInFunctions64(ctx, ((AstExpression)(list[64])), ((AstExpression)(list[64])));
             }
-            if ((index == 5))
+            if ((index == 65))
             {
-                return new AstBuiltInFunctions.AstBuiltInFunctions65(ctx, ((AstExpression)(list[0])), ((AstDecimal)(list[1])), ((AstDecimal)(list[2])), ((AstExpression)(list[3])));
+                return new AstBuiltInFunctions.AstBuiltInFunctions65(ctx, ((AstExpression)(list[65])), ((AstDecimal)(list[65])), ((AstDecimal)(list[65])), ((AstExpression)(list[65])));
             }
-            if ((index == 4))
+            if ((index == 66))
             {
-                return new AstBuiltInFunctions.AstBuiltInFunctions66(ctx, ((AstExpression)(list[0])), ((AstExpression)(list[1])), ((AstExpression)(list[2])));
+                return new AstBuiltInFunctions.AstBuiltInFunctions66(ctx, ((AstExpression)(list[66])), ((AstExpression)(list[66])), ((AstExpression)(list[66])));
             }
-            if ((index == 4))
+            if ((index == 67))
             {
-                return new AstBuiltInFunctions.AstBuiltInFunctions67(ctx, ((AstExpression)(list[0])), ((AstExpression)(list[1])), ((AstExpression)(list[2])));
+                return new AstBuiltInFunctions.AstBuiltInFunctions67(ctx, ((AstExpression)(list[67])), ((AstExpression)(list[67])), ((AstExpression)(list[67])));
             }
-            if ((index == 3))
+            if ((index == 68))
             {
-                return new AstBuiltInFunctions.AstBuiltInFunctions68(ctx, ((AstExpression)(list[0])), ((AstExpression)(list[1])));
+                return new AstBuiltInFunctions.AstBuiltInFunctions68(ctx, ((AstExpression)(list[68])), ((AstExpression)(list[68])));
             }
-            if ((index == 2))
+            if ((index == 69))
             {
-                return new AstBuiltInFunctions.AstBuiltInFunctions69(ctx, ((AstExpression)(list[0])));
+                return new AstBuiltInFunctions.AstBuiltInFunctions69(ctx, ((AstExpression)(list[69])));
             }
-            if ((index == 2))
+            if ((index == 70))
             {
-                return new AstBuiltInFunctions.AstBuiltInFunctions70(ctx, ((AstExpression)(list[0])));
+                return new AstBuiltInFunctions.AstBuiltInFunctions70(ctx, ((AstExpression)(list[70])));
             }
-            if ((index == 2))
+            if ((index == 71))
             {
-                return new AstBuiltInFunctions.AstBuiltInFunctions71(ctx, ((AstExpressionOrStar)(list[0])));
+                return new AstBuiltInFunctions.AstBuiltInFunctions71(ctx, ((AstExpressionOrStar)(list[71])));
             }
-            if ((index == 2))
+            if ((index == 72))
             {
-                return new AstBuiltInFunctions.AstBuiltInFunctions72(ctx, ((AstExpressionOrStar)(list[0])));
+                return new AstBuiltInFunctions.AstBuiltInFunctions72(ctx, ((AstExpressionOrStar)(list[72])));
             }
-            if ((index == 2))
+            if ((index == 73))
             {
-                return new AstBuiltInFunctions.AstBuiltInFunctions73(ctx, ((AstExpression)(list[0])));
+                return new AstBuiltInFunctions.AstBuiltInFunctions73(ctx, ((AstExpression)(list[73])));
             }
-            if ((index == 2))
+            if ((index == 74))
             {
-                return new AstBuiltInFunctions.AstBuiltInFunctions74(ctx, ((AstStringtext)(list[0])));
+                return new AstBuiltInFunctions.AstBuiltInFunctions74(ctx, ((AstStringtext)(list[74])));
             }
-            if ((index == 1))
+            if ((index == 75))
             {
                 return new AstBuiltInFunctions.AstBuiltInFunctions75(ctx);
             }
-            if ((index == 1))
+            if ((index == 76))
             {
                 return new AstBuiltInFunctions.AstBuiltInFunctions76(ctx);
             }
-            if ((index == 1))
+            if ((index == 77))
             {
                 return new AstBuiltInFunctions.AstBuiltInFunctions77(ctx);
             }
-            if ((index == 2))
+            if ((index == 78))
             {
-                return new AstBuiltInFunctions.AstBuiltInFunctions78(ctx, ((AstExpression)(list[0])));
+                return new AstBuiltInFunctions.AstBuiltInFunctions78(ctx, ((AstExpression)(list[78])));
             }
-            if ((index == 1))
+            if ((index == 79))
             {
                 return new AstBuiltInFunctions.AstBuiltInFunctions79(ctx);
             }
-            if ((index == 1))
+            if ((index == 80))
             {
                 return new AstBuiltInFunctions.AstBuiltInFunctions80(ctx);
             }
-            if ((index == 1))
+            if ((index == 81))
             {
                 return new AstBuiltInFunctions.AstBuiltInFunctions81(ctx);
             }
-            if ((index == 1))
+            if ((index == 82))
             {
                 return new AstBuiltInFunctions.AstBuiltInFunctions82(ctx);
             }
-            if ((index == 1))
+            if ((index == 83))
             {
                 return new AstBuiltInFunctions.AstBuiltInFunctions83(ctx);
             }
-            if ((index == 1))
+            if ((index == 84))
             {
                 return new AstBuiltInFunctions.AstBuiltInFunctions84(ctx);
             }
-            if ((index == 3))
+            if ((index == 85))
             {
-                return new AstBuiltInFunctions.AstBuiltInFunctions85(ctx, ((AstFormatArgument)(list[0])), ((AstExpressions)(list[1])));
+                return new AstBuiltInFunctions.AstBuiltInFunctions85(ctx, ((AstFormatArgument)(list[85])), ((AstExpressions)(list[85])));
             }
-            if ((index == 1))
+            if ((index == 86))
             {
                 return new AstBuiltInFunctions.AstBuiltInFunctions86(ctx);
             }
-            if ((index == 2))
+            if ((index == 87))
             {
-                return new AstBuiltInFunctions.AstBuiltInFunctions87(ctx, ((AstStringtext)(list[0])));
+                return new AstBuiltInFunctions.AstBuiltInFunctions87(ctx, ((AstStringtext)(list[87])));
             }
-            if ((index == 1))
+            if ((index == 88))
             {
                 return new AstBuiltInFunctions.AstBuiltInFunctions88(ctx);
             }
-            if ((index == 1))
+            if ((index == 89))
             {
                 return new AstBuiltInFunctions.AstBuiltInFunctions89(ctx);
             }
-            if ((index == 3))
+            if ((index == 90))
             {
-                return new AstBuiltInFunctions.AstBuiltInFunctions90(ctx, ((AstExpression)(list[0])), ((AstExpression)(list[1])));
+                return new AstBuiltInFunctions.AstBuiltInFunctions90(ctx, ((AstExpression)(list[90])), ((AstExpression)(list[90])));
             }
-            if ((index == 2))
+            if ((index == 91))
             {
-                return new AstBuiltInFunctions.AstBuiltInFunctions91(ctx, ((AstExpression)(list[0])));
+                return new AstBuiltInFunctions.AstBuiltInFunctions91(ctx, ((AstExpression)(list[91])));
             }
-            if ((index == 1))
+            if ((index == 92))
             {
                 return new AstBuiltInFunctions.AstBuiltInFunctions92(ctx);
             }
-            if ((index == 1))
+            if ((index == 93))
             {
                 return new AstBuiltInFunctions.AstBuiltInFunctions93(ctx);
             }
-            if ((index == 1))
+            if ((index == 94))
             {
                 return new AstBuiltInFunctions.AstBuiltInFunctions94(ctx);
             }
-            if ((index == 2))
+            if ((index == 95))
             {
-                return new AstBuiltInFunctions.AstBuiltInFunctions95(ctx, ((AstStringtext)(list[0])));
+                return new AstBuiltInFunctions.AstBuiltInFunctions95(ctx, ((AstStringtext)(list[95])));
             }
-            if ((index == 1))
+            if ((index == 96))
             {
                 return new AstBuiltInFunctions.AstBuiltInFunctions96(ctx);
             }
-            if ((index == 3))
+            if ((index == 97))
             {
-                return new AstBuiltInFunctions.AstBuiltInFunctions97(ctx, ((AstExpression)(list[0])), ((AstDataType)(list[1])));
+                return new AstBuiltInFunctions.AstBuiltInFunctions97(ctx, ((AstExpression)(list[97])), ((AstDataType)(list[97])));
             }
-            if ((index == 3))
+            if ((index == 98))
             {
-                return new AstBuiltInFunctions.AstBuiltInFunctions98(ctx, ((AstExpression)(list[0])), ((AstDataType)(list[1])));
+                return new AstBuiltInFunctions.AstBuiltInFunctions98(ctx, ((AstExpression)(list[98])), ((AstDataType)(list[98])));
             }
-            if ((index == 3))
+            if ((index == 99))
             {
-                return new AstBuiltInFunctions.AstBuiltInFunctions99(ctx, ((AstDataType)(list[0])), ((AstExpression2)(list[1])));
+                return new AstBuiltInFunctions.AstBuiltInFunctions99(ctx, ((AstDataType)(list[99])), ((AstExpression2)(list[99])));
             }
-            if ((index == 2))
+            if ((index == 100))
             {
-                return new AstBuiltInFunctions.AstBuiltInFunctions100(ctx, ((AstExpressionList)(list[0])));
+                return new AstBuiltInFunctions.AstBuiltInFunctions100(ctx, ((AstExpressionList)(list[100])));
             }
-            if ((index == 1))
+            if ((index == 101))
             {
                 return new AstBuiltInFunctions.AstBuiltInFunctions101(ctx);
             }
-            if ((index == 1))
+            if ((index == 102))
             {
                 return new AstBuiltInFunctions.AstBuiltInFunctions102(ctx);
             }
-            if ((index == 1))
+            if ((index == 103))
             {
                 return new AstBuiltInFunctions.AstBuiltInFunctions103(ctx);
             }
-            if ((index == 4))
+            if ((index == 104))
             {
-                return new AstBuiltInFunctions.AstBuiltInFunctions104(ctx, ((AstIdSimple)(list[0])), ((AstExpression)(list[1])), ((AstExpression)(list[2])));
+                return new AstBuiltInFunctions.AstBuiltInFunctions104(ctx, ((AstIdSimple)(list[104])), ((AstExpression)(list[104])), ((AstExpression)(list[104])));
             }
-            if ((index == 4))
+            if ((index == 105))
             {
-                return new AstBuiltInFunctions.AstBuiltInFunctions105(ctx, ((AstIdSimple)(list[0])), ((AstExpression)(list[1])), ((AstExpression)(list[2])));
+                return new AstBuiltInFunctions.AstBuiltInFunctions105(ctx, ((AstIdSimple)(list[105])), ((AstExpression)(list[105])), ((AstExpression)(list[105])));
             }
-            if ((index == 3))
+            if ((index == 106))
             {
-                return new AstBuiltInFunctions.AstBuiltInFunctions106(ctx, ((AstIdSimple)(list[0])), ((AstExpression)(list[1])));
+                return new AstBuiltInFunctions.AstBuiltInFunctions106(ctx, ((AstIdSimple)(list[106])), ((AstExpression)(list[106])));
             }
-            if ((index == 3))
+            if ((index == 107))
             {
-                return new AstBuiltInFunctions.AstBuiltInFunctions107(ctx, ((AstIdSimple)(list[0])), ((AstExpression)(list[1])));
+                return new AstBuiltInFunctions.AstBuiltInFunctions107(ctx, ((AstIdSimple)(list[107])), ((AstExpression)(list[107])));
             }
-            if ((index == 1))
+            if ((index == 108))
             {
                 return new AstBuiltInFunctions.AstBuiltInFunctions108(ctx);
             }
-            if ((index == 1))
+            if ((index == 109))
             {
                 return new AstBuiltInFunctions.AstBuiltInFunctions109(ctx);
             }
-            if ((index == 4))
+            if ((index == 110))
             {
-                return new AstBuiltInFunctions.AstBuiltInFunctions110(ctx, ((AstDataType)(list[0])), ((AstDecimal)(list[1])), ((AstDecimal)(list[2])));
+                return new AstBuiltInFunctions.AstBuiltInFunctions110(ctx, ((AstDataType)(list[110])), ((AstDecimal)(list[110])), ((AstDecimal)(list[110])));
             }
-            if ((index == 3))
+            if ((index == 111))
             {
-                return new AstBuiltInFunctions.AstBuiltInFunctions111(ctx, ((AstExpression)(list[0])), ((AstExpression)(list[1])));
+                return new AstBuiltInFunctions.AstBuiltInFunctions111(ctx, ((AstExpression)(list[111])), ((AstExpression)(list[111])));
             }
-            if ((index == 1))
+            if ((index == 112))
             {
                 return new AstBuiltInFunctions.AstBuiltInFunctions112(ctx);
             }
-            if ((index == 1))
+            if ((index == 113))
             {
                 return new AstBuiltInFunctions.AstBuiltInFunctions113(ctx);
             }
-            if ((index == 1))
+            if ((index == 114))
             {
                 return new AstBuiltInFunctions.AstBuiltInFunctions114(ctx);
             }
-            if ((index == 4))
+            if ((index == 115))
             {
-                return new AstBuiltInFunctions.AstBuiltInFunctions115(ctx, ((AstExpression)(list[0])), ((AstDataType)(list[1])), ((AstExpression)(list[2])));
+                return new AstBuiltInFunctions.AstBuiltInFunctions115(ctx, ((AstExpression)(list[115])), ((AstDataType)(list[115])), ((AstExpression)(list[115])));
             }
-            if ((index == 2))
+            if ((index == 116))
             {
-                return new AstBuiltInFunctions.AstBuiltInFunctions116(ctx, ((AstXmlDataTypeMethods)(list[0])));
+                return new AstBuiltInFunctions.AstBuiltInFunctions116(ctx, ((AstXmlDataTypeMethods)(list[116])));
             }
-            if ((index == 4))
+            if ((index == 117))
             {
-                return new AstBuiltInFunctions.AstBuiltInFunctions117(ctx, ((AstSearchCondition)(list[0])), ((AstExpression)(list[1])), ((AstExpression)(list[2])));
+                return new AstBuiltInFunctions.AstBuiltInFunctions117(ctx, ((AstSearchCondition)(list[117])), ((AstExpression)(list[117])), ((AstExpression)(list[117])));
             }
             return null;
         }
@@ -70011,11 +70372,11 @@ namespace Bb.SqlServer.Asts
         {
             if ((list.Count == 4))
             {
-                if (AstRoot.Eval(list[0], typeof(AstExpression), false, false))
+                if (AstRoot.Eval(list[3], typeof(AstExpression), false, false))
                 {
-                    if (AstRoot.Eval(list[1], typeof(AstExpression), false, false))
+                    if (AstRoot.Eval(list[3], typeof(AstExpression), false, false))
                     {
-                        if (AstRoot.Eval(list[2], typeof(AstExpression), false, false))
+                        if (AstRoot.Eval(list[3], typeof(AstExpression), false, false))
                         {
                             if (AstRoot.Eval(list[3], typeof(AstExpression), false, false))
                             {
@@ -70024,26 +70385,26 @@ namespace Bb.SqlServer.Asts
                         }
                     }
                 }
-                if (AstRoot.Eval(list[0], typeof(AstExpression), false, false))
+                if (AstRoot.Eval(list[22], typeof(AstExpression), false, false))
                 {
-                    if (AstRoot.Eval(list[1], typeof(AstExpression), false, false))
+                    if (AstRoot.Eval(list[22], typeof(AstExpression), false, false))
                     {
-                        if (AstRoot.Eval(list[2], typeof(AstExpression), false, false))
+                        if (AstRoot.Eval(list[22], typeof(AstExpression), false, false))
                         {
-                            if (AstRoot.Eval(list[3], typeof(AstExpression), false, false))
+                            if (AstRoot.Eval(list[22], typeof(AstExpression), false, false))
                             {
                                 return 21;
                             }
                         }
                     }
                 }
-                if (AstRoot.Eval(list[0], typeof(AstExpression), false, false))
+                if (AstRoot.Eval(list[65], typeof(AstExpression), false, false))
                 {
-                    if (AstRoot.Eval(list[1], typeof(AstDecimal), false, false))
+                    if (AstRoot.Eval(list[65], typeof(AstDecimal), false, false))
                     {
-                        if (AstRoot.Eval(list[2], typeof(AstDecimal), false, false))
+                        if (AstRoot.Eval(list[65], typeof(AstDecimal), false, false))
                         {
-                            if (AstRoot.Eval(list[3], typeof(AstExpression), false, false))
+                            if (AstRoot.Eval(list[65], typeof(AstExpression), false, false))
                             {
                                 return 62;
                             }
@@ -70053,9 +70414,9 @@ namespace Bb.SqlServer.Asts
             }
             if ((list.Count == 3))
             {
-                if (AstRoot.Eval(list[0], typeof(AstExpression), false, false))
+                if (AstRoot.Eval(list[2], typeof(AstExpression), false, false))
                 {
-                    if (AstRoot.Eval(list[1], typeof(AstExpression), false, false))
+                    if (AstRoot.Eval(list[2], typeof(AstExpression), false, false))
                     {
                         if (AstRoot.Eval(list[2], typeof(AstExpression), false, false))
                         {
@@ -70063,141 +70424,141 @@ namespace Bb.SqlServer.Asts
                         }
                     }
                 }
-                if (AstRoot.Eval(list[0], typeof(AstExpression), false, false))
+                if (AstRoot.Eval(list[7], typeof(AstExpression), false, false))
                 {
-                    if (AstRoot.Eval(list[1], typeof(AstExpression), false, false))
+                    if (AstRoot.Eval(list[7], typeof(AstExpression), false, false))
                     {
-                        if (AstRoot.Eval(list[2], typeof(AstExpression), false, false))
+                        if (AstRoot.Eval(list[7], typeof(AstExpression), false, false))
                         {
                             return 6;
                         }
                     }
                 }
-                if (AstRoot.Eval(list[0], typeof(AstExpression), false, false))
+                if (AstRoot.Eval(list[21], typeof(AstExpression), false, false))
                 {
-                    if (AstRoot.Eval(list[1], typeof(AstExpression), false, false))
+                    if (AstRoot.Eval(list[21], typeof(AstExpression), false, false))
                     {
-                        if (AstRoot.Eval(list[2], typeof(AstExpression), false, false))
+                        if (AstRoot.Eval(list[21], typeof(AstExpression), false, false))
                         {
                             return 20;
                         }
                     }
                 }
-                if (AstRoot.Eval(list[0], typeof(AstExpression), false, false))
+                if (AstRoot.Eval(list[23], typeof(AstExpression), false, false))
                 {
-                    if (AstRoot.Eval(list[1], typeof(AstExpression), false, false))
+                    if (AstRoot.Eval(list[23], typeof(AstExpression), false, false))
                     {
-                        if (AstRoot.Eval(list[2], typeof(AstExpression), false, false))
+                        if (AstRoot.Eval(list[23], typeof(AstExpression), false, false))
                         {
                             return 22;
                         }
                     }
                 }
-                if (AstRoot.Eval(list[0], typeof(AstExpression), false, false))
+                if (AstRoot.Eval(list[43], typeof(AstExpression), false, false))
                 {
-                    if (AstRoot.Eval(list[1], typeof(AstExpression), false, false))
+                    if (AstRoot.Eval(list[43], typeof(AstExpression), false, false))
                     {
-                        if (AstRoot.Eval(list[2], typeof(AstExpression), false, false))
+                        if (AstRoot.Eval(list[43], typeof(AstExpression), false, false))
                         {
                             return 40;
                         }
                     }
                 }
-                if (AstRoot.Eval(list[0], typeof(AstExpression), false, false))
+                if (AstRoot.Eval(list[55], typeof(AstExpression), false, false))
                 {
-                    if (AstRoot.Eval(list[1], typeof(AstExpression), false, false))
+                    if (AstRoot.Eval(list[55], typeof(AstExpression), false, false))
                     {
-                        if (AstRoot.Eval(list[2], typeof(AstExpression), false, false))
+                        if (AstRoot.Eval(list[55], typeof(AstExpression), false, false))
                         {
                             return 52;
                         }
                     }
                 }
-                if (AstRoot.Eval(list[0], typeof(AstExpression), false, false))
+                if (AstRoot.Eval(list[62], typeof(AstExpression), false, false))
                 {
-                    if (AstRoot.Eval(list[1], typeof(AstExpression), false, false))
+                    if (AstRoot.Eval(list[62], typeof(AstExpression), false, false))
                     {
-                        if (AstRoot.Eval(list[2], typeof(AstExpression), false, false))
+                        if (AstRoot.Eval(list[62], typeof(AstExpression), false, false))
                         {
                             return 59;
                         }
                     }
                 }
-                if (AstRoot.Eval(list[0], typeof(AstExpression), false, false))
+                if (AstRoot.Eval(list[63], typeof(AstExpression), false, false))
                 {
-                    if (AstRoot.Eval(list[1], typeof(AstExpression), false, false))
+                    if (AstRoot.Eval(list[63], typeof(AstExpression), false, false))
                     {
-                        if (AstRoot.Eval(list[2], typeof(AstOrderByClause), false, false))
+                        if (AstRoot.Eval(list[63], typeof(AstOrderByClause), false, false))
                         {
                             return 60;
                         }
                     }
                 }
-                if (AstRoot.Eval(list[0], typeof(AstExpression), false, false))
+                if (AstRoot.Eval(list[66], typeof(AstExpression), false, false))
                 {
-                    if (AstRoot.Eval(list[1], typeof(AstExpression), false, false))
+                    if (AstRoot.Eval(list[66], typeof(AstExpression), false, false))
                     {
-                        if (AstRoot.Eval(list[2], typeof(AstExpression), false, false))
+                        if (AstRoot.Eval(list[66], typeof(AstExpression), false, false))
                         {
                             return 63;
                         }
                     }
                 }
-                if (AstRoot.Eval(list[0], typeof(AstExpression), false, false))
+                if (AstRoot.Eval(list[67], typeof(AstExpression), false, false))
                 {
-                    if (AstRoot.Eval(list[1], typeof(AstExpression), false, false))
+                    if (AstRoot.Eval(list[67], typeof(AstExpression), false, false))
                     {
-                        if (AstRoot.Eval(list[2], typeof(AstExpression), false, false))
+                        if (AstRoot.Eval(list[67], typeof(AstExpression), false, false))
                         {
                             return 64;
                         }
                     }
                 }
-                if (AstRoot.Eval(list[0], typeof(AstIdSimple), false, false))
+                if (AstRoot.Eval(list[104], typeof(AstIdSimple), false, false))
                 {
-                    if (AstRoot.Eval(list[1], typeof(AstExpression), false, false))
+                    if (AstRoot.Eval(list[104], typeof(AstExpression), false, false))
                     {
-                        if (AstRoot.Eval(list[2], typeof(AstExpression), false, false))
+                        if (AstRoot.Eval(list[104], typeof(AstExpression), false, false))
                         {
                             return 82;
                         }
                     }
                 }
-                if (AstRoot.Eval(list[0], typeof(AstIdSimple), false, false))
+                if (AstRoot.Eval(list[105], typeof(AstIdSimple), false, false))
                 {
-                    if (AstRoot.Eval(list[1], typeof(AstExpression), false, false))
+                    if (AstRoot.Eval(list[105], typeof(AstExpression), false, false))
                     {
-                        if (AstRoot.Eval(list[2], typeof(AstExpression), false, false))
+                        if (AstRoot.Eval(list[105], typeof(AstExpression), false, false))
                         {
                             return 83;
                         }
                     }
                 }
-                if (AstRoot.Eval(list[0], typeof(AstDataType), false, false))
+                if (AstRoot.Eval(list[110], typeof(AstDataType), false, false))
                 {
-                    if (AstRoot.Eval(list[1], typeof(AstDecimal), false, false))
+                    if (AstRoot.Eval(list[110], typeof(AstDecimal), false, false))
                     {
-                        if (AstRoot.Eval(list[2], typeof(AstDecimal), false, false))
+                        if (AstRoot.Eval(list[110], typeof(AstDecimal), false, false))
                         {
                             return 86;
                         }
                     }
                 }
-                if (AstRoot.Eval(list[0], typeof(AstExpression), false, false))
+                if (AstRoot.Eval(list[115], typeof(AstExpression), false, false))
                 {
-                    if (AstRoot.Eval(list[1], typeof(AstDataType), false, false))
+                    if (AstRoot.Eval(list[115], typeof(AstDataType), false, false))
                     {
-                        if (AstRoot.Eval(list[2], typeof(AstExpression), false, false))
+                        if (AstRoot.Eval(list[115], typeof(AstExpression), false, false))
                         {
                             return 88;
                         }
                     }
                 }
-                if (AstRoot.Eval(list[0], typeof(AstSearchCondition), false, false))
+                if (AstRoot.Eval(list[117], typeof(AstSearchCondition), false, false))
                 {
-                    if (AstRoot.Eval(list[1], typeof(AstExpression), false, false))
+                    if (AstRoot.Eval(list[117], typeof(AstExpression), false, false))
                     {
-                        if (AstRoot.Eval(list[2], typeof(AstExpression), false, false))
+                        if (AstRoot.Eval(list[117], typeof(AstExpression), false, false))
                         {
                             return 90;
                         }
@@ -70206,233 +70567,233 @@ namespace Bb.SqlServer.Asts
             }
             if ((list.Count == 2))
             {
-                if (AstRoot.Eval(list[0], typeof(AstExpression), false, false))
+                if (AstRoot.Eval(list[4], typeof(AstExpression), false, false))
                 {
-                    if (AstRoot.Eval(list[1], typeof(AstExpression), false, false))
+                    if (AstRoot.Eval(list[4], typeof(AstExpression), false, false))
                     {
                         return 3;
                     }
                 }
-                if (AstRoot.Eval(list[0], typeof(AstExpression), false, false))
+                if (AstRoot.Eval(list[5], typeof(AstExpression), false, false))
                 {
-                    if (AstRoot.Eval(list[1], typeof(AstExpression), false, false))
+                    if (AstRoot.Eval(list[5], typeof(AstExpression), false, false))
                     {
                         return 4;
                     }
                 }
-                if (AstRoot.Eval(list[0], typeof(AstExpression), false, false))
+                if (AstRoot.Eval(list[6], typeof(AstExpression), false, false))
                 {
-                    if (AstRoot.Eval(list[1], typeof(AstExpression), false, false))
+                    if (AstRoot.Eval(list[6], typeof(AstExpression), false, false))
                     {
                         return 5;
                     }
                 }
-                if (AstRoot.Eval(list[0], typeof(AstExpression), false, false))
+                if (AstRoot.Eval(list[8], typeof(AstExpression), false, false))
                 {
-                    if (AstRoot.Eval(list[1], typeof(AstExpression), false, false))
+                    if (AstRoot.Eval(list[8], typeof(AstExpression), false, false))
                     {
                         return 7;
                     }
                 }
-                if (AstRoot.Eval(list[0], typeof(AstExpression), false, false))
+                if (AstRoot.Eval(list[16], typeof(AstExpression), false, false))
                 {
-                    if (AstRoot.Eval(list[1], typeof(AstExpression), false, false))
+                    if (AstRoot.Eval(list[16], typeof(AstExpression), false, false))
                     {
                         return 15;
                     }
                 }
-                if (AstRoot.Eval(list[0], typeof(AstExpression), false, false))
+                if (AstRoot.Eval(list[17], typeof(AstExpression), false, false))
                 {
-                    if (AstRoot.Eval(list[1], typeof(AstExpression), false, false))
+                    if (AstRoot.Eval(list[17], typeof(AstExpression), false, false))
                     {
                         return 16;
                     }
                 }
-                if (AstRoot.Eval(list[0], typeof(AstExpression), false, false))
+                if (AstRoot.Eval(list[18], typeof(AstExpression), false, false))
                 {
-                    if (AstRoot.Eval(list[1], typeof(AstExpression), false, false))
+                    if (AstRoot.Eval(list[18], typeof(AstExpression), false, false))
                     {
                         return 17;
                     }
                 }
-                if (AstRoot.Eval(list[0], typeof(AstExpression), false, false))
+                if (AstRoot.Eval(list[19], typeof(AstExpression), false, false))
                 {
-                    if (AstRoot.Eval(list[1], typeof(AstExpression), false, false))
+                    if (AstRoot.Eval(list[19], typeof(AstExpression), false, false))
                     {
                         return 18;
                     }
                 }
-                if (AstRoot.Eval(list[0], typeof(AstFullTableRef), false, false))
+                if (AstRoot.Eval(list[24], typeof(AstFullTableRef), false, false))
                 {
-                    if (AstRoot.Eval(list[1], typeof(AstOrderByClause), false, false))
+                    if (AstRoot.Eval(list[24], typeof(AstOrderByClause), false, false))
                     {
                         return 23;
                     }
                 }
-                if (AstRoot.Eval(list[0], typeof(AstExpression), false, false))
+                if (AstRoot.Eval(list[26], typeof(AstExpression), false, false))
                 {
-                    if (AstRoot.Eval(list[1], typeof(AstExpression), false, false))
+                    if (AstRoot.Eval(list[26], typeof(AstExpression), false, false))
                     {
                         return 25;
                     }
                 }
-                if (AstRoot.Eval(list[0], typeof(AstExpression), false, false))
+                if (AstRoot.Eval(list[27], typeof(AstExpression), false, false))
                 {
-                    if (AstRoot.Eval(list[1], typeof(AstExpression), false, false))
+                    if (AstRoot.Eval(list[27], typeof(AstExpression), false, false))
                     {
                         return 26;
                     }
                 }
-                if (AstRoot.Eval(list[0], typeof(AstExpression), false, false))
+                if (AstRoot.Eval(list[28], typeof(AstExpression), false, false))
                 {
-                    if (AstRoot.Eval(list[1], typeof(AstExpression), false, false))
+                    if (AstRoot.Eval(list[28], typeof(AstExpression), false, false))
                     {
                         return 27;
                     }
                 }
-                if (AstRoot.Eval(list[0], typeof(AstExpression), false, false))
+                if (AstRoot.Eval(list[29], typeof(AstExpression), false, false))
                 {
-                    if (AstRoot.Eval(list[1], typeof(AstExpression), false, false))
+                    if (AstRoot.Eval(list[29], typeof(AstExpression), false, false))
                     {
                         return 28;
                     }
                 }
-                if (AstRoot.Eval(list[0], typeof(AstExpression), false, false))
+                if (AstRoot.Eval(list[30], typeof(AstExpression), false, false))
                 {
-                    if (AstRoot.Eval(list[1], typeof(AstExpression), false, false))
+                    if (AstRoot.Eval(list[30], typeof(AstExpression), false, false))
                     {
                         return 29;
                     }
                 }
-                if (AstRoot.Eval(list[0], typeof(AstExpression), false, false))
+                if (AstRoot.Eval(list[32], typeof(AstExpression), false, false))
                 {
-                    if (AstRoot.Eval(list[1], typeof(AstExpression), false, false))
+                    if (AstRoot.Eval(list[32], typeof(AstExpression), false, false))
                     {
                         return 30;
                     }
                 }
-                if (AstRoot.Eval(list[0], typeof(AstExpression), false, false))
+                if (AstRoot.Eval(list[37], typeof(AstExpression), false, false))
                 {
-                    if (AstRoot.Eval(list[1], typeof(AstExpression), false, false))
+                    if (AstRoot.Eval(list[37], typeof(AstExpression), false, false))
                     {
                         return 34;
                     }
                 }
-                if (AstRoot.Eval(list[0], typeof(AstExpression), false, false))
+                if (AstRoot.Eval(list[40], typeof(AstExpression), false, false))
                 {
-                    if (AstRoot.Eval(list[1], typeof(AstExpression), false, false))
+                    if (AstRoot.Eval(list[40], typeof(AstExpression), false, false))
                     {
                         return 37;
                     }
                 }
-                if (AstRoot.Eval(list[0], typeof(AstExpression), false, false))
+                if (AstRoot.Eval(list[46], typeof(AstExpression), false, false))
                 {
-                    if (AstRoot.Eval(list[1], typeof(AstExpression), false, false))
+                    if (AstRoot.Eval(list[46], typeof(AstExpression), false, false))
                     {
                         return 43;
                     }
                 }
-                if (AstRoot.Eval(list[0], typeof(AstExpression), false, false))
+                if (AstRoot.Eval(list[48], typeof(AstExpression), false, false))
                 {
-                    if (AstRoot.Eval(list[1], typeof(AstExpression), false, false))
+                    if (AstRoot.Eval(list[48], typeof(AstExpression), false, false))
                     {
                         return 45;
                     }
                 }
-                if (AstRoot.Eval(list[0], typeof(AstExpression), false, false))
+                if (AstRoot.Eval(list[53], typeof(AstExpression), false, false))
                 {
-                    if (AstRoot.Eval(list[1], typeof(AstExpression), false, false))
+                    if (AstRoot.Eval(list[53], typeof(AstExpression), false, false))
                     {
                         return 50;
                     }
                 }
-                if (AstRoot.Eval(list[0], typeof(AstExpression), false, false))
+                if (AstRoot.Eval(list[54], typeof(AstExpression), false, false))
                 {
-                    if (AstRoot.Eval(list[1], typeof(AstExpression), false, false))
+                    if (AstRoot.Eval(list[54], typeof(AstExpression), false, false))
                     {
                         return 51;
                     }
                 }
-                if (AstRoot.Eval(list[0], typeof(AstExpression), false, false))
+                if (AstRoot.Eval(list[56], typeof(AstExpression), false, false))
                 {
-                    if (AstRoot.Eval(list[1], typeof(AstExpression), false, false))
+                    if (AstRoot.Eval(list[56], typeof(AstExpression), false, false))
                     {
                         return 53;
                     }
                 }
-                if (AstRoot.Eval(list[0], typeof(AstExpression), false, false))
+                if (AstRoot.Eval(list[58], typeof(AstExpression), false, false))
                 {
-                    if (AstRoot.Eval(list[1], typeof(AstExpression), false, false))
+                    if (AstRoot.Eval(list[58], typeof(AstExpression), false, false))
                     {
                         return 55;
                     }
                 }
-                if (AstRoot.Eval(list[0], typeof(AstExpression), false, false))
+                if (AstRoot.Eval(list[64], typeof(AstExpression), false, false))
                 {
-                    if (AstRoot.Eval(list[1], typeof(AstExpression), false, false))
+                    if (AstRoot.Eval(list[64], typeof(AstExpression), false, false))
                     {
                         return 61;
                     }
                 }
-                if (AstRoot.Eval(list[0], typeof(AstExpression), false, false))
+                if (AstRoot.Eval(list[68], typeof(AstExpression), false, false))
                 {
-                    if (AstRoot.Eval(list[1], typeof(AstExpression), false, false))
+                    if (AstRoot.Eval(list[68], typeof(AstExpression), false, false))
                     {
                         return 65;
                     }
                 }
-                if (AstRoot.Eval(list[0], typeof(AstFormatArgument), false, false))
+                if (AstRoot.Eval(list[85], typeof(AstFormatArgument), false, false))
                 {
-                    if (AstRoot.Eval(list[1], typeof(AstExpressions), false, false))
+                    if (AstRoot.Eval(list[85], typeof(AstExpressions), false, false))
                     {
                         return 73;
                     }
                 }
-                if (AstRoot.Eval(list[0], typeof(AstExpression), false, false))
+                if (AstRoot.Eval(list[90], typeof(AstExpression), false, false))
                 {
-                    if (AstRoot.Eval(list[1], typeof(AstExpression), false, false))
+                    if (AstRoot.Eval(list[90], typeof(AstExpression), false, false))
                     {
                         return 75;
                     }
                 }
-                if (AstRoot.Eval(list[0], typeof(AstExpression), false, false))
+                if (AstRoot.Eval(list[97], typeof(AstExpression), false, false))
                 {
-                    if (AstRoot.Eval(list[1], typeof(AstDataType), false, false))
+                    if (AstRoot.Eval(list[97], typeof(AstDataType), false, false))
                     {
                         return 78;
                     }
                 }
-                if (AstRoot.Eval(list[0], typeof(AstExpression), false, false))
+                if (AstRoot.Eval(list[98], typeof(AstExpression), false, false))
                 {
-                    if (AstRoot.Eval(list[1], typeof(AstDataType), false, false))
+                    if (AstRoot.Eval(list[98], typeof(AstDataType), false, false))
                     {
                         return 79;
                     }
                 }
-                if (AstRoot.Eval(list[0], typeof(AstDataType), false, false))
+                if (AstRoot.Eval(list[99], typeof(AstDataType), false, false))
                 {
-                    if (AstRoot.Eval(list[1], typeof(AstExpression2), false, false))
+                    if (AstRoot.Eval(list[99], typeof(AstExpression2), false, false))
                     {
                         return 80;
                     }
                 }
-                if (AstRoot.Eval(list[0], typeof(AstIdSimple), false, false))
+                if (AstRoot.Eval(list[106], typeof(AstIdSimple), false, false))
                 {
-                    if (AstRoot.Eval(list[1], typeof(AstExpression), false, false))
+                    if (AstRoot.Eval(list[106], typeof(AstExpression), false, false))
                     {
                         return 84;
                     }
                 }
-                if (AstRoot.Eval(list[0], typeof(AstIdSimple), false, false))
+                if (AstRoot.Eval(list[107], typeof(AstIdSimple), false, false))
                 {
-                    if (AstRoot.Eval(list[1], typeof(AstExpression), false, false))
+                    if (AstRoot.Eval(list[107], typeof(AstExpression), false, false))
                     {
                         return 85;
                     }
                 }
-                if (AstRoot.Eval(list[0], typeof(AstExpression), false, false))
+                if (AstRoot.Eval(list[111], typeof(AstExpression), false, false))
                 {
-                    if (AstRoot.Eval(list[1], typeof(AstExpression), false, false))
+                    if (AstRoot.Eval(list[111], typeof(AstExpression), false, false))
                     {
                         return 87;
                     }
@@ -70440,159 +70801,159 @@ namespace Bb.SqlServer.Asts
             }
             if ((list.Count == 1))
             {
-                if (AstRoot.Eval(list[0], typeof(AstExpression), false, false))
+                if (AstRoot.Eval(list[9], typeof(AstExpression), false, false))
                 {
                     return 8;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstExpression), false, false))
+                if (AstRoot.Eval(list[10], typeof(AstExpression), false, false))
                 {
                     return 9;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstExpression), false, false))
+                if (AstRoot.Eval(list[11], typeof(AstExpression), false, false))
                 {
                     return 10;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstExpression), false, false))
+                if (AstRoot.Eval(list[12], typeof(AstExpression), false, false))
                 {
                     return 11;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstExpression), false, false))
+                if (AstRoot.Eval(list[13], typeof(AstExpression), false, false))
                 {
                     return 12;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstExpression), false, false))
+                if (AstRoot.Eval(list[14], typeof(AstExpression), false, false))
                 {
                     return 13;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstExpression), false, false))
+                if (AstRoot.Eval(list[15], typeof(AstExpression), false, false))
                 {
                     return 14;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstExpression), false, false))
+                if (AstRoot.Eval(list[20], typeof(AstExpression), false, false))
                 {
                     return 19;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstExpression), false, false))
+                if (AstRoot.Eval(list[25], typeof(AstExpression), false, false))
                 {
                     return 24;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstExpression), false, false))
+                if (AstRoot.Eval(list[33], typeof(AstExpression), false, false))
                 {
                     return 31;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstExpression), false, false))
+                if (AstRoot.Eval(list[34], typeof(AstExpression), false, false))
                 {
                     return 32;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstExpression), false, false))
+                if (AstRoot.Eval(list[36], typeof(AstExpression), false, false))
                 {
                     return 33;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstExpression), false, false))
+                if (AstRoot.Eval(list[38], typeof(AstExpression), false, false))
                 {
                     return 35;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstExpression), false, false))
+                if (AstRoot.Eval(list[39], typeof(AstExpression), false, false))
                 {
                     return 36;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstExpression), false, false))
+                if (AstRoot.Eval(list[41], typeof(AstExpression), false, false))
                 {
                     return 38;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstExpression), false, false))
+                if (AstRoot.Eval(list[42], typeof(AstExpression), false, false))
                 {
                     return 39;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstExpressions), false, false))
+                if (AstRoot.Eval(list[44], typeof(AstExpressions), false, false))
                 {
                     return 41;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstExpressions), false, false))
+                if (AstRoot.Eval(list[45], typeof(AstExpressions), false, false))
                 {
                     return 42;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstExpressions), false, false))
+                if (AstRoot.Eval(list[47], typeof(AstExpressions), false, false))
                 {
                     return 44;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstExpression), false, false))
+                if (AstRoot.Eval(list[49], typeof(AstExpression), false, false))
                 {
                     return 46;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstExpression), false, false))
+                if (AstRoot.Eval(list[50], typeof(AstExpression), false, false))
                 {
                     return 47;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstExpression), false, false))
+                if (AstRoot.Eval(list[51], typeof(AstExpression), false, false))
                 {
                     return 48;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstExpression), false, false))
+                if (AstRoot.Eval(list[52], typeof(AstExpression), false, false))
                 {
                     return 49;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstExpression), false, false))
+                if (AstRoot.Eval(list[57], typeof(AstExpression), false, false))
                 {
                     return 54;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstExpression), false, false))
+                if (AstRoot.Eval(list[59], typeof(AstExpression), false, false))
                 {
                     return 56;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstExpression), false, false))
+                if (AstRoot.Eval(list[60], typeof(AstExpression), false, false))
                 {
                     return 57;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstExpression), false, false))
+                if (AstRoot.Eval(list[61], typeof(AstExpression), false, false))
                 {
                     return 58;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstExpression), false, false))
+                if (AstRoot.Eval(list[69], typeof(AstExpression), false, false))
                 {
                     return 66;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstExpression), false, false))
+                if (AstRoot.Eval(list[70], typeof(AstExpression), false, false))
                 {
                     return 67;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstExpressionOrStar), false, false))
+                if (AstRoot.Eval(list[71], typeof(AstExpressionOrStar), false, false))
                 {
                     return 68;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstExpressionOrStar), false, false))
+                if (AstRoot.Eval(list[72], typeof(AstExpressionOrStar), false, false))
                 {
                     return 69;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstExpression), false, false))
+                if (AstRoot.Eval(list[73], typeof(AstExpression), false, false))
                 {
                     return 70;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstStringtext), false, false))
+                if (AstRoot.Eval(list[74], typeof(AstStringtext), false, false))
                 {
                     return 71;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstExpression), false, false))
+                if (AstRoot.Eval(list[78], typeof(AstExpression), false, false))
                 {
                     return 72;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstStringtext), false, false))
+                if (AstRoot.Eval(list[87], typeof(AstStringtext), false, false))
                 {
                     return 74;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstExpression), false, false))
+                if (AstRoot.Eval(list[91], typeof(AstExpression), false, false))
                 {
                     return 76;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstStringtext), false, false))
+                if (AstRoot.Eval(list[95], typeof(AstStringtext), false, false))
                 {
                     return 77;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstExpressionList), false, false))
+                if (AstRoot.Eval(list[100], typeof(AstExpressionList), false, false))
                 {
                     return 81;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstXmlDataTypeMethods), false, false))
+                if (AstRoot.Eval(list[116], typeof(AstXmlDataTypeMethods), false, false))
                 {
                     return 89;
                 }
@@ -70891,7 +71252,7 @@ namespace Bb.SqlServer.Asts
             }
             if ((index == 2))
             {
-                return new AstExpressionOrStar.AstExpressionOrStar2(ctx, ((AstExpressions)(list[0])));
+                return new AstExpressionOrStar.AstExpressionOrStar2(ctx, ((AstExpressions)(list[2])));
             }
             return null;
         }
@@ -70900,7 +71261,7 @@ namespace Bb.SqlServer.Asts
         {
             if ((list.Count == 1))
             {
-                if (AstRoot.Eval(list[0], typeof(AstExpressions), false, false))
+                if (AstRoot.Eval(list[2], typeof(AstExpressions), false, false))
                 {
                     return 1;
                 }
@@ -71042,17 +71403,17 @@ namespace Bb.SqlServer.Asts
         public static AstFormatArgument Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstFormatArgument.Resolve(list);
-            if ((index == 2))
+            if ((index == 1))
             {
-                return new AstFormatArgument.AstFormatArgument1(ctx, ((AstDecimal)(list[0])));
+                return new AstFormatArgument.AstFormatArgument1(ctx, ((AstDecimal)(list[1])));
             }
             if ((index == 2))
             {
-                return new AstFormatArgument.AstFormatArgument2(ctx, ((AstStringtext)(list[0])));
+                return new AstFormatArgument.AstFormatArgument2(ctx, ((AstStringtext)(list[2])));
             }
-            if ((index == 2))
+            if ((index == 3))
             {
-                return new AstFormatArgument.AstFormatArgument3(ctx, ((AstLocalId)(list[0])));
+                return new AstFormatArgument.AstFormatArgument3(ctx, ((AstLocalId)(list[3])));
             }
             return null;
         }
@@ -71061,15 +71422,15 @@ namespace Bb.SqlServer.Asts
         {
             if ((list.Count == 1))
             {
-                if (AstRoot.Eval(list[0], typeof(AstDecimal), false, false))
+                if (AstRoot.Eval(list[1], typeof(AstDecimal), false, false))
                 {
                     return 1;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstStringtext), false, false))
+                if (AstRoot.Eval(list[2], typeof(AstStringtext), false, false))
                 {
                     return 2;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstLocalId), false, false))
+                if (AstRoot.Eval(list[3], typeof(AstLocalId), false, false))
                 {
                     return 3;
                 }
@@ -71250,21 +71611,21 @@ namespace Bb.SqlServer.Asts
         public static AstXmlDataTypeMethods Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstXmlDataTypeMethods.Resolve(list);
-            if ((index == 2))
+            if ((index == 1))
             {
-                return new AstXmlDataTypeMethods.AstXmlDataTypeMethods1(ctx, ((AstValueMethod)(list[0])));
+                return new AstXmlDataTypeMethods.AstXmlDataTypeMethods1(ctx, ((AstValueMethod)(list[1])));
             }
             if ((index == 2))
             {
-                return new AstXmlDataTypeMethods.AstXmlDataTypeMethods2(ctx, ((AstQueryMethod)(list[0])));
+                return new AstXmlDataTypeMethods.AstXmlDataTypeMethods2(ctx, ((AstQueryMethod)(list[2])));
             }
-            if ((index == 2))
+            if ((index == 3))
             {
-                return new AstXmlDataTypeMethods.AstXmlDataTypeMethods3(ctx, ((AstExistMethod)(list[0])));
+                return new AstXmlDataTypeMethods.AstXmlDataTypeMethods3(ctx, ((AstExistMethod)(list[3])));
             }
-            if ((index == 2))
+            if ((index == 4))
             {
-                return new AstXmlDataTypeMethods.AstXmlDataTypeMethods4(ctx, ((AstModifyMethod)(list[0])));
+                return new AstXmlDataTypeMethods.AstXmlDataTypeMethods4(ctx, ((AstModifyMethod)(list[4])));
             }
             return null;
         }
@@ -71273,19 +71634,19 @@ namespace Bb.SqlServer.Asts
         {
             if ((list.Count == 1))
             {
-                if (AstRoot.Eval(list[0], typeof(AstValueMethod), false, false))
+                if (AstRoot.Eval(list[1], typeof(AstValueMethod), false, false))
                 {
                     return 1;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstQueryMethod), false, false))
+                if (AstRoot.Eval(list[2], typeof(AstQueryMethod), false, false))
                 {
                     return 2;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstExistMethod), false, false))
+                if (AstRoot.Eval(list[3], typeof(AstExistMethod), false, false))
                 {
                     return 3;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstModifyMethod), false, false))
+                if (AstRoot.Eval(list[4], typeof(AstModifyMethod), false, false))
                 {
                     return 4;
                 }
@@ -71545,25 +71906,25 @@ namespace Bb.SqlServer.Asts
         public static AstValueMethod Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstValueMethod.Resolve(list);
-            if ((index == 3))
+            if ((index == 1))
             {
-                return new AstValueMethod.AstValueMethod1(ctx, ((AstLocalId)(list[0])), ((AstValueCall)(list[1])));
-            }
-            if ((index == 3))
-            {
-                return new AstValueMethod.AstValueMethod2(ctx, ((AstFullColumnName)(list[0])), ((AstValueCall)(list[1])));
+                return new AstValueMethod.AstValueMethod1(ctx, ((AstLocalId)(list[1])), ((AstValueCall)(list[1])));
             }
             if ((index == 2))
             {
-                return new AstValueMethod.AstValueMethod3(ctx, ((AstValueCall)(list[0])));
+                return new AstValueMethod.AstValueMethod2(ctx, ((AstFullColumnName)(list[2])), ((AstValueCall)(list[2])));
             }
             if ((index == 3))
             {
-                return new AstValueMethod.AstValueMethod4(ctx, ((AstQueryMethod)(list[0])), ((AstValueCall)(list[1])));
+                return new AstValueMethod.AstValueMethod3(ctx, ((AstValueCall)(list[3])));
             }
-            if ((index == 3))
+            if ((index == 4))
             {
-                return new AstValueMethod.AstValueMethod5(ctx, ((AstSubquery)(list[0])), ((AstValueCall)(list[1])));
+                return new AstValueMethod.AstValueMethod4(ctx, ((AstQueryMethod)(list[4])), ((AstValueCall)(list[4])));
+            }
+            if ((index == 5))
+            {
+                return new AstValueMethod.AstValueMethod5(ctx, ((AstSubquery)(list[5])), ((AstValueCall)(list[5])));
             }
             return null;
         }
@@ -71572,30 +71933,30 @@ namespace Bb.SqlServer.Asts
         {
             if ((list.Count == 2))
             {
-                if (AstRoot.Eval(list[0], typeof(AstLocalId), false, false))
+                if (AstRoot.Eval(list[1], typeof(AstLocalId), false, false))
                 {
                     if (AstRoot.Eval(list[1], typeof(AstValueCall), false, false))
                     {
                         return 1;
                     }
                 }
-                if (AstRoot.Eval(list[0], typeof(AstFullColumnName), false, false))
+                if (AstRoot.Eval(list[2], typeof(AstFullColumnName), false, false))
                 {
-                    if (AstRoot.Eval(list[1], typeof(AstValueCall), false, false))
+                    if (AstRoot.Eval(list[2], typeof(AstValueCall), false, false))
                     {
                         return 2;
                     }
                 }
-                if (AstRoot.Eval(list[0], typeof(AstQueryMethod), false, false))
+                if (AstRoot.Eval(list[4], typeof(AstQueryMethod), false, false))
                 {
-                    if (AstRoot.Eval(list[1], typeof(AstValueCall), false, false))
+                    if (AstRoot.Eval(list[4], typeof(AstValueCall), false, false))
                     {
                         return 4;
                     }
                 }
-                if (AstRoot.Eval(list[0], typeof(AstSubquery), false, false))
+                if (AstRoot.Eval(list[5], typeof(AstSubquery), false, false))
                 {
-                    if (AstRoot.Eval(list[1], typeof(AstValueCall), false, false))
+                    if (AstRoot.Eval(list[5], typeof(AstValueCall), false, false))
                     {
                         return 5;
                     }
@@ -71603,7 +71964,7 @@ namespace Bb.SqlServer.Asts
             }
             if ((list.Count == 1))
             {
-                if (AstRoot.Eval(list[0], typeof(AstValueCall), false, false))
+                if (AstRoot.Eval(list[3], typeof(AstValueCall), false, false))
                 {
                     return 3;
                 }
@@ -71672,7 +72033,11 @@ namespace Bb.SqlServer.Asts
         protected static string _rule = "value_call\r\n\t : VALUE  LR_BRACKET  xquery = stringtext  COMMA  sqltype = stringte" +
             "xt  RR_BRACKET";
         
-        internal AstValueCall(ParserRuleContext ctx, List<AstRoot> list) : 
+        private AstStringtext _xquery;
+        
+        private AstStringtext _sqltype;
+        
+        internal AstValueCall(ParserRuleContext ctx) : 
                 base(ctx)
         {
         }
@@ -71694,7 +72059,7 @@ namespace Bb.SqlServer.Asts
             _sqltype = sqltype;
         }
         
-        public virtual AstStringtext _xquery
+        public virtual AstStringtext Xquery
         {
             get
             {
@@ -71702,7 +72067,7 @@ namespace Bb.SqlServer.Asts
             }
         }
         
-        public virtual AstStringtext _sqltype
+        public virtual AstStringtext Sqltype
         {
             get
             {
@@ -71713,6 +72078,11 @@ namespace Bb.SqlServer.Asts
         public override void Accept(IAstTSqlVisitor visitor)
         {
             visitor.VisitValueCall(this);
+        }
+        
+        public static AstValueCall Create(ParserRuleContext ctx, List<AstRoot> list)
+        {
+            return new AstValueCall(ctx, ((AstStringtext)(list[0])), ((AstStringtext)(list[1])));
         }
         
         /// <summary>
@@ -71871,17 +72241,17 @@ namespace Bb.SqlServer.Asts
         public static AstQueryMethod Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstQueryMethod.Resolve(list);
-            if ((index == 3))
+            if ((index == 1))
             {
-                return new AstQueryMethod.AstQueryMethod1(ctx, ((AstLocalId)(list[0])), ((AstQueryCall)(list[1])));
+                return new AstQueryMethod.AstQueryMethod1(ctx, ((AstLocalId)(list[1])), ((AstQueryCall)(list[1])));
+            }
+            if ((index == 2))
+            {
+                return new AstQueryMethod.AstQueryMethod2(ctx, ((AstFullColumnName)(list[2])), ((AstQueryCall)(list[2])));
             }
             if ((index == 3))
             {
-                return new AstQueryMethod.AstQueryMethod2(ctx, ((AstFullColumnName)(list[0])), ((AstQueryCall)(list[1])));
-            }
-            if ((index == 3))
-            {
-                return new AstQueryMethod.AstQueryMethod3(ctx, ((AstSubquery)(list[0])), ((AstQueryCall)(list[1])));
+                return new AstQueryMethod.AstQueryMethod3(ctx, ((AstSubquery)(list[3])), ((AstQueryCall)(list[3])));
             }
             return null;
         }
@@ -71890,23 +72260,23 @@ namespace Bb.SqlServer.Asts
         {
             if ((list.Count == 2))
             {
-                if (AstRoot.Eval(list[0], typeof(AstLocalId), false, false))
+                if (AstRoot.Eval(list[1], typeof(AstLocalId), false, false))
                 {
                     if (AstRoot.Eval(list[1], typeof(AstQueryCall), false, false))
                     {
                         return 1;
                     }
                 }
-                if (AstRoot.Eval(list[0], typeof(AstFullColumnName), false, false))
+                if (AstRoot.Eval(list[2], typeof(AstFullColumnName), false, false))
                 {
-                    if (AstRoot.Eval(list[1], typeof(AstQueryCall), false, false))
+                    if (AstRoot.Eval(list[2], typeof(AstQueryCall), false, false))
                     {
                         return 2;
                     }
                 }
-                if (AstRoot.Eval(list[0], typeof(AstSubquery), false, false))
+                if (AstRoot.Eval(list[3], typeof(AstSubquery), false, false))
                 {
-                    if (AstRoot.Eval(list[1], typeof(AstQueryCall), false, false))
+                    if (AstRoot.Eval(list[3], typeof(AstQueryCall), false, false))
                     {
                         return 3;
                     }
@@ -71955,7 +72325,9 @@ namespace Bb.SqlServer.Asts
         
         protected static string _rule = "query_call\r\n\t : QUERY  LR_BRACKET  xquery = stringtext  RR_BRACKET";
         
-        internal AstQueryCall(ParserRuleContext ctx, List<AstRoot> list) : 
+        private AstStringtext _xquery;
+        
+        internal AstQueryCall(ParserRuleContext ctx) : 
                 base(ctx)
         {
         }
@@ -71976,7 +72348,7 @@ namespace Bb.SqlServer.Asts
             _xquery = xquery;
         }
         
-        public virtual AstStringtext _xquery
+        public virtual AstStringtext Xquery
         {
             get
             {
@@ -71987,6 +72359,11 @@ namespace Bb.SqlServer.Asts
         public override void Accept(IAstTSqlVisitor visitor)
         {
             visitor.VisitQueryCall(this);
+        }
+        
+        public static AstQueryCall Create(ParserRuleContext ctx, List<AstRoot> list)
+        {
+            return new AstQueryCall(ctx, ((AstStringtext)(list[0])));
         }
         
         /// <summary>
@@ -72145,17 +72522,17 @@ namespace Bb.SqlServer.Asts
         public static AstExistMethod Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstExistMethod.Resolve(list);
-            if ((index == 3))
+            if ((index == 1))
             {
-                return new AstExistMethod.AstExistMethod1(ctx, ((AstLocalId)(list[0])), ((AstExistCall)(list[1])));
+                return new AstExistMethod.AstExistMethod1(ctx, ((AstLocalId)(list[1])), ((AstExistCall)(list[1])));
+            }
+            if ((index == 2))
+            {
+                return new AstExistMethod.AstExistMethod2(ctx, ((AstFullColumnName)(list[2])), ((AstExistCall)(list[2])));
             }
             if ((index == 3))
             {
-                return new AstExistMethod.AstExistMethod2(ctx, ((AstFullColumnName)(list[0])), ((AstExistCall)(list[1])));
-            }
-            if ((index == 3))
-            {
-                return new AstExistMethod.AstExistMethod3(ctx, ((AstSubquery)(list[0])), ((AstExistCall)(list[1])));
+                return new AstExistMethod.AstExistMethod3(ctx, ((AstSubquery)(list[3])), ((AstExistCall)(list[3])));
             }
             return null;
         }
@@ -72164,23 +72541,23 @@ namespace Bb.SqlServer.Asts
         {
             if ((list.Count == 2))
             {
-                if (AstRoot.Eval(list[0], typeof(AstLocalId), false, false))
+                if (AstRoot.Eval(list[1], typeof(AstLocalId), false, false))
                 {
                     if (AstRoot.Eval(list[1], typeof(AstExistCall), false, false))
                     {
                         return 1;
                     }
                 }
-                if (AstRoot.Eval(list[0], typeof(AstFullColumnName), false, false))
+                if (AstRoot.Eval(list[2], typeof(AstFullColumnName), false, false))
                 {
-                    if (AstRoot.Eval(list[1], typeof(AstExistCall), false, false))
+                    if (AstRoot.Eval(list[2], typeof(AstExistCall), false, false))
                     {
                         return 2;
                     }
                 }
-                if (AstRoot.Eval(list[0], typeof(AstSubquery), false, false))
+                if (AstRoot.Eval(list[3], typeof(AstSubquery), false, false))
                 {
-                    if (AstRoot.Eval(list[1], typeof(AstExistCall), false, false))
+                    if (AstRoot.Eval(list[3], typeof(AstExistCall), false, false))
                     {
                         return 3;
                     }
@@ -72229,7 +72606,9 @@ namespace Bb.SqlServer.Asts
         
         protected static string _rule = "exist_call\r\n\t : EXIST  LR_BRACKET  xquery = stringtext  RR_BRACKET";
         
-        internal AstExistCall(ParserRuleContext ctx, List<AstRoot> list) : 
+        private AstStringtext _xquery;
+        
+        internal AstExistCall(ParserRuleContext ctx) : 
                 base(ctx)
         {
         }
@@ -72250,7 +72629,7 @@ namespace Bb.SqlServer.Asts
             _xquery = xquery;
         }
         
-        public virtual AstStringtext _xquery
+        public virtual AstStringtext Xquery
         {
             get
             {
@@ -72261,6 +72640,11 @@ namespace Bb.SqlServer.Asts
         public override void Accept(IAstTSqlVisitor visitor)
         {
             visitor.VisitExistCall(this);
+        }
+        
+        public static AstExistCall Create(ParserRuleContext ctx, List<AstRoot> list)
+        {
+            return new AstExistCall(ctx, ((AstStringtext)(list[0])));
         }
         
         /// <summary>
@@ -72419,17 +72803,17 @@ namespace Bb.SqlServer.Asts
         public static AstModifyMethod Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstModifyMethod.Resolve(list);
-            if ((index == 3))
+            if ((index == 1))
             {
-                return new AstModifyMethod.AstModifyMethod1(ctx, ((AstLocalId)(list[0])), ((AstModifyCall)(list[1])));
+                return new AstModifyMethod.AstModifyMethod1(ctx, ((AstLocalId)(list[1])), ((AstModifyCall)(list[1])));
+            }
+            if ((index == 2))
+            {
+                return new AstModifyMethod.AstModifyMethod2(ctx, ((AstFullColumnName)(list[2])), ((AstModifyCall)(list[2])));
             }
             if ((index == 3))
             {
-                return new AstModifyMethod.AstModifyMethod2(ctx, ((AstFullColumnName)(list[0])), ((AstModifyCall)(list[1])));
-            }
-            if ((index == 3))
-            {
-                return new AstModifyMethod.AstModifyMethod3(ctx, ((AstSubquery)(list[0])), ((AstModifyCall)(list[1])));
+                return new AstModifyMethod.AstModifyMethod3(ctx, ((AstSubquery)(list[3])), ((AstModifyCall)(list[3])));
             }
             return null;
         }
@@ -72438,23 +72822,23 @@ namespace Bb.SqlServer.Asts
         {
             if ((list.Count == 2))
             {
-                if (AstRoot.Eval(list[0], typeof(AstLocalId), false, false))
+                if (AstRoot.Eval(list[1], typeof(AstLocalId), false, false))
                 {
                     if (AstRoot.Eval(list[1], typeof(AstModifyCall), false, false))
                     {
                         return 1;
                     }
                 }
-                if (AstRoot.Eval(list[0], typeof(AstFullColumnName), false, false))
+                if (AstRoot.Eval(list[2], typeof(AstFullColumnName), false, false))
                 {
-                    if (AstRoot.Eval(list[1], typeof(AstModifyCall), false, false))
+                    if (AstRoot.Eval(list[2], typeof(AstModifyCall), false, false))
                     {
                         return 2;
                     }
                 }
-                if (AstRoot.Eval(list[0], typeof(AstSubquery), false, false))
+                if (AstRoot.Eval(list[3], typeof(AstSubquery), false, false))
                 {
-                    if (AstRoot.Eval(list[1], typeof(AstModifyCall), false, false))
+                    if (AstRoot.Eval(list[3], typeof(AstModifyCall), false, false))
                     {
                         return 3;
                     }
@@ -72503,7 +72887,9 @@ namespace Bb.SqlServer.Asts
         
         protected static string _rule = "modify_call\r\n\t : MODIFY  LR_BRACKET  xml_dml = stringtext  RR_BRACKET";
         
-        internal AstModifyCall(ParserRuleContext ctx, List<AstRoot> list) : 
+        private AstStringtext _xmlDml;
+        
+        internal AstModifyCall(ParserRuleContext ctx) : 
                 base(ctx)
         {
         }
@@ -72524,7 +72910,7 @@ namespace Bb.SqlServer.Asts
             _xmlDml = xmlDml;
         }
         
-        public virtual AstStringtext _xmlDml
+        public virtual AstStringtext XmlDml
         {
             get
             {
@@ -72535,6 +72921,11 @@ namespace Bb.SqlServer.Asts
         public override void Accept(IAstTSqlVisitor visitor)
         {
             visitor.VisitModifyCall(this);
+        }
+        
+        public static AstModifyCall Create(ParserRuleContext ctx, List<AstRoot> list)
+        {
+            return new AstModifyCall(ctx, ((AstStringtext)(list[0])));
         }
         
         /// <summary>
@@ -72751,27 +73142,27 @@ namespace Bb.SqlServer.Asts
         public static AstHierarchyidCall Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstHierarchyidCall.Resolve(list);
+            if ((index == 1))
+            {
+                return new AstHierarchyidCall.AstHierarchyidCall1(ctx, ((AstExpression)(list[1])));
+            }
             if ((index == 2))
             {
-                return new AstHierarchyidCall.AstHierarchyidCall1(ctx, ((AstExpression)(list[0])));
+                return new AstHierarchyidCall.AstHierarchyidCall2(ctx, ((AstExpression)(list[2])), ((AstExpression)(list[2])));
             }
             if ((index == 3))
-            {
-                return new AstHierarchyidCall.AstHierarchyidCall2(ctx, ((AstExpression)(list[0])), ((AstExpression)(list[1])));
-            }
-            if ((index == 1))
             {
                 return new AstHierarchyidCall.AstHierarchyidCall3(ctx);
             }
-            if ((index == 2))
+            if ((index == 4))
             {
-                return new AstHierarchyidCall.AstHierarchyidCall4(ctx, ((AstExpression)(list[0])));
+                return new AstHierarchyidCall.AstHierarchyidCall4(ctx, ((AstExpression)(list[4])));
             }
-            if ((index == 3))
+            if ((index == 5))
             {
-                return new AstHierarchyidCall.AstHierarchyidCall5(ctx, ((AstExpression)(list[0])), ((AstExpression)(list[1])));
+                return new AstHierarchyidCall.AstHierarchyidCall5(ctx, ((AstExpression)(list[5])), ((AstExpression)(list[5])));
             }
-            if ((index == 1))
+            if ((index == 6))
             {
                 return new AstHierarchyidCall.AstHierarchyidCall6(ctx);
             }
@@ -72782,16 +73173,16 @@ namespace Bb.SqlServer.Asts
         {
             if ((list.Count == 2))
             {
-                if (AstRoot.Eval(list[0], typeof(AstExpression), false, false))
+                if (AstRoot.Eval(list[2], typeof(AstExpression), false, false))
                 {
-                    if (AstRoot.Eval(list[1], typeof(AstExpression), false, false))
+                    if (AstRoot.Eval(list[2], typeof(AstExpression), false, false))
                     {
                         return 2;
                     }
                 }
-                if (AstRoot.Eval(list[0], typeof(AstExpression), false, false))
+                if (AstRoot.Eval(list[5], typeof(AstExpression), false, false))
                 {
-                    if (AstRoot.Eval(list[1], typeof(AstExpression), false, false))
+                    if (AstRoot.Eval(list[5], typeof(AstExpression), false, false))
                     {
                         return 4;
                     }
@@ -72799,11 +73190,11 @@ namespace Bb.SqlServer.Asts
             }
             if ((list.Count == 1))
             {
-                if (AstRoot.Eval(list[0], typeof(AstExpression), false, false))
+                if (AstRoot.Eval(list[1], typeof(AstExpression), false, false))
                 {
                     return 1;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstExpression), false, false))
+                if (AstRoot.Eval(list[4], typeof(AstExpression), false, false))
                 {
                     return 3;
                 }
@@ -72922,7 +73313,7 @@ namespace Bb.SqlServer.Asts
             }
             if ((index == 2))
             {
-                return new AstHierarchyidStaticMethod.AstHierarchyidStaticMethod2(ctx, ((AstExpression)(list[0])));
+                return new AstHierarchyidStaticMethod.AstHierarchyidStaticMethod2(ctx, ((AstExpression)(list[2])));
             }
             return null;
         }
@@ -72931,7 +73322,7 @@ namespace Bb.SqlServer.Asts
         {
             if ((list.Count == 1))
             {
-                if (AstRoot.Eval(list[0], typeof(AstExpression), false, false))
+                if (AstRoot.Eval(list[2], typeof(AstExpression), false, false))
                 {
                     return 1;
                 }
@@ -73105,17 +73496,17 @@ namespace Bb.SqlServer.Asts
         public static AstNodesMethod Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstNodesMethod.Resolve(list);
-            if ((index == 3))
+            if ((index == 1))
             {
-                return new AstNodesMethod.AstNodesMethod1(ctx, ((AstLocalId)(list[0])), ((AstStringtext)(list[1])));
+                return new AstNodesMethod.AstNodesMethod1(ctx, ((AstLocalId)(list[1])), ((AstStringtext)(list[1])));
+            }
+            if ((index == 2))
+            {
+                return new AstNodesMethod.AstNodesMethod2(ctx, ((AstFullColumnName)(list[2])), ((AstStringtext)(list[2])));
             }
             if ((index == 3))
             {
-                return new AstNodesMethod.AstNodesMethod2(ctx, ((AstFullColumnName)(list[0])), ((AstStringtext)(list[1])));
-            }
-            if ((index == 3))
-            {
-                return new AstNodesMethod.AstNodesMethod3(ctx, ((AstSubquery)(list[0])), ((AstStringtext)(list[1])));
+                return new AstNodesMethod.AstNodesMethod3(ctx, ((AstSubquery)(list[3])), ((AstStringtext)(list[3])));
             }
             return null;
         }
@@ -73124,23 +73515,23 @@ namespace Bb.SqlServer.Asts
         {
             if ((list.Count == 2))
             {
-                if (AstRoot.Eval(list[0], typeof(AstLocalId), false, false))
+                if (AstRoot.Eval(list[1], typeof(AstLocalId), false, false))
                 {
                     if (AstRoot.Eval(list[1], typeof(AstStringtext), false, false))
                     {
                         return 1;
                     }
                 }
-                if (AstRoot.Eval(list[0], typeof(AstFullColumnName), false, false))
+                if (AstRoot.Eval(list[2], typeof(AstFullColumnName), false, false))
                 {
-                    if (AstRoot.Eval(list[1], typeof(AstStringtext), false, false))
+                    if (AstRoot.Eval(list[2], typeof(AstStringtext), false, false))
                     {
                         return 2;
                     }
                 }
-                if (AstRoot.Eval(list[0], typeof(AstSubquery), false, false))
+                if (AstRoot.Eval(list[3], typeof(AstSubquery), false, false))
                 {
-                    if (AstRoot.Eval(list[1], typeof(AstStringtext), false, false))
+                    if (AstRoot.Eval(list[3], typeof(AstStringtext), false, false))
                     {
                         return 3;
                     }
@@ -73709,97 +74100,97 @@ namespace Bb.SqlServer.Asts
             }
             if ((index == 2))
             {
-                return new AstTableHint.AstTableHint2(ctx, ((AstHintIndex)(list[0])));
+                return new AstTableHint.AstTableHint2(ctx, ((AstHintIndex)(list[2])));
             }
             if ((index == 3))
             {
-                return new AstTableHint.AstTableHint3(ctx, ((AstIndexValue)(list[0])), ((AstColumnNameList)(list[1])));
+                return new AstTableHint.AstTableHint3(ctx, ((AstIndexValue)(list[3])), ((AstColumnNameList)(list[3])));
             }
-            if ((index == 1))
+            if ((index == 4))
             {
                 return new AstTableHint.AstTableHint4(ctx);
             }
-            if ((index == 1))
+            if ((index == 5))
             {
                 return new AstTableHint.AstTableHint5(ctx);
             }
-            if ((index == 1))
+            if ((index == 6))
             {
                 return new AstTableHint.AstTableHint6(ctx);
             }
-            if ((index == 1))
+            if ((index == 7))
             {
                 return new AstTableHint.AstTableHint7(ctx);
             }
-            if ((index == 1))
+            if ((index == 8))
             {
                 return new AstTableHint.AstTableHint8(ctx);
             }
-            if ((index == 1))
+            if ((index == 9))
             {
                 return new AstTableHint.AstTableHint9(ctx);
             }
-            if ((index == 1))
+            if ((index == 10))
             {
                 return new AstTableHint.AstTableHint10(ctx);
             }
-            if ((index == 1))
+            if ((index == 11))
             {
                 return new AstTableHint.AstTableHint11(ctx);
             }
-            if ((index == 1))
+            if ((index == 12))
             {
                 return new AstTableHint.AstTableHint12(ctx);
             }
-            if ((index == 1))
+            if ((index == 13))
             {
                 return new AstTableHint.AstTableHint13(ctx);
             }
-            if ((index == 1))
+            if ((index == 14))
             {
                 return new AstTableHint.AstTableHint14(ctx);
             }
-            if ((index == 1))
+            if ((index == 15))
             {
                 return new AstTableHint.AstTableHint15(ctx);
             }
-            if ((index == 1))
+            if ((index == 16))
             {
                 return new AstTableHint.AstTableHint16(ctx);
             }
-            if ((index == 2))
+            if ((index == 17))
             {
-                return new AstTableHint.AstTableHint17(ctx, ((AstDecimal)(list[0])));
+                return new AstTableHint.AstTableHint17(ctx, ((AstDecimal)(list[17])));
             }
-            if ((index == 1))
+            if ((index == 18))
             {
                 return new AstTableHint.AstTableHint18(ctx);
             }
-            if ((index == 1))
+            if ((index == 19))
             {
                 return new AstTableHint.AstTableHint19(ctx);
             }
-            if ((index == 1))
+            if ((index == 20))
             {
                 return new AstTableHint.AstTableHint20(ctx);
             }
-            if ((index == 1))
+            if ((index == 21))
             {
                 return new AstTableHint.AstTableHint21(ctx);
             }
-            if ((index == 1))
+            if ((index == 22))
             {
                 return new AstTableHint.AstTableHint22(ctx);
             }
-            if ((index == 1))
+            if ((index == 23))
             {
                 return new AstTableHint.AstTableHint23(ctx);
             }
-            if ((index == 1))
+            if ((index == 24))
             {
                 return new AstTableHint.AstTableHint24(ctx);
             }
-            if ((index == 1))
+            if ((index == 25))
             {
                 return new AstTableHint.AstTableHint25(ctx);
             }
@@ -73810,9 +74201,9 @@ namespace Bb.SqlServer.Asts
         {
             if ((list.Count == 2))
             {
-                if (AstRoot.Eval(list[0], typeof(AstIndexValue), false, false))
+                if (AstRoot.Eval(list[3], typeof(AstIndexValue), false, false))
                 {
-                    if (AstRoot.Eval(list[1], typeof(AstColumnNameList), false, false))
+                    if (AstRoot.Eval(list[3], typeof(AstColumnNameList), false, false))
                     {
                         return 2;
                     }
@@ -73820,11 +74211,11 @@ namespace Bb.SqlServer.Asts
             }
             if ((list.Count == 1))
             {
-                if (AstRoot.Eval(list[0], typeof(AstHintIndex), false, false))
+                if (AstRoot.Eval(list[2], typeof(AstHintIndex), false, false))
                 {
                     return 1;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstDecimal), false, false))
+                if (AstRoot.Eval(list[17], typeof(AstDecimal), false, false))
                 {
                     return 3;
                 }
@@ -73987,17 +74378,17 @@ namespace Bb.SqlServer.Asts
         public static AstHintIndex Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstHintIndex.Resolve(list);
-            if ((index == 2))
+            if ((index == 1))
             {
-                return new AstHintIndex.AstHintIndex1(ctx, ((AstIndexValues)(list[0])));
+                return new AstHintIndex.AstHintIndex1(ctx, ((AstIndexValues)(list[1])));
             }
             if ((index == 2))
             {
-                return new AstHintIndex.AstHintIndex2(ctx, ((AstIndexValue)(list[0])));
+                return new AstHintIndex.AstHintIndex2(ctx, ((AstIndexValue)(list[2])));
             }
-            if ((index == 2))
+            if ((index == 3))
             {
-                return new AstHintIndex.AstHintIndex3(ctx, ((AstIndexValue)(list[0])));
+                return new AstHintIndex.AstHintIndex3(ctx, ((AstIndexValue)(list[3])));
             }
             return null;
         }
@@ -74006,15 +74397,15 @@ namespace Bb.SqlServer.Asts
         {
             if ((list.Count == 1))
             {
-                if (AstRoot.Eval(list[0], typeof(AstIndexValues), false, false))
+                if (AstRoot.Eval(list[1], typeof(AstIndexValues), false, false))
                 {
                     return 1;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstIndexValue), false, false))
+                if (AstRoot.Eval(list[2], typeof(AstIndexValue), false, false))
                 {
                     return 2;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstIndexValue), false, false))
+                if (AstRoot.Eval(list[3], typeof(AstIndexValue), false, false))
                 {
                     return 3;
                 }
@@ -74128,13 +74519,13 @@ namespace Bb.SqlServer.Asts
         public static AstIndexValue Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstIndexValue.Resolve(list);
-            if ((index == 2))
+            if ((index == 1))
             {
-                return new AstIndexValue.AstIndexValue1(ctx, ((AstId)(list[0])));
+                return new AstIndexValue.AstIndexValue1(ctx, ((AstId)(list[1])));
             }
             if ((index == 2))
             {
-                return new AstIndexValue.AstIndexValue2(ctx, ((AstDecimal)(list[0])));
+                return new AstIndexValue.AstIndexValue2(ctx, ((AstDecimal)(list[2])));
             }
             return null;
         }
@@ -74143,11 +74534,11 @@ namespace Bb.SqlServer.Asts
         {
             if ((list.Count == 1))
             {
-                if (AstRoot.Eval(list[0], typeof(AstId), false, false))
+                if (AstRoot.Eval(list[1], typeof(AstId), false, false))
                 {
                     return 1;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstDecimal), false, false))
+                if (AstRoot.Eval(list[2], typeof(AstDecimal), false, false))
                 {
                     return 2;
                 }
@@ -74284,13 +74675,13 @@ namespace Bb.SqlServer.Asts
         public static AstRankingWindowedFunction Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstRankingWindowedFunction.Resolve(list);
-            if ((index == 3))
+            if ((index == 1))
             {
-                return new AstRankingWindowedFunction.AstRankingWindowedFunction1(ctx, ((AstRankingWindowed)(list[0])), ((AstOverClause)(list[1])));
+                return new AstRankingWindowedFunction.AstRankingWindowedFunction1(ctx, ((AstRankingWindowed)(list[1])), ((AstOverClause)(list[1])));
             }
-            if ((index == 3))
+            if ((index == 2))
             {
-                return new AstRankingWindowedFunction.AstRankingWindowedFunction2(ctx, ((AstExpression)(list[0])), ((AstOverClause)(list[1])));
+                return new AstRankingWindowedFunction.AstRankingWindowedFunction2(ctx, ((AstExpression)(list[2])), ((AstOverClause)(list[2])));
             }
             return null;
         }
@@ -74299,16 +74690,16 @@ namespace Bb.SqlServer.Asts
         {
             if ((list.Count == 2))
             {
-                if (AstRoot.Eval(list[0], typeof(AstRankingWindowed), false, false))
+                if (AstRoot.Eval(list[1], typeof(AstRankingWindowed), false, false))
                 {
                     if (AstRoot.Eval(list[1], typeof(AstOverClause), false, false))
                     {
                         return 1;
                     }
                 }
-                if (AstRoot.Eval(list[0], typeof(AstExpression), false, false))
+                if (AstRoot.Eval(list[2], typeof(AstExpression), false, false))
                 {
-                    if (AstRoot.Eval(list[1], typeof(AstOverClause), false, false))
+                    if (AstRoot.Eval(list[2], typeof(AstOverClause), false, false))
                     {
                         return 2;
                     }
@@ -74556,25 +74947,25 @@ namespace Bb.SqlServer.Asts
         public static AstAggregateWindowedFunction Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstAggregateWindowedFunction.Resolve(list);
+            if ((index == 1))
+            {
+                return new AstAggregateWindowedFunction.AstAggregateWindowedFunction1(ctx, ((AstAggFunction)(list[1])), ((AstAllDistinctExpression)(list[1])), ((AstOverClause)(list[1])));
+            }
+            if ((index == 2))
+            {
+                return new AstAggregateWindowedFunction.AstAggregateWindowedFunction2(ctx, ((AstCountCountBig)(list[2])), ((AstAllDistinctExpressionOrStar)(list[2])), ((AstOverClause)(list[2])));
+            }
+            if ((index == 3))
+            {
+                return new AstAggregateWindowedFunction.AstAggregateWindowedFunction3(ctx, ((AstAllDistinctExpression)(list[3])));
+            }
             if ((index == 4))
             {
-                return new AstAggregateWindowedFunction.AstAggregateWindowedFunction1(ctx, ((AstAggFunction)(list[0])), ((AstAllDistinctExpression)(list[1])), ((AstOverClause)(list[2])));
+                return new AstAggregateWindowedFunction.AstAggregateWindowedFunction4(ctx, ((AstExpression)(list[4])));
             }
-            if ((index == 4))
+            if ((index == 5))
             {
-                return new AstAggregateWindowedFunction.AstAggregateWindowedFunction2(ctx, ((AstCountCountBig)(list[0])), ((AstAllDistinctExpressionOrStar)(list[1])), ((AstOverClause)(list[2])));
-            }
-            if ((index == 2))
-            {
-                return new AstAggregateWindowedFunction.AstAggregateWindowedFunction3(ctx, ((AstAllDistinctExpression)(list[0])));
-            }
-            if ((index == 2))
-            {
-                return new AstAggregateWindowedFunction.AstAggregateWindowedFunction4(ctx, ((AstExpression)(list[0])));
-            }
-            if ((index == 2))
-            {
-                return new AstAggregateWindowedFunction.AstAggregateWindowedFunction5(ctx, ((AstExpressionList)(list[0])));
+                return new AstAggregateWindowedFunction.AstAggregateWindowedFunction5(ctx, ((AstExpressionList)(list[5])));
             }
             return null;
         }
@@ -74583,19 +74974,19 @@ namespace Bb.SqlServer.Asts
         {
             if ((list.Count == 3))
             {
-                if (AstRoot.Eval(list[0], typeof(AstAggFunction), false, false))
+                if (AstRoot.Eval(list[1], typeof(AstAggFunction), false, false))
                 {
                     if (AstRoot.Eval(list[1], typeof(AstAllDistinctExpression), false, false))
                     {
-                        if (AstRoot.Eval(list[2], typeof(AstOverClause), false, false))
+                        if (AstRoot.Eval(list[1], typeof(AstOverClause), false, false))
                         {
                             return 1;
                         }
                     }
                 }
-                if (AstRoot.Eval(list[0], typeof(AstCountCountBig), false, false))
+                if (AstRoot.Eval(list[2], typeof(AstCountCountBig), false, false))
                 {
-                    if (AstRoot.Eval(list[1], typeof(AstAllDistinctExpressionOrStar), false, false))
+                    if (AstRoot.Eval(list[2], typeof(AstAllDistinctExpressionOrStar), false, false))
                     {
                         if (AstRoot.Eval(list[2], typeof(AstOverClause), false, false))
                         {
@@ -74606,15 +74997,15 @@ namespace Bb.SqlServer.Asts
             }
             if ((list.Count == 1))
             {
-                if (AstRoot.Eval(list[0], typeof(AstAllDistinctExpression), false, false))
+                if (AstRoot.Eval(list[3], typeof(AstAllDistinctExpression), false, false))
                 {
                     return 3;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstExpression), false, false))
+                if (AstRoot.Eval(list[4], typeof(AstExpression), false, false))
                 {
                     return 4;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstExpressionList), false, false))
+                if (AstRoot.Eval(list[5], typeof(AstExpressionList), false, false))
                 {
                     return 5;
                 }
@@ -74753,7 +75144,7 @@ namespace Bb.SqlServer.Asts
             }
             if ((index == 2))
             {
-                return new AstAllDistinctExpressionOrStar.AstAllDistinctExpressionOrStar2(ctx, ((AstAllDistinctExpression)(list[0])));
+                return new AstAllDistinctExpressionOrStar.AstAllDistinctExpressionOrStar2(ctx, ((AstAllDistinctExpression)(list[2])));
             }
             return null;
         }
@@ -74762,7 +75153,7 @@ namespace Bb.SqlServer.Asts
         {
             if ((list.Count == 1))
             {
-                if (AstRoot.Eval(list[0], typeof(AstAllDistinctExpression), false, false))
+                if (AstRoot.Eval(list[2], typeof(AstAllDistinctExpression), false, false))
                 {
                     return 1;
                 }
@@ -75046,21 +75437,21 @@ namespace Bb.SqlServer.Asts
         public static AstAnalyticWindowedFunction Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstAnalyticWindowedFunction.Resolve(list);
+            if ((index == 1))
+            {
+                return new AstAnalyticWindowedFunction.AstAnalyticWindowedFunction1(ctx, ((AstFirstLastValue)(list[1])), ((AstExpression)(list[1])), ((AstOverClause)(list[1])));
+            }
+            if ((index == 2))
+            {
+                return new AstAnalyticWindowedFunction.AstAnalyticWindowedFunction2(ctx, ((AstLagLead)(list[2])), ((AstExpression)(list[2])), ((AstExpression2)(list[2])), ((AstOverClause)(list[2])));
+            }
+            if ((index == 3))
+            {
+                return new AstAnalyticWindowedFunction.AstAnalyticWindowedFunction3(ctx, ((AstCumePercent)(list[3])), ((AstExpressionList)(list[3])), ((AstOrderByClause)(list[3])));
+            }
             if ((index == 4))
             {
-                return new AstAnalyticWindowedFunction.AstAnalyticWindowedFunction1(ctx, ((AstFirstLastValue)(list[0])), ((AstExpression)(list[1])), ((AstOverClause)(list[2])));
-            }
-            if ((index == 5))
-            {
-                return new AstAnalyticWindowedFunction.AstAnalyticWindowedFunction2(ctx, ((AstLagLead)(list[0])), ((AstExpression)(list[1])), ((AstExpression2)(list[2])), ((AstOverClause)(list[3])));
-            }
-            if ((index == 4))
-            {
-                return new AstAnalyticWindowedFunction.AstAnalyticWindowedFunction3(ctx, ((AstCumePercent)(list[0])), ((AstExpressionList)(list[1])), ((AstOrderByClause)(list[2])));
-            }
-            if ((index == 5))
-            {
-                return new AstAnalyticWindowedFunction.AstAnalyticWindowedFunction4(ctx, ((AstPercentil)(list[0])), ((AstExpression)(list[1])), ((AstOrderByClause)(list[2])), ((AstExpressionList)(list[3])));
+                return new AstAnalyticWindowedFunction.AstAnalyticWindowedFunction4(ctx, ((AstPercentil)(list[4])), ((AstExpression)(list[4])), ((AstOrderByClause)(list[4])), ((AstExpressionList)(list[4])));
             }
             return null;
         }
@@ -75069,26 +75460,26 @@ namespace Bb.SqlServer.Asts
         {
             if ((list.Count == 4))
             {
-                if (AstRoot.Eval(list[0], typeof(AstLagLead), false, false))
+                if (AstRoot.Eval(list[2], typeof(AstLagLead), false, false))
                 {
-                    if (AstRoot.Eval(list[1], typeof(AstExpression), false, false))
+                    if (AstRoot.Eval(list[2], typeof(AstExpression), false, false))
                     {
                         if (AstRoot.Eval(list[2], typeof(AstExpression2), false, false))
                         {
-                            if (AstRoot.Eval(list[3], typeof(AstOverClause), false, false))
+                            if (AstRoot.Eval(list[2], typeof(AstOverClause), false, false))
                             {
                                 return 2;
                             }
                         }
                     }
                 }
-                if (AstRoot.Eval(list[0], typeof(AstPercentil), false, false))
+                if (AstRoot.Eval(list[4], typeof(AstPercentil), false, false))
                 {
-                    if (AstRoot.Eval(list[1], typeof(AstExpression), false, false))
+                    if (AstRoot.Eval(list[4], typeof(AstExpression), false, false))
                     {
-                        if (AstRoot.Eval(list[2], typeof(AstOrderByClause), false, false))
+                        if (AstRoot.Eval(list[4], typeof(AstOrderByClause), false, false))
                         {
-                            if (AstRoot.Eval(list[3], typeof(AstExpressionList), false, false))
+                            if (AstRoot.Eval(list[4], typeof(AstExpressionList), false, false))
                             {
                                 return 4;
                             }
@@ -75098,21 +75489,21 @@ namespace Bb.SqlServer.Asts
             }
             if ((list.Count == 3))
             {
-                if (AstRoot.Eval(list[0], typeof(AstFirstLastValue), false, false))
+                if (AstRoot.Eval(list[1], typeof(AstFirstLastValue), false, false))
                 {
                     if (AstRoot.Eval(list[1], typeof(AstExpression), false, false))
                     {
-                        if (AstRoot.Eval(list[2], typeof(AstOverClause), false, false))
+                        if (AstRoot.Eval(list[1], typeof(AstOverClause), false, false))
                         {
                             return 1;
                         }
                     }
                 }
-                if (AstRoot.Eval(list[0], typeof(AstCumePercent), false, false))
+                if (AstRoot.Eval(list[3], typeof(AstCumePercent), false, false))
                 {
-                    if (AstRoot.Eval(list[1], typeof(AstExpressionList), false, false))
+                    if (AstRoot.Eval(list[3], typeof(AstExpressionList), false, false))
                     {
-                        if (AstRoot.Eval(list[2], typeof(AstOrderByClause), false, false))
+                        if (AstRoot.Eval(list[3], typeof(AstOrderByClause), false, false))
                         {
                             return 3;
                         }
@@ -75260,13 +75651,13 @@ namespace Bb.SqlServer.Asts
         public static AstWindowFrameExtent Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstWindowFrameExtent.Resolve(list);
+            if ((index == 1))
+            {
+                return new AstWindowFrameExtent.AstWindowFrameExtent1(ctx, ((AstWindowFramePreceding)(list[1])));
+            }
             if ((index == 2))
             {
-                return new AstWindowFrameExtent.AstWindowFrameExtent1(ctx, ((AstWindowFramePreceding)(list[0])));
-            }
-            if ((index == 3))
-            {
-                return new AstWindowFrameExtent.AstWindowFrameExtent2(ctx, ((AstWindowFrameBound)(list[0])), ((AstWindowFrameBound)(list[1])));
+                return new AstWindowFrameExtent.AstWindowFrameExtent2(ctx, ((AstWindowFrameBound)(list[2])), ((AstWindowFrameBound)(list[2])));
             }
             return null;
         }
@@ -75275,9 +75666,9 @@ namespace Bb.SqlServer.Asts
         {
             if ((list.Count == 2))
             {
-                if (AstRoot.Eval(list[0], typeof(AstWindowFrameBound), false, false))
+                if (AstRoot.Eval(list[2], typeof(AstWindowFrameBound), false, false))
                 {
-                    if (AstRoot.Eval(list[1], typeof(AstWindowFrameBound), false, false))
+                    if (AstRoot.Eval(list[2], typeof(AstWindowFrameBound), false, false))
                     {
                         return 2;
                     }
@@ -75285,7 +75676,7 @@ namespace Bb.SqlServer.Asts
             }
             if ((list.Count == 1))
             {
-                if (AstRoot.Eval(list[0], typeof(AstWindowFramePreceding), false, false))
+                if (AstRoot.Eval(list[1], typeof(AstWindowFramePreceding), false, false))
                 {
                     return 1;
                 }
@@ -75399,13 +75790,13 @@ namespace Bb.SqlServer.Asts
         public static AstWindowFrameBound Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstWindowFrameBound.Resolve(list);
-            if ((index == 2))
+            if ((index == 1))
             {
-                return new AstWindowFrameBound.AstWindowFrameBound1(ctx, ((AstWindowFramePreceding)(list[0])));
+                return new AstWindowFrameBound.AstWindowFrameBound1(ctx, ((AstWindowFramePreceding)(list[1])));
             }
             if ((index == 2))
             {
-                return new AstWindowFrameBound.AstWindowFrameBound2(ctx, ((AstWindowFrameFollowing)(list[0])));
+                return new AstWindowFrameBound.AstWindowFrameBound2(ctx, ((AstWindowFrameFollowing)(list[2])));
             }
             return null;
         }
@@ -75414,11 +75805,11 @@ namespace Bb.SqlServer.Asts
         {
             if ((list.Count == 1))
             {
-                if (AstRoot.Eval(list[0], typeof(AstWindowFramePreceding), false, false))
+                if (AstRoot.Eval(list[1], typeof(AstWindowFramePreceding), false, false))
                 {
                     return 1;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstWindowFrameFollowing), false, false))
+                if (AstRoot.Eval(list[2], typeof(AstWindowFrameFollowing), false, false))
                 {
                     return 2;
                 }
@@ -75545,9 +75936,9 @@ namespace Bb.SqlServer.Asts
             }
             if ((index == 2))
             {
-                return new AstWindowFramePreceding.AstWindowFramePreceding2(ctx, ((AstDecimal)(list[0])));
+                return new AstWindowFramePreceding.AstWindowFramePreceding2(ctx, ((AstDecimal)(list[2])));
             }
-            if ((index == 1))
+            if ((index == 3))
             {
                 return new AstWindowFramePreceding.AstWindowFramePreceding3(ctx);
             }
@@ -75558,7 +75949,7 @@ namespace Bb.SqlServer.Asts
         {
             if ((list.Count == 1))
             {
-                if (AstRoot.Eval(list[0], typeof(AstDecimal), false, false))
+                if (AstRoot.Eval(list[2], typeof(AstDecimal), false, false))
                 {
                     return 1;
                 }
@@ -75667,7 +76058,7 @@ namespace Bb.SqlServer.Asts
             }
             if ((index == 2))
             {
-                return new AstWindowFrameFollowing.AstWindowFrameFollowing2(ctx, ((AstDecimal)(list[0])));
+                return new AstWindowFrameFollowing.AstWindowFrameFollowing2(ctx, ((AstDecimal)(list[2])));
             }
             return null;
         }
@@ -75676,7 +76067,7 @@ namespace Bb.SqlServer.Asts
         {
             if ((list.Count == 1))
             {
-                if (AstRoot.Eval(list[0], typeof(AstDecimal), false, false))
+                if (AstRoot.Eval(list[2], typeof(AstDecimal), false, false))
                 {
                     return 1;
                 }
@@ -75966,37 +76357,37 @@ namespace Bb.SqlServer.Asts
         public static AstCreateDatabaseOption Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstCreateDatabaseOption.Resolve(list);
-            if ((index == 2))
+            if ((index == 1))
             {
-                return new AstCreateDatabaseOption.AstCreateDatabaseOption1(ctx, ((AstDatabaseFilestreamOptions)(list[0])));
+                return new AstCreateDatabaseOption.AstCreateDatabaseOption1(ctx, ((AstDatabaseFilestreamOptions)(list[1])));
             }
             if ((index == 2))
             {
-                return new AstCreateDatabaseOption.AstCreateDatabaseOption2(ctx, ((AstIdOrString)(list[0])));
+                return new AstCreateDatabaseOption.AstCreateDatabaseOption2(ctx, ((AstIdOrString)(list[2])));
             }
-            if ((index == 2))
+            if ((index == 3))
             {
-                return new AstCreateDatabaseOption.AstCreateDatabaseOption3(ctx, ((AstIdOrString)(list[0])));
+                return new AstCreateDatabaseOption.AstCreateDatabaseOption3(ctx, ((AstIdOrString)(list[3])));
             }
-            if ((index == 2))
+            if ((index == 4))
             {
-                return new AstCreateDatabaseOption.AstCreateDatabaseOption4(ctx, ((AstOnOff)(list[0])));
+                return new AstCreateDatabaseOption.AstCreateDatabaseOption4(ctx, ((AstOnOff)(list[4])));
             }
-            if ((index == 2))
+            if ((index == 5))
             {
-                return new AstCreateDatabaseOption.AstCreateDatabaseOption5(ctx, ((AstOnOff)(list[0])));
+                return new AstCreateDatabaseOption.AstCreateDatabaseOption5(ctx, ((AstOnOff)(list[5])));
             }
-            if ((index == 2))
+            if ((index == 6))
             {
-                return new AstCreateDatabaseOption.AstCreateDatabaseOption6(ctx, ((AstDecimal)(list[0])));
+                return new AstCreateDatabaseOption.AstCreateDatabaseOption6(ctx, ((AstDecimal)(list[6])));
             }
-            if ((index == 2))
+            if ((index == 7))
             {
-                return new AstCreateDatabaseOption.AstCreateDatabaseOption7(ctx, ((AstOnOff)(list[0])));
+                return new AstCreateDatabaseOption.AstCreateDatabaseOption7(ctx, ((AstOnOff)(list[7])));
             }
-            if ((index == 2))
+            if ((index == 8))
             {
-                return new AstCreateDatabaseOption.AstCreateDatabaseOption8(ctx, ((AstOnOff)(list[0])));
+                return new AstCreateDatabaseOption.AstCreateDatabaseOption8(ctx, ((AstOnOff)(list[8])));
             }
             return null;
         }
@@ -76005,35 +76396,35 @@ namespace Bb.SqlServer.Asts
         {
             if ((list.Count == 1))
             {
-                if (AstRoot.Eval(list[0], typeof(AstDatabaseFilestreamOptions), false, false))
+                if (AstRoot.Eval(list[1], typeof(AstDatabaseFilestreamOptions), false, false))
                 {
                     return 1;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstIdOrString), false, false))
+                if (AstRoot.Eval(list[2], typeof(AstIdOrString), false, false))
                 {
                     return 2;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstIdOrString), false, false))
+                if (AstRoot.Eval(list[3], typeof(AstIdOrString), false, false))
                 {
                     return 3;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstOnOff), false, false))
+                if (AstRoot.Eval(list[4], typeof(AstOnOff), false, false))
                 {
                     return 4;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstOnOff), false, false))
+                if (AstRoot.Eval(list[5], typeof(AstOnOff), false, false))
                 {
                     return 5;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstDecimal), false, false))
+                if (AstRoot.Eval(list[6], typeof(AstDecimal), false, false))
                 {
                     return 6;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstOnOff), false, false))
+                if (AstRoot.Eval(list[7], typeof(AstOnOff), false, false))
                 {
                     return 7;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstOnOff), false, false))
+                if (AstRoot.Eval(list[8], typeof(AstOnOff), false, false))
                 {
                     return 8;
                 }
@@ -76167,13 +76558,13 @@ namespace Bb.SqlServer.Asts
         public static AstDatabaseFilestreamOption Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstDatabaseFilestreamOption.Resolve(list);
-            if ((index == 2))
+            if ((index == 1))
             {
-                return new AstDatabaseFilestreamOption.AstDatabaseFilestreamOption1(ctx, ((AstOffReadOnlyFull)(list[0])));
+                return new AstDatabaseFilestreamOption.AstDatabaseFilestreamOption1(ctx, ((AstOffReadOnlyFull)(list[1])));
             }
             if ((index == 2))
             {
-                return new AstDatabaseFilestreamOption.AstDatabaseFilestreamOption2(ctx, ((AstStringtext)(list[0])));
+                return new AstDatabaseFilestreamOption.AstDatabaseFilestreamOption2(ctx, ((AstStringtext)(list[2])));
             }
             return null;
         }
@@ -76182,11 +76573,11 @@ namespace Bb.SqlServer.Asts
         {
             if ((list.Count == 1))
             {
-                if (AstRoot.Eval(list[0], typeof(AstOffReadOnlyFull), false, false))
+                if (AstRoot.Eval(list[1], typeof(AstOffReadOnlyFull), false, false))
                 {
                     return 1;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstStringtext), false, false))
+                if (AstRoot.Eval(list[2], typeof(AstStringtext), false, false))
                 {
                     return 2;
                 }
@@ -76300,13 +76691,13 @@ namespace Bb.SqlServer.Asts
         public static AstDatabaseFileSpec Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstDatabaseFileSpec.Resolve(list);
-            if ((index == 2))
+            if ((index == 1))
             {
-                return new AstDatabaseFileSpec.AstDatabaseFileSpec1(ctx, ((AstFileGroup)(list[0])));
+                return new AstDatabaseFileSpec.AstDatabaseFileSpec1(ctx, ((AstFileGroup)(list[1])));
             }
             if ((index == 2))
             {
-                return new AstDatabaseFileSpec.AstDatabaseFileSpec2(ctx, ((AstFileSpec)(list[0])));
+                return new AstDatabaseFileSpec.AstDatabaseFileSpec2(ctx, ((AstFileSpec)(list[2])));
             }
             return null;
         }
@@ -76315,11 +76706,11 @@ namespace Bb.SqlServer.Asts
         {
             if ((list.Count == 1))
             {
-                if (AstRoot.Eval(list[0], typeof(AstFileGroup), false, false))
+                if (AstRoot.Eval(list[1], typeof(AstFileGroup), false, false))
                 {
                     return 1;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstFileSpec), false, false))
+                if (AstRoot.Eval(list[2], typeof(AstFileSpec), false, false))
                 {
                     return 2;
                 }
@@ -76422,11 +76813,11 @@ namespace Bb.SqlServer.Asts
         public static AstMaxFileSizeValue Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstMaxFileSizeValue.Resolve(list);
-            if ((index == 2))
-            {
-                return new AstMaxFileSizeValue.AstMaxFileSizeValue1(ctx, ((AstFileSize)(list[0])));
-            }
             if ((index == 1))
+            {
+                return new AstMaxFileSizeValue.AstMaxFileSizeValue1(ctx, ((AstFileSize)(list[1])));
+            }
+            if ((index == 2))
             {
                 return new AstMaxFileSizeValue.AstMaxFileSizeValue2(ctx);
             }
@@ -76437,7 +76828,7 @@ namespace Bb.SqlServer.Asts
         {
             if ((list.Count == 1))
             {
-                if (AstRoot.Eval(list[0], typeof(AstFileSize), false, false))
+                if (AstRoot.Eval(list[1], typeof(AstFileSize), false, false))
                 {
                     return 1;
                 }
@@ -76562,13 +76953,13 @@ namespace Bb.SqlServer.Asts
         public static AstNullOrDefault Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstNullOrDefault.Resolve(list);
+            if ((index == 1))
+            {
+                return new AstNullOrDefault.AstNullOrDefault1(ctx, ((AstNullNotnull)(list[1])));
+            }
             if ((index == 2))
             {
-                return new AstNullOrDefault.AstNullOrDefault1(ctx, ((AstNullNotnull)(list[0])));
-            }
-            if ((index == 3))
-            {
-                return new AstNullOrDefault.AstNullOrDefault2(ctx, ((AstConstantExpression)(list[0])), ((AstId)(list[1])));
+                return new AstNullOrDefault.AstNullOrDefault2(ctx, ((AstConstantExpression)(list[2])), ((AstId)(list[2])));
             }
             return null;
         }
@@ -76577,9 +76968,9 @@ namespace Bb.SqlServer.Asts
         {
             if ((list.Count == 2))
             {
-                if (AstRoot.Eval(list[0], typeof(AstConstantExpression), false, false))
+                if (AstRoot.Eval(list[2], typeof(AstConstantExpression), false, false))
                 {
-                    if (AstRoot.Eval(list[1], typeof(AstId), false, false))
+                    if (AstRoot.Eval(list[2], typeof(AstId), false, false))
                     {
                         return 2;
                     }
@@ -76587,7 +76978,7 @@ namespace Bb.SqlServer.Asts
             }
             if ((list.Count == 1))
             {
-                if (AstRoot.Eval(list[0], typeof(AstNullNotnull), false, false))
+                if (AstRoot.Eval(list[1], typeof(AstNullNotnull), false, false))
                 {
                     return 1;
                 }
@@ -76702,13 +77093,13 @@ namespace Bb.SqlServer.Asts
         public static AstScalarFunctionName Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstScalarFunctionName.Resolve(list);
-            if ((index == 2))
+            if ((index == 1))
             {
-                return new AstScalarFunctionName.AstScalarFunctionName1(ctx, ((AstFuncProcNameServerDatabaseSchema)(list[0])));
+                return new AstScalarFunctionName.AstScalarFunctionName1(ctx, ((AstFuncProcNameServerDatabaseSchema)(list[1])));
             }
             if ((index == 2))
             {
-                return new AstScalarFunctionName.AstScalarFunctionName2(ctx, ((AstScalarFunctionNameEnum)(list[0])));
+                return new AstScalarFunctionName.AstScalarFunctionName2(ctx, ((AstScalarFunctionNameEnum)(list[2])));
             }
             return null;
         }
@@ -76717,11 +77108,11 @@ namespace Bb.SqlServer.Asts
         {
             if ((list.Count == 1))
             {
-                if (AstRoot.Eval(list[0], typeof(AstFuncProcNameServerDatabaseSchema), false, false))
+                if (AstRoot.Eval(list[1], typeof(AstFuncProcNameServerDatabaseSchema), false, false))
                 {
                     return 1;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstScalarFunctionNameEnum), false, false))
+                if (AstRoot.Eval(list[2], typeof(AstScalarFunctionNameEnum), false, false))
                 {
                     return 2;
                 }
@@ -76835,13 +77226,13 @@ namespace Bb.SqlServer.Asts
         public static AstContractNameExpression Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstContractNameExpression.Resolve(list);
-            if ((index == 2))
+            if ((index == 1))
             {
-                return new AstContractNameExpression.AstContractNameExpression1(ctx, ((AstId)(list[0])));
+                return new AstContractNameExpression.AstContractNameExpression1(ctx, ((AstId)(list[1])));
             }
             if ((index == 2))
             {
-                return new AstContractNameExpression.AstContractNameExpression2(ctx, ((AstExpression)(list[0])));
+                return new AstContractNameExpression.AstContractNameExpression2(ctx, ((AstExpression)(list[2])));
             }
             return null;
         }
@@ -76850,11 +77241,11 @@ namespace Bb.SqlServer.Asts
         {
             if ((list.Count == 1))
             {
-                if (AstRoot.Eval(list[0], typeof(AstId), false, false))
+                if (AstRoot.Eval(list[1], typeof(AstId), false, false))
                 {
                     return 1;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstExpression), false, false))
+                if (AstRoot.Eval(list[2], typeof(AstExpression), false, false))
                 {
                     return 2;
                 }
@@ -76968,13 +77359,13 @@ namespace Bb.SqlServer.Asts
         public static AstServiceNameExpr Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstServiceNameExpr.Resolve(list);
-            if ((index == 2))
+            if ((index == 1))
             {
-                return new AstServiceNameExpr.AstServiceNameExpr1(ctx, ((AstId)(list[0])));
+                return new AstServiceNameExpr.AstServiceNameExpr1(ctx, ((AstId)(list[1])));
             }
             if ((index == 2))
             {
-                return new AstServiceNameExpr.AstServiceNameExpr2(ctx, ((AstExpression)(list[0])));
+                return new AstServiceNameExpr.AstServiceNameExpr2(ctx, ((AstExpression)(list[2])));
             }
             return null;
         }
@@ -76983,11 +77374,11 @@ namespace Bb.SqlServer.Asts
         {
             if ((list.Count == 1))
             {
-                if (AstRoot.Eval(list[0], typeof(AstId), false, false))
+                if (AstRoot.Eval(list[1], typeof(AstId), false, false))
                 {
                     return 1;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstExpression), false, false))
+                if (AstRoot.Eval(list[2], typeof(AstExpression), false, false))
                 {
                     return 2;
                 }
@@ -77027,7 +77418,13 @@ namespace Bb.SqlServer.Asts
             "WITH  (ERROR  EQUAL  faliure_code = string_local_id  DESCRIPTION  EQUAL  failure" +
             "_text = string_local_id)?  CLEANUP?)?";
         
-        internal AstEndConversation(ParserRuleContext ctx, List<AstRoot> list) : 
+        private AstLocalId _conversationHandle;
+        
+        private AstStringLocalId _faliureCode;
+        
+        private AstStringLocalId _failureText;
+        
+        internal AstEndConversation(ParserRuleContext ctx) : 
                 base(ctx)
         {
         }
@@ -77050,7 +77447,7 @@ namespace Bb.SqlServer.Asts
             _failureText = failureText;
         }
         
-        public virtual AstLocalId _conversationHandle
+        public virtual AstLocalId ConversationHandle
         {
             get
             {
@@ -77058,7 +77455,7 @@ namespace Bb.SqlServer.Asts
             }
         }
         
-        public virtual AstStringLocalId _faliureCode
+        public virtual AstStringLocalId FaliureCode
         {
             get
             {
@@ -77066,7 +77463,7 @@ namespace Bb.SqlServer.Asts
             }
         }
         
-        public virtual AstStringLocalId _failureText
+        public virtual AstStringLocalId FailureText
         {
             get
             {
@@ -77077,6 +77474,11 @@ namespace Bb.SqlServer.Asts
         public override void Accept(IAstTSqlVisitor visitor)
         {
             visitor.VisitEndConversation(this);
+        }
+        
+        public static AstEndConversation Create(ParserRuleContext ctx, List<AstRoot> list)
+        {
+            return new AstEndConversation(ctx, ((AstLocalId)(list[0])), ((AstStringLocalId)(list[1])), ((AstStringLocalId)(list[2])));
         }
         
         /// <summary>
@@ -77100,7 +77502,11 @@ namespace Bb.SqlServer.Asts
         protected static string _rule = "get_conversation\r\n\t : GET  CONVERSATION  GROUP  conversation_group = string_local" +
             "_id  FROM  queue = database_schema_queue_ref";
         
-        internal AstGetConversation(ParserRuleContext ctx, List<AstRoot> list) : 
+        private AstStringLocalId _conversationGroup;
+        
+        private AstDatabaseSchemaQueueRef _queue;
+        
+        internal AstGetConversation(ParserRuleContext ctx) : 
                 base(ctx)
         {
         }
@@ -77122,7 +77528,7 @@ namespace Bb.SqlServer.Asts
             _queue = queue;
         }
         
-        public virtual AstStringLocalId _conversationGroup
+        public virtual AstStringLocalId ConversationGroup
         {
             get
             {
@@ -77130,7 +77536,7 @@ namespace Bb.SqlServer.Asts
             }
         }
         
-        public virtual AstDatabaseSchemaQueueRef _queue
+        public virtual AstDatabaseSchemaQueueRef Queue
         {
             get
             {
@@ -77141,6 +77547,11 @@ namespace Bb.SqlServer.Asts
         public override void Accept(IAstTSqlVisitor visitor)
         {
             visitor.VisitGetConversation(this);
+        }
+        
+        public static AstGetConversation Create(ParserRuleContext ctx, List<AstRoot> list)
+        {
+            return new AstGetConversation(ctx, ((AstStringLocalId)(list[0])), ((AstDatabaseSchemaQueueRef)(list[1])));
         }
         
         /// <summary>
@@ -77165,7 +77576,13 @@ namespace Bb.SqlServer.Asts
             "_id  MESSAGE  TYPE  messageTypeName = expression  (LR_BRACKET  messageBodyEexpre" +
             "ssion = string_local_id  RR_BRACKET)?";
         
-        internal AstSendConversation(ParserRuleContext ctx, List<AstRoot> list) : 
+        private AstStringLocalId _conversationHandle;
+        
+        private AstExpression _messageTypeName;
+        
+        private AstStringLocalId _messageBodyEexpression;
+        
+        internal AstSendConversation(ParserRuleContext ctx) : 
                 base(ctx)
         {
         }
@@ -77188,7 +77605,7 @@ namespace Bb.SqlServer.Asts
             _messageBodyEexpression = messageBodyEexpression;
         }
         
-        public virtual AstStringLocalId _conversationHandle
+        public virtual AstStringLocalId ConversationHandle
         {
             get
             {
@@ -77196,7 +77613,7 @@ namespace Bb.SqlServer.Asts
             }
         }
         
-        public virtual AstExpression _messageTypeName
+        public virtual AstExpression Messagetypename
         {
             get
             {
@@ -77204,7 +77621,7 @@ namespace Bb.SqlServer.Asts
             }
         }
         
-        public virtual AstStringLocalId _messageBodyEexpression
+        public virtual AstStringLocalId Messagebodyeexpression
         {
             get
             {
@@ -77215,6 +77632,11 @@ namespace Bb.SqlServer.Asts
         public override void Accept(IAstTSqlVisitor visitor)
         {
             visitor.VisitSendConversation(this);
+        }
+        
+        public static AstSendConversation Create(ParserRuleContext ctx, List<AstRoot> list)
+        {
+            return new AstSendConversation(ctx, ((AstStringLocalId)(list[0])), ((AstExpression)(list[1])), ((AstStringLocalId)(list[2])));
         }
         
         /// <summary>
@@ -77453,29 +77875,29 @@ namespace Bb.SqlServer.Asts
         public static AstDataType Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstDataType.Resolve(list);
+            if ((index == 1))
+            {
+                return new AstDataType.AstDataType1(ctx, ((AstDataTypeScaled)(list[1])));
+            }
             if ((index == 2))
             {
-                return new AstDataType.AstDataType1(ctx, ((AstDataTypeScaled)(list[0])));
+                return new AstDataType.AstDataType2(ctx, ((AstExtTypeId)(list[2])), ((AstDecimalScalePrec)(list[2])));
             }
             if ((index == 3))
             {
-                return new AstDataType.AstDataType2(ctx, ((AstExtTypeId)(list[0])), ((AstDecimalScalePrec)(list[1])));
+                return new AstDataType.AstDataType3(ctx, ((AstExtTypeId)(list[3])), ((AstDecimal)(list[3])));
             }
-            if ((index == 3))
+            if ((index == 4))
             {
-                return new AstDataType.AstDataType3(ctx, ((AstExtTypeId)(list[0])), ((AstDecimal)(list[1])));
+                return new AstDataType.AstDataType4(ctx, ((AstExtTypeId)(list[4])), ((AstIdentitySeed)(list[4])));
             }
-            if ((index == 3))
-            {
-                return new AstDataType.AstDataType4(ctx, ((AstExtTypeId)(list[0])), ((AstIdentitySeed)(list[1])));
-            }
-            if ((index == 1))
+            if ((index == 5))
             {
                 return new AstDataType.AstDataType5(ctx);
             }
-            if ((index == 2))
+            if ((index == 6))
             {
-                return new AstDataType.AstDataType6(ctx, ((AstUnscaledTypeId)(list[0])));
+                return new AstDataType.AstDataType6(ctx, ((AstUnscaledTypeId)(list[6])));
             }
             return null;
         }
@@ -77484,23 +77906,23 @@ namespace Bb.SqlServer.Asts
         {
             if ((list.Count == 2))
             {
-                if (AstRoot.Eval(list[0], typeof(AstExtTypeId), false, false))
+                if (AstRoot.Eval(list[2], typeof(AstExtTypeId), false, false))
                 {
-                    if (AstRoot.Eval(list[1], typeof(AstDecimalScalePrec), false, false))
+                    if (AstRoot.Eval(list[2], typeof(AstDecimalScalePrec), false, false))
                     {
                         return 2;
                     }
                 }
-                if (AstRoot.Eval(list[0], typeof(AstExtTypeId), false, false))
+                if (AstRoot.Eval(list[3], typeof(AstExtTypeId), false, false))
                 {
-                    if (AstRoot.Eval(list[1], typeof(AstDecimal), false, false))
+                    if (AstRoot.Eval(list[3], typeof(AstDecimal), false, false))
                     {
                         return 3;
                     }
                 }
-                if (AstRoot.Eval(list[0], typeof(AstExtTypeId), false, false))
+                if (AstRoot.Eval(list[4], typeof(AstExtTypeId), false, false))
                 {
-                    if (AstRoot.Eval(list[1], typeof(AstIdentitySeed), false, false))
+                    if (AstRoot.Eval(list[4], typeof(AstIdentitySeed), false, false))
                     {
                         return 4;
                     }
@@ -77508,11 +77930,11 @@ namespace Bb.SqlServer.Asts
             }
             if ((list.Count == 1))
             {
-                if (AstRoot.Eval(list[0], typeof(AstDataTypeScaled), false, false))
+                if (AstRoot.Eval(list[1], typeof(AstDataTypeScaled), false, false))
                 {
                     return 1;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstUnscaledTypeId), false, false))
+                if (AstRoot.Eval(list[6], typeof(AstUnscaledTypeId), false, false))
                 {
                     return 5;
                 }
@@ -77676,13 +78098,13 @@ namespace Bb.SqlServer.Asts
             {
                 return new AstDefaultValue.AstDefaultValue1(ctx);
             }
-            if ((index == 1))
+            if ((index == 2))
             {
                 return new AstDefaultValue.AstDefaultValue2(ctx);
             }
-            if ((index == 2))
+            if ((index == 3))
             {
-                return new AstDefaultValue.AstDefaultValue3(ctx, ((AstConstant)(list[0])));
+                return new AstDefaultValue.AstDefaultValue3(ctx, ((AstConstant)(list[3])));
             }
             return null;
         }
@@ -77691,7 +78113,7 @@ namespace Bb.SqlServer.Asts
         {
             if ((list.Count == 1))
             {
-                if (AstRoot.Eval(list[0], typeof(AstConstant), false, false))
+                if (AstRoot.Eval(list[3], typeof(AstConstant), false, false))
                 {
                     return 1;
                 }
@@ -77940,29 +78362,29 @@ namespace Bb.SqlServer.Asts
         public static AstConstant Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstConstant.Resolve(list);
-            if ((index == 2))
+            if ((index == 1))
             {
-                return new AstConstant.AstConstant1(ctx, ((AstStringtext)(list[0])));
+                return new AstConstant.AstConstant1(ctx, ((AstStringtext)(list[1])));
             }
             if ((index == 2))
             {
-                return new AstConstant.AstConstant2(ctx, ((AstBinary)(list[0])));
-            }
-            if ((index == 2))
-            {
-                return new AstConstant.AstConstant3(ctx, ((AstReal)(list[0])));
+                return new AstConstant.AstConstant2(ctx, ((AstBinary)(list[2])));
             }
             if ((index == 3))
             {
-                return new AstConstant.AstConstant4(ctx, ((AstSign)(list[0])), ((AstDecimalFloat)(list[1])));
+                return new AstConstant.AstConstant3(ctx, ((AstReal)(list[3])));
             }
-            if ((index == 3))
+            if ((index == 4))
             {
-                return new AstConstant.AstConstant5(ctx, ((AstSign)(list[0])), ((AstDecimalFloat)(list[1])));
+                return new AstConstant.AstConstant4(ctx, ((AstSign)(list[4])), ((AstDecimalFloat)(list[4])));
             }
-            if ((index == 2))
+            if ((index == 5))
             {
-                return new AstConstant.AstConstant6(ctx, ((AstParameter)(list[0])));
+                return new AstConstant.AstConstant5(ctx, ((AstSign)(list[5])), ((AstDecimalFloat)(list[5])));
+            }
+            if ((index == 6))
+            {
+                return new AstConstant.AstConstant6(ctx, ((AstParameter)(list[6])));
             }
             return null;
         }
@@ -77971,16 +78393,16 @@ namespace Bb.SqlServer.Asts
         {
             if ((list.Count == 2))
             {
-                if (AstRoot.Eval(list[0], typeof(AstSign), false, false))
+                if (AstRoot.Eval(list[4], typeof(AstSign), false, false))
                 {
-                    if (AstRoot.Eval(list[1], typeof(AstDecimalFloat), false, false))
+                    if (AstRoot.Eval(list[4], typeof(AstDecimalFloat), false, false))
                     {
                         return 4;
                     }
                 }
-                if (AstRoot.Eval(list[0], typeof(AstSign), false, false))
+                if (AstRoot.Eval(list[5], typeof(AstSign), false, false))
                 {
-                    if (AstRoot.Eval(list[1], typeof(AstDecimalFloat), false, false))
+                    if (AstRoot.Eval(list[5], typeof(AstDecimalFloat), false, false))
                     {
                         return 5;
                     }
@@ -77988,19 +78410,19 @@ namespace Bb.SqlServer.Asts
             }
             if ((list.Count == 1))
             {
-                if (AstRoot.Eval(list[0], typeof(AstStringtext), false, false))
+                if (AstRoot.Eval(list[1], typeof(AstStringtext), false, false))
                 {
                     return 1;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstBinary), false, false))
+                if (AstRoot.Eval(list[2], typeof(AstBinary), false, false))
                 {
                     return 2;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstReal), false, false))
+                if (AstRoot.Eval(list[3], typeof(AstReal), false, false))
                 {
                     return 3;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstParameter), false, false))
+                if (AstRoot.Eval(list[6], typeof(AstParameter), false, false))
                 {
                     return 6;
                 }
@@ -78144,13 +78566,13 @@ namespace Bb.SqlServer.Asts
         public static AstDecimalFloat Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstDecimalFloat.Resolve(list);
-            if ((index == 2))
+            if ((index == 1))
             {
-                return new AstDecimalFloat.AstDecimalFloat1(ctx, ((AstDecimal)(list[0])));
+                return new AstDecimalFloat.AstDecimalFloat1(ctx, ((AstDecimal)(list[1])));
             }
             if ((index == 2))
             {
-                return new AstDecimalFloat.AstDecimalFloat2(ctx, ((AstFloat)(list[0])));
+                return new AstDecimalFloat.AstDecimalFloat2(ctx, ((AstFloat)(list[2])));
             }
             return null;
         }
@@ -78159,11 +78581,11 @@ namespace Bb.SqlServer.Asts
         {
             if ((list.Count == 1))
             {
-                if (AstRoot.Eval(list[0], typeof(AstDecimal), false, false))
+                if (AstRoot.Eval(list[1], typeof(AstDecimal), false, false))
                 {
                     return 1;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstFloat), false, false))
+                if (AstRoot.Eval(list[2], typeof(AstFloat), false, false))
                 {
                     return 2;
                 }
@@ -78305,17 +78727,17 @@ namespace Bb.SqlServer.Asts
         public static AstStringId2 Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstStringId2.Resolve(list);
-            if ((index == 2))
+            if ((index == 1))
             {
-                return new AstStringId2.AstStringId21(ctx, ((AstStringtext)(list[0])));
+                return new AstStringId2.AstStringId21(ctx, ((AstStringtext)(list[1])));
             }
             if ((index == 2))
             {
-                return new AstStringId2.AstStringId22(ctx, ((AstId)(list[0])));
+                return new AstStringId2.AstStringId22(ctx, ((AstId)(list[2])));
             }
-            if ((index == 2))
+            if ((index == 3))
             {
-                return new AstStringId2.AstStringId23(ctx, ((AstLocalId)(list[0])));
+                return new AstStringId2.AstStringId23(ctx, ((AstLocalId)(list[3])));
             }
             return null;
         }
@@ -78324,15 +78746,15 @@ namespace Bb.SqlServer.Asts
         {
             if ((list.Count == 1))
             {
-                if (AstRoot.Eval(list[0], typeof(AstStringtext), false, false))
+                if (AstRoot.Eval(list[1], typeof(AstStringtext), false, false))
                 {
                     return 1;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstId), false, false))
+                if (AstRoot.Eval(list[2], typeof(AstId), false, false))
                 {
                     return 2;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstLocalId), false, false))
+                if (AstRoot.Eval(list[3], typeof(AstLocalId), false, false))
                 {
                     return 3;
                 }
@@ -78456,13 +78878,13 @@ namespace Bb.SqlServer.Asts
         public static AstPrivatekey Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstPrivatekey.Resolve(list);
-            if ((index == 2))
+            if ((index == 1))
             {
-                return new AstPrivatekey.AstPrivatekey1(ctx, ((AstStringtext)(list[0])));
+                return new AstPrivatekey.AstPrivatekey1(ctx, ((AstStringtext)(list[1])));
             }
             if ((index == 2))
             {
-                return new AstPrivatekey.AstPrivatekey2(ctx, ((AstByPasswordCrypt)(list[0])));
+                return new AstPrivatekey.AstPrivatekey2(ctx, ((AstByPasswordCrypt)(list[2])));
             }
             return null;
         }
@@ -78471,11 +78893,11 @@ namespace Bb.SqlServer.Asts
         {
             if ((list.Count == 1))
             {
-                if (AstRoot.Eval(list[0], typeof(AstStringtext), false, false))
+                if (AstRoot.Eval(list[1], typeof(AstStringtext), false, false))
                 {
                     return 1;
                 }
-                if (AstRoot.Eval(list[0], typeof(AstByPasswordCrypt), false, false))
+                if (AstRoot.Eval(list[2], typeof(AstByPasswordCrypt), false, false))
                 {
                     return 2;
                 }
@@ -78571,7 +78993,7 @@ namespace Bb.SqlServer.Asts
             {
                 return new AstAllServerDatabase.AstAllServerDatabase1(ctx);
             }
-            if ((index == 1))
+            if ((index == 2))
             {
                 return new AstAllServerDatabase.AstAllServerDatabase2(ctx);
             }
@@ -78676,11 +79098,11 @@ namespace Bb.SqlServer.Asts
             {
                 return new AstEncryptionState.AstEncryptionState1(ctx);
             }
-            if ((index == 1))
+            if ((index == 2))
             {
                 return new AstEncryptionState.AstEncryptionState2(ctx);
             }
-            if ((index == 1))
+            if ((index == 3))
             {
                 return new AstEncryptionState.AstEncryptionState3(ctx);
             }
@@ -78769,7 +79191,7 @@ namespace Bb.SqlServer.Asts
             {
                 return new AstParameterizationOption.AstParameterizationOption1(ctx);
             }
-            if ((index == 1))
+            if ((index == 2))
             {
                 return new AstParameterizationOption.AstParameterizationOption2(ctx);
             }
@@ -78945,27 +79367,27 @@ namespace Bb.SqlServer.Asts
             {
                 return new AstEventSessionPredicateLeafOpe.AstEventSessionPredicateLeafOpe1(ctx);
             }
-            if ((index == 1))
+            if ((index == 2))
             {
                 return new AstEventSessionPredicateLeafOpe.AstEventSessionPredicateLeafOpe2(ctx);
             }
-            if ((index == 1))
+            if ((index == 3))
             {
                 return new AstEventSessionPredicateLeafOpe.AstEventSessionPredicateLeafOpe3(ctx);
             }
-            if ((index == 1))
+            if ((index == 4))
             {
                 return new AstEventSessionPredicateLeafOpe.AstEventSessionPredicateLeafOpe4(ctx);
             }
-            if ((index == 1))
+            if ((index == 5))
             {
                 return new AstEventSessionPredicateLeafOpe.AstEventSessionPredicateLeafOpe5(ctx);
             }
-            if ((index == 1))
+            if ((index == 6))
             {
                 return new AstEventSessionPredicateLeafOpe.AstEventSessionPredicateLeafOpe6(ctx);
             }
-            if ((index == 1))
+            if ((index == 7))
             {
                 return new AstEventSessionPredicateLeafOpe.AstEventSessionPredicateLeafOpe7(ctx);
             }
@@ -79055,7 +79477,7 @@ namespace Bb.SqlServer.Asts
             {
                 return new AstSequenceCycle.AstSequenceCycle1(ctx);
             }
-            if ((index == 1))
+            if ((index == 2))
             {
                 return new AstSequenceCycle.AstSequenceCycle2(ctx);
             }
@@ -79152,11 +79574,11 @@ namespace Bb.SqlServer.Asts
         public static AstSizeValue Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstSizeValue.Resolve(list);
-            if ((index == 2))
-            {
-                return new AstSizeValue.AstSizeValue1(ctx, ((AstDecimal)(list[0])));
-            }
             if ((index == 1))
+            {
+                return new AstSizeValue.AstSizeValue1(ctx, ((AstDecimal)(list[1])));
+            }
+            if ((index == 2))
             {
                 return new AstSizeValue.AstSizeValue2(ctx);
             }
@@ -79167,7 +79589,7 @@ namespace Bb.SqlServer.Asts
         {
             if ((list.Count == 1))
             {
-                if (AstRoot.Eval(list[0], typeof(AstDecimal), false, false))
+                if (AstRoot.Eval(list[1], typeof(AstDecimal), false, false))
                 {
                     return 1;
                 }
@@ -79270,11 +79692,11 @@ namespace Bb.SqlServer.Asts
         public static AstDecimalDefault Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstDecimalDefault.Resolve(list);
-            if ((index == 2))
-            {
-                return new AstDecimalDefault.AstDecimalDefault1(ctx, ((AstDecimal)(list[0])));
-            }
             if ((index == 1))
+            {
+                return new AstDecimalDefault.AstDecimalDefault1(ctx, ((AstDecimal)(list[1])));
+            }
+            if ((index == 2))
             {
                 return new AstDecimalDefault.AstDecimalDefault2(ctx);
             }
@@ -79285,7 +79707,7 @@ namespace Bb.SqlServer.Asts
         {
             if ((list.Count == 1))
             {
-                if (AstRoot.Eval(list[0], typeof(AstDecimal), false, false))
+                if (AstRoot.Eval(list[1], typeof(AstDecimal), false, false))
                 {
                     return 1;
                 }
@@ -79412,15 +79834,15 @@ namespace Bb.SqlServer.Asts
             {
                 return new AstOnDelete.AstOnDelete1(ctx);
             }
-            if ((index == 1))
+            if ((index == 2))
             {
                 return new AstOnDelete.AstOnDelete2(ctx);
             }
-            if ((index == 1))
+            if ((index == 3))
             {
                 return new AstOnDelete.AstOnDelete3(ctx);
             }
-            if ((index == 1))
+            if ((index == 4))
             {
                 return new AstOnDelete.AstOnDelete4(ctx);
             }
@@ -79541,15 +79963,15 @@ namespace Bb.SqlServer.Asts
             {
                 return new AstOnUpdate.AstOnUpdate1(ctx);
             }
-            if ((index == 1))
+            if ((index == 2))
             {
                 return new AstOnUpdate.AstOnUpdate2(ctx);
             }
-            if ((index == 1))
+            if ((index == 3))
             {
                 return new AstOnUpdate.AstOnUpdate3(ctx);
             }
-            if ((index == 1))
+            if ((index == 4))
             {
                 return new AstOnUpdate.AstOnUpdate4(ctx);
             }
@@ -79638,7 +80060,7 @@ namespace Bb.SqlServer.Asts
             {
                 return new AstUpdatedAsterisk.AstUpdatedAsterisk1(ctx);
             }
-            if ((index == 1))
+            if ((index == 2))
             {
                 return new AstUpdatedAsterisk.AstUpdatedAsterisk2(ctx);
             }
@@ -79670,7 +80092,7 @@ namespace Bb.SqlServer.Asts
         
         protected static string _rule = "null_notnull\r\n\t : NOT?  NULL_";
         
-        internal AstNullNotnull(ParserRuleContext ctx, List<AstRoot> list) : 
+        internal AstNullNotnull(ParserRuleContext ctx) : 
                 base(ctx)
         {
         }
@@ -79685,14 +80107,14 @@ namespace Bb.SqlServer.Asts
         {
         }
         
-        internal AstNullNotnull(ParserRuleContext ctx) : 
-                base(ctx)
-        {
-        }
-        
         public override void Accept(IAstTSqlVisitor visitor)
         {
             visitor.VisitNullNotnull(this);
+        }
+        
+        public static AstNullNotnull Create(ParserRuleContext ctx, List<AstRoot> list)
+        {
+            return new AstNullNotnull(ctx);
         }
         
         /// <summary>
@@ -79894,35 +80316,35 @@ namespace Bb.SqlServer.Asts
             {
                 return new AstComparisonOperator.AstComparisonOperator1(ctx);
             }
-            if ((index == 1))
+            if ((index == 2))
             {
                 return new AstComparisonOperator.AstComparisonOperator2(ctx);
             }
-            if ((index == 1))
+            if ((index == 3))
             {
                 return new AstComparisonOperator.AstComparisonOperator3(ctx);
             }
-            if ((index == 1))
+            if ((index == 4))
             {
                 return new AstComparisonOperator.AstComparisonOperator4(ctx);
             }
-            if ((index == 1))
+            if ((index == 5))
             {
                 return new AstComparisonOperator.AstComparisonOperator5(ctx);
             }
-            if ((index == 1))
+            if ((index == 6))
             {
                 return new AstComparisonOperator.AstComparisonOperator6(ctx);
             }
-            if ((index == 1))
+            if ((index == 7))
             {
                 return new AstComparisonOperator.AstComparisonOperator7(ctx);
             }
-            if ((index == 1))
+            if ((index == 8))
             {
                 return new AstComparisonOperator.AstComparisonOperator8(ctx);
             }
-            if ((index == 1))
+            if ((index == 9))
             {
                 return new AstComparisonOperator.AstComparisonOperator9(ctx);
             }
@@ -80115,31 +80537,31 @@ namespace Bb.SqlServer.Asts
             {
                 return new AstAssignmentOperator.AstAssignmentOperator1(ctx);
             }
-            if ((index == 1))
+            if ((index == 2))
             {
                 return new AstAssignmentOperator.AstAssignmentOperator2(ctx);
             }
-            if ((index == 1))
+            if ((index == 3))
             {
                 return new AstAssignmentOperator.AstAssignmentOperator3(ctx);
             }
-            if ((index == 1))
+            if ((index == 4))
             {
                 return new AstAssignmentOperator.AstAssignmentOperator4(ctx);
             }
-            if ((index == 1))
+            if ((index == 5))
             {
                 return new AstAssignmentOperator.AstAssignmentOperator5(ctx);
             }
-            if ((index == 1))
+            if ((index == 6))
             {
                 return new AstAssignmentOperator.AstAssignmentOperator6(ctx);
             }
-            if ((index == 1))
+            if ((index == 7))
             {
                 return new AstAssignmentOperator.AstAssignmentOperator7(ctx);
             }
-            if ((index == 1))
+            if ((index == 8))
             {
                 return new AstAssignmentOperator.AstAssignmentOperator8(ctx);
             }

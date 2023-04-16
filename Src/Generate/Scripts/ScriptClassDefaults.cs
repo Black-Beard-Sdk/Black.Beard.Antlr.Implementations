@@ -46,7 +46,7 @@ namespace Generate.Scripts
                     type.AddTemplateSelector(() => TemplateSelector(ast, ctx))
                         .Documentation(c => c.Summary(() => ast.ToString()))
                         .Name(() => "Ast" + CodeHelper.FormatCsharp(ast.Name.Text))
-                        .Attribute(ctx.Variables.Get<List<TreeRuleItem>>("combinaisons").Count == 1 ? System.Reflection.TypeAttributes.Public : System.Reflection.TypeAttributes.Public | System.Reflection.TypeAttributes.Abstract)
+                        .Attribute(ctx.Variables.Get<AlternativeTreeRuleItemList>("combinaisons").Count == 1 ? System.Reflection.TypeAttributes.Public : System.Reflection.TypeAttributes.Public | System.Reflection.TypeAttributes.Abstract)
                         .Inherit(() => GetInherit(ast, ctx))
 
                         .Ctor((f) =>
@@ -56,10 +56,6 @@ namespace Generate.Scripts
                                     .Argument(() => "ParserRuleContext", "ctx")
                                     .CallBase("ctx");
 
-                                   var alternatives = ctx.Variables.Get<List<TreeRuleItem>>("combinaisons");
-                                   if (alternatives.Count == 1)
-                                       f.Argument(() => "List<AstRoot>", "list");
-
                                })
                         .Ctor((f) =>
                                {
@@ -67,7 +63,7 @@ namespace Generate.Scripts
                                     .Argument(() => "Position", "p")
                                     .CallBase("p");
 
-                                   var alternatives = ctx.Variables.Get<List<TreeRuleItem>>("combinaisons");
+                                   var alternatives = ctx.Variables.Get<AlternativeTreeRuleItemList>("combinaisons");
                                    if (alternatives.Count == 1)
                                        f.Argument(() => "List<AstRoot>", "list");
 
@@ -80,29 +76,31 @@ namespace Generate.Scripts
                                     .CallBase("Position.Default");
                                })
 
-                        .CtorWhen(() => ctx.Variables.Get<List<TreeRuleItem>>("combinaisons").Count == 1, (f) =>
+                        .CtorWhen(() => ctx.Variables.Get<AlternativeTreeRuleItemList>("combinaisons").Count == 1, (f) =>
                         {
                             f.Attribute(MemberAttributes.FamilyAndAssembly)
                              .Argument(() => "ParserRuleContext", "ctx")
                              .CallBase("ctx");
 
-                            var alternatives = ctx.Variables.Get<List<TreeRuleItem>>("combinaisons");
+                            var alternatives = ctx.Variables.Get<AlternativeTreeRuleItemList>("combinaisons");
                             var ast2 = alternatives[0];
 
-                            foreach (TreeRuleItem item in ast2)
+                            foreach (TreeRuleItem item in ast2.Item)
                                 if (item.WhereRuleOrIdentifiers())
                                     f.Argument(() => item.Type(), item.GetParameterdName());
 
                             f.Body(b =>
                             {
-                                foreach (TreeRuleItem item in ast2)
+                                foreach (TreeRuleItem item in ast2.Item)
                                     if (item.WhereRuleOrIdentifiers())
                                         b.Statements.Assign(item.GetFieldName().Var(), item.GetParameterdName().Var());
                             });
 
                         })
 
-                        .MethodWhen(() => ctx.Variables.Get<List<TreeRuleItem>>("combinaisons").Count == 1, method =>
+
+
+                        .MethodWhen(() => ctx.Variables.Get<AlternativeTreeRuleItemList>("combinaisons").Count == 1, method =>
                         {
                             method
                              .Name(g => "Accept")
@@ -119,7 +117,7 @@ namespace Generate.Scripts
                              });
                         })
 
-                        .MethodWhen(() => ctx.Variables.Get<List<TreeRuleItem>>("combinaisons").Count > 1, method =>
+                        .MethodWhen(() => ctx.Variables.Get<AlternativeTreeRuleItemList>("combinaisons").Count == 1, method =>
                         {
                             method
                              .Name(g => "Create")
@@ -130,17 +128,15 @@ namespace Generate.Scripts
                              .Body(b =>
                              {
 
-                                 b.Statements.DeclareAndInitialize("index", typeof(int).AsType(), CodeHelper.Call(("Ast" + CodeHelper.FormatCsharp(ast.Name.Text)).AsType()
-                                     , "Resolve", "list".Var()));
-
-                                 List<TreeRuleItem> items = ctx.Variables.Get<List<TreeRuleItem>>("combinaisons");
-                                 int j = 1;
-                                 foreach (var alternative in items)
+                                 AlternativeTreeRuleItemList items = ctx.Variables.Get<AlternativeTreeRuleItemList>("combinaisons");
+                                 foreach (var alt in items)
                                  {
+                                     var alternative = alt.Item;
+
                                      int i = 0;
                                      List<CodeExpression> args = new List<CodeExpression>()
                                      {
-                                         "ctx".Var()
+                                        "ctx".Var()
                                      };
                                      if (alternative.Count == 0)
                                      {
@@ -157,14 +153,62 @@ namespace Generate.Scripts
                                              }
                                      }
 
+                                     string typename = "Ast" + CodeHelper.FormatCsharp(ast.Name.Text);
+                                     b.Statements.Return(CodeHelper.Create(typename.AsType(), args.ToArray()));
 
-                                     b.Statements.If("index".Var().IsEqual((i + 1).AsConstant()), _t =>
+                                 }
+
+
+                             });
+                        })
+
+
+
+                        .MethodWhen(() => ctx.Variables.Get<AlternativeTreeRuleItemList>("combinaisons").Count > 1, method =>
+                        {
+                            method
+                             .Name(g => "Create")
+                             .Argument("ParserRuleContext", "ctx")
+                             .Argument("List<AstRoot>", "list")
+                             .Attribute(MemberAttributes.Public | MemberAttributes.Static)
+                             .Return(() => "Ast" + CodeHelper.FormatCsharp(ast.Name.Text))
+                             .Body(b =>
+                             {
+
+                                 b.Statements.DeclareAndInitialize("index", typeof(int).AsType(), CodeHelper.Call(("Ast" + CodeHelper.FormatCsharp(ast.Name.Text)).AsType()
+                                     , "Resolve", "list".Var()));
+
+                                 AlternativeTreeRuleItemList items = ctx.Variables.Get<AlternativeTreeRuleItemList>("combinaisons");
+                                
+                                 foreach (var alt in items)
+                                 {
+
+                                     var alternative = alt.Item;
+                                     List<CodeExpression> args = new List<CodeExpression>()
+                                     {
+                                         "ctx".Var()
+                                     };
+                                     if (alternative.Count == 0)
+                                     {
+                                         if (alternative.WhereRuleOrIdentifiers())
+                                             args.Add("list".Indexer(alt.AlternativeIdentifier.AsConstant()).Cast(alternative.Type().AsType()));
+                                     }
+                                     else
+                                     {
+                                         foreach (var item in alternative)
+                                             if (item.WhereRuleOrIdentifiers())
+                                                 args.Add("list".Indexer(alt.AlternativeIdentifier.AsConstant()).Cast(item.Type().AsType()));
+
+                                     }
+
+
+                                     b.Statements.If("index".Var().IsEqual(alt.AlternativeIdentifier.AsConstant()), _t =>
                                      {
                                          string typename = "Ast" + CodeHelper.FormatCsharp(ast.Name.Text);
-                                         var t = typename + "." + typename + (j).ToString();
+                                         var t = typename + "." + typename + (alt.AlternativeIdentifier).ToString();
                                          _t.Return(CodeHelper.Create(t.AsType(), args.ToArray()));
                                      });
-                                     j++;
+                                     
 
                                  }
                                  b.Statements.Return(CodeHelper.Null());
@@ -172,7 +216,7 @@ namespace Generate.Scripts
                              });
                         })
 
-                        .MethodWhen(() => ctx.Variables.Get<List<TreeRuleItem>>("combinaisons").Count > 1, method =>
+                        .MethodWhen(() => ctx.Variables.Get<AlternativeTreeRuleItemList>("combinaisons").Count > 1, method =>
                         {
                             method
                              .Name(g => "Resolve")
@@ -182,12 +226,14 @@ namespace Generate.Scripts
                              .Body(b =>
                              {
 
-                                 List<List<(string, bool, bool)>> alternatives = new List<List<(string, bool, bool)>>(ast.Alternatives.Count);
-                                 List<TreeRuleItem> items = ctx.Variables.Get<List<TreeRuleItem>>("combinaisons");
+                                 List<List<(string, bool, bool, int)>> alternatives = new List<List<(string, bool, bool, int)>>(ast.Alternatives.Count);
+                                 AlternativeTreeRuleItemList items = ctx.Variables.Get<AlternativeTreeRuleItemList>("combinaisons");
 
-                                 foreach (var alternative in items)
+                                 foreach (var alt in items)
                                  {
-                                     var l = new List<(string, bool, bool)>(alternative.Count + 1);
+
+                                     var alternative = alt.Item;
+                                     var l = new List<(string, bool, bool, int)>(alternative.Count + 1);
 
                                      if (alternative.Count == 0)
                                      {
@@ -195,7 +241,7 @@ namespace Generate.Scripts
                                          if (alternative.WhereRuleOrIdentifiers())
                                          {
                                              var type = alternative.Type();
-                                             l.Add((type, occurence.Optional, occurence.Value == OccurenceEnum.Any));
+                                             l.Add((type, occurence.Optional, occurence.Value == OccurenceEnum.Any, alt.AlternativeIdentifier));
                                          }
                                          else
                                          {
@@ -210,7 +256,7 @@ namespace Generate.Scripts
                                              if (item.WhereRuleOrIdentifiers())
                                              {
                                                  var type = item.Type();
-                                                 l.Add((type, occurence.Optional, occurence.Value == OccurenceEnum.Any));
+                                                 l.Add((type, occurence.Optional, occurence.Value == OccurenceEnum.Any, alt.AlternativeIdentifier));
                                              }
                                              else
                                              {
@@ -234,24 +280,17 @@ namespace Generate.Scripts
 
                                          foreach (var rule in alternative)
                                          {
-
                                              var nt = _t;
-                                             int i = 0;
-
                                              foreach (var item2 in rule)
                                              {
-
                                                  nt.If("AstRoot".AsType().Call("Eval",
-                                                     "list".Indexer(i.AsConstant()),
+                                                     "list".Indexer(item2.Item4.AsConstant()),
                                                      item2.Item1.AsType().Typeof(),
                                                      item2.Item2.AsConstant(),
                                                      item2.Item3.AsConstant()), _t2 =>
                                                  {
                                                      nt = _t2;
                                                  });
-
-                                                 i++;
-
                                              }
 
                                              nt.Return((alternatives.IndexOf(rule) + 1).AsConstant());
@@ -270,6 +309,7 @@ namespace Generate.Scripts
                              });
                         })
 
+
                         .Field(field =>
                         {
                             field.Name("_rule")
@@ -284,11 +324,11 @@ namespace Generate.Scripts
 
                         .Fields(() =>
                         {
-                            var result = new List<TreeRuleItem>(1);
-                            var items = ctx.Variables.Get<List<TreeRuleItem>>("combinaisons");
+                            var result = new AlternativeTreeRuleItemList(1);
+                            var items = ctx.Variables.Get<AlternativeTreeRuleItemList>("combinaisons");
 
                             if (items.Count == 1)
-                                foreach (var item in items[0])
+                                foreach (var item in items[0].Item)
                                     result.Add(item);
 
                             return result;
@@ -296,7 +336,7 @@ namespace Generate.Scripts
                         },
                         (field, model) =>
                         {
-                            var i = model as TreeRuleItem;
+                            var i = (model as AlternativeTreeRuleItem).Item;
                             if (i.WhereRuleOrIdentifiers())
                             {
                                 field.Name(m => i.GetFieldName())
@@ -308,11 +348,11 @@ namespace Generate.Scripts
 
                         .Properties(() =>
                         {
-                            var result = new List<TreeRuleItem>(1);
-                            var items = ctx.Variables.Get<List<TreeRuleItem>>("combinaisons");
+                            var result = new AlternativeTreeRuleItemList(1);
+                            var items = ctx.Variables.Get<AlternativeTreeRuleItemList>("combinaisons");
 
                             if (items.Count == 1)
-                                foreach (var item in items[0])
+                                foreach (var item in items[0].Item)
                                     result.Add(item);
 
                             return result;
@@ -320,14 +360,14 @@ namespace Generate.Scripts
                         },
                         (property, model) =>
                         {
-                            var i = model as TreeRuleItem;
+                            var i = (model as AlternativeTreeRuleItem).Item;
                             if (i.WhereRuleOrIdentifiers())
                             {
-                                property.Name(m => i.GetFieldName())
-                                .Type(() => i.Type())
-                                .Attribute(MemberAttributes.Public)
-                                .Get(g => g.Return(i.GetFieldName().Var()))
-                                .HasSet(false)
+                                property.Name(m => i.GetPropertyName())
+                                        .Type(() => i.Type())
+                                        .Attribute(MemberAttributes.Public)
+                                        .Get(g => g.Return(i.GetFieldName().Var()))
+                                        .HasSet(false)
                                 ;
                             }
                         })
@@ -337,12 +377,12 @@ namespace Generate.Scripts
 
                             HashSet<string> _h = new HashSet<string>();
                             List<CodeMemberMethod> methods = new List<CodeMemberMethod>();
-                            var alternatives = ctx.Variables.Get<List<TreeRuleItem>>("combinaisons");
+                            var alternatives = ctx.Variables.Get<AlternativeTreeRuleItemList>("combinaisons");
 
                             int i = 0;
-                            foreach (TreeRuleItem alt in alternatives)
+                            foreach (var alt in alternatives)
                             {
-
+                                var alternative = alt.Item;
                                 i++;
 
                                 StringBuilder uniqeConstraintKeyMethod = new StringBuilder();
@@ -358,15 +398,15 @@ namespace Generate.Scripts
                                 List<string> arguments = new List<string>();
 
                                 var method1 = name.AsMethod(t1, MemberAttributes.Public | MemberAttributes.Static)
-                                    .BuildDocumentation(ast.Name.Text, alt, ctx)
+                                    .BuildDocumentation(ast.Name.Text, alternative, ctx)
                                     ;
                                 method1.Parameters.Add(new CodeParameterDeclarationExpression("ParserRuleContext".AsType(), "ctx"));
 
-                                if (alt.Count > 0)
-                                    foreach (var itemAlt in alt)
+                                if (alternative.Count > 0)
+                                    foreach (var itemAlt in alternative)
                                         itemAlt.BuildStaticMethod(ast, method1, arguments, uniqeConstraintKeyMethod);
                                 else
-                                    alt.BuildStaticMethod(ast, method1, arguments, uniqeConstraintKeyMethod);
+                                    alternative.BuildStaticMethod(ast, method1, arguments, uniqeConstraintKeyMethod);
 
                                 if (method1.Parameters.Count > 0)
                                 {
@@ -402,8 +442,6 @@ namespace Generate.Scripts
 
                                 }
 
-
-
                             }
 
                             foreach (var item in methods)
@@ -415,7 +453,7 @@ namespace Generate.Scripts
                         ;
 
 
-                    List<TreeRuleItem> alternatives = ctx.Variables.Get<List<TreeRuleItem>>("combinaisons");
+                    AlternativeTreeRuleItemList alternatives = ctx.Variables.Get<AlternativeTreeRuleItemList>("combinaisons");
 
                     if (alternatives.Count == 0)
                     {
@@ -424,40 +462,43 @@ namespace Generate.Scripts
                     else if (alternatives.Count > 1)
                     {
                         int i = 0;
-                        foreach (var ast2 in alternatives)
+                        foreach (var alt2 in alternatives)
                         {
+
+                            var alternative2 = alt2.Item;
 
                             type.CreateTypeFrom<AstBase>(ast => true, null, (ast3, type2) =>
                             {
                                 type2.Name(() => "Ast" + CodeHelper.FormatCsharp(ast.Name.Text) + (++i).ToString())
-                                .Documentation(c => c.Summary(() => ast.Name.Text + " : " + ast2.ToString()))
+                                .Documentation(c => c.Summary(() => ast.Name.Text + " : " + alternative2.ToString()))
                                 .Inherit(() => "Ast" + CodeHelper.FormatCsharp(ast.Name.Text))
 
                                 .Ctor((f) =>
                                 {
+
                                     f.Attribute(MemberAttributes.FamilyAndAssembly)
                                      .Argument(() => "ParserRuleContext", "ctx")
                                      .CallBase("ctx");
 
-                                    if (ast2.Count == 0)
+                                    if (alternative2.Count == 0)
                                     {
-                                        if (ast2.WhereRuleOrIdentifiers())
-                                            f.Argument(() => ast2.Type(), ast2.GetParameterdName());
+                                        if (alternative2.WhereRuleOrIdentifiers())
+                                            f.Argument(() => alternative2.Type(), alternative2.GetParameterdName());
                                     }
                                     else
-                                        foreach (TreeRuleItem item in ast2)
+                                        foreach (TreeRuleItem item in alternative2)
                                             if (item.WhereRuleOrIdentifiers())
                                                 f.Argument(() => item.Type(), item.GetParameterdName());
 
                                     f.Body(b =>
                                     {
-                                        if (ast2.Count == 0)
+                                        if (alternative2.Count == 0)
                                         {
-                                            if (ast2.WhereRuleOrIdentifiers())
-                                                b.Statements.Assign(ast2.GetFieldName().Var(), ast2.GetParameterdName().Var());
+                                            if (alternative2.WhereRuleOrIdentifiers())
+                                                b.Statements.Assign(alternative2.GetFieldName().Var(), alternative2.GetParameterdName().Var());
                                         }
                                         else
-                                            foreach (TreeRuleItem item in ast2)
+                                            foreach (TreeRuleItem item in alternative2)
                                                 if (item.WhereRuleOrIdentifiers())
                                                     b.Statements.Assign(item.GetFieldName().Var(), item.GetParameterdName().Var());
                                     });
@@ -483,15 +524,15 @@ namespace Generate.Scripts
 
                                 .Fields(() =>
                                       {
-                                          List<TreeRuleItem> items = new List<TreeRuleItem>();
+                                          AlternativeTreeRuleItemList items = new AlternativeTreeRuleItemList();
 
-                                          if (ast2.Count == 0)
+                                          if (alternative2.Count == 0)
                                           {
-                                              if (ast2.WhereRuleOrIdentifiers())
-                                                  items.Add(ast2);
+                                              if (alternative2.WhereRuleOrIdentifiers())
+                                                  items.Add(alternative2);
                                           }
                                           else
-                                              foreach (TreeRuleItem item in ast2)
+                                              foreach (TreeRuleItem item in alternative2)
                                                   if (item.WhereRuleOrIdentifiers())
                                                       items.Add(item);
 
@@ -500,7 +541,7 @@ namespace Generate.Scripts
                                       },
                                       (field, model) =>
                                       {
-                                          var i = model as TreeRuleItem;
+                                          var i = (model as AlternativeTreeRuleItem).Item;
                                           if (i.WhereRuleOrIdentifiers())
                                           {
                                               field.Name(m => i.GetFieldName())
@@ -512,15 +553,15 @@ namespace Generate.Scripts
                                 )
                                 .Properties(() =>
                                 {
-                                    List<TreeRuleItem> items = new List<TreeRuleItem>();
+                                    AlternativeTreeRuleItemList items = new AlternativeTreeRuleItemList();
 
-                                    if (ast2.Count == 0)
+                                    if (alternative2.Count == 0)
                                     {
-                                        if (ast2.WhereRuleOrIdentifiers())
-                                            items.Add(ast2);
+                                        if (alternative2.WhereRuleOrIdentifiers())
+                                            items.Add(alternative2);
                                     }
                                     else
-                                        foreach (TreeRuleItem item in ast2)
+                                        foreach (TreeRuleItem item in alternative2)
                                             if (item.WhereRuleOrIdentifiers())
                                                 items.Add(item);
 
@@ -528,7 +569,7 @@ namespace Generate.Scripts
                                 },
                                       (property, model) =>
                                       {
-                                          var i = model as TreeRuleItem;
+                                          var i = (model as AlternativeTreeRuleItem).Item;
                                           if (i.WhereRuleOrIdentifiers())
                                           {
                                               property.Name(m => i.GetPropertyName())

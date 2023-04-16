@@ -30,6 +30,19 @@ namespace Bb.SqlServer.Parser
 
         }
 
+        protected List<AstRoot> GetList(ParserRuleContext parser)
+        {
+            List<AstRoot> result = new List<AstRoot>(parser.children.Count);
+            foreach (var children in parser.children)
+            {
+                AstRoot acceptResult = children.Accept(this);
+                if ((acceptResult != null))
+                    result.Add(acceptResult);
+            }
+            return result;
+        }
+
+
         public void EvaluateErrors(IParseTree item)
         {
 

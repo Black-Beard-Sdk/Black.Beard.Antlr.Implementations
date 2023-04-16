@@ -44,6 +44,11 @@ namespace Bb.Generators
             return new CodeBinaryOperatorExpression(left, CodeBinaryOperatorType.IdentityInequality, right);
         }
 
+        public static CodePrimitiveExpression AsConstant(this int self)
+        {
+            return new CodePrimitiveExpression(self);
+        }
+
         public static CodePrimitiveExpression AsConstant(this object self)
         {
             return new CodePrimitiveExpression(self);

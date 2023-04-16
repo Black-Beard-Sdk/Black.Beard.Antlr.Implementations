@@ -4926,7 +4926,7 @@ RULE xml_type_definition
 
 RULE xml_schema_collection 
 //** xml_schema_collection
-	 : left = ID  DOT  right = ID
+	 : left = simple_id  DOT  right = simple_id
   **// 
 	GENERATE
 	INHERIT 
@@ -16353,6 +16353,20 @@ TERM ID
 	
 ;
 
+TERM ROOTWORD 
+//** ROOTWORD : 'ROOT'
+  **// 
+	KIND #CONSTANT
+	
+;
+
+TERM HOST 
+//** HOST : WORD+  DOT  LETTER3
+  **// 
+	KIND #IDENTIFIER
+	
+;
+
 TERM STRING 
 //** STRING : 'N'?  '\''  (~'\'' | '\'\'')  '\''
   **// 
@@ -21407,13 +21421,6 @@ RULE batchs
 	CALCULATED TEMPLATE ClassWithProperties
 ;
 
-TERM HOST 
-//** HOST : WORD+  DOT  LETTER3
-  **// 
-	KIND #OTHER
-	
-;
-
 RULE server_database_schema_function_ref 
 //** server_database_schema_function_ref
 	 : server_id?  DOT  database_id?  DOT  schema_identifier?  DOT  function_id
@@ -22373,13 +22380,6 @@ RULE create_or_alter
 	CALCULATED INHERIT "AstBnfRule"
 	TEMPLATE 
 	CALCULATED TEMPLATE _
-;
-
-TERM ROOTWORD 
-//** ROOTWORD : 'ROOT'
-  **// 
-	KIND #CONSTANT
-	
 ;
 
 RULE restart_listener 

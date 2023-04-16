@@ -17,7 +17,7 @@ namespace Bb.Parsers
 
         }
 
-        public static List<TreeRuleItem> ResolveAllCombinations(this AstLabeledAlt self)
+        public static AlternativeTreeRuleItemList ResolveAllCombinations(this AstLabeledAlt self)
         {
 
             var spliterVisitor = new SpliterBuilderVisitor();
@@ -26,7 +26,7 @@ namespace Bb.Parsers
             var p = self.Rule.Accept(visitor1);
             var possibilites2 = p.Accept(spliterVisitor);
             possibilites2 = cleanDuplicated.Visit(possibilites2);
-            var possibilites3 = new List<TreeRuleItem>(p.Count);
+            var possibilites3 = new AlternativeTreeRuleItemList(p.Count);
             HashSet<string> names = new HashSet<string>();
             foreach (var p1 in possibilites2)
             {
@@ -41,7 +41,7 @@ namespace Bb.Parsers
 
         }
 
-        public static List<TreeRuleItem> ResolveAllCombinations(this AstRule self)
+        public static AlternativeTreeRuleItemList ResolveAllCombinations(this AstRule self)
         {
             var spliterVisitor = new SpliterBuilderVisitor();
             var cleanDuplicated = new RemoveDuplicatedRulesBuilderVisitor();
@@ -49,7 +49,7 @@ namespace Bb.Parsers
             var p = self.Alternatives.Accept(visitor1);
             var possibilites2 = p.Accept(spliterVisitor);
             possibilites2 = cleanDuplicated.Visit(possibilites2);
-            var possibilites3 = new List<TreeRuleItem>(p.Count);
+            var possibilites3 = new AlternativeTreeRuleItemList(p.Count);
             HashSet<string> names = new HashSet<string>();
 
             foreach (var p1 in possibilites2)

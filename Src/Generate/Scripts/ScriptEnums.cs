@@ -85,7 +85,7 @@ namespace Generate.Scripts
                                     
                                     try
                                     {
-                                        var tree = n as TreeRuleItem;
+                                        var tree = (n as AlternativeTreeRuleItem).Item;
                                         var text = tree.GetMethodNameForClassEnum();
                                         return text;
                                     }
@@ -101,8 +101,8 @@ namespace Generate.Scripts
                                 .Attribute(MemberAttributes.Public | MemberAttributes.Static)
                                 .Body(m =>
                                 {
-                                    var text = (ast2 as TreeRuleItem).GetTerminalText();
-                                    var value = (ast2 as TreeRuleItem).GetTerminalValue();
+                                    var text = (ast2 as AlternativeTreeRuleItem).Item.GetTerminalText();
+                                    var value = (ast2 as AlternativeTreeRuleItem).Item.GetTerminalValue();
                                     var typeName = "Ast" + CodeHelper.FormatCsharp(ast.Name.Text);
                                     m.Statements.Return(CodeHelper.Create(typeName.AsType(), "Position.Default".Var(), text.Trim('\'').AsConstant(), value.Trim('\'').AsConstant()));
 
@@ -122,7 +122,7 @@ namespace Generate.Scripts
                                 {
                                     try
                                     {
-                                        var tree = n as TreeRuleItem;
+                                        var tree = (n as AlternativeTreeRuleItem).Item;
                                         var text = tree.GetMethodNameForClassEnum();
                                         return text;
                                     }
@@ -139,8 +139,8 @@ namespace Generate.Scripts
                                 .Attribute(MemberAttributes.Public | MemberAttributes.Static)
                                 .Body(m =>
                                 {
-                                    var text = (ast2 as TreeRuleItem).GetTerminalText();
-                                    var value = (ast2 as TreeRuleItem).GetTerminalValue();
+                                    var text = (ast2 as AlternativeTreeRuleItem).Item.GetTerminalText();
+                                    var value = (ast2 as AlternativeTreeRuleItem).Item.GetTerminalValue();
                                     var typeName = "Ast" + CodeHelper.FormatCsharp(ast.Name.Text);
                                     m.Statements.Return(CodeHelper.Create(typeName.AsType(), "position".Var(), text.Trim('\'').AsConstant(), value.Trim('\'').AsConstant()));
 

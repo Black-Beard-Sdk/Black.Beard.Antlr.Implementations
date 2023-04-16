@@ -838,11 +838,11 @@ server_instance_txt : stringtext;
 create_or_alter_broker_priority
     : create_alter BROKER PRIORITY ConversationPriorityName=id_ FOR CONVERSATION
       SET LR_BRACKET
-     broker_contract_name?
-     broker_local_service_name?
-     broker_remote_service_name?
-     broker_priority_level?
-     RR_BRACKET
+        broker_contract_name?
+        broker_local_service_name?
+        broker_remote_service_name?
+        broker_priority_level?
+      RR_BRACKET
     ;
 
 broker_contract_name : CONTRACT_NAME EQUAL id_any COMMA?;
@@ -3669,7 +3669,7 @@ xml_type_definition
     ;
 
 xml_schema_collection
-    : left=ID DOT right=ID
+    : left=simple_id DOT right=simple_id
     ;
 
 column_def_table_constraints
