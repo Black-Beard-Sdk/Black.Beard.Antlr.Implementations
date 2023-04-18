@@ -275,8 +275,6 @@ namespace Generate.Scripts
 
                                  }
 
-                                 if (ast.Name.Text == "table_source_item")
-                                 { }
 
                                  var lst = alternatives.OrderByDescending(c => c.Count).ToList();
                                  foreach (var alternative in lst)
