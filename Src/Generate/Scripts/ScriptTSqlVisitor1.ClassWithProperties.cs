@@ -43,19 +43,7 @@ namespace Generate.Scripts
                                    .Documentation(c => c.Summary(() => ast.ToString()))
                                    .Body(b =>
                                    {
-                                       b.Statements.DeclareAndCreate("list", "List<AstRoot>".AsType());
-                                       b.Statements.ForEach("IParseTree".AsType(), "item", "context.children", stm =>
-                                       {
-                                           // var v1 = ("Ast" + CodeHelper.FormatCsharp(ast.Name)).AsType();
-                                           var v1 = "AstRoot".AsType();
-                                           stm.DeclareAndInitialize("acceptResult", v1, "item".Var().Call("Accept", CodeHelper.This()));
-                                           stm.If("acceptResult".Var().IsNotEqual(CodeHelper.Null()), s =>
-                                           {
-                                               s.Call("list".Var(), "Add", "acceptResult".Var());
-                                           }
-                                           );
-
-                                       });
+                                       b.Statements.DeclareAndInitialize("list", "List<AstRoot>".AsType(), "GetList".Call("context".Var()));
                                        b.Statements.Return(("Ast" + CodeHelper.FormatCsharp(ast.Name.Text)).AsType().Create("context".Var(), "list".Var()));
 
                                    });

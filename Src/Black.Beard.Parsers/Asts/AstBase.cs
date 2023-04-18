@@ -92,8 +92,28 @@ namespace Bb.Asts
 
         }
 
+        public virtual string RuleName { get; }
+
+        public virtual string RuleValue { get; }
+
+        public virtual bool IsTerminal { get; }
+
+        public virtual AstKindEnum Kind { get; }
+
     }
 
-
+    public enum AstKindEnum
+    {
+        Rule,        
+        Constant,
+        Identifier,
+        Boolean,
+        String,
+        Decimal,
+        Int,
+        Real,
+        Hexa,
+        Binary
+    }
 
 }

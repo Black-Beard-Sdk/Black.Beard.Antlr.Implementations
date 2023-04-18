@@ -136,11 +136,18 @@ namespace Generate.Scripts
                               })
 
                              .CtorWhen(() => ast.IsConstant()
-                              , (f) =>
+                             , (f) =>
                              {
                                  f
                                   .Attribute(MemberAttributes.Public)
                                   .CallBase("Position.Default".Var());
+                             })
+                             .CtorWhen(() => ast.IsConstant()
+                             , (f) =>
+                             {
+                                 f.Argument(() => "ParserRuleContext", "ctx")
+                                  .Attribute(MemberAttributes.Public)
+                                  .CallBase("ctx".Var());
                              })
 
 
@@ -160,6 +167,80 @@ namespace Generate.Scripts
                                        );
                                    });
                               })
+
+                             .Field(field =>
+                             {
+
+                                 field.Name("_ruleValue")
+                                 .Type(typeof(string))
+                                 .Attribute(MemberAttributes.Private | MemberAttributes.Static)
+                                 .Value((a) =>
+                                 {
+                                     return ast.Alternatives.ToString();
+                                 })
+                                 ;
+                             })
+                            .Field(field =>
+                            {
+                                field.Name("_ruleName")
+                                     .Type(typeof(string))
+                                     .Attribute(MemberAttributes.Private | MemberAttributes.Static)
+                                     .Value((a) =>
+                                     {
+                                         return ast.Name.Text;
+                                     });
+                            })
+                            .Property(property =>
+                            {
+                                property.Name((a) => "RuleName")
+                                        .Type(() => typeof(string))
+                                        .Attribute(MemberAttributes.Public | MemberAttributes.Override)
+                                        .Get((a) => a.Return("_ruleName".Var()))
+                                        .HasSet(false)
+                                        ;
+                            })
+                            .Property(property =>
+                            {
+                                property.Name((a) => "RuleValue")
+                                        .Type(() => typeof(string))
+                                        .Attribute(MemberAttributes.Public | MemberAttributes.Override)
+                                        .Get((a) => a.Return("_ruleValue".Var()))
+                                        .HasSet(false)
+                                        ;
+                            })
+
+                            .Field(field =>
+                            {
+                                field.Name("_isTerminal")
+                                     .Type(typeof(bool))
+                                     .Attribute(MemberAttributes.Private | MemberAttributes.Static)
+                                     .Value((a) =>
+                                     {
+
+                                         var items = ctx.Variables.Get<AlternativeTreeRuleItemList>("combinaisons");
+                                         foreach (var item in items)
+                                         {
+                                             foreach (var item1 in item.Item)
+                                             {
+                                                 var oo = item1.Origin.Select(c => c.Type == nameof(AstRuleRef)).FirstOrDefault();
+                                                 if (oo != null)
+                                                     return CodeHelper.AsConstant(false);
+                                             }
+                                         }
+
+                                         return CodeHelper.AsConstant(true);
+                                     });
+                            })
+
+                            .Property(property =>
+                            {
+                                property.Name((a) => "IsTerminal")
+                                        .Type(() => typeof(bool))
+                                        .Attribute(MemberAttributes.Public | MemberAttributes.Override)
+                                        .Get((a) => a.Return("_isTerminal".Var()))
+                                        .HasSet(false)
+                                        ;
+                            })
 
                              .Make(t =>
                               {

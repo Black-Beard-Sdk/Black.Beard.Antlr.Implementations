@@ -5848,19 +5848,18 @@ RULE table_sources
 RULE table_source 
 //** table_source
 	 : table_source_item_joined
-	 | LR_BRACKET  table_source  RR_BRACKET
   **// 
 	GENERATE
 	INHERIT 
 	CALCULATED INHERIT "AstBnfRule"
 	TEMPLATE 
-	CALCULATED TEMPLATE _
+	CALCULATED TEMPLATE ClassWithProperties
 ;
 
 RULE table_source_item_joined 
 //** table_source_item_joined
-	 : table_source_item  joins += join_part
-	 | LR_BRACKET  table_source_item_joined  RR_BRACKET  joins += join_part
+	 : table_source_item  joins = join_part
+	 | LR_BRACKET  table_source_item_joined  RR_BRACKET  joins = join_part
   **// 
 	GENERATE
 	INHERIT 

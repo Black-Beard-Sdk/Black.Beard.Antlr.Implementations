@@ -9,6 +9,7 @@ using System.Linq;
 using System.Collections.Generic;
 using System.Globalization;
 using Antlr4.Runtime.Misc;
+using System.Data;
 
 namespace Generate.Scripts
 {
@@ -179,7 +180,7 @@ namespace Generate.Scripts
                                      , "Resolve", "list".Var()));
 
                                  AlternativeTreeRuleItemList items = ctx.Variables.Get<AlternativeTreeRuleItemList>("combinaisons");
-                                
+
                                  foreach (var alt in items)
                                  {
 
@@ -195,10 +196,15 @@ namespace Generate.Scripts
                                      }
                                      else
                                      {
+                                         int i = 0;
                                          foreach (var item in alternative)
+                                         {
                                              if (item.WhereRuleOrIdentifiers())
-                                                 args.Add("list".Indexer(alt.AlternativeIdentifier.AsConstant()).Cast(item.Type().AsType()));
-
+                                             {
+                                                 args.Add("list".Indexer(i.AsConstant()).Cast(item.Type().AsType()));
+                                                 i++;
+                                             }
+                                         }
                                      }
 
 
@@ -269,37 +275,33 @@ namespace Generate.Scripts
 
                                  }
 
-                                 foreach (var alternative in alternatives.OrderByDescending(c => c.Count).GroupBy(c => c.Count))
+                                 if (ast.Name.Text == "table_source_item")
+                                 { }
+
+                                 var lst = alternatives.OrderByDescending(c => c.Count).ToList();
+                                 foreach (var alternative in lst)
                                  {
 
+                                     var nt = b.Statements;
+                                     int i = 0;
+                                     int lastId = 0;
                                      var listCount = "list".Var().Property("Count");
-                                     var constant = alternative.Key.AsConstant();
-
-                                     b.Statements.If(CodeHelper.IsEqual(listCount, constant), _t =>
+                                     foreach (var rule in alternative)
                                      {
-
-                                         foreach (var rule in alternative)
-                                         {
-                                             var nt = _t;
-                                             foreach (var item2 in rule)
+                                         lastId = rule.Item4;
+                                         nt.If("AstRoot".AsType().Call("Eval",
+                                             "list".Var(),
+                                             (i).AsConstant(),
+                                             rule.Item1.AsType().Typeof(),
+                                             rule.Item2.AsConstant(),
+                                             rule.Item3.AsConstant()), _t2 =>
                                              {
-                                                 nt.If("AstRoot".AsType().Call("Eval",
-                                                     "list".Indexer(item2.Item4.AsConstant()),
-                                                     item2.Item1.AsType().Typeof(),
-                                                     item2.Item2.AsConstant(),
-                                                     item2.Item3.AsConstant()), _t2 =>
-                                                 {
-                                                     nt = _t2;
-                                                 });
-                                             }
+                                                 nt = _t2;
+                                             });
+                                         i++;
+                                     }
 
-                                             nt.Return((alternatives.IndexOf(rule) + 1).AsConstant());
-
-                                         }
-
-                                     });
-
-
+                                     nt.Return((lastId).AsConstant());
 
                                  }
 
@@ -308,19 +310,7 @@ namespace Generate.Scripts
 
                              });
                         })
-
-
-                        .Field(field =>
-                        {
-                            field.Name("_rule")
-                            .Type(typeof(string))
-                            .Attribute(MemberAttributes.Family | MemberAttributes.Static)
-                            .Value((a) =>
-                            {
-                                return ast.ToString();
-                            })
-                            ;
-                        })
+                                               
 
                         .Fields(() =>
                         {
@@ -372,6 +362,46 @@ namespace Generate.Scripts
                             }
                         })
 
+                        .Field(field =>
+                        {
+                           
+                            field.Name("_ruleValue")
+                            .Type(typeof(string))
+                            .Attribute(MemberAttributes.Private | MemberAttributes.Static )
+                            .Value((a) =>
+                            {
+                                return ast.Alternatives.ToString();
+                            })
+                            ;
+                        })
+                        .Field(field =>
+                        {
+                            field.Name("_ruleName")
+                                 .Type(typeof(string))
+                                 .Attribute(MemberAttributes.Private | MemberAttributes.Static)
+                                 .Value((a) =>
+                                 {
+                                     return ast.Name.Text;
+                                 });
+                        })
+                        .Property(property =>
+                        {
+                            property.Name((a) => "RuleName")
+                                    .Type(() => typeof(string))
+                                    .Attribute(MemberAttributes.Public | MemberAttributes.Override)
+                                    .Get((a) => a.Return("_ruleName".Var()))
+                                    .HasSet(false)
+                                    ;
+                        })
+                        .Property(property =>
+                        {
+                            property.Name((a) => "RuleValue")
+                                    .Type(() => typeof(string))
+                                    .Attribute(MemberAttributes.Public | MemberAttributes.Override)
+                                    .Get((a) => a.Return("_ruleValue".Var()))
+                                    .HasSet(false)
+                                    ;
+                        })
                         .Make(t =>
                         {
 
@@ -520,6 +550,26 @@ namespace Generate.Scripts
                                              CodeHelper.This()
                                          );
                                      });
+                                })
+
+                                .Field(field =>
+                                {
+                                    field.Name("_ruleName1")
+                                         .Type(typeof(string))
+                                         .Attribute(MemberAttributes.Private | MemberAttributes.Static)
+                                         .Value((a) =>
+                                         {
+                                             return ast.Name.Text;
+                                         });
+                                })
+                                .Property(property =>
+                                {
+                                    property.Name((a) => "RuleName")
+                                            .Type(() => typeof(string))
+                                            .Attribute(MemberAttributes.Public | MemberAttributes.Override)
+                                            .Get((a) => a.Return("_ruleName1".Var()))
+                                            .HasSet(false)
+                                            ;
                                 })
 
                                 .Fields(() =>

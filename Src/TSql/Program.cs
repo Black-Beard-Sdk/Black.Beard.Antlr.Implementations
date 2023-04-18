@@ -7,5 +7,5 @@ using System.Text;
 
 var sb = new StringBuilder("SELECT * FROM [a]");
 
-//var parser = SqlServerScriptParser.ParseString(sb);
-//var result = parser.GetModel();
+var parser = SqlServerScriptParser.ParseString(sb);
+var result = parser.GetModel();

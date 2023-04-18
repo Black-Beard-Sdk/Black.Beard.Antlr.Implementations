@@ -80,21 +80,62 @@ namespace Generate.Scripts
                     , s =>
                     {
 
-                        var o = item.Select(c => c.Type == nameof(AstRuleRef));
+                        var o = item.Select(c => c.Type == nameof(AstRuleRef)).FirstOrDefault();
                         var b = varName.Var().Call("GetText");
 
-                        if (o.Count > 0)
+                        if (o != null)
                         {
-
-                            var type1 = ("Ast" + CodeHelper.FormatCsharp(o[0].ToString()));
-                            var visitMethod = "Visit" + CodeHelper.FormatCamelUpercase(o[0].ToString());
-                            s.Return(type.AsType().Create("context".Var(), visitMethod.Call(varName.Var()).Cast(type1.AsType())));
+                            var type1 = o.Type();
+                            var v = varName.Var().Call("Accept", CodeHelper.This()).Cast(type1.AsType());
+                            s.Return(type.AsType().Create("context".Var(), v));
                         }
                         else
                         {
-                            // var p = a.Select(c => c.Type == nameof(AstTerminal), c => c.Type == nameof(AstTerminalText));
-                            // return new AstIdOrString(arg1, new AstId(arg1, arg1.GetText()));
-                            s.Return(type.AsType().Create("context".Var(), b));
+                            var p = item.Select(c => c.Type == "TOKEN_REF").FirstOrDefault();
+                            if (p != null)
+                            {
+                                var link = p.Link;
+
+                                switch (link.TerminalKind)
+                                {
+                                    case TokenTypeEnum.Other:
+                                    case TokenTypeEnum.Comment:
+                                        break;
+
+                                    case TokenTypeEnum.Boolean:
+                                        break;
+                                    case TokenTypeEnum.Decimal:
+                                        break;
+                                    case TokenTypeEnum.Int:
+                                        break;
+                                    case TokenTypeEnum.Real:
+                                        break;
+                                    case TokenTypeEnum.Hexa:
+                                        break;
+                                    case TokenTypeEnum.Binary:
+                                        break;
+                                    case TokenTypeEnum.Pattern:
+                                        break;
+                                    case TokenTypeEnum.Operator:
+                                        break;
+                                    case TokenTypeEnum.Ponctuation:
+                                        break;
+
+                                    case TokenTypeEnum.Constant:
+                                        var type1 = p.Type();
+                                        var v = varName.Var().Call("Accept", CodeHelper.This()).Cast(type1.AsType());
+                                        s.Return(type.AsType().Create("context".Var(), v));
+                                        break;
+
+                                    case TokenTypeEnum.Identifier:
+                                    case TokenTypeEnum.String:
+                                    default:
+                                        s.Return(type.AsType().Create("context".Var(), b));
+                                        break;
+                                }
+                            }
+                            else
+                                s.Return(type.AsType().Create("context".Var(), b));
                         }
                     }
                     );

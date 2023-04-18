@@ -79,6 +79,12 @@ namespace Generate
                     a.Using("Antlr4.Runtime");
                     a.Using("Antlr4.Runtime.Tree");
                 })
+                .Add<ScriptClassIdentifierVisitorWithProperties>(null, a =>
+                {
+                    a.SplitObjectOnDisk = splitObjectOnDisk;
+                    a.Namespace = namespaceParser;
+                    a.Using(namespaceModels);
+                })
                 .Add<ScriptClassVisitorEnums>("ScriptTSqlVisitor.Enums", a =>
                 {
                     a.Namespace = namespaceParser;

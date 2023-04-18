@@ -40,8 +40,7 @@ namespace Bb.SqlServer.Parser
                     result.Add(acceptResult);
             }
             return result;
-        }
-
+        }           
 
         public void EvaluateErrors(IParseTree item)
         {
@@ -90,7 +89,7 @@ namespace Bb.SqlServer.Parser
 
         public uint Crc { get; set; }
         public CultureInfo Culture { get => _currentCulture; }
-                
+
         void AddError(TokenLocation start, string txt, string message, string path = null)
         {
             _diagnostics

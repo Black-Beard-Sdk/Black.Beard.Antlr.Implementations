@@ -69,6 +69,48 @@ namespace Generate.Scripts
                                        );
                                    });
                               })
+
+                              .Field(field =>
+                              {
+
+                                  field.Name("_ruleValue")
+                                  .Type(typeof(string))
+                                  .Attribute(MemberAttributes.Private | MemberAttributes.Static)
+                                  .Value((a) =>
+                                  {
+                                      return ast.Alternatives.ToString();
+                                  })
+                                  ;
+                              })
+                                .Field(field =>
+                                {
+                                    field.Name("_ruleName")
+                                         .Type(typeof(string))
+                                         .Attribute(MemberAttributes.Private | MemberAttributes.Static)
+                                         .Value((a) =>
+                                         {
+                                             return ast.Name.Text;
+                                         });
+                                })
+                                .Property(property =>
+                                {
+                                    property.Name((a) => "RuleName")
+                                            .Type(() => typeof(string))
+                                            .Attribute(MemberAttributes.Public | MemberAttributes.Override)
+                                            .Get((a) => a.Return("_ruleName".Var()))
+                                            .HasSet(false)
+                                            ;
+                                })
+                                .Property(property =>
+                                {
+                                    property.Name((a) => "RuleValue")
+                                            .Type(() => typeof(string))
+                                            .Attribute(MemberAttributes.Public | MemberAttributes.Override)
+                                            .Get((a) => a.Return("_ruleValue".Var()))
+                                            .HasSet(false)
+                                            ;
+                                })
+
                               ;
                       });
 

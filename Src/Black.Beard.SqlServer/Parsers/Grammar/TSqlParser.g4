@@ -4165,12 +4165,12 @@ expression_assign_elem
 // https://docs.microsoft.com/en-us/sql/t-sql/queries/from-transact-sql
 table_source
     : table_source_item_joined
-    | LR_BRACKET table_source RR_BRACKET
+    //| LR_BRACKET database_schema_table_ref RR_BRACKET
     ;
 
 table_source_item_joined
-    : table_source_item joins+=join_part*
-    | LR_BRACKET table_source_item_joined RR_BRACKET joins+=join_part*
+    : table_source_item joins=join_part*
+    | LR_BRACKET table_source_item_joined RR_BRACKET joins=join_part*
     ;
 
 table_source_item

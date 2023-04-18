@@ -28,13 +28,19 @@ namespace Bb.SqlServer.Asts
         }
 
 
-        protected static bool Eval(AstRoot item, Type type, bool optional, bool any)
+        protected static bool Eval(List<AstRoot> list, int index, Type type, bool optional, bool any)
         {
+
+            AstRoot item = null;
+
+            if (index < list.Count)
+                item = list[index];
 
             if (item == null)
                 return optional;
 
-            return item.GetType() == type;
+            var type2 = item.GetType();
+            return type.IsAssignableFrom(type2);
 
         }
 
