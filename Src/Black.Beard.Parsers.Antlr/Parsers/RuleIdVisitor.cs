@@ -201,9 +201,10 @@ namespace Bb.Parsers
 
         public TreeRuleItem VisitLabeledElement(AstLabeledElement a)
         {
-            var u = a.Occurence;
+            var u = a.Occurence.Clone();
             var result = a.Rule.Accept(this);
             result.Label = a.Name.Text;
+            result.Occurence = u;
             return result;
 
         }

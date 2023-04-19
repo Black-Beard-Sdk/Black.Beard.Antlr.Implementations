@@ -80,7 +80,7 @@ namespace Generate.Scripts
                                .Ctor((f) =>
                                {
                                    f.Argument(() => "ParserRuleContext", "ctx")
-                                    .Argument(() => "List<AstRoot>", "list")
+                                    .Argument(() => "AstRootList<AstRoot>", "list")
                                     .Attribute(MemberAttributes.Public)
                                     .CallBase("ctx", "list");
                                })

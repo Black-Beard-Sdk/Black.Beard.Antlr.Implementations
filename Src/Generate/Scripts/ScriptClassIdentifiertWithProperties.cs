@@ -43,7 +43,7 @@ namespace Generate.Scripts
                               .Ctor((f) =>
                               {
                                   f.Argument(() => "Position", "p")
-                                   .Argument(() => "List<AstRoot>", "list")
+                                   .Argument(() => "AstRootList<AstRoot>", "list")
                                    .Attribute(MemberAttributes.Public)
                                    .CallBase("p")
                                    .Body(b =>
@@ -77,7 +77,7 @@ namespace Generate.Scripts
                               .Ctor((f) =>
                               {
                                   f.Argument(() => "ParserRuleContext", "ctx")
-                                   .Argument(() => "List<AstRoot>", "list")
+                                   .Argument(() => "AstRootList<AstRoot>", "list")
                                    .Attribute(MemberAttributes.Public)
                                    .CallBase("ctx")
                                    .Body(b =>

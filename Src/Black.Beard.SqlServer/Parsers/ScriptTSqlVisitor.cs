@@ -5,7 +5,7 @@ using System.Globalization;
 using Bb.SqlServer.Asts;
 using Bb.Parsers.TSql.Antlr;
 using Bb.Parsers;
-
+using Bb.Asts;
 
 namespace Bb.SqlServer.Parser
 {
@@ -30,9 +30,9 @@ namespace Bb.SqlServer.Parser
 
         }
 
-        protected List<AstRoot> GetList(ParserRuleContext parser)
+        protected AstRootList<AstRoot> GetList(ParserRuleContext parser)
         {
-            List<AstRoot> result = new List<AstRoot>(parser.children.Count);
+            AstRootList<AstRoot> result = new AstRootList<AstRoot>(parser.children.Count);
             foreach (var children in parser.children)
             {
                 AstRoot acceptResult = children.Accept(this);
@@ -71,6 +71,7 @@ namespace Bb.SqlServer.Parser
             }
 
         }
+
 
         public override AstRoot Visit(IParseTree tree)
         {

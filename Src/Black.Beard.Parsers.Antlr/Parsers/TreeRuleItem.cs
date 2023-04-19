@@ -44,7 +44,7 @@ namespace Bb.Parsers
                 l.Add(new AlternativeTreeRuleItem(item));
 
             AddRange(l);
-        
+
         }
 
 
@@ -74,6 +74,7 @@ namespace Bb.Parsers
 
     }
 
+    [System.Diagnostics.DebuggerDisplay("{Item}")]
     public class AlternativeTreeRuleItem
     {
 
@@ -133,7 +134,6 @@ namespace Bb.Parsers
         }
 
         private List<TreeRuleItem> _list;
-        private string _txt;
 
         public string Name { get; internal set; }
 
@@ -178,16 +178,10 @@ namespace Bb.Parsers
 
         public override string ToString()
         {
-
-            if (string.IsNullOrEmpty(this._txt))
-            {
-                var wrt = new Writer();
-                ToString(wrt);
-                _txt = wrt.ToString();
-            }
-
+            var wrt = new Writer();
+            ToString(wrt);
+            var _txt = wrt.ToString();
             return _txt;
-
         }
 
         private void ToString(Writer wrt)
@@ -354,11 +348,11 @@ namespace Bb.Parsers
                 IsEmpty = this.IsEmpty,
                 IsConstant = this.IsConstant,
                 Origin = this.Origin,
-                Label= this.Label,
+                Label = this.Label,
                 AlternativeIdentifier = this.AlternativeIdentifier,
             };
 
-            if (action!= null)
+            if (action != null)
                 action(result);
 
             return result;
@@ -378,12 +372,6 @@ namespace Bb.Parsers
         internal void Remove(TreeRuleItem item)
         {
             _list.Remove(item);
-            CleanText();
-        }
-
-        internal void CleanText()
-        {
-            _txt = null;
         }
 
     }

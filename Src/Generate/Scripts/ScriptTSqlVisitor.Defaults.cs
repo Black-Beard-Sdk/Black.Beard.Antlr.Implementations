@@ -49,7 +49,7 @@ namespace Generate.Scripts
                                    .Body(b =>
                                    {
 
-                                       b.Statements.DeclareAndInitialize("list", "List<AstRoot>".AsType(), "GetList".Call("context".Var()));
+                                       b.Statements.DeclareAndInitialize("list", "AstRootList<AstRoot>".AsType(), "GetList".Call("context".Var()));
 
                                        //if (alternatives.Count == 1)
                                        //{

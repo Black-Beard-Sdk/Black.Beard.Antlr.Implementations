@@ -18918,7 +18918,8 @@ RULE local_id
 
 RULE table_opt_varname 
 //** table_opt_varname
-	 : (simple_id | keyword)
+	 : simple_id
+	 | keyword
   **// 
 	GENERATE
 	INHERIT 
@@ -18929,7 +18930,10 @@ RULE table_opt_varname
 
 RULE table_opt_var_value 
 //** table_opt_var_value
-	 : (simple_id | keyword | on_off | decimal)
+	 : simple_id
+	 | keyword
+	 | on_off
+	 | decimal
   **// 
 	GENERATE
 	INHERIT 

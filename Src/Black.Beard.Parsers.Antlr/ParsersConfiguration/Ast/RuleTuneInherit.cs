@@ -15,9 +15,6 @@ namespace Bb.ParsersConfiguration.Ast
         {
             this.Text = ctx.GetText().Trim();
 
-            //if (Text.StartsWith(':'))
-            //    this.Text = this.Text.TrimStart(':').Trim();
-
             if (this.Text.StartsWith(@"""") && this.Text.EndsWith(@""""))
             {
                 this.Text = this.Text.Trim('"');

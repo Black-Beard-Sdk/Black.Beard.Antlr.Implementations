@@ -151,8 +151,6 @@ namespace Bb.Parsers
                             {
                                 last.Occurence = new Occurence(OccurenceEnum.Any, false);
                                 toRemoves.Add(item2);
-                                last.CleanText();
-                                item.CleanText();
                             }
                         }
 

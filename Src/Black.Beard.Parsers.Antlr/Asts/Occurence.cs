@@ -3,7 +3,6 @@
 namespace Bb.Asts
 {
 
-    [DebuggerDisplay("{Value}")]
     public struct Occurence
     {
 
@@ -49,6 +48,26 @@ namespace Bb.Asts
         {
             return new Occurence(Value, false);
         }
+
+        public override string ToString()
+        {
+
+            if (Optional)
+            {
+                if (Value == OccurenceEnum.One)
+                    return Value.ToString() + "?";
+                
+                return "*";
+
+            }
+
+            if (Value == OccurenceEnum.One)
+                return Value.ToString();
+
+            return "*";
+
+        }
+
     }
 
 

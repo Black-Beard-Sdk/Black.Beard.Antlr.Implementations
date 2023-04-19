@@ -2725,8 +2725,17 @@ tableoption
     | XML_COMPRESSION EQUAL on_off on_partitions?
     ;
 
-table_opt_varname : (simple_id | keyword);
-table_opt_var_value : (simple_id | keyword | on_off | decimal);
+table_opt_varname 
+    : simple_id 
+    | keyword
+    ;
+
+table_opt_var_value 
+    : simple_id 
+    | keyword 
+    | on_off 
+    | decimal
+    ;
 
 table_distribution
     : DISTRIBUTION EQUAL HASH LR_BRACKET id_ RR_BRACKET 
@@ -5991,8 +6000,8 @@ deleteed_inserted_column_id : deleteed_inserted DOT column_id;
 full_column_ref
     : server_id? DOT schema_identifier? DOT table_id? DOT column_id
     |                schema_identifier? DOT table_id? DOT column_id
-    |                               table_id? DOT column_id
-    |                                             column_id
+    |                                       table_id? DOT column_id
+    |                                                     column_id
     ;
 
 entity_name

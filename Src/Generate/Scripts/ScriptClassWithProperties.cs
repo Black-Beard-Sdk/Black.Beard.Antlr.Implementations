@@ -46,7 +46,7 @@ namespace Generate.Scripts
                               .Ctor((f) =>
                               {
                                   f.Argument(() => "Position", "p")
-                                   .Argument(() => "List<AstRoot>", "list")
+                                   .Argument(() => "AstRootList<AstRoot>", "list")
                                    .Attribute(MemberAttributes.Public)
                                    .CallBase("p")
                                    .Body(b =>
@@ -103,7 +103,7 @@ namespace Generate.Scripts
                               .Ctor((f) =>
                               {
                                   f.Argument(() => "ParserRuleContext", "ctx")
-                                   .Argument(() => "List<AstRoot>", "list")
+                                   .Argument(() => "AstRootList<AstRoot>", "list")
                                    .Attribute(MemberAttributes.Public)
                                    .CallBase("ctx")
                                    .Body(b =>
@@ -364,7 +364,7 @@ namespace Generate.Scripts
                                                       "list".Var()
                                                   };
 
-                                                  method.Statements.Add(CodeHelper.DeclareAndCreate("list", "List<AstRoot>".AsType()));
+                                                  method.Statements.Add(CodeHelper.DeclareAndCreate("list", "AstRootList<AstRoot>".AsType()));
                                                   foreach (var itemArg in arguments)
                                                       method.Statements.Add("list".Var().Call("Add", itemArg.Var()));
 

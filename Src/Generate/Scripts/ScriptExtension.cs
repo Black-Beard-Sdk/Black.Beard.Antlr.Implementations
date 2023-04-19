@@ -47,13 +47,13 @@ namespace Generate.Scripts
                 var link = item.Link;
                 if (link != null)
                 {
-                    var value1 = link.TerminalKind.Type();
+                    var value1 = link.TerminalKind.Type(false);
                     if (value1 != null)
                     {
                         var occurence1 = ast.ResolveOccurence();
                         if (occurence1 != null && occurence1.Value == OccurenceEnum.Any)
                             value1 = "IEnumerable<" + value1 + ">";
-                        return value1;
+                        return value1 + (occurence1 != null && occurence1.Optional ? "?" : string.Empty);
                     }
                 }
             }
@@ -65,7 +65,7 @@ namespace Generate.Scripts
             }
 
 
-            var value = ast.TerminalKind.Type();
+            var value = ast.TerminalKind.Type(false);
 
             if (value != null)
                 return value;
@@ -78,22 +78,26 @@ namespace Generate.Scripts
             if (occurence != null && occurence.Value == OccurenceEnum.Any)
                 result = "IEnumerable<" + result + ">";
 
-            return result;
+            return result + (occurence != null && occurence.Optional ? "?" : string.Empty);
 
         }
 
         public static string Type(this TreeRuleItem ast)
         {
 
+            string suffix = string.Empty;
+            if (ast.Occurence.Optional)
+                suffix = "?";
+
             if (ast.IsTerminal)
             {
 
                 var link = ast.Origin.Link;
 
-                var value = link.TerminalKind.Type();
+                var value = link.TerminalKind.Type(ast.Occurence.Optional);
 
                 if (value != null)
-                    return value;
+                    return value + suffix;
 
             }
 
@@ -104,12 +108,14 @@ namespace Generate.Scripts
             if (ast.Occurence.Value == OccurenceEnum.Any)
                 result = "IEnumerable<" + result + ">";
 
-            return result;
+            return result + suffix;
 
         }
 
-        public static string Type(this TokenTypeEnum self)
+        public static string? Type(this TokenTypeEnum self, bool optional)
         {
+
+            string suffix = optional ? "?" : string.Empty;
 
             switch (self)
             {
@@ -118,22 +124,22 @@ namespace Generate.Scripts
                     break;
 
                 case TokenTypeEnum.Boolean:
-                    return nameof(Boolean);
+                    return nameof(Boolean) + suffix;
 
                 case TokenTypeEnum.Decimal:
-                    return nameof(Decimal);
+                    return nameof(Decimal) + suffix;
 
                 case TokenTypeEnum.Int:
-                    return nameof(Int64);
+                    return nameof(Int64) + suffix;
 
                 case TokenTypeEnum.Real:
-                    return nameof(Double);
+                    return nameof(Double) + suffix;
 
                 case TokenTypeEnum.Binary:
                 case TokenTypeEnum.Identifier:
                 case TokenTypeEnum.String:
                 case TokenTypeEnum.Pattern:
-                    return nameof(String);
+                    return nameof(String) + suffix;
 
                 case TokenTypeEnum.Comment:
                 case TokenTypeEnum.Other:

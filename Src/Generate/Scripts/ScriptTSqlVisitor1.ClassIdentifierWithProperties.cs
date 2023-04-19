@@ -43,7 +43,7 @@ namespace Generate.Scripts
                                    .Documentation(c => c.Summary(() => ast.ToString()))
                                    .Body(b =>
                                    {
-                                       b.Statements.DeclareAndInitialize("list", "List<AstRoot>".AsType(), "GetList".Call("context".Var()));
+                                       b.Statements.DeclareAndInitialize("list", "AstRootList<AstRoot>".AsType(), "GetList".Call("context".Var()));
                                        b.Statements.Return(("Ast" + CodeHelper.FormatCsharp(ast.Name.Text)).AsType().Create("context".Var(), "list".Var()));
 
                                    });

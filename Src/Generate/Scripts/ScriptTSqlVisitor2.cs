@@ -41,7 +41,7 @@ namespace Generate.Scripts
                                .Return(() => "AstRoot")
                                .Body(b =>
                                {
-                                   b.Statements.DeclareAndCreate("list", "List<AstRoot>".AsType());
+                                   b.Statements.DeclareAndCreate("list", "AstRootList<AstRoot>".AsType());
                                    b.Statements.ForEach("IParseTree".AsType(), "item", "context.children", stm =>
                                    {
                                        stm.Call("list".Var(), "Add", CodeHelper.Var("enumerator.Current").Call("Accept", CodeHelper.This()));

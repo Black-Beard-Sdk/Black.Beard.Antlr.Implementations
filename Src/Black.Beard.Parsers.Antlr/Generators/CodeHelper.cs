@@ -182,9 +182,55 @@ namespace Bb.Generators
             return new CodeMethodInvokeExpression(instance, name, arguments);
         }
 
+        public static CodeMethodInvokeExpression Call(this CodeExpression instance, string name, string[] genericParameters, params CodeExpression[] arguments)
+        {
+
+            StringBuilder builder = new StringBuilder(name);
+
+            if (genericParameters.Length > 0)
+            {
+                string comma = string.Empty;
+                builder.Append("<");
+                foreach (var parameter in genericParameters)
+                {
+                    builder.Append(comma);
+                    builder.Append(parameter);
+                    comma = ", ";
+                }
+                builder.Append(">");
+
+            }
+
+            return new CodeMethodInvokeExpression(instance, builder.ToString(), arguments);
+
+        }
+
         public static CodeMethodInvokeExpression Call(this string name, params CodeExpression[] arguments)
         {
             return new CodeMethodInvokeExpression(This(), name, arguments);
+        }
+
+        public static CodeMethodInvokeExpression Call(this string name, string[] genericParameters, params CodeExpression[] arguments)
+        {
+
+            StringBuilder builder = new StringBuilder(name);
+
+            if (genericParameters.Length > 0)
+            {
+                string comma = string.Empty;
+                builder.Append("<");
+                foreach (var parameter in genericParameters)
+                {
+                    builder.Append(comma);
+                    builder.Append(parameter);
+                    comma = ", "; 
+                }
+                builder.Append(">");
+
+            }
+            var m = new CodeMethodInvokeExpression(This(), builder.ToString(), arguments);
+            return m;
+
         }
 
         public static CodeMethodInvokeExpression Call(this CodeTypeReference instance, string name, params CodeExpression[] arguments)
@@ -334,6 +380,10 @@ namespace Bb.Generators
 
         public static CodeTypeOfExpression Typeof(this CodeTypeReference codeTypeReference)
         {
+
+            if (codeTypeReference.BaseType.EndsWith("?"))
+                codeTypeReference.BaseType = codeTypeReference.BaseType.Substring(0, codeTypeReference.BaseType.Length - 1);
+
             return new CodeTypeOfExpression(codeTypeReference);
         }
 
