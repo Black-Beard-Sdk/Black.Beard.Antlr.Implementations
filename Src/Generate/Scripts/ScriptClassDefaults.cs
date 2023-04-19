@@ -100,6 +100,48 @@ namespace Generate.Scripts
 
                         })
 
+                        .CtorWhen(() => ctx.Variables.Get<AlternativeTreeRuleItemList>("combinaisons").Count == 1, (f) =>
+                        {
+                            f.Attribute(MemberAttributes.FamilyAndAssembly)
+                             .Argument(() => "Position", "position")
+                             .CallBase("position");
+
+                            var alternatives = ctx.Variables.Get<AlternativeTreeRuleItemList>("combinaisons");
+                            var ast2 = alternatives[0];
+
+                            foreach (TreeRuleItem item in ast2.Item)
+                                if (item.WhereRuleOrIdentifiers())
+                                    f.Argument(() => item.Type(), item.GetParameterdName());
+
+                            f.Body(b =>
+                            {
+                                foreach (TreeRuleItem item in ast2.Item)
+                                    if (item.WhereRuleOrIdentifiers())
+                                        b.Statements.Assign(item.GetFieldName().Var(), item.GetParameterdName().Var());
+                            });
+
+                        })
+
+                        .CtorWhen(() => ctx.Variables.Get<AlternativeTreeRuleItemList>("combinaisons").Count == 1, (f) =>
+                        {
+                            f.Attribute(MemberAttributes.FamilyAndAssembly)
+                             .CallBase("Position.Default");
+
+                            var alternatives = ctx.Variables.Get<AlternativeTreeRuleItemList>("combinaisons");
+                            var ast2 = alternatives[0];
+
+                            foreach (TreeRuleItem item in ast2.Item)
+                                if (item.WhereRuleOrIdentifiers())
+                                    f.Argument(() => item.Type(), item.GetParameterdName());
+
+                            f.Body(b =>
+                            {
+                                foreach (TreeRuleItem item in ast2.Item)
+                                    if (item.WhereRuleOrIdentifiers())
+                                        b.Statements.Assign(item.GetFieldName().Var(), item.GetParameterdName().Var());
+                            });
+
+                        })
 
 
                         .MethodWhen(() => ctx.Variables.Get<AlternativeTreeRuleItemList>("combinaisons").Count == 1, method =>
@@ -365,7 +407,7 @@ namespace Generate.Scripts
                             .Attribute(MemberAttributes.Private | MemberAttributes.Static )
                             .Value((a) =>
                             {
-                                return ast.Alternatives.ToString();
+                                return ast.Alternatives.ToString().Trim();
                             })
                             ;
                         })
@@ -397,6 +439,7 @@ namespace Generate.Scripts
                                     .HasSet(false)
                                     ;
                         })
+                        
                         .Make(t =>
                         {
 
@@ -422,7 +465,7 @@ namespace Generate.Scripts
                                 var t3 = tname2.AsType();
                                 List<string> arguments = new List<string>();
 
-                                var method1 = name.AsMethod(t1, MemberAttributes.Public | MemberAttributes.Static)
+                                var method1 = "New".AsMethod(t1, MemberAttributes.Public | MemberAttributes.Static)
                                     .BuildDocumentation(ast.Name.Text, alternative, ctx)
                                     ;
                                 method1.Parameters.Add(new CodeParameterDeclarationExpression("ParserRuleContext".AsType(), "ctx"));
@@ -475,6 +518,93 @@ namespace Generate.Scripts
                             }
 
                         })
+
+                        .Make(t =>
+                        {
+
+                            HashSet<string> _h = new HashSet<string>();
+                            List<CodeMemberMethod> methods = new List<CodeMemberMethod>();
+                            var alternatives = ctx.Variables.Get<AlternativeTreeRuleItemList>("combinaisons");
+
+                            int i = 0;
+                            foreach (var alt in alternatives)
+                            {
+                                var alternative = alt.Item;
+                                i++;
+
+                                StringBuilder uniqeConstraintKeyMethod = new StringBuilder();
+                                var name = CodeHelper.FormatCsharp(ast.Name.Text);
+                                var tname = ("Ast" + CodeHelper.FormatCsharp(ast.Name.Text));
+                                var tname2 = ("Ast" + CodeHelper.FormatCsharp(ast.Name.Text));
+                                if (alternatives.Count > 1)
+                                {
+                                    tname2 = tname + "." + tname + (i).ToString();
+                                }
+                                var t1 = tname.AsType();
+                                var t3 = tname2.AsType();
+                                List<string> arguments = new List<string>();
+
+                                var method1 = "New".AsMethod(t1, MemberAttributes.Public | MemberAttributes.Static)
+                                    .BuildDocumentation(ast.Name.Text, alternative, ctx)
+                                    ;
+
+                                if (alternative.Count > 0)
+                                    foreach (var itemAlt in alternative)
+                                        itemAlt.BuildStaticMethod(ast, method1, arguments, uniqeConstraintKeyMethod);
+                                else
+                                    alternative.BuildStaticMethod(ast, method1, arguments, uniqeConstraintKeyMethod);
+
+                                if (method1.Parameters.Count > 0)
+                                {
+
+                                    var noDuplicateKey = uniqeConstraintKeyMethod.ToString();
+
+                                    if (_h.Add(noDuplicateKey))
+                                    {
+                                        methods.Add(method1);
+                                        List<CodeExpression> _argu = new List<CodeExpression>();
+
+                                        foreach (var item in arguments)
+                                            _argu.Add(item.Var());
+
+                                        if (alternatives.Count == 1)
+                                        {
+                                            method1.Statements.Add(CodeHelper.DeclareAndCreate("result", t3, _argu.ToArray()));
+                                        }
+                                        else
+                                        {
+                                            string typename = ast.Type();
+                                            var t2 = typename + "." + typename + (i).ToString();
+                                            method1.Statements.Add(CodeHelper.DeclareAndCreate("result", t2.AsType(), _argu.ToArray()));
+
+
+                                        }
+
+                                        method1.Statements.Return("result".Var());
+                                    }
+
+                                }
+
+                            }
+
+                            foreach (var item in methods)
+                            {
+                                t.Members.Add(item);
+                            }
+
+                        })
+
+                        .Method(method =>
+                        {
+                            var type = ("Ast" + CodeHelper.FormatCsharp(ast.Name.Text));
+                            method
+                             .Name(g => "Null")
+                             .Return(() => type)
+                             .Attribute(MemberAttributes.Static | MemberAttributes.Public)
+                             .Body(b => b.Statements.Return(CodeHelper.Null()))
+                             ;
+
+                        })
                         ;
 
 
@@ -504,6 +634,69 @@ namespace Generate.Scripts
                                     f.Attribute(MemberAttributes.FamilyAndAssembly)
                                      .Argument(() => "ParserRuleContext", "ctx")
                                      .CallBase("ctx");
+
+                                    if (alternative2.Count == 0)
+                                    {
+                                        if (alternative2.WhereRuleOrIdentifiers())
+                                            f.Argument(() => alternative2.Type(), alternative2.GetParameterdName());
+                                    }
+                                    else
+                                        foreach (TreeRuleItem item in alternative2)
+                                            if (item.WhereRuleOrIdentifiers())
+                                                f.Argument(() => item.Type(), item.GetParameterdName());
+
+                                    f.Body(b =>
+                                    {
+                                        if (alternative2.Count == 0)
+                                        {
+                                            if (alternative2.WhereRuleOrIdentifiers())
+                                                b.Statements.Assign(alternative2.GetFieldName().Var(), alternative2.GetParameterdName().Var());
+                                        }
+                                        else
+                                            foreach (TreeRuleItem item in alternative2)
+                                                if (item.WhereRuleOrIdentifiers())
+                                                    b.Statements.Assign(item.GetFieldName().Var(), item.GetParameterdName().Var());
+                                    });
+
+                                })
+
+                                .Ctor((f) =>
+                                {
+
+                                    f.Attribute(MemberAttributes.FamilyAndAssembly)
+                                     .Argument(() => "Position", "position")
+                                     .CallBase("position");
+
+                                    if (alternative2.Count == 0)
+                                    {
+                                        if (alternative2.WhereRuleOrIdentifiers())
+                                            f.Argument(() => alternative2.Type(), alternative2.GetParameterdName());
+                                    }
+                                    else
+                                        foreach (TreeRuleItem item in alternative2)
+                                            if (item.WhereRuleOrIdentifiers())
+                                                f.Argument(() => item.Type(), item.GetParameterdName());
+
+                                    f.Body(b =>
+                                    {
+                                        if (alternative2.Count == 0)
+                                        {
+                                            if (alternative2.WhereRuleOrIdentifiers())
+                                                b.Statements.Assign(alternative2.GetFieldName().Var(), alternative2.GetParameterdName().Var());
+                                        }
+                                        else
+                                            foreach (TreeRuleItem item in alternative2)
+                                                if (item.WhereRuleOrIdentifiers())
+                                                    b.Statements.Assign(item.GetFieldName().Var(), item.GetParameterdName().Var());
+                                    });
+
+                                })
+
+                                .Ctor((f) =>
+                                {
+
+                                    f.Attribute(MemberAttributes.FamilyAndAssembly)                                     
+                                     .CallBase("Position.Default");
 
                                     if (alternative2.Count == 0)
                                     {

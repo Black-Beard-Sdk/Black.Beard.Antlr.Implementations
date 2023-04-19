@@ -60,14 +60,14 @@ namespace Generate.Scripts
 
                               .Fields(() => ctx.Variables.Get<AlternativeTreeRuleItemList>("combinaisons"), (field, model) =>
                               {
-                                 
+
                                   field.Name(a => "_value")
                                       .Attribute(MemberAttributes.Private)
                                       .Type(GetType(ctx, model))
                                       ;
-                                 
+
                               })
-                            
+
                               .Ctors(() => ctx.Variables.Get<AlternativeTreeRuleItemList>("combinaisons"), (ctor, model) =>
                               {
 
@@ -75,7 +75,7 @@ namespace Generate.Scripts
                                       .Argument(() =>
                                       {
                                           var p = (model as AlternativeTreeRuleItem).Item;
-                                          
+
                                           if (p.Origin.IsTerminal)
                                               return nameof(String);
 
@@ -246,7 +246,7 @@ namespace Generate.Scripts
                                   ;
                               })
 
-                                .Field(field =>
+                              .Field(field =>
                                 {
                                     field.Name("_ruleName")
                                          .Type(typeof(string))
@@ -256,7 +256,7 @@ namespace Generate.Scripts
                                              return ast.Name.Text;
                                          });
                                 })
-                                .Property(property =>
+                              .Property(property =>
                                 {
                                     property.Name((a) => "RuleName")
                                             .Type(() => typeof(string))
@@ -265,7 +265,7 @@ namespace Generate.Scripts
                                             .HasSet(false)
                                             ;
                                 })
-                                .Property(property =>
+                              .Property(property =>
                                 {
                                     property.Name((a) => "RuleValue")
                                             .Type(() => typeof(string))
@@ -275,7 +275,7 @@ namespace Generate.Scripts
                                             ;
                                 })
 
-                                .Field(field =>
+                              .Field(field =>
                                 {
                                     field.Name("_isTerminal")
                                          .Type(typeof(bool))
@@ -298,7 +298,7 @@ namespace Generate.Scripts
                                          });
                                 })
 
-                                .Property(property =>
+                              .Property(property =>
                                 {
                                     property.Name((a) => "IsTerminal")
                                             .Type(() => typeof(bool))
@@ -308,21 +308,106 @@ namespace Generate.Scripts
                                             ;
                                 })
 
-                                .Field(field =>
+                              .Field(field =>
                                 {
                                     field.Name("_kind")
                                          .Type("AstKindEnum")
                                          .Attribute(MemberAttributes.Private | MemberAttributes.Static)
                                          .Value((a) =>
                                          {
-                                             return new CodeFieldReferenceExpression(new CodeTypeReferenceExpression("AstKindEnum".AsType()) , "Identifier");
+                                             return new CodeFieldReferenceExpression(new CodeTypeReferenceExpression("AstKindEnum".AsType()), "Identifier");
                                          });
+                                })
+                              .Property(property =>
+                                {
+                                    property.Name((a) => "Kind")
+                                            .Type(() => "AstKindEnum")
+                                            .Attribute(MemberAttributes.Public | MemberAttributes.Override)
+                                            .Get((a) => a.Return("_kind".Var()))
+                                            .HasSet(false)
+                                            ;
+                                })
+
+                              .MethodWhen(() =>
+                              {
+                                  var o = ast.Select(c => c.Type == nameof(AstRuleRef)).ToList();
+                                  foreach (var item in o)
+                                  {
+                                      var r1 = item.Link as AstRule;
+                                      if (r1.Name.Text == "id_")
+                                          return true;
+                                  }
+
+                                  return false;
+
+                              }, method =>
+                                {
+
+                                    var type = ("Ast" + CodeHelper.FormatCsharp(ast.Name.Text));
+
+                                    method
+                                     .Name(g => "New")
+                                     .Argument("Position", "position")
+                                     .Argument(() => typeof(String), "id")
+                                     .Return(() => type)
+                                     .Attribute(MemberAttributes.Static | MemberAttributes.Public)
+                                     .Body(b =>
+                                     {
+                                         b.Statements.Return
+                                         (
+                                             CodeHelper.Create(type.AsType(), "position".Var(), CodeHelper.Create("AstId".AsType(), "position".Var(), "id".Var()))
+                                         );
+                                     })
+                                     ;
+
+                                })
+                                .MethodWhen(() =>
+                                {
+                                    var o = ast.Select(c => c.Type == nameof(AstRuleRef)).ToList();
+                                    foreach (var item in o)
+                                    {
+                                        var r1 = item.Link as AstRule;
+                                        if (r1.Name.Text == "id_")
+                                            return true;
+                                    }
+
+                                    return false;
+
+                                }, method =>
+                                {
+
+                                    var type = ("Ast" + CodeHelper.FormatCsharp(ast.Name.Text));
+
+                                    method
+                                     .Name(g => "New")                                     
+                                     .Argument(() => typeof(String), "id")
+                                     .Return(() => type)
+                                     .Attribute(MemberAttributes.Static | MemberAttributes.Public)
+                                     .Body(b =>
+                                     {
+                                         b.Statements.Return
+                                         (
+                                             type.AsType().Call("New", "Position.Default".Var(), "id".Var())
+                                         );
+                                     })
+                                     ;
+
+                                })
+
+                                .Method(method =>
+                                {
+                                    var type = ("Ast" + CodeHelper.FormatCsharp(ast.Name.Text));
+                                    method
+                                     .Name(g => "Null")
+                                     .Return(() => type)
+                                     .Attribute(MemberAttributes.Static | MemberAttributes.Public)
+                                     .Body(b =>b.Statements.Return(CodeHelper.Null()))
+                                     ;
+
                                 })
 
                               ;
-
                       });
-
                 });
 
             });

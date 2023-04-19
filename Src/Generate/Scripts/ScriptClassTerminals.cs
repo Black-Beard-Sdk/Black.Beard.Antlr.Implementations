@@ -150,6 +150,17 @@ namespace Generate.Scripts
                                   .CallBase("ctx".Var());
                              })
 
+                             .Method(method =>
+                             {
+                                 var type = ("Ast" + CodeHelper.FormatCsharp(ast.Name.Text));
+                                 method
+                                  .Name(g => "Null")
+                                  .Return(() => type)
+                                  .Attribute(MemberAttributes.Static | MemberAttributes.Public)
+                                  .Body(b => b.Statements.Return(CodeHelper.Null()))
+                                  ;
+
+                             })
 
                              .Method(method =>
                               {

@@ -456,7 +456,7 @@ namespace Generate.Scripts
                 var itemResult = ast.ResolveByName(itemAst.ResolveKey());
                 if (itemResult != null && itemResult is AstRule r1 && r1?.Configuration != null)
                 {
-                    name = "Ast" + CodeHelper.FormatCsharp(itemAst.Name);
+                    name = itemAst.Type(); // "Ast" + CodeHelper.FormatCsharp(itemAst.Name);
                     if (string.IsNullOrEmpty(itemAst.Label))
                         varName = CodeHelper.FormatCsharpArgument(itemAst.Name);
                     else
@@ -465,8 +465,6 @@ namespace Generate.Scripts
                 }
                 else if (itemResult != null && itemResult is AstLexerRule r2 && r2?.Configuration != null)
                 {
-
-
 
                     name = itemAst.Type();
                     if (!string.IsNullOrEmpty(itemAst.Label))
@@ -478,11 +476,9 @@ namespace Generate.Scripts
                 if (name != null)
                 {
                     argumentTypeName = new CodeTypeReference(name);
-                    if (itemAst.Occurence.Value == OccurenceEnum.Any)
-                        argumentTypeName = new CodeTypeReference(typeof(IEnumerable<>).Name, argumentTypeName);
-
+                    
                     method.Parameters.Add(new CodeParameterDeclarationExpression(argumentTypeName, varName));
-                    uniqeConstraintKeyMethod.Append(name);
+                    uniqeConstraintKeyMethod.Append(name.Trim('?'));
                     arguments.Add(varName);
                 }
 

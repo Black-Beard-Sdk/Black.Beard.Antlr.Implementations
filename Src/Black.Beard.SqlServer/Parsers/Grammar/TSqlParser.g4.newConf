@@ -5486,9 +5486,8 @@ RULE search_condition
 
 RULE query_expression 
 //** query_expression
-	 : query_specification
+	 : query_specification  select_order_by_clause?  unions = sql_unions
 	 | LR_BRACKET  left = query_expression  RR_BRACKET  (UNION  ALL?  right = query_expression)?
-	 | query_specification  select_order_by_clause?  unions = sql_unions
   **// 
 	GENERATE
 	INHERIT 

@@ -1,6 +1,7 @@
 /*
 T-SQL (Transact-SQL, MSSQL) grammar.
 The MIT License (MIT).
+Copyright (c) 2022, Gaël Beard (gaelgael5@gmail.com)
 Copyright (c) 2017, Mark Adams (madams51703@gmail.com)
 Copyright (c) 2015-2017, Ivan Kochurkin (kvanttt@gmail.com), Positive Technologies.
 Copyright (c) 2016, Scott Ure (scott@redstormsoftware.com).
@@ -4007,9 +4008,8 @@ predicate_not_in : left=expression NOT* IN LR_BRACKET (subquery | expression_lis
 // Changed union rule to sql_union to avoid union construct with C++ target.  Issue reported by person who generates into C++.  This individual reports change causes generated code to work
 
 query_expression
-    : query_specification 
+    : query_specification select_order_by_clause? unions=sql_unions? //if using top, order by can be on the "top" side of union :/
     | LR_BRACKET left=query_expression RR_BRACKET (UNION ALL? right=query_expression)?   
-    | query_specification select_order_by_clause? unions=sql_unions? //if using top, order by can be on the "top" side of union :/
     ;
 
 sql_unions : sql_union+;

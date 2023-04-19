@@ -243,7 +243,7 @@ namespace Generate.Scripts
                                           var t1 = ("Ast" + CodeHelper.FormatCsharp(ast.Name.Text)).AsType();
                                           List<string> arguments = new List<string>();
 
-                                          var method = name.AsMethod(t1, MemberAttributes.Public | MemberAttributes.Static)
+                                          var method = "New".AsMethod(t1, MemberAttributes.Public | MemberAttributes.Static)
                                             .BuildDocumentation(ast.Name.Text, alt, ctx);
 
                                           Action<TreeRuleItem> act = itemAst =>
@@ -386,6 +386,18 @@ namespace Generate.Scripts
                                   {
                                       t.Members.Add(item);
                                   }
+
+                              })
+
+                              .Method(method =>
+                              {
+                                  var type = ("Ast" + CodeHelper.FormatCsharp(ast.Name.Text));
+                                  method
+                                   .Name(g => "Null")
+                                   .Return(() => type)
+                                   .Attribute(MemberAttributes.Static | MemberAttributes.Public)
+                                   .Body(b => b.Statements.Return(CodeHelper.Null()))
+                                   ;
 
                               })
                               ;

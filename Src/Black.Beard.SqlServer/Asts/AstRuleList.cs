@@ -28,6 +28,12 @@ namespace Bb.SqlServer.Asts
             _list = new List<T>();
         }
 
+        public AstRuleList(ParserRuleContext ctx, params T[] items)
+            : base(ctx)
+        {
+            _list = new List<T>(items);
+        }
+
         public AstRuleList(ParserRuleContext ctx, int capacity)
             : base(ctx)
         {
@@ -38,6 +44,12 @@ namespace Bb.SqlServer.Asts
             : base(n)
         {
             _list = new List<T>();
+        }
+
+        public AstRuleList(Position n, params T[] items)
+            : base(n)
+        {
+            _list = new List<T>(items);
         }
 
         public AstRuleList(Position n, int capacity)

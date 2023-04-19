@@ -26,7 +26,8 @@ namespace Generate.Scripts
 
                 template.Namespace(Namespace, ns =>
                 {
-                    ns.Using("System")
+                    ns.Using(Usings)
+                      .Using("System")
                       .Using("Antlr4.Runtime")
                       .Using("Antlr4.Runtime.Tree")
                       .Using("System.Collections")
@@ -41,10 +42,45 @@ namespace Generate.Scripts
 
                               .Ctor((f) =>
                               {
+
+                                  var astChild = ast.GetRules().FirstOrDefault();
+
+                                  f.Attribute(MemberAttributes.Public)
+                                   .CallBase("Position.Default", "items");
+
+                                  if (astChild != null)
+                                      f.Argument("params Ast" + CodeHelper.FormatCsharp(astChild.Name.Text) + "[]", "items");
+
+                              })
+
+                              .Ctor((f) =>
+                              {
+
+                                  var astChild = ast.GetRules().FirstOrDefault();
+
+                                  f.Argument(() => "Position", "position")
+                                   .Attribute(MemberAttributes.Public)
+                                   .CallBase("position", "items");
+
+                                  if (astChild != null)
+                                      f.Argument("params Ast" + CodeHelper.FormatCsharp(astChild.Name.Text) + "[]", "items");
+
+                              })
+
+                              .Ctor((f) =>
+                              {
+
+                                  var astChild = ast.GetRules().FirstOrDefault();
+
                                   f.Argument(() => "ParserRuleContext", "ctx")
                                    .Attribute(MemberAttributes.Public)
-                                   .CallBase("ctx");
+                                   .CallBase("ctx", "items");
+
+                                  if (astChild != null)
+                                      f.Argument("params Ast" + CodeHelper.FormatCsharp(astChild.Name.Text) + "[]", "items");
+
                               })
+
                               .Ctor((f) =>
                               {
                                   f.Argument(() => "ParserRuleContext", "ctx")
@@ -68,6 +104,101 @@ namespace Generate.Scripts
                                            CodeHelper.This()
                                        );
                                    });
+                              })
+
+                              .Method(method =>
+                              {
+
+                                  var astChild = ast.GetRules().FirstOrDefault();
+                                  var type = ("Ast" + CodeHelper.FormatCsharp(ast.Name.Text));
+
+                                  method
+                                   .Name(g => "New")
+                                   .Argument("ParserRuleContext", "ctx")
+                                   .Return(() => type)
+                                   .Documentation(doc =>
+                                   {
+                                       doc.Summary(() => ast.ToString());
+                                   })
+                                   .Attribute(MemberAttributes.Static | MemberAttributes.Public)
+                                   .Body(b =>
+                                   {
+                                       b.Statements.Return
+                                       (
+                                           CodeHelper.Create(type.AsType(), "ctx".Var(), "items".Var())
+                                       ); 
+                                   });
+
+                                  if (astChild != null)
+                                      method.Argument("params Ast" + CodeHelper.FormatCsharp(astChild.Name.Text) + "[]", "items");
+
+                              })
+
+                              .Method(method =>
+                              {
+
+                                  var astChild = ast.GetRules().FirstOrDefault();
+                                  var type = ("Ast" + CodeHelper.FormatCsharp(ast.Name.Text));
+
+                                  method
+                                   .Name(g => "New")
+                                   .Argument("Position", "position")
+                                   .Return(() => type)
+                                   .Documentation(doc =>
+                                   {
+                                       doc.Summary(() => ast.ToString());
+                                   })
+                                   .Attribute(MemberAttributes.Static | MemberAttributes.Public)
+                                   .Body(b =>
+                                   {
+                                       b.Statements.Return
+                                       (
+                                           CodeHelper.Create(type.AsType(), "position".Var(), "items".Var())
+                                       );
+                                   });
+
+                                  if (astChild != null)
+                                      method.Argument("params Ast" + CodeHelper.FormatCsharp(astChild.Name.Text) + "[]", "items");
+
+                              })
+
+                              .Method(method =>
+                              {
+
+                                  var astChild = ast.GetRules().FirstOrDefault();
+                                  var type = ("Ast" + CodeHelper.FormatCsharp(ast.Name.Text));
+
+                                  method
+                                   .Name(g => "New")                                   
+                                   .Return(() => type)
+                                   .Documentation(doc =>
+                                   {
+                                       doc.Summary(() => ast.ToString());
+                                   })
+                                   .Attribute(MemberAttributes.Static | MemberAttributes.Public)
+                                   .Body(b =>
+                                   {
+                                       b.Statements.Return
+                                       (
+                                           CodeHelper.Create(type.AsType(), "Position.Default".Var(), "items".Var())
+                                       );
+                                   });
+
+                                  if (astChild != null)
+                                      method.Argument("params Ast" + CodeHelper.FormatCsharp(astChild.Name.Text) + "[]", "items");
+
+                              })
+
+                              .Method(method =>
+                              {
+                                  var type = ("Ast" + CodeHelper.FormatCsharp(ast.Name.Text));
+                                  method
+                                   .Name(g => "Null")
+                                   .Return(() => type)
+                                   .Attribute(MemberAttributes.Static | MemberAttributes.Public)
+                                   .Body(b => b.Statements.Return(CodeHelper.Null()))
+                                   ;
+
                               })
 
                               .Field(field =>

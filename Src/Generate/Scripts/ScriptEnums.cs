@@ -222,16 +222,27 @@ namespace Generate.Scripts
                                      });
                             })
 
-                                .Property(property =>
-                                {
-                                    property.Name((a) => "IsTerminal")
-                                            .Type(() => typeof(bool))
-                                            .Attribute(MemberAttributes.Public | MemberAttributes.Override)
-                                            .Get((a) => a.Return("_isTerminal".Var()))
-                                            .HasSet(false)
-                                            ;
-                                })
+                            .Property(property =>
+                            {
+                                property.Name((a) => "IsTerminal")
+                                        .Type(() => typeof(bool))
+                                        .Attribute(MemberAttributes.Public | MemberAttributes.Override)
+                                        .Get((a) => a.Return("_isTerminal".Var()))
+                                        .HasSet(false)
+                                        ;
+                            })
 
+                            .Method(method =>
+                            {
+                                var type = ("Ast" + CodeHelper.FormatCsharp(ast.Name.Text));
+                                method
+                                 .Name(g => "Null")
+                                 .Return(() => type)
+                                 .Attribute(MemberAttributes.Static | MemberAttributes.Public)
+                                 .Body(b => b.Statements.Return(CodeHelper.Null()))
+                                 ;
+
+                            })
                             ;
 
                     })
