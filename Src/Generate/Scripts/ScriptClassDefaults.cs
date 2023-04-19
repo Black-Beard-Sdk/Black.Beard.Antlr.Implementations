@@ -38,8 +38,7 @@ namespace Generate.Scripts
 
                 .CreateTypeFrom<AstRule>(ast => Generate(ast, ctx), ast =>
                 {
-                    if (ast.Name.Text == "table_source_item_joined")
-                    { }
+
                     ctx.Variables["combinaisons"] = ast.ResolveAllCombinations();
 
                 }, (ast, type) =>
