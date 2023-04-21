@@ -448,7 +448,7 @@ namespace Bb.SqlServer.Asts
             return new AstClassType(position, "XML SCHEMA COLLECTION", "XML SCHEMA COLLECTION");
         }
         
-        public static AstClassType Null?()
+        public static AstClassType? Null()
         {
             return null;
         }
@@ -728,7 +728,7 @@ namespace Bb.SqlServer.Asts
             return new AstClassTypeForSqlDatabase(position, "XML SCHEMA COLLECTION", "XML SCHEMA COLLECTION");
         }
         
-        public static AstClassTypeForSqlDatabase Null?()
+        public static AstClassTypeForSqlDatabase? Null()
         {
             return null;
         }
@@ -819,7 +819,7 @@ namespace Bb.SqlServer.Asts
             return new AstClassTypeForAzureDw(position, "OBJECT", "OBJECT");
         }
         
-        public static AstClassTypeForAzureDw Null?()
+        public static AstClassTypeForAzureDw? Null()
         {
             return null;
         }
@@ -927,7 +927,7 @@ namespace Bb.SqlServer.Asts
             return new AstClassTypeForParallelDw(position, "OBJECT", "OBJECT");
         }
         
-        public static AstClassTypeForParallelDw Null?()
+        public static AstClassTypeForParallelDw? Null()
         {
             return null;
         }
@@ -1018,7 +1018,7 @@ namespace Bb.SqlServer.Asts
             return new AstStartStop(position, "STOP", "STOP");
         }
         
-        public static AstStartStop Null?()
+        public static AstStartStop? Null()
         {
             return null;
         }
@@ -1109,7 +1109,7 @@ namespace Bb.SqlServer.Asts
             return new AstSplitOrMerge(position, "MERGE", "MERGE");
         }
         
-        public static AstSplitOrMerge Null?()
+        public static AstSplitOrMerge? Null()
         {
             return null;
         }
@@ -1234,7 +1234,7 @@ namespace Bb.SqlServer.Asts
             return new AstEnumDml(position, "UPDATE", "UPDATE");
         }
         
-        public static AstEnumDml Null?()
+        public static AstEnumDml? Null()
         {
             return null;
         }
@@ -1342,7 +1342,7 @@ namespace Bb.SqlServer.Asts
             return new AstIndexStatusEnum(position, "ABORT", "ABORT");
         }
         
-        public static AstIndexStatusEnum Null?()
+        public static AstIndexStatusEnum? Null()
         {
             return null;
         }
@@ -1450,7 +1450,7 @@ namespace Bb.SqlServer.Asts
             return new AstDmlTriggerOperation(position, "DELETE", "DELETE");
         }
         
-        public static AstDmlTriggerOperation Null?()
+        public static AstDmlTriggerOperation? Null()
         {
             return null;
         }
@@ -1575,7 +1575,7 @@ namespace Bb.SqlServer.Asts
             return new AstFilegroupUpdatabilityOption(position, "READ_WRITE", "READ_WRITE");
         }
         
-        public static AstFilegroupUpdatabilityOption Null?()
+        public static AstFilegroupUpdatabilityOption? Null()
         {
             return null;
         }
@@ -2290,7 +2290,7 @@ namespace Bb.SqlServer.Asts
             return new AstGrantPermissionAlter(position, "ALTER TRACE", "ALTER TRACE");
         }
         
-        public static AstGrantPermissionAlter Null?()
+        public static AstGrantPermissionAlter? Null()
         {
             return null;
         }
@@ -2861,7 +2861,7 @@ namespace Bb.SqlServer.Asts
             return new AstGrantPermissionCreate(position, "CREATE XML SCHEMA COLLECTION", "CREATE XML SCHEMA COLLECTION");
         }
         
-        public static AstGrantPermissionCreate Null?()
+        public static AstGrantPermissionCreate? Null()
         {
             return null;
         }
@@ -2986,7 +2986,7 @@ namespace Bb.SqlServer.Asts
             return new AstSybaseLegacyHint(position, "SHARED", "SHARED");
         }
         
-        public static AstSybaseLegacyHint Null?()
+        public static AstSybaseLegacyHint? Null()
         {
             return null;
         }
@@ -3077,7 +3077,7 @@ namespace Bb.SqlServer.Asts
             return new AstSign(position, "MINUS", "-");
         }
         
-        public static AstSign Null?()
+        public static AstSign? Null()
         {
             return null;
         }
@@ -17178,7 +17178,7 @@ namespace Bb.SqlServer.Asts
             return new AstKeyword(position, "PRECISION", "PRECISION");
         }
         
-        public static AstKeyword Null?()
+        public static AstKeyword? Null()
         {
             return null;
         }
@@ -17286,7 +17286,7 @@ namespace Bb.SqlServer.Asts
             return new AstAssemblyPermission(position, "UNSAFE", "UNSAFE");
         }
         
-        public static AstAssemblyPermission Null?()
+        public static AstAssemblyPermission? Null()
         {
             return null;
         }
@@ -18161,7 +18161,7 @@ namespace Bb.SqlServer.Asts
             return new AstObjectTypeForGrant(position, "XML SCHEMA COLLECTION", "XML SCHEMA COLLECTION");
         }
         
-        public static AstObjectTypeForGrant Null?()
+        public static AstObjectTypeForGrant? Null()
         {
             return null;
         }
@@ -18252,7 +18252,7 @@ namespace Bb.SqlServer.Asts
             return new AstEncryptionMaster(position, "MASTER", "MASTER");
         }
         
-        public static AstEncryptionMaster Null?()
+        public static AstEncryptionMaster? Null()
         {
             return null;
         }
@@ -18360,7 +18360,7 @@ namespace Bb.SqlServer.Asts
             return new AstDatabaseObjectServer(position, "SERVER", "SERVER");
         }
         
-        public static AstDatabaseObjectServer Null?()
+        public static AstDatabaseObjectServer? Null()
         {
             return null;
         }
@@ -18451,7 +18451,7 @@ namespace Bb.SqlServer.Asts
             return new AstServerDatabase(position, "DATABASE", "DATABASE");
         }
         
-        public static AstServerDatabase Null?()
+        public static AstServerDatabase? Null()
         {
             return null;
         }
@@ -18542,7 +18542,7 @@ namespace Bb.SqlServer.Asts
             return new AstForAfter(position, "AFTER", "AFTER");
         }
         
-        public static AstForAfter Null?()
+        public static AstForAfter? Null()
         {
             return null;
         }
@@ -18633,7 +18633,7 @@ namespace Bb.SqlServer.Asts
             return new AstShareExclusive(position, "EXCLUSIVE", "EXCLUSIVE");
         }
         
-        public static AstShareExclusive Null?()
+        public static AstShareExclusive? Null()
         {
             return null;
         }
@@ -18724,7 +18724,7 @@ namespace Bb.SqlServer.Asts
             return new AstCreateAlter(position, "ALTER", "ALTER");
         }
         
-        public static AstCreateAlter Null?()
+        public static AstCreateAlter? Null()
         {
             return null;
         }
@@ -18866,7 +18866,7 @@ namespace Bb.SqlServer.Asts
             return new AstFileSizeUnity(position, "MODULE", "%");
         }
         
-        public static AstFileSizeUnity Null?()
+        public static AstFileSizeUnity? Null()
         {
             return null;
         }
@@ -18957,7 +18957,7 @@ namespace Bb.SqlServer.Asts
             return new AstMemorySizeUnity(position, "MB", "MB");
         }
         
-        public static AstMemorySizeUnity Null?()
+        public static AstMemorySizeUnity? Null()
         {
             return null;
         }
@@ -19065,7 +19065,7 @@ namespace Bb.SqlServer.Asts
             return new AstPartitionMode(position, "PER_CPU", "PER_CPU");
         }
         
-        public static AstPartitionMode Null?()
+        public static AstPartitionMode? Null()
         {
             return null;
         }
@@ -19173,7 +19173,7 @@ namespace Bb.SqlServer.Asts
             return new AstSessionMode(position, "NO_EVENT_LOSS", "NO_EVENT_LOSS");
         }
         
-        public static AstSessionMode Null?()
+        public static AstSessionMode? Null()
         {
             return null;
         }
@@ -19264,7 +19264,7 @@ namespace Bb.SqlServer.Asts
             return new AstDisableReconfigure(position, "RECONFIGURE", "RECONFIGURE");
         }
         
-        public static AstDisableReconfigure Null?()
+        public static AstDisableReconfigure? Null()
         {
             return null;
         }
@@ -19370,7 +19370,7 @@ namespace Bb.SqlServer.Asts
             return new AstTransfertTarget(position, "XML SCHEMA COLLECTION DOUBLE_COLON", "XML SCHEMA COLLECTION \'::");
         }
         
-        public static AstTransfertTarget Null?()
+        public static AstTransfertTarget? Null()
         {
             return null;
         }
@@ -19461,7 +19461,7 @@ namespace Bb.SqlServer.Asts
             return new AstInsertUpdate(position, "UPDATE", "UPDATE");
         }
         
-        public static AstInsertUpdate Null?()
+        public static AstInsertUpdate? Null()
         {
             return null;
         }
@@ -19552,7 +19552,7 @@ namespace Bb.SqlServer.Asts
             return new AstUpdateDelate(position, "DELETE", "DELETE");
         }
         
-        public static AstUpdateDelate Null?()
+        public static AstUpdateDelate? Null()
         {
             return null;
         }
@@ -19643,7 +19643,7 @@ namespace Bb.SqlServer.Asts
             return new AstFilterBlock(position, "BLOCK", "BLOCK");
         }
         
-        public static AstFilterBlock Null?()
+        public static AstFilterBlock? Null()
         {
             return null;
         }
@@ -19751,7 +19751,7 @@ namespace Bb.SqlServer.Asts
             return new AstInitTargetAny(position, "ANY", "ANY");
         }
         
-        public static AstInitTargetAny Null?()
+        public static AstInitTargetAny? Null()
         {
             return null;
         }
@@ -19859,7 +19859,7 @@ namespace Bb.SqlServer.Asts
             return new AstReceiveModeEnum(position, "STAR", "*");
         }
         
-        public static AstReceiveModeEnum Null?()
+        public static AstReceiveModeEnum? Null()
         {
             return null;
         }
@@ -20001,7 +20001,7 @@ namespace Bb.SqlServer.Asts
             return new AstDatacompressionMode(position, "COLUMNSTORE_ARCHIVE", "COLUMNSTORE_ARCHIVE");
         }
         
-        public static AstDatacompressionMode Null?()
+        public static AstDatacompressionMode? Null()
         {
             return null;
         }
@@ -20092,7 +20092,7 @@ namespace Bb.SqlServer.Asts
             return new AstDatacompressionColumnMode(position, "COLUMNSTORE_ARCHIVE", "COLUMNSTORE_ARCHIVE");
         }
         
-        public static AstDatacompressionColumnMode Null?()
+        public static AstDatacompressionColumnMode? Null()
         {
             return null;
         }
@@ -20198,7 +20198,7 @@ namespace Bb.SqlServer.Asts
             return new AstIndexUsingXmlMode(position, "FOR PROPERTY", "FOR PROPERTY");
         }
         
-        public static AstIndexUsingXmlMode Null?()
+        public static AstIndexUsingXmlMode? Null()
         {
             return null;
         }
@@ -20289,7 +20289,7 @@ namespace Bb.SqlServer.Asts
             return new AstProcKeyword(position, "PROCEDURE", "PROCEDURE");
         }
         
-        public static AstProcKeyword Null?()
+        public static AstProcKeyword? Null()
         {
             return null;
         }
@@ -20380,7 +20380,7 @@ namespace Bb.SqlServer.Asts
             return new AstAlterReplace(position, "REPLACE", "REPLACE");
         }
         
-        public static AstAlterReplace Null?()
+        public static AstAlterReplace? Null()
         {
             return null;
         }
@@ -20488,7 +20488,7 @@ namespace Bb.SqlServer.Asts
             return new AstParamWay(position, "READONLY", "READONLY");
         }
         
-        public static AstParamWay Null?()
+        public static AstParamWay? Null()
         {
             return null;
         }
@@ -20579,7 +20579,7 @@ namespace Bb.SqlServer.Asts
             return new AstPercentRow(position, "ROWS", "ROWS");
         }
         
-        public static AstPercentRow Null?()
+        public static AstPercentRow? Null()
         {
             return null;
         }
@@ -20705,7 +20705,7 @@ namespace Bb.SqlServer.Asts
             return new AstFunctionOptionEnum(position, "CALLED ON NULL_ INPUT", "CALLED ON NULL INPUT");
         }
         
-        public static AstFunctionOptionEnum Null?()
+        public static AstFunctionOptionEnum? Null()
         {
             return null;
         }
@@ -20796,7 +20796,7 @@ namespace Bb.SqlServer.Asts
             return new AstProcedureOptionEnum(position, "RECOMPILE", "RECOMPILE");
         }
         
-        public static AstProcedureOptionEnum Null?()
+        public static AstProcedureOptionEnum? Null()
         {
             return null;
         }
@@ -20887,7 +20887,7 @@ namespace Bb.SqlServer.Asts
             return new AstRowRows(position, "ROWS", "ROWS");
         }
         
-        public static AstRowRows Null?()
+        public static AstRowRows? Null()
         {
             return null;
         }
@@ -20995,7 +20995,7 @@ namespace Bb.SqlServer.Asts
             return new AstCompressionMode(position, "PAGE", "PAGE");
         }
         
-        public static AstCompressionMode Null?()
+        public static AstCompressionMode? Null()
         {
             return null;
         }
@@ -21086,7 +21086,7 @@ namespace Bb.SqlServer.Asts
             return new AstStartEnd(position, "END", "END");
         }
         
-        public static AstStartEnd Null?()
+        public static AstStartEnd? Null()
         {
             return null;
         }
@@ -21194,7 +21194,7 @@ namespace Bb.SqlServer.Asts
             return new AstGenerationMode(position, "SEQUENCE_NUMBER", "SEQUENCE_NUMBER");
         }
         
-        public static AstGenerationMode Null?()
+        public static AstGenerationMode? Null()
         {
             return null;
         }
@@ -21285,7 +21285,7 @@ namespace Bb.SqlServer.Asts
             return new AstEncryptionMode(position, "RANDOMIZED", "RANDOMIZED");
         }
         
-        public static AstEncryptionMode Null?()
+        public static AstEncryptionMode? Null()
         {
             return null;
         }
@@ -21376,7 +21376,7 @@ namespace Bb.SqlServer.Asts
             return new AstTableoptionClusterMode(position, "HEAP", "HEAP");
         }
         
-        public static AstTableoptionClusterMode Null?()
+        public static AstTableoptionClusterMode? Null()
         {
             return null;
         }
@@ -21484,7 +21484,7 @@ namespace Bb.SqlServer.Asts
             return new AstLockMode(position, "DISABLE", "DISABLE");
         }
         
-        public static AstLockMode Null?()
+        public static AstLockMode? Null()
         {
             return null;
         }
@@ -21575,7 +21575,7 @@ namespace Bb.SqlServer.Asts
             return new AstCheckNocheck(position, "NOCHECK", "NOCHECK");
         }
         
-        public static AstCheckNocheck Null?()
+        public static AstCheckNocheck? Null()
         {
             return null;
         }
@@ -21718,7 +21718,7 @@ namespace Bb.SqlServer.Asts
             return new AstDataTypeScaled(position, "SQUARE_BRACKET_ID", "[\'  (~\']\' | \']\'  \']\')  \']");
         }
         
-        public static AstDataTypeScaled Null?()
+        public static AstDataTypeScaled? Null()
         {
             return null;
         }
@@ -21826,7 +21826,7 @@ namespace Bb.SqlServer.Asts
             return new AstAbordAfterMode(position, "BLOCKERS", "BLOCKERS");
         }
         
-        public static AstAbordAfterMode Null?()
+        public static AstAbordAfterMode? Null()
         {
             return null;
         }
@@ -21917,7 +21917,7 @@ namespace Bb.SqlServer.Asts
             return new AstLocalGlobal(position, "GLOBAL", "GLOBAL");
         }
         
-        public static AstLocalGlobal Null?()
+        public static AstLocalGlobal? Null()
         {
             return null;
         }
@@ -22025,7 +22025,7 @@ namespace Bb.SqlServer.Asts
             return new AstStateEnum(position, "DISABLED", "DISABLED");
         }
         
-        public static AstStateEnum Null?()
+        public static AstStateEnum? Null()
         {
             return null;
         }
@@ -22133,7 +22133,7 @@ namespace Bb.SqlServer.Asts
             return new AstAuthenticationMode(position, "NEGOTIATE", "NEGOTIATE");
         }
         
-        public static AstAuthenticationMode Null?()
+        public static AstAuthenticationMode? Null()
         {
             return null;
         }
@@ -22255,7 +22255,7 @@ namespace Bb.SqlServer.Asts
             return new AstEncryptionAlgorithm(position, "ALGORITHM RC4 AES", "ALGORITHM RC4 AES");
         }
         
-        public static AstEncryptionAlgorithm Null?()
+        public static AstEncryptionAlgorithm? Null()
         {
             return null;
         }
@@ -22363,7 +22363,7 @@ namespace Bb.SqlServer.Asts
             return new AstRoleMirroring(position, "ALL", "ALL");
         }
         
-        public static AstRoleMirroring Null?()
+        public static AstRoleMirroring? Null()
         {
             return null;
         }
@@ -22539,7 +22539,7 @@ namespace Bb.SqlServer.Asts
             return new AstPartnerOptionEnum(position, "SUSPEND", "SUSPEND");
         }
         
-        public static AstPartnerOptionEnum Null?()
+        public static AstPartnerOptionEnum? Null()
         {
             return null;
         }
@@ -22647,7 +22647,7 @@ namespace Bb.SqlServer.Asts
             return new AstDelayedDurability(position, "FORCED", "FORCED");
         }
         
-        public static AstDelayedDurability Null?()
+        public static AstDelayedDurability? Null()
         {
             return null;
         }
@@ -22746,7 +22746,7 @@ namespace Bb.SqlServer.Asts
             return new AstSuspendResume(position, "RESUME", "RESUME");
         }
         
-        public static AstSuspendResume Null?()
+        public static AstSuspendResume? Null()
         {
             return null;
         }
@@ -22902,7 +22902,7 @@ namespace Bb.SqlServer.Asts
             return new AstRecoveryOptionEnum(position, "PAGE_VERIFY NONE", "PAGE_VERIFY NONE");
         }
         
-        public static AstRecoveryOptionEnum Null?()
+        public static AstRecoveryOptionEnum? Null()
         {
             return null;
         }
@@ -22993,7 +22993,7 @@ namespace Bb.SqlServer.Asts
             return new AstSecondsMinutes(position, "MINUTES", "MINUTES");
         }
         
-        public static AstSecondsMinutes Null?()
+        public static AstSecondsMinutes? Null()
         {
             return null;
         }
@@ -23084,7 +23084,7 @@ namespace Bb.SqlServer.Asts
             return new AstCompression(position, "NO_COMPRESSION", "NO_COMPRESSION");
         }
         
-        public static AstCompression Null?()
+        public static AstCompression? Null()
         {
             return null;
         }
@@ -23175,7 +23175,7 @@ namespace Bb.SqlServer.Asts
             return new AstInitNoInit(position, "INIT", "INIT");
         }
         
-        public static AstInitNoInit Null?()
+        public static AstInitNoInit? Null()
         {
             return null;
         }
@@ -23266,7 +23266,7 @@ namespace Bb.SqlServer.Asts
             return new AstNoSkip(position, "SKIP_KEYWORD", "SKIP");
         }
         
-        public static AstNoSkip Null?()
+        public static AstNoSkip? Null()
         {
             return null;
         }
@@ -23357,7 +23357,7 @@ namespace Bb.SqlServer.Asts
             return new AstFormatNoformat(position, "FORMAT", "FORMAT");
         }
         
-        public static AstFormatNoformat Null?()
+        public static AstFormatNoformat? Null()
         {
             return null;
         }
@@ -23448,7 +23448,7 @@ namespace Bb.SqlServer.Asts
             return new AstLoginUser(position, "USER", "USER");
         }
         
-        public static AstLoginUser Null?()
+        public static AstLoginUser? Null()
         {
             return null;
         }
@@ -23539,7 +23539,7 @@ namespace Bb.SqlServer.Asts
             return new AstOutputOut(position, "OUT", "OUT");
         }
         
-        public static AstOutputOut Null?()
+        public static AstOutputOut? Null()
         {
             return null;
         }
@@ -23630,7 +23630,7 @@ namespace Bb.SqlServer.Asts
             return new AstStartDateExpiryDate(position, "EXPIRY_DATE", "EXPIRY_DATE");
         }
         
-        public static AstStartDateExpiryDate Null?()
+        public static AstStartDateExpiryDate? Null()
         {
             return null;
         }
@@ -23738,7 +23738,7 @@ namespace Bb.SqlServer.Asts
             return new AstExecuteClauseModeEnum(position, "OWNER", "OWNER");
         }
         
-        public static AstExecuteClauseModeEnum Null?()
+        public static AstExecuteClauseModeEnum? Null()
         {
             return null;
         }
@@ -23829,7 +23829,7 @@ namespace Bb.SqlServer.Asts
             return new AstContentDocument(position, "DOCUMENT", "DOCUMENT");
         }
         
-        public static AstContentDocument Null?()
+        public static AstContentDocument? Null()
         {
             return null;
         }
@@ -23920,7 +23920,7 @@ namespace Bb.SqlServer.Asts
             return new AstMaterializedMode(position, "NOT MATERIALIZED", "NOT MATERIALIZED");
         }
         
-        public static AstMaterializedMode Null?()
+        public static AstMaterializedMode? Null()
         {
             return null;
         }
@@ -24063,7 +24063,7 @@ namespace Bb.SqlServer.Asts
             return new AstColumnModifierEnum(position, "HIDDEN_KEYWORD", "HIDDEN");
         }
         
-        public static AstColumnModifierEnum Null?()
+        public static AstColumnModifierEnum? Null()
         {
             return null;
         }
@@ -24154,7 +24154,7 @@ namespace Bb.SqlServer.Asts
             return new AstComputeAs(position, "AS", "AS");
         }
         
-        public static AstComputeAs Null?()
+        public static AstComputeAs? Null()
         {
             return null;
         }
@@ -24245,7 +24245,7 @@ namespace Bb.SqlServer.Asts
             return new AstPrimaryKeyUnique(position, "UNIQUE", "UNIQUE");
         }
         
-        public static AstPrimaryKeyUnique Null?()
+        public static AstPrimaryKeyUnique? Null()
         {
             return null;
         }
@@ -24467,7 +24467,7 @@ namespace Bb.SqlServer.Asts
             return new AstDeclareSetCursorCommonPartialEnum(position, "TYPE_WARNING", "TYPE_WARNING");
         }
         
-        public static AstDeclareSetCursorCommonPartialEnum Null?()
+        public static AstDeclareSetCursorCommonPartialEnum? Null()
         {
             return null;
         }
@@ -24558,7 +24558,7 @@ namespace Bb.SqlServer.Asts
             return new AstAbsoluteRelative(position, "RELATIVE", "RELATIVE");
         }
         
-        public static AstAbsoluteRelative Null?()
+        public static AstAbsoluteRelative? Null()
         {
             return null;
         }
@@ -24683,7 +24683,7 @@ namespace Bb.SqlServer.Asts
             return new AstFetchCursorStrategy(position, "LAST", "LAST");
         }
         
-        public static AstFetchCursorStrategy Null?()
+        public static AstFetchCursorStrategy? Null()
         {
             return null;
         }
@@ -24808,7 +24808,7 @@ namespace Bb.SqlServer.Asts
             return new AstStatisticKind(position, "PROFILE", "PROFILE");
         }
         
-        public static AstStatisticKind Null?()
+        public static AstStatisticKind? Null()
         {
             return null;
         }
@@ -24951,7 +24951,7 @@ namespace Bb.SqlServer.Asts
             return new AstTransactionIsolation(position, "SERIALIZABLE", "SERIALIZABLE");
         }
         
-        public static AstTransactionIsolation Null?()
+        public static AstTransactionIsolation? Null()
         {
             return null;
         }
@@ -25422,7 +25422,7 @@ namespace Bb.SqlServer.Asts
             return new AstSpecialList(position, "XACT_ABORT", "XACT_ABORT");
         }
         
-        public static AstSpecialList Null?()
+        public static AstSpecialList? Null()
         {
             return null;
         }
@@ -25633,7 +25633,7 @@ namespace Bb.SqlServer.Asts
             return new AstExpressionOperator(position, "DOUBLE_BAR", "||");
         }
         
-        public static AstExpressionOperator Null?()
+        public static AstExpressionOperator? Null()
         {
             return null;
         }
@@ -25741,7 +25741,7 @@ namespace Bb.SqlServer.Asts
             return new AstAllSomeAny(position, "ANY", "ANY");
         }
         
-        public static AstAllSomeAny Null?()
+        public static AstAllSomeAny? Null()
         {
             return null;
         }
@@ -25849,7 +25849,7 @@ namespace Bb.SqlServer.Asts
             return new AstJoinMode(position, "INTERSECT", "INTERSECT");
         }
         
-        public static AstJoinMode Null?()
+        public static AstJoinMode? Null()
         {
             return null;
         }
@@ -25940,7 +25940,7 @@ namespace Bb.SqlServer.Asts
             return new AstAllDistinct(position, "DISTINCT", "DISTINCT");
         }
         
-        public static AstAllDistinct Null?()
+        public static AstAllDistinct? Null()
         {
             return null;
         }
@@ -26048,7 +26048,7 @@ namespace Bb.SqlServer.Asts
             return new AstDelayTimeTimeout(position, "TIMEOUT", "TIMEOUT");
         }
         
-        public static AstDelayTimeTimeout Null?()
+        public static AstDelayTimeTimeout? Null()
         {
             return null;
         }
@@ -26139,7 +26139,7 @@ namespace Bb.SqlServer.Asts
             return new AstCreationDisposition(position, "OPEN_EXISTING", "OPEN_EXISTING");
         }
         
-        public static AstCreationDisposition Null?()
+        public static AstCreationDisposition? Null()
         {
             return null;
         }
@@ -26289,7 +26289,7 @@ namespace Bb.SqlServer.Asts
             return new AstAsymetricAlgorithm(position, "RSA_512", "RSA_512");
         }
         
-        public static AstAsymetricAlgorithm Null?()
+        public static AstAsymetricAlgorithm? Null()
         {
             return null;
         }
@@ -26380,7 +26380,7 @@ namespace Bb.SqlServer.Asts
             return new AstAddRemove(position, "REMOVE", "REMOVE");
         }
         
-        public static AstAddRemove Null?()
+        public static AstAddRemove? Null()
         {
             return null;
         }
@@ -26471,7 +26471,7 @@ namespace Bb.SqlServer.Asts
             return new AstRestartRemove(position, "REMOVE", "REMOVE");
         }
         
-        public static AstRestartRemove Null?()
+        public static AstRestartRemove? Null()
         {
             return null;
         }
@@ -26562,7 +26562,7 @@ namespace Bb.SqlServer.Asts
             return new AstSynchAsynch(position, "ASYNCHRONOUS_COMMIT", "ASYNCHRONOUS_COMMIT");
         }
         
-        public static AstSynchAsynch Null?()
+        public static AstSynchAsynch? Null()
         {
             return null;
         }
@@ -26653,7 +26653,7 @@ namespace Bb.SqlServer.Asts
             return new AstAutoManual(position, "MANUAL", "MANUAL");
         }
         
-        public static AstAutoManual Null?()
+        public static AstAutoManual? Null()
         {
             return null;
         }
@@ -26744,7 +26744,7 @@ namespace Bb.SqlServer.Asts
             return new AstRealWriteAll(position, "ALL", "ALL");
         }
         
-        public static AstRealWriteAll Null?()
+        public static AstRealWriteAll? Null()
         {
             return null;
         }
@@ -26852,7 +26852,7 @@ namespace Bb.SqlServer.Asts
             return new AstNoRealWriteAll(position, "ALL", "ALL");
         }
         
-        public static AstNoRealWriteAll Null?()
+        public static AstNoRealWriteAll? Null()
         {
             return null;
         }
@@ -26977,7 +26977,7 @@ namespace Bb.SqlServer.Asts
             return new AstPrimarySecondaryNone(position, "NONE", "NONE");
         }
         
-        public static AstPrimarySecondaryNone Null?()
+        public static AstPrimarySecondaryNone? Null()
         {
             return null;
         }
@@ -27068,7 +27068,7 @@ namespace Bb.SqlServer.Asts
             return new AstGrantDeny(position, "DENY", "DENY");
         }
         
-        public static AstGrantDeny Null?()
+        public static AstGrantDeny? Null()
         {
             return null;
         }
@@ -27159,7 +27159,7 @@ namespace Bb.SqlServer.Asts
             return new AstAddDrop(position, "DROP", "DROP");
         }
         
-        public static AstAddDrop Null?()
+        public static AstAddDrop? Null()
         {
             return null;
         }
@@ -27250,7 +27250,7 @@ namespace Bb.SqlServer.Asts
             return new AstSetAdd(position, "ADD", "ADD");
         }
         
-        public static AstSetAdd Null?()
+        public static AstSetAdd? Null()
         {
             return null;
         }
@@ -27341,7 +27341,7 @@ namespace Bb.SqlServer.Asts
             return new AstPlatform(position, "LINUX", "LINUX");
         }
         
-        public static AstPlatform Null?()
+        public static AstPlatform? Null()
         {
             return null;
         }
@@ -27440,7 +27440,7 @@ namespace Bb.SqlServer.Asts
             return new AstCodeLanguage(position, "PYTHON", "PYTHON");
         }
         
-        public static AstCodeLanguage Null?()
+        public static AstCodeLanguage? Null()
         {
             return null;
         }
@@ -27531,7 +27531,7 @@ namespace Bb.SqlServer.Asts
             return new AstPwdStrategy(position, "UNLOCK", "UNLOCK");
         }
         
-        public static AstPwdStrategy Null?()
+        public static AstPwdStrategy? Null()
         {
             return null;
         }
@@ -27622,7 +27622,7 @@ namespace Bb.SqlServer.Asts
             return new AstEnableDisable(position, "DISABLE", "DISABLE");
         }
         
-        public static AstEnableDisable Null?()
+        public static AstEnableDisable? Null()
         {
             return null;
         }
@@ -27730,7 +27730,7 @@ namespace Bb.SqlServer.Asts
             return new AstMessageValidationValueEnum(position, "WELL_FORMED_XML", "WELL_FORMED_XML");
         }
         
-        public static AstMessageValidationValueEnum Null?()
+        public static AstMessageValidationValueEnum? Null()
         {
             return null;
         }
@@ -27838,7 +27838,7 @@ namespace Bb.SqlServer.Asts
             return new AstSizeUnity(position, "TB", "TB");
         }
         
-        public static AstSizeUnity Null?()
+        public static AstSizeUnity? Null()
         {
             return null;
         }
@@ -27946,7 +27946,7 @@ namespace Bb.SqlServer.Asts
             return new AstContinueShutdown(position, "FAIL_OPERATION", "FAIL_OPERATION");
         }
         
-        public static AstContinueShutdown Null?()
+        public static AstContinueShutdown? Null()
         {
             return null;
         }
@@ -28123,7 +28123,7 @@ namespace Bb.SqlServer.Asts
             return new AstAuditOperator(position, "LESS EQUAL", "<\' \'=");
         }
         
-        public static AstAuditOperator Null?()
+        public static AstAuditOperator? Null()
         {
             return null;
         }
@@ -28214,7 +28214,7 @@ namespace Bb.SqlServer.Asts
             return new AstAndOr(position, "OR", "OR");
         }
         
-        public static AstAndOr Null?()
+        public static AstAndOr? Null()
         {
             return null;
         }
@@ -28305,7 +28305,7 @@ namespace Bb.SqlServer.Asts
             return new AstForFrom(position, "FROM", "FROM");
         }
         
-        public static AstForFrom Null?()
+        public static AstForFrom? Null()
         {
             return null;
         }
@@ -28413,7 +28413,7 @@ namespace Bb.SqlServer.Asts
             return new AstImportanceLevel(position, "HIGH", "HIGH");
         }
         
-        public static AstImportanceLevel Null?()
+        public static AstImportanceLevel? Null()
         {
             return null;
         }
@@ -28504,7 +28504,7 @@ namespace Bb.SqlServer.Asts
             return new AstLeftRight(position, "RIGHT", "RIGHT");
         }
         
-        public static AstLeftRight Null?()
+        public static AstLeftRight? Null()
         {
             return null;
         }
@@ -28595,7 +28595,7 @@ namespace Bb.SqlServer.Asts
             return new AstNonePartial(position, "PARTIAL", "PARTIAL");
         }
         
-        public static AstNonePartial Null?()
+        public static AstNonePartial? Null()
         {
             return null;
         }
@@ -28737,7 +28737,7 @@ namespace Bb.SqlServer.Asts
             return new AstIndexStrategy(position, "COLUMNSTORE_ARCHIVE", "COLUMNSTORE_ARCHIVE");
         }
         
-        public static AstIndexStrategy Null?()
+        public static AstIndexStrategy? Null()
         {
             return null;
         }
@@ -28845,7 +28845,7 @@ namespace Bb.SqlServer.Asts
             return new AstViewAttribute(position, "VIEW_METADATA", "VIEW_METADATA");
         }
         
-        public static AstViewAttribute Null?()
+        public static AstViewAttribute? Null()
         {
             return null;
         }
@@ -28936,7 +28936,7 @@ namespace Bb.SqlServer.Asts
             return new AstFilegroupPredicate(position, "CONTAINS MEMORY_OPTIMIZED_DATA", "CONTAINS MEMORY_OPTIMIZED_DATA");
         }
         
-        public static AstFilegroupPredicate Null?()
+        public static AstFilegroupPredicate? Null()
         {
             return null;
         }
@@ -29043,7 +29043,7 @@ namespace Bb.SqlServer.Asts
             return new AstStatisticValue(position, "ON OFF", "ON OFF");
         }
         
-        public static AstStatisticValue Null?()
+        public static AstStatisticValue? Null()
         {
             return null;
         }
@@ -29151,7 +29151,7 @@ namespace Bb.SqlServer.Asts
             return new AstPeriod(position, "MINUTES", "MINUTES");
         }
         
-        public static AstPeriod Null?()
+        public static AstPeriod? Null()
         {
             return null;
         }
@@ -29259,7 +29259,7 @@ namespace Bb.SqlServer.Asts
             return new AstDbStateOption(position, "EMERGENCY", "EMERGENCY");
         }
         
-        public static AstDbStateOption Null?()
+        public static AstDbStateOption? Null()
         {
             return null;
         }
@@ -29350,7 +29350,7 @@ namespace Bb.SqlServer.Asts
             return new AstDbUpdateOption(position, "READ_WRITE", "READ_WRITE");
         }
         
-        public static AstDbUpdateOption Null?()
+        public static AstDbUpdateOption? Null()
         {
             return null;
         }
@@ -29458,7 +29458,7 @@ namespace Bb.SqlServer.Asts
             return new AstDbUserAccessOption(position, "MULTI_USER", "MULTI_USER");
         }
         
-        public static AstDbUserAccessOption Null?()
+        public static AstDbUserAccessOption? Null()
         {
             return null;
         }
@@ -29566,7 +29566,7 @@ namespace Bb.SqlServer.Asts
             return new AstDiskTapeUrl(position, "URL", "URL");
         }
         
-        public static AstDiskTapeUrl Null?()
+        public static AstDiskTapeUrl? Null()
         {
             return null;
         }
@@ -29657,7 +29657,7 @@ namespace Bb.SqlServer.Asts
             return new AstFileFileGroup(position, "FILEGROUP", "FILEGROUP");
         }
         
-        public static AstFileFileGroup Null?()
+        public static AstFileFileGroup? Null()
         {
             return null;
         }
@@ -29748,7 +29748,7 @@ namespace Bb.SqlServer.Asts
             return new AstLoadMounLoad(position, "NOUNLOAD", "NOUNLOAD");
         }
         
-        public static AstLoadMounLoad Null?()
+        public static AstLoadMounLoad? Null()
         {
             return null;
         }
@@ -29839,7 +29839,7 @@ namespace Bb.SqlServer.Asts
             return new AstRewind(position, "NOREWIND", "NOREWIND");
         }
         
-        public static AstRewind Null?()
+        public static AstRewind? Null()
         {
             return null;
         }
@@ -29964,7 +29964,7 @@ namespace Bb.SqlServer.Asts
             return new AstAlgorithmShort(position, "TRIPLE_DES_3KEY", "TRIPLE_DES_3KEY");
         }
         
-        public static AstAlgorithmShort Null?()
+        public static AstAlgorithmShort? Null()
         {
             return null;
         }
@@ -30055,7 +30055,7 @@ namespace Bb.SqlServer.Asts
             return new AstEncryptionDecryption(position, "ENCRYPTION", "ENCRYPTION");
         }
         
-        public static AstEncryptionDecryption Null?()
+        public static AstEncryptionDecryption? Null()
         {
             return null;
         }
@@ -30283,7 +30283,7 @@ namespace Bb.SqlServer.Asts
             return new AstAlgorithm(position, "AES_256", "AES_256");
         }
         
-        public static AstAlgorithm Null?()
+        public static AstAlgorithm? Null()
         {
             return null;
         }
@@ -30956,7 +30956,7 @@ namespace Bb.SqlServer.Asts
             return new AstGrantPermissionEnum(position, "VIEW SERVER STATE", "VIEW SERVER STATE");
         }
         
-        public static AstGrantPermissionEnum Null?()
+        public static AstGrantPermissionEnum? Null()
         {
             return null;
         }
@@ -31047,7 +31047,7 @@ namespace Bb.SqlServer.Asts
             return new AstTransaction(position, "TRANSACTION", "TRANSACTION");
         }
         
-        public static AstTransaction Null?()
+        public static AstTransaction? Null()
         {
             return null;
         }
@@ -31138,7 +31138,7 @@ namespace Bb.SqlServer.Asts
             return new AstSensitive(position, "INSENSITIVE", "INSENSITIVE");
         }
         
-        public static AstSensitive Null?()
+        public static AstSensitive? Null()
         {
             return null;
         }
@@ -31229,7 +31229,7 @@ namespace Bb.SqlServer.Asts
             return new AstPlusMinus(position, "MINUS", "-");
         }
         
-        public static AstPlusMinus Null?()
+        public static AstPlusMinus? Null()
         {
             return null;
         }
@@ -31320,7 +31320,7 @@ namespace Bb.SqlServer.Asts
             return new AstFirstNext(position, "NEXT", "NEXT");
         }
         
-        public static AstFirstNext Null?()
+        public static AstFirstNext? Null()
         {
             return null;
         }
@@ -31411,7 +31411,7 @@ namespace Bb.SqlServer.Asts
             return new AstAbsentXsinil(position, "XSINIL", "XSINIL");
         }
         
-        public static AstAbsentXsinil Null?()
+        public static AstAbsentXsinil? Null()
         {
             return null;
         }
@@ -31502,7 +31502,7 @@ namespace Bb.SqlServer.Asts
             return new AstAutoPath(position, "PATH", "PATH");
         }
         
-        public static AstAutoPath Null?()
+        public static AstAutoPath? Null()
         {
             return null;
         }
@@ -31871,7 +31871,7 @@ namespace Bb.SqlServer.Asts
             return new AstUpdateOptionEnum(position, "ROBUST PLAN", "ROBUST PLAN");
         }
         
-        public static AstUpdateOptionEnum Null?()
+        public static AstUpdateOptionEnum? Null()
         {
             return null;
         }
@@ -31979,7 +31979,7 @@ namespace Bb.SqlServer.Asts
             return new AstJoinType(position, "FULL", "FULL");
         }
         
-        public static AstJoinType Null?()
+        public static AstJoinType? Null()
         {
             return null;
         }
@@ -32104,7 +32104,7 @@ namespace Bb.SqlServer.Asts
             return new AstJoinHint(position, "REMOTE", "REMOTE");
         }
         
-        public static AstJoinHint Null?()
+        public static AstJoinHint? Null()
         {
             return null;
         }
@@ -32195,7 +32195,7 @@ namespace Bb.SqlServer.Asts
             return new AstApplyStyle(position, "OUTER", "OUTER");
         }
         
-        public static AstApplyStyle Null?()
+        public static AstApplyStyle? Null()
         {
             return null;
         }
@@ -32286,7 +32286,7 @@ namespace Bb.SqlServer.Asts
             return new AstContainstableFreetexttable(position, "FREETEXTTABLE", "FREETEXTTABLE");
         }
         
-        public static AstContainstableFreetexttable Null?()
+        public static AstContainstableFreetexttable? Null()
         {
             return null;
         }
@@ -32377,7 +32377,7 @@ namespace Bb.SqlServer.Asts
             return new AstSemanticTable(position, "SEMANTICKEYPHRASETABLE", "SEMANTICKEYPHRASETABLE");
         }
         
-        public static AstSemanticTable Null?()
+        public static AstSemanticTable? Null()
         {
             return null;
         }
@@ -32485,7 +32485,7 @@ namespace Bb.SqlServer.Asts
             return new AstRankingWindowed(position, "ROW_NUMBER", "ROW_NUMBER");
         }
         
-        public static AstRankingWindowed Null?()
+        public static AstRankingWindowed? Null()
         {
             return null;
         }
@@ -32678,7 +32678,7 @@ namespace Bb.SqlServer.Asts
             return new AstAggFunction(position, "VARP", "VARP");
         }
         
-        public static AstAggFunction Null?()
+        public static AstAggFunction? Null()
         {
             return null;
         }
@@ -32769,7 +32769,7 @@ namespace Bb.SqlServer.Asts
             return new AstCountCountBig(position, "COUNT_BIG", "COUNT_BIG");
         }
         
-        public static AstCountCountBig Null?()
+        public static AstCountCountBig? Null()
         {
             return null;
         }
@@ -32860,7 +32860,7 @@ namespace Bb.SqlServer.Asts
             return new AstPercentil(position, "PERCENTILE_DISC", "PERCENTILE_DISC");
         }
         
-        public static AstPercentil Null?()
+        public static AstPercentil? Null()
         {
             return null;
         }
@@ -32951,7 +32951,7 @@ namespace Bb.SqlServer.Asts
             return new AstCumePercent(position, "PERCENT_RANK", "PERCENT_RANK");
         }
         
-        public static AstCumePercent Null?()
+        public static AstCumePercent? Null()
         {
             return null;
         }
@@ -33042,7 +33042,7 @@ namespace Bb.SqlServer.Asts
             return new AstFirstLastValue(position, "LAST_VALUE", "LAST_VALUE");
         }
         
-        public static AstFirstLastValue Null?()
+        public static AstFirstLastValue? Null()
         {
             return null;
         }
@@ -33133,7 +33133,7 @@ namespace Bb.SqlServer.Asts
             return new AstLagLead(position, "LEAD", "LEAD");
         }
         
-        public static AstLagLead Null?()
+        public static AstLagLead? Null()
         {
             return null;
         }
@@ -33224,7 +33224,7 @@ namespace Bb.SqlServer.Asts
             return new AstRowRange(position, "RANGE", "RANGE");
         }
         
-        public static AstRowRange Null?()
+        public static AstRowRange? Null()
         {
             return null;
         }
@@ -33332,7 +33332,7 @@ namespace Bb.SqlServer.Asts
             return new AstOffReadOnlyFull(position, "FULL", "FULL");
         }
         
-        public static AstOffReadOnlyFull Null?()
+        public static AstOffReadOnlyFull? Null()
         {
             return null;
         }
@@ -33423,7 +33423,7 @@ namespace Bb.SqlServer.Asts
             return new AstAscDesc(position, "DESC", "DESC");
         }
         
-        public static AstAscDesc Null?()
+        public static AstAscDesc? Null()
         {
             return null;
         }
@@ -33514,7 +33514,7 @@ namespace Bb.SqlServer.Asts
             return new AstOnOff(position, "OFF", "OFF");
         }
         
-        public static AstOnOff Null?()
+        public static AstOnOff? Null()
         {
             return null;
         }
@@ -33605,7 +33605,7 @@ namespace Bb.SqlServer.Asts
             return new AstClustered(position, "NONCLUSTERED", "NONCLUSTERED");
         }
         
-        public static AstClustered Null?()
+        public static AstClustered? Null()
         {
             return null;
         }
@@ -33730,7 +33730,7 @@ namespace Bb.SqlServer.Asts
             return new AstScalarFunctionNameEnum(position, "CHECKSUM", "CHECKSUM");
         }
         
-        public static AstScalarFunctionNameEnum Null?()
+        public static AstScalarFunctionNameEnum? Null()
         {
             return null;
         }
@@ -33821,7 +33821,7 @@ namespace Bb.SqlServer.Asts
             return new AstRelayedConversation(position, "RELATED_CONVERSATION_GROUP", "RELATED_CONVERSATION_GROUP");
         }
         
-        public static AstRelayedConversation Null?()
+        public static AstRelayedConversation? Null()
         {
             return null;
         }
@@ -33929,7 +33929,7 @@ namespace Bb.SqlServer.Asts
             return new AstLogSeterrorNowait(position, "NOWAIT", "NOWAIT");
         }
         
-        public static AstLogSeterrorNowait Null?()
+        public static AstLogSeterrorNowait? Null()
         {
             return null;
         }
@@ -34020,7 +34020,7 @@ namespace Bb.SqlServer.Asts
             return new AstDeleteedInserted(position, "INSERTED", "INSERTED");
         }
         
-        public static AstDeleteedInserted Null?()
+        public static AstDeleteedInserted? Null()
         {
             return null;
         }

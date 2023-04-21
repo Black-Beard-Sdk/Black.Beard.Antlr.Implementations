@@ -65,38 +65,6 @@ namespace Bb.Parsers
 
         }
 
-        public static AlternativeTreeRuleItemList ResolveAllCombinationsWithoutOptional(this AlternativeTreeRuleItemList self)
-        {
-
-            List<TreeRuleItem> possibilites2 = new List<TreeRuleItem>();
-
-            var spliterVisitor = new SpliterOnOptionalVisitor();
-            var cleanDuplicated = new RemoveDuplicatedRulesBuilderVisitor();
-            var visitor3 = new RemoveOptionalsBuilderVisitor();
-
-            foreach (AlternativeTreeRuleItem item in self)
-            {
-                var o = visitor3.Visit(item.Item);
-                var possibilites = o.Accept(spliterVisitor);
-                possibilites2.AddRange(cleanDuplicated.Visit(possibilites));
-            }
-
-            var possibilites3 = new AlternativeTreeRuleItemList(possibilites2.Count);
-            HashSet<string> names = new HashSet<string>();
-
-            foreach (var p1 in possibilites2)
-            {
-
-                var txt = p1.ToString();
-                if (!string.IsNullOrEmpty(txt) && names.Add(txt))
-                    possibilites3.Add(p1);
-
-            }
-
-            return possibilites3;
-
-        }
-
         public static AlternativeTreeRuleItemList ResolveAllCombinationsWithoutOptional(this AlternativeTreeRuleItem item)
         {
 

@@ -65,7 +65,7 @@ namespace Bb.SqlServer.Asts
             }
         }
         
-        public static AstBreakStatement Null?()
+        public static AstBreakStatement? Null()
         {
             return null;
         }
@@ -132,7 +132,7 @@ namespace Bb.SqlServer.Asts
             }
         }
         
-        public static AstContinueStatement Null?()
+        public static AstContinueStatement? Null()
         {
             return null;
         }
@@ -199,7 +199,7 @@ namespace Bb.SqlServer.Asts
             }
         }
         
-        public static AstEmptyStatement Null?()
+        public static AstEmptyStatement? Null()
         {
             return null;
         }
@@ -266,7 +266,7 @@ namespace Bb.SqlServer.Asts
             }
         }
         
-        public static AstAlterAssemblyFromClauseStart Null?()
+        public static AstAlterAssemblyFromClauseStart? Null()
         {
             return null;
         }
@@ -333,7 +333,7 @@ namespace Bb.SqlServer.Asts
             }
         }
         
-        public static AstAlterAssemblyDrop Null?()
+        public static AstAlterAssemblyDrop? Null()
         {
             return null;
         }
@@ -400,7 +400,7 @@ namespace Bb.SqlServer.Asts
             }
         }
         
-        public static AstNetworkFileStart Null?()
+        public static AstNetworkFileStart? Null()
         {
             return null;
         }
@@ -467,7 +467,7 @@ namespace Bb.SqlServer.Asts
             }
         }
         
-        public static AstFileDirectoryPathSeparator Null?()
+        public static AstFileDirectoryPathSeparator? Null()
         {
             return null;
         }
@@ -554,7 +554,7 @@ namespace Bb.SqlServer.Asts
             }
         }
         
-        public static AstLocalDrive Null?()
+        public static AstLocalDrive? Null()
         {
             return null;
         }
@@ -621,7 +621,7 @@ namespace Bb.SqlServer.Asts
             }
         }
         
-        public static AstMirroringPartner Null?()
+        public static AstMirroringPartner? Null()
         {
             return null;
         }
@@ -688,7 +688,7 @@ namespace Bb.SqlServer.Asts
             }
         }
         
-        public static AstMirroringWitness Null?()
+        public static AstMirroringWitness? Null()
         {
             return null;
         }
@@ -755,7 +755,7 @@ namespace Bb.SqlServer.Asts
             }
         }
         
-        public static AstWitnessPartnerEqual Null?()
+        public static AstWitnessPartnerEqual? Null()
         {
             return null;
         }
@@ -842,7 +842,7 @@ namespace Bb.SqlServer.Asts
             }
         }
         
-        public static AstEmptyValue Null?()
+        public static AstEmptyValue? Null()
         {
             return null;
         }
@@ -929,7 +929,7 @@ namespace Bb.SqlServer.Asts
             }
         }
         
-        public static AstIpv4 Null?()
+        public static AstIpv4? Null()
         {
             return null;
         }
@@ -1016,7 +1016,7 @@ namespace Bb.SqlServer.Asts
             }
         }
         
-        public static AstIpv6 Null?()
+        public static AstIpv6? Null()
         {
             return null;
         }
@@ -1123,7 +1123,7 @@ namespace Bb.SqlServer.Asts
             }
         }
         
-        public static AstFloat Null?()
+        public static AstFloat? Null()
         {
             return null;
         }
@@ -1230,7 +1230,7 @@ namespace Bb.SqlServer.Asts
             }
         }
         
-        public static AstDecimal Null?()
+        public static AstDecimal? Null()
         {
             return null;
         }
@@ -1317,7 +1317,7 @@ namespace Bb.SqlServer.Asts
             }
         }
         
-        public static AstIdSimple Null?()
+        public static AstIdSimple? Null()
         {
             return null;
         }
@@ -1404,7 +1404,7 @@ namespace Bb.SqlServer.Asts
             }
         }
         
-        public static AstBinary Null?()
+        public static AstBinary? Null()
         {
             return null;
         }
@@ -1491,7 +1491,7 @@ namespace Bb.SqlServer.Asts
             }
         }
         
-        public static AstLocalId Null?()
+        public static AstLocalId? Null()
         {
             return null;
         }
@@ -1578,7 +1578,7 @@ namespace Bb.SqlServer.Asts
             }
         }
         
-        public static AstStringtext Null?()
+        public static AstStringtext? Null()
         {
             return null;
         }
@@ -1645,7 +1645,7 @@ namespace Bb.SqlServer.Asts
             }
         }
         
-        public static AstParameter Null?()
+        public static AstParameter? Null()
         {
             return null;
         }
@@ -1712,7 +1712,7 @@ namespace Bb.SqlServer.Asts
             }
         }
         
-        public static AstStarAsterisk Null?()
+        public static AstStarAsterisk? Null()
         {
             return null;
         }
