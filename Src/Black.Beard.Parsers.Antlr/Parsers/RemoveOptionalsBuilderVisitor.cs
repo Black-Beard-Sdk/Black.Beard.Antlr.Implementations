@@ -48,9 +48,9 @@
                 p.Add(result);
                 p.Add(TreeRuleItem.Default());
 
-                result = new TreeRuleItem() 
+                result = new TreeRuleItem()
                 {
-                    IsBlock = true 
+                    IsBlock = true
                 };
                 result.Add(p);
 
@@ -79,9 +79,9 @@
                 p.Add(result);
                 p.Add(TreeRuleItem.Default());
 
-                result = new TreeRuleItem() 
+                result = new TreeRuleItem()
                 {
-                    IsBlock = true 
+                    IsBlock = true
                 };
                 result.Add(p);
 
@@ -96,31 +96,30 @@
 
             var result = i.Clone();
 
-            //if (!i.IsLast && this._alternatives > 0)
-            //{
-            //    if (i.Occurence.Optional)
-            //    {
 
-            //        var p = new TreeRuleItem()
-            //        {
-            //            IsAlternative = true,
-            //            Origin = i.Origin,
-            //            Label = i.Label,
-            //        };
+            if (i.Occurence.Optional)
+            {
 
-            //        result.Occurence = result.Occurence.CloneNoOptional();
-            //        p.Add(result);
-            //        p.Add(TreeRuleItem.Default());
+                var p = new TreeRuleItem()
+                {
+                    IsAlternative = true,
+                    Origin = i.Origin,
+                    //Label = i.Label,
+                };
 
-            //        result = new TreeRuleItem() 
-            //        {
-            //            IsBlock = true 
-            //        };
+                result.Occurence = result.Occurence.CloneNoOptional();
+                p.Add(result);
+                p.Add(TreeRuleItem.Default());
 
-            //        result.Add(p);
+                result = new TreeRuleItem()
+                {
+                    IsBlock = true
+                };
 
-            //    }
-            //}
+                result.Add(p);
+
+            }
+
             return result;
 
         }

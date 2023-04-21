@@ -189,13 +189,13 @@ namespace Generate.Scripts
                                      //}
                                      //else
                                      //{
-                                         foreach (var item in alternative)
-                                             if (item.WhereRuleOrIdentifiers())
-                                             {
-                                                 var c = "list".Var().Call("Get", new string[] { item.Type() }, i.AsConstant());
-                                                 args.Add(c);
-                                                 i++;
-                                             }
+                                     foreach (var item in alternative)
+                                         if (item.WhereRuleOrIdentifiers())
+                                         {
+                                             var c = "list".Var().Call("Get", new string[] { item.Type() }, i.AsConstant());
+                                             args.Add(c);
+                                             i++;
+                                         }
                                      //}
 
                                      string typename = "Ast" + CodeHelper.FormatCsharp(ast.Name.Text);
@@ -239,16 +239,16 @@ namespace Generate.Scripts
                                      //}
                                      //else
                                      //{
-                                         int i = 0;
-                                         foreach (var item in alternative)
+                                     int i = 0;
+                                     foreach (var item in alternative)
+                                     {
+                                         if (item.WhereRuleOrIdentifiers())
                                          {
-                                             if (item.WhereRuleOrIdentifiers())
-                                             {
-                                                 var c = "list".Var().Call("Get", new string[] { item.Type() }, i.AsConstant());
-                                                 args.Add(c);
-                                                 i++;
-                                             }
+                                             var c = "list".Var().Call("Get", new string[] { item.Type() }, i.AsConstant());
+                                             args.Add(c);
+                                             i++;
                                          }
+                                     }
                                      //}
 
 
@@ -258,7 +258,7 @@ namespace Generate.Scripts
                                          var t = typename + "." + typename + (alt.AlternativeIdentifier).ToString();
                                          _t.Return(CodeHelper.Create(t.AsType(), args.ToArray()));
                                      });
-                                     
+
 
                                  }
                                  b.Statements.Return(CodeHelper.Null());
@@ -285,35 +285,21 @@ namespace Generate.Scripts
                                     var alternative = alt.Item;
                                     var l = new List<(string, bool, bool, int, string)>(alternative.Count + 1);
 
-                                    //if (alternative.Count == 0)
-                                    //{
-                                    //    var occurence = alternative.Occurence;
-                                    //    if (alternative.WhereRuleOrIdentifiers())
-                                    //    {
-                                    //        var type = alternative.Type();
-                                    //        l.Add((type, occurence.Optional, occurence.Value == OccurenceEnum.Any, alt.AlternativeIdentifier));
-                                    //    }
-                                    //    else
-                                    //    {
-                                    //        //l.Add(("null", occurence.Optional, occurence.Value == OccurenceEnum.Any));
-                                    //    }
-                                    //}
-                                    //else
-                                    //{
-                                        foreach (TreeRuleItem item in alternative)
+
+                                    foreach (TreeRuleItem item in alternative)
+                                    {
+                                        var occurence = item.Occurence;
+                                        if (item.WhereRuleOrIdentifiers())
                                         {
-                                            var occurence = item.Occurence;
-                                            if (item.WhereRuleOrIdentifiers())
-                                            {
-                                                var type = item.Type();
-                                                l.Add((type, occurence.Optional, occurence.Value == OccurenceEnum.Any, alt.AlternativeIdentifier, item.Name.Trim()));
-                                            }
-                                            else
-                                            {
-                                                // l.Add(("object", occurence.Optional, occurence.Value == OccurenceEnum.Any));
-                                            }
+                                            var type = item.Type();
+                                            l.Add((type, occurence.Optional, occurence.Value == OccurenceEnum.Any, alt.AlternativeIdentifier, item.Name.Trim()));
                                         }
-                                    //}
+                                        else
+                                        {
+                                            // l.Add(("object", occurence.Optional, occurence.Value == OccurenceEnum.Any));
+                                        }
+                                    }
+
                                     if (l.Count > 0)
                                         alternatives.Add(l);
 
@@ -401,10 +387,10 @@ namespace Generate.Scripts
 
                         .Field(field =>
                         {
-                           
+
                             field.Name("_ruleValue")
                             .Type(typeof(string))
-                            .Attribute(MemberAttributes.Private | MemberAttributes.Static )
+                            .Attribute(MemberAttributes.Private | MemberAttributes.Static)
                             .Value((a) =>
                             {
                                 return ast.Alternatives.ToString().Trim();
@@ -439,159 +425,15 @@ namespace Generate.Scripts
                                     .HasSet(false)
                                     ;
                         })
-                        
+
                         .Make(t =>
                         {
-
-                            HashSet<string> _h = new HashSet<string>();
-                            List<CodeMemberMethod> methods = new List<CodeMemberMethod>();
-                            var alternatives = ctx.Variables.Get<AlternativeTreeRuleItemList>("combinaisons");
-
-                            int i = 0;
-                            foreach (var alt in alternatives)
-                            {
-                                var alternative = alt.Item;
-                                i++;
-
-                                StringBuilder uniqeConstraintKeyMethod = new StringBuilder();
-                                var name = CodeHelper.FormatCsharp(ast.Name.Text);
-                                var tname = ("Ast" + CodeHelper.FormatCsharp(ast.Name.Text));
-                                var tname2 = ("Ast" + CodeHelper.FormatCsharp(ast.Name.Text));
-                                if (alternatives.Count > 1)
-                                {
-                                    tname2 = tname + "." + tname + (i).ToString();
-                                }
-                                var t1 = tname.AsType();
-                                var t3 = tname2.AsType();
-                                List<string> arguments = new List<string>();
-
-                                var method1 = "New".AsMethod(t1, MemberAttributes.Public | MemberAttributes.Static)
-                                    .BuildDocumentation(ast.Name.Text, alternative, ctx)
-                                    ;
-                                method1.Parameters.Add(new CodeParameterDeclarationExpression("ParserRuleContext".AsType(), "ctx"));
-
-                                if (alternative.Count > 0)
-                                    foreach (var itemAlt in alternative)
-                                        itemAlt.BuildStaticMethod(ast, method1, arguments, uniqeConstraintKeyMethod);
-                                else
-                                    alternative.BuildStaticMethod(ast, method1, arguments, uniqeConstraintKeyMethod);
-
-                                if (method1.Parameters.Count > 0)
-                                {
-
-                                    var noDuplicateKey = uniqeConstraintKeyMethod.ToString();
-
-                                    if (_h.Add(noDuplicateKey))
-                                    {
-                                        methods.Add(method1);
-                                        List<CodeExpression> _argu = new List<CodeExpression>()
-                                            {
-                                                "ctx".Var()
-                                            };
-
-                                        foreach (var item in arguments)
-                                            _argu.Add(item.Var());
-
-                                        if (alternatives.Count == 1)
-                                        {
-                                            method1.Statements.Add(CodeHelper.DeclareAndCreate("result", t3, _argu.ToArray()));
-                                        }
-                                        else
-                                        {
-                                            string typename = ast.Type();
-                                            var t2 = typename + "." + typename + (i).ToString();
-                                            method1.Statements.Add(CodeHelper.DeclareAndCreate("result", t2.AsType(), _argu.ToArray()));
-
-
-                                        }
-
-                                        method1.Statements.Return("result".Var());
-                                    }
-
-                                }
-
-                            }
-
-                            foreach (var item in methods)
-                            {
-                                t.Members.Add(item);
-                            }
-
+                            Generate(ctx, ast, t, true);
                         })
 
                         .Make(t =>
                         {
-
-                            HashSet<string> _h = new HashSet<string>();
-                            List<CodeMemberMethod> methods = new List<CodeMemberMethod>();
-                            var alternatives = ctx.Variables.Get<AlternativeTreeRuleItemList>("combinaisons");
-
-                            int i = 0;
-                            foreach (var alt in alternatives)
-                            {
-                                var alternative = alt.Item;
-                                i++;
-
-                                StringBuilder uniqeConstraintKeyMethod = new StringBuilder();
-                                var name = CodeHelper.FormatCsharp(ast.Name.Text);
-                                var tname = ("Ast" + CodeHelper.FormatCsharp(ast.Name.Text));
-                                var tname2 = ("Ast" + CodeHelper.FormatCsharp(ast.Name.Text));
-                                if (alternatives.Count > 1)
-                                {
-                                    tname2 = tname + "." + tname + (i).ToString();
-                                }
-                                var t1 = tname.AsType();
-                                var t3 = tname2.AsType();
-                                List<string> arguments = new List<string>();
-
-                                var method1 = "New".AsMethod(t1, MemberAttributes.Public | MemberAttributes.Static)
-                                    .BuildDocumentation(ast.Name.Text, alternative, ctx)
-                                    ;
-
-                                if (alternative.Count > 0)
-                                    foreach (var itemAlt in alternative)
-                                        itemAlt.BuildStaticMethod(ast, method1, arguments, uniqeConstraintKeyMethod);
-                                else
-                                    alternative.BuildStaticMethod(ast, method1, arguments, uniqeConstraintKeyMethod);
-
-                                if (method1.Parameters.Count > 0)
-                                {
-
-                                    var noDuplicateKey = uniqeConstraintKeyMethod.ToString();
-
-                                    if (_h.Add(noDuplicateKey))
-                                    {
-                                        methods.Add(method1);
-                                        List<CodeExpression> _argu = new List<CodeExpression>();
-
-                                        foreach (var item in arguments)
-                                            _argu.Add(item.Var());
-
-                                        if (alternatives.Count == 1)
-                                        {
-                                            method1.Statements.Add(CodeHelper.DeclareAndCreate("result", t3, _argu.ToArray()));
-                                        }
-                                        else
-                                        {
-                                            string typename = ast.Type();
-                                            var t2 = typename + "." + typename + (i).ToString();
-                                            method1.Statements.Add(CodeHelper.DeclareAndCreate("result", t2.AsType(), _argu.ToArray()));
-
-
-                                        }
-
-                                        method1.Statements.Return("result".Var());
-                                    }
-
-                                }
-
-                            }
-
-                            foreach (var item in methods)
-                            {
-                                t.Members.Add(item);
-                            }
-
+                            Generate(ctx, ast, t, false);
                         })
 
                         .Method(method =>
@@ -599,7 +441,7 @@ namespace Generate.Scripts
                             var type = ("Ast" + CodeHelper.FormatCsharp(ast.Name.Text));
                             method
                              .Name(g => "Null")
-                             .Return(() => type)
+                             .Return(() => type + "?")
                              .Attribute(MemberAttributes.Static | MemberAttributes.Public)
                              .Body(b => b.Statements.Return(CodeHelper.Null()))
                              ;
@@ -695,7 +537,7 @@ namespace Generate.Scripts
                                 .Ctor((f) =>
                                 {
 
-                                    f.Attribute(MemberAttributes.FamilyAndAssembly)                                     
+                                    f.Attribute(MemberAttributes.FamilyAndAssembly)
                                      .CallBase("Position.Default");
 
                                     if (alternative2.Count == 0)
@@ -863,6 +705,98 @@ namespace Generate.Scripts
             });
 
         }
+
+        private static void Generate(Context ctx, AstRule ast, CodeTypeDeclaration t, bool withCtx = false)
+        {
+
+            HashSet<string> _h = new HashSet<string>();
+            List<CodeMemberMethod> methods = new List<CodeMemberMethod>();
+            var alternatives = ctx.Variables.Get<AlternativeTreeRuleItemList>("combinaisons");
+
+            int i = 0;
+            foreach (var alt1 in alternatives)
+            {
+
+                var i2 = alt1.ResolveAllCombinationsWithoutOptional();
+                var i3 = i2.RemoveNonDynamic();
+
+                foreach (var alt in i3)
+                {
+
+                    var alternative = alt.Item;
+                    i++;
+
+                    StringBuilder uniqeConstraintKeyMethod = new StringBuilder();
+                    var name = CodeHelper.FormatCsharp(ast.Name.Text);
+                    var tname = ("Ast" + CodeHelper.FormatCsharp(ast.Name.Text));
+                    var tname2 = ("Ast" + CodeHelper.FormatCsharp(ast.Name.Text));
+                    if (alternatives.Count > 1)
+                    {
+                        tname2 = tname + "." + tname + (i).ToString();
+                    }
+                    var t1 = tname.AsType();
+                    var t3 = tname2.AsType();
+                    List<string> arguments = new List<string>();
+
+                    var method1 = "New".AsMethod(t1, MemberAttributes.Public | MemberAttributes.Static)
+                        .BuildDocumentation(ast.Name.Text, alternative, ctx)
+                        ;
+
+                    if (withCtx)
+                        method1.Parameters.Add(new CodeParameterDeclarationExpression("ParserRuleContext".AsType(), "ctx"));
+
+                    if (alternative.Count > 0)
+                        foreach (var itemAlt in alternative)
+                            itemAlt.BuildStaticMethod(ast, method1, arguments, uniqeConstraintKeyMethod);
+                    else
+                        alternative.BuildStaticMethod(ast, method1, arguments, uniqeConstraintKeyMethod);
+
+                    if (method1.Parameters.Count > 0)
+                    {
+
+                        var noDuplicateKey = uniqeConstraintKeyMethod.ToString();
+
+                        if (_h.Add(noDuplicateKey))
+                        {
+
+                            methods.Add(method1);
+                            List<CodeExpression> _argu = new List<CodeExpression>();
+
+                            if (withCtx)
+                            {
+                                _argu.Add("ctx".Var());
+                            }
+
+                            foreach (var item in arguments)
+                                _argu.Add(item.Var());
+
+                            if (alternatives.Count == 1)
+                            {
+                                method1.Statements.Add(CodeHelper.DeclareAndCreate("result", t3, _argu.ToArray()));
+                            }
+                            else
+                            {
+                                string typename = ast.Type();
+                                var t2 = typename + "." + typename + (i).ToString();
+                                method1.Statements.Add(CodeHelper.DeclareAndCreate("result", t2.AsType(), _argu.ToArray()));
+                            }
+
+                            method1.Statements.Return("result".Var());
+
+                        }
+
+                    }
+
+                }
+
+            }
+
+            foreach (var item in methods)
+                if (!CodedomHelper.MemberExists(t.Members, item))
+                    t.Members.Add(item);
+
+        }
+
 
 
     }

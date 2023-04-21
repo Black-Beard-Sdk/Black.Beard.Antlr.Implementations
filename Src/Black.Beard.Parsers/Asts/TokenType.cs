@@ -1,7 +1,6 @@
 ﻿namespace Bb.Asts
 {
 
-
     public enum TokenTypeEnum
     {
         Other,

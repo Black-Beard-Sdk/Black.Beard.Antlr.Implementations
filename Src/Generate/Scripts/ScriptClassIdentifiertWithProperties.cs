@@ -413,7 +413,7 @@ namespace Generate.Scripts
                                   var type = ("Ast" + CodeHelper.FormatCsharp(ast.Name.Text));
                                   method
                                    .Name(g => "Null")
-                                   .Return(() => type)
+                                   .Return(() => type + "?")
                                    .Attribute(MemberAttributes.Static | MemberAttributes.Public)
                                    .Body(b => b.Statements.Return(CodeHelper.Null()))
                                    ;

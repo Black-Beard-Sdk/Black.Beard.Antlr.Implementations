@@ -287,42 +287,6 @@ namespace Generate.Scripts
 
         }
 
-        //public static AlternativeTreeRuleItemList GetAlternativesWithOnlyRules(this AstRule ast, Context ctx)
-        //{
-        //    AlternativeTreeRuleItemList _results = new AlternativeTreeRuleItemList();
-        //    foreach (var alternative in ast.Alternatives)
-        //    {
-        //        var rule = alternative.GetRules().FirstOrDefault();
-        //        if (rule != null)
-        //        {
-        //            var ru1 = ctx.RootAst.Rules.ResolveByName(rule.Name.Text) as AstRule;
-        //            if (ru1 != null)
-        //            {
-        //                if (ru1.Configuration.Config.Generate)
-        //                {
-        //                    AlternativeTreeRuleItemList allCombinations = ru1.ResolveAllCombinations();
-        //                    foreach (var item in allCombinations)
-        //                        _results.Add(item);
-        //                }
-        //                else
-        //                {
-        //                    var res = GetAlternativesWithOnlyRules(ru1, ctx);
-        //                    _results.AddRange(res);
-        //                }
-        //            }
-        //        }
-        //    }
-        //    return _results;
-        //}
-
-        //public static IEnumerable<TreeRuleItem> GetAlternatives(this AstRule ast, Context ctx)
-        //{
-        //    List<TreeRuleItem> _results = new List<TreeRuleItem>();
-        //    foreach (var alternative in ast.Alternatives)
-        //        _results.AddRange(alternative.ResolveAllCombinations());
-        //    return _results;
-        //}
-
         public static string ResolveKey(this TreeRuleItem item)
         {
 
@@ -441,7 +405,6 @@ namespace Generate.Scripts
         public static void BuildStaticMethod(this TreeRuleItem itemAst, AstRule ast, CodeMemberMethod method, List<string> arguments, StringBuilder uniqeConstraintKeyMethod)
         {
 
-
             var dic = new HashSet<string>();
             foreach (CodeParameterDeclarationExpression parameter in method.Parameters)
                 dic.Add(parameter.Name);
@@ -450,7 +413,6 @@ namespace Generate.Scripts
             {
 
                 string name = null;
-                CodeTypeReference argumentTypeName = null;
                 string varName = null;
 
                 var itemResult = ast.ResolveByName(itemAst.ResolveKey());
@@ -475,8 +437,7 @@ namespace Generate.Scripts
 
                 if (name != null)
                 {
-                    argumentTypeName = new CodeTypeReference(name);
-                    
+                    var argumentTypeName = new CodeTypeReference(name);
                     method.Parameters.Add(new CodeParameterDeclarationExpression(argumentTypeName, varName));
                     uniqeConstraintKeyMethod.Append(name.Trim('?'));
                     arguments.Add(varName);
@@ -486,113 +447,6 @@ namespace Generate.Scripts
 
             if (itemAst.WhereRuleOrIdentifiers())
                 act(itemAst);
-
-        }
-
-
-        public static bool IsConstant(this AstRule ast)
-        {
-            var l = ast.Select(c => c.Type == nameof(AstTerminal)).FirstOrDefault();
-            if (l != null)
-            {
-                var m = l.Select(c => c.Type == "TOKEN_REF").FirstOrDefault();
-                if (m != null)
-                {
-                    var t = m.Link.TerminalKind;
-                    if (t == TokenTypeEnum.Constant)
-                        return true;
-
-                    if (t == TokenTypeEnum.Ponctuation)
-                        return true;
-
-                    if (t == TokenTypeEnum.Operator)
-                        return true;
-
-                    else
-                    {
-
-                    }
-                }
-            }
-
-            return false;
-
-        }
-
-        public static bool IsDynamic(this AstRule ast)
-        {
-            var l = ast.Select(c => c.Type == nameof(AstTerminal)).FirstOrDefault();
-            if (l != null)
-            {
-                var m = l.Select(c => c.Type == "TOKEN_REF").FirstOrDefault();
-                if (m != null)
-                {
-                    var t = m.Link.TerminalKind;
-                    switch (t)
-                    {
-
-
-                        case TokenTypeEnum.Identifier:
-                        case TokenTypeEnum.Boolean:
-                        case TokenTypeEnum.String:
-                        case TokenTypeEnum.Decimal:
-                        case TokenTypeEnum.Int:
-                        case TokenTypeEnum.Real:
-                        case TokenTypeEnum.Hexa:
-                        case TokenTypeEnum.Binary:
-                        case TokenTypeEnum.Pattern:
-                            return true;
-
-                        case TokenTypeEnum.Operator:
-                        case TokenTypeEnum.Other:
-                        case TokenTypeEnum.Constant:
-                        case TokenTypeEnum.Comment:
-                        case TokenTypeEnum.Ponctuation:
-                        default:
-                            break;
-                    }
-                }
-            }
-
-            return false;
-
-        }
-
-
-
-        public static bool WhereRuleOrIdentifiers(this TreeRuleItem item)
-        {
-
-            if (item.IsTerminal)
-            {
-                var link = item.Origin.Link;
-                switch (link.TerminalKind)
-                {
-                    case TokenTypeEnum.Identifier:
-                    case TokenTypeEnum.Boolean:
-                    case TokenTypeEnum.String:
-                    case TokenTypeEnum.Decimal:
-                    case TokenTypeEnum.Int:
-                    case TokenTypeEnum.Real:
-                    case TokenTypeEnum.Hexa:
-                    case TokenTypeEnum.Binary:
-                    case TokenTypeEnum.Pattern:
-                        return true;
-
-                    case TokenTypeEnum.Constant:
-                    case TokenTypeEnum.Ponctuation:
-                    case TokenTypeEnum.Operator:
-                    case TokenTypeEnum.Comment:
-                    case TokenTypeEnum.Other:
-                    default:
-                        return false;
-                }
-
-            }
-            else if (item.IsRuleRef)
-                return true;
-
-            return true;
 
         }
 
