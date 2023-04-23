@@ -49,7 +49,7 @@ namespace Generate.HelperScripts
                                    .Body(b =>
                                    {
 
-                                       GenerateCodeForIdentifierVisitor.GetExpression(ast, b.Statements);
+                                    var o = GenerateCodeForIdentifierVisitor.GetExpression(ast);
 
                                    });
                               })
