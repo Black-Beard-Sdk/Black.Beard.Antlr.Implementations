@@ -60,6 +60,7 @@ sql_clause
     | select_statement_standalone
     | update_statement
     
+    | alter_queue
     // Data Definition Language: https://msdn.microsoft.com/en-us/library/ff848799.aspx)
     | alter_application_role
     | alter_assembly
@@ -76,7 +77,6 @@ sql_clause
     | alter_database
     | alter_db_role
     | alter_endpoint
-    | create_or_alter_event_session
     | alter_external_data_source
     | alter_external_library
     | alter_external_resource_pool
@@ -108,6 +108,11 @@ sql_clause
     | alter_user
     | alter_user_azure_sql
     | alter_workload_group
+
+
+    | create_contract
+    | create_queue
+    | create_or_alter_event_session
     | create_application_role
     | create_assembly
     | create_asymmetric_key
@@ -155,6 +160,7 @@ sql_clause
     | create_xml_schema_collection
     | create_partition_function
     | create_partition_scheme
+
     | drop_aggregate
     | drop_application_role
     | drop_assembly
@@ -211,6 +217,7 @@ sql_clause
     | drop_symmetric_key
     | drop_synonym
     | drop_table
+
     // https://docs.microsoft.com/en-us/sql/t-sql/statements/drop-trigger-transact-sql
     | drop_dml_trigger
     | drop_ddl_trigger
@@ -251,9 +258,6 @@ sql_clause
     | send_conversation
     | waitfor_conversation
 
-    | create_contract
-    | create_queue
-    | alter_queue
     | kill_statement
     | message_statement
     | security_statement
@@ -1450,7 +1454,7 @@ alter_login_sql_server_settings
     :  pwd_settings? 
        old_pwd_strategies? 
       (DEFAULT_DATABASE EQUAL database_id)? 
-      (DEFAULT_LANGUAGE EQUAL language_id)?  
+      default_language_set?  
       (NAME EQUAL login_id)? 
       (CHECK_POLICY EQUAL check_policy=on_off )? 
       (CHECK_EXPIRATION EQUAL check_expiration=on_off )? 
@@ -1468,7 +1472,7 @@ create_login_sql_server_settings
     (PASSWORD EQUAL pwd_value pwd_strategies? )?
     (COMMA? SID EQUAL sid=binary_)?
     (COMMA? DEFAULT_DATABASE EQUAL database_id)?
-    (COMMA? DEFAULT_LANGUAGE EQUAL language_id)?
+    (COMMA? default_language_set)?
     (COMMA? CHECK_EXPIRATION EQUAL check_expiration=on_off )?
     (COMMA? CHECK_POLICY EQUAL check_policy=on_off )?
     (COMMA? CREDENTIAL EQUAL credential_id)?
@@ -1476,7 +1480,7 @@ create_login_sql_server_settings
 
 create_login_sql_server_from
     :
-      WINDOWS (WITH (COMMA? DEFAULT_DATABASE EQUAL database_id)? (COMMA? DEFAULT_LANGUAGE EQUAL default_language=stringtext)? )
+      WINDOWS (WITH (COMMA? DEFAULT_DATABASE EQUAL database_id)? (COMMA? default_language_set)? )
     | CERTIFICATE certificate_id
     | ASYMMETRIC KEY asym_key_id
         
@@ -1947,7 +1951,7 @@ server_config_buffer_pool_ext
     : BUFFER POOL EXTENSION 
     (
           ON LR_BRACKET 
-          FILENAME EQUAL filename=stringtext 
+          filename_set
           COMMA SIZE EQUAL size=decimal size_unity 
           RR_BRACKET 
         | OFF 
@@ -2044,7 +2048,7 @@ alter_user_item
     | DEFAULT_SCHEMA EQUAL schema_id_null
     | LOGIN EQUAL login_id 
     | password_setting old_pwd+ 
-    | DEFAULT_LANGUAGE EQUAL language_setting_value
+    | default_language_set
     | ALLOW_ENCRYPTED_VALUE_MODIFICATIONS EQUAL on_off
     ;
 
@@ -2097,7 +2101,7 @@ default_schema_set : DEFAULT_SCHEMA EQUAL schema_identifier;
 
 user_setting
     : default_schema_set
-    | DEFAULT_LANGUAGE EQUAL language_setting_value
+    | default_language_set
     | SID EQUAL binary_
     | ALLOW_ENCRYPTED_VALUE_MODIFICATIONS EQUAL on_off                    
     ;
@@ -2371,18 +2375,16 @@ output_dml_list_elem
 // https://msdn.microsoft.com/en-ie/library/ms176061.aspx
 create_database
     : CREATE DATABASE database_id
-        database_containment?
+        containment_set?
         database_on_primary?
         database_on_log?
-        database_collate?
-        database_create_with?
+        collate?
+        (WITH create_database_option_list)?
     ;
 
-database_containment : CONTAINMENT EQUAL none_partial;
-database_on_primary : ON PRIMARY? database_file_spec_list;
-database_on_log : ON PRIMARY? database_file_spec_list;
-database_collate : COLLATE collation_id;
-database_create_with : WITH create_database_option_list;
+database_on_primary : ON PRIMARY? database_files;
+database_on_log : LOG ON database_files;
+collate : COLLATE collation_id;
 
 // https://msdn.microsoft.com/en-us/library/ms188783.aspx
 create_index
@@ -2820,7 +2822,7 @@ alter_database
 
 alter_database_new_infos
     : MODIFY NAME EQUAL database_id
-    | COLLATE collation_id
+    | collate
     | SET database_optionspec (WITH termination)?
     | add_or_modify_files
     | add_or_modify_filegroups
@@ -2871,7 +2873,7 @@ filegroup_updatability_option
 database_optionspec
     : auto_option
     | change_tracking_set
-    | containment_option
+    | containment_set
     | cursor_option
     | database_mirroring_option
     | date_correlation_optimization_option
@@ -2880,7 +2882,7 @@ database_optionspec
     | db_update_option
     | db_user_access_option
     | delayed_durability_option
-    | external_access_option
+    | db_option
     | database_filestream
     | hadr_options
     | mixed_page_allocation_option
@@ -2916,7 +2918,7 @@ change_tracking_option_list
     | CHANGE_RETENTION EQUAL period
     ;
 
-containment_option
+containment_set
     : CONTAINMENT EQUAL none_partial
     ;
 
@@ -3028,16 +3030,6 @@ db_encryption_option
     ;
 
 delayed_durability_option : DELAYED_DURABILITY EQUAL delayed_durability;
-
-external_access_option
-    : DB_CHAINING on_off
-    | TRUSTWORTHY on_off
-    | DEFAULT_LANGUAGE EQUAL language_setting
-    | DEFAULT_FULLTEXT_LANGUAGE EQUAL language_setting
-    | NESTED_TRIGGERS EQUAL on_off
-    | TRANSFORM_NOISE_WORDS EQUAL on_off
-    | TWO_DIGIT_YEAR_CUTOFF EQUAL decimal
-    ;
 
 language_setting : id_or_string;
 
@@ -3703,7 +3695,7 @@ column_definition
 
 column_definition_element
     : FILESTREAM
-    | COLLATE collation_id
+    | collate
     | SPARSE
     | MASKED WITH LR_BRACKET FUNCTION EQUAL mask_function=stringtext RR_BRACKET
     | (CONSTRAINT constraint_id)? DEFAULT  constant_expr=expression
@@ -4796,28 +4788,49 @@ window_frame_following
     | decimal FOLLOWING
     ;
 
+create_database_option_list : create_database_option ( COMMA create_database_option )*;
 create_database_option
     : FILESTREAM database_filestream_options
-    | DEFAULT_LANGUAGE EQUAL id_or_string
-    | DEFAULT_FULLTEXT_LANGUAGE EQUAL id_or_string
-    | NESTED_TRIGGERS EQUAL on_off
-    | TRANSFORM_NOISE_WORDS EQUAL on_off
-    | TWO_DIGIT_YEAR_CUTOFF EQUAL decimal
-    | DB_CHAINING on_off
-    | TRUSTWORTHY on_off
+    | db_chaining_set
+    | trustworthy_set
+    | default_language_set
+    | default_fulltext_language_set
+    | nested_triggers
+    | transform_noise_words
+    | two_digit_year_cutoff
+    ;
+
+db_chaining_set : DB_CHAINING on_off;
+trustworthy_set : TRUSTWORTHY on_off;
+default_language_set : DEFAULT_LANGUAGE EQUAL language_setting_value;
+default_fulltext_language_set : DEFAULT_FULLTEXT_LANGUAGE EQUAL language_setting;
+nested_triggers : NESTED_TRIGGERS EQUAL on_off;
+transform_noise_words : TRANSFORM_NOISE_WORDS EQUAL on_off;
+two_digit_year_cutoff : TWO_DIGIT_YEAR_CUTOFF EQUAL decimal;
+
+db_option
+    : db_chaining_set
+    | trustworthy_set
+    | default_language_set
+    | default_fulltext_language_set
+    | nested_triggers
+    | transform_noise_words
+    | two_digit_year_cutoff
     ;
 
 database_filestream_option
     : LR_BRACKET
      (
-         ( NON_TRANSACTED_ACCESS EQUAL off_read_only_full )
-         |
-         ( DIRECTORY_NAME EQUAL stringtext )
-     )
+          non_transacted_access_set
+        | directory_name_set
+      )
      RR_BRACKET
     ;
 
-database_file_spec
+directory_name_set : DIRECTORY_NAME EQUAL stringtext;
+non_transacted_access_set : EQUAL NON_TRANSACTED_ACCESS EQUAL off_read_only_full;
+
+database_file
     : file_group | file_spec
     ;
 
@@ -4831,15 +4844,20 @@ file_group
 
 file_spec
     : LR_BRACKET
-      NAME EQUAL id_or_string COMMA?
-      FILENAME EQUAL file = stringtext COMMA?
-      ( SIZE EQUAL size=file_size COMMA? )?
-      ( MAXSIZE EQUAL max_file_size_value COMMA? )?
-      ( FILEGROWTH EQUAL filegrowth=file_size COMMA? )?
+      name_set COMMA?
+      filename_set COMMA?
+      ( size_set COMMA? )?
+      ( maxsize_set COMMA? )?
+      ( filegrowth COMMA? )?
       RR_BRACKET
     ;
 
+name_set : NAME EQUAL id_or_string;
+filename_set : FILENAME EQUAL file = stringtext;
+size_set : SIZE EQUAL size=file_size;
+maxsize_set : MAXSIZE EQUAL max_file_size_value;
 max_file_size_value : file_size | UNLIMITED;
+filegrowth : FILEGROWTH EQUAL file_size;
 
 cursor_name
     : id_
@@ -6094,9 +6112,7 @@ create_index_options : WITH LR_BRACKET relational_index_options RR_BRACKET;
 
 relational_index_options : relational_index_option (COMMA relational_index_option)*;
 
-create_database_option_list : create_database_option ( COMMA create_database_option )*;
-
-database_file_spec_list : database_file_spec ( COMMA database_file_spec )*;
+database_files : database_file ( COMMA database_file )*;
 
 output_dml_list_elems : output_dml_list_elem (COMMA output_dml_list_elem)*;
 

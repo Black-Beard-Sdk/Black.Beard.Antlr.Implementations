@@ -3,15 +3,11 @@ using Bb.Asts;
 using Bb.Generators;
 using Bb.ParserConfigurations.Antlr;
 using Bb.Parsers;
-using Bb.Parsers.Antlr;
 using Bb.ParsersConfiguration.Ast;
-using Generate.Scripts;
-using System;
-using System.CodeDom;
-using System.Collections.Generic;
+using Generate.HelperScripts;
+using Generate.ModelsScripts;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace Generate
 {
@@ -19,7 +15,7 @@ namespace Generate
     public class Process
     {
 
-        public void Run(FileInfo antlrParser, Context ctx)
+        public void Run(FileInfo antlrParser, Context ctx, string strategy)
         {
 
             if (antlrParser.Exists)
@@ -35,17 +31,62 @@ namespace Generate
                 ctx.Configuration = LoadConfiguration(ctx);
                 PostTreatments(ctx);
 
-                var newConfiguration = Path.Combine(ctx.GrammarFolder, ctx.GrammarFile.Name + ".newConf");
-
-                new ScriptList("Models")
+                switch (strategy)
                 {
-                    Namespace = namespaceModels,
-                    
+
+                    case "models":
+                        ExecuteStrategy1(namespaceModels, namespaceParser, splitObjectOnDisk, ctx);
+                        break;
+
+                    case "helpers":
+                        ExecuteStrategy2(namespaceModels, namespaceParser, splitObjectOnDisk, ctx);
+                        break;
+
+                    default:
+                        break;
                 }
+
+
+                var newConfiguration = Path.Combine(ctx.GrammarFolder, ctx.GrammarFile.Name + ".newConf");
+                ctx.Configuration.Save(newConfiguration);
+
+            }
+
+        }
+
+        private static void ExecuteStrategy2(string namespaceModels, string namespaceParser, bool splitObjectOnDisk, Context ctx)
+        {
+
+            new ScriptList("Models")
+            {
+                Namespace = namespaceModels,
+
+            }
                 .Using("System")
                 .Using("Bb.Asts")
                 .Using("Bb.Parsers")
+                .Add<ScriptHelper>(null, a =>
+                {
+                    a.SplitObjectOnDisk = splitObjectOnDisk;
+                })
 
+
+                .Generate(ctx);
+
+        }
+
+
+        private static void ExecuteStrategy1(string namespaceModels, string namespaceParser, bool splitObjectOnDisk, Context ctx)
+        {
+
+            new ScriptList("Models")
+            {
+                Namespace = namespaceModels,
+
+            }
+                .Using("System")
+                .Using("Bb.Asts")
+                .Using("Bb.Parsers")
                 //.Add<ScriptClassBases>()
                 .Add<ScriptClassIdentifiers>(null, a =>
                 {
@@ -115,18 +156,11 @@ namespace Generate
                     a.Namespace = namespaceParser;
                     a.Using(namespaceModels);
                 })
-
                 .Add<ScriptTSqlVisitor2>("ScriptTSqlVisitor2", a => a.Namespace = namespaceParser)
                 //.Add<ScriptClassToString>()
-
                 .Add<ScriptInterfaceVisitor1>("IAstTSqlVisitor1")
                 //.Add<ScriptInterfaceVisitor2>("IAstTSqlVisitor2")
-
                 .Generate(ctx);
-
-                ctx.Configuration.Save(newConfiguration);
-
-            }
 
         }
 

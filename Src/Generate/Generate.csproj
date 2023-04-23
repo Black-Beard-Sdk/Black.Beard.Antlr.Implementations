@@ -8,10 +8,10 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="Scripts\ScriptClassBases.cs" />
-    <Compile Remove="Scripts\ScriptClassEnum.cs" />
-    <Compile Remove="Scripts\ScriptClassToString.cs" />
-    <Compile Remove="Scripts\ScriptInterfaceVisitor2.cs" />
+    <Compile Remove="ModelsScripts\ScriptClassBases.cs" />
+    <Compile Remove="ModelsScripts\ScriptClassEnum.cs" />
+    <Compile Remove="ModelsScripts\ScriptClassToString.cs" />
+    <Compile Remove="ModelsScripts\ScriptInterfaceVisitor2.cs" />
   </ItemGroup>
 
   <ItemGroup>

@@ -48,6 +48,7 @@ RULE sql_clause
 	 | insert_statement
 	 | select_statement_standalone
 	 | update_statement
+	 | alter_queue
 	 | alter_application_role
 	 | alter_assembly
 	 | alter_asymmetric_key
@@ -63,7 +64,6 @@ RULE sql_clause
 	 | alter_database
 	 | alter_db_role
 	 | alter_endpoint
-	 | create_or_alter_event_session
 	 | alter_external_data_source
 	 | alter_external_library
 	 | alter_external_resource_pool
@@ -95,6 +95,9 @@ RULE sql_clause
 	 | alter_user
 	 | alter_user_azure_sql
 	 | alter_workload_group
+	 | create_contract
+	 | create_queue
+	 | create_or_alter_event_session
 	 | create_application_role
 	 | create_assembly
 	 | create_asymmetric_key
@@ -231,9 +234,6 @@ RULE sql_clause
 	 | get_conversation
 	 | send_conversation
 	 | waitfor_conversation
-	 | create_contract
-	 | create_queue
-	 | alter_queue
 	 | kill_statement
 	 | message_statement
 	 | security_statement
@@ -2763,7 +2763,7 @@ RULE output_dml_list_elem
 
 RULE create_database 
 //** create_database
-	 : CREATE  DATABASE  database_id  database_containment?  database_on_primary?  database_on_log?  database_collate?  database_create_with?
+	 : CREATE  DATABASE  database_id  containment_set?  database_on_primary?  database_on_log?  collate?  (WITH  create_database_option_list)?
   **// 
 	GENERATE
 	INHERIT 
@@ -3572,7 +3572,7 @@ RULE database_optionspec
 //** database_optionspec
 	 : auto_option
 	 | change_tracking_set
-	 | containment_option
+	 | containment_set
 	 | cursor_option
 	 | database_mirroring_option
 	 | date_correlation_optimization_option
@@ -3581,7 +3581,7 @@ RULE database_optionspec
 	 | db_update_option
 	 | db_user_access_option
 	 | delayed_durability_option
-	 | external_access_option
+	 | db_option
 	 | database_filestream
 	 | hadr_options
 	 | mixed_page_allocation_option
@@ -3636,17 +3636,6 @@ RULE change_tracking_option_list
 	CALCULATED INHERIT "AstBnfRule"
 	TEMPLATE 
 	CALCULATED TEMPLATE _
-;
-
-RULE containment_option 
-//** containment_option
-	 : CONTAINMENT  EQUAL  none_partial
-  **// 
-	GENERATE
-	INHERIT 
-	CALCULATED INHERIT "AstBnfRule"
-	TEMPLATE 
-	CALCULATED TEMPLATE ClassWithProperties
 ;
 
 RULE cursor_option 
@@ -3889,23 +3878,6 @@ RULE delayed_durability_option
 	CALCULATED INHERIT "AstBnfRule"
 	TEMPLATE 
 	CALCULATED TEMPLATE ClassWithProperties
-;
-
-RULE external_access_option 
-//** external_access_option
-	 : DB_CHAINING  on_off
-	 | TRUSTWORTHY  on_off
-	 | DEFAULT_LANGUAGE  EQUAL  language_setting
-	 | DEFAULT_FULLTEXT_LANGUAGE  EQUAL  language_setting
-	 | NESTED_TRIGGERS  EQUAL  on_off
-	 | TRANSFORM_NOISE_WORDS  EQUAL  on_off
-	 | TWO_DIGIT_YEAR_CUTOFF  EQUAL  decimal
-  **// 
-	GENERATE
-	INHERIT 
-	CALCULATED INHERIT "AstBnfRule"
-	TEMPLATE 
-	CALCULATED TEMPLATE _
 ;
 
 RULE id_or_string 
@@ -4973,7 +4945,7 @@ RULE column_definition
 RULE column_definition_element 
 //** column_definition_element
 	 : FILESTREAM
-	 | COLLATE  collation_id
+	 | collate
 	 | SPARSE
 	 | MASKED  WITH  LR_BRACKET  FUNCTION  EQUAL  mask_function = stringtext  RR_BRACKET
 	 | (CONSTRAINT  constraint_id)?  DEFAULT  constant_expr = expression
@@ -6827,13 +6799,13 @@ RULE window_frame_following
 RULE create_database_option 
 //** create_database_option
 	 : FILESTREAM  database_filestream_options
-	 | DEFAULT_LANGUAGE  EQUAL  id_or_string
-	 | DEFAULT_FULLTEXT_LANGUAGE  EQUAL  id_or_string
-	 | NESTED_TRIGGERS  EQUAL  on_off
-	 | TRANSFORM_NOISE_WORDS  EQUAL  on_off
-	 | TWO_DIGIT_YEAR_CUTOFF  EQUAL  decimal
-	 | DB_CHAINING  on_off
-	 | TRUSTWORTHY  on_off
+	 | db_chaining_set
+	 | trustworthy_set
+	 | default_language_set
+	 | default_fulltext_language_set
+	 | nested_triggers
+	 | transform_noise_words
+	 | two_digit_year_cutoff
   **// 
 	GENERATE
 	INHERIT 
@@ -6855,19 +6827,7 @@ RULE database_filestream_options
 
 RULE database_filestream_option 
 //** database_filestream_option
-	 : LR_BRACKET  ((NON_TRANSACTED_ACCESS  EQUAL  off_read_only_full) | (DIRECTORY_NAME  EQUAL  stringtext))  RR_BRACKET
-  **// 
-	GENERATE
-	INHERIT 
-	CALCULATED INHERIT "AstBnfRule"
-	TEMPLATE 
-	CALCULATED TEMPLATE _
-;
-
-RULE database_file_spec 
-//** database_file_spec
-	 : file_group
-	 | file_spec
+	 : LR_BRACKET  (non_transacted_access_set | directory_name_set)  RR_BRACKET
   **// 
 	GENERATE
 	INHERIT 
@@ -6889,7 +6849,7 @@ RULE file_group
 
 RULE file_spec 
 //** file_spec
-	 : LR_BRACKET  NAME  EQUAL  id_or_string  COMMA?  FILENAME  EQUAL  file = stringtext  COMMA?  (SIZE  EQUAL  size = file_size  COMMA?)?  (MAXSIZE  EQUAL  max_file_size_value  COMMA?)?  (FILEGROWTH  EQUAL  filegrowth = file_size  COMMA?)?  RR_BRACKET
+	 : LR_BRACKET  name_set  COMMA?  filename_set  COMMA?  (size_set  COMMA?)?  (maxsize_set  COMMA?)?  (filegrowth  COMMA?)?  RR_BRACKET
   **// 
 	GENERATE
 	INHERIT 
@@ -8558,7 +8518,7 @@ RULE max_cpu
 
 RULE alter_login_sql_server_settings 
 //** alter_login_sql_server_settings
-	 : pwd_settings?  old_pwd_strategies?  (DEFAULT_DATABASE  EQUAL  database_id)?  (DEFAULT_LANGUAGE  EQUAL  language_id)?  (NAME  EQUAL  login_id)?  (CHECK_POLICY  EQUAL  check_policy = on_off)?  (CHECK_EXPIRATION  EQUAL  check_expiration = on_off)?  (CREDENTIAL  EQUAL  credential_id)?  (NO  CREDENTIAL)?
+	 : pwd_settings?  old_pwd_strategies?  (DEFAULT_DATABASE  EQUAL  database_id)?  default_language_set?  (NAME  EQUAL  login_id)?  (CHECK_POLICY  EQUAL  check_policy = on_off)?  (CHECK_EXPIRATION  EQUAL  check_expiration = on_off)?  (CREDENTIAL  EQUAL  credential_id)?  (NO  CREDENTIAL)?
   **// 
 	GENERATE
 	INHERIT 
@@ -8569,7 +8529,7 @@ RULE alter_login_sql_server_settings
 
 RULE create_login_sql_server_settings 
 //** create_login_sql_server_settings
-	 : (PASSWORD  EQUAL  pwd_value  pwd_strategies?)?  (COMMA?  SID  EQUAL  sid = binary_)?  (COMMA?  DEFAULT_DATABASE  EQUAL  database_id)?  (COMMA?  DEFAULT_LANGUAGE  EQUAL  language_id)?  (COMMA?  CHECK_EXPIRATION  EQUAL  check_expiration = on_off)?  (COMMA?  CHECK_POLICY  EQUAL  check_policy = on_off)?  (COMMA?  CREDENTIAL  EQUAL  credential_id)?
+	 : (PASSWORD  EQUAL  pwd_value  pwd_strategies?)?  (COMMA?  SID  EQUAL  sid = binary_)?  (COMMA?  DEFAULT_DATABASE  EQUAL  database_id)?  (COMMA?  default_language_set)?  (COMMA?  CHECK_EXPIRATION  EQUAL  check_expiration = on_off)?  (COMMA?  CHECK_POLICY  EQUAL  check_policy = on_off)?  (COMMA?  CREDENTIAL  EQUAL  credential_id)?
   **// 
 	GENERATE
 	INHERIT 
@@ -8580,7 +8540,7 @@ RULE create_login_sql_server_settings
 
 RULE create_login_sql_server_from 
 //** create_login_sql_server_from
-	 : WINDOWS  (WITH  (COMMA?  DEFAULT_DATABASE  EQUAL  database_id)?  (COMMA?  DEFAULT_LANGUAGE  EQUAL  default_language = stringtext)?)
+	 : WINDOWS  (WITH  (COMMA?  DEFAULT_DATABASE  EQUAL  database_id)?  (COMMA?  default_language_set)?)
 	 | CERTIFICATE  certificate_id
 	 | ASYMMETRIC  KEY  asym_key_id
   **// 
@@ -8752,20 +8712,9 @@ RULE user_settings
 	CALCULATED TEMPLATE ClassList
 ;
 
-RULE database_containment 
-//** database_containment
-	 : CONTAINMENT  EQUAL  none_partial
-  **// 
-	GENERATE
-	INHERIT 
-	CALCULATED INHERIT "AstBnfRule"
-	TEMPLATE 
-	CALCULATED TEMPLATE ClassWithProperties
-;
-
 RULE database_on_primary 
 //** database_on_primary
-	 : ON  PRIMARY?  database_file_spec_list
+	 : ON  PRIMARY?  database_files
   **// 
 	GENERATE
 	INHERIT 
@@ -8776,29 +8725,7 @@ RULE database_on_primary
 
 RULE database_on_log 
 //** database_on_log
-	 : ON  PRIMARY?  database_file_spec_list
-  **// 
-	GENERATE
-	INHERIT 
-	CALCULATED INHERIT "AstBnfRule"
-	TEMPLATE 
-	CALCULATED TEMPLATE ClassWithProperties
-;
-
-RULE database_collate 
-//** database_collate
-	 : COLLATE  collation_id
-  **// 
-	GENERATE
-	INHERIT 
-	CALCULATED INHERIT "AstBnfRule"
-	TEMPLATE 
-	CALCULATED TEMPLATE ClassWithProperties
-;
-
-RULE database_create_with 
-//** database_create_with
-	 : WITH  create_database_option_list
+	 : LOG  ON  database_files
   **// 
 	GENERATE
 	INHERIT 
@@ -8814,17 +8741,6 @@ RULE create_database_option_list
 	GENERATE
 	INHERIT 
 	CALCULATED INHERIT "AstRuleList<AstCreateDatabaseOption>"
-	TEMPLATE ClassList
-	CALCULATED TEMPLATE ClassWithProperties
-;
-
-RULE database_file_spec_list 
-//** database_file_spec_list
-	 : database_file_spec  (COMMA  database_file_spec)*
-  **// 
-	GENERATE
-	INHERIT 
-	CALCULATED INHERIT "AstRuleList<AstDatabaseFileSpec>"
 	TEMPLATE ClassList
 	CALCULATED TEMPLATE ClassWithProperties
 ;
@@ -16820,7 +16736,7 @@ RULE alter_server_audit_infos
 RULE alter_database_new_infos 
 //** alter_database_new_infos
 	 : MODIFY  NAME  EQUAL  database_id
-	 | COLLATE  collation_id
+	 | collate
 	 | SET  database_optionspec  (WITH  termination)?
 	 | add_or_modify_files
 	 | add_or_modify_filegroups
@@ -16939,7 +16855,7 @@ RULE server_config_failover
 
 RULE server_config_buffer_pool_ext 
 //** server_config_buffer_pool_ext
-	 : BUFFER  POOL  EXTENSION  (ON  LR_BRACKET  FILENAME  EQUAL  filename = stringtext  COMMA  SIZE  EQUAL  size = decimal  size_unity  RR_BRACKET | OFF)
+	 : BUFFER  POOL  EXTENSION  (ON  LR_BRACKET  filename_set  COMMA  SIZE  EQUAL  size = decimal  size_unity  RR_BRACKET | OFF)
   **// 
 	GENERATE
 	INHERIT 
@@ -18648,7 +18564,7 @@ RULE alter_user_item
 	 | DEFAULT_SCHEMA  EQUAL  schema_id_null
 	 | LOGIN  EQUAL  login_id
 	 | password_setting  old_pwd+
-	 | DEFAULT_LANGUAGE  EQUAL  language_setting_value
+	 | default_language_set
 	 | ALLOW_ENCRYPTED_VALUE_MODIFICATIONS  EQUAL  on_off
   **// 
 	GENERATE
@@ -21759,7 +21675,7 @@ RULE user_settings_shorts
 RULE user_setting 
 //** user_setting
 	 : default_schema_set
-	 | DEFAULT_LANGUAGE  EQUAL  language_setting_value
+	 | default_language_set
 	 | SID  EQUAL  binary_
 	 | ALLOW_ENCRYPTED_VALUE_MODIFICATIONS  EQUAL  on_off
   **// 
@@ -22947,5 +22863,221 @@ RULE transaction_identifier
 	CALCULATED INHERIT "AstTerminalIdentifier"
 	TEMPLATE ClassIdentifiers
 	CALCULATED TEMPLATE ClassTerminalAlias
+;
+
+RULE collate 
+//** collate
+	 : COLLATE  collation_id
+  **// 
+	GENERATE
+	INHERIT 
+	CALCULATED INHERIT "AstBnfRule"
+	TEMPLATE 
+	CALCULATED TEMPLATE ClassWithProperties
+;
+
+RULE containment_set 
+//** containment_set
+	 : CONTAINMENT  EQUAL  none_partial
+  **// 
+	GENERATE
+	INHERIT 
+	CALCULATED INHERIT "AstBnfRule"
+	TEMPLATE 
+	CALCULATED TEMPLATE ClassWithProperties
+;
+
+RULE db_chaining_set 
+//** db_chaining_set
+	 : DB_CHAINING  on_off
+  **// 
+	GENERATE
+	INHERIT 
+	CALCULATED INHERIT "AstBnfRule"
+	TEMPLATE 
+	CALCULATED TEMPLATE ClassWithProperties
+;
+
+RULE trustworthy_set 
+//** trustworthy_set
+	 : TRUSTWORTHY  on_off
+  **// 
+	GENERATE
+	INHERIT 
+	CALCULATED INHERIT "AstBnfRule"
+	TEMPLATE 
+	CALCULATED TEMPLATE ClassWithProperties
+;
+
+RULE default_language_set 
+//** default_language_set
+	 : DEFAULT_LANGUAGE  EQUAL  language_setting_value
+  **// 
+	GENERATE
+	INHERIT 
+	CALCULATED INHERIT "AstBnfRule"
+	TEMPLATE 
+	CALCULATED TEMPLATE ClassWithProperties
+;
+
+RULE default_fulltext_language_set 
+//** default_fulltext_language_set
+	 : DEFAULT_FULLTEXT_LANGUAGE  EQUAL  language_setting
+  **// 
+	GENERATE
+	INHERIT 
+	CALCULATED INHERIT "AstBnfRule"
+	TEMPLATE 
+	CALCULATED TEMPLATE ClassWithProperties
+;
+
+RULE nested_triggers 
+//** nested_triggers
+	 : NESTED_TRIGGERS  EQUAL  on_off
+  **// 
+	GENERATE
+	INHERIT 
+	CALCULATED INHERIT "AstBnfRule"
+	TEMPLATE 
+	CALCULATED TEMPLATE ClassWithProperties
+;
+
+RULE transform_noise_words 
+//** transform_noise_words
+	 : TRANSFORM_NOISE_WORDS  EQUAL  on_off
+  **// 
+	GENERATE
+	INHERIT 
+	CALCULATED INHERIT "AstBnfRule"
+	TEMPLATE 
+	CALCULATED TEMPLATE ClassWithProperties
+;
+
+RULE two_digit_year_cutoff 
+//** two_digit_year_cutoff
+	 : TWO_DIGIT_YEAR_CUTOFF  EQUAL  decimal
+  **// 
+	GENERATE
+	INHERIT 
+	CALCULATED INHERIT "AstBnfRule"
+	TEMPLATE 
+	CALCULATED TEMPLATE ClassWithProperties
+;
+
+RULE db_option 
+//** db_option
+	 : db_chaining_set
+	 | trustworthy_set
+	 | default_language_set
+	 | default_fulltext_language_set
+	 | nested_triggers
+	 | transform_noise_words
+	 | two_digit_year_cutoff
+  **// 
+	GENERATE
+	INHERIT 
+	CALCULATED INHERIT "AstBnfRule"
+	TEMPLATE 
+	CALCULATED TEMPLATE _
+;
+
+RULE directory_name_set 
+//** directory_name_set
+	 : DIRECTORY_NAME  EQUAL  stringtext
+  **// 
+	GENERATE
+	INHERIT 
+	CALCULATED INHERIT "AstBnfRule"
+	TEMPLATE 
+	CALCULATED TEMPLATE ClassWithProperties
+;
+
+RULE non_transacted_access_set 
+//** non_transacted_access_set
+	 : EQUAL  NON_TRANSACTED_ACCESS  EQUAL  off_read_only_full
+  **// 
+	GENERATE
+	INHERIT 
+	CALCULATED INHERIT "AstBnfRule"
+	TEMPLATE 
+	CALCULATED TEMPLATE ClassWithProperties
+;
+
+RULE database_file 
+//** database_file
+	 : file_group
+	 | file_spec
+  **// 
+	GENERATE
+	INHERIT 
+	CALCULATED INHERIT "AstBnfRule"
+	TEMPLATE 
+	CALCULATED TEMPLATE _
+;
+
+RULE name_set 
+//** name_set
+	 : NAME  EQUAL  id_or_string
+  **// 
+	GENERATE
+	INHERIT 
+	CALCULATED INHERIT "AstBnfRule"
+	TEMPLATE 
+	CALCULATED TEMPLATE ClassWithProperties
+;
+
+RULE filename_set 
+//** filename_set
+	 : FILENAME  EQUAL  file = stringtext
+  **// 
+	GENERATE
+	INHERIT 
+	CALCULATED INHERIT "AstBnfRule"
+	TEMPLATE 
+	CALCULATED TEMPLATE _
+;
+
+RULE size_set 
+//** size_set
+	 : SIZE  EQUAL  size = file_size
+  **// 
+	GENERATE
+	INHERIT 
+	CALCULATED INHERIT "AstBnfRule"
+	TEMPLATE 
+	CALCULATED TEMPLATE _
+;
+
+RULE maxsize_set 
+//** maxsize_set
+	 : MAXSIZE  EQUAL  max_file_size_value
+  **// 
+	GENERATE
+	INHERIT 
+	CALCULATED INHERIT "AstBnfRule"
+	TEMPLATE 
+	CALCULATED TEMPLATE ClassWithProperties
+;
+
+RULE filegrowth 
+//** filegrowth
+	 : FILEGROWTH  EQUAL  file_size
+  **// 
+	GENERATE
+	INHERIT 
+	CALCULATED INHERIT "AstBnfRule"
+	TEMPLATE 
+	CALCULATED TEMPLATE ClassWithProperties
+;
+
+RULE database_files 
+//** database_files
+	 : database_file  (COMMA  database_file)*
+  **// 
+	GENERATE
+	INHERIT 
+	CALCULATED INHERIT "AstRuleList<AstDatabaseFile>"
+	TEMPLATE 
+	CALCULATED TEMPLATE ClassList
 ;
 

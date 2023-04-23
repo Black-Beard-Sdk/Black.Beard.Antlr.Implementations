@@ -63,6 +63,17 @@ namespace Bb.Generators
             this._isInterface = true;
             this._isEnum = false;
             this._isStruct = false;
+            _isStatic = false;
+            return this;
+        }
+
+        public ModelTypeFrom<T> IsStatic()
+        {
+            this._isInterface = false;
+            this._isEnum = false;
+            this._isStruct = false;
+            _isStatic = true;
+
             return this;
         }
 
@@ -71,6 +82,7 @@ namespace Bb.Generators
             this._isInterface = false;
             this._isEnum = true;
             this._isStruct = false;
+            _isStatic = false;
             return this;
         }
 
@@ -311,6 +323,9 @@ namespace Bb.Generators
                 TypeAttributes = _attributes,
             };
 
+            if (_isStatic)
+                type.Attributes = MemberAttributes.Static;
+
             if (_isInterface)
                 type.IsInterface = true;
 
@@ -439,6 +454,7 @@ namespace Bb.Generators
         private readonly Action<T, ModelTypeFrom<T>> _action;
 
         private bool _isInterface;
+        private bool _isStatic;
         private bool _isEnum;
         private bool _isStruct;
         internal bool _justOne;
