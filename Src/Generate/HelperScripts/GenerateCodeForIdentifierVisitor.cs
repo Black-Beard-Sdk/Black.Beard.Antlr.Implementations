@@ -14,6 +14,7 @@ namespace Generate.HelperScripts
         public GenerateCodeForIdentifierVisitor(AstGrammarSpec items)
         {
             _items = items;
+            _rules = _items.Rules;
         }
 
         public static CodeExpression GetExpression(AstRule rule)
@@ -42,10 +43,17 @@ namespace Generate.HelperScripts
 
             foreach (var item in a)
             {
-                var code = item.Accept(this);
-                list.Add(code);
-            }
+                if (item.WhereRuleOrIdentifiers())
+                {
+                    var code = item.Accept(this);
+                    list.Add(code);
+                }
+                else
+                {
 
+                }
+
+            }
             if (list.Count == 1)
                 return list[0];
 
@@ -67,6 +75,21 @@ namespace Generate.HelperScripts
 
         public CodeExpression VisitRule(AstRule a)
         {
+
+            var n = "Ast" + a.GetPropertyName();
+
+            foreach (var item in a.Alternatives)
+            {
+                var args = new List<CodeExpression>();
+
+
+                var r = item.Accept(this);
+
+
+                var m = CodeHelper.Call(n.AsType(), "New", args.ToArray());
+
+            }
+
 
             Stop();
             throw new NotImplementedException();
@@ -274,8 +297,31 @@ namespace Generate.HelperScripts
 
         public CodeExpression VisitRuleRef(AstRuleRef a)
         {
-            return "context".Var().Call(a.Name.Text);
+
+            var itemRule = _rules.Rules.Where(c => c.Name.Text == a.Name.Text).First();
+            _currentRules.Add(itemRule.Name.Text);
+
+            List<CodeExpression> list = new List<CodeExpression>();
+            foreach (var item in itemRule.Alternatives)
+            {
+                var b = item.Accept(this);
+                if (b != null)
+                    list.Add(b);
+
+                if (a.Name.Text == "id_")
+                    break;
+
+            }
+
+            _currentRules.RemoveAt(_currentRules.Count - 1);
+
+            if (list.Count == 1)
+                return list[0];
+
+            return null;
+
         }
+
 
         public CodeExpression VisitRules(AstRules a)
         {
@@ -291,6 +337,14 @@ namespace Generate.HelperScripts
 
         public CodeExpression VisitTerminal(AstTerminal a)
         {
+
+            if (a.WhereRuleOrIdentifiers())
+            {
+                var name = GetVariable(a.Type());
+                return name.Var();
+            }
+
+
             return "context".Var().Call(a.Value.Text);
         }
 
@@ -349,6 +403,32 @@ namespace Generate.HelperScripts
         }
 
 
+        private string GetVariable(string type)
+        {
+
+            var varName = "varname";
+            if (_currentRules.Count > 0)
+            {
+                int i = 1;
+                string n = string.Empty;
+                while (_currentRules[_currentRules.Count - i] == "id_")
+                {
+                    i++;
+                    n = _currentRules[_currentRules.Count - i];
+                }
+
+                if (!string.IsNullOrEmpty(n))
+                    varName = n;
+
+            }
+
+            varName = varName + (_variables.Count + 1);
+            _variables.Add((varName, type));
+
+            return varName;
+
+        }
+
         [System.Diagnostics.DebuggerStepThrough]
         [System.Diagnostics.DebuggerNonUserCode]
         private void Stop()
@@ -356,9 +436,10 @@ namespace Generate.HelperScripts
             System.Diagnostics.Debugger.Break();
         }
 
+        private List<string> _currentRules = new List<string>();
+        private List<(string, string)> _variables = new List<(string, string)>();
         private readonly AstGrammarSpec _items;
-
-
+        private readonly AstRules _rules;
     }
 
 

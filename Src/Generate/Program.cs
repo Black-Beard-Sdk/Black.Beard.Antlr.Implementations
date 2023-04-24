@@ -17,23 +17,23 @@ var DirRoot = new DirectoryInfo
 var file = new FileInfo(Path.Combine(DirRoot.FullName, @"Parsers\Grammar\TSqlParser.g4"));
 
 
-//strategy = "models";
-//var configDirOutput = Path.Combine(DirRoot.FullName, @"Asts\Generated");
-//var ctx = new Context()
-//{
-//    OutputPath = configDirOutput,
-//    Namespace = "Bb.SqlServer.Asts",
-//};
-
-
-
-strategy = "helpers";
-var configDirOutput = Path.Combine(DirRoot.FullName, @"..\..\..\tests");
+strategy = "models";
+var configDirOutput = Path.Combine(DirRoot.FullName, @"Asts\Generated");
 var ctx = new Context()
 {
     OutputPath = configDirOutput,
     Namespace = "Bb.SqlServer.Asts",
 };
+
+
+//strategy = "helpers";
+//var configDirOutput = Path.Combine(DirRoot.FullName, @"..\..\..\tests");
+//var ctx = new Context()
+//{
+//    OutputPath = configDirOutput,
+//    Namespace = "Bb.SqlServer.Asts",
+//};
+//ctx.Variables["helperName"] = "create_database";
 
 
 

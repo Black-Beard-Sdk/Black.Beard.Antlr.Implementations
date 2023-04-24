@@ -11,8 +11,6 @@ namespace Generate.HelperScripts
     {
 
 
-        public string RuleName { get; set; }
-
         public override string GetInherit(AstRule ast, Context context)
         {
             return GetInherit_Impl("AstTerminalIdentifier", ast, context);
@@ -38,9 +36,9 @@ namespace Generate.HelperScripts
                           type.AddTemplateSelector(() => TemplateSelector(ast, ctx))
                               .Documentation(c => c.Summary(() => ast.ToString()))
                               .Name(() => "TSql")
-                              .Attribute( System.Reflection.TypeAttributes.Public)
+                              .Attribute(System.Reflection.TypeAttributes.Public)
                               .IsStatic()
-                                                         
+
                               .Method(method =>
                               {
                                   method
@@ -49,7 +47,7 @@ namespace Generate.HelperScripts
                                    .Body(b =>
                                    {
 
-                                    var o = GenerateCodeForIdentifierVisitor.GetExpression(ast);
+                                       var o = GenerateCodeForIdentifierVisitor.GetExpression(ast);
 
                                    });
                               })
@@ -95,6 +93,10 @@ namespace Generate.HelperScripts
 
         }
 
+        protected override bool Generate(AstRule ast, Context context)
+        {
+            return ast.Name.Text == context.Variables.Get<string>("helperName");
+        }
 
     }
 

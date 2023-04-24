@@ -299,16 +299,20 @@ namespace Bb.Generators
 
             var result = testGenerateIf != null ? testGenerateIf(ast) : true;
 
-            if (_prepareAction != null)
-                _prepareAction(ast);
+            if (result)
+            {
 
-            _action(ast, this);
+                if (_prepareAction != null)
+                    _prepareAction(ast);
 
-            if (this._nameOfClass == null)
-                throw new InvalidOperationException("missing class name");
+                _action(ast, this);
 
-            if (this._templateSelectoraction != null)
-                ctx.Strategy = this._templateSelectoraction();
+                if (this._nameOfClass == null)
+                    throw new InvalidOperationException("missing class name");
+
+                if (this._templateSelectoraction != null)
+                    ctx.Strategy = this._templateSelectoraction();
+            }
 
             return result;
 

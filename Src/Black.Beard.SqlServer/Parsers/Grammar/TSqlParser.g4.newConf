@@ -2763,7 +2763,7 @@ RULE output_dml_list_elem
 
 RULE create_database 
 //** create_database
-	 : CREATE  DATABASE  database_id  containment_set?  database_on_primary?  database_on_log?  collate?  (WITH  create_database_option_list)?
+	 : CREATE  DATABASE  database_id  containment_set?  database_on_primary?  database_on_log?  collate_set?  database_with_option?
   **// 
 	GENERATE
 	INHERIT 
@@ -4945,7 +4945,7 @@ RULE column_definition
 RULE column_definition_element 
 //** column_definition_element
 	 : FILESTREAM
-	 | collate
+	 | collate_set
 	 | SPARSE
 	 | MASKED  WITH  LR_BRACKET  FUNCTION  EQUAL  mask_function = stringtext  RR_BRACKET
 	 | (CONSTRAINT  constraint_id)?  DEFAULT  constant_expr = expression
@@ -6803,9 +6803,9 @@ RULE create_database_option
 	 | trustworthy_set
 	 | default_language_set
 	 | default_fulltext_language_set
-	 | nested_triggers
-	 | transform_noise_words
-	 | two_digit_year_cutoff
+	 | nested_triggers_set
+	 | transform_noise_words_set
+	 | two_digit_year_cutoff_set
   **// 
 	GENERATE
 	INHERIT 
@@ -6827,7 +6827,8 @@ RULE database_filestream_options
 
 RULE database_filestream_option 
 //** database_filestream_option
-	 : LR_BRACKET  (non_transacted_access_set | directory_name_set)  RR_BRACKET
+	 : non_transacted_access_set
+	 | directory_name_set
   **// 
 	GENERATE
 	INHERIT 
@@ -6849,7 +6850,7 @@ RULE file_group
 
 RULE file_spec 
 //** file_spec
-	 : LR_BRACKET  name_set  COMMA?  filename_set  COMMA?  (size_set  COMMA?)?  (maxsize_set  COMMA?)?  (filegrowth  COMMA?)?  RR_BRACKET
+	 : LR_BRACKET  name_set  COMMA?  filename_set  COMMA?  (size_set  COMMA?)?  (maxsize_set  COMMA?)?  (filegrowth_set  COMMA?)?  RR_BRACKET
   **// 
 	GENERATE
 	INHERIT 
@@ -16736,7 +16737,7 @@ RULE alter_server_audit_infos
 RULE alter_database_new_infos 
 //** alter_database_new_infos
 	 : MODIFY  NAME  EQUAL  database_id
-	 | collate
+	 | collate_set
 	 | SET  database_optionspec  (WITH  termination)?
 	 | add_or_modify_files
 	 | add_or_modify_filegroups
@@ -22440,7 +22441,7 @@ RULE privatekey
 
 RULE database_filestream 
 //** database_filestream
-	 : FILESTREAM  database_filestream_option
+	 : FILESTREAM  LR_BRACKET  database_filestream_option  RR_BRACKET
   **// 
 	GENERATE
 	INHERIT 
@@ -22865,8 +22866,8 @@ RULE transaction_identifier
 	CALCULATED TEMPLATE ClassTerminalAlias
 ;
 
-RULE collate 
-//** collate
+RULE collate_set 
+//** collate_set
 	 : COLLATE  collation_id
   **// 
 	GENERATE
@@ -22931,48 +22932,15 @@ RULE default_fulltext_language_set
 	CALCULATED TEMPLATE ClassWithProperties
 ;
 
-RULE nested_triggers 
-//** nested_triggers
-	 : NESTED_TRIGGERS  EQUAL  on_off
-  **// 
-	GENERATE
-	INHERIT 
-	CALCULATED INHERIT "AstBnfRule"
-	TEMPLATE 
-	CALCULATED TEMPLATE ClassWithProperties
-;
-
-RULE transform_noise_words 
-//** transform_noise_words
-	 : TRANSFORM_NOISE_WORDS  EQUAL  on_off
-  **// 
-	GENERATE
-	INHERIT 
-	CALCULATED INHERIT "AstBnfRule"
-	TEMPLATE 
-	CALCULATED TEMPLATE ClassWithProperties
-;
-
-RULE two_digit_year_cutoff 
-//** two_digit_year_cutoff
-	 : TWO_DIGIT_YEAR_CUTOFF  EQUAL  decimal
-  **// 
-	GENERATE
-	INHERIT 
-	CALCULATED INHERIT "AstBnfRule"
-	TEMPLATE 
-	CALCULATED TEMPLATE ClassWithProperties
-;
-
 RULE db_option 
 //** db_option
 	 : db_chaining_set
 	 | trustworthy_set
 	 | default_language_set
 	 | default_fulltext_language_set
-	 | nested_triggers
-	 | transform_noise_words
-	 | two_digit_year_cutoff
+	 | nested_triggers_set
+	 | transform_noise_words_set
+	 | two_digit_year_cutoff_set
   **// 
 	GENERATE
 	INHERIT 
@@ -22994,7 +22962,7 @@ RULE directory_name_set
 
 RULE non_transacted_access_set 
 //** non_transacted_access_set
-	 : EQUAL  NON_TRANSACTED_ACCESS  EQUAL  off_read_only_full
+	 : NON_TRANSACTED_ACCESS  EQUAL  off_read_only_full
   **// 
 	GENERATE
 	INHERIT 
@@ -23059,17 +23027,6 @@ RULE maxsize_set
 	CALCULATED TEMPLATE ClassWithProperties
 ;
 
-RULE filegrowth 
-//** filegrowth
-	 : FILEGROWTH  EQUAL  file_size
-  **// 
-	GENERATE
-	INHERIT 
-	CALCULATED INHERIT "AstBnfRule"
-	TEMPLATE 
-	CALCULATED TEMPLATE ClassWithProperties
-;
-
 RULE database_files 
 //** database_files
 	 : database_file  (COMMA  database_file)*
@@ -23079,5 +23036,60 @@ RULE database_files
 	CALCULATED INHERIT "AstRuleList<AstDatabaseFile>"
 	TEMPLATE 
 	CALCULATED TEMPLATE ClassList
+;
+
+RULE database_with_option 
+//** database_with_option
+	 : WITH  create_database_option_list
+  **// 
+	GENERATE
+	INHERIT 
+	CALCULATED INHERIT "AstBnfRule"
+	TEMPLATE 
+	CALCULATED TEMPLATE ClassWithProperties
+;
+
+RULE nested_triggers_set 
+//** nested_triggers_set
+	 : NESTED_TRIGGERS  EQUAL  on_off
+  **// 
+	GENERATE
+	INHERIT 
+	CALCULATED INHERIT "AstBnfRule"
+	TEMPLATE 
+	CALCULATED TEMPLATE ClassWithProperties
+;
+
+RULE transform_noise_words_set 
+//** transform_noise_words_set
+	 : TRANSFORM_NOISE_WORDS  EQUAL  on_off
+  **// 
+	GENERATE
+	INHERIT 
+	CALCULATED INHERIT "AstBnfRule"
+	TEMPLATE 
+	CALCULATED TEMPLATE ClassWithProperties
+;
+
+RULE two_digit_year_cutoff_set 
+//** two_digit_year_cutoff_set
+	 : TWO_DIGIT_YEAR_CUTOFF  EQUAL  decimal
+  **// 
+	GENERATE
+	INHERIT 
+	CALCULATED INHERIT "AstBnfRule"
+	TEMPLATE 
+	CALCULATED TEMPLATE ClassWithProperties
+;
+
+RULE filegrowth_set 
+//** filegrowth_set
+	 : FILEGROWTH  EQUAL  file_size
+  **// 
+	GENERATE
+	INHERIT 
+	CALCULATED INHERIT "AstBnfRule"
+	TEMPLATE 
+	CALCULATED TEMPLATE ClassWithProperties
 ;
 

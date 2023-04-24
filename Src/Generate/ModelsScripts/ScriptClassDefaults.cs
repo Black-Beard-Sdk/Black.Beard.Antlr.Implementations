@@ -428,12 +428,154 @@ namespace Generate.ModelsScripts
 
                         .Make(t =>
                         {
-                            Generate(ctx, ast, t, true);
+
+                            HashSet<string> _h = new HashSet<string>();
+                            List<CodeMemberMethod> methods = new List<CodeMemberMethod>();
+                            var alternatives = ctx.Variables.Get<AlternativeTreeRuleItemList>("combinaisons");
+
+                            int i = 0;
+                            foreach (var alt in alternatives)
+                            {
+                                var alternative = alt.Item;
+                                i++;
+
+                                StringBuilder uniqeConstraintKeyMethod = new StringBuilder();
+                                var name = CodeHelper.FormatCsharp(ast.Name.Text);
+                                var tname = ("Ast" + CodeHelper.FormatCsharp(ast.Name.Text));
+                                var tname2 = ("Ast" + CodeHelper.FormatCsharp(ast.Name.Text));
+                                if (alternatives.Count > 1)
+                                {
+                                    tname2 = tname + "." + tname + (i).ToString();
+                                }
+                                var t1 = tname.AsType();
+                                var t3 = tname2.AsType();
+                                List<string> arguments = new List<string>();
+
+                                var method1 = "New".AsMethod(t1, MemberAttributes.Public | MemberAttributes.Static)
+                                    .BuildDocumentation(ast.Name.Text, alternative, ctx)
+                                    ;
+                                method1.Parameters.Add(new CodeParameterDeclarationExpression("ParserRuleContext".AsType(), "ctx"));
+
+                                if (alternative.Count > 0)
+                                    foreach (var itemAlt in alternative)
+                                        itemAlt.BuildStaticMethod(ast, method1, arguments, uniqeConstraintKeyMethod);
+                                else
+                                    alternative.BuildStaticMethod(ast, method1, arguments, uniqeConstraintKeyMethod);
+
+                                if (method1.Parameters.Count > 0)
+                                {
+
+                                    var noDuplicateKey = uniqeConstraintKeyMethod.ToString();
+
+                                    if (_h.Add(noDuplicateKey))
+                                    {
+                                        methods.Add(method1);
+                                        List<CodeExpression> _argu = new List<CodeExpression>()
+                                            {
+                                                "ctx".Var()
+                                            };
+
+                                        foreach (var item in arguments)
+                                            _argu.Add(item.Var());
+
+                                        if (alternatives.Count == 1)
+                                        {
+                                            method1.Statements.Add(CodeHelper.DeclareAndCreate("result", t3, _argu.ToArray()));
+                                        }
+                                        else
+                                        {
+                                            string typename = ast.Type();
+                                            var t2 = typename + "." + typename + (i).ToString();
+                                            method1.Statements.Add(CodeHelper.DeclareAndCreate("result", t2.AsType(), _argu.ToArray()));
+
+
+                                        }
+
+                                        method1.Statements.Return("result".Var());
+                                    }
+
+                                }
+
+                            }
+
+                            foreach (var item in methods)
+                            {
+                                t.Members.Add(item);
+                            }
                         })
 
                         .Make(t =>
                         {
-                            Generate(ctx, ast, t, false);
+
+                            HashSet<string> _h = new HashSet<string>();
+                            List<CodeMemberMethod> methods = new List<CodeMemberMethod>();
+                            var alternatives = ctx.Variables.Get<AlternativeTreeRuleItemList>("combinaisons");
+
+                            int i = 0;
+                            foreach (var alt in alternatives)
+                            {
+                                var alternative = alt.Item;
+                                i++;
+
+                                StringBuilder uniqeConstraintKeyMethod = new StringBuilder();
+                                var name = CodeHelper.FormatCsharp(ast.Name.Text);
+                                var tname = ("Ast" + CodeHelper.FormatCsharp(ast.Name.Text));
+                                var tname2 = ("Ast" + CodeHelper.FormatCsharp(ast.Name.Text));
+                                if (alternatives.Count > 1)
+                                {
+                                    tname2 = tname + "." + tname + (i).ToString();
+                                }
+                                var t1 = tname.AsType();
+                                var t3 = tname2.AsType();
+                                List<string> arguments = new List<string>();
+
+                                var method1 = "New".AsMethod(t1, MemberAttributes.Public | MemberAttributes.Static)
+                                    .BuildDocumentation(ast.Name.Text, alternative, ctx)
+                                    ;
+
+                                if (alternative.Count > 0)
+                                    foreach (var itemAlt in alternative)
+                                        itemAlt.BuildStaticMethod(ast, method1, arguments, uniqeConstraintKeyMethod);
+                                else
+                                    alternative.BuildStaticMethod(ast, method1, arguments, uniqeConstraintKeyMethod);
+
+                                if (method1.Parameters.Count > 0)
+                                {
+
+                                    var noDuplicateKey = uniqeConstraintKeyMethod.ToString();
+
+                                    if (_h.Add(noDuplicateKey))
+                                    {
+                                        methods.Add(method1);
+                                        List<CodeExpression> _argu = new List<CodeExpression>();
+
+                                        foreach (var item in arguments)
+                                            _argu.Add(item.Var());
+
+                                        if (alternatives.Count == 1)
+                                        {
+                                            method1.Statements.Add(CodeHelper.DeclareAndCreate("result", t3, _argu.ToArray()));
+                                        }
+                                        else
+                                        {
+                                            string typename = ast.Type();
+                                            var t2 = typename + "." + typename + (i).ToString();
+                                            method1.Statements.Add(CodeHelper.DeclareAndCreate("result", t2.AsType(), _argu.ToArray()));
+
+
+                                        }
+
+                                        method1.Statements.Return("result".Var());
+                                    }
+
+                                }
+
+                            }
+
+                            foreach (var item in methods)
+                            {
+                                t.Members.Add(item);
+                            }
                         })
 
                         .Method(method =>

@@ -2499,6 +2499,12 @@ public interface ITSqlParserVisitor<Result> : IParseTreeVisitor<Result> {
 	/// <return>The visitor result.</return>
 	Result VisitCreate_database([NotNull] TSqlParser.Create_databaseContext context);
 	/// <summary>
+	/// Visit a parse tree produced by <see cref="TSqlParser.database_with_option"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitDatabase_with_option([NotNull] TSqlParser.Database_with_optionContext context);
+	/// <summary>
 	/// Visit a parse tree produced by <see cref="TSqlParser.database_on_primary"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
@@ -2511,11 +2517,11 @@ public interface ITSqlParserVisitor<Result> : IParseTreeVisitor<Result> {
 	/// <return>The visitor result.</return>
 	Result VisitDatabase_on_log([NotNull] TSqlParser.Database_on_logContext context);
 	/// <summary>
-	/// Visit a parse tree produced by <see cref="TSqlParser.collate"/>.
+	/// Visit a parse tree produced by <see cref="TSqlParser.collate_set"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
-	Result VisitCollate([NotNull] TSqlParser.CollateContext context);
+	Result VisitCollate_set([NotNull] TSqlParser.Collate_setContext context);
 	/// <summary>
 	/// Visit a parse tree produced by <see cref="TSqlParser.create_index"/>.
 	/// </summary>
@@ -4605,6 +4611,18 @@ public interface ITSqlParserVisitor<Result> : IParseTreeVisitor<Result> {
 	/// <return>The visitor result.</return>
 	Result VisitCreate_database_option([NotNull] TSqlParser.Create_database_optionContext context);
 	/// <summary>
+	/// Visit a parse tree produced by <see cref="TSqlParser.database_filestream_options"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitDatabase_filestream_options([NotNull] TSqlParser.Database_filestream_optionsContext context);
+	/// <summary>
+	/// Visit a parse tree produced by <see cref="TSqlParser.database_filestream_option"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitDatabase_filestream_option([NotNull] TSqlParser.Database_filestream_optionContext context);
+	/// <summary>
 	/// Visit a parse tree produced by <see cref="TSqlParser.db_chaining_set"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
@@ -4629,35 +4647,29 @@ public interface ITSqlParserVisitor<Result> : IParseTreeVisitor<Result> {
 	/// <return>The visitor result.</return>
 	Result VisitDefault_fulltext_language_set([NotNull] TSqlParser.Default_fulltext_language_setContext context);
 	/// <summary>
-	/// Visit a parse tree produced by <see cref="TSqlParser.nested_triggers"/>.
+	/// Visit a parse tree produced by <see cref="TSqlParser.nested_triggers_set"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
-	Result VisitNested_triggers([NotNull] TSqlParser.Nested_triggersContext context);
+	Result VisitNested_triggers_set([NotNull] TSqlParser.Nested_triggers_setContext context);
 	/// <summary>
-	/// Visit a parse tree produced by <see cref="TSqlParser.transform_noise_words"/>.
+	/// Visit a parse tree produced by <see cref="TSqlParser.transform_noise_words_set"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
-	Result VisitTransform_noise_words([NotNull] TSqlParser.Transform_noise_wordsContext context);
+	Result VisitTransform_noise_words_set([NotNull] TSqlParser.Transform_noise_words_setContext context);
 	/// <summary>
-	/// Visit a parse tree produced by <see cref="TSqlParser.two_digit_year_cutoff"/>.
+	/// Visit a parse tree produced by <see cref="TSqlParser.two_digit_year_cutoff_set"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
-	Result VisitTwo_digit_year_cutoff([NotNull] TSqlParser.Two_digit_year_cutoffContext context);
+	Result VisitTwo_digit_year_cutoff_set([NotNull] TSqlParser.Two_digit_year_cutoff_setContext context);
 	/// <summary>
 	/// Visit a parse tree produced by <see cref="TSqlParser.db_option"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
 	Result VisitDb_option([NotNull] TSqlParser.Db_optionContext context);
-	/// <summary>
-	/// Visit a parse tree produced by <see cref="TSqlParser.database_filestream_option"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitDatabase_filestream_option([NotNull] TSqlParser.Database_filestream_optionContext context);
 	/// <summary>
 	/// Visit a parse tree produced by <see cref="TSqlParser.directory_name_set"/>.
 	/// </summary>
@@ -4719,11 +4731,11 @@ public interface ITSqlParserVisitor<Result> : IParseTreeVisitor<Result> {
 	/// <return>The visitor result.</return>
 	Result VisitMax_file_size_value([NotNull] TSqlParser.Max_file_size_valueContext context);
 	/// <summary>
-	/// Visit a parse tree produced by <see cref="TSqlParser.filegrowth"/>.
+	/// Visit a parse tree produced by <see cref="TSqlParser.filegrowth_set"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
-	Result VisitFilegrowth([NotNull] TSqlParser.FilegrowthContext context);
+	Result VisitFilegrowth_set([NotNull] TSqlParser.Filegrowth_setContext context);
 	/// <summary>
 	/// Visit a parse tree produced by <see cref="TSqlParser.cursor_name"/>.
 	/// </summary>
@@ -6062,12 +6074,6 @@ public interface ITSqlParserVisitor<Result> : IParseTreeVisitor<Result> {
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
 	Result VisitFile_specs([NotNull] TSqlParser.File_specsContext context);
-	/// <summary>
-	/// Visit a parse tree produced by <see cref="TSqlParser.database_filestream_options"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitDatabase_filestream_options([NotNull] TSqlParser.Database_filestream_optionsContext context);
 	/// <summary>
 	/// Visit a parse tree produced by <see cref="TSqlParser.expression_list"/>.
 	/// </summary>

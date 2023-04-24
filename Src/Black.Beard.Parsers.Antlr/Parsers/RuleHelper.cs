@@ -102,10 +102,10 @@ namespace Bb.Parsers
                 var cloned = rule.Item.CloneWithOutChildren();
 
                 foreach (var item in rule.Item)
-                if (item.WhereRuleOrIdentifiers())
-                {
+                    if (item.WhereRuleOrIdentifiers())
+                    {
                         cloned.Add(item.Clone());
-                }
+                    }
 
                 var txt = cloned.ToString();
                 if (!string.IsNullOrEmpty(txt) && names.Add(txt))
@@ -152,6 +152,46 @@ namespace Bb.Parsers
                 return true;
 
             return true;
+
+        }
+
+        public static bool WhereRuleOrIdentifiers(this AstBase item)
+        {
+
+            var items = item.Select(c => c.Type == nameof(AstTerminal));
+            if (items.Count == 1)
+            {
+
+                // "AstTerminal"
+                switch (items[0].TerminalKind)
+                {
+                    case TokenTypeEnum.Identifier:
+                    case TokenTypeEnum.Boolean:
+                    case TokenTypeEnum.String:
+                    case TokenTypeEnum.Decimal:
+                    case TokenTypeEnum.Int:
+                    case TokenTypeEnum.Real:
+                    case TokenTypeEnum.Hexa:
+                    case TokenTypeEnum.Binary:
+                    case TokenTypeEnum.Pattern:
+                        return true;
+
+                    case TokenTypeEnum.Constant:
+                    case TokenTypeEnum.Ponctuation:
+                    case TokenTypeEnum.Operator:
+                    case TokenTypeEnum.Comment:
+                    case TokenTypeEnum.Other:
+                    default:
+                        return false;
+
+                }
+            }
+
+            items = item.Select(c => c.Type == nameof(AstRuleRef));
+            if (items.Count == 1)
+                return true;
+
+            return false;
 
         }
 

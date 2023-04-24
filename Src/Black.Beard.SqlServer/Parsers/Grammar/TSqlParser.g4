@@ -2378,13 +2378,14 @@ create_database
         containment_set?
         database_on_primary?
         database_on_log?
-        collate?
-        (WITH create_database_option_list)?
+        collate_set?
+        database_with_option?
     ;
 
+database_with_option : WITH create_database_option_list;
 database_on_primary : ON PRIMARY? database_files;
 database_on_log : LOG ON database_files;
-collate : COLLATE collation_id;
+collate_set : COLLATE collation_id;
 
 // https://msdn.microsoft.com/en-us/library/ms188783.aspx
 create_index
@@ -2822,7 +2823,7 @@ alter_database
 
 alter_database_new_infos
     : MODIFY NAME EQUAL database_id
-    | collate
+    | collate_set
     | SET database_optionspec (WITH termination)?
     | add_or_modify_files
     | add_or_modify_filegroups
@@ -2897,7 +2898,7 @@ database_optionspec
     | termination
     ;
 
-database_filestream : FILESTREAM database_filestream_option;
+database_filestream : FILESTREAM LR_BRACKET database_filestream_option RR_BRACKET;
 
 auto_option
     : AUTO_CLOSE on_off
@@ -3695,7 +3696,7 @@ column_definition
 
 column_definition_element
     : FILESTREAM
-    | collate
+    | collate_set
     | SPARSE
     | MASKED WITH LR_BRACKET FUNCTION EQUAL mask_function=stringtext RR_BRACKET
     | (CONSTRAINT constraint_id)? DEFAULT  constant_expr=expression
@@ -4795,40 +4796,38 @@ create_database_option
     | trustworthy_set
     | default_language_set
     | default_fulltext_language_set
-    | nested_triggers
-    | transform_noise_words
-    | two_digit_year_cutoff
+    | nested_triggers_set
+    | transform_noise_words_set
+    | two_digit_year_cutoff_set
+    ;
+
+database_filestream_options : database_filestream_option (COMMA database_filestream_option)*;
+
+database_filestream_option
+    : non_transacted_access_set
+    | directory_name_set         
     ;
 
 db_chaining_set : DB_CHAINING on_off;
 trustworthy_set : TRUSTWORTHY on_off;
 default_language_set : DEFAULT_LANGUAGE EQUAL language_setting_value;
 default_fulltext_language_set : DEFAULT_FULLTEXT_LANGUAGE EQUAL language_setting;
-nested_triggers : NESTED_TRIGGERS EQUAL on_off;
-transform_noise_words : TRANSFORM_NOISE_WORDS EQUAL on_off;
-two_digit_year_cutoff : TWO_DIGIT_YEAR_CUTOFF EQUAL decimal;
+nested_triggers_set : NESTED_TRIGGERS EQUAL on_off;
+transform_noise_words_set : TRANSFORM_NOISE_WORDS EQUAL on_off;
+two_digit_year_cutoff_set : TWO_DIGIT_YEAR_CUTOFF EQUAL decimal;
 
 db_option
     : db_chaining_set
     | trustworthy_set
     | default_language_set
     | default_fulltext_language_set
-    | nested_triggers
-    | transform_noise_words
-    | two_digit_year_cutoff
-    ;
-
-database_filestream_option
-    : LR_BRACKET
-     (
-          non_transacted_access_set
-        | directory_name_set
-      )
-     RR_BRACKET
+    | nested_triggers_set
+    | transform_noise_words_set
+    | two_digit_year_cutoff_set
     ;
 
 directory_name_set : DIRECTORY_NAME EQUAL stringtext;
-non_transacted_access_set : EQUAL NON_TRANSACTED_ACCESS EQUAL off_read_only_full;
+non_transacted_access_set : NON_TRANSACTED_ACCESS EQUAL off_read_only_full;
 
 database_file
     : file_group | file_spec
@@ -4848,7 +4847,7 @@ file_spec
       filename_set COMMA?
       ( size_set COMMA? )?
       ( maxsize_set COMMA? )?
-      ( filegrowth COMMA? )?
+      ( filegrowth_set COMMA? )?
       RR_BRACKET
     ;
 
@@ -4857,7 +4856,7 @@ filename_set : FILENAME EQUAL file = stringtext;
 size_set : SIZE EQUAL size=file_size;
 maxsize_set : MAXSIZE EQUAL max_file_size_value;
 max_file_size_value : file_size | UNLIMITED;
-filegrowth : FILEGROWTH EQUAL file_size;
+filegrowth_set : FILEGROWTH EQUAL file_size;
 
 cursor_name
     : id_
@@ -6140,8 +6139,6 @@ insert_column_name_list : insert_column_id (COMMA insert_column_id)*;
 insert_column_id : (source=id_? DOT )* column_id;
 
 file_specs : file_spec ( COMMA file_spec )*;
-
-database_filestream_options : database_filestream_option (COMMA database_filestream_option)*;
 
 expression_list : expression (COMMA expression)*;
 
