@@ -98,6 +98,23 @@ namespace Bb.Generators
 
         }
 
+        public static CodeStatementCollection ForEach(this CodeStatementCollection self, CodeTypeReference variableType, string item, CodeExpression list, Action<CodeStatementCollection> action)
+        {
+
+            var t = "IEnumerator".AsType();
+            //t.TypeArguments.Add(variableType);
+            var declare = Declare("enumerator", t, list.Call("GetEnumerator"));
+
+            var i = new CodeIterationStatement(declare, "enumerator".Var().Call("MoveNext"), new CodeSnippetStatement(""));
+            i.Statements.DeclareAndInitialize(item, variableType, "enumerator".Var().Property("Current").Cast(variableType));
+            action(i.Statements);
+
+            self.Add(i);
+
+            return self;
+
+        }
+
 
         public static CodeExpression Property(this CodeExpression self, string name)
         {

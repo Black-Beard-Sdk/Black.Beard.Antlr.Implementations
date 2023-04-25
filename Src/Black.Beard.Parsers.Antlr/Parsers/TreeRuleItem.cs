@@ -21,7 +21,7 @@ namespace Bb.Parsers
             _list = new List<AlternativeTreeRuleItem>(capacity);
         }
 
-        public AlternativeTreeRuleItem this[int index] { get => _list[0]; set => _list[0] = value; }
+        public AlternativeTreeRuleItem this[int index] { get => _list[index]; set => _list[index] = value; }
 
         public void Add(TreeRuleItem item)
         {

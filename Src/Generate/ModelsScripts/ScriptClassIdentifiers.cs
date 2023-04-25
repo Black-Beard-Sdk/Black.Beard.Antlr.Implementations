@@ -276,27 +276,27 @@ namespace Generate.ModelsScripts
                                 })
 
                               .Field(field =>
-                                {
-                                    field.Name("_isTerminal")
-                                         .Type(typeof(bool))
-                                         .Attribute(MemberAttributes.Private | MemberAttributes.Static)
-                                         .Value((a) =>
-                                         {
+                              {
+                                  field.Name("_isTerminal")
+                                       .Type(typeof(bool))
+                                       .Attribute(MemberAttributes.Private | MemberAttributes.Static)
+                                       .Value((a) =>
+                                       {
 
-                                             var items = ctx.Variables.Get<AlternativeTreeRuleItemList>("combinaisons");
-                                             foreach (var item in items)
-                                             {
-                                                 foreach (var item1 in item.Item)
-                                                 {
-                                                     var oo = item1.Origin.Select(c => c.Type == nameof(AstRuleRef)).FirstOrDefault();
-                                                     if (oo != null)
-                                                         return CodeHelper.AsConstant(false);
-                                                 }
-                                             }
+                                           var items = ctx.Variables.Get<AlternativeTreeRuleItemList>("combinaisons");
+                                           foreach (var item in items)
+                                           {
+                                               foreach (var item1 in item.Item)
+                                               {
+                                                   var oo = item1.Origin.Select(c => c.Type == nameof(AstRuleRef)).FirstOrDefault();
+                                                   if (oo != null)
+                                                       return CodeHelper.AsConstant(false);
+                                               }
+                                           }
 
-                                             return CodeHelper.AsConstant(true);
-                                         });
-                                })
+                                           return CodeHelper.AsConstant(true);
+                                       });
+                              })
 
                               .Property(property =>
                                 {
@@ -444,6 +444,19 @@ namespace Generate.ModelsScripts
 
                                 })
 
+                              .Method(method =>
+                              {
+                                  var type = ("Ast" + CodeHelper.FormatCsharp(ast.Name.Text));
+                                  method.Name(g => "ToString")
+                                        .Argument("Writer", "writer")
+                                        .Attribute(MemberAttributes.Public | MemberAttributes.Override)
+                                        .Body(b =>
+                                        {
+
+                                        })
+                                   ;
+
+                              })
                               ;
                       });
                 });

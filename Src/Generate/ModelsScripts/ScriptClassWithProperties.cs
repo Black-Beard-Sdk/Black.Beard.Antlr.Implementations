@@ -399,6 +399,21 @@ namespace Generate.ModelsScripts
                                    ;
 
                               })
+
+                              .Method(method =>
+                              {
+                                  var type = ("Ast" + CodeHelper.FormatCsharp(ast.Name.Text));
+                                  method.Name(g => "ToString")
+                                        .Argument("Writer", "writer")
+                                        .Attribute(MemberAttributes.Public | MemberAttributes.Override)
+                                        .Body(b =>
+                                        {
+
+                                        })
+                                   ;
+
+                              })
+
                               ;
                       });
 

@@ -2290,7 +2290,7 @@ RULE create_server_audit_specification
 
 RULE alter_server_configuration 
 //** alter_server_configuration
-	 : ALTER  SERVER  CONFIGURATION  SET  (server_config_process_affinity | server_config_diagnostic_log | server_config_failover | HADR  CLUSTER  CONTEXT  EQUAL  (stringtext | LOCAL) | server_config_buffer_pool_ext | SET  SOFTNUMA  on_off)
+	 : ALTER  SERVER  CONFIGURATION  SET  (server_config_process_affinity | server_config_diagnostic_log | server_config_failover | server_config_hadr_set | server_config_buffer_pool_ext | SET  SOFTNUMA  on_off)
   **// 
 	GENERATE
 	INHERIT 
@@ -3532,11 +3532,11 @@ RULE filespecs
 
 RULE filespec 
 //** filespec
-	 : LR_BRACKET  NAME  EQUAL  file_group_id  (COMMA  NEWNAME  EQUAL  file_group_id | stringtext)?  (COMMA  FILENAME  EQUAL  file_name = stringtext)?  (COMMA  SIZE  EQUAL  size = file_size)?  (COMMA  MAXSIZE  EQUAL  max = file_size | UNLIMITED)?  (COMMA  FILEGROWTH  EQUAL  growth_increment = file_size)?  (COMMA  OFFLINE)?  RR_BRACKET
+	 : LR_BRACKET  name_set  (COMMA  newname_set)?  (COMMA  filename_set)?  (COMMA  size_set)?  (COMMA  maxsize_set)?  (COMMA  filegrowth_set)?  (COMMA  OFFLINE)?  RR_BRACKET
   **// 
 	GENERATE
 	INHERIT 
-	CALCULATED INHERIT "AstRuleList<AstFileGroupId>"
+	CALCULATED INHERIT "AstRuleList<AstNameSet>"
 	TEMPLATE ClassList
 	CALCULATED TEMPLATE ClassWithProperties
 ;
@@ -16823,7 +16823,7 @@ RULE schema_authorization
 
 RULE server_config_process_affinity 
 //** server_config_process_affinity
-	 : PROCESS  AFFINITY  (CPU  EQUAL  (AUTO | decimal_range  decimal_ranges) | NUMANODE  EQUAL  decimal_range  decimal_ranges)
+	 : PROCESS  AFFINITY  (process_cpu_set | process_numanode_set)
   **// 
 	GENERATE
 	INHERIT 
@@ -16834,7 +16834,7 @@ RULE server_config_process_affinity
 
 RULE server_config_diagnostic_log 
 //** server_config_diagnostic_log
-	 : DIAGNOSTICS  LOG  (on_off | PATH  EQUAL  string_or_default | MAX_SIZE  EQUAL  size_value | MAX_FILES  EQUAL  decimal_default)
+	 : DIAGNOSTICS  LOG  (on_off | diagnos_path_set | diagnos_max_size_set | diagnos_max_files_set)
   **// 
 	GENERATE
 	INHERIT 
@@ -19587,11 +19587,11 @@ RULE server_audit_file_info
 
 RULE server_audit_file_spec 
 //** server_audit_file_spec
-	 : FILEPATH  EQUAL  filepath = stringtext
-	 | MAXSIZE  EQUAL  decimal_size_unlimited
-	 | MAX_ROLLOVER_FILES  EQUAL  max_rollover_files = decimal_unlimited
-	 | MAX_FILES  EQUAL  max_files = decimal
-	 | RESERVE_DISK_SPACE  EQUAL  on_off
+	 : filepath_set
+	 | audit_maxsize
+	 | max_rollover_files_set
+	 | max_files_set
+	 | disk_space_set
   **// 
 	GENERATE
 	INHERIT 
@@ -19864,7 +19864,8 @@ RULE decimal_unlimited
 
 RULE decimal_size_unlimited 
 //** decimal_size_unlimited
-	 : (decimal  size_unity | UNLIMITED)
+	 : decimal  size_unity
+	 | UNLIMITED
   **// 
 	GENERATE
 	INHERIT 
@@ -23038,6 +23039,150 @@ RULE database_files
 	CALCULATED TEMPLATE ClassList
 ;
 
+RULE server_config_hadr_set 
+//** server_config_hadr_set
+	 : HADR  CLUSTER  CONTEXT  EQUAL  (stringtext | LOCAL)
+  **// 
+	GENERATE
+	INHERIT 
+	CALCULATED INHERIT "AstBnfRule"
+	TEMPLATE 
+	CALCULATED TEMPLATE _
+;
+
+RULE process_numanode_set 
+//** process_numanode_set
+	 : NUMANODE  EQUAL  decimal_range  decimal_ranges
+  **// 
+	GENERATE
+	INHERIT 
+	CALCULATED INHERIT "AstBnfRule"
+	TEMPLATE 
+	CALCULATED TEMPLATE ClassWithProperties
+;
+
+RULE process_cpu_set 
+//** process_cpu_set
+	 : CPU  EQUAL  (AUTO | decimal_range  decimal_ranges)
+  **// 
+	GENERATE
+	INHERIT 
+	CALCULATED INHERIT "AstBnfRule"
+	TEMPLATE 
+	CALCULATED TEMPLATE _
+;
+
+RULE diagnos_path_set 
+//** diagnos_path_set
+	 : PATH  EQUAL  string_or_default
+  **// 
+	GENERATE
+	INHERIT 
+	CALCULATED INHERIT "AstBnfRule"
+	TEMPLATE 
+	CALCULATED TEMPLATE ClassWithProperties
+;
+
+RULE diagnos_max_size_set 
+//** diagnos_max_size_set
+	 : MAX_SIZE  EQUAL  size_value
+  **// 
+	GENERATE
+	INHERIT 
+	CALCULATED INHERIT "AstBnfRule"
+	TEMPLATE 
+	CALCULATED TEMPLATE ClassWithProperties
+;
+
+RULE diagnos_max_files_set 
+//** diagnos_max_files_set
+	 : MAX_FILES  EQUAL  decimal_default
+  **// 
+	GENERATE
+	INHERIT 
+	CALCULATED INHERIT "AstBnfRule"
+	TEMPLATE 
+	CALCULATED TEMPLATE ClassWithProperties
+;
+
+RULE audit_maxsize 
+//** audit_maxsize
+	 : MAXSIZE  EQUAL  decimal_size_unlimited
+  **// 
+	GENERATE
+	INHERIT 
+	CALCULATED INHERIT "AstBnfRule"
+	TEMPLATE 
+	CALCULATED TEMPLATE ClassWithProperties
+;
+
+RULE filepath_set 
+//** filepath_set
+	 : FILEPATH  EQUAL  stringtext
+  **// 
+	GENERATE
+	INHERIT 
+	CALCULATED INHERIT "AstBnfRule"
+	TEMPLATE 
+	CALCULATED TEMPLATE ClassWithProperties
+;
+
+RULE max_rollover_files_set 
+//** max_rollover_files_set
+	 : MAX_ROLLOVER_FILES  EQUAL  decimal_unlimited
+  **// 
+	GENERATE
+	INHERIT 
+	CALCULATED INHERIT "AstBnfRule"
+	TEMPLATE 
+	CALCULATED TEMPLATE ClassWithProperties
+;
+
+RULE max_files_set 
+//** max_files_set
+	 : MAX_FILES  EQUAL  decimal
+  **// 
+	GENERATE
+	INHERIT 
+	CALCULATED INHERIT "AstBnfRule"
+	TEMPLATE 
+	CALCULATED TEMPLATE ClassWithProperties
+;
+
+RULE disk_space_set 
+//** disk_space_set
+	 : RESERVE_DISK_SPACE  EQUAL  on_off
+  **// 
+	GENERATE
+	INHERIT 
+	CALCULATED INHERIT "AstBnfRule"
+	TEMPLATE 
+	CALCULATED TEMPLATE ClassWithProperties
+;
+
+RULE newname_set 
+//** newname_set
+	 : NEWNAME  EQUAL  file_group_id
+	 | stringtext
+  **// 
+	GENERATE
+	INHERIT 
+	CALCULATED INHERIT "AstBnfRule"
+	TEMPLATE 
+	CALCULATED TEMPLATE _
+;
+
+RULE filegrowth_set 
+//** filegrowth_set
+	 : FILEGROWTH  EQUAL  file_size
+  **// 
+	GENERATE
+	INHERIT 
+	CALCULATED INHERIT "AstBnfRule"
+	TEMPLATE 
+	CALCULATED TEMPLATE ClassWithProperties
+;
+
 RULE database_with_option 
 //** database_with_option
 	 : WITH  create_database_option_list
@@ -23074,17 +23219,6 @@ RULE transform_noise_words_set
 RULE two_digit_year_cutoff_set 
 //** two_digit_year_cutoff_set
 	 : TWO_DIGIT_YEAR_CUTOFF  EQUAL  decimal
-  **// 
-	GENERATE
-	INHERIT 
-	CALCULATED INHERIT "AstBnfRule"
-	TEMPLATE 
-	CALCULATED TEMPLATE ClassWithProperties
-;
-
-RULE filegrowth_set 
-//** filegrowth_set
-	 : FILEGROWTH  EQUAL  file_size
   **// 
 	GENERATE
 	INHERIT 

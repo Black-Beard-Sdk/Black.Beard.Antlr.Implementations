@@ -8,6 +8,18 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Client\Bulks\**" />
+    <Compile Remove="Client\Queries\**" />
+    <Compile Remove="Client\Structures\**" />
+    <EmbeddedResource Remove="Client\Bulks\**" />
+    <EmbeddedResource Remove="Client\Queries\**" />
+    <EmbeddedResource Remove="Client\Structures\**" />
+    <None Remove="Client\Bulks\**" />
+    <None Remove="Client\Queries\**" />
+    <None Remove="Client\Structures\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Compile Remove="Asts\Astadd_or_modify_filegroups.generated.cs" />
     <Compile Remove="Asts\Astadd_or_modify_files.generated.cs" />
     <Compile Remove="Asts\Astaggregate_windowed_function.generated.cs" />
@@ -42,10 +54,16 @@
   <ItemGroup>
     <PackageReference Include="Antlr4.Runtime.Standard" Version="4.11.1" />
     <PackageReference Include="Black.Beard.Helpers.ContentLoaders.Files" Version="2.0.1" />
+    <PackageReference Include="Microsoft.Extensions.Primitives" Version="7.0.0" />
+    <PackageReference Include="System.Data.SqlClient" Version="4.8.5" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\Black.Beard.Parsers\Black.Beard.Parsers.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Client\" />
   </ItemGroup>
 
 </Project>

@@ -1893,18 +1893,6 @@ public interface ITSqlParserVisitor<Result> : IParseTreeVisitor<Result> {
 	/// <return>The visitor result.</return>
 	Result VisitServer_audit_file_spec([NotNull] TSqlParser.Server_audit_file_specContext context);
 	/// <summary>
-	/// Visit a parse tree produced by <see cref="TSqlParser.decimal_unlimited"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitDecimal_unlimited([NotNull] TSqlParser.Decimal_unlimitedContext context);
-	/// <summary>
-	/// Visit a parse tree produced by <see cref="TSqlParser.decimal_size_unlimited"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitDecimal_size_unlimited([NotNull] TSqlParser.Decimal_size_unlimitedContext context);
-	/// <summary>
 	/// Visit a parse tree produced by <see cref="TSqlParser.alter_server_audit_condition"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
@@ -2000,6 +1988,126 @@ public interface ITSqlParserVisitor<Result> : IParseTreeVisitor<Result> {
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
 	Result VisitServer_config_diagnostic_log([NotNull] TSqlParser.Server_config_diagnostic_logContext context);
+	/// <summary>
+	/// Visit a parse tree produced by <see cref="TSqlParser.server_config_hadr_set"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitServer_config_hadr_set([NotNull] TSqlParser.Server_config_hadr_setContext context);
+	/// <summary>
+	/// Visit a parse tree produced by <see cref="TSqlParser.process_numanode_set"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitProcess_numanode_set([NotNull] TSqlParser.Process_numanode_setContext context);
+	/// <summary>
+	/// Visit a parse tree produced by <see cref="TSqlParser.process_cpu_set"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitProcess_cpu_set([NotNull] TSqlParser.Process_cpu_setContext context);
+	/// <summary>
+	/// Visit a parse tree produced by <see cref="TSqlParser.diagnos_path_set"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitDiagnos_path_set([NotNull] TSqlParser.Diagnos_path_setContext context);
+	/// <summary>
+	/// Visit a parse tree produced by <see cref="TSqlParser.diagnos_max_size_set"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitDiagnos_max_size_set([NotNull] TSqlParser.Diagnos_max_size_setContext context);
+	/// <summary>
+	/// Visit a parse tree produced by <see cref="TSqlParser.diagnos_max_files_set"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitDiagnos_max_files_set([NotNull] TSqlParser.Diagnos_max_files_setContext context);
+	/// <summary>
+	/// Visit a parse tree produced by <see cref="TSqlParser.audit_maxsize"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitAudit_maxsize([NotNull] TSqlParser.Audit_maxsizeContext context);
+	/// <summary>
+	/// Visit a parse tree produced by <see cref="TSqlParser.filepath_set"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitFilepath_set([NotNull] TSqlParser.Filepath_setContext context);
+	/// <summary>
+	/// Visit a parse tree produced by <see cref="TSqlParser.max_rollover_files_set"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitMax_rollover_files_set([NotNull] TSqlParser.Max_rollover_files_setContext context);
+	/// <summary>
+	/// Visit a parse tree produced by <see cref="TSqlParser.max_files_set"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitMax_files_set([NotNull] TSqlParser.Max_files_setContext context);
+	/// <summary>
+	/// Visit a parse tree produced by <see cref="TSqlParser.disk_space_set"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitDisk_space_set([NotNull] TSqlParser.Disk_space_setContext context);
+	/// <summary>
+	/// Visit a parse tree produced by <see cref="TSqlParser.newname_set"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitNewname_set([NotNull] TSqlParser.Newname_setContext context);
+	/// <summary>
+	/// Visit a parse tree produced by <see cref="TSqlParser.name_set"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitName_set([NotNull] TSqlParser.Name_setContext context);
+	/// <summary>
+	/// Visit a parse tree produced by <see cref="TSqlParser.filename_set"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitFilename_set([NotNull] TSqlParser.Filename_setContext context);
+	/// <summary>
+	/// Visit a parse tree produced by <see cref="TSqlParser.size_set"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitSize_set([NotNull] TSqlParser.Size_setContext context);
+	/// <summary>
+	/// Visit a parse tree produced by <see cref="TSqlParser.maxsize_set"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitMaxsize_set([NotNull] TSqlParser.Maxsize_setContext context);
+	/// <summary>
+	/// Visit a parse tree produced by <see cref="TSqlParser.max_file_size_value"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitMax_file_size_value([NotNull] TSqlParser.Max_file_size_valueContext context);
+	/// <summary>
+	/// Visit a parse tree produced by <see cref="TSqlParser.filegrowth_set"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitFilegrowth_set([NotNull] TSqlParser.Filegrowth_setContext context);
+	/// <summary>
+	/// Visit a parse tree produced by <see cref="TSqlParser.decimal_unlimited"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitDecimal_unlimited([NotNull] TSqlParser.Decimal_unlimitedContext context);
+	/// <summary>
+	/// Visit a parse tree produced by <see cref="TSqlParser.decimal_size_unlimited"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitDecimal_size_unlimited([NotNull] TSqlParser.Decimal_size_unlimitedContext context);
 	/// <summary>
 	/// Visit a parse tree produced by <see cref="TSqlParser.server_config_failover"/>.
 	/// </summary>
@@ -4700,42 +4808,6 @@ public interface ITSqlParserVisitor<Result> : IParseTreeVisitor<Result> {
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
 	Result VisitFile_spec([NotNull] TSqlParser.File_specContext context);
-	/// <summary>
-	/// Visit a parse tree produced by <see cref="TSqlParser.name_set"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitName_set([NotNull] TSqlParser.Name_setContext context);
-	/// <summary>
-	/// Visit a parse tree produced by <see cref="TSqlParser.filename_set"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitFilename_set([NotNull] TSqlParser.Filename_setContext context);
-	/// <summary>
-	/// Visit a parse tree produced by <see cref="TSqlParser.size_set"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitSize_set([NotNull] TSqlParser.Size_setContext context);
-	/// <summary>
-	/// Visit a parse tree produced by <see cref="TSqlParser.maxsize_set"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitMaxsize_set([NotNull] TSqlParser.Maxsize_setContext context);
-	/// <summary>
-	/// Visit a parse tree produced by <see cref="TSqlParser.max_file_size_value"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitMax_file_size_value([NotNull] TSqlParser.Max_file_size_valueContext context);
-	/// <summary>
-	/// Visit a parse tree produced by <see cref="TSqlParser.filegrowth_set"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitFilegrowth_set([NotNull] TSqlParser.Filegrowth_setContext context);
 	/// <summary>
 	/// Visit a parse tree produced by <see cref="TSqlParser.cursor_name"/>.
 	/// </summary>

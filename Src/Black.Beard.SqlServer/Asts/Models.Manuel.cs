@@ -20,7 +20,6 @@ namespace Bb.SqlServer.Asts
 
     }
 
-
     public partial class AstEnableDisable : AstTerminalKeyword
     {
 
@@ -41,18 +40,17 @@ namespace Bb.SqlServer.Asts
             return AstDatabaseFile.New(AstFileGroup.New(filegroupeName, AstFileSpecs.New(files)));
         }
 
-        public static AstDatabaseFile File(string fileSpecName, string filename, decimal initSize, UnitySizeEnum initSizeUnity, decimal sizeGrowth, UnitySizeEnum growUnity)
+        public static AstDatabaseFile File(string fileSpecName, string filename, decimal initSize, AstFileSizeUnityEnum initSizeUnity, decimal sizeGrowth, AstFileSizeUnityEnum growUnity)
         {
             return AstDatabaseFile.New(AstFileSpec.File(fileSpecName, filename, initSize, initSizeUnity, sizeGrowth, growUnity));
         }
 
-        public static AstDatabaseFile File(string fileSpecName, string filename, decimal initSize, UnitySizeEnum initSizeUnity, decimal maxSize, UnitySizeEnum maxSizeUnity, decimal sizeGrowth, UnitySizeEnum growUnity)
+        public static AstDatabaseFile File(string fileSpecName, string filename, decimal initSize, AstFileSizeUnityEnum initSizeUnity, decimal maxSize, AstFileSizeUnityEnum maxSizeUnity, decimal sizeGrowth, AstFileSizeUnityEnum growUnity)
         {
             return AstDatabaseFile.New(AstFileSpec.File(fileSpecName, filename, initSize, initSizeUnity, maxSize, maxSizeUnity, sizeGrowth, growUnity));
         }
 
     }
-
 
     public abstract partial class AstCreateDatabaseOption : AstBnfRule
     {
@@ -112,7 +110,7 @@ namespace Bb.SqlServer.Asts
     public partial class AstFileSpec : AstBnfRule
     {
 
-        public static AstFileSpec File(string fileSpecName, string filename, decimal initSize, UnitySizeEnum initSizeUnity, decimal sizeGrowth, UnitySizeEnum growUnity)
+        public static AstFileSpec File(string fileSpecName, string filename, decimal initSize, AstFileSizeUnityEnum initSizeUnity, decimal sizeGrowth, AstFileSizeUnityEnum growUnity)
         {
 
             var result = AstFileSpec.New
@@ -128,7 +126,7 @@ namespace Bb.SqlServer.Asts
 
         }
 
-        public static AstFileSpec File(string fileSpecName, string filename, decimal initSize, UnitySizeEnum initSizeUnity, decimal maxSize, UnitySizeEnum maxSizeUnity, decimal sizeGrowth, UnitySizeEnum growUnity)
+        public static AstFileSpec File(string fileSpecName, string filename, decimal initSize, AstFileSizeUnityEnum initSizeUnity, decimal maxSize, AstFileSizeUnityEnum maxSizeUnity, decimal sizeGrowth, AstFileSizeUnityEnum growUnity)
         {
 
             var result = AstFileSpec.New
@@ -146,37 +144,7 @@ namespace Bb.SqlServer.Asts
 
     }
 
-    public partial class AstFileSizeUnity : AstTerminalKeyword
-    {
-
-        public static implicit operator AstFileSizeUnity(UnitySizeEnum unity)
-        {
-            AstFileSizeUnity u = null;
-
-            switch (unity)
-            {
-                case UnitySizeEnum.Kb:
-                    u = AstFileSizeUnity.Kb();
-                    break;
-                case UnitySizeEnum.Mb:
-                    u = AstFileSizeUnity.Mb();
-                    break;
-                case UnitySizeEnum.Tb:
-                    u = AstFileSizeUnity.Tb();
-                    break;
-
-                case UnitySizeEnum.Gb:
-                default:
-                    u = AstFileSizeUnity.Gb();
-                    break;
-            }
-
-            return u;
-        }
-
-
-    }
-
+    
 
     public abstract partial class AstDatabaseFilestreamOption : AstBnfRule
     {
@@ -186,50 +154,14 @@ namespace Bb.SqlServer.Asts
             return AstDatabaseFilestreamOption.New(AstDirectoryNameSet.New(directoryName));
         }
 
-        public static AstDatabaseFilestreamOption NonTransactedAccess(NonTransactedAccessEnum value)
+        public static AstDatabaseFilestreamOption NonTransactedAccess(AstOffReadOnlyFullEnum value)
         {
             return AstDatabaseFilestreamOption.New(AstNonTransactedAccessSet.New(value));
         }
 
     }
+        
 
-    public partial class AstOffReadOnlyFull : AstTerminalKeyword
-    {
-
-        public static implicit operator AstOffReadOnlyFull(NonTransactedAccessEnum value)
-        {
-            switch (value)
-            {
-                case NonTransactedAccessEnum.ReadOnly:
-                    return AstOffReadOnlyFull.ReadOnly();
-
-                case NonTransactedAccessEnum.Full:
-                    return AstOffReadOnlyFull.Full();
-
-                default:
-                    break;
-
-            }
-
-            return AstOffReadOnlyFull.Off();
-
-        }
-
-    }
-
-    public enum NonTransactedAccessEnum
-    {
-        Off,
-        ReadOnly,
-        Full
-    }
-
-    public enum UnitySizeEnum
-    {
-        Gb,
-        Kb,
-        Mb,
-        Tb,
-    }
+  
 
 }

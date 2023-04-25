@@ -1,5 +1,4 @@
 ﻿using Bb.SqlServer.Asts;
-using Bb.SqlServer.Parsers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -47,12 +46,12 @@ namespace Bb.SqlServer
 
                 var onPrimary = AstDatabaseFiles.New
                 (
-                    AstDatabaseFile.File(database, path1, 8192, UnitySizeEnum.Kb, 65536, UnitySizeEnum.Kb)
+                    AstDatabaseFile.File(database, path1, 8192, AstFileSizeUnityEnum.Kb, 65536, AstFileSizeUnityEnum.Kb)
                 );
 
                 var onLog = AstDatabaseFiles.New
                 (
-                    AstDatabaseFile.File(database, path1, 8192, UnitySizeEnum.Kb, 2048, UnitySizeEnum.Gb, 65536, UnitySizeEnum.Kb)
+                    AstDatabaseFile.File(database, path1, 8192, AstFileSizeUnityEnum.Kb, 2048, AstFileSizeUnityEnum.Kb, 65536, AstFileSizeUnityEnum.Kb)
                 );
 
                 return Database(database, containmentPartial, collation, onPrimary, onLog);

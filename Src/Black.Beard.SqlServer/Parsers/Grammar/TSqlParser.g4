@@ -1839,15 +1839,12 @@ server_audit_file
     ;
 
 server_audit_file_spec
-    : FILEPATH EQUAL filepath=stringtext
-    | MAXSIZE EQUAL decimal_size_unlimited
-    | MAX_ROLLOVER_FILES EQUAL max_rollover_files= decimal_unlimited
-    | MAX_FILES EQUAL max_files=decimal
-    | RESERVE_DISK_SPACE EQUAL on_off 
+    : filepath_set
+    | audit_maxsize
+    | max_rollover_files_set
+    | max_files_set
+    | disk_space_set
     ;
-
- decimal_unlimited : decimal | UNLIMITED;
- decimal_size_unlimited : (decimal size_unity | UNLIMITED);
 
 alter_server_audit_condition
     : 
@@ -1911,7 +1908,7 @@ alter_server_configuration
           server_config_process_affinity 
         | server_config_diagnostic_log
         | server_config_failover
-        | HADR CLUSTER CONTEXT EQUAL (stringtext|LOCAL) 
+        | server_config_hadr_set
         | server_config_buffer_pool_ext
         | SET SOFTNUMA on_off 
       )
@@ -1920,8 +1917,8 @@ alter_server_configuration
 server_config_process_affinity
     : PROCESS AFFINITY 
     (
-          CPU EQUAL (AUTO | decimal_range decimal_ranges ) 
-        | NUMANODE EQUAL decimal_range decimal_ranges
+          process_cpu_set
+        | process_numanode_set
     )
     ;
 
@@ -1929,11 +1926,33 @@ server_config_diagnostic_log
     : DIAGNOSTICS LOG 
     (
           on_off
-        | PATH EQUAL string_or_default
-        | MAX_SIZE EQUAL size_value
-        | MAX_FILES EQUAL decimal_default
+        | diagnos_path_set
+        | diagnos_max_size_set
+        | diagnos_max_files_set
     )
     ;
+
+server_config_hadr_set : HADR CLUSTER CONTEXT EQUAL (stringtext | LOCAL) ;
+process_numanode_set : NUMANODE EQUAL decimal_range decimal_ranges;
+process_cpu_set : CPU EQUAL (AUTO | decimal_range decimal_ranges );
+diagnos_path_set : PATH EQUAL string_or_default;
+diagnos_max_size_set :  MAX_SIZE EQUAL size_value;
+diagnos_max_files_set :  MAX_FILES EQUAL decimal_default;
+audit_maxsize : MAXSIZE EQUAL decimal_size_unlimited;
+filepath_set : FILEPATH EQUAL stringtext;
+max_rollover_files_set : MAX_ROLLOVER_FILES EQUAL decimal_unlimited;
+max_files_set : MAX_FILES EQUAL decimal;
+disk_space_set : RESERVE_DISK_SPACE EQUAL on_off ;
+newname_set : NEWNAME EQUAL file_group_id | stringtext;
+name_set : NAME EQUAL id_or_string;
+filename_set : FILENAME EQUAL file = stringtext;
+size_set : SIZE EQUAL size=file_size;
+maxsize_set : MAXSIZE EQUAL max_file_size_value;
+max_file_size_value : file_size | UNLIMITED;
+filegrowth_set : FILEGROWTH EQUAL file_size;
+decimal_unlimited : decimal | UNLIMITED;
+decimal_size_unlimited : decimal size_unity | UNLIMITED;
+
 
 server_config_failover
     : FAILOVER CLUSTER PROPERTY 
@@ -1950,10 +1969,7 @@ server_config_failover
 server_config_buffer_pool_ext
     : BUFFER POOL EXTENSION 
     (
-          ON LR_BRACKET 
-          filename_set
-          COMMA SIZE EQUAL size=decimal size_unity 
-          RR_BRACKET 
+          ON LR_BRACKET filename_set COMMA SIZE EQUAL size=decimal size_unity RR_BRACKET 
         | OFF 
     ) 
     ;
@@ -2838,13 +2854,13 @@ add_or_modify_files
     ;
 
 filespec
-    : LR_BRACKET NAME       EQUAL file_group_id
-          (COMMA NEWNAME    EQUAL file_group_id | stringtext )?
-          (COMMA FILENAME   EQUAL file_name=stringtext )?
-          (COMMA SIZE       EQUAL size=file_size )?
-          (COMMA MAXSIZE    EQUAL max=file_size | UNLIMITED )?
-          (COMMA FILEGROWTH EQUAL growth_increment=file_size )?
-          (COMMA OFFLINE )?
+    : LR_BRACKET name_set
+        (COMMA newname_set)?
+        (COMMA filename_set)?
+        (COMMA size_set)?
+        (COMMA maxsize_set)?
+        (COMMA filegrowth_set)?
+        (COMMA OFFLINE )?
       RR_BRACKET
     ;
 
@@ -4850,13 +4866,6 @@ file_spec
       ( filegrowth_set COMMA? )?
       RR_BRACKET
     ;
-
-name_set : NAME EQUAL id_or_string;
-filename_set : FILENAME EQUAL file = stringtext;
-size_set : SIZE EQUAL size=file_size;
-maxsize_set : MAXSIZE EQUAL max_file_size_value;
-max_file_size_value : file_size | UNLIMITED;
-filegrowth_set : FILEGROWTH EQUAL file_size;
 
 cursor_name
     : id_

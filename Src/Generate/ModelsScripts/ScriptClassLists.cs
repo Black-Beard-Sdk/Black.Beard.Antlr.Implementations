@@ -126,7 +126,7 @@ namespace Generate.ModelsScripts
                                        b.Statements.Return
                                        (
                                            CodeHelper.Create(type.AsType(), "ctx".Var(), "items".Var())
-                                       ); 
+                                       );
                                    });
 
                                   if (astChild != null)
@@ -169,7 +169,7 @@ namespace Generate.ModelsScripts
                                   var type = ("Ast" + CodeHelper.FormatCsharp(ast.Name.Text));
 
                                   method
-                                   .Name(g => "New")                                   
+                                   .Name(g => "New")
                                    .Return(() => type)
                                    .Documentation(doc =>
                                    {
@@ -212,7 +212,7 @@ namespace Generate.ModelsScripts
                                   })
                                   ;
                               })
-                                .Field(field =>
+                              .Field(field =>
                                 {
                                     field.Name("_ruleName")
                                          .Type(typeof(string))
@@ -222,7 +222,7 @@ namespace Generate.ModelsScripts
                                              return ast.Name.Text;
                                          });
                                 })
-                                .Property(property =>
+                              .Property(property =>
                                 {
                                     property.Name((a) => "RuleName")
                                             .Type(() => typeof(string))
@@ -231,7 +231,7 @@ namespace Generate.ModelsScripts
                                             .HasSet(false)
                                             ;
                                 })
-                                .Property(property =>
+                              .Property(property =>
                                 {
                                     property.Name((a) => "RuleValue")
                                             .Type(() => typeof(string))
@@ -240,6 +240,57 @@ namespace Generate.ModelsScripts
                                             .HasSet(false)
                                             ;
                                 })
+
+
+                              .Method(method =>
+                              {
+                                  var c = ast.Select<AstTerminalText>(c => c.Type == "TOKEN_REF");
+                                  if (c.Count <= 1)
+                                  {
+                                      var type = ("Ast" + CodeHelper.FormatCsharp(ast.Name.Text));
+                                      method.Name(g => "ToString")
+                                            .Argument("Writer", "writer")
+                                            .Attribute(MemberAttributes.Public | MemberAttributes.Override)
+                                            .Body(b =>
+                                            {
+
+                                                var astChild = ast.GetRules().FirstOrDefault();
+
+                                                if (c.Count > 0)
+                                                    b.Statements.DeclareAndInitialize("comma", typeof(string).AsType(), "String".Var().Property("Empty"));
+
+                                                var type = "Ast" + CodeHelper.FormatCsharp(astChild.Name.Text);
+                                                b.Statements.ForEach(type.AsType(), "var1", CodeHelper.This(), a =>
+                                                {
+                                                    if (c.Count > 0) 
+                                                        a.Add(CodeHelper.Call("writer".Var(), "Append", "comma".Var()));
+
+                                                    a.Add(CodeHelper.Call("var1".Var(), "ToString", "writer".Var()));
+
+                                                    if (c.Count > 0) 
+                                                        a.Add(CodeHelper.If(CodeHelper.Call("String".Var(), "IsNullOrEmpty", "comma".Var()), t =>
+                                                    {
+                                                        t.Add(CodeHelper.Assign("comma".Var(), ",".AsConstant()));
+                                                    }));
+
+                                                });
+
+                                            })
+                                       ;
+                                  }
+                                  else
+                                  {
+                                      method.Name(g => "ToString")
+                                            .Argument("Writer", "writer")
+                                            .Attribute(MemberAttributes.Public | MemberAttributes.Override)
+                                            .Body(b =>
+                                            {
+                                                b.Statements.Call(CodeHelper.This(), "CustomToString", "writer".Var());
+                                            })
+                                       ;
+                                  }
+
+                              })
 
                               ;
                       });

@@ -112,6 +112,19 @@ namespace Bb.Asts
             return SelectorVisitor.Select(this, predicates).ToList(); 
         }
 
+        public List<T> Select<T>(params Func<AstBase, bool>[] predicates)
+            where T : AstBase
+        {
+            var r = SelectorVisitor.Select(this, predicates).ToList();
+            List<T> result = new List<T>(r.Count);
+            foreach (var item in r)
+            {
+                if (item is T e)
+                    result.Add(e);
+            }
+            return result;
+        }
+
         public abstract T Accept<T>(IAstVisitor<T> visitor);
 
         protected override SerializationStrategy StrategySerialization()
