@@ -6,6 +6,7 @@ namespace Bb.SqlServer.Asts
     using Bb.Parsers;
     using Antlr4.Runtime;
     using Antlr4.Runtime.Tree;
+    using Bb.Asts;
 
 
     public partial class AstOnOff : AstTerminalKeyword

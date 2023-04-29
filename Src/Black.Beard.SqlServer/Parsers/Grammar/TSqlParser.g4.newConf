@@ -22,6 +22,7 @@ RULE batch
 	 | create_or_alter_procedure
 	 | create_or_alter_trigger
 	 | create_view
+	 | go_statements
   **// 
 	GENERATE
 	INHERIT 
@@ -3526,8 +3527,8 @@ RULE filespecs
 	GENERATE
 	INHERIT 
 	CALCULATED INHERIT "AstRuleList<AstFilespec>"
-	TEMPLATE ClassList
-	CALCULATED TEMPLATE ClassWithProperties
+	TEMPLATE 
+	CALCULATED TEMPLATE ClassList
 ;
 
 RULE filespec 
@@ -19083,7 +19084,7 @@ RULE decimal
 
 RULE go_statements 
 //** go_statements
-	 : go_statement*
+	 : go_statement+
   **// 
 	GENERATE
 	INHERIT 
@@ -21320,8 +21321,8 @@ RULE scalar_function_name_enum
 
 RULE t_root 
 //** t_root
-	 : batchs  EOF
-	 | execute_body_batch  go_statements  EOF
+	 : batchs  SEMI*  EOF
+	 | execute_body_batch  go_statements?  EOF
   **// 
 	GENERATE
 	INHERIT 
@@ -21332,7 +21333,7 @@ RULE t_root
 
 RULE batchs 
 //** batchs
-	 : batch  SEMI*  (go_statements  SEMI*  batch  SEMI*)*
+	 : batch  (SEMI+  batch)*
   **// 
 	GENERATE
 	INHERIT 

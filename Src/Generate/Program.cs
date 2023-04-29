@@ -36,11 +36,20 @@ var ctx = new Context()
 //ctx.Variables["helperName"] = "create_database";
 
 
+try
+{
 
-var p = new Process();
-p.Run(file, ctx, strategy);
+    var p = new Process();
+    p.Run(file, ctx, strategy);
 
-Console.WriteLine("End.");
+    Console.WriteLine("End.");
+
+}
+catch (Exception ex)
+{
+
+	throw;
+}
 
 
 

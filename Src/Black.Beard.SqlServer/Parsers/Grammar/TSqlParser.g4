@@ -29,12 +29,12 @@ parser grammar TSqlParser;
 options { tokenVocab=TSqlLexer; }
 
 t_root
-    : batchs EOF
-    | execute_body_batch go_statements EOF
+    : batchs SEMI* EOF
+    | execute_body_batch go_statements? EOF
     ;
 
 batchs
-    : batch SEMI* (go_statements SEMI* batch SEMI*)*
+    : batch (SEMI+ batch)*
     ;
 
 batch
@@ -44,9 +44,10 @@ batch
     | create_or_alter_procedure
     | create_or_alter_trigger
     | create_view
+    | go_statements
     ;
 
-go_statements : go_statement*;
+go_statements : go_statement+;
 
 sql_clauses
     : sql_clause (SEMI+ sql_clause)* SEMI*

@@ -159,116 +159,116 @@ namespace Generate.ModelsScripts
                             })
 
                             .Methods(() => ast.ResolveAllCombinations(), (method, ast2) =>
-                        {
-
-                            method.Name(n =>
                             {
-                                try
+
+                                method.Name(n =>
                                 {
-                                    var tree = (n as AlternativeTreeRuleItem).Item;
-                                    var text = tree.GetMethodNameForClassEnum();
-                                    return text;
-                                }
-                                catch (UnexpectedException e)
+                                    try
+                                    {
+                                        var tree = (n as AlternativeTreeRuleItem).Item;
+                                        var text = tree.GetMethodNameForClassEnum();
+                                        return text;
+                                    }
+                                    catch (UnexpectedException e)
+                                    {
+                                        Console.WriteLine($"the rule {ast.Name} can't be classified in ClassEnum because {e.Message} is not terminal constant");
+                                    }
+
+                                    return string.Empty;
+
+                                })
+                                .Return(() => "Ast" + CodeHelper.FormatCsharp(ast.Name.Text))
+                                .Argument(() => "Position", "position")
+                                .Attribute(MemberAttributes.Public | MemberAttributes.Static)
+                                .Body(m =>
                                 {
-                                    Console.WriteLine($"the rule {ast.Name} can't be classified in ClassEnum because {e.Message} is not terminal constant");
-                                }
+                                    var text = (ast2 as AlternativeTreeRuleItem).Item.GetTerminalText();
+                                    var value = (ast2 as AlternativeTreeRuleItem).Item.GetTerminalValue();
+                                    var typeName = "Ast" + CodeHelper.FormatCsharp(ast.Name.Text);
+                                    m.Statements.Return(CodeHelper.Create(typeName.AsType(), "position".Var(), text.Trim('\'').AsConstant(), value.Trim('\'').AsConstant()));
 
-                                return string.Empty;
+                                    m.Comments.Add(new CodeCommentStatement("<summary>", true));
+                                    m.Comments.Add(new CodeCommentStatement($"{ast.Name} : {value}", true));
+                                    m.Comments.Add(new CodeCommentStatement("</summary>", true));
+
+                                })
+                                ;
 
                             })
-                            .Return(() => "Ast" + CodeHelper.FormatCsharp(ast.Name.Text))
-                            .Argument(() => "Position", "position")
-                            .Attribute(MemberAttributes.Public | MemberAttributes.Static)
-                            .Body(m =>
+
+                            .Field(field =>
                             {
-                                var text = (ast2 as AlternativeTreeRuleItem).Item.GetTerminalText();
-                                var value = (ast2 as AlternativeTreeRuleItem).Item.GetTerminalValue();
-                                var typeName = "Ast" + CodeHelper.FormatCsharp(ast.Name.Text);
-                                m.Statements.Return(CodeHelper.Create(typeName.AsType(), "position".Var(), text.Trim('\'').AsConstant(), value.Trim('\'').AsConstant()));
 
-                                m.Comments.Add(new CodeCommentStatement("<summary>", true));
-                                m.Comments.Add(new CodeCommentStatement($"{ast.Name} : {value}", true));
-                                m.Comments.Add(new CodeCommentStatement("</summary>", true));
-
+                                field.Name("_ruleValue")
+                                .Type(typeof(string))
+                                .Attribute(MemberAttributes.Private | MemberAttributes.Static)
+                                .Value((a) =>
+                                {
+                                    return ast.Alternatives.ToString();
+                                })
+                                ;
                             })
-                            ;
-
-                        })
-
                             .Field(field =>
-                        {
-
-                            field.Name("_ruleValue")
-                            .Type(typeof(string))
-                            .Attribute(MemberAttributes.Private | MemberAttributes.Static)
-                            .Value((a) =>
                             {
-                                return ast.Alternatives.ToString();
-                            })
-                            ;
-                        })
-                            .Field(field =>
-                        {
-                            field.Name("_ruleName")
-                                 .Type(typeof(string))
-                                 .Attribute(MemberAttributes.Private | MemberAttributes.Static)
-                                 .Value((a) =>
-                                 {
-                                     return ast.Name.Text;
-                                 });
-                        })
-                            .Property(property =>
-                        {
-                            property.Name((a) => "RuleName")
-                                    .Type(() => typeof(string))
-                                    .Attribute(MemberAttributes.Public | MemberAttributes.Override)
-                                    .Get((a) => a.Return("_ruleName".Var()))
-                                    .HasSet(false)
-                                    ;
-                        })
-                            .Property(property =>
-                        {
-                            property.Name((a) => "RuleValue")
-                                    .Type(() => typeof(string))
-                                    .Attribute(MemberAttributes.Public | MemberAttributes.Override)
-                                    .Get((a) => a.Return("_ruleValue".Var()))
-                                    .HasSet(false)
-                                    ;
-                        })
-
-                            .Field(field =>
-                        {
-                            field.Name("_isTerminal")
-                                 .Type(typeof(bool))
-                                 .Attribute(MemberAttributes.Private | MemberAttributes.Static)
-                                 .Value((a) =>
-                                 {
-
-                                     var items = ctx.Variables.Get<AlternativeTreeRuleItemList>("combinaisons");
-                                     foreach (var item in items)
+                                field.Name("_ruleName")
+                                     .Type(typeof(string))
+                                     .Attribute(MemberAttributes.Private | MemberAttributes.Static)
+                                     .Value((a) =>
                                      {
-                                         foreach (var item1 in item.Item)
-                                         {
-                                             var oo = item1.Origin.Select(c => c.Type == nameof(AstRuleRef)).FirstOrDefault();
-                                             if (oo != null)
-                                                 return CodeHelper.AsConstant(false);
-                                         }
-                                     }
+                                         return ast.Name.Text;
+                                     });
+                            })
+                            .Property(property =>
+                            {
+                                property.Name((a) => "RuleName")
+                                        .Type(() => typeof(string))
+                                        .Attribute(MemberAttributes.Public | MemberAttributes.Override)
+                                        .Get((a) => a.Return("_ruleName".Var()))
+                                        .HasSet(false)
+                                        ;
+                            })
+                            .Property(property =>
+                            {
+                                property.Name((a) => "RuleValue")
+                                        .Type(() => typeof(string))
+                                        .Attribute(MemberAttributes.Public | MemberAttributes.Override)
+                                        .Get((a) => a.Return("_ruleValue".Var()))
+                                        .HasSet(false)
+                                        ;
+                            })
 
-                                     return CodeHelper.AsConstant(true);
-                                 });
-                        })
+                            .Field(field =>
+                            {
+                                field.Name("_isTerminal")
+                                     .Type(typeof(bool))
+                                     .Attribute(MemberAttributes.Private | MemberAttributes.Static)
+                                     .Value((a) =>
+                                     {
+
+                                         var items = ctx.Variables.Get<AlternativeTreeRuleItemList>("combinaisons");
+                                         foreach (var item in items)
+                                         {
+                                             foreach (var item1 in item.Item)
+                                             {
+                                                 var oo = item1.Origin.Select(c => c.Type == nameof(AstRuleRef)).FirstOrDefault();
+                                                 if (oo != null)
+                                                     return CodeHelper.AsConstant(false);
+                                             }
+                                         }
+
+                                         return CodeHelper.AsConstant(true);
+                                     });
+                            })
 
                             .Property(property =>
-                        {
-                            property.Name((a) => "IsTerminal")
-                                    .Type(() => typeof(bool))
-                                    .Attribute(MemberAttributes.Public | MemberAttributes.Override)
-                                    .Get((a) => a.Return("_isTerminal".Var()))
-                                    .HasSet(false)
-                                    ;
-                        })
+                            {
+                                property.Name((a) => "IsTerminal")
+                                        .Type(() => typeof(bool))
+                                        .Attribute(MemberAttributes.Public | MemberAttributes.Override)
+                                        .Get((a) => a.Return("_isTerminal".Var()))
+                                        .HasSet(false)
+                                        ;
+                            })
 
                             .Method(method =>
                             {

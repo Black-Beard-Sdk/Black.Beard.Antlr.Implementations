@@ -26,6 +26,7 @@ namespace Generate.ModelsScripts
 
                 template.Namespace(Namespace, ns =>
                 {
+
                     ns.Using(Usings)
                       .Using("System")
                       .Using("Antlr4.Runtime")
@@ -254,26 +255,7 @@ namespace Generate.ModelsScripts
                                             .Body(b =>
                                             {
 
-                                                var astChild = ast.GetRules().FirstOrDefault();
-
-                                                if (c.Count > 0)
-                                                    b.Statements.DeclareAndInitialize("comma", typeof(string).AsType(), "String".Var().Property("Empty"));
-
-                                                var type = "Ast" + CodeHelper.FormatCsharp(astChild.Name.Text);
-                                                b.Statements.ForEach(type.AsType(), "var1", CodeHelper.This(), a =>
-                                                {
-                                                    if (c.Count > 0) 
-                                                        a.Add(CodeHelper.Call("writer".Var(), "Append", "comma".Var()));
-
-                                                    a.Add(CodeHelper.Call("var1".Var(), "ToString", "writer".Var()));
-
-                                                    if (c.Count > 0) 
-                                                        a.Add(CodeHelper.If(CodeHelper.Call("String".Var(), "IsNullOrEmpty", "comma".Var()), t =>
-                                                    {
-                                                        t.Add(CodeHelper.Assign("comma".Var(), ",".AsConstant()));
-                                                    }));
-
-                                                });
+                                                GenerateToString.Generate(ast, b.Statements);
 
                                             })
                                        ;
@@ -285,7 +267,13 @@ namespace Generate.ModelsScripts
                                             .Attribute(MemberAttributes.Public | MemberAttributes.Override)
                                             .Body(b =>
                                             {
-                                                b.Statements.Call(CodeHelper.This(), "CustomToString", "writer".Var());
+
+
+                                                if (ast.Name.Text == "sql_clauses")
+                                                { }
+
+                                                GenerateToString.Generate(ast, b.Statements);
+                                            
                                             })
                                        ;
                                   }

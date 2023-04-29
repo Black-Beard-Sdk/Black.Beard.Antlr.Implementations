@@ -590,7 +590,7 @@ namespace Generate.ModelsScripts
 
                         })
 
-                        .Method(method =>
+                        .MethodWhen(() => ctx.Variables.Get<AlternativeTreeRuleItemList>("combinaisons").Count == 1, method =>
                         {
                             var type = ("Ast" + CodeHelper.FormatCsharp(ast.Name.Text));
                             method.Name(g => "ToString")
@@ -817,6 +817,21 @@ namespace Generate.ModelsScripts
                                           }
                                       }
                                 )
+
+                                .Method(method =>
+                                {
+                                    var type = ("Ast" + CodeHelper.FormatCsharp(ast.Name.Text));
+                                    method.Name(g => "ToString")
+                                          .Argument("Writer", "writer")
+                                          .Attribute(MemberAttributes.Public | MemberAttributes.Override)
+                                          .Body(b =>
+                                          {
+
+                                          })
+                                     ;
+
+                                })
+
                                 ;
 
                             });

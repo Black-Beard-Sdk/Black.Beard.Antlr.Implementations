@@ -8,6 +8,8 @@ using System.Reflection;
 using System.Reflection.Metadata;
 using System.Text;
 using System.Threading.Tasks;
+using System.Transactions;
+using System.Xml.Linq;
 using static System.Net.Mime.MediaTypeNames;
 
 namespace Bb.Generators
@@ -23,6 +25,30 @@ namespace Bb.Generators
         }
 
 
+        public static CodeExpression PreIncrement(this string name)
+        {
+            return new CodeSnippetExpression("++" + name);
+        }
+
+        public static CodeExpression PostIncrement(this string name, int i = 1)
+        {
+            if (i == 1)
+                return new CodeSnippetExpression(name + "++");
+            return new CodeSnippetExpression(name + "+=" + i.ToString());
+        }
+
+        public static CodeExpression PreDecrement(this string name)
+        {
+            return new CodeSnippetExpression("--" + name);
+        }
+
+        public static CodeExpression PostDecrement(this string name, int i = 1)
+        {
+            if (i == 1)
+                return new CodeSnippetExpression(name + "--");
+            return new CodeSnippetExpression(name + "-=" + i.ToString());
+        }
+
         public static CodeAssignStatement Assign(this CodeExpression left, CodeExpression right)
         {
             return new CodeAssignStatement(left, right);
@@ -33,6 +59,52 @@ namespace Bb.Generators
             return new CodeCastExpression(type, self);
         }
 
+        #region Operators
+
+        public static CodeBinaryOperatorExpression LessThan(this CodeExpression left, CodeExpression right)
+        {
+            return new CodeBinaryOperatorExpression(left, CodeBinaryOperatorType.LessThan, right);
+        }
+
+        public static CodeBinaryOperatorExpression LessThanOrEqual(this CodeExpression left, CodeExpression right)
+        {
+            return new CodeBinaryOperatorExpression(left, CodeBinaryOperatorType.LessThanOrEqual, right);
+        }
+
+        public static CodeBinaryOperatorExpression GreaterThanOrEqual(this CodeExpression left, CodeExpression right)
+        {
+            return new CodeBinaryOperatorExpression(left, CodeBinaryOperatorType.GreaterThanOrEqual, right);
+        }
+
+        public static CodeBinaryOperatorExpression GreaterThan(this CodeExpression left, CodeExpression right)
+        {
+            return new CodeBinaryOperatorExpression(left, CodeBinaryOperatorType.GreaterThan, right);
+        }
+
+        public static CodeBinaryOperatorExpression Add(this CodeExpression left, CodeExpression right)
+        {
+            return new CodeBinaryOperatorExpression(left, CodeBinaryOperatorType.Add, right);
+        }
+
+        public static CodeBinaryOperatorExpression Substract(this CodeExpression left, CodeExpression right)
+        {
+            return new CodeBinaryOperatorExpression(left, CodeBinaryOperatorType.Subtract, right);
+        }
+
+        public static CodeBinaryOperatorExpression Divide(this CodeExpression left, CodeExpression right)
+        {
+            return new CodeBinaryOperatorExpression(left, CodeBinaryOperatorType.Divide, right);
+        }
+
+        public static CodeBinaryOperatorExpression Multiply(this CodeExpression left, CodeExpression right)
+        {
+            return new CodeBinaryOperatorExpression(left, CodeBinaryOperatorType.Multiply, right);
+        }
+
+        public static CodeBinaryOperatorExpression Modulus(this CodeExpression left, CodeExpression right)
+        {
+            return new CodeBinaryOperatorExpression(left, CodeBinaryOperatorType.Modulus, right);
+        }
 
         public static CodeBinaryOperatorExpression IsEqual(this CodeExpression left, CodeExpression right)
         {
@@ -43,6 +115,10 @@ namespace Bb.Generators
         {
             return new CodeBinaryOperatorExpression(left, CodeBinaryOperatorType.IdentityInequality, right);
         }
+
+        #endregion Operators
+
+        public static CodePrimitiveExpression AsConstant(this char self) => new CodePrimitiveExpression(self);
 
         public static CodePrimitiveExpression AsConstant(this int self)
         {
@@ -78,6 +154,41 @@ namespace Bb.Generators
                 _false(result.FalseStatements);
 
             return result;
+
+        }
+
+        public static CodeIterationStatement For(this CodeStatement init, CodeExpression test, CodeStatement incrementStatement, Action<CodeStatementCollection> action)
+        {
+            var i = new CodeIterationStatement(init, test, incrementStatement);
+            action(i.Statements);
+            return i;
+        }
+
+        public static CodeExpressionStatement AsStatement(this CodeExpression self)
+        {
+            return new CodeExpressionStatement(self);
+        }
+
+        public static CodeIterationStatement For(this CodeTypeReference type, string name, CodeExpression test, Action<CodeStatementCollection> action)
+        {
+            CodeStatement incrementStatement = name.PostIncrement().AsStatement();
+            return For(type, name, (0).AsConstant(), test, incrementStatement, action);
+
+        }
+
+        public static CodeIterationStatement For(this CodeTypeReference type, string name, int init, CodeExpression test, Action<CodeStatementCollection> action)
+        {
+            var incrementStatement = new CodeAssignStatement(name.Var(), name.Var().Add((1).AsConstant()));
+            return For(type, name, init.AsConstant(), test, incrementStatement, action);
+        }
+
+        public static CodeIterationStatement For(this CodeTypeReference type, string name, CodeExpression init, CodeExpression test, CodeStatement incrementStatement, Action<CodeStatementCollection> action)
+        {
+
+            var declare = Declare(name, type, init);
+            var i = new CodeIterationStatement(declare, test, incrementStatement);
+            action(i.Statements);
+            return i;
 
         }
 
@@ -172,9 +283,13 @@ namespace Bb.Generators
 
         public static CodeIndexerExpression Indexer(this string name, params CodeExpression[] indexes)
         {
-             return new CodeIndexerExpression(new CodeVariableReferenceExpression(name), indexes);
+            return new CodeIndexerExpression(new CodeVariableReferenceExpression(name), indexes);
         }
 
+        public static CodeIndexerExpression Indexer(this CodeExpression self, params CodeExpression[] indexes)
+        {
+            return new CodeIndexerExpression(self, indexes);
+        }
 
         public static CodeFieldReferenceExpression Field(this CodeTypeReference type, string name)
         {
@@ -240,7 +355,7 @@ namespace Bb.Generators
                 {
                     builder.Append(comma);
                     builder.Append(parameter);
-                    comma = ", "; 
+                    comma = ", ";
                 }
                 builder.Append(">");
 

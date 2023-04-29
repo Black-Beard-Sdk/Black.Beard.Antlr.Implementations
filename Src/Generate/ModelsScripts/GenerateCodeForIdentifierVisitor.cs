@@ -7,6 +7,8 @@ using System.Linq;
 
 namespace Generate.ModelsScripts
 {
+
+
     public class GenerateCodeForIdentifierVisitor : IAstVisitor<CodeExpression>
     {
 

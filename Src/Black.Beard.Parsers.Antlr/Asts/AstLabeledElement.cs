@@ -5,7 +5,7 @@ namespace Bb.Asts
 {
 
 
-    [DebuggerDisplay("{Left} = {Right}")]
+    [DebuggerDisplay("{Name} = {Rule}")]
     public class AstLabeledElement : AstBase
     {
 
