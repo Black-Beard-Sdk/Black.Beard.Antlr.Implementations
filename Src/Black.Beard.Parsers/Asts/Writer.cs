@@ -6,9 +6,17 @@ namespace Bb.Asts
     public class Writer
     {
 
+        public Writer(SerializationStrategies strategy, StringBuilder? sb = null)
+        {
+            _sb = sb ?? new StringBuilder();
+            this.Strategy = strategy;
+            _index = 0;
+        }
+
         public Writer(StringBuilder? sb = null)
         {
             _sb = sb ?? new StringBuilder();
+            this.Strategy = null;
             _index = 0;
         }
 
@@ -178,7 +186,7 @@ namespace Bb.Asts
 
         public StringBuilder Text { get => _sb; }
 
-        public SerializationStrategy Strategy { get; set; }
+        public SerializationStrategies Strategy { get; }
 
         private readonly StringBuilder _sb;
         private int _index;

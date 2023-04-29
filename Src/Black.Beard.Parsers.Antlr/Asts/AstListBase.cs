@@ -274,9 +274,7 @@ namespace Bb.Asts
         }
 
         public override void ToString(Writer wrt)
-        {
-
-            var strategy = wrt.Strategy.GetStrategyFrom(this);
+        {                  
 
             string comma = string.Empty;
 
@@ -285,10 +283,7 @@ namespace Bb.Asts
 
                 wrt.Append(comma);
 
-                item.ToString(wrt);
-
-                if (strategy.ReturnLineAfterItems)
-                    wrt.AppendEndLine();
+                item.ToString(wrt);               
 
                 comma = _charSplit;
 

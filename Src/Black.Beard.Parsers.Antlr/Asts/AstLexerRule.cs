@@ -17,7 +17,7 @@ namespace Bb.Asts
 
             this.Value = value;
 
-            if (value.TerminalKind == TokenTypeEnum.Identifier) 
+            if (value.TerminalKind == TokenTypeEnum.Identifier)
                 this.TerminalKind = TokenTypeEnum.Identifier;
 
             if (value.Count == 1)
@@ -34,7 +34,7 @@ namespace Bb.Asts
                     {
                         var v1 = txt.Substring(1, txt.Length - 2);
                         if (IsLetters(v1))
-                            this.TerminalKind = TokenTypeEnum.Constant;                        
+                            this.TerminalKind = TokenTypeEnum.Constant;
                     }
                     else if (txt.StartsWith("[") && txt.EndsWith("]") && txt.Length > 1)
                     {
@@ -78,7 +78,7 @@ namespace Bb.Asts
 
         }
 
-        
+
 
         public AstLexerAlternativeList Value { get; }
 
@@ -245,25 +245,17 @@ namespace Bb.Asts
         public override void ToString(Writer wrt)
         {
 
-            var strategy = wrt.Strategy.GetStrategyFrom(this);
-
             if (IsFragment)
                 wrt.Append("fragment ");
 
             wrt.Append(Name);
 
-            if (strategy.ReturnLineAfterItems)
-                wrt.AppendEndLine();
-
-            using (wrt.Indent(strategy))
+            wrt.Append(" : ");
+            if (Alternatives != null)
+                Alternatives.ToString(wrt);
+            else
             {
-                wrt.Append(" : ");
-                if (Alternatives != null)
-                    Alternatives.ToString(wrt);
-                else
-                {
-                    Value.ToString(wrt);
-                }
+                Value.ToString(wrt);
             }
 
         }

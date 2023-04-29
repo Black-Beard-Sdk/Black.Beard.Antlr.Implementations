@@ -39,7 +39,7 @@ namespace Bb.Asts
 
     public class AstRule : AstRuleBase
     {
-  
+
         public AstRule(ParserRuleContext ctx
             , AstRuleModifierList? modifiers
             , AstIdentifier ruleName
@@ -244,22 +244,10 @@ namespace Bb.Asts
 
         public override void ToString(Writer wrt)
         {
-
-            var strategy = wrt.Strategy.GetStrategyFrom(this);
-
             wrt.Append(Name);
-
-            if (strategy.ReturnLineAfterItems)
-                wrt.AppendEndLine();
-
-            using (wrt.Indent(strategy))
-            {
-                wrt.Append(" : ");
-
-                Alternatives.ToString(wrt);
-            }
+            wrt.Append(" : ");
+            Alternatives.ToString(wrt);
             wrt.TrimEnd();
-
         }
 
         AstGrammarSpec _root;

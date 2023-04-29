@@ -127,11 +127,6 @@ namespace Bb.Asts
 
         public abstract T Accept<T>(IAstVisitor<T> visitor);
 
-        protected override SerializationStrategy StrategySerialization()
-        {
-            return new StrategyConfiguration().GetStrategy();
-        }
-
         protected void WriteOccurence(Writer wrt, Occurence occurence)
         {
             switch (occurence.Value)

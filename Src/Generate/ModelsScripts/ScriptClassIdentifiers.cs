@@ -452,7 +452,7 @@ namespace Generate.ModelsScripts
                                         .Attribute(MemberAttributes.Public | MemberAttributes.Override)
                                         .Body(b =>
                                         {
-
+                                            GenerateClassIdentifierToString.Generate(ast, b.Statements);
                                         })
                                    ;
 

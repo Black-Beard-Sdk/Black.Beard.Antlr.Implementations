@@ -98,10 +98,10 @@ namespace Bb.ParsersConfiguration.Ast
         }
 
 
-        protected override SerializationStrategy StrategySerialization()
-        {
-            return new StrategyConfiguration().GetStrategy();
-        }
+        //protected override SerializationStrategy StrategySerialization()
+        //{
+        //    return new StrategyConfiguration().GetStrategy();
+        //}
 
         public void Save(string filename)
         {

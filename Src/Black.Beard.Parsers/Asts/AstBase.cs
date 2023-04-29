@@ -11,50 +11,7 @@ namespace Bb.Asts
 {
 
 
-    public class Iterator<T>
-    {
-
-        public Iterator(AstRootList<T> items)
-        {
-            _items = items;
-            this._index = 0;
-        }
-
-        public void Reset()
-        {
-            _index = 0;
-            Current = _items[_index];
-        }
-
-        public bool Next()
-        {
-
-            _index++;
-
-            if (_index < _items.Count)
-            {
-                Current = _items[_index];
-                return true;
-            }
-
-            Current = default(T);
-            return false;
-
-        }
-
-        public int Index => _index;
-
-        public int Count => _items.Count;
-
-        public T Current { get; private set; }
-
-        private readonly AstRootList<T> _items;
-        private int _index;
-
-    }
-
-
-    public abstract class AstBase<TVisitor> : IStrategyResolver
+    public abstract class AstBase<TVisitor>
     {
 
         public AstBase(ParserRuleContext ctx)
@@ -101,31 +58,11 @@ namespace Bb.Asts
 
         }
 
-
-        protected virtual SerializationStrategy StrategySerialization() => null;
-
-
-        public StrategySerializationItem GetFrom(object instance)
-        {
-
-            var str = StrategySerialization();
-            if (str != null)
-                return str.GetStrategy(instance.GetType().Name);
-
-            return null;
-
-        }
-
-
         public override string ToString()
         {
-
             var wrt = new Writer();
-            wrt.Strategy = StrategySerialization();
-
             ToString(wrt);
             return wrt.ToString();
-
         }
 
 

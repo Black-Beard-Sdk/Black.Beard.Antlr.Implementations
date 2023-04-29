@@ -1,31 +1,25 @@
 ﻿namespace Bb.Asts
 {
 
-    public class StrategyBase : IStrategySetter, IStrategyResolver
+    public class StrategyBase
     {
 
 
-        public StrategySerializationItem GetFrom(object instance)
+        public StrategySerializationItem GetFrom(string instance)
         {
-
-            if (instance is IStrategyResolver r)
-                return r.GetFrom(this);
-
             return GetStrategy().GetStrategy(instance.GetType().Name);
-
         }
 
-
-        public SerializationStrategy GetStrategy()
+        public SerializationStrategies GetStrategy()
         {
 
             if (_strategy == null)
             {
 
-                _strategy = new SerializationStrategy();
+                _strategy = new SerializationStrategies();
 
-                foreach (var item in CollectStrategy(this.GetType(), this))
-                    _strategy.AddStrategy(item);
+                //foreach (var item in CollectStrategy(this.GetType(), this))
+                //    _strategy.AddStrategy(item);
 
             }
 
@@ -34,93 +28,93 @@
         }
 
 
-        private static IEnumerable<StrategySerializationItem> CollectStrategy(Type type, object instance)
-        {
+        //private static IEnumerable<StrategySerializationItem> CollectStrategy(Type type, object instance)
+        //{
 
-            if (instance != null)
-            {
-                var properties = type.GetProperties(System.Reflection.BindingFlags.Public | System.Reflection.BindingFlags.Instance);
-                foreach (var property in properties)
-                {
+        //    if (instance != null)
+        //    {
+        //        var properties = type.GetProperties(System.Reflection.BindingFlags.Public | System.Reflection.BindingFlags.Instance);
+        //        foreach (var property in properties)
+        //        {
 
-                    var value = property.GetValue(instance);
-                    if (value != null)
-                    {
-                        if (value is StrategySerializationItem v)
-                        {
-                            v.Name = property.Name;
-                            yield return v;
-                        }
+        //            var value = property.GetValue(instance);
+        //            if (value != null)
+        //            {
+        //                if (value is StrategySerializationItem v)
+        //                {
+        //                    v.AstName = property.Name;
+        //                    yield return v;
+        //                }
 
-                        else
-                            foreach (var item in CollectStrategy(value.GetType(), value))
-                                yield return item;
-                    }
-                }
-                var fields = type.GetFields(System.Reflection.BindingFlags.Public | System.Reflection.BindingFlags.Instance);
-                foreach (var field in fields)
-                {
+        //                else
+        //                    foreach (var item in CollectStrategy(value.GetType(), value))
+        //                        yield return item;
+        //            }
+        //        }
+        //        var fields = type.GetFields(System.Reflection.BindingFlags.Public | System.Reflection.BindingFlags.Instance);
+        //        foreach (var field in fields)
+        //        {
 
-                    var value = field.GetValue(instance);
-                    if (value != null)
-                    {
-                        if (value is StrategySerializationItem v)
-                        {
-                            v.Name = field.Name;
-                            yield return v;
-                        }
+        //            var value = field.GetValue(instance);
+        //            if (value != null)
+        //            {
+        //                if (value is StrategySerializationItem v)
+        //                {
+        //                    v.AstName = field.Name;
+        //                    yield return v;
+        //                }
 
-                        else
-                            foreach (var item in CollectStrategy(value.GetType(), value))
-                                yield return item;
-                    }
-                }
+        //                else
+        //                    foreach (var item in CollectStrategy(value.GetType(), value))
+        //                        yield return item;
+        //            }
+        //        }
 
-            }
-
-
-            var properties_ = type.GetProperties(System.Reflection.BindingFlags.Public | System.Reflection.BindingFlags.Static);
-            foreach (var property in properties_)
-            {
-
-                var value = property.GetValue(null);
-                if (value != null)
-                {
-                    if (value is StrategySerializationItem v)
-                    {
-                        v.Name = property.Name;
-                        yield return v;
-                    }
-
-                    else
-                        foreach (var item in CollectStrategy(value.GetType(), null))
-                            yield return item;
-                }
-            }
-
-            var fields_ = type.GetFields(System.Reflection.BindingFlags.Public | System.Reflection.BindingFlags.Static);
-            foreach (var field in fields_)
-            {
-
-                var value = field.GetValue(null);
-                if (value != null)
-                {
-                    if (value is StrategySerializationItem v)
-                    {
-                        v.Name = field.Name;
-                        yield return v;
-                    }
-
-                    else
-                        foreach (var item in CollectStrategy(value.GetType(), value))
-                            yield return item;
-                }
-            }
-
-        }
+        //    }
 
 
-        private SerializationStrategy _strategy;
+        //    var properties_ = type.GetProperties(System.Reflection.BindingFlags.Public | System.Reflection.BindingFlags.Static);
+        //    foreach (var property in properties_)
+        //    {
+
+        //        var value = property.GetValue(null);
+        //        if (value != null)
+        //        {
+        //            if (value is StrategySerializationItem v)
+        //            {
+        //                v.AstName = property.Name;
+        //                yield return v;
+        //            }
+
+        //            else
+        //                foreach (var item in CollectStrategy(value.GetType(), null))
+        //                    yield return item;
+        //        }
+        //    }
+
+        //    var fields_ = type.GetFields(System.Reflection.BindingFlags.Public | System.Reflection.BindingFlags.Static);
+        //    foreach (var field in fields_)
+        //    {
+
+        //        var value = field.GetValue(null);
+        //        if (value != null)
+        //        {
+        //            if (value is StrategySerializationItem v)
+        //            {
+        //                v.AstName = field.Name;
+        //                yield return v;
+        //            }
+
+        //            else
+        //                foreach (var item in CollectStrategy(value.GetType(), value))
+        //                    yield return item;
+        //        }
+        //    }
+
+        //}
+
+
+        private SerializationStrategies _strategy;
 
 
     }

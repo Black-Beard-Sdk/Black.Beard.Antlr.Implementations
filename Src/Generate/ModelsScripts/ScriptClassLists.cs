@@ -255,7 +255,7 @@ namespace Generate.ModelsScripts
                                             .Body(b =>
                                             {
 
-                                                GenerateToString.Generate(ast, b.Statements);
+                                                GenerateClassListToString.Generate(ast, b.Statements);
 
                                             })
                                        ;
@@ -268,11 +268,7 @@ namespace Generate.ModelsScripts
                                             .Body(b =>
                                             {
 
-
-                                                if (ast.Name.Text == "sql_clauses")
-                                                { }
-
-                                                GenerateToString.Generate(ast, b.Statements);
+                                                GenerateClassListToString.Generate(ast, b.Statements);
                                             
                                             })
                                        ;

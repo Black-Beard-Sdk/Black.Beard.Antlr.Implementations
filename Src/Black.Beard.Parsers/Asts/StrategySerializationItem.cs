@@ -10,17 +10,18 @@
 
         }
 
-        public StrategySerializationItem(string name)
+        public StrategySerializationItem(string ast1)
         {
-            this.Name = name;
+            this.AstName = ast1;
         }
 
 
-
-        public string Name { get; set; }
+        public string AstName { get; set; }
 
         public bool Indent { get; set; }
+
         public bool ReturnLineAfterItems { get; set; }
+
     }
 
 
