@@ -69,15 +69,70 @@ namespace Generate.ModelsScripts
 
                                    var alternatives = ctx.Variables.Get<AlternativeTreeRuleItemList>("combinaisons");
                                    if (alternatives.Count == 1)
-                                       f.Argument(() => "AstRootList<AstRoot>", "list");
+                                   {
+                                       f.Argument(() => "AstRootList<AstRoot>", "list")
 
+                                       .Body(b =>
+                                        {
+
+                                            var items = ast.GetProperties();
+
+                                            b.Statements.ForEach("AstRoot".AsType(), "item", "list", stm =>
+                                            {
+
+                                                foreach (var item in items)
+                                                {
+
+                                                    var fieldName = (item as AstBase).GetFieldName();
+
+                                                    var type = (item as AstBase).Type();
+                                                    var ty = new CodeTypeReference(type);
+                                                    stm.If(CodeHelper.Var("enumerator.Current").Call("Is", new CodeTypeReference[] { ty }), t =>
+                                                    {
+                                                        t.Assign(CodeHelper.This().Field(fieldName), CodeHelper.Var("enumerator.Current").Cast(ty));
+                                                    });
+
+
+                                                }
+
+                                            });
+
+                                        });
+                                   }
 
                                })
                         .Ctor((f) =>
                                {
                                    f.Attribute(MemberAttributes.FamilyAndAssembly)
                                     .Argument(() => "AstRootList<AstRoot>", "list")
-                                    .CallBase("Position.Default");
+                                    .CallBase("Position.Default")
+                                    .Body(b =>
+                                    {
+
+                                        var items = ast.GetProperties();
+
+                                        b.Statements.ForEach("AstRoot".AsType(), "item", "list", stm =>
+                                        {
+
+                                            foreach (var item in items)
+                                            {
+
+                                                var fieldName = (item as AstBase).GetFieldName();
+
+                                                var type = (item as AstBase).Type();
+                                                var ty = new CodeTypeReference(type);
+                                                stm.If(CodeHelper.Var("enumerator.Current").Call("Is", new CodeTypeReference[] { ty }), t =>
+                                                {
+                                                    t.Assign(CodeHelper.This().Field(fieldName), CodeHelper.Var("enumerator.Current").Cast(ty));
+                                                });
+
+
+                                            }
+
+                                        });
+
+                                    })
+                                    ;
                                })
 
                         .CtorWhen(() => ctx.Variables.Get<AlternativeTreeRuleItemList>("combinaisons").Count == 1, (f) =>
@@ -209,6 +264,41 @@ namespace Generate.ModelsScripts
                              });
                         })
 
+                        .MethodWhen(() => ctx.Variables.Get<AlternativeTreeRuleItemList>("combinaisons").Count == 1, method =>
+                        {
+                            method
+                             .Name(g => "Create")
+                             .Argument("AstRootList<AstRoot>", "list")
+                             .Attribute(MemberAttributes.Public | MemberAttributes.Static)
+                             .Return(() => "Ast" + CodeHelper.FormatCsharp(ast.Name.Text))
+                             .Body(b =>
+                             {
+
+                                 AlternativeTreeRuleItemList items = ctx.Variables.Get<AlternativeTreeRuleItemList>("combinaisons");
+                                 foreach (var alt in items)
+                                 {
+                                     var alternative = alt.Item;
+
+                                     int i = 0;
+                                     List<CodeExpression> args = new List<CodeExpression>()
+                                     {
+                                     };
+                                     foreach (var item in alternative)
+                                         if (item.WhereRuleOrIdentifiers())
+                                         {
+                                             var c = "list".Var().Call("Get", new string[] { item.Type() }, i.AsConstant());
+                                             args.Add(c);
+                                             i++;
+                                         }
+
+                                     string typename = "Ast" + CodeHelper.FormatCsharp(ast.Name.Text);
+                                     b.Statements.Return(CodeHelper.Create(typename.AsType(), args.ToArray()));
+
+                                 }
+
+
+                             });
+                        })
 
 
                         .MethodWhen(() => ctx.Variables.Get<AlternativeTreeRuleItemList>("combinaisons").Count > 1, method =>
@@ -233,6 +323,62 @@ namespace Generate.ModelsScripts
                                      List<CodeExpression> args = new List<CodeExpression>()
                                      {
                                          "ctx".Var()
+                                     };
+                                     //if (alternative.Count == 0)
+                                     //{
+                                     //    if (alternative.WhereRuleOrIdentifiers())
+                                     //        args.Add("list".Indexer(alt.AlternativeIdentifier.AsConstant()).Cast(alternative.Type().AsType()));
+                                     //}
+                                     //else
+                                     //{
+                                     int i = 0;
+                                     foreach (var item in alternative)
+                                     {
+                                         if (item.WhereRuleOrIdentifiers())
+                                         {
+                                             var c = "list".Var().Call("Get", new string[] { item.Type() }, i.AsConstant());
+                                             args.Add(c);
+                                             i++;
+                                         }
+                                     }
+                                     //}
+
+
+                                     b.Statements.If("index".Var().IsEqual(alt.AlternativeIdentifier.AsConstant()), _t =>
+                                     {
+                                         string typename = "Ast" + CodeHelper.FormatCsharp(ast.Name.Text);
+                                         var t = typename + "." + typename + (alt.AlternativeIdentifier).ToString();
+                                         _t.Return(CodeHelper.Create(t.AsType(), args.ToArray()));
+                                     });
+
+
+                                 }
+                                 b.Statements.Return(CodeHelper.Null());
+
+                             });
+                        })
+
+                        .MethodWhen(() => ctx.Variables.Get<AlternativeTreeRuleItemList>("combinaisons").Count > 1, method =>
+                        {
+                            method
+                             .Name(g => "Create")
+                             .Argument("AstRootList<AstRoot>", "list")
+                             .Attribute(MemberAttributes.Public | MemberAttributes.Static)
+                             .Return(() => "Ast" + CodeHelper.FormatCsharp(ast.Name.Text))
+                             .Body(b =>
+                             {
+
+                                 b.Statements.DeclareAndInitialize("index", typeof(int).AsType(), "_ruleevaluator".Var().Call("Evaluate", "list".Var()));
+
+                                 AlternativeTreeRuleItemList items = ctx.Variables.Get<AlternativeTreeRuleItemList>("combinaisons");
+
+                                 foreach (var alt in items)
+                                 {
+
+                                     var alternative = alt.Item;
+                                     List<CodeExpression> args = new List<CodeExpression>()
+                                     {
+                                        "ctx".Var()
                                      };
                                      //if (alternative.Count == 0)
                                      //{
