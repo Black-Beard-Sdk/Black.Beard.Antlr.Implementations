@@ -9,12 +9,14 @@ namespace Generate.ModelsScripts
     public class ScriptTSqlVisitor2 : ScriptBase
     {
 
+        private HashSet<string> _keys = new HashSet<string> { "_" };
+
         public override string GetInherit(AstRule ast, Context context)
         {
             return GetInherit_Impl("AstRoot", ast, context);
         }
 
-        public override string StrategyTemplateKey => "_";
+        public override HashSet<string> StrategyTemplateKeys => _keys;
 
         protected override void ConfigureTemplate(Context ctx, CodeGeneratorVisitor generator)
         {

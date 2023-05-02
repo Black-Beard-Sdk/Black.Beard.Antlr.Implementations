@@ -13,6 +13,9 @@ namespace Generate.ModelsScripts
     public class ScriptClassTerminals : ScriptBase
     {
 
+        
+        private HashSet<string> _keys = new HashSet<string> { "ClassTerminalAlias" };
+
         public override string GetInherit(AstRule ast, Context context)
         {
 
@@ -27,8 +30,7 @@ namespace Generate.ModelsScripts
 
         }
 
-        public override string StrategyTemplateKey => "ClassTerminalAlias";
-
+        public override HashSet<string> StrategyTemplateKeys => _keys;
 
         protected override void ConfigureTemplate(Context ctx, CodeGeneratorVisitor generator)
         {

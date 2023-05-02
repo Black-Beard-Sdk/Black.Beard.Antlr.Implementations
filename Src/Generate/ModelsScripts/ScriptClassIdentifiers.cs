@@ -10,12 +10,14 @@ namespace Generate.ModelsScripts
     public class ScriptClassIdentifiers : ScriptBase
     {
 
+        private HashSet<string> _keys = new HashSet<string> { "ClassIdentifiers" };
+
         public override string GetInherit(AstRule ast, Context context)
         {
             return GetInherit_Impl("AstTerminalIdentifier", ast, context);
         }
 
-        public override string StrategyTemplateKey => "ClassIdentifiers";
+        public override HashSet<string> StrategyTemplateKeys => _keys;
 
         protected override void ConfigureTemplate(Context ctx, CodeGeneratorVisitor generator)
         {

@@ -17,12 +17,14 @@ namespace Generate.ModelsScripts
     public class ScriptClassDefaults : ScriptBase
     {
 
+        private HashSet<string> _keys = new HashSet<string> { "_", "ClassWithProperties" };
+
         public override string GetInherit(AstRule ast, Context context)
         {
             return GetInherit_Impl("AstBnfRule", ast, context);
         }
 
-        public override string StrategyTemplateKey => "_";
+        public override HashSet<string> StrategyTemplateKeys => _keys;
 
         protected override void ConfigureTemplate(Context ctx, CodeGeneratorVisitor generator)
         {

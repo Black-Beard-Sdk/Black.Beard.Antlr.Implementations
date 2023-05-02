@@ -40,7 +40,7 @@ namespace Bb.Generators
         {
 
             foreach (var generator in this)
-                context.AddStrategyKey(generator.StrategyTemplateKey);
+                context.AddStrategyKey(generator.StrategyTemplateKeys);
 
             var names = context.GetGeneratedFiles();
 

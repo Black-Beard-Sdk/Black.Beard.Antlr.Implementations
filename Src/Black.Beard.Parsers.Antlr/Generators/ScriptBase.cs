@@ -47,7 +47,7 @@ namespace Bb.Generators
 
         public string Namespace { get; set; }
 
-        public abstract string StrategyTemplateKey { get; }
+        public abstract HashSet<string> StrategyTemplateKeys { get; }
 
         public string Name
         {
@@ -102,7 +102,7 @@ namespace Bb.Generators
 
             return result;
 
-        }              
+        }
 
         private string _templateSelector(AstRule ast, Context context)
         {
@@ -217,7 +217,7 @@ namespace Bb.Generators
                         }
 
                     }
-                    
+
                 }
                 else
                 {
@@ -282,8 +282,18 @@ namespace Bb.Generators
 
         protected virtual bool Generate(AstRule ast, Context context)
         {
-            return ast.Configuration.Config.Generate
-                && TemplateSelector(ast, context) == this.StrategyTemplateKey;
+            if (ast.Configuration.Config.Generate)
+            {
+                var t = TemplateSelector(ast, context);
+                if (t == "ClassWithProperties")
+                { }
+
+                var result = this.StrategyTemplateKeys.Contains(t);
+                return result;
+            }
+
+            return false;
+
         }
 
         public void Using(params string[] usings)

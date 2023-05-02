@@ -105,10 +105,10 @@ namespace Generate
                 {
                     a.SplitObjectOnDisk = splitObjectOnDisk;
                 })
-                .Add<ScriptClassWithProperties>(null, a =>
-                {
-                    a.SplitObjectOnDisk = splitObjectOnDisk;
-                })
+                //.Add<ScriptClassWithProperties>(null, a =>
+                //{
+                //    a.SplitObjectOnDisk = splitObjectOnDisk;
+                //})
                 .Add<ScriptClassDefaults>(null, a =>
                 {
                     a.SplitObjectOnDisk = splitObjectOnDisk;
@@ -120,12 +120,12 @@ namespace Generate
                     a.Using("Antlr4.Runtime");
                     a.Using("Antlr4.Runtime.Tree");
                 })
-                .Add<ScriptClassIdentifierVisitorWithProperties>(null, a =>
-                {
-                    a.SplitObjectOnDisk = splitObjectOnDisk;
-                    a.Namespace = namespaceParser;
-                    a.Using(namespaceModels);
-                })
+                //.Add<ScriptClassIdentifierVisitorWithProperties>(null, a =>
+                //{
+                //    a.SplitObjectOnDisk = splitObjectOnDisk;
+                //    a.Namespace = namespaceParser;
+                //    a.Using(namespaceModels);
+                //})
                 .Add<ScriptClassVisitorEnums>("ScriptTSqlVisitor.Enums", a =>
                 {
                     a.Namespace = namespaceParser;

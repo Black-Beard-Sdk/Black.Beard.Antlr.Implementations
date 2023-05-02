@@ -9,6 +9,8 @@ namespace Generate.ModelsScripts
     public class ScriptClassLists : ScriptBase
     {
 
+        private HashSet<string> _keys = new HashSet<string> { "ClassList" };
+
         public override string GetInherit(AstRule ast, Context context)
         {
             var astChild = ast.GetRules().FirstOrDefault();
@@ -16,7 +18,7 @@ namespace Generate.ModelsScripts
             return GetInherit_Impl(txt, ast, context);
         }
 
-        public override string StrategyTemplateKey => "ClassList";
+        public override HashSet<string> StrategyTemplateKeys => _keys;
 
         protected override void ConfigureTemplate(Context ctx, CodeGeneratorVisitor generator)
         {

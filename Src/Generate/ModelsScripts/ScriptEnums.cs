@@ -17,13 +17,14 @@ namespace Generate.ModelsScripts
     public class ScriptEnums : ScriptBase
     {
 
+        private HashSet<string> _keys = new HashSet<string> { "ClassEnum" };
 
         public override string GetInherit(AstRule ast, Context context)
         {
             return GetInherit_Impl("AstTerminalKeyword", ast, context);
         }
 
-        public override string StrategyTemplateKey => "ClassEnum";
+        public override HashSet<string> StrategyTemplateKeys => _keys;
 
 
         protected override void ConfigureTemplate(Context ctx, CodeGeneratorVisitor generator)

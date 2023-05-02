@@ -7,14 +7,17 @@ using System.CodeDom;
 namespace Generate.ModelsScripts
 {
     public class ScriptClassVisitorTerminalAlias : ScriptBase
-    {            
+    {
+
+        private HashSet<string> _keys = new HashSet<string> { "ClassTerminalAlias" };
+
 
         public override string GetInherit(AstRule ast, Context context)
         {
             return GetInherit_Impl("AstRoot", ast, context);
         }
 
-        public override string StrategyTemplateKey => "ClassTerminalAlias";
+        public override HashSet<string> StrategyTemplateKeys => _keys;
 
         protected override void ConfigureTemplate(Context ctx, CodeGeneratorVisitor generator)
         {

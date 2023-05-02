@@ -55,9 +55,10 @@ namespace Bb.Parsers
         
         public GrammarSpec Configuration { get; set; }
 
-        public void AddStrategyKey(string strategyKey)
+        public void AddStrategyKey(IEnumerable<string> strategyKeys)
         {
-            this._strategyKeyAvailables.Add(strategyKey);
+            foreach (var key in strategyKeys)
+                this._strategyKeyAvailables.Add(key);
         }
 
         internal bool StrategyKeyExists(string result)

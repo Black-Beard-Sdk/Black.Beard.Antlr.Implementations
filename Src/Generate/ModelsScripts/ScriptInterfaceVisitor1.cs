@@ -8,12 +8,15 @@ namespace Generate.ModelsScripts
     public class ScriptInterfaceVisitor1 : ScriptBase
     {
 
+        
+        private HashSet<string> _keys = new HashSet<string> { "ScriptVisitor1" };
+
         public override string GetInherit(AstRule ast, Context context)
         {
             return GetInherit_Impl("", ast, context);
         }
 
-        public override string StrategyTemplateKey => "ScriptVisitor1";
+        public override HashSet<string> StrategyTemplateKeys => _keys;
 
         protected override bool Generate(AstRule ast, Context context)
         {
