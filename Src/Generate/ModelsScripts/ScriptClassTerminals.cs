@@ -366,7 +366,7 @@ namespace Generate.ModelsScripts
                                       .Attribute(MemberAttributes.Public | MemberAttributes.Override)
                                       .Body(b =>
                                       {
-
+                                          GenerateClassTerminalToString.Generate(ast, b.Statements);
                                       })
                                  ;
 

@@ -1,4 +1,5 @@
 ﻿using Antlr4.Runtime.Tree;
+using Newtonsoft.Json.Linq;
 using System;
 using System.CodeDom;
 using System.Collections;
@@ -15,14 +16,8 @@ using static System.Net.Mime.MediaTypeNames;
 namespace Bb.Generators
 {
 
-    public static class CodeHelper
+    public static partial class CodeHelper
     {
-
-        public static CodeStatementCollection Assign(this CodeStatementCollection self, CodeExpression left, CodeExpression right)
-        {
-            self.Add(left.Assign(right));
-            return self;
-        }
 
 
         public static CodeExpression PreIncrement(this string name)
@@ -53,6 +48,8 @@ namespace Bb.Generators
         {
             return new CodeAssignStatement(left, right);
         }
+
+
 
         public static CodeCastExpression Cast(this CodeExpression self, CodeTypeReference type)
         {
@@ -135,12 +132,97 @@ namespace Bb.Generators
             return new CodePrimitiveExpression(null);
         }
 
-        public static CodeStatementCollection If(this CodeStatementCollection self, CodeExpression condition, Action<CodeStatementCollection> _true, Action<CodeStatementCollection> _false = null)
+
+        public static CodeTryCatchFinallyStatement Using(this string variableToDispose, Action<CodeStatementCollection> _block, Action<CodeStatementCollection> _finally)
         {
-            var t = condition.If(_true, _false);
-            self.Add(t);
-            return self;
+
+            CodeTryCatchFinallyStatement try1 = new CodeTryCatchFinallyStatement();
+            
+            if (_block != null)
+                _block(try1.TryStatements);
+
+            try1.FinallyStatements.Add(variableToDispose.Var().Call("Dispose"));
+            if (_finally != null)
+                _finally(try1.FinallyStatements);
+
+            return try1;
+
         }
+
+        public static CodeTryCatchFinallyStatement TryFinally(this Action<CodeStatementCollection> _block, Action<CodeStatementCollection> _finally)
+        {
+
+            CodeTryCatchFinallyStatement try1 = new CodeTryCatchFinallyStatement();
+
+            if (_block != null)
+                _block(try1.TryStatements);
+
+            if (_finally != null)
+                _finally(try1.FinallyStatements);
+
+            return try1;
+
+        }
+
+        public static CodeTryCatchFinallyStatement TryCatch(this Action<CodeStatementCollection> _block, params (CodeTypeReference, string, Action<CodeStatementCollection> act)[] catchBlock)
+        {
+
+            CodeTryCatchFinallyStatement try1 = new CodeTryCatchFinallyStatement();
+
+            if (_block != null)
+                _block(try1.TryStatements);
+
+            foreach (var item in catchBlock)
+            {
+                // Defines a catch clause for exceptions of type ApplicationException.
+                CodeCatchClause catch1 = new CodeCatchClause(item.Item2, item.Item1);
+                if (item.act != null)
+                    item.act(catch1.Statements);
+                else
+                    catch1.Statements.Add(new CodeCommentStatement("Handle any System.ApplicationException here."));
+                try1.CatchClauses.Add(catch1);
+            }
+
+
+            // Defines a finally block by adding to the FinallyStatements collection.
+
+            //if (_finally != null)
+            //    _finally(try1.FinallyStatements);
+
+            return try1;
+
+        }
+
+        public static CodeTryCatchFinallyStatement TryCatchFinally(this Action<CodeStatementCollection> _block, Action<CodeStatementCollection> _finally, params (CodeTypeReference, string, Action<CodeStatementCollection> act)[] catchBlock)
+        {
+
+            CodeTryCatchFinallyStatement try1 = new CodeTryCatchFinallyStatement();
+
+            if (_block != null)
+                _block(try1.TryStatements);
+
+            foreach (var item in catchBlock)
+            {
+                // Defines a catch clause for exceptions of type ApplicationException.
+                CodeCatchClause catch1 = new CodeCatchClause(item.Item2, item.Item1);
+                if (item.act != null)
+                    item.act(catch1.Statements);
+                else
+                    catch1.Statements.Add(new CodeCommentStatement("Handle any System.ApplicationException here."));
+                try1.CatchClauses.Add(catch1);
+            }
+
+            // Defines a finally block by adding to the FinallyStatements collection.
+
+            if (_finally != null)
+                _finally(try1.FinallyStatements);
+
+            return try1;
+
+
+        }
+
+        # region CodeConditionStatement
 
         public static CodeConditionStatement If(this CodeExpression condition, Action<CodeStatementCollection> _true, Action<CodeStatementCollection> _false = null)
         {
@@ -162,11 +244,6 @@ namespace Bb.Generators
             var i = new CodeIterationStatement(init, test, incrementStatement);
             action(i.Statements);
             return i;
-        }
-
-        public static CodeExpressionStatement AsStatement(this CodeExpression self)
-        {
-            return new CodeExpressionStatement(self);
         }
 
         public static CodeIterationStatement For(this CodeTypeReference type, string name, CodeExpression test, Action<CodeStatementCollection> action)
@@ -192,7 +269,7 @@ namespace Bb.Generators
 
         }
 
-        public static CodeStatementCollection ForEach(this CodeStatementCollection self, CodeTypeReference variableType, string item, string list, Action<CodeStatementCollection> action)
+        public static CodeIterationStatement ForEach(this CodeTypeReference variableType, string item, string list, Action<CodeStatementCollection> action)
         {
 
             var t = "IEnumerator".AsType();
@@ -203,13 +280,11 @@ namespace Bb.Generators
             i.Statements.DeclareAndInitialize(item, variableType, "enumerator".Var().Property("Current").Cast(variableType));
             action(i.Statements);
 
-            self.Add(i);
-
-            return self;
+            return i;
 
         }
 
-        public static CodeStatementCollection ForEach(this CodeStatementCollection self, CodeTypeReference variableType, string item, CodeExpression list, Action<CodeStatementCollection> action)
+        public static CodeIterationStatement ForEach(this CodeTypeReference variableType, string item, CodeExpression list, Action<CodeStatementCollection> action)
         {
 
             var t = "IEnumerator".AsType();
@@ -220,11 +295,11 @@ namespace Bb.Generators
             i.Statements.DeclareAndInitialize(item, variableType, "enumerator".Var().Property("Current").Cast(variableType));
             action(i.Statements);
 
-            self.Add(i);
-
-            return self;
+            return i;
 
         }
+
+        # endregion CodeConditionStatement
 
 
         public static CodeExpression Property(this CodeExpression self, string name)
@@ -236,23 +311,13 @@ namespace Bb.Generators
 
         public static CodeTypeReference AsType(this Type type) => new CodeTypeReference(type);
 
-        public static CodeStatementCollection DeclareAndCreate(this CodeStatementCollection self, string name, CodeTypeReference type, params CodeExpression[] arguments)
-        {
-            self.Add(DeclareAndCreate(name, type, arguments));
-            return self;
-        }
-
-        public static CodeStatementCollection DeclareAndInitialize(this CodeStatementCollection self, string name, CodeTypeReference type, CodeExpression initExpression)
-        {
-            self.Add(DeclareAndInitialize(name, type, initExpression));
-            return self;
-        }
-
 
         public static CodeObjectCreateExpression Create(this CodeTypeReference type, params CodeExpression[] arguments)
         {
             return new CodeObjectCreateExpression(type, arguments);
         }
+
+
 
         public static CodeVariableDeclarationStatement DeclareAndCreate(this string name, CodeTypeReference type, params CodeExpression[] arguments)
         {
@@ -264,12 +329,6 @@ namespace Bb.Generators
             return new CodeVariableDeclarationStatement(type, name, initExpression);
         }
 
-        public static CodeStatementCollection Declare(this CodeStatementCollection self, string name, CodeTypeReference type, CodeExpression initExpression = null)
-        {
-            self.Add(Declare(name, type, initExpression));
-            return self;
-        }
-
         public static CodeVariableDeclarationStatement Declare(this string name, CodeTypeReference type, CodeExpression initExpression = null)
         {
 
@@ -278,6 +337,17 @@ namespace Bb.Generators
 
             return new CodeVariableDeclarationStatement(type, name);
         }
+
+        public static CodeVariableDeclarationStatement DeclareAndInitialize(this string name, CodeExpression initExpression = null)
+        {
+            var type = "var".AsType();
+            if (initExpression != null)
+                return new CodeVariableDeclarationStatement(type, name, initExpression);
+
+            return new CodeVariableDeclarationStatement(type, name);
+        }
+
+
 
         public static CodeVariableReferenceExpression Var(this string name) => new CodeVariableReferenceExpression(name);
 
@@ -303,10 +373,12 @@ namespace Bb.Generators
 
         public static CodeThisReferenceExpression This() => new CodeThisReferenceExpression();
 
-        public static CodeStatementCollection Call(this CodeStatementCollection self, CodeExpression instance, string name, params CodeExpression[] arguments)
+
+
+
+        public static CodeExpressionStatement AsStatement(this CodeExpression self)
         {
-            self.Add(instance.Call(name, arguments));
-            return self;
+            return new CodeExpressionStatement(self);
         }
 
         public static CodeMethodInvokeExpression Call(this CodeExpression instance, string name, params CodeExpression[] arguments)
@@ -377,12 +449,6 @@ namespace Bb.Generators
             method.TypeArguments.AddRange(types);
             var result = new CodeMethodInvokeExpression(method, arguments);
             return result;
-        }
-
-        public static CodeStatementCollection Return(this CodeStatementCollection self, CodeExpression expression)
-        {
-            self.Add(new CodeMethodReturnStatement(expression));
-            return self;
         }
 
 

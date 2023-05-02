@@ -20,6 +20,9 @@
 
         public bool Indent { get; set; }
 
+        public bool ReturnLineBefore { get; set; }
+        public bool ReturnLineAfter { get; set; }
+
         public bool ReturnLineAfterItems { get; set; }
 
     }

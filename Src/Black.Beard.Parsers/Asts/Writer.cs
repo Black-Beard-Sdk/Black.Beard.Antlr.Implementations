@@ -35,7 +35,7 @@ namespace Bb.Asts
 
         public void TrimEnd()
         {
-            if (_sb.Length> 0)
+            if (_sb.Length > 0)
                 while (char.IsWhiteSpace(_sb[_sb.Length - 1]))
                     _sb.Remove(_sb.Length - 1, 1);
         }
@@ -143,12 +143,9 @@ namespace Bb.Asts
             return _sb.ToString();
         }
 
-        public IDisposable Indent(StrategySerializationItem strategy, bool crlf = false)
+        public IDisposable Apply(StrategySerializationItem strategy)
         {
-
             var result = new _disposable(strategy, this);
-            if (crlf)
-                result.After.Add(c => c.AppendEndLine());
             return result;
         }
 
@@ -196,6 +193,7 @@ namespace Bb.Asts
 
             public _disposable(StrategySerializationItem strategy, Writer writer, string start = null, string end = null)
             {
+
                 this._strategy = strategy;
                 this.After = new List<Action<Writer>>();
                 this._end = end;
@@ -205,9 +203,10 @@ namespace Bb.Asts
                     _writer.Append(start);
 
                 if (this._strategy.Indent)
-                {
                     this._writer.AddIndent();
-                }
+
+                if (strategy.ReturnLineBefore)
+                    writer.AppendEndLine();
 
             }
 
@@ -229,6 +228,9 @@ namespace Bb.Asts
 
                         foreach (var item in After)
                             item(this._writer);
+
+                        if (_strategy.ReturnLineAfter)
+                            _writer.AppendEndLine();
 
                     }
 
