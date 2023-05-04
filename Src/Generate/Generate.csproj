@@ -11,9 +11,7 @@
     <Compile Remove="ModelsScripts\ScriptClassBases.cs" />
     <Compile Remove="ModelsScripts\ScriptClassEnum.cs" />
     <Compile Remove="ModelsScripts\ScriptClassToString.cs" />
-    <Compile Remove="ModelsScripts\ScriptClassWithProperties.cs" />
     <Compile Remove="ModelsScripts\ScriptInterfaceVisitor2.cs" />
-    <Compile Remove="ModelsScripts\ScriptTSqlVisitor1.ClassIdentifierWithProperties.cs" />
   </ItemGroup>
 
   <ItemGroup>

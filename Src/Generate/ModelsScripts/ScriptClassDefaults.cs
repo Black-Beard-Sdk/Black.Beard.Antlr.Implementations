@@ -17,7 +17,7 @@ namespace Generate.ModelsScripts
     public class ScriptClassDefaults : ScriptBase
     {
 
-        private HashSet<string> _keys = new HashSet<string> { "_", "ClassWithProperties" };
+        private HashSet<string> _keys = new HashSet<string> { "_" };
 
         public override string GetInherit(AstRule ast, Context context)
         {
@@ -101,39 +101,42 @@ namespace Generate.ModelsScripts
                                    }
 
                                })
-                        .Ctor((f) =>
-                               {
-                                   f.Attribute(MemberAttributes.FamilyAndAssembly)
-                                    .Argument(() => "AstRootList<AstRoot>", "list")
-                                    .CallBase("Position.Default")
-                                    .Body(b =>
-                                    {
+                        .CtorWhen(() => ctx.Variables.Get<AlternativeTreeRuleItemList>("combinaisons").Count == 1, (f) =>
+                        {
+                            f.Attribute(MemberAttributes.FamilyAndAssembly)
+                             .Argument(() => "AstRootList<AstRoot>", "list")
+                             .CallBase("Position.Default")
+                             .Body(b =>
+                             {
 
-                                        var items = ast.GetProperties();
+                                 //if (ast.Name.Text == "exist_call")
+                                 //{ }
 
-                                        b.Statements.ForEach("AstRoot".AsType(), "item", "list", stm =>
-                                        {
+                                 var items = ast.GetProperties();
 
-                                            foreach (var item in items)
-                                            {
+                                 b.Statements.ForEach("AstRoot".AsType(), "item", "list", stm =>
+                                 {
 
-                                                var fieldName = (item as AstBase).GetFieldName();
+                                     foreach (var item in items)
+                                     {
 
-                                                var type = (item as AstBase).Type();
-                                                var ty = new CodeTypeReference(type);
-                                                stm.If(CodeHelper.Var("enumerator.Current").Call("Is", new CodeTypeReference[] { ty }), t =>
-                                                {
-                                                    t.Assign(CodeHelper.This().Field(fieldName), CodeHelper.Var("enumerator.Current").Cast(ty));
-                                                });
+                                         var fieldName = (item as AstBase).GetFieldName();
+
+                                         var type = (item as AstBase).Type();
+                                         var ty = new CodeTypeReference(type);
+                                         stm.If(CodeHelper.Var("enumerator.Current").Call("Is", new CodeTypeReference[] { ty }), t =>
+                                         {
+                                             t.Assign(CodeHelper.This().Field(fieldName), CodeHelper.Var("enumerator.Current").Cast(ty));
+                                          });
 
 
-                                            }
+                                     }
 
-                                        });
+                                 });
 
-                                    })
-                                    ;
-                               })
+                             })
+                             ;
+                        })
 
                         .CtorWhen(() => ctx.Variables.Get<AlternativeTreeRuleItemList>("combinaisons").Count == 1, (f) =>
                         {
@@ -239,13 +242,6 @@ namespace Generate.ModelsScripts
                                      {
                                         "ctx".Var()
                                      };
-                                     //if (alternative.Count == 0)
-                                     //{
-                                     //    if (alternative.WhereRuleOrIdentifiers())
-                                     //        args.Add("list".Indexer(i.AsConstant()).Cast(alternative.Type().AsType()));
-                                     //}
-                                     //else
-                                     //{
                                      foreach (var item in alternative)
                                          if (item.WhereRuleOrIdentifiers())
                                          {
@@ -253,7 +249,6 @@ namespace Generate.ModelsScripts
                                              args.Add(c);
                                              i++;
                                          }
-                                     //}
 
                                      string typename = "Ast" + CodeHelper.FormatCsharp(ast.Name.Text);
                                      b.Statements.Return(CodeHelper.Create(typename.AsType(), args.ToArray()));
@@ -324,13 +319,6 @@ namespace Generate.ModelsScripts
                                      {
                                          "ctx".Var()
                                      };
-                                     //if (alternative.Count == 0)
-                                     //{
-                                     //    if (alternative.WhereRuleOrIdentifiers())
-                                     //        args.Add("list".Indexer(alt.AlternativeIdentifier.AsConstant()).Cast(alternative.Type().AsType()));
-                                     //}
-                                     //else
-                                     //{
                                      int i = 0;
                                      foreach (var item in alternative)
                                      {
@@ -341,8 +329,6 @@ namespace Generate.ModelsScripts
                                              i++;
                                          }
                                      }
-                                     //}
-
 
                                      b.Statements.If("index".Var().IsEqual(alt.AlternativeIdentifier.AsConstant()), _t =>
                                      {
@@ -378,15 +364,8 @@ namespace Generate.ModelsScripts
                                      var alternative = alt.Item;
                                      List<CodeExpression> args = new List<CodeExpression>()
                                      {
-                                        "ctx".Var()
+                                        //"ctx".Var()
                                      };
-                                     //if (alternative.Count == 0)
-                                     //{
-                                     //    if (alternative.WhereRuleOrIdentifiers())
-                                     //        args.Add("list".Indexer(alt.AlternativeIdentifier.AsConstant()).Cast(alternative.Type().AsType()));
-                                     //}
-                                     //else
-                                     //{
                                      int i = 0;
                                      foreach (var item in alternative)
                                      {
@@ -397,7 +376,6 @@ namespace Generate.ModelsScripts
                                              i++;
                                          }
                                      }
-                                     //}
 
 
                                      b.Statements.If("index".Var().IsEqual(alt.AlternativeIdentifier.AsConstant()), _t =>
@@ -746,7 +724,8 @@ namespace Generate.ModelsScripts
                                   .Attribute(MemberAttributes.Public | MemberAttributes.Override)
                                   .Body(b =>
                                   {
-
+                                      var items = ctx.Variables.Get<AlternativeTreeRuleItemList>("combinaisons");
+                                      GenerateToStringForClassProperties.Generate(ast, items, b.Statements);
                                   })
                              ;
 

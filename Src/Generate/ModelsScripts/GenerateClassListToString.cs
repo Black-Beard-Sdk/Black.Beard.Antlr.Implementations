@@ -5,7 +5,7 @@ using System.CodeDom;
 namespace Generate.ModelsScripts
 {
 
-    public class GenerateClassListToString : GenerateCode
+    public class GenerateClassListToString : GenerateCodeFromAst
     {
 
         private GenerateClassListToString(CodeStatementCollection code, string strategy)
@@ -16,7 +16,7 @@ namespace Generate.ModelsScripts
 
         public static CodeExpression Generate(AstRule ast, CodeStatementCollection code)
         {
-            var strategy = GenerateCode.GetStrategy(ast);
+            var strategy = GenerateCodeFromAst.GetStrategy(ast);
             var visitor = new GenerateClassListToString(code, strategy);
 
             var result = ast.Accept(visitor);
@@ -104,7 +104,7 @@ namespace Generate.ModelsScripts
 
                 if (a.Name != null)
                 {
-                    Stop();
+                    Pause();
                 }
 
 
@@ -124,7 +124,7 @@ namespace Generate.ModelsScripts
 
                 if (a.Options != null)
                 {
-                    Stop();
+                    Pause();
                 }
 
             }

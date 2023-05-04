@@ -6,10 +6,11 @@ using System.Linq;
 namespace Generate.ModelsScripts
 {
 
-    public class GenerateCode : IAstVisitor<CodeExpression>
+
+    public class GenerateCodeFromAst : IAstVisitor<CodeExpression>
     {
 
-        public GenerateCode(CodeStatementCollection code, string strategy)
+        public GenerateCodeFromAst(CodeStatementCollection code, string strategy)
         {
             this._code = new CodeBlock(code);
             this.Strategy = strategy;
@@ -19,38 +20,38 @@ namespace Generate.ModelsScripts
 
         public virtual CodeExpression VisitRule(AstRule a)
         {
-            Stop();
+            Pause();
             throw new NotImplementedException();
         }
 
 
         public virtual CodeExpression VisitAlternative(AstAlternative a)
         {
-            Stop();
+            Pause();
             throw new NotImplementedException();
         }
 
         public virtual CodeExpression VisitElementList(AstElementList a)
         {
-            Stop();
+            Pause();
             throw new NotImplementedException();
         }
 
         public virtual CodeExpression VisitLabeledAlt(AstLabeledAlt a)
         {
-            Stop();
+            Pause();
             throw new NotImplementedException();
         }
 
         public virtual CodeExpression VisitAlternativeList(AstAlternativeList a)
         {
-            Stop();
+            Pause();
             throw new NotImplementedException();
         }
 
         public virtual CodeExpression VisitArgActionBlock(AstArgActionBlock a)
         {
-            Stop();
+            Pause();
             throw new NotImplementedException();
         }
 
@@ -61,200 +62,200 @@ namespace Generate.ModelsScripts
 
         public virtual CodeExpression VisitBlock(AstBlock a)
         {
-            Stop();
+            Pause();
             throw new NotImplementedException();
         }
 
         public virtual CodeExpression AstLexerRulesList(AstLexerRulesList a)
         {
-            Stop();
+            Pause();
             throw new NotImplementedException();
         }
 
         public virtual CodeExpression VisitActionBlock(AstActionBlock a)
         {
-            Stop();
+            Pause();
             throw new NotImplementedException();
 
         }
 
         public virtual CodeExpression VisitEbnfSuffix(AstEbnfSuffix a)
         {
-            Stop();
+            Pause();
             throw new NotImplementedException();
         }
 
         public virtual CodeExpression VisitElement(AstElement a)
         {
-            Stop();
+            Pause();
             throw new NotImplementedException();
         }
 
         public virtual CodeExpression VisitLabeledElement(AstLabeledElement a)
         {
-            Stop();
+            Pause();
             throw new NotImplementedException();
         }
 
         public virtual CodeExpression VisitLexerAlternative(AstLexerAlternative a)
         {
-            Stop();
+            Pause();
             throw new NotImplementedException();
         }
 
         public virtual CodeExpression VisitLexerAlternativeList(AstLexerAlternativeList a)
         {
-            Stop();
+            Pause();
             throw new NotImplementedException();
         }
 
         public virtual CodeExpression VisitLexerBlock(AstLexerBlock a)
         {
-            Stop();
+            Pause();
             throw new NotImplementedException();
         }
 
         public virtual CodeExpression VisitLexerCommand(AstLexerCommand a)
         {
-            Stop();
+            Pause();
             throw new NotImplementedException();
         }
 
         public virtual CodeExpression VisitLexerElementList(AstLexerElementList a)
         {
-            Stop();
+            Pause();
             throw new NotImplementedException();
         }
 
         public virtual CodeExpression VisitLexerElementList(AstLexerCommandList a)
         {
-            Stop();
+            Pause();
             throw new NotImplementedException();
         }
 
         public virtual CodeExpression VisitLexerLabeledElement(AstLexerLabeledElement a)
         {
-            Stop();
+            Pause();
             throw new NotImplementedException();
         }
 
         public virtual CodeExpression VisitLexerRule(AstLexerRule a)
         {
-            Stop();
+            Pause();
             throw new NotImplementedException();
         }
 
         public virtual CodeExpression VisitLexerRulesList(AstLexerRulesList a)
         {
-            Stop();
+            Pause();
             throw new NotImplementedException();
         }
 
         public virtual CodeExpression VisitModeSpec(AstModeSpec a)
         {
-            Stop();
+            Pause();
             throw new NotImplementedException();
         }
 
         public virtual CodeExpression VisitModeSpecList(AstModeSpecList a)
         {
-            Stop();
+            Pause();
             throw new NotImplementedException();
         }
 
         public virtual CodeExpression VisitNot(AstNot a)
         {
-            Stop();
+            Pause();
             throw new NotImplementedException();
         }
 
         public virtual CodeExpression VisitOption(AstOption a)
         {
-            Stop();
+            Pause();
             throw new NotImplementedException();
         }
 
         public virtual CodeExpression VisitOptionList(AstOptionList a)
         {
-            Stop();
+            Pause();
             throw new NotImplementedException();
         }
 
         public virtual CodeExpression VisitParserRuleSpec(AstParserRuleSpec a)
         {
-            Stop();
+            Pause();
             throw new NotImplementedException();
         }
 
         public virtual CodeExpression VisitPrequel(AstPrequel a)
         {
-            Stop();
+            Pause();
             throw new NotImplementedException();
         }
 
         public virtual CodeExpression VisitPrequelConstruct(AstPrequelConstruct a)
         {
-            Stop();
+            Pause();
             throw new NotImplementedException();
         }
 
         public virtual CodeExpression VisitPrequelConstructList(AstPrequelConstructList a)
         {
-            Stop();
+            Pause();
             throw new NotImplementedException();
         }
 
         public virtual CodeExpression VisitPrequelList(AstPrequelList a)
         {
-            Stop();
+            Pause();
             throw new NotImplementedException();
         }
 
         public virtual CodeExpression VisitRange(AstRange a)
         {
-            Stop();
+            Pause();
             throw new NotImplementedException();
         }
 
         public virtual CodeExpression VisitRuleAction(AstRuleAction a)
         {
-            Stop();
+            Pause();
             throw new NotImplementedException();
         }
 
         public virtual CodeExpression VisitRuleAltList(AstRuleAltList a)
         {
-            Stop();
+            Pause();
             throw new NotImplementedException();
         }
 
         public virtual CodeExpression VisitRuleModifier(AstRuleModifier a)
         {
-            Stop();
+            Pause();
             throw new NotImplementedException();
         }
 
         public virtual CodeExpression VisitRuleModifierList(AstRuleModifierList a)
         {
-            Stop();
+            Pause();
             throw new NotImplementedException();
         }
 
         public virtual CodeExpression VisitRuleRef(AstRuleRef a)
         {
-            Stop();
+            Pause();
             throw new NotImplementedException();
         }
 
         public virtual CodeExpression VisitRules(AstRules a)
         {
-            Stop();
+            Pause();
             throw new NotImplementedException();
         }
 
         public virtual CodeExpression VisitRulesList(AstRulesList a)
         {
-            Stop();
+            Pause();
             throw new NotImplementedException();
         }
 
@@ -265,55 +266,55 @@ namespace Generate.ModelsScripts
 
         public virtual CodeExpression VisitTerminalText(AstTerminalText a)
         {
-            Stop();
+            Pause();
             throw new NotImplementedException();
         }
 
         public virtual CodeExpression VisitElementOption(AstElementOption a)
         {
-            Stop();
+            Pause();
             throw new NotImplementedException();
         }
 
         public virtual CodeExpression VisitElementOptionList(AstElementOptionList a)
         {
-            Stop();
+            Pause();
             throw new NotImplementedException();
         }
 
         public virtual CodeExpression VisitExceptionGroup(AstExceptionGroup a)
         {
-            Stop();
+            Pause();
             throw new NotImplementedException();
         }
 
         public virtual CodeExpression VisitExceptionHandler(AstExceptionHandler a)
         {
-            Stop();
+            Pause();
             throw new NotImplementedException();
         }
 
         public virtual CodeExpression VisitFinallyClause(AstFinallyClause a)
         {
-            Stop();
+            Pause();
             throw new NotImplementedException();
         }
 
         public virtual CodeExpression VisitGrammarSpec(AstGrammarSpec a)
         {
-            Stop();
+            Pause();
             throw new NotImplementedException();
         }
 
         public virtual CodeExpression VisitGrammerDecl(AstGrammarDecl a)
         {
-            Stop();
+            Pause();
             throw new NotImplementedException();
         }
 
         public virtual CodeExpression VisitIdentifierList(AstIdentifierList a)
         {
-            Stop();
+            Pause();
             throw new NotImplementedException();
         }
 
@@ -329,7 +330,7 @@ namespace Generate.ModelsScripts
 
         [System.Diagnostics.DebuggerStepThrough]
         [System.Diagnostics.DebuggerNonUserCode]
-        public void Stop() => _code.Stop();
+        public void Pause() => _code.Stop();
         protected LevelBloc CurrentBlock => _code.CurrentBlock;
         protected LevelBloc Stack(CodeStatementCollection c = null) => _code.Stack(c);
         private CodeBlock _code;

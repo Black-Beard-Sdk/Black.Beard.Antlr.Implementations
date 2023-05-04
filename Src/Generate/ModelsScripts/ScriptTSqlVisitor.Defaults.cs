@@ -10,7 +10,7 @@ namespace Generate.ModelsScripts
     {
 
         
-        private HashSet<string> _keys = new HashSet<string> { "_", "ClassIdentifierWithProperties" };
+        private HashSet<string> _keys = new HashSet<string> { "_" };
 
 
         public override string GetInherit(AstRule ast, Context context)

@@ -160,7 +160,7 @@ namespace Generate
             if (ast is AstRuleRef r && r.Parent is AstAtom a && a.Parent is AstLabeledElement l)
                 _name = l.Name.ResolveName();
 
-            if (ast is AstTerminal t && t.Parent is AstAtom a2 && a2.Parent is AstLabeledElement l2)
+            else if (ast is AstTerminal t && t.Parent is AstAtom a2 && a2.Parent is AstLabeledElement l2)
                 _name = l2.Name.ResolveName();
 
             else
@@ -182,7 +182,7 @@ namespace Generate
             if (ast is AstRuleRef r && r.Parent is AstAtom a && a.Parent is AstLabeledElement l)
                 _name = l.Name.ResolveName();
 
-            if (ast is AstTerminal t && t.Parent is AstAtom a2 && a2.Parent is AstLabeledElement l2)
+            else if (ast is AstTerminal t && t.Parent is AstAtom a2 && a2.Parent is AstLabeledElement l2)
                 _name = l2.Name.ResolveName();
 
             else
@@ -204,7 +204,7 @@ namespace Generate
             if (ast is AstRuleRef r && r.Parent is AstAtom a && a.Parent is AstLabeledElement l)
                 _name = l.Name.ResolveName();
 
-            if (ast is AstTerminal t && t.Parent is AstAtom a2 && a2.Parent is AstLabeledElement l2)
+            else if (ast is AstTerminal t && t.Parent is AstAtom a2 && a2.Parent is AstLabeledElement l2)
                 _name = l2.Name.ResolveName();
 
             else

@@ -17,8 +17,9 @@ namespace Generate.ModelsScripts
             return GetInherit_Impl("AstBnfRule", ast, context);
         }
 
-        public override string StrategyTemplateKey => "ClassWithProperties";
+        public override HashSet<string> StrategyTemplateKeys => _keys;
 
+        private HashSet<string> _keys = new HashSet<string> { "ClassWithProperties" };
 
         protected override void ConfigureTemplate(Context ctx, CodeGeneratorVisitor generator)
         {

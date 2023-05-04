@@ -272,7 +272,7 @@ namespace Bb.Generators
         public static CodeIterationStatement ForEach(this CodeTypeReference variableType, string item, string list, Action<CodeStatementCollection> action)
         {
 
-            var t = "IEnumerator".AsType();
+            var t = "var".AsType();
             //t.TypeArguments.Add(variableType);
             var declare = Declare("enumerator", t, list.Var().Call("GetEnumerator"));
 
@@ -287,7 +287,7 @@ namespace Bb.Generators
         public static CodeIterationStatement ForEach(this CodeTypeReference variableType, string item, CodeExpression list, Action<CodeStatementCollection> action)
         {
 
-            var t = "IEnumerator".AsType();
+            var t = "var".AsType();
             //t.TypeArguments.Add(variableType);
             var declare = Declare("enumerator", t, list.Call("GetEnumerator"));
 
