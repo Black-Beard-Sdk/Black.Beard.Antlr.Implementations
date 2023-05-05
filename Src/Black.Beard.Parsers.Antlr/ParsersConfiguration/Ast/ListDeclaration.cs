@@ -31,7 +31,7 @@ namespace Bb.ParsersConfiguration.Ast
             return visitor.VisitListDeclaration(this);
         }
 
-        public override void ToString(Writer writer)
+        public override bool ToString(Writer writer, StrategySerializationItem strategy)
         {
 
             writer.Append("LIST ");
@@ -60,6 +60,8 @@ namespace Bb.ParsersConfiguration.Ast
             }
 
             writer.AppendEndLine();
+
+            return true;
 
         }
 

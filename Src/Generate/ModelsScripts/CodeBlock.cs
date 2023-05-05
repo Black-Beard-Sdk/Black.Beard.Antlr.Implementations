@@ -20,6 +20,9 @@ namespace Generate.ModelsScripts
         private readonly Stack<LevelBloc> _stack;
 
 
+        public Data GetDataFor(object key) => _datas[key];
+
+
         public LevelBloc CurrentBlock
         {
             get
@@ -30,7 +33,7 @@ namespace Generate.ModelsScripts
             }
         }
 
-        public LevelBloc Stack(CodeStatementCollection collection = null)
+        public LevelBloc Stack(object sourceItem, CodeStatementCollection collection = null)
         {
 
             LevelBloc last = null;
@@ -40,13 +43,14 @@ namespace Generate.ModelsScripts
             if (collection == null)
             {
                 var current = CurrentBlock;
-                collection = CurrentBlock != null 
-                    ? current.Current 
+                collection = CurrentBlock != null
+                    ? current.Code
                     : this._code;
             }
 
             var result = new LevelBloc(this, last,
-                collection ?? throw new NullReferenceException(nameof(collection))
+                collection ?? throw new NullReferenceException(nameof(collection)),
+                sourceItem
                 );
 
             this._stack.Push(result);
@@ -64,8 +68,8 @@ namespace Generate.ModelsScripts
             if (t != levelBloc)
                 throw new InvalidOperationException();
 
-            if (this._datas.ContainsKey(t.Current))
-                this._datas.Remove(t.Current);
+            if (this._datas.ContainsKey(t.Code))
+                this._datas.Remove(t.Code);
 
         }
 
@@ -82,12 +86,13 @@ namespace Generate.ModelsScripts
     public class LevelBloc : IDisposable
     {
 
-        internal LevelBloc(CodeBlock root, LevelBloc parent, CodeStatementCollection collection)
+        internal LevelBloc(CodeBlock root, LevelBloc parent, CodeStatementCollection collection, object sourceItem)
         {
 
-            this.Current = collection ?? throw new NullReferenceException(nameof(collection));
+            this.Code = collection ?? throw new NullReferenceException(nameof(collection));
             this._root = root;
             this._parent = parent;
+            this._source = sourceItem;
 
             _variables = new Dictionary<string, Variable>();
             if (parent != null)
@@ -101,10 +106,28 @@ namespace Generate.ModelsScripts
             this._root.Remove(this);
         }
 
-        public object GetData(string key)
+        public T GetRecursiveData<T>(string key)
+        {
+            var result = GetRecursiveData(key);
+            if (result == null)
+                return default(T);
+
+            return (T)result;
+        }
+
+        public T GetData<T>(string key)
+        {
+            var result = GetData(key);
+            if (result == null)
+                return default(T);
+
+            return (T)result;
+        }
+
+        public object GetRecursiveData(string key)
         {
 
-            if (this._root._datas.TryGetValue(this.Current, out Data data))
+            if (this._root._datas.TryGetValue(this._source, out Data data))
             {
 
                 var result = data.GetData(key);
@@ -115,17 +138,62 @@ namespace Generate.ModelsScripts
             }
 
             if (this._parent != null)
-                return _parent.GetData(key);
+                return _parent.GetRecursiveData(key);
 
             return null;
+
+        }
+
+        public object GetData(string key)
+        {
+
+            if (this._root._datas.TryGetValue(this._source, out Data data))
+            {
+
+                var result = data.GetData(key);
+
+                if (result != null)
+                    return result;
+
+            }
+
+            return null;
+
+        }
+
+        public LevelBloc GetLevelFromData(string key)
+        {
+
+            if (this._root._datas.TryGetValue(this._source, out var data))
+                if (data.DataExist(key))
+                    return this;
+
+            if (this._parent != null)
+                return _parent.GetLevelFromData(key);
+
+            return null;
+
+        }
+
+        public bool DataExists(string key)
+        {
+
+            if (this._root._datas.TryGetValue(this._source, out var data))
+                if (data.DataExist(key))
+                    return true;
+
+            if (this._parent != null)
+                return _parent.DataExists(key);
+
+            return false;
 
         }
 
         public void SetData(string key, object value)
         {
 
-            if (!this._root._datas.TryGetValue(this.Current, out Data data))
-                this._root._datas.Add(this.Current, data = new Data());
+            if (!this._root._datas.TryGetValue(this._source, out Data data))
+                this._root._datas.Add(this.Code, data = new Data());
 
             data.SetData(key, value);
 
@@ -160,7 +228,7 @@ namespace Generate.ModelsScripts
 
         }
 
-        public CodeStatementCollection Current { get; }
+        public CodeStatementCollection Code { get; }
 
         //public void ResetCurrent()
         //{
@@ -175,7 +243,7 @@ namespace Generate.ModelsScripts
         private Dictionary<string, Variable> _variables;
         private readonly CodeBlock _root;
         private readonly LevelBloc _parent;
-
+        private readonly object _source;
     }
 
     public class Variable
@@ -215,6 +283,11 @@ namespace Generate.ModelsScripts
                 _datas[key] = value;
             else
                 _datas.Add(key, value);
+        }
+
+        internal bool DataExist(string key)
+        {
+            return _datas.ContainsKey(key);
         }
 
         private Dictionary<string, object> _datas;

@@ -42,7 +42,7 @@ namespace Bb.Asts
             Evaluate();
         }
 
-        public override void ToString(Writer wrt)
+        public override bool ToString(Writer wrt, StrategySerializationItem strategy)
         {
 
             if (Enquoted)
@@ -52,6 +52,8 @@ namespace Bb.Asts
 
             if (Enquoted)
                 wrt.Append("'");
+
+            return true;
 
         }
 

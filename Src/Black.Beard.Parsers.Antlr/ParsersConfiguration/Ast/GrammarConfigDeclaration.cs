@@ -35,7 +35,7 @@ namespace Bb.ParsersConfiguration.Ast
             return visitor.VisitGammarDeclaration(this);
         }
 
-        public override void ToString(Writer writer)
+        public override bool ToString(Writer writer, StrategySerializationItem strategy)
         {
 
             if (Rule != null)
@@ -43,24 +43,26 @@ namespace Bb.ParsersConfiguration.Ast
 
                 writer.Append("RULE ");
 
-                writer.Append(this.RuleName);
+                writer.ToString(this.RuleName);
                 writer.AppendEndLine(" ");
 
                 writer.Append("//** ");
-                Rule.ToString(writer);
+                writer.ToString(Rule);
                 writer.TrimEnd();
                 writer.AppendEndLine();
                 writer.AppendEndLine("  **// ");
 
                 using (writer.Indent())
                 {
-                    Config.ToString(writer);
+                    writer.ToString(Config);
                 }
 
                 writer.AppendEndLine(";");
                 writer.AppendEndLine();
 
             }
+
+            return true;
 
         }
 

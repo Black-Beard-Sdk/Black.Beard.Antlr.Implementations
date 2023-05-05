@@ -31,11 +31,9 @@ namespace Bb.ParsersConfiguration.Ast
 
         public RuleTuneInherit RuleTuneInherit { get; }
 
-        public override void ToString(Writer writer)
+        public override bool ToString(Writer writer, StrategySerializationItem strategy)
         {
-
-            RuleTuneInherit.ToString(writer);
-
+            return writer.ToString(RuleTuneInherit);
         }
 
         public override void Accept(IAstConfigBaseVisitor visitor)

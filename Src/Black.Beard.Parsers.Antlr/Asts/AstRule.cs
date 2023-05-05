@@ -242,12 +242,13 @@ namespace Bb.Asts
             return this.Alternatives.GetListAlternatives();
         }
 
-        public override void ToString(Writer wrt)
+        public override bool ToString(Writer wrt, StrategySerializationItem strategy)
         {
-            wrt.Append(Name);
+            wrt.ToString(Name);
             wrt.Append(" : ");
-            Alternatives.ToString(wrt);
+            wrt.ToString(Alternatives);
             wrt.TrimEnd();
+            return true;
         }
 
         AstGrammarSpec _root;

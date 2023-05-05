@@ -34,13 +34,12 @@ namespace Bb.ParsersConfiguration.Ast
             return _value.Text;
         }
 
-        public override void ToString(Writer writer)
+        public override bool ToString(Writer writer, StrategySerializationItem strategy)
         {
-
             writer.Append(Key);
             writer.Append(" : ");
-            writer.Append(_value);
-
+            writer.ToString(_value);
+            return true;
         }
 
         public override void Accept(IAstConfigBaseVisitor visitor)

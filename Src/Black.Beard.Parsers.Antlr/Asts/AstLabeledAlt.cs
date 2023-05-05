@@ -2,6 +2,7 @@
 using Newtonsoft.Json.Linq;
 using System.Diagnostics;
 using System.Text;
+using System.Xml.Linq;
 
 namespace Bb.Asts
 {
@@ -116,16 +117,19 @@ namespace Bb.Asts
         }
 
 
-        public override void ToString(Writer wrt)
+        public override bool ToString(Writer wrt, StrategySerializationItem strategy)
         {
 
-            Rule.ToString(wrt);
+            wrt.ToString(Rule);
 
             if (Name != null)
             {
                 wrt.Append("        #");
-                Name.ToString(wrt);
+                wrt.ToString(Name);
             }
+
+            return true;
+
         }
     }
 

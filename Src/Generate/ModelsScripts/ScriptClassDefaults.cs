@@ -721,11 +721,16 @@ namespace Generate.ModelsScripts
                             var type = ("Ast" + CodeHelper.FormatCsharp(ast.Name.Text));
                             method.Name(g => "ToString")
                                   .Argument("Writer", "writer")
+                                  .Argument("StrategySerializationItem", "strategy")
                                   .Attribute(MemberAttributes.Public | MemberAttributes.Override)
+                                  .Return(() => typeof(bool))
                                   .Body(b =>
                                   {
-                                      var items = ctx.Variables.Get<AlternativeTreeRuleItemList>("combinaisons");
-                                      GenerateToStringForClassProperties.Generate(ast, items, b.Statements);
+
+                                      if (ast.Name.Text == "throw_statement")
+                                      { }
+
+                                      GenerateClassDefaultToString.Generate(ast, b.Statements);
                                   })
                              ;
 
@@ -950,9 +955,13 @@ namespace Generate.ModelsScripts
                                     var type = ("Ast" + CodeHelper.FormatCsharp(ast.Name.Text));
                                     method.Name(g => "ToString")
                                           .Argument("Writer", "writer")
+                                          .Argument("StrategySerializationItem", "strategy")
                                           .Attribute(MemberAttributes.Public | MemberAttributes.Override)
+                                          .Return(() => typeof(bool))
                                           .Body(b =>
                                           {
+                                              // GenerateToStringForClassProperties.Generate(ast, alt2, b.Statements);
+                                              b.Statements.Return(CodeHelper.AsConstant(true));
 
                                           })
                                      ;

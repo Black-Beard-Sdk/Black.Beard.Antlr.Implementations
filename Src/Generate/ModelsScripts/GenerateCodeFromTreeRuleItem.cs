@@ -15,17 +15,12 @@ namespace Generate.ModelsScripts
 
         }
 
-        public static CodeExpression Generate(AstRule ast, AlternativeTreeRuleItemList items, CodeStatementCollection code)
+        public static CodeExpression Generate(AstRule ast, AlternativeTreeRuleItem item, CodeStatementCollection code)
         {
             var strategy = GenerateCodeFromTreeRuleItem.GetStrategy(ast);
             var visitor = new GenerateToStringForClassProperties(code, strategy);
 
-            foreach (var item in items)
-            {
-                
-                item.Item.Accept(visitor);
-
-            }
+            item.Item.Accept(visitor);
 
             return null;
 

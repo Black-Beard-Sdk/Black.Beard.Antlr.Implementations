@@ -28,11 +28,11 @@ namespace Generate.ModelsScripts
             using (var current = Stack())
             {
 
-                current.Current.Call("writer".Var(), "EnsureEndBy", ' '.AsConstant());
+                current.Code.Call("writer".Var(), "EnsureEndBy", ' '.AsConstant());
 
-                current.Current.DeclareAndInitialize("strategy", "var".AsType(), "writer".Var().Property("Strategy").Call("GetStrategy", "_ruleName".Var()));
+                current.Code.DeclareAndInitialize("strategy", "var".AsType(), "writer".Var().Property("Strategy").Call("GetStrategy", "_ruleName".Var()));
 
-                current.Current.Using("blockStrategy", "writer".Var().Call("Apply", "strategy".Var()), j =>
+                current.Code.Using("blockStrategy", "writer".Var().Call("Apply", "strategy".Var()), j =>
                 {
                     using (var current = Stack(j))
                     {
@@ -214,8 +214,8 @@ namespace Generate.ModelsScripts
 
             var current = CurrentBlock;
 
-            var i = CodeHelper.Call("Value".Var(), "ToString", "writer".Var());
-            current.Current.Add(i);
+            var i = CodeHelper.Call("writer".Var(), "ToString", "Value".Var());
+            current.Code.Add(i);
 
             return null;
 
@@ -232,14 +232,14 @@ namespace Generate.ModelsScripts
                 CodeExpression value = "Constants".AsType().Field(name);
 
                 var i = CodeHelper.Call("writer".Var(), "Append", value);
-                current.Current.Add(i);
+                current.Code.Add(i);
 
             }
             else if (a.Link.TerminalKind == TokenTypeEnum.Identifier)
             {
                 //var i = CodeHelper.Call("Value".Var(), "ToString", "writer".Var());
                 var i = CodeHelper.Call("writer".Var(), "Append", "Value".Var());
-                current.Current.Add(i);
+                current.Code.Add(i);
             }
             else
             {

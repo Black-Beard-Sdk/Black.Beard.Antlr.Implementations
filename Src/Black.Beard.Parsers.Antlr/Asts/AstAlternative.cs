@@ -115,14 +115,11 @@ namespace Bb.Asts
             return visitor.VisitAlternative(this);
         }
 
-        public override void ToString(Writer wrt)
+        public override bool ToString(Writer wrt, StrategySerializationItem strategy)
         {
-
-            if (Options != null)
-                Options.ToString(wrt);
-
-            Rule.ToString(wrt);
-
+            wrt.ToString(Options);
+            wrt.ToString(Rule);
+            return true;
         }
     }
 

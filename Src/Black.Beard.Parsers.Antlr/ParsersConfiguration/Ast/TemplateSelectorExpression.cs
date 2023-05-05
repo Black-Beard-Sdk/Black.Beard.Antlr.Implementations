@@ -29,9 +29,9 @@ namespace Bb.ParsersConfiguration.Ast
             return visitor.VisitTemplateSelectorExpression(this);
         }
 
-        public override void ToString(Writer writer)
+        public override bool ToString(Writer writer, StrategySerializationItem strategy)
         {
-            Filter.ToString(writer);
+            return writer.ToString(Filter);
         }
 
     }

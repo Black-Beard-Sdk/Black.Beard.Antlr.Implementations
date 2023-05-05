@@ -30,25 +30,25 @@ namespace Generate.ModelsScripts
             using (var current = Stack())
             {
 
-                current.Current.Call("writer".Var(), "EnsureEndBy", ' '.AsConstant());
+                current.Code.Call("writer".Var(), "EnsureEndBy", ' '.AsConstant());
 
                 switch (this.Strategy)
                 {
 
                     case "ClassList":
-                        current.Current.If(CodeHelper.This().Property("Count").GreaterThan((0).AsConstant()),
+                        current.Code.If(CodeHelper.This().Property("Count").GreaterThan((0).AsConstant()),
                         i =>
                         {
                             using (var current = Stack(i))
                             {
 
-                                current.Current.DeclareAndInitialize("strategy", "var".AsType(), "writer".Var().Property("Strategy").Call("GetStrategy", "_ruleName".Var()));
+                                current.Code.DeclareAndInitialize("strategy", "var".AsType(), "writer".Var().Property("Strategy").Call("GetStrategy", "_ruleName".Var()));
 
-                                current.Current.Using("blockStrategy", "writer".Var().Call("Apply", "strategy".Var()), j =>
+                                current.Code.Using("blockStrategy", "writer".Var().Call("Apply", "strategy".Var()), j =>
                                 {
                                     using (var current = Stack(j))
                                     {
-                                        current.Current.DeclareAndInitialize("index", typeof(int).AsType(), (0).AsConstant());
+                                        current.Code.DeclareAndInitialize("index", typeof(int).AsType(), (0).AsConstant());
                                         a.Alternatives.Accept(this);
                                     }
                                 });
@@ -195,11 +195,11 @@ namespace Generate.ModelsScripts
                         }
                         if (a.Value.TerminalKind == TokenTypeEnum.Ponctuation)
                         {
-                            current.Current.If("strategy".Var().Property("ReturnLineAfterItems"), t =>
+                            current.Code.If("strategy".Var().Property("ReturnLineAfterItems"), t =>
                             {
                                 using (var current = Stack(t))
                                 {
-                                    current.Current.Add("writer".Var().Call("AppendEndLine"));
+                                    current.Code.Add("writer".Var().Call("AppendEndLine"));
                                 }
                             });
                         }
@@ -223,7 +223,7 @@ namespace Generate.ModelsScripts
                                 a.Value.Accept(this);
                             }
                         });
-                        current.Current.Add(m);
+                        current.Code.Add(m);
                     }
 
                 }
@@ -258,7 +258,7 @@ namespace Generate.ModelsScripts
 
             using (var current = Stack())
             {
-                current.Current.If(CodeHelper.This().Property("Count").GreaterThan((value).AsConstant()),
+                current.Code.If(CodeHelper.This().Property("Count").GreaterThan((value).AsConstant()),
                 i =>
                 {
                     using (var current = Stack(i))
@@ -281,7 +281,7 @@ namespace Generate.ModelsScripts
                                     a.AlternativeList.Accept(this);
                                 }
                             });
-                            current.Current.Add(m);
+                            current.Code.Add(m);
 
                         }
 
@@ -328,12 +328,12 @@ namespace Generate.ModelsScripts
 
             var current = CurrentBlock;
 
-            CodeExpression v = current.GetData("source") as CodeExpression;
+            CodeExpression v = current.GetRecursiveData("source") as CodeExpression;
             if (v == null)
                 v = "item".Var();
 
             var i = CodeHelper.Call(v, "ToString", "writer".Var());
-            current.Current.Add(i);
+            current.Code.Add(i);
 
             return null;
 
@@ -347,7 +347,7 @@ namespace Generate.ModelsScripts
             CodeExpression value = "Constants".AsType().Field(name);
 
             var i = CodeHelper.Call("writer".Var(), "Append", value);
-            current.Current.Add(i);
+            current.Code.Add(i);
 
             return null;
         }

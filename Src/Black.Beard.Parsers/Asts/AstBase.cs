@@ -11,7 +11,7 @@ namespace Bb.Asts
 {
 
 
-    public abstract class AstBase<TVisitor>
+    public abstract class AstBase<TVisitor> : IWriter
     {
 
         public AstBase(ParserRuleContext ctx)
@@ -61,14 +61,15 @@ namespace Bb.Asts
         public override string ToString()
         {
             var wrt = new Writer();
-            ToString(wrt);
+            wrt.ToString(this);
             return wrt.ToString();
         }
 
 
-        public virtual void ToString(Writer writer)
+        public virtual bool ToString(Writer writer, StrategySerializationItem strategy)
         {
 
+            return true;
 
         }
 

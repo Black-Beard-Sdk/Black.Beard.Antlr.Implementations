@@ -34,7 +34,7 @@ namespace Bb.ParsersConfiguration.Ast
             return visitor.VisitAdditionalValues(this);
         }
 
-        public override void ToString(Writer writer)
+        public override bool ToString(Writer writer, StrategySerializationItem strategy)
         {
 
             if (_list.Count > 0)
@@ -42,12 +42,14 @@ namespace Bb.ParsersConfiguration.Ast
 
                 using (writer.Indent())
                     foreach (var item in _list)
-                        item.Value.ToString(writer);
+                        writer.ToString(item.Value);
 
                 writer.AppendEndLine();
                 writer.AppendEndLine(";");
 
             }
+
+            return true;
 
         }
 

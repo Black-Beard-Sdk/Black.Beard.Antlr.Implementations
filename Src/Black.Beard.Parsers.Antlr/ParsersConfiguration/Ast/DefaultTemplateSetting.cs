@@ -34,13 +34,14 @@ namespace Bb.ParsersConfiguration.Ast
             return visitor.VisitDefaultTemplateSetting(this);
         }
 
-        public override void ToString(Writer writer)
+        public override bool ToString(Writer writer, StrategySerializationItem strategy)
         {
             writer.Append("DEFAULT ");
-            Setting.ToString(writer);
+            writer.ToString(Setting);
             writer.AppendEndLine();
             writer.AppendEndLine(";");
             writer.AppendEndLine();
+            return true;
         }
 
         internal void Merge(DefaultTemplateSetting t1)

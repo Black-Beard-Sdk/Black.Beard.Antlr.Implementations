@@ -116,9 +116,10 @@ namespace Bb.Asts
             return visitor.VisitLexerAlternative(this);
         }
 
-        public override void ToString(Writer wrt)
+        public override bool ToString(Writer wrt, StrategySerializationItem strategy)
         {
-            Rule.ToString(wrt);
+            wrt.ToString(Rule);
+            return true;
         }
 
     }

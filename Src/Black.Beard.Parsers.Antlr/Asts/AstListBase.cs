@@ -273,7 +273,7 @@ namespace Bb.Asts
 
         }
 
-        public override void ToString(Writer wrt)
+        public override bool ToString(Writer wrt, StrategySerializationItem strategy)
         {                  
 
             string comma = string.Empty;
@@ -283,11 +283,13 @@ namespace Bb.Asts
 
                 wrt.Append(comma);
 
-                item.ToString(wrt);               
+                wrt.ToString(item);               
 
                 comma = _charSplit;
 
             }
+
+            return true;
 
         }
 

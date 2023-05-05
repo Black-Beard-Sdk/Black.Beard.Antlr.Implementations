@@ -148,19 +148,21 @@ namespace Bb.ParsersConfiguration.Ast
             return visitor.VisitGrammarSpec(this);
         }
 
-        public override void ToString(Writer writer)
+        public override bool ToString(Writer writer, StrategySerializationItem strategy)
         {
 
-            Defaults.ToString(writer);
+            writer.ToString(Defaults);
 
             foreach (var item in _lists)
-                item.ToString(writer);
+                writer.ToString(item);
 
             foreach (var item in _selectors)
-                item.ToString(writer);
+                writer.ToString(item);
 
             foreach (var item in _list)
-                item.Value.ToString(writer);
+                writer.ToString(item.Value);
+
+            return true;
 
         }
 

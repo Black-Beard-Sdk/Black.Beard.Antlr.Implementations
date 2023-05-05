@@ -31,7 +31,7 @@ namespace Bb.Asts
 
         public override Occurence ResolveOccurence()
         {
-            if ( this.Parent is AstAtom a)
+            if (this.Parent is AstAtom a)
                 return a.Occurence;
             return new Occurence();
         }
@@ -76,17 +76,12 @@ namespace Bb.Asts
             return visitor.VisitRuleRef(this);
         }
 
-        public override void ToString(Writer wrt)
+        public override bool ToString(Writer wrt, StrategySerializationItem strategy)
         {
-
-            if (Action != null)
-                Name.ToString(wrt);
-
-            if (Option != null)
-                Option.ToString(wrt);
-
-            Name.ToString(wrt);
-
+            wrt.ToString(Action);
+            wrt.ToString(Option);
+            wrt.ToString(Name);
+            return true;
         }
 
     }

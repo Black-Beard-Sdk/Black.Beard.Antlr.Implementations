@@ -32,6 +32,8 @@
 
 
         private Dictionary<string, StrategySerializationItem> _strategies = new Dictionary<string, StrategySerializationItem>();
+        
+        internal readonly StrategySerializationItem DefaultStrategy = new StrategySerializationItem();
 
     }
 

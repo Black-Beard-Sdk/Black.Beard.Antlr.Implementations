@@ -18,7 +18,7 @@ namespace Bb.Asts
 
         public string Value { get; }
 
-        public override void ToString(Writer writer)
+        public override bool ToString(Writer writer, StrategySerializationItem strategy)
         {
             
             writer.Append(" -> ");
@@ -29,8 +29,9 @@ namespace Bb.Asts
                 writer.Append("(");
                 writer.Append(Value);
                 writer.Append(")");
-
             }
+
+            return true;
 
         }
 

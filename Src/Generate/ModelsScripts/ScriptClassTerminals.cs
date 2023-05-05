@@ -365,11 +365,14 @@ namespace Generate.ModelsScripts
                                 var type = ("Ast" + CodeHelper.FormatCsharp(ast.Name.Text));
                                 method.Name(g => "ToString")
                                       .Argument("Writer", "writer")
+                                      .Argument("StrategySerializationItem", "strategy")
                                       .Attribute(MemberAttributes.Public | MemberAttributes.Override)
+                                      .Return(() => typeof(bool))
                                       .Body(b =>
                                       {
 
                                           GenerateClassTerminalToString.Generate(ast, b.Statements);
+                                          b.Statements.Return(CodeHelper.AsConstant(true));
 
                                       })
                                  ;

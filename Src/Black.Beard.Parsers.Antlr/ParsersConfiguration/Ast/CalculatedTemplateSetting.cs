@@ -32,10 +32,11 @@ namespace Bb.ParsersConfiguration.Ast
             return visitor.VisitCalculatedTemplateSetting(this);
         }
 
-        public override void ToString(Writer writer)
+        public override bool ToString(Writer writer, StrategySerializationItem strategy)
         {
             writer.Append("CALCULATED ");
-            Setting.ToString(writer);
+            writer.ToString(Setting);
+            return true;
         }
 
         private readonly string _value;

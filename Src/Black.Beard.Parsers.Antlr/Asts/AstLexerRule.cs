@@ -242,21 +242,19 @@ namespace Bb.Asts
             return this.Alternatives.GetListAlternatives();
         }
 
-        public override void ToString(Writer wrt)
+        public override bool ToString(Writer wrt, StrategySerializationItem strategy)
         {
 
             if (IsFragment)
                 wrt.Append("fragment ");
 
-            wrt.Append(Name);
+            wrt.ToString(Name);
 
             wrt.Append(" : ");
-            if (Alternatives != null)
-                Alternatives.ToString(wrt);
-            else
-            {
-                Value.ToString(wrt);
-            }
+            if (!wrt.ToString(Alternatives))
+                wrt.ToString(Value);
+
+            return true;
 
         }
 

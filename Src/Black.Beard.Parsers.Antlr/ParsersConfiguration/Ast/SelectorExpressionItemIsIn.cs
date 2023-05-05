@@ -28,7 +28,7 @@ namespace Bb.ParsersConfiguration.Ast
             return visitor.VisitSelectorExpressionItemIsIn(this);
         }
 
-        public override void ToString(Writer writer)
+        public override bool ToString(Writer writer, StrategySerializationItem strategy)
         {
 
             if (writer.EndBy("\t"))
@@ -42,6 +42,8 @@ namespace Bb.ParsersConfiguration.Ast
             writer.Append("IN ");
 
             writer.Append(ListName);
+
+            return true;
 
         }
 

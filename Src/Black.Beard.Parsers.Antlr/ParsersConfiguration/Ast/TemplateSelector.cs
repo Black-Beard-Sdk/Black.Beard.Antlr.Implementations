@@ -14,7 +14,7 @@ namespace Bb.ParsersConfiguration.Ast
 
 
         public TemplateSetting Settings { get; set; }
-        
+
         public TemplateSelectorExpression SelectorExpression { get; set; }
 
         public override void Accept(IAstConfigBaseVisitor visitor)
@@ -32,13 +32,12 @@ namespace Bb.ParsersConfiguration.Ast
         /// SET TEMPLATE identifier additional_settings WHEN template_selector_expression SEMI.
         /// </summary>
         /// <param name="writer">The writer.</param>
-        public override void ToString(Writer writer)
+        public override bool ToString(Writer writer, StrategySerializationItem strategy)
         {
 
             writer.Append("SELECT ");
 
-            if (this.Settings != null)
-                this.Settings.ToString(writer);
+            writer.ToString(this.Settings);
 
             writer.TrimEnd(' ');
 
@@ -46,11 +45,13 @@ namespace Bb.ParsersConfiguration.Ast
             using (writer.Indent())
             {
                 writer.AppendEndLine();
-                this.SelectorExpression?.ToString(writer);
+                writer.ToString(this.SelectorExpression);
                 writer.AppendEndLine();
                 writer.AppendEndLine(";");
             }
             writer.AppendEndLine();
+
+            return true;
 
         }
 

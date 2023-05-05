@@ -52,9 +52,10 @@ namespace Bb.ParsersConfiguration.Ast
             return visitor.VisitConstant(this);
         }
 
-        public override void ToString(Writer writer)
+        public override bool ToString(Writer writer, StrategySerializationItem strategy)
         {
             writer.Append("'", Text, "'");
+            return true;
         }
 
     }

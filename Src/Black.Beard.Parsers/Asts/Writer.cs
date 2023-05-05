@@ -1,8 +1,19 @@
-﻿using System.Diagnostics.CodeAnalysis;
+﻿using System.ComponentModel.Design;
+using System.Diagnostics.CodeAnalysis;
 using System.Text;
 
 namespace Bb.Asts
 {
+
+    public interface IWriter
+    {
+
+        bool ToString(Writer writer, StrategySerializationItem strategy);
+
+        public string RuleName { get; }
+
+    }
+
     public class Writer
     {
 
@@ -16,16 +27,10 @@ namespace Bb.Asts
         public Writer(StringBuilder? sb = null)
         {
             _sb = sb ?? new StringBuilder();
-            this.Strategy = null;
+            this.Strategy = new SerializationStrategies();
             _index = 0;
         }
 
-        public Writer Append(params object[] values)
-        {
-            foreach (var value in values)
-                _sb.Append(value);
-            return this;
-        }
 
         public void TrimBegin()
         {
@@ -91,6 +96,8 @@ namespace Bb.Asts
 
         }
 
+
+
         public void CleanIndent()
         {
             while (_index > 0)
@@ -122,6 +129,8 @@ namespace Bb.Asts
 
         }
 
+
+
         public void AppendEndLine(params object[] values)
         {
             foreach (var value in values)
@@ -135,6 +144,57 @@ namespace Bb.Asts
             _sb.AppendLine();
             for (int i = 0; i < _index; i++)
                 _sb.Append('\t');
+
+        }
+
+        public Writer Append(params object[] values)
+        {
+            foreach (var value in values)
+            {
+                if (value is IWriter i)
+                    ToString(i);
+                else
+                    _sb.Append(value);
+            }
+            return this;
+        }
+
+        public Writer Append(params string[] values)
+        {
+            foreach (var value in values)
+                _sb.Append(value);
+
+            return this;
+        }
+
+        public Writer Append(params char[] values)
+        {
+            foreach (var value in values)
+                _sb.Append(value);
+
+            return this;
+        }
+
+        public bool ToString(IWriter writer)
+        {
+
+            if (writer != null)
+            {
+
+                if (!string.IsNullOrEmpty(writer.RuleName))
+                {
+                    var strategy = this.Strategy.GetStrategy(writer.RuleName) ?? this.Strategy.DefaultStrategy;
+                    using (var blockStrategy = this.Apply(strategy))
+                    {
+                        return writer.ToString(this, strategy);
+                    }
+                }
+
+
+                return writer.ToString(this, this.Strategy.DefaultStrategy);
+            }
+
+            return false;
 
         }
 
@@ -180,6 +240,7 @@ namespace Bb.Asts
             return result;
         }
 
+        public int Length => this._sb.Length;
 
         public StringBuilder Text { get => _sb; }
 

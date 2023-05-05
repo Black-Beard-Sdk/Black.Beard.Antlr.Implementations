@@ -29,10 +29,10 @@ namespace Bb.ParsersConfiguration.Ast
             return visitor.VisitSelectorExpressionItemBinary(this);
         }
 
-        public override void ToString(Writer writer)
+        public override bool ToString(Writer writer, StrategySerializationItem strategy)
         {
 
-            Left.ToString(writer);
+            writer.ToString(Left);
             writer.AppendEndLine();
 
             switch (Operator)
@@ -47,8 +47,10 @@ namespace Bb.ParsersConfiguration.Ast
                     break;
             }
 
-            Right.ToString(writer);
-            
+            writer.ToString(Right);
+
+            return true;
+
         }
 
     }

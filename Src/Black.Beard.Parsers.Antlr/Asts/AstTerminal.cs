@@ -73,7 +73,7 @@ namespace Bb.Asts
         }
 
 
-        public override void ToString(Writer wrt)
+        public override bool ToString(Writer wrt, StrategySerializationItem strategy)
         {
 
             if (Options != null)
@@ -81,8 +81,9 @@ namespace Bb.Asts
 
             }
 
-            Value.ToString(wrt);
+            wrt.ToString(Value);
 
+            return true;
         }
 
     }

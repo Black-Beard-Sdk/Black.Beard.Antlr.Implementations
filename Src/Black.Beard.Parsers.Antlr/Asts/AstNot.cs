@@ -89,10 +89,11 @@ namespace Bb.Asts
         }
 
 
-        public override void ToString(Writer wrt)
+        public override bool ToString(Writer wrt, StrategySerializationItem strategy)
         {
             wrt.Append("~");
-            Rule.ToString(wrt);
+            wrt.ToString(Rule);
+            return true;
         }
 
     }

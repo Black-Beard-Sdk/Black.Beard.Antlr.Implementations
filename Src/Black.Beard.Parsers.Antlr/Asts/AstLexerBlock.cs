@@ -54,15 +54,12 @@ namespace Bb.Asts
         }
 
 
-        public override void ToString(Writer writer)
+        public override bool ToString(Writer writer, StrategySerializationItem strategy)
         {
-
             writer.Append("(");
-
-            AlternativeList.ToString(writer);
-
+            writer.ToString(AlternativeList);
             writer.Append(")");
-
+            return true;
         }
 
     }

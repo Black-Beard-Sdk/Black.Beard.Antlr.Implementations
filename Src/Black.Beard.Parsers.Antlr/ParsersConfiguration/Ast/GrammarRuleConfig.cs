@@ -40,11 +40,11 @@ namespace Bb.ParsersConfiguration.Ast
 
         public RuleTuneInherit Inherit
         {
-            get => _inherit; 
-            set 
+            get => _inherit;
+            set
             {
-                _inherit = value; 
-            }  
+                _inherit = value;
+            }
         }
 
         public CalculatedRuleTuneInherit CalculatedInherit
@@ -70,7 +70,7 @@ namespace Bb.ParsersConfiguration.Ast
             return visitor.VisitRule(this);
         }
 
-        public override void ToString(Writer writer)
+        public override bool ToString(Writer writer, StrategySerializationItem strategy)
         {
 
             if (Generate)
@@ -80,22 +80,22 @@ namespace Bb.ParsersConfiguration.Ast
 
 
             writer.Append("INHERIT ");
-            if (Inherit != null)
-                Inherit.ToString(writer);
+            writer.ToString(Inherit);
 
             writer.AppendEndLine();
             writer.Append("CALCULATED INHERIT ");
-            if (CalculatedInherit != null)
-                CalculatedInherit.ToString(writer);
-            
+            writer.ToString(CalculatedInherit);
+
 
             writer.AppendEndLine();
-            TemplateSetting.ToString(writer);
+            writer.ToString(TemplateSetting);
 
             writer.AppendEndLine();
-            CalculatedTemplateSetting?.ToString(writer);
-            
+            writer.ToString(CalculatedTemplateSetting);
+
             writer.AppendEndLine();
+
+            return true;
 
         }
 

@@ -266,12 +266,15 @@ namespace Generate.ModelsScripts
                                   {
                                       method.Name(g => "ToString")
                                             .Argument("Writer", "writer")
+                                            .Argument("StrategySerializationItem", "strategy")
                                             .Attribute(MemberAttributes.Public | MemberAttributes.Override)
+                                            .Return(() => typeof(bool))
                                             .Body(b =>
                                             {
 
                                                 GenerateClassListToString.Generate(ast, b.Statements);
-                                            
+                                              b.Statements.Return(CodeHelper.AsConstant(true));
+
                                             })
                                        ;
                                   }

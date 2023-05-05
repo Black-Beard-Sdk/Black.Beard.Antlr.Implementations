@@ -26,7 +26,7 @@ namespace Bb.Asts
 
 
 
-        
+
 
 
         public override IEnumerable<AstTerminalText> GetTerminals()
@@ -265,23 +265,22 @@ namespace Bb.Asts
         }
 
 
-        public override void ToString(Writer writer)
+        public override bool ToString(Writer writer, StrategySerializationItem strategy)
         {
 
-            if (Options != null) Options.ToString(writer);
+            writer.ToString(Options);
 
-            if (RuleAction != null)
-            {
-                RuleAction.ToString(writer);
-            }
+            writer.ToString(RuleAction);
 
             if (AlternativeList != null)
             {
                 writer.Append("(");
-                AlternativeList.ToString(writer);
+                writer.ToString(AlternativeList);
                 writer.Append(")");
                 WriteOccurence(writer, Occurence);
             }
+
+            return true;
 
         }
 

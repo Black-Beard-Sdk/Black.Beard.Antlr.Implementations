@@ -35,7 +35,7 @@ namespace Bb.ParsersConfiguration.Ast
 
         public RuleTuneInherit? ExtendedPattern { get; }
 
-        public override void ToString(Writer writer)
+        public override bool ToString(Writer writer, StrategySerializationItem strategy)
         {
 
             writer.Append("KIND ");
@@ -109,11 +109,13 @@ namespace Bb.ParsersConfiguration.Ast
 
                 writer.Append(" ");
 
-                ExtendedPattern.ToString(writer);
+                writer.ToString(ExtendedPattern);
                 writer.AppendEndLine();
             }
 
             writer.AppendEndLine();
+
+            return true;
 
         }
 

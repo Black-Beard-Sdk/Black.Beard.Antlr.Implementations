@@ -79,11 +79,12 @@ namespace Bb.Asts
         }
 
 
-        public override void ToString(Writer wrt)
+        public override bool ToString(Writer wrt, StrategySerializationItem strategy)
         {
-            ValueStart.ToString(wrt);
+            wrt.ToString(ValueStart);
             wrt.Append(" .. ");
-            ValueEnd.ToString(wrt);
+            wrt.ToString(ValueEnd);
+            return true;
         }
 
     }
@@ -185,10 +186,15 @@ namespace Bb.Asts
         }
 
 
-        public override void ToString(Writer wrt)
+        public override bool ToString(Writer wrt, StrategySerializationItem strategy)
         {
-            Value?.ToString(wrt);
-            WriteOccurence(wrt, Occurence);
+            int length = wrt.Length;
+            if (wrt.ToString(Value))
+            {
+                WriteOccurence(wrt, Occurence);
+                return wrt.Length != length;
+            }
+            return false;
         }
 
     }

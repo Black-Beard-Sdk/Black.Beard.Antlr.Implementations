@@ -332,7 +332,9 @@ namespace Generate.ModelsScripts
         [System.Diagnostics.DebuggerNonUserCode]
         public void Pause() => _code.Stop();
         protected LevelBloc CurrentBlock => _code.CurrentBlock;
-        protected LevelBloc Stack(CodeStatementCollection c = null) => _code.Stack(c);
+        protected LevelBloc Stack(object sourceItem, CodeStatementCollection c = null) => _code.Stack(sourceItem, c);
+        protected Data GetDataFor(object key) => _code.GetDataFor(key);
+
         private CodeBlock _code;
 
 

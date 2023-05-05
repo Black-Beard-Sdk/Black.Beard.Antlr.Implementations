@@ -66,7 +66,7 @@ namespace Bb.ParsersConfiguration.Ast
 
         public bool Enquoted { get; }
 
-        public override void ToString(Writer writer)
+        public override bool ToString(Writer writer, StrategySerializationItem strategy)
         {
             if (Enquoted)
             {
@@ -77,6 +77,8 @@ namespace Bb.ParsersConfiguration.Ast
             }
             else
                 writer.Append(this.Text);
+
+            return true;
         }
 
         public override void Accept(IAstConfigBaseVisitor visitor)

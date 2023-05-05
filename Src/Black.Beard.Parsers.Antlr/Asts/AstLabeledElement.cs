@@ -80,10 +80,10 @@ namespace Bb.Asts
             return visitor.VisitLabeledElement(this);
         }
 
-        public override void ToString(Writer writer)
+        public override bool ToString(Writer writer, StrategySerializationItem strategy)
         {
 
-            this.Name?.ToString(writer);
+            writer.ToString(this.Name);
 
             if (this.Assign == LabeledElementAssignEnum.Assign)
                 writer.Append(" = ");
@@ -91,7 +91,9 @@ namespace Bb.Asts
             else
                 writer.Append(" += ");
 
-            this.Rule?.ToString(writer);
+            writer.ToString(this.Rule);
+
+            return true;
 
         }
     }

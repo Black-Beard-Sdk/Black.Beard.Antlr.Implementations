@@ -35,7 +35,7 @@ namespace Bb.ParsersConfiguration.Ast
             return visitor.VisitTemplateSetting(this);
         }
 
-        public override void ToString(Writer writer)
+        public override bool ToString(Writer writer, StrategySerializationItem strategy)
         {
             writer.Append("TEMPLATE ");
             if (!string.IsNullOrEmpty(TemplateName))
@@ -46,9 +46,11 @@ namespace Bb.ParsersConfiguration.Ast
 
                 writer.Append(" ");
 
-                AddtionnalSettings.ToString(writer);
+                writer.ToString(AddtionnalSettings);
 
             }
+
+            return true;
 
         }
 
