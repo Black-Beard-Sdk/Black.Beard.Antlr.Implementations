@@ -205,7 +205,7 @@ RULE empty_statement
 ;
 
 RULE alter_application_role 
-//** alter_application_role : ALTER  APPLICATION  ROLE  role_id  WITH  (COMMA?  NAME  EQUAL  new_role = role_id)?  (COMMA?  password_setting)?  (COMMA?  default_schema_set)?
+//** alter_application_role : ALTER  APPLICATION  ROLE  role_id  WITH  (COMMA?  name_role_set)?  (COMMA?  password_setting)?  (COMMA?  default_schema_set)?
   **// 
 	GENERATE
 	INHERIT 
@@ -225,7 +225,7 @@ RULE create_application_role
 ;
 
 RULE drop_aggregate 
-//** drop_aggregate : DROP  AGGREGATE  (IF  EXISTS)?  schema_aggregate_ref
+//** drop_aggregate : DROP  AGGREGATE  if_exists?  schema_aggregate_ref
   **// 
 	GENERATE
 	INHERIT 
@@ -495,7 +495,7 @@ RULE binary_content
 ;
 
 RULE drop_assembly 
-//** drop_assembly : DROP  ASSEMBLY  (IF  EXISTS)?  assemblies  (WITH  NO  DEPENDENTS)?
+//** drop_assembly : DROP  ASSEMBLY  if_exists?  assemblies  with_no_dependents?
   **// 
 	GENERATE
 	INHERIT 
@@ -505,7 +505,7 @@ RULE drop_assembly
 ;
 
 RULE alter_asymmetric_key 
-//** alter_asymmetric_key : ALTER  ASYMMETRIC  KEY  asym_key_id  (asymmetric_key_option | REMOVE  PRIVATE  KEY)
+//** alter_asymmetric_key : ALTER  ASYMMETRIC  KEY  asym_key_id  (asymmetric_key_option | remove_private_key)
   **// 
 	GENERATE
 	INHERIT 
@@ -535,13 +535,13 @@ RULE create_asymmetric_key
 ;
 
 RULE drop_asymmetric_key 
-//** drop_asymmetric_key : DROP  ASYMMETRIC  KEY  key_name = id_  (REMOVE  PROVIDER  KEY)?
+//** drop_asymmetric_key : DROP  ASYMMETRIC  KEY  key_name = id_  remove_provider_key?
   **// 
 	GENERATE
 	INHERIT 
 	CALCULATED INHERIT "AstBnfRule"
 	TEMPLATE 
-	CALCULATED TEMPLATE _
+	CALCULATED TEMPLATE ClassWithProperties
 ;
 
 RULE alter_authorization 
@@ -795,13 +795,13 @@ RULE drop_cryptograhic_provider
 ;
 
 RULE drop_database 
-//** drop_database : DROP  DATABASE  (IF  EXISTS)?  (COMMA?  database_id)+
+//** drop_database : DROP  DATABASE  if_exists?  (COMMA?  database_id)+
   **// 
 	GENERATE
 	INHERIT 
 	CALCULATED INHERIT "AstBnfRule"
 	TEMPLATE 
-	CALCULATED TEMPLATE _
+	CALCULATED TEMPLATE ClassWithProperties
 ;
 
 RULE drop_database_audit_specification 
@@ -835,13 +835,13 @@ RULE drop_database_scoped_credential
 ;
 
 RULE drop_default 
-//** drop_default : DROP  DEFAULT  (IF  EXISTS)?  (COMMA?  default_ref)
+//** drop_default : DROP  DEFAULT  if_exists?  (COMMA?  default_ref)
   **// 
 	GENERATE
 	INHERIT 
 	CALCULATED INHERIT "AstBnfRule"
 	TEMPLATE 
-	CALCULATED TEMPLATE _
+	CALCULATED TEMPLATE ClassWithProperties
 ;
 
 RULE drop_endpoint 
@@ -1035,7 +1035,7 @@ RULE drop_resource_pool
 ;
 
 RULE drop_db_role 
-//** drop_db_role : DROP  ROLE  (IF  EXISTS)?  role_id
+//** drop_db_role : DROP  ROLE  if_exists?  role_id
   **// 
 	GENERATE
 	INHERIT 
@@ -1055,17 +1055,17 @@ RULE drop_route
 ;
 
 RULE drop_rule 
-//** drop_rule : DROP  RULE  (IF  EXISTS)?  (COMMA?  schema_rule_ref)?
+//** drop_rule : DROP  RULE  if_exists?  (COMMA?  schema_rule_ref)?
   **// 
 	GENERATE
 	INHERIT 
 	CALCULATED INHERIT "AstBnfRule"
 	TEMPLATE 
-	CALCULATED TEMPLATE _
+	CALCULATED TEMPLATE ClassWithProperties
 ;
 
 RULE drop_schema 
-//** drop_schema : DROP  SCHEMA  (IF  EXISTS)?  schema_identifier
+//** drop_schema : DROP  SCHEMA  if_exists?  schema_identifier
   **// 
 	GENERATE
 	INHERIT 
@@ -1085,7 +1085,7 @@ RULE drop_search_property_list
 ;
 
 RULE drop_security_policy 
-//** drop_security_policy : DROP  SECURITY  POLICY  (IF  EXISTS)?  schema_security_policy_ref
+//** drop_security_policy : DROP  SECURITY  POLICY  if_exists?  schema_security_policy_ref
   **// 
 	GENERATE
 	INHERIT 
@@ -1095,13 +1095,13 @@ RULE drop_security_policy
 ;
 
 RULE drop_sequence 
-//** drop_sequence : DROP  SEQUENCE  (IF  EXISTS)?  (COMMA?  database_schema_sequence_ref)?
+//** drop_sequence : DROP  SEQUENCE  if_exists?  (COMMA?  database_schema_sequence_ref)?
   **// 
 	GENERATE
 	INHERIT 
 	CALCULATED INHERIT "AstBnfRule"
 	TEMPLATE 
-	CALCULATED TEMPLATE _
+	CALCULATED TEMPLATE ClassWithProperties
 ;
 
 RULE drop_server_audit 
@@ -1155,7 +1155,7 @@ RULE drop_signature
 ;
 
 RULE drop_symmetric_key 
-//** drop_symmetric_key : DROP  SYMMETRIC  KEY  symmetric_key_id  (REMOVE  PROVIDER  KEY)?
+//** drop_symmetric_key : DROP  SYMMETRIC  KEY  symmetric_key_id  remove_provider_key?
   **// 
 	GENERATE
 	INHERIT 
@@ -1165,7 +1165,7 @@ RULE drop_symmetric_key
 ;
 
 RULE drop_synonym 
-//** drop_synonym : DROP  SYNONYM  (IF  EXISTS)?  schema_synonym_ref
+//** drop_synonym : DROP  SYNONYM  if_exists?  schema_synonym_ref
   **// 
 	GENERATE
 	INHERIT 
@@ -1175,7 +1175,7 @@ RULE drop_synonym
 ;
 
 RULE drop_user 
-//** drop_user : DROP  USER  (IF  EXISTS)?  user_id
+//** drop_user : DROP  USER  if_exists?  user_id
   **// 
 	GENERATE
 	INHERIT 
@@ -1295,7 +1295,7 @@ RULE create_cryptographic_provider
 ;
 
 RULE create_event_notification 
-//** create_event_notification : CREATE  EVENT  NOTIFICATION  event_notification_id  ON  event_notification_on  (WITH  FAN_IN)?  FOR  (COMMA?  event_type_or_group_id)+  TO  SERVICE  broker_service = stringtext  COMMA  broker_service_specifier_or_current_database = stringtext
+//** create_event_notification : CREATE  EVENT  NOTIFICATION  event_notification_id  ON  event_notification_on  with_fan_in?  FOR  event_type_or_group_ids  TO  SERVICE  broker_name = stringtext  COMMA  broker_service_specifier_or_current_database = stringtext
   **// 
 	GENERATE
 	INHERIT 
@@ -1355,7 +1355,7 @@ RULE event_session_predicate_leaf
 ;
 
 RULE alter_external_data_source 
-//** alter_external_data_source : ALTER  EXTERNAL  DATA  SOURCE  data_source_id  SET  external_sources | ALTER  EXTERNAL  DATA  SOURCE  data_source_id  WITH  LR_BRACKET  TYPE  EQUAL  BLOB_STORAGE  COMMA  LOCATION  EQUAL  location = stringtext  external_credential?  RR_BRACKET
+//** alter_external_data_source : ALTER  EXTERNAL  DATA  SOURCE  data_source_id  SET  external_sources | ALTER  EXTERNAL  DATA  SOURCE  data_source_id  WITH  LR_BRACKET  TYPE  EQUAL  BLOB_STORAGE  COMMA  LOCATION  EQUAL  location = stringtext  credential_set?  RR_BRACKET
   **// 
 	GENERATE
 	INHERIT 
@@ -1405,7 +1405,7 @@ RULE create_external_resource_pool
 ;
 
 RULE alter_fulltext_catalog 
-//** alter_fulltext_catalog : ALTER  FULLTEXT  CATALOG  catalog_id  (REBUILD  (WITH  ACCENT_SENSITIVITY  EQUAL  on_off)? | REORGANIZE | AS  DEFAULT)
+//** alter_fulltext_catalog : ALTER  FULLTEXT  CATALOG  catalog_id  fulltext_catalog_strategy
   **// 
 	GENERATE
 	INHERIT 
@@ -1415,7 +1415,7 @@ RULE alter_fulltext_catalog
 ;
 
 RULE create_fulltext_catalog 
-//** create_fulltext_catalog : CREATE  FULLTEXT  CATALOG  catalog_id  (ON  FILEGROUP  file_group_id)?  (IN  PATH  rootpath = stringtext)?  (WITH  ACCENT_SENSITIVITY  EQUAL  on_off)?  (AS  DEFAULT)?  (AUTHORIZATION  owner_id)?
+//** create_fulltext_catalog : CREATE  FULLTEXT  CATALOG  catalog_id  filegroup_set?  in_path_set?  with_accent_sensibility_set?  as_default?  authorization_owner_set?
   **// 
 	GENERATE
 	INHERIT 
@@ -1435,7 +1435,7 @@ RULE alter_fulltext_stoplist
 ;
 
 RULE create_fulltext_stoplist 
-//** create_fulltext_stoplist : CREATE  FULLTEXT  STOPLIST  stoplist_id  (FROM  (database_stoplist_ref | SYSTEM  STOPLIST))?  (AUTHORIZATION  owner_id)?
+//** create_fulltext_stoplist : CREATE  FULLTEXT  STOPLIST  stoplist_id  (FROM  (database_stoplist_ref | system_stoplist))?  (AUTHORIZATION  owner_id)?
   **// 
 	GENERATE
 	INHERIT 
@@ -1475,7 +1475,7 @@ RULE alter_login_azure_sql
 ;
 
 RULE create_login_azure_sql 
-//** create_login_azure_sql : CREATE  LOGIN  login_id  WITH  password_setting  (SID  EQUAL  sid = binary_)?
+//** create_login_azure_sql : CREATE  LOGIN  login_id  WITH  password_setting  sid_set?
   **// 
 	GENERATE
 	INHERIT 
@@ -1635,7 +1635,7 @@ RULE alter_resource_governor
 ;
 
 RULE alter_db_role 
-//** alter_db_role : ALTER  ROLE  old_role_name = role_id  (add_drop  MEMBER  database_id | WITH  NAME  EQUAL  new_role_name = role_id)
+//** alter_db_role : ALTER  ROLE  old_role_name = role_id  (add_drop  MEMBER  database_id | WITH  name_role_set)
   **// 
 	GENERATE
 	INHERIT 
@@ -2075,7 +2075,7 @@ RULE message_statement
 ;
 
 RULE merge_statement 
-//** merge_statement : with_expression?  MERGE  (TOP  LR_BRACKET  expression  RR_BRACKET  PERCENT?)?  INTO?  ddl_object  with_table_hints?  as_table_alias?  USING  table_sources  ON  search_condition  when_matches  output_clause?  update_option_clause?  SEMI
+//** merge_statement : with_expression?  MERGE  top_clause?  into_statment  ddl_object  with_table_hints?  as_table_alias?  USING  table_sources  ON  search_condition  when_matches  output_clause?  update_option_clause?  SEMI
   **// 
 	GENERATE
 	INHERIT 
@@ -2125,7 +2125,7 @@ RULE merge_not_matched
 ;
 
 RULE delete_statement 
-//** delete_statement : with_expression?  DELETE  (TOP  LR_BRACKET  expression  RR_BRACKET  PERCENT? | TOP  decimal)?  FROM?  delete_statement_from  with_table_hints?  output_clause?  (FROM  table_sources)?  (WHERE  (search_condition | CURRENT  OF  (GLOBAL?  cursor_name | cursor_var = local_id)))?  for_clause?  update_option_clause?
+//** delete_statement : with_expression?  DELETE  top_clause?  delete_from?  delete_statement_from  with_table_hints?  output_clause?  (FROM  table_sources)?  where_condition_or_current_of?  for_clause?  update_option_clause?
   **// 
 	GENERATE
 	INHERIT 
@@ -2145,7 +2145,7 @@ RULE delete_statement_from
 ;
 
 RULE insert_statement 
-//** insert_statement : with_expression?  INSERT  (TOP  LR_BRACKET  expression  RR_BRACKET  PERCENT?)?  INTO?  (ddl_object | rowset_function_limited)  with_table_hints?  (LR_BRACKET  insert_column_name_list  RR_BRACKET)?  output_clause?  insert_statement_value  for_clause?  update_option_clause?
+//** insert_statement : with_expression?  INSERT  top_clause?  into_statment?  (ddl_object | rowset_function_limited)  with_table_hints?  (LR_BRACKET  insert_column_name_list  RR_BRACKET)?  output_clause?  insert_statement_value  for_clause?  update_option_clause?
   **// 
 	GENERATE
 	INHERIT 
@@ -2195,7 +2195,7 @@ RULE select_statement
 ;
 
 RULE update_statement 
-//** update_statement : with_expression?  UPDATE  (TOP  LR_BRACKET  expression  RR_BRACKET  PERCENT?)?  (ddl_object | rowset_function_limited)  with_table_hints?  SET  update_elems  output_clause?  (FROM  table_sources)?  (WHERE  (search_condition | CURRENT  OF  (GLOBAL?  cursor_name | cursor_var = local_id)))?  for_clause?  update_option_clause?
+//** update_statement : with_expression?  UPDATE  top_clause?  (ddl_object | rowset_function_limited)  with_table_hints?  SET  update_elems  output_clause?  (FROM  table_sources)?  where_condition_or_current_of?  for_clause?  update_option_clause?
   **// 
 	GENERATE
 	INHERIT 
@@ -3405,13 +3405,13 @@ RULE create_type
 ;
 
 RULE drop_type 
-//** drop_type : DROP  TYPE  (IF  EXISTS)?  name = schema_type_ref
+//** drop_type : DROP  TYPE  if_exists?  name = schema_type_ref
   **// 
 	GENERATE
 	INHERIT 
 	CALCULATED INHERIT "AstBnfRule"
 	TEMPLATE 
-	CALCULATED TEMPLATE _
+	CALCULATED TEMPLATE ClassWithProperties
 ;
 
 RULE rowset_function_limited 
@@ -3885,33 +3885,33 @@ RULE setuser_statement
 ;
 
 RULE reconfigure_statement 
-//** reconfigure_statement : RECONFIGURE  (WITH  OVERRIDE)?
+//** reconfigure_statement : RECONFIGURE  with_override?
   **// 
 	GENERATE
 	INHERIT 
 	CALCULATED INHERIT "AstBnfRule"
 	TEMPLATE 
-	CALCULATED TEMPLATE _
+	CALCULATED TEMPLATE ClassWithProperties
 ;
 
 RULE shutdown_statement 
-//** shutdown_statement : SHUTDOWN  (WITH  NOWAIT)?
+//** shutdown_statement : SHUTDOWN  with_nowait?
   **// 
 	GENERATE
 	INHERIT 
 	CALCULATED INHERIT "AstBnfRule"
 	TEMPLATE 
-	CALCULATED TEMPLATE _
+	CALCULATED TEMPLATE ClassWithProperties
 ;
 
 RULE checkpoint_statement 
-//** checkpoint_statement : CHECKPOINT  (checkPointDuration = decimal)?
+//** checkpoint_statement : CHECKPOINT  decimal?
   **// 
 	GENERATE
 	INHERIT 
 	CALCULATED INHERIT "AstBnfRule"
 	TEMPLATE 
-	CALCULATED TEMPLATE _
+	CALCULATED TEMPLATE ClassWithProperties
 ;
 
 RULE dbcc_special 
@@ -4425,7 +4425,7 @@ RULE update_elem_merge
 ;
 
 RULE search_condition 
-//** search_condition : NOT*  sub_search_condition | left = search_condition  and_or  right = search_condition
+//** search_condition : not_sub_search_condition | sub_search_condition | left = search_condition  and_or  right = search_condition
   **// 
 	GENERATE
 	INHERIT 
@@ -4455,7 +4455,7 @@ RULE sql_union
 ;
 
 RULE query_specification 
-//** query_specification : SELECT  allOrDistinct = all_distinct  top = top_clause  columns = select_list  (INTO  into = full_table_ref)?  (FROM  from = table_sources)?  where_condition?  (GROUP  BY  ((groupByAll = ALL  groupBys_list) | GROUPING  SETS  LR_BRACKET  groupSet_list  RR_BRACKET))?  (HAVING  having = search_condition)?
+//** query_specification : SELECT  allOrDistinct = all_distinct  top = top_clause_with_ties  columns = select_list  (INTO  into = full_table_ref)?  (FROM  from = table_sources)?  where_condition?  (GROUP  BY  ((groupByAll = ALL  groupBys_list) | GROUPING  SETS  LR_BRACKET  groupSet_list  RR_BRACKET))?  (HAVING  having = search_condition)?
   **// 
 	GENERATE
 	INHERIT 
@@ -4485,17 +4485,17 @@ RULE groupBys_list
 ;
 
 RULE top_clause 
-//** top_clause : TOP  (top_percent | top_count)  (WITH  TIES)?
+//** top_clause : TOP  top_expression
   **// 
 	GENERATE
 	INHERIT 
 	CALCULATED INHERIT "AstBnfRule"
 	TEMPLATE 
-	CALCULATED TEMPLATE _
+	CALCULATED TEMPLATE ClassWithProperties
 ;
 
 RULE top_percent 
-//** top_percent : percent_constant  PERCENT | LR_BRACKET  topper_expression = expression  RR_BRACKET  PERCENT
+//** top_percent : percent_constant  PERCENT | LR_BRACKET  expression  RR_BRACKET  PERCENT
   **// 
 	GENERATE
 	INHERIT 
@@ -4505,7 +4505,7 @@ RULE top_percent
 ;
 
 RULE top_count 
-//** top_count : count_constant = decimal | LR_BRACKET  topcount_expression = expression  RR_BRACKET
+//** top_count : decimal | LR_BRACKET  expression  RR_BRACKET
   **// 
 	GENERATE
 	INHERIT 
@@ -5665,13 +5665,13 @@ RULE begin_conversation_dialog
 ;
 
 RULE end_conversation 
-//** end_conversation : END  CONVERSATION  conversation_handle = local_id  SEMI?  (WITH  (ERROR  EQUAL  faliure_code = string_local_id  DESCRIPTION  EQUAL  failure_text = string_local_id)?  CLEANUP?)?
+//** end_conversation : END  CONVERSATION  conversation_handle = local_id  SEMI?  end_conversation_error?
   **// 
 	GENERATE
 	INHERIT 
 	CALCULATED INHERIT "AstBnfRule"
 	TEMPLATE 
-	CALCULATED TEMPLATE _
+	CALCULATED TEMPLATE ClassWithProperties
 ;
 
 RULE waitfor_conversation 
@@ -5945,23 +5945,13 @@ RULE alter_availability_replicat_modify
 ;
 
 RULE alter_availability_replicat_add 
-//** alter_availability_replicat_add : ADD  REPLICA  ON  server_instance_txt  WITH  LR_BRACKET  (ENDPOINT_URL  EQUAL  stringtext)?  (COMMA?  availability_mode_set)?  (COMMA?  FAILOVER_MODE  EQUAL  auto_manual)?  (COMMA?  seeding_mode_set)?  (COMMA?  backup_priority_set)?  (COMMA?  PRIMARY_ROLE  LR_BRACKET  ALLOW_CONNECTIONS  EQUAL  real_write_all  RR_BRACKET)?  (COMMA?  SECONDARY_ROLE  LR_BRACKET  ALLOW_CONNECTIONS  EQUAL  READ_ONLY  RR_BRACKET)?  RR_BRACKET
+//** alter_availability_replicat_add : ADD  REPLICA  ON  server_instance_txt  WITH  LR_BRACKET  replicat_options?  RR_BRACKET
   **// 
 	GENERATE
 	INHERIT 
 	CALCULATED INHERIT "AstBnfRule"
 	TEMPLATE 
 	CALCULATED TEMPLATE ClassWithProperties
-;
-
-RULE failover_mode_manuel 
-//** failover_mode_manuel : FAILOVER_MODE  EQUAL  MANUAL
-  **// 
-	GENERATE
-	INHERIT 
-	CALCULATED INHERIT "AstBnfRule"
-	TEMPLATE 
-	CALCULATED TEMPLATE _
 ;
 
 RULE string_list 
@@ -6025,13 +6015,13 @@ RULE create_alter
 ;
 
 RULE create_or_alter_event_session_with 
-//** create_or_alter_event_session_with : WITH  LR_BRACKET  (COMMA?  session_arg_max_memory)?  (COMMA?  session_arg_event_retention_mode)?  (COMMA?  session_arg_max_dispatch)?  (COMMA?  session_arg_max_event_size)?  (COMMA?  session_arg_memory_partition)?  (COMMA?  session_arg_track_causality)?  (COMMA?  session_arg_startup_state)?  RR_BRACKET
+//** create_or_alter_event_session_with : WITH  LR_BRACKET  event_session_properties  RR_BRACKET
   **// 
 	GENERATE
 	INHERIT 
 	CALCULATED INHERIT "AstBnfRule"
 	TEMPLATE 
-	CALCULATED TEMPLATE _
+	CALCULATED TEMPLATE ClassWithProperties
 ;
 
 RULE session_arg_max_memory 
@@ -6215,17 +6205,17 @@ RULE max_cpu
 ;
 
 RULE alter_login_sql_server_settings 
-//** alter_login_sql_server_settings : pwd_settings?  old_pwd_strategies?  (DEFAULT_DATABASE  EQUAL  database_id)?  default_language_set?  (NAME  EQUAL  login_id)?  (CHECK_POLICY  EQUAL  check_policy = on_off)?  (CHECK_EXPIRATION  EQUAL  check_expiration = on_off)?  (CREDENTIAL  EQUAL  credential_id)?  (NO  CREDENTIAL)?
+//** alter_login_sql_server_settings : alter_login_sql_server_setting  (COMMA  alter_login_sql_server_setting)*
   **// 
 	GENERATE
 	INHERIT 
-	CALCULATED INHERIT "AstBnfRule"
+	CALCULATED INHERIT "AstRuleList<AstAlterLoginSqlServerSetting>"
 	TEMPLATE 
-	CALCULATED TEMPLATE ClassWithProperties
+	CALCULATED TEMPLATE ClassList
 ;
 
 RULE create_login_sql_server_settings 
-//** create_login_sql_server_settings : (PASSWORD  EQUAL  pwd_value  pwd_strategies?)?  (COMMA?  SID  EQUAL  sid = binary_)?  (COMMA?  DEFAULT_DATABASE  EQUAL  database_id)?  (COMMA?  default_language_set)?  (COMMA?  CHECK_EXPIRATION  EQUAL  check_expiration = on_off)?  (COMMA?  CHECK_POLICY  EQUAL  check_policy = on_off)?  (COMMA?  CREDENTIAL  EQUAL  credential_id)?
+//** create_login_sql_server_settings : option1 = login_settings_option  (COMMA  option2 = login_settings_option)
   **// 
 	GENERATE
 	INHERIT 
@@ -6235,7 +6225,7 @@ RULE create_login_sql_server_settings
 ;
 
 RULE create_login_sql_server_from 
-//** create_login_sql_server_from : WINDOWS  (WITH  (COMMA?  DEFAULT_DATABASE  EQUAL  database_id)?  (COMMA?  default_language_set)?) | CERTIFICATE  certificate_id | ASYMMETRIC  KEY  asym_key_id
+//** create_login_sql_server_from : WINDOWS  (WITH  (COMMA?  default_database_set)?  (COMMA?  default_language_set)?) | CERTIFICATE  certificate_id | ASYMMETRIC  KEY  asym_key_id
   **// 
 	GENERATE
 	INHERIT 
@@ -14319,7 +14309,7 @@ RULE alter_login_azure_sql_infos
 ;
 
 RULE alter_login_azure_sql_with 
-//** alter_login_azure_sql_with : password_setting  old_pwd? | NAME  EQUAL  login_id
+//** alter_login_azure_sql_with : password_setting  old_pwd | name_login_set
   **// 
 	GENERATE
 	INHERIT 
@@ -16259,7 +16249,7 @@ RULE alter_workload_group_using
 ;
 
 RULE alter_availability_replicat_primary 
-//** alter_availability_replicat_primary : ENDPOINT_URL  EQUAL  url_value | availability_mode_set | FAILOVER_MODE  EQUAL  failover = auto_manual | seeding_mode_set | backup_priority_set
+//** alter_availability_replicat_primary : endpoint_url_set | availability_mode_set | failover_mode_set | seeding_mode_set | backup_priority_set
   **// 
 	GENERATE
 	INHERIT 
@@ -16269,7 +16259,7 @@ RULE alter_availability_replicat_primary
 ;
 
 RULE alter_availability_primary_role 
-//** alter_availability_primary_role : allow_connections_set | READ_ONLY_ROUTING_LIST  EQUAL  LR_BRACKET  routing_list  RR_BRACKET | SESSION_TIMEOUT  EQUAL  session_timeout = decimal
+//** alter_availability_primary_role : allow_connections_set | read_only_routing_list_set | session_timeout_set
   **// 
 	GENERATE
 	INHERIT 
@@ -16289,12 +16279,12 @@ RULE routing_list
 ;
 
 RULE alter_availability_secondary_role 
-//** alter_availability_secondary_role : allow_connections_set | READ_ONLY_ROUTING_LIST  EQUAL  LR_BRACKET  routingList = stringtext  RR_BRACKET
+//** alter_availability_secondary_role : allow_connections_set | read_only_routing_item_set
   **// 
 	GENERATE
 	INHERIT 
 	CALCULATED INHERIT "AstBnfRule"
-	TEMPLATE ClassWithProperties
+	TEMPLATE 
 	CALCULATED TEMPLATE _
 ;
 
@@ -16808,6 +16798,16 @@ RULE server_audit_file_spec
 	CALCULATED TEMPLATE _
 ;
 
+RULE remove_provider_key 
+//** remove_provider_key : REMOVE  PROVIDER  KEY
+  **// 
+	GENERATE
+	INHERIT 
+	CALCULATED INHERIT "AstBnfRule"
+	TEMPLATE ClassTerminalAlias
+	CALCULATED TEMPLATE _
+;
+
 RULE clause_json_info 
 //** clause_json_info : ROOTWORD  (LR_BRACKET  stringtext  RR_BRACKET) | INCLUDE_NULL_VALUES | WITHOUT_ARRAY_WRAPPER
   **// 
@@ -16935,6 +16935,16 @@ RULE tableoption
 	INHERIT 
 	CALCULATED INHERIT "AstBnfRule"
 	TEMPLATE 
+	CALCULATED TEMPLATE _
+;
+
+RULE with_override 
+//** with_override : WITH  OVERRIDE
+  **// 
+	GENERATE
+	INHERIT 
+	CALCULATED INHERIT "AstBnfRule"
+	TEMPLATE ClassTerminalAlias
 	CALCULATED TEMPLATE _
 ;
 
@@ -17169,7 +17179,7 @@ RULE event_notification_on
 ;
 
 RULE regenerate_mater_key 
-//** regenerate_mater_key : (FORCE)?  REGENERATE  WITH  encryption_by_pwd
+//** regenerate_mater_key : force_regenerate?  REGENERATE  WITH  encryption_by_pwd
   **// 
 	GENERATE
 	INHERIT 
@@ -17179,7 +17189,7 @@ RULE regenerate_mater_key
 ;
 
 RULE add_master_key 
-//** add_master_key : ENCRYPTION  BY  (SERVICE  MASTER  KEY | password_setting)
+//** add_master_key : ENCRYPTION  BY  (service_master_key | password_setting)
   **// 
 	GENERATE
 	INHERIT 
@@ -18268,16 +18278,6 @@ RULE event_session_id_source2
 	CALCULATED TEMPLATE _
 ;
 
-RULE external_credential 
-//** external_credential : CREDENTIAL  EQUAL  credential_id
-  **// 
-	GENERATE
-	INHERIT 
-	CALCULATED INHERIT "AstBnfRule"
-	TEMPLATE 
-	CALCULATED TEMPLATE ClassWithProperties
-;
-
 RULE external_sources 
 //** external_sources : external_source  (COMMA  external_source)*
   **// 
@@ -18289,7 +18289,7 @@ RULE external_sources
 ;
 
 RULE external_source 
-//** external_source : LOCATION  EQUAL  location = stringtext | RESOURCE_MANAGER_LOCATION  EQUAL  resource_manager_location = stringtext | CREDENTIAL  EQUAL  credential_id
+//** external_source : LOCATION  EQUAL  location = stringtext | RESOURCE_MANAGER_LOCATION  EQUAL  resource_manager_location = stringtext | credential_set
   **// 
 	GENERATE
 	INHERIT 
@@ -18319,7 +18319,7 @@ RULE login_pwd_strategy
 ;
 
 RULE change_password 
-//** change_password : password_setting  old_pwd_strategies? | NAME  EQUAL  login_id
+//** change_password : password_setting  old_pwd_strategies? | name_login_set
   **// 
 	GENERATE
 	INHERIT 
@@ -18329,7 +18329,7 @@ RULE change_password
 ;
 
 RULE login_pdw_pwd 
-//** login_pdw_pwd : WITH  (password_setting  MUST_CHANGE?  (CHECK_POLICY  EQUAL  on_off?)?) | FROM  WINDOWS
+//** login_pdw_pwd : WITH  password_setting  MUST_CHANGE?  check_policy_set? | FROM  WINDOWS
   **// 
 	GENERATE
 	INHERIT 
@@ -18359,7 +18359,7 @@ RULE resource_affinity_scheduler_value
 ;
 
 RULE service_master_key_items 
-//** service_master_key_items : FORCE?  REGENERATE | WITH  regenerate_account
+//** service_master_key_items : force_regenerate  REGENERATE | WITH  regenerate_account
   **// 
 	GENERATE
 	INHERIT 
@@ -18449,7 +18449,7 @@ RULE user_settings_shorts
 ;
 
 RULE user_setting 
-//** user_setting : default_schema_set | default_language_set | SID  EQUAL  binary_ | ALLOW_ENCRYPTED_VALUE_MODIFICATIONS  EQUAL  on_off
+//** user_setting : default_schema_set | default_language_set | sid_set | ALLOW_ENCRYPTED_VALUE_MODIFICATIONS  EQUAL  on_off
   **// 
 	GENERATE
 	INHERIT 
@@ -19119,7 +19119,7 @@ RULE contract_ref
 ;
 
 RULE timespan 
-//** timespan : (local_id | constant)
+//** timespan : local_id | constant
   **// 
 	GENERATE
 	INHERIT 
@@ -19259,7 +19259,7 @@ RULE alter_availability_replicat
 ;
 
 RULE availability_group_options 
-//** availability_group_options : JOIN | JOIN  AVAILABILITY  GROUP  ON  (COMMA?  ag_name = stringtext  WITH  LR_BRACKET  (listener_url_set  COMMA  availability_mode_set  COMMA  failover_mode_manuel  COMMA  seeding_mode_set)  RR_BRACKET)+ | MODIFY  AVAILABILITY  GROUP  ON  (COMMA?  ag_name_modified = stringtext  WITH  LR_BRACKET  (listener_url_set  (COMMA?  availability_mode_set)?  (COMMA?  failover_mode_manuel)?  (COMMA?  seeding_mode_set)?)  RR_BRACKET)+
+//** availability_group_options : JOIN | JOIN  AVAILABILITY  GROUP  ON  availability_group_add_items | MODIFY  AVAILABILITY  GROUP  ON  availability_group_update_items
   **// 
 	GENERATE
 	INHERIT 
@@ -19608,6 +19608,86 @@ RULE database_files
 	CALCULATED TEMPLATE ClassList
 ;
 
+RULE event_session_properties 
+//** event_session_properties : event_session_property  (COMMA  event_session_property)*
+  **// 
+	GENERATE
+	INHERIT 
+	CALCULATED INHERIT "AstRuleList<AstEventSessionProperty>"
+	TEMPLATE 
+	CALCULATED TEMPLATE ClassList
+;
+
+RULE event_session_property 
+//** event_session_property : session_arg_max_memory | session_arg_event_retention_mode | session_arg_max_dispatch | session_arg_max_event_size | session_arg_memory_partition | session_arg_track_causality | session_arg_startup_state
+  **// 
+	GENERATE
+	INHERIT 
+	CALCULATED INHERIT "AstBnfRule"
+	TEMPLATE 
+	CALCULATED TEMPLATE _
+;
+
+RULE login_settings_option 
+//** login_settings_option : pwd_settings | sid_set | default_database_set | default_language_set | check_expiration_set | check_policy_set | credential_set
+  **// 
+	GENERATE
+	INHERIT 
+	CALCULATED INHERIT "AstBnfRule"
+	TEMPLATE 
+	CALCULATED TEMPLATE _
+;
+
+RULE sid_set 
+//** sid_set : SID  EQUAL  binary_
+  **// 
+	GENERATE
+	INHERIT 
+	CALCULATED INHERIT "AstBnfRule"
+	TEMPLATE 
+	CALCULATED TEMPLATE ClassWithProperties
+;
+
+RULE default_database_set 
+//** default_database_set : DEFAULT_DATABASE  EQUAL  database_id
+  **// 
+	GENERATE
+	INHERIT 
+	CALCULATED INHERIT "AstBnfRule"
+	TEMPLATE 
+	CALCULATED TEMPLATE ClassWithProperties
+;
+
+RULE check_expiration_set 
+//** check_expiration_set : CHECK_EXPIRATION  EQUAL  on_off
+  **// 
+	GENERATE
+	INHERIT 
+	CALCULATED INHERIT "AstBnfRule"
+	TEMPLATE 
+	CALCULATED TEMPLATE ClassWithProperties
+;
+
+RULE check_policy_set 
+//** check_policy_set : CHECK_POLICY  EQUAL  on_off
+  **// 
+	GENERATE
+	INHERIT 
+	CALCULATED INHERIT "AstBnfRule"
+	TEMPLATE 
+	CALCULATED TEMPLATE ClassWithProperties
+;
+
+RULE credential_set 
+//** credential_set : CREDENTIAL  EQUAL  credential_id
+  **// 
+	GENERATE
+	INHERIT 
+	CALCULATED INHERIT "AstBnfRule"
+	TEMPLATE 
+	CALCULATED TEMPLATE ClassWithProperties
+;
+
 RULE server_config_hadr_set 
 //** server_config_hadr_set : HADR  CLUSTER  CONTEXT  EQUAL  (stringtext | LOCAL)
   **// 
@@ -19748,6 +19828,16 @@ RULE database_with_option
 	CALCULATED TEMPLATE ClassWithProperties
 ;
 
+RULE with_nowait 
+//** with_nowait : WITH  NOWAIT
+  **// 
+	GENERATE
+	INHERIT 
+	CALCULATED INHERIT "AstBnfRule"
+	TEMPLATE ClassTerminalAlias
+	CALCULATED TEMPLATE _
+;
+
 RULE nested_triggers_set 
 //** nested_triggers_set : NESTED_TRIGGERS  EQUAL  on_off
   **// 
@@ -19776,5 +19866,445 @@ RULE two_digit_year_cutoff_set
 	CALCULATED INHERIT "AstBnfRule"
 	TEMPLATE 
 	CALCULATED TEMPLATE ClassWithProperties
+;
+
+RULE end_conversation_error 
+//** end_conversation_error : WITH  (error_set  description_set)?  CLEANUP?
+  **// 
+	GENERATE
+	INHERIT 
+	CALCULATED INHERIT "AstBnfRule"
+	TEMPLATE 
+	CALCULATED TEMPLATE _
+;
+
+RULE error_set 
+//** error_set : ERROR  EQUAL  faliure_code = string_local_id
+  **// 
+	GENERATE
+	INHERIT 
+	CALCULATED INHERIT "AstBnfRule"
+	TEMPLATE ClassWithProperties
+	CALCULATED TEMPLATE _
+;
+
+RULE description_set 
+//** description_set : DESCRIPTION  EQUAL  failure_text = string_local_id
+  **// 
+	GENERATE
+	INHERIT 
+	CALCULATED INHERIT "AstBnfRule"
+	TEMPLATE ClassWithProperties
+	CALCULATED TEMPLATE _
+;
+
+RULE with_no_dependents 
+//** with_no_dependents : WITH  NO  DEPENDENTS
+  **// 
+	GENERATE
+	INHERIT 
+	CALCULATED INHERIT "AstBnfRule"
+	TEMPLATE ClassTerminalAlias
+	CALCULATED TEMPLATE _
+;
+
+RULE remove_private_key 
+//** remove_private_key : REMOVE  PRIVATE  KEY
+  **// 
+	GENERATE
+	INHERIT 
+	CALCULATED INHERIT "AstBnfRule"
+	TEMPLATE ClassTerminalAlias
+	CALCULATED TEMPLATE _
+;
+
+RULE replicat_options 
+//** replicat_options : replicat_option  (COMMA  replicat_option)*
+  **// 
+	GENERATE
+	INHERIT 
+	CALCULATED INHERIT "AstRuleList<AstReplicatOption>"
+	TEMPLATE 
+	CALCULATED TEMPLATE ClassList
+;
+
+RULE replicat_option 
+//** replicat_option : endpoint_url_set | availability_mode_set | failover_mode_set | seeding_mode_set | backup_priority_set | primary_role_mode | secondary_role
+  **// 
+	GENERATE
+	INHERIT 
+	CALCULATED INHERIT "AstBnfRule"
+	TEMPLATE 
+	CALCULATED TEMPLATE _
+;
+
+RULE secondary_role 
+//** secondary_role : SECONDARY_ROLE  LR_BRACKET  ALLOW_CONNECTIONS  EQUAL  READ_ONLY  RR_BRACKET
+  **// 
+	GENERATE
+	INHERIT 
+	CALCULATED INHERIT "AstBnfRule"
+	TEMPLATE 
+	CALCULATED TEMPLATE _
+;
+
+RULE availability_group_add_items 
+//** availability_group_add_items : availability_group_add_item  (COMMA  availability_group_add_item)*
+  **// 
+	GENERATE
+	INHERIT 
+	CALCULATED INHERIT "AstRuleList<AstAvailabilityGroupAddItem>"
+	TEMPLATE 
+	CALCULATED TEMPLATE ClassList
+;
+
+RULE availability_group_add_item 
+//** availability_group_add_item : ag_name = stringtext  WITH  LR_BRACKET  (listener_url_set  COMMA  availability_mode_set  COMMA  failover_mode_manual  COMMA  seeding_mode_set)  RR_BRACKET
+  **// 
+	GENERATE
+	INHERIT 
+	CALCULATED INHERIT "AstBnfRule"
+	TEMPLATE ClassWithProperties
+	CALCULATED TEMPLATE _
+;
+
+RULE availability_group_update_items 
+//** availability_group_update_items : availability_group_update_item  (COMMA  availability_group_update_item)*
+  **// 
+	GENERATE
+	INHERIT 
+	CALCULATED INHERIT "AstRuleList<AstAvailabilityGroupUpdateItem>"
+	TEMPLATE 
+	CALCULATED TEMPLATE ClassList
+;
+
+RULE availability_group_update_item 
+//** availability_group_update_item : ag_name_modified = stringtext  WITH  LR_BRACKET  availability_group_update_options  RR_BRACKET
+  **// 
+	GENERATE
+	INHERIT 
+	CALCULATED INHERIT "AstBnfRule"
+	TEMPLATE 
+	CALCULATED TEMPLATE ClassWithProperties
+;
+
+RULE availability_group_update_options 
+//** availability_group_update_options : listener_url_set  (COMMA  availability_group_option)*
+  **// 
+	GENERATE
+	INHERIT 
+	CALCULATED INHERIT "AstRuleList<AstListenerUrlSet>"
+	TEMPLATE ClassList
+	CALCULATED TEMPLATE ClassWithProperties
+;
+
+RULE availability_group_option 
+//** availability_group_option : availability_mode_set | failover_mode_manual | seeding_mode_set
+  **// 
+	GENERATE
+	INHERIT 
+	CALCULATED INHERIT "AstBnfRule"
+	TEMPLATE 
+	CALCULATED TEMPLATE _
+;
+
+RULE failover_mode_manual 
+//** failover_mode_manual : FAILOVER_MODE  EQUAL  MANUAL
+  **// 
+	GENERATE
+	INHERIT 
+	CALCULATED INHERIT "AstBnfRule"
+	TEMPLATE 
+	CALCULATED TEMPLATE _
+;
+
+RULE failover_mode_set 
+//** failover_mode_set : FAILOVER_MODE  EQUAL  auto_manual
+  **// 
+	GENERATE
+	INHERIT 
+	CALCULATED INHERIT "AstBnfRule"
+	TEMPLATE 
+	CALCULATED TEMPLATE ClassWithProperties
+;
+
+RULE endpoint_url_set 
+//** endpoint_url_set : ENDPOINT_URL  EQUAL  url_value
+  **// 
+	GENERATE
+	INHERIT 
+	CALCULATED INHERIT "AstBnfRule"
+	TEMPLATE 
+	CALCULATED TEMPLATE ClassWithProperties
+;
+
+RULE session_timeout_set 
+//** session_timeout_set : SESSION_TIMEOUT  EQUAL  session_timeout = decimal
+  **// 
+	GENERATE
+	INHERIT 
+	CALCULATED INHERIT "AstBnfRule"
+	TEMPLATE 
+	CALCULATED TEMPLATE _
+;
+
+RULE read_only_routing_list_set 
+//** read_only_routing_list_set : READ_ONLY_ROUTING_LIST  EQUAL  LR_BRACKET  routing_list  RR_BRACKET
+  **// 
+	GENERATE
+	INHERIT 
+	CALCULATED INHERIT "AstBnfRule"
+	TEMPLATE 
+	CALCULATED TEMPLATE ClassWithProperties
+;
+
+RULE read_only_routing_item_set 
+//** read_only_routing_item_set : READ_ONLY_ROUTING_LIST  EQUAL  LR_BRACKET  routingList = stringtext  RR_BRACKET
+  **// 
+	GENERATE
+	INHERIT 
+	CALCULATED INHERIT "AstBnfRule"
+	TEMPLATE 
+	CALCULATED TEMPLATE _
+;
+
+RULE primary_role_mode 
+//** primary_role_mode : PRIMARY_ROLE  LR_BRACKET  ALLOW_CONNECTIONS  EQUAL  real_write_all  RR_BRACKET
+  **// 
+	GENERATE
+	INHERIT 
+	CALCULATED INHERIT "AstBnfRule"
+	TEMPLATE 
+	CALCULATED TEMPLATE ClassWithProperties
+;
+
+RULE alter_login_sql_server_setting 
+//** alter_login_sql_server_setting : pwd_settings | old_pwd_strategies | default_database_set | default_language_set | name_login_set | check_policy_set | check_expiration_set | credential_set | no_credential
+  **// 
+	GENERATE
+	INHERIT 
+	CALCULATED INHERIT "AstBnfRule"
+	TEMPLATE 
+	CALCULATED TEMPLATE _
+;
+
+RULE no_credential 
+//** no_credential : NO  CREDENTIAL
+  **// 
+	GENERATE
+	INHERIT 
+	CALCULATED INHERIT "AstBnfRule"
+	TEMPLATE 
+	CALCULATED TEMPLATE _
+;
+
+RULE name_login_set 
+//** name_login_set : NAME  EQUAL  login_id
+  **// 
+	GENERATE
+	INHERIT 
+	CALCULATED INHERIT "AstBnfRule"
+	TEMPLATE 
+	CALCULATED TEMPLATE ClassWithProperties
+;
+
+RULE name_role_set 
+//** name_role_set : NAME  EQUAL  new_role = role_id
+  **// 
+	GENERATE
+	INHERIT 
+	CALCULATED INHERIT "AstBnfRule"
+	TEMPLATE 
+	CALCULATED TEMPLATE _
+;
+
+RULE event_type_or_group_ids 
+//** event_type_or_group_ids : event_type_or_group_id  (COMMA  event_type_or_group_id)*
+  **// 
+	GENERATE
+	INHERIT 
+	CALCULATED INHERIT "AstRuleList<AstEventTypeOrGroupId>"
+	TEMPLATE 
+	CALCULATED TEMPLATE ClassList
+;
+
+RULE with_fan_in 
+//** with_fan_in : WITH  FAN_IN
+  **// 
+	GENERATE
+	INHERIT 
+	CALCULATED INHERIT "AstBnfRule"
+	TEMPLATE 
+	CALCULATED TEMPLATE _
+;
+
+RULE fulltext_catalog_strategy 
+//** fulltext_catalog_strategy : REBUILD  with_accent_sensibility_set? | REORGANIZE | AS  DEFAULT
+  **// 
+	GENERATE
+	INHERIT 
+	CALCULATED INHERIT "AstBnfRule"
+	TEMPLATE 
+	CALCULATED TEMPLATE _
+;
+
+RULE filegroup_set 
+//** filegroup_set : ON  FILEGROUP  file_group_id
+  **// 
+	GENERATE
+	INHERIT 
+	CALCULATED INHERIT "AstBnfRule"
+	TEMPLATE 
+	CALCULATED TEMPLATE ClassWithProperties
+;
+
+RULE in_path_set 
+//** in_path_set : IN  PATH  rootpath = stringtext
+  **// 
+	GENERATE
+	INHERIT 
+	CALCULATED INHERIT "AstBnfRule"
+	TEMPLATE 
+	CALCULATED TEMPLATE _
+;
+
+RULE with_accent_sensibility_set 
+//** with_accent_sensibility_set : WITH  ACCENT_SENSITIVITY  EQUAL  on_off
+  **// 
+	GENERATE
+	INHERIT 
+	CALCULATED INHERIT "AstBnfRule"
+	TEMPLATE 
+	CALCULATED TEMPLATE ClassWithProperties
+;
+
+RULE as_default 
+//** as_default : AS  DEFAULT
+  **// 
+	GENERATE
+	INHERIT 
+	CALCULATED INHERIT "AstBnfRule"
+	TEMPLATE 
+	CALCULATED TEMPLATE _
+;
+
+RULE authorization_owner_set 
+//** authorization_owner_set : AUTHORIZATION  owner_id
+  **// 
+	GENERATE
+	INHERIT 
+	CALCULATED INHERIT "AstBnfRule"
+	TEMPLATE 
+	CALCULATED TEMPLATE ClassWithProperties
+;
+
+RULE system_stoplist 
+//** system_stoplist : SYSTEM  STOPLIST
+  **// 
+	GENERATE
+	INHERIT 
+	CALCULATED INHERIT "AstBnfRule"
+	TEMPLATE 
+	CALCULATED TEMPLATE _
+;
+
+RULE force_regenerate 
+//** force_regenerate : FORCE
+  **// 
+	GENERATE
+	INHERIT 
+	CALCULATED INHERIT "AstBnfRule"
+	TEMPLATE 
+	CALCULATED TEMPLATE ClassTerminalAlias
+;
+
+RULE service_master_key 
+//** service_master_key : SERVICE  MASTER  KEY
+  **// 
+	GENERATE
+	INHERIT 
+	CALCULATED INHERIT "AstBnfRule"
+	TEMPLATE 
+	CALCULATED TEMPLATE _
+;
+
+RULE where_condition_or_current_of 
+//** where_condition_or_current_of : WHERE  (search_condition | CURRENT  OF  current_of_value)
+  **// 
+	GENERATE
+	INHERIT 
+	CALCULATED INHERIT "AstBnfRule"
+	TEMPLATE 
+	CALCULATED TEMPLATE _
+;
+
+RULE current_of_value 
+//** current_of_value : (GLOBAL?  cursor_name | cursor_var = local_id)
+  **// 
+	GENERATE
+	INHERIT 
+	CALCULATED INHERIT "AstBnfRule"
+	TEMPLATE 
+	CALCULATED TEMPLATE _
+;
+
+RULE delete_from 
+//** delete_from : FROM
+  **// 
+	GENERATE
+	INHERIT 
+	CALCULATED INHERIT "AstBnfRule"
+	TEMPLATE 
+	CALCULATED TEMPLATE ClassTerminalAlias
+;
+
+RULE into_statment 
+//** into_statment : INTO
+  **// 
+	GENERATE
+	INHERIT 
+	CALCULATED INHERIT "AstBnfRule"
+	TEMPLATE 
+	CALCULATED TEMPLATE ClassTerminalAlias
+;
+
+RULE not_sub_search_condition 
+//** not_sub_search_condition : NOT  sub_search_condition
+  **// 
+	GENERATE
+	INHERIT 
+	CALCULATED INHERIT "AstBnfRule"
+	TEMPLATE 
+	CALCULATED TEMPLATE ClassWithProperties
+;
+
+RULE top_clause_with_ties 
+//** top_clause_with_ties : TOP  top_expression  with_ties?
+  **// 
+	GENERATE
+	INHERIT 
+	CALCULATED INHERIT "AstBnfRule"
+	TEMPLATE 
+	CALCULATED TEMPLATE ClassWithProperties
+;
+
+RULE top_expression 
+//** top_expression : top_percent | top_count
+  **// 
+	GENERATE
+	INHERIT 
+	CALCULATED INHERIT "AstBnfRule"
+	TEMPLATE 
+	CALCULATED TEMPLATE _
+;
+
+RULE with_ties 
+//** with_ties : WITH  TIES
+  **// 
+	GENERATE
+	INHERIT 
+	CALCULATED INHERIT "AstBnfRule"
+	TEMPLATE 
+	CALCULATED TEMPLATE _
 ;
 

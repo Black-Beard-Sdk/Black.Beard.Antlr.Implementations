@@ -375,10 +375,12 @@ empty_statement
 // https://docs.microsoft.com/en-us/sql/t-sql/statements/alter-application-role-transact-sql
 alter_application_role
     : ALTER APPLICATION ROLE role_id WITH 
-      (COMMA? NAME EQUAL new_role=role_id)? 
+      (COMMA? name_role_set)? 
       (COMMA? password_setting)? 
       (COMMA? default_schema_set)?
     ;
+
+name_role_set : NAME EQUAL new_role=role_id;
 
 create_application_role
     : CREATE APPLICATION ROLE role_id WITH (COMMA? password_setting)? (COMMA? default_schema_set)?
@@ -387,7 +389,7 @@ create_application_role
 // https://docs.microsoft.com/en-us/sql/t-sql/statements/drop-aggregate-transact-sql
 
 drop_aggregate
-    : DROP AGGREGATE ( IF EXISTS )? schema_aggregate_ref
+    : DROP AGGREGATE if_exists? schema_aggregate_ref
     ;
 
 // https://docs.microsoft.com/en-us/sql/t-sql/statements/drop-application-role-transact-sql
@@ -514,13 +516,16 @@ binary_content
 
 // https://docs.microsoft.com/en-us/sql/t-sql/statements/drop-assembly-transact-sql
 drop_assembly
-    : DROP ASSEMBLY ( IF EXISTS )? assemblies ( WITH NO DEPENDENTS )?
+    : DROP ASSEMBLY if_exists? assemblies with_no_dependents?
     ;
+
+with_no_dependents : WITH NO DEPENDENTS;
+remove_private_key : REMOVE PRIVATE KEY;
 
 // https://docs.microsoft.com/en-us/sql/t-sql/statements/alter-asymmetric-key-transact-sql
 
 alter_asymmetric_key
-    : ALTER ASYMMETRIC KEY asym_key_id (asymmetric_key_option | REMOVE PRIVATE KEY )
+    : ALTER ASYMMETRIC KEY asym_key_id (asymmetric_key_option | remove_private_key)
     ;
 
 by_password_crypt
@@ -557,8 +562,10 @@ asymetric_key_from
 
 // https://docs.microsoft.com/en-us/sql/t-sql/statements/drop-asymmetric-key-transact-sql
 drop_asymmetric_key
-    : DROP ASYMMETRIC KEY key_name=id_ ( REMOVE PROVIDER KEY )?
+    : DROP ASYMMETRIC KEY key_name=id_ remove_provider_key?
     ;
+
+remove_provider_key : REMOVE PROVIDER KEY;
 
 // https://docs.microsoft.com/en-us/sql/t-sql/statements/alter-authorization-transact-sql
 
@@ -715,42 +722,51 @@ alter_availability_replicat_modify
     ;
 
 alter_availability_replicat_primary
-    : ENDPOINT_URL EQUAL url_value
+    : endpoint_url_set
     | availability_mode_set
-    | FAILOVER_MODE EQUAL failover=auto_manual 
+    | failover_mode_set
     | seeding_mode_set
     | backup_priority_set
     ;
 
-url_value: stringtext;
-
 alter_availability_primary_role
     : allow_connections_set
-    | READ_ONLY_ROUTING_LIST EQUAL LR_BRACKET routing_list RR_BRACKET
-    | SESSION_TIMEOUT EQUAL session_timeout=decimal
+    | read_only_routing_list_set
+    | session_timeout_set
     ;
+
+session_timeout_set :  SESSION_TIMEOUT EQUAL session_timeout=decimal;
+
 routing_list : string_list | NONE;
 
 alter_availability_secondary_role
     : allow_connections_set
-    | READ_ONLY_ROUTING_LIST EQUAL LR_BRACKET routingList=stringtext RR_BRACKET
+    | read_only_routing_item_set
     ;
 
+read_only_routing_list_set : READ_ONLY_ROUTING_LIST EQUAL LR_BRACKET routing_list RR_BRACKET;
+read_only_routing_item_set :READ_ONLY_ROUTING_LIST EQUAL LR_BRACKET routingList=stringtext RR_BRACKET;
 
 backup_priority_set : BACKUP_PRIORITY EQUAL decimal ;
 
 alter_availability_replicat_add
-    : ADD REPLICA ON server_instance_txt WITH 
-    LR_BRACKET 
-        (ENDPOINT_URL EQUAL stringtext)?   
-        (COMMA? availability_mode_set)?    
-        (COMMA? FAILOVER_MODE EQUAL auto_manual )?  
-        (COMMA? seeding_mode_set)?  
-        (COMMA? backup_priority_set)?  
-        (COMMA? PRIMARY_ROLE LR_BRACKET ALLOW_CONNECTIONS EQUAL real_write_all RR_BRACKET)?   
-        (COMMA? SECONDARY_ROLE LR_BRACKET ALLOW_CONNECTIONS EQUAL READ_ONLY RR_BRACKET)? 
-    RR_BRACKET
+    : ADD REPLICA ON server_instance_txt WITH LR_BRACKET replicat_options? RR_BRACKET
     ;
+
+replicat_options : replicat_option (COMMA replicat_option)*;
+
+replicat_option
+    : endpoint_url_set 
+    | availability_mode_set
+    | failover_mode_set
+    | seeding_mode_set
+    | backup_priority_set
+    | primary_role_mode
+    | secondary_role
+    ;
+
+primary_role_mode : PRIMARY_ROLE LR_BRACKET ALLOW_CONNECTIONS EQUAL real_write_all RR_BRACKET;
+secondary_role : SECONDARY_ROLE LR_BRACKET ALLOW_CONNECTIONS EQUAL READ_ONLY RR_BRACKET;
 
 alter_availability_replicat
     : alter_availability_replicat_add
@@ -760,32 +776,40 @@ alter_availability_replicat
 
 availability_group_options
     : JOIN
-    | JOIN AVAILABILITY GROUP ON 
-        (
-            COMMA? ag_name=stringtext WITH LR_BRACKET 
-            ( 
-                listener_url_set
-                COMMA availability_mode_set
-                COMMA failover_mode_manuel
-                COMMA seeding_mode_set
-            ) RR_BRACKET
-        )+
-    | MODIFY AVAILABILITY GROUP ON 
-        (
-            COMMA? ag_name_modified=stringtext WITH LR_BRACKET 
-            (
-                listener_url_set
-                (COMMA? availability_mode_set)? 
-                (COMMA? failover_mode_manuel)? 
-                (COMMA? seeding_mode_set)?
-            ) RR_BRACKET
-        )+
+    | JOIN AVAILABILITY GROUP ON availability_group_add_items
+    | MODIFY AVAILABILITY GROUP ON availability_group_update_items
+    ;
+
+availability_group_add_items : availability_group_add_item (COMMA availability_group_add_item)*;
+availability_group_add_item
+    : ag_name=stringtext WITH LR_BRACKET 
+    ( 
+        listener_url_set
+        COMMA availability_mode_set
+        COMMA failover_mode_manual
+        COMMA seeding_mode_set
+    ) RR_BRACKET
+    ;
+
+
+availability_group_update_items : availability_group_update_item (COMMA availability_group_update_item)*;
+availability_group_update_item : ag_name_modified=stringtext WITH LR_BRACKET availability_group_update_options RR_BRACKET;
+availability_group_update_options : listener_url_set (COMMA availability_group_option)*;
+
+availability_group_option
+    : availability_mode_set
+    | failover_mode_manual
+    | seeding_mode_set
     ;
 
 listener_url_set : LISTENER_URL EQUAL url_value;
 availability_mode_set : AVAILABILITY_MODE EQUAL synch_asynch;
-failover_mode_manuel :  FAILOVER_MODE EQUAL MANUAL;
+failover_mode_manual :  FAILOVER_MODE EQUAL MANUAL;
+failover_mode_set : FAILOVER_MODE EQUAL auto_manual;
 seeding_mode_set : SEEDING_MODE EQUAL auto_manual;
+endpoint_url_set : ENDPOINT_URL EQUAL url_value;
+url_value: stringtext;
+
 
 alter_role
     : secondary_role_args
@@ -924,7 +948,7 @@ drop_cryptograhic_provider
 
 // https://docs.microsoft.com/en-us/sql/t-sql/statements/drop-database-transact-sql
 drop_database
-    : DROP DATABASE ( IF EXISTS )? (COMMA? database_id)+
+    : DROP DATABASE if_exists? (COMMA? database_id)+
     ;
 
 // https://docs.microsoft.com/en-us/sql/t-sql/statements/drop-database-audit-specification-transact-sql
@@ -946,7 +970,7 @@ drop_database_scoped_credential
 
 // https://docs.microsoft.com/en-us/sql/t-sql/statements/drop-default-transact-sql
 drop_default
-    : DROP DEFAULT ( IF EXISTS )? (COMMA? default_ref)
+    : DROP DEFAULT if_exists? (COMMA? default_ref)
     ;
 
 // https://docs.microsoft.com/en-us/sql/t-sql/statements/drop-endpoint-transact-sql
@@ -1058,7 +1082,7 @@ drop_resource_pool
 
 // https://docs.microsoft.com/en-us/sql/t-sql/statements/drop-role-transact-sql
 drop_db_role
-    : DROP ROLE ( IF EXISTS )? role_id
+    : DROP ROLE if_exists? role_id
     ;
 
 // https://docs.microsoft.com/en-us/sql/t-sql/statements/drop-route-transact-sql
@@ -1068,12 +1092,12 @@ drop_route
 
 // https://docs.microsoft.com/en-us/sql/t-sql/statements/drop-rule-transact-sql
 drop_rule
-    : DROP RULE ( IF EXISTS )? (COMMA? schema_rule_ref)?
+    : DROP RULE if_exists? (COMMA? schema_rule_ref)?
     ;
 
 // https://docs.microsoft.com/en-us/sql/t-sql/statements/drop-schema-transact-sql
 drop_schema
-    :  DROP SCHEMA ( IF EXISTS )? schema_identifier
+    :  DROP SCHEMA if_exists? schema_identifier
     ;
 
 // https://docs.microsoft.com/en-us/sql/t-sql/statements/drop-search-property-list-transact-sql
@@ -1083,12 +1107,12 @@ drop_search_property_list
 
 // https://docs.microsoft.com/en-us/sql/t-sql/statements/drop-security-policy-transact-sql
 drop_security_policy
-    : DROP SECURITY POLICY ( IF EXISTS )? schema_security_policy_ref
+    : DROP SECURITY POLICY if_exists? schema_security_policy_ref
     ;
 
 // https://docs.microsoft.com/en-us/sql/t-sql/statements/drop-sequence-transact-sql
 drop_sequence
-    : DROP SEQUENCE ( IF EXISTS )? ( COMMA? database_schema_sequence_ref)?
+    : DROP SEQUENCE if_exists? ( COMMA? database_schema_sequence_ref)?
     ;
 
 // https://docs.microsoft.com/en-us/sql/t-sql/statements/drop-server-audit-transact-sql
@@ -1131,17 +1155,19 @@ drop_statistics_id_azure_dw_and_pdw
 
 // https://docs.microsoft.com/en-us/sql/t-sql/statements/drop-symmetric-key-transact-sql
 drop_symmetric_key
-    : DROP SYMMETRIC KEY symmetric_key_id (REMOVE PROVIDER KEY)?
+    : DROP SYMMETRIC KEY symmetric_key_id remove_provider_key?
     ;
 
 // https://docs.microsoft.com/en-us/sql/t-sql/statements/drop-synonym-transact-sql
 drop_synonym
-    : DROP SYNONYM ( IF EXISTS )? schema_synonym_ref
+    : DROP SYNONYM if_exists? schema_synonym_ref
     ;
+
+if_exists : IF EXISTS;
 
 // https://docs.microsoft.com/en-us/sql/t-sql/statements/drop-user-transact-sql
 drop_user
-    : DROP USER ( IF EXISTS )? user_id
+    : DROP USER if_exists? user_id
     ;
 
 // https://docs.microsoft.com/en-us/sql/t-sql/statements/drop-workload-group-transact-sql
@@ -1223,12 +1249,14 @@ create_cryptographic_provider
 // https://docs.microsoft.com/en-us/sql/t-sql/statements/create-event-notification-transact-sql
 create_event_notification
     : CREATE EVENT NOTIFICATION event_notification_id
-      ON  event_notification_on
-        (WITH FAN_IN)?
-        FOR (COMMA? event_type_or_group_id)+
-          TO SERVICE  broker_service=stringtext  COMMA
-             broker_service_specifier_or_current_database=stringtext
+        ON  event_notification_on with_fan_in?
+        FOR event_type_or_group_ids
+        TO SERVICE broker_name=stringtext COMMA broker_service_specifier_or_current_database=stringtext
     ;
+
+event_type_or_group_ids : event_type_or_group_id (COMMA event_type_or_group_id)*;
+
+with_fan_in : WITH FAN_IN;
 
 // https://docs.microsoft.com/en-us/sql/t-sql/statements/alter-event-session-transact-sql
 // https://docs.microsoft.com/en-us/sql/t-sql/statements/create-event-session-transact-sql
@@ -1244,16 +1272,19 @@ create_or_alter_event_session
     ;
 
 create_or_alter_event_session_with
-    : WITH
-           LR_BRACKET
-           (COMMA? session_arg_max_memory)?
-           (COMMA? session_arg_event_retention_mode)?
-           (COMMA? session_arg_max_dispatch)?
-           (COMMA? session_arg_max_event_size)?
-           (COMMA? session_arg_memory_partition)?
-           (COMMA? session_arg_track_causality)?
-           (COMMA? session_arg_startup_state)?
-           RR_BRACKET     
+    : WITH LR_BRACKET event_session_properties RR_BRACKET     
+    ;
+
+event_session_properties : event_session_property (COMMA event_session_property)*;
+
+event_session_property
+    : session_arg_max_memory
+    | session_arg_event_retention_mode
+    | session_arg_max_dispatch
+    | session_arg_max_event_size
+    | session_arg_memory_partition
+    | session_arg_track_causality
+    | session_arg_startup_state
     ;
 
 session_arg_max_memory : MAX_MEMORY EQUAL decimal memory_size_unity;
@@ -1337,18 +1368,16 @@ alter_external_data_source
         WITH LR_BRACKET 
             TYPE EQUAL BLOB_STORAGE COMMA 
             LOCATION EQUAL location=stringtext 
-            external_credential? 
+            credential_set? 
             RR_BRACKET
     ;
-
-external_credential : CREDENTIAL EQUAL credential_id;
 
 external_sources : external_source (COMMA external_source)*;
 
 external_source
     : LOCATION EQUAL location=stringtext
     | RESOURCE_MANAGER_LOCATION EQUAL resource_manager_location=stringtext
-    | CREDENTIAL EQUAL credential_id
+    | credential_set
     ;
 
 // https://docs.microsoft.com/en-us/sql/t-sql/statements/alter-external-library-transact-sql
@@ -1399,27 +1428,39 @@ external_resource_with
         )
         (COMMA? max_memory_set)?
         (COMMA? max_process_set)?
-
         RR_BRACKET
     ;
+
 max_process_set : MAX_PROCESSES EQUAL decimal;
 max_memory_set : MAX_MEMORY_PERCENT EQUAL decimal;
 max_cpu : MAX_CPU_PERCENT EQUAL decimal;
 
 // https://docs.microsoft.com/en-us/sql/t-sql/statements/alter-fulltext-catalog-transact-sql
 alter_fulltext_catalog
-    : ALTER FULLTEXT CATALOG catalog_id (REBUILD (WITH ACCENT_SENSITIVITY EQUAL on_off )? | REORGANIZE | AS DEFAULT )
+    : ALTER FULLTEXT CATALOG catalog_id fulltext_catalog_strategy
+    ;
+
+fulltext_catalog_strategy 
+    : REBUILD with_accent_sensibility_set? 
+    | REORGANIZE 
+    | AS DEFAULT
     ;
 
 // https://docs.microsoft.com/en-us/sql/t-sql/statements/create-fulltext-catalog-transact-sql
 create_fulltext_catalog
     : CREATE FULLTEXT CATALOG catalog_id
-        (ON FILEGROUP file_group_id)?
-        (IN PATH rootpath=stringtext)?
-        (WITH ACCENT_SENSITIVITY EQUAL on_off )?
-        (AS DEFAULT)?
-        (AUTHORIZATION owner_id)?
+        filegroup_set?
+        in_path_set?
+        with_accent_sensibility_set?
+        as_default?
+        authorization_owner_set?
     ;
+
+filegroup_set : ON FILEGROUP file_group_id;
+in_path_set : IN PATH rootpath=stringtext;
+with_accent_sensibility_set : WITH ACCENT_SENSITIVITY EQUAL on_off;
+as_default : AS DEFAULT;
+authorization_owner_set : AUTHORIZATION owner_id;
 
 // https://docs.microsoft.com/en-us/sql/t-sql/statements/alter-fulltext-stoplist-transact-sql
 alter_fulltext_stoplist
@@ -1437,9 +1478,11 @@ fulltext_languageList : stringtext | decimal | binary_;
 // https://docs.microsoft.com/en-us/sql/t-sql/statements/create-fulltext-stoplist-transact-sql
 create_fulltext_stoplist
     :   CREATE FULLTEXT STOPLIST stoplist_id
-          (FROM ( database_stoplist_ref | SYSTEM STOPLIST ) )?
+          (FROM (database_stoplist_ref | system_stoplist) )?
           (AUTHORIZATION owner_id)?
     ;
+
+system_stoplist : SYSTEM STOPLIST;
 
 // https://docs.microsoft.com/en-us/sql/t-sql/statements/alter-login-transact-sql
 alter_login_sql_server
@@ -1451,37 +1494,48 @@ alter_login_sql_server_infos
     | add_drop CREDENTIAL credential_id 
     ;
 
-alter_login_sql_server_settings
-    :  pwd_settings? 
-       old_pwd_strategies? 
-      (DEFAULT_DATABASE EQUAL database_id)? 
-      default_language_set?  
-      (NAME EQUAL login_id)? 
-      (CHECK_POLICY EQUAL check_policy=on_off )? 
-      (CHECK_EXPIRATION EQUAL check_expiration=on_off )? 
-      (CREDENTIAL EQUAL credential_id)? 
-      (NO CREDENTIAL)? 
+alter_login_sql_server_settings : alter_login_sql_server_setting (COMMA alter_login_sql_server_setting)*;
+
+alter_login_sql_server_setting
+    : pwd_settings
+    | old_pwd_strategies
+    | default_database_set
+    | default_language_set
+    | name_login_set
+    | check_policy_set
+    | check_expiration_set
+    | credential_set
+    | no_credential
     ;
+
+no_credential : NO CREDENTIAL;
 
 // https://docs.microsoft.com/en-us/sql/t-sql/statements/create-login-transact-sql
 create_login_sql_server
     : CREATE LOGIN login_id (WITH create_login_sql_server_settings | FROM create_login_sql_server_from)
     ;
 
-create_login_sql_server_settings
-    :  
-    (PASSWORD EQUAL pwd_value pwd_strategies? )?
-    (COMMA? SID EQUAL sid=binary_)?
-    (COMMA? DEFAULT_DATABASE EQUAL database_id)?
-    (COMMA? default_language_set)?
-    (COMMA? CHECK_EXPIRATION EQUAL check_expiration=on_off )?
-    (COMMA? CHECK_POLICY EQUAL check_policy=on_off )?
-    (COMMA? CREDENTIAL EQUAL credential_id)?
+create_login_sql_server_settings : option1=login_settings_option (COMMA option2=login_settings_option);
+
+login_settings_option
+    : pwd_settings
+    | sid_set
+    | default_database_set
+    | default_language_set
+    | check_expiration_set
+    | check_policy_set
+    | credential_set
     ;
+
+sid_set : SID EQUAL binary_;
+default_database_set : DEFAULT_DATABASE EQUAL database_id;
+check_expiration_set : CHECK_EXPIRATION EQUAL on_off;
+check_policy_set : CHECK_POLICY EQUAL on_off;
+credential_set : CREDENTIAL EQUAL credential_id;
 
 create_login_sql_server_from
     :
-      WINDOWS (WITH (COMMA? DEFAULT_DATABASE EQUAL database_id)? (COMMA? default_language_set)? )
+      WINDOWS (WITH (COMMA? default_database_set)? (COMMA? default_language_set)? )
     | CERTIFICATE certificate_id
     | ASYMMETRIC KEY asym_key_id
         
@@ -1497,13 +1551,15 @@ alter_login_azure_sql_infos
     ;
 
 alter_login_azure_sql_with
-    : password_setting old_pwd? 
-    | NAME EQUAL login_id 
+    : password_setting old_pwd
+    | name_login_set
     ;
+
+name_login_set : NAME EQUAL login_id;
 
 create_login_azure_sql
     : CREATE LOGIN login_id
-       WITH password_setting (SID EQUAL sid=binary_)?
+       WITH password_setting sid_set?
     ;
 
 alter_login_azure_sql_dw_and_pdw
@@ -1516,8 +1572,8 @@ login_pwd_strategy
     ;
 
 change_password 
-    : password_setting old_pwd_strategies?  
-    | NAME EQUAL login_id
+    : password_setting old_pwd_strategies?
+    | name_login_set
     ;
 
 create_login_pdw
@@ -1525,10 +1581,7 @@ create_login_pdw
     ;
 
 login_pdw_pwd 
-    : WITH
-    ( password_setting MUST_CHANGE?
-        (CHECK_POLICY EQUAL on_off? )?
-    )
+    : WITH password_setting MUST_CHANGE? check_policy_set?
     | FROM WINDOWS
     ;
 
@@ -1555,15 +1608,20 @@ alter_master_key_azure_sql
     )
     ;
 
-regenerate_mater_key : (FORCE)? REGENERATE WITH encryption_by_pwd;
+regenerate_mater_key : force_regenerate? REGENERATE WITH encryption_by_pwd;
+
+
+force_regenerate : FORCE;
 
 add_master_key 
     : ENCRYPTION BY 
     (
-          SERVICE MASTER KEY 
+          service_master_key
         | password_setting
     ) 
     ; 
+
+service_master_key : SERVICE MASTER KEY;
 create_master_key_azure_sql
     : CREATE MASTER KEY encryption_by_pwd?
     ;
@@ -1651,8 +1709,9 @@ alter_resource_governor
 // https://docs.microsoft.com/en-us/sql/t-sql/statements/alter-role-transact-sql
 alter_db_role
     : ALTER ROLE old_role_name=role_id
-        ( add_drop MEMBER database_id
-        | WITH NAME EQUAL new_role_name=role_id )
+        (  add_drop MEMBER database_id
+         | WITH name_role_set
+        )
     ;
 
 // https://docs.microsoft.com/en-us/sql/t-sql/statements/create-role-transact-sql
@@ -1850,8 +1909,7 @@ server_audit_file_spec
 alter_server_audit_condition
     : 
       COMMA? (NOT?) event_field_id audit_operator decimal_string
-    | COMMA? and_or NOT? audit_operator decimal_string
-                  
+    | COMMA? and_or NOT? audit_operator decimal_string                  
     ;
 
 // https://docs.microsoft.com/en-us/sql/t-sql/statements/create-server-audit-transact-sql
@@ -2022,7 +2080,7 @@ alter_service_master_key
     ;
 
 service_master_key_items
-    : FORCE? REGENERATE 
+    : force_regenerate REGENERATE 
     | WITH regenerate_account
     ;
 
@@ -2119,7 +2177,7 @@ default_schema_set : DEFAULT_SCHEMA EQUAL schema_identifier;
 user_setting
     : default_schema_set
     | default_language_set
-    | SID EQUAL binary_
+    | sid_set
     | ALLOW_ENCRYPTED_VALUE_MODIFICATIONS EQUAL on_off                    
     ;
 
@@ -2272,8 +2330,8 @@ message_statement
 // note that there's a limit on number of when_matches but it has to be done runtime due to different ordering of statements allowed
 merge_statement
     : with_expression?
-      MERGE (TOP LR_BRACKET expression RR_BRACKET PERCENT?)?
-      INTO? ddl_object with_table_hints? as_table_alias?
+      MERGE top_clause?
+      into_statment ddl_object with_table_hints? as_table_alias?
       USING table_sources
       ON search_condition
       when_matches
@@ -2302,14 +2360,24 @@ merge_not_matched
 // https://msdn.microsoft.com/en-us/library/ms189835.aspx
 delete_statement
     : with_expression?
-      DELETE (TOP LR_BRACKET expression RR_BRACKET PERCENT? | TOP decimal)?
-      FROM? delete_statement_from
+      DELETE top_clause?
+      delete_from? delete_statement_from
       with_table_hints?
       output_clause?
       (FROM table_sources)?
-      (WHERE (search_condition | CURRENT OF (GLOBAL? cursor_name | cursor_var=local_id)))?
+      where_condition_or_current_of?
       for_clause? update_option_clause?
     ;
+
+
+where_condition_or_current_of : WHERE (search_condition | CURRENT OF current_of_value);
+
+current_of_value
+    : (GLOBAL? cursor_name 
+    | cursor_var=local_id)
+    ;
+
+delete_from : FROM;
 
 delete_statement_from
     : ddl_object
@@ -2320,14 +2388,16 @@ delete_statement_from
 // https://msdn.microsoft.com/en-us/library/ms174335.aspx
 insert_statement
     : with_expression?
-      INSERT (TOP LR_BRACKET expression RR_BRACKET PERCENT?)?
-      INTO? (ddl_object | rowset_function_limited)
+      INSERT top_clause?
+      into_statment? (ddl_object | rowset_function_limited)
       with_table_hints?
       (LR_BRACKET insert_column_name_list RR_BRACKET)?
       output_clause?
       insert_statement_value
       for_clause? update_option_clause?
     ;
+
+into_statment : INTO;
 
 insert_statement_value
     : table_value_constructor
@@ -2360,19 +2430,20 @@ select_statement
     ;
 
 timespan
-    : (local_id | constant)
+    : local_id 
+    | constant
     ;
 
 // https://msdn.microsoft.com/en-us/library/ms177523.aspx
 update_statement
     : with_expression?
-      UPDATE (TOP LR_BRACKET expression RR_BRACKET PERCENT?)?
+      UPDATE top_clause?
       (ddl_object | rowset_function_limited)
       with_table_hints?
       SET update_elems
       output_clause?
       (FROM table_sources)?
-      (WHERE (search_condition | CURRENT OF (GLOBAL? cursor_name | cursor_var=local_id)))?
+      where_condition_or_current_of?
       for_clause? update_option_clause?
     ;
 
@@ -3165,8 +3236,6 @@ drop_view
     : DROP VIEW if_exists? schema_view_refs
     ;
 
-if_exists : IF EXISTS;
-
 create_type
     : CREATE TYPE name = schema_type_ref
       (FROM data_type default_value)?
@@ -3174,7 +3243,7 @@ create_type
     ;
 
 drop_type:
-    DROP TYPE ( IF EXISTS )? name = schema_type_ref
+    DROP TYPE if_exists? name = schema_type_ref
     ;
 
 rowset_function_limited
@@ -3621,16 +3690,18 @@ setuser_statement
 
 // https://docs.microsoft.com/en-us/sql/t-sql/language-elements/reconfigure-transact-sql
 reconfigure_statement
-    : RECONFIGURE (WITH OVERRIDE)?
+    : RECONFIGURE with_override?
     ;
 
+with_override : WITH OVERRIDE;
+with_nowait : WITH NOWAIT;
 // https://docs.microsoft.com/en-us/sql/t-sql/language-elements/shutdown-transact-sql
 shutdown_statement
-    : SHUTDOWN (WITH NOWAIT)?
+    : SHUTDOWN with_nowait?
     ;
 
 checkpoint_statement
-    : CHECKPOINT (checkPointDuration=decimal)?
+    : CHECKPOINT decimal?
     ;
 
 //These are dbcc commands with strange syntax that doesn't fit the regular dbcc syntax
@@ -3988,9 +4059,12 @@ update_elem_merge
 
 // https://docs.microsoft.com/en-us/sql/t-sql/queries/search-condition-transact-sql
 search_condition
-    : NOT* sub_search_condition 
+    : not_sub_search_condition
+    | sub_search_condition 
     | left=search_condition and_or right=search_condition // AND takes precedence over OR
     ;
+
+not_sub_search_condition  : NOT sub_search_condition;
 
 sub_search_condition 
     : predicate_expr
@@ -4034,7 +4108,7 @@ sql_union_def
 
 // https://msdn.microsoft.com/en-us/library/ms176104.aspx
 query_specification
-    : SELECT allOrDistinct=all_distinct? top=top_clause?
+    : SELECT allOrDistinct=all_distinct? top=top_clause_with_ties?
       columns=select_list
       // https://msdn.microsoft.com/en-us/library/ms188029.aspx
       (INTO into=full_table_ref)?
@@ -4046,23 +4120,32 @@ query_specification
     ;
 
 // https://msdn.microsoft.com/en-us/library/ms189463.aspx
-top_clause
-    : TOP (top_percent | top_count) (WITH TIES)?
+top_clause_with_ties
+    : TOP top_expression with_ties?
     ;
 
+top_clause
+    : TOP top_expression
+    ;
 
+top_expression 
+    : top_percent 
+    | top_count
+    ;
+
+with_ties : WITH TIES;
 
 top_percent
     : percent_constant PERCENT
-    | LR_BRACKET topper_expression=expression RR_BRACKET PERCENT
+    | LR_BRACKET expression RR_BRACKET PERCENT
+    ;
+
+top_count
+    : decimal
+    | LR_BRACKET expression RR_BRACKET
     ;
 
 percent_constant: real | float | decimal;
-
-top_count
-    : count_constant=decimal
-    | LR_BRACKET topcount_expression=expression RR_BRACKET
-    ;
 
 // https://docs.microsoft.com/en-us/sql/t-sql/queries/select-over-clause-transact-sql?view=sql-server-ver16
 order_by_clause
@@ -4909,15 +4992,14 @@ service_name_expr
     ;
 
 end_conversation
-    : END CONVERSATION conversation_handle=local_id SEMI?
-      (
-        WITH 
-            (
-                ERROR EQUAL faliure_code=string_local_id 
-                DESCRIPTION EQUAL failure_text=string_local_id
-            )? CLEANUP? 
-      )?
+    : END CONVERSATION conversation_handle=local_id SEMI? end_conversation_error?
     ;
+
+end_conversation_error : WITH (error_set description_set)? CLEANUP? ;
+
+
+error_set : ERROR EQUAL faliure_code=string_local_id;
+description_set : DESCRIPTION EQUAL failure_text=string_local_id;
 
 waitfor_conversation
     : WAITFOR? LR_BRACKET get_conversation RR_BRACKET (COMMA? TIMEOUT timeout=timespan)?

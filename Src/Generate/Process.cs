@@ -120,7 +120,7 @@ namespace Generate
                     a.Using("Antlr4.Runtime");
                     a.Using("Antlr4.Runtime.Tree");
                 })
-                .Add<ScriptClassIdentifierVisitorWithProperties>(null, a =>
+                .Add<ScriptClassIdentifierVisitorWithProperties>("ScriptTSqlVisitor.IdentifiersProperties", a =>
                 {
                     a.SplitObjectOnDisk = splitObjectOnDisk;
                     a.Namespace = namespaceParser;

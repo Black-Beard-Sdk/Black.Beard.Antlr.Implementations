@@ -50,7 +50,7 @@ namespace Generate.ModelsScripts
 
 
         protected LevelBloc CurrentBlock => _code.CurrentBlock;
-        protected LevelBloc Stack(CodeStatementCollection c = null) => _code.Stack(c);
+        protected LevelBloc Stack(object sourceItem, CodeStatementCollection collection) => _code.Stack(sourceItem, collection);
         private CodeBlock _code;
 
 

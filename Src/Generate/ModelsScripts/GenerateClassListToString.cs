@@ -27,41 +27,19 @@ namespace Generate.ModelsScripts
         public override CodeExpression VisitRule(AstRule a)
         {
 
-            using (var current = Stack())
+            using (var current = Stack(a, null))
             {
-
                 current.Code.Call("writer".Var(), "EnsureEndBy", ' '.AsConstant());
-
-                switch (this.Strategy)
+                current.Code.If(CodeHelper.This().Property("Count").GreaterThan((0).AsConstant()),
+                i =>
                 {
-
-                    case "ClassList":
-                        current.Code.If(CodeHelper.This().Property("Count").GreaterThan((0).AsConstant()),
-                        i =>
-                        {
-                            using (var current = Stack(i))
-                            {
-
-                                current.Code.DeclareAndInitialize("strategy", "var".AsType(), "writer".Var().Property("Strategy").Call("GetStrategy", "_ruleName".Var()));
-
-                                current.Code.Using("blockStrategy", "writer".Var().Call("Apply", "strategy".Var()), j =>
-                                {
-                                    using (var current = Stack(j))
-                                    {
-                                        current.Code.DeclareAndInitialize("index", typeof(int).AsType(), (0).AsConstant());
-                                        a.Alternatives.Accept(this);
-                                    }
-                                });
-
-                            }
-                        });
-
-                        break;
-
-                    default:
+                    using (var current = Stack(a, i))
+                    {
+                        current.Code.DeclareAndInitialize("index", typeof(int).AsType(), (0).AsConstant());
                         a.Alternatives.Accept(this);
-                        break;
-                }
+                    }
+                });
+                current.Code.Return(CodeHelper.AsConstant(true));
 
             }
 
@@ -69,18 +47,12 @@ namespace Generate.ModelsScripts
 
         }
 
-
         public override CodeExpression VisitRuleAltList(AstRuleAltList a)
         {
 
-            using (var current = Stack())
+            foreach (AstLabeledAlt item in a)
             {
-
-                foreach (AstLabeledAlt item in a)
-                {
-                    item.Accept(this);
-                }
-
+                item.Accept(this);
             }
 
             return null;
@@ -92,7 +64,7 @@ namespace Generate.ModelsScripts
 
             CodeExpression result = null;
 
-            using (var current = Stack())
+            using (var current = Stack(a, null))
             {
 
                 if (a.Name != null)
@@ -117,7 +89,7 @@ namespace Generate.ModelsScripts
         public override CodeExpression VisitAlternative(AstAlternative a)
         {
 
-            using (var current = Stack())
+            using (var current = Stack(a, null))
             {
 
                 a.Rule.Accept(this);
@@ -136,14 +108,9 @@ namespace Generate.ModelsScripts
         public override CodeExpression VisitAlternativeList(AstAlternativeList a)
         {
 
-            using (var current = Stack())
+            foreach (AstAlternative item in a)
             {
-
-                foreach (AstAlternative item in a)
-                {
-                    item.Accept(this);
-                }
-
+                item.Accept(this);
             }
 
             return null;
@@ -153,30 +120,23 @@ namespace Generate.ModelsScripts
         public override CodeExpression VisitElementList(AstElementList a)
         {
 
-            CodeExpression result = null;
-
-            using (var current = Stack())
+            foreach (var item in a)
             {
 
-                foreach (var item in a)
+                var code = item.Accept(this);
+                if (code != null)
                 {
-
-                    var code = item.Accept(this);
-                    if (code != null)
-                    {
-                    }
                 }
-
             }
 
-            return result;
+            return null;
 
         }
 
         public override CodeExpression VisitAtom(AstAtom a)
         {
 
-            using (var current = Stack())
+            using (var current = Stack(a, null))
             {
 
                 if (a.Occurence.Value == OccurenceEnum.Any)
@@ -197,15 +157,12 @@ namespace Generate.ModelsScripts
                         {
                             current.Code.If("strategy".Var().Property("ReturnLineAfterItems"), t =>
                             {
-                                using (var current = Stack(t))
+                                using (var current = Stack(a, t))
                                 {
                                     current.Code.Add("writer".Var().Call("AppendEndLine"));
                                 }
                             });
                         }
-
-                        //current.Current.Call("writer".Var(), "EnsureEndBy", '\n'.AsConstant());
-                        //current.Current.Call("writer".Var(), "EnsureEndBy", ' '.AsConstant());
 
                     }
                     else
@@ -218,7 +175,7 @@ namespace Generate.ModelsScripts
 
                         var m = CodeHelper.For("index".Var().Assign((1).AsConstant()), left.LessThan(right), "index".PostIncrement().AsStatement(), j =>
                         {
-                            using (var current = Stack(j))
+                            using (var current = Stack(a, j))
                             {
                                 a.Value.Accept(this);
                             }
@@ -251,17 +208,16 @@ namespace Generate.ModelsScripts
         {
 
             var value = 0;
-            if (Strategy == "ClassList")
-                value = 1;
+            value = 1;
 
             CodeExpression result = null;
 
-            using (var current = Stack())
+            using (var current = Stack(a, null))
             {
                 current.Code.If(CodeHelper.This().Property("Count").GreaterThan((value).AsConstant()),
                 i =>
                 {
-                    using (var current = Stack(i))
+                    using (var current = Stack(a, i))
                     {
 
                         if (a.Occurence.Value == OccurenceEnum.Any)
@@ -274,7 +230,7 @@ namespace Generate.ModelsScripts
                             j =>
                             {
 
-                                using (var current = Stack(j))
+                                using (var current = Stack(a, j))
                                 {
                                     var item = CodeHelper.This().Indexer("index".Var());
                                     current.SetData("source", item);
@@ -287,14 +243,7 @@ namespace Generate.ModelsScripts
 
                         else
                         {
-
-                            //if (a.Occurence.Optional)
-                            //{
-                            //    Stop();
-                            //}
-
                             a.AlternativeList.Accept(this);
-
                         }
 
                     }
@@ -332,7 +281,7 @@ namespace Generate.ModelsScripts
             if (v == null)
                 v = "item".Var();
 
-            var i = CodeHelper.Call(v, "ToString", "writer".Var());
+            var i = CodeHelper.Call("writer".Var(), "ToString", v);
             current.Code.Add(i);
 
             return null;

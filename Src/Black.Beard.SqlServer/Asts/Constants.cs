@@ -1039,7 +1039,7 @@ namespace Bb.SqlServer.Asts
         public static string DOUBLE_BAR = "|| ";
         public static string DOT = ". ";
         public static string UNDERLINE = "_ ";
-        public static string AT = "@ ";
+        public static string AT = "@";
         public static string SHARP = "# ";
         public static string DOLLAR = "$ ";
         public static string LR_BRACKET = "( ";

@@ -4,7 +4,6 @@ using System.CodeDom;
 
 namespace Generate.ModelsScripts
 {
-    // 
 
     public class GenerateClassTerminalToString : GenerateCodeFromAst
     {
@@ -24,41 +23,20 @@ namespace Generate.ModelsScripts
 
         public override CodeExpression VisitRule(AstRule a)
         {
-
-            using (var current = Stack())
+            using(var current = Stack(a, null))
             {
-
                 current.Code.Call("writer".Var(), "EnsureEndBy", ' '.AsConstant());
-
-                current.Code.DeclareAndInitialize("strategy", "var".AsType(), "writer".Var().Property("Strategy").Call("GetStrategy", "_ruleName".Var()));
-
-                current.Code.Using("blockStrategy", "writer".Var().Call("Apply", "strategy".Var()), j =>
-                {
-                    using (var current = Stack(j))
-                    {
-                        a.Alternatives.Accept(this);
-                    }
-                });
-
-
-
+                a.Alternatives.Accept(this);
             }
-
             return null;
-
         }
 
         public override CodeExpression VisitRuleAltList(AstRuleAltList a)
         {
 
-            using (var current = Stack())
+            foreach (AstLabeledAlt item in a)
             {
-
-                foreach (AstLabeledAlt item in a)
-                {
-                    item.Accept(this);
-                }
-
+                item.Accept(this);
             }
 
             return null;
@@ -70,22 +48,16 @@ namespace Generate.ModelsScripts
 
             CodeExpression result = null;
 
-            using (var current = Stack())
+            if (a.Name != null)
             {
 
-                if (a.Name != null)
-                {
+            }
 
-                }
+            result = a.Rule.Accept(this);
 
-                result = a.Rule.Accept(this);
-
-                if (a.Name != null)
-                {
-                    Pause();
-                }
-
-
+            if (a.Name != null)
+            {
+                Pause();
             }
 
             return result;
@@ -95,16 +67,11 @@ namespace Generate.ModelsScripts
         public override CodeExpression VisitAlternative(AstAlternative a)
         {
 
-            using (var current = Stack())
+            a.Rule.Accept(this);
+
+            if (a.Options != null)
             {
-
-                a.Rule.Accept(this);
-
-                if (a.Options != null)
-                {
-                    Pause();
-                }
-
+                Pause();
             }
 
             return null;
@@ -114,14 +81,9 @@ namespace Generate.ModelsScripts
         public override CodeExpression VisitAlternativeList(AstAlternativeList a)
         {
 
-            using (var current = Stack())
+            foreach (AstAlternative item in a)
             {
-
-                foreach (AstAlternative item in a)
-                {
-                    item.Accept(this);
-                }
-
+                item.Accept(this);
             }
 
             return null;
@@ -131,47 +93,36 @@ namespace Generate.ModelsScripts
         public override CodeExpression VisitElementList(AstElementList a)
         {
 
-            CodeExpression result = null;
-
-            using (var current = Stack())
+            foreach (var item in a)
             {
 
-                foreach (var item in a)
+                var code = item.Accept(this);
+                if (code != null)
                 {
-
-                    var code = item.Accept(this);
-                    if (code != null)
-                    {
-                    }
                 }
-
             }
 
-            return result;
+            return null;
 
         }
 
         public override CodeExpression VisitAtom(AstAtom a)
         {
 
-            using (var current = Stack())
+            if (a.Occurence.Value == OccurenceEnum.Any)
             {
 
-                if (a.Occurence.Value == OccurenceEnum.Any)
+            }
+            else
+            {
+
+                if (a.Occurence.Optional)
                 {
 
                 }
-                else
-                {
 
-                    if (a.Occurence.Optional)
-                    {
+                var result = a.Value.Accept(this);
 
-                    }
-
-                    var result = a.Value.Accept(this);
-
-                }
             }
 
             return null;
@@ -180,16 +131,8 @@ namespace Generate.ModelsScripts
 
         public override CodeExpression VisitBlock(AstBlock a)
         {
-
-            CodeExpression result = null;
-
-            using (var current = Stack())
-            {
-                a.AlternativeList.Accept(this);
-            }
-
-            return result;
-
+            a.AlternativeList.Accept(this);
+            return null;
         }
 
 
@@ -248,9 +191,6 @@ namespace Generate.ModelsScripts
 
             return null;
         }
-
-
-        //private readonly List<string> _types;
 
     }
 

@@ -411,8 +411,7 @@ namespace Generate.ModelsScripts
                                         .Return(() => typeof(bool))
                                         .Body(b =>
                                         {
-                                            b.Statements.Return(CodeHelper.AsConstant(true));
-
+                                            GenerateClassDefaultToString.Generate(ast, b.Statements);
                                         })
                                    ;
 

@@ -726,10 +726,6 @@ namespace Generate.ModelsScripts
                                   .Return(() => typeof(bool))
                                   .Body(b =>
                                   {
-
-                                      if (ast.Name.Text == "throw_statement")
-                                      { }
-
                                       GenerateClassDefaultToString.Generate(ast, b.Statements);
                                   })
                              ;
