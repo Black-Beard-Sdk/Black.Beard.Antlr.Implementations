@@ -189,6 +189,7 @@ namespace Generate.ModelsScripts
             var b = a.Ancestor<AstBlock>();
             if (b != null && b.Occurence.Optional)
             {
+                
                 var d = GetDataFor(b);
                 if (!d.DataExist("testOptional"))
                     
